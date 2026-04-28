@@ -4,6 +4,15 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Logs ###
+logs/
+*.log
+
+### Environment / Secrets ###
+.env
+.env.*
+!.env.example
+
 ### STS ###
 .apt_generated
 .classpath
@@ -14,10 +23,11 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+out/
 
 ### NetBeans ###
 /nbproject/private/

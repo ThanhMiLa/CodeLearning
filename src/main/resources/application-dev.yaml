@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /codelearning
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/CodeLearning}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+jwt:
+  signer-key: ${JWT_SIGNER_KEY}
+  valid-duration: ${JWT_VALID_DURATION:900}
+  refreshable-duration: ${JWT_REFRESHABLE_DURATION:604800}
+
+auth:
+  cookie:
+    access-token:
+      max-age: ${ACCESS_TOKEN_MAX_AGE:60}
+      secure: ${ACCESS_TOKEN_SECURE:false}
+    refresh-token:
+      max-age: ${REFRESH_TOKEN_MAX_AGE:120}
+      secure: ${REFRESH_TOKEN_SECURE:false}
+
+
