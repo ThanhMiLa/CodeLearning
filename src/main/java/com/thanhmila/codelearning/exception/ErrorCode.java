@@ -1,0 +1,56 @@
+package com.thanhmila.codelearning.exception;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+
+@Getter
+@AllArgsConstructor
+public enum ErrorCode {
+
+    UNCATEGORIZED_EXCEPTION(1000, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR),
+    INVALID_REQUEST(1001, "Invalid request", HttpStatus.BAD_REQUEST),
+    VALIDATION_ERROR(1002, "Validation error", HttpStatus.BAD_REQUEST),
+    RESOURCE_NOT_FOUND(1003, "Resource not found", HttpStatus.NOT_FOUND),
+    ACCESS_DENIED(1004, "Access denied", HttpStatus.FORBIDDEN),
+    UNAUTHENTICATED(1005, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+
+    USERNAME_ALREADY_EXISTS(2000, "Username already exists", HttpStatus.CONFLICT),
+    EMAIL_ALREADY_EXISTS(2001, "Email already exists", HttpStatus.CONFLICT),
+    USER_NOT_FOUND(2002, "User not found", HttpStatus.NOT_FOUND),
+    INVALID_USERNAME_OR_PASSWORD(2003, "Invalid username or password", HttpStatus.UNAUTHORIZED),
+    ACCOUNT_LOCKED(2004, "Account is locked", HttpStatus.FORBIDDEN),
+    ACCOUNT_DISABLED(2005, "Account is disabled", HttpStatus.FORBIDDEN),
+    INVALID_TOKEN(2008, "Invalid token", HttpStatus.UNAUTHORIZED),
+    EXPIRED_TOKEN(2009, "Token has expired", HttpStatus.UNAUTHORIZED),
+    REFRESH_TOKEN_EXPIRED(2012, "Refresh token has expired", HttpStatus.UNAUTHORIZED),
+
+    COURSE_NOT_FOUND(3000, "Course not found", HttpStatus.NOT_FOUND),
+    LESSON_NOT_FOUND(3200, "Lesson not found", HttpStatus.NOT_FOUND),
+
+    ENROLLMENT_NOT_FOUND(4100, "Enrollment not found", HttpStatus.NOT_FOUND),
+    ALREADY_ENROLLED(4101, "User already enrolled this course", HttpStatus.CONFLICT),
+    NOT_ENROLLED(4102, "User is not enrolled in this course", HttpStatus.FORBIDDEN),
+
+    QUIZ_NOT_FOUND(5000, "Quiz not found", HttpStatus.NOT_FOUND),
+
+    OJ_PROBLEM_NOT_FOUND(6000, "Online judge problem not found", HttpStatus.NOT_FOUND),
+    OJ_SUBMISSION_FAILED(6304, "Online judge submission failed", HttpStatus.BAD_GATEWAY),
+
+    FILE_ASSIGNMENT_NOT_FOUND(7000, "File assignment not found", HttpStatus.NOT_FOUND),
+    FILE_SUBMISSION_NOT_FOUND(7100, "File submission not found", HttpStatus.NOT_FOUND),
+
+    COMMENT_NOT_FOUND(8000, "Comment not found", HttpStatus.NOT_FOUND),
+    COURSE_REVIEW_ALREADY_EXISTS(8101, "User already reviewed this course", HttpStatus.CONFLICT),
+
+    CONTEST_NOT_FOUND(9000, "Contest not found", HttpStatus.NOT_FOUND),
+    CONTEST_PASSWORD_INVALID(9003, "Contest password is invalid", HttpStatus.UNAUTHORIZED),
+    CONTEST_NOT_JOINED(9202, "User has not joined this contest", HttpStatus.FORBIDDEN);
+
+    private final int code;
+    private final String message;
+    private final HttpStatus httpStatus;
+
+}
