@@ -28,5 +28,17 @@ public class UserService {
         return userMapper.toUserResponse(userEntity);
     }
 
+    public UserResponse updateProfile(String username, UpdateProfileRequest request){
+        UserEntity userEntity = userRepository.findByUsername(username)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+
+        userEntity.setDisplayName(request.getDisplayName() != null ? request.getDisplayName() : userEntity.getDisplayName());
+        userEntity.setPhoneNumber(request.getPhoneNumber() != null ? request.getPhoneNumber() : userEntity.getPhoneNumber());
+
+        userRepository.save(userEntity);
+
+        return userMapper.toUserResponse(userEntity);
+
+    }
 
 }

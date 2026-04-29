@@ -1,19 +1,20 @@
 package com.thanhmila.codelearning.controller.user;
 
+import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.dto.response.UserResponse;
 import com.thanhmila.codelearning.service.user.UserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 
@@ -31,6 +32,21 @@ public class UserController {
             @AuthenticationPrincipal Jwt jwt){
         String username = jwt.getSubject();
         UserResponse result = userService.getMyInfo(username);
+        return ResponseEntity.ok(ApiResponse.<UserResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Success")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PatchMapping("/me")
+    public ResponseEntity<ApiResponse<UserResponse>> updateProfile(
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestBody @Valid UpdateProfileRequest updateProfileRequest){
+        String username = jwt.getSubject();
+        UserResponse result = userService.updateProfile(username, updateProfileRequest);
         return ResponseEntity.ok(ApiResponse.<UserResponse>builder()
                 .status(200)
                 .code(1000)
