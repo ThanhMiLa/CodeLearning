@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.controller.auth;
 
+import com.nimbusds.jose.JOSEException;
 import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.time.Instant;
 
 @Slf4j
@@ -190,4 +192,44 @@ public class AuthenticationController {
                 .timestamp(Instant.now().toString())
                 .build());
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<ApiResponse<AuthenticationResponse>> refresh(
+            @CookieValue(name = "refresh_token", required = false) String refreshToken
+            , HttpServletRequest request, HttpServletResponse response)
+            throws ParseException, JOSEException {
+
+        var result = authenticationService.refresh(refreshToken);
+
+        ResponseCookie accessTokenCookie = ResponseCookie.from("access_token", result.getAccessToken())
+                .httpOnly(accessTokenHttpOnly)
+                .secure(isCookieAccessTokenSecure)
+                .path(accessTokenPath)
+                .maxAge(accessTokenMaxAge)
+                .sameSite(accessTokenSameSite)
+                .build();
+
+        ResponseCookie refreshTokenCookie = ResponseCookie.from("refresh_token", result.getRefreshToken())
+                .httpOnly(refreshTokenHttpOnly)
+                .secure(isCookieRefreshTokenSecure)
+                .path(refreshTokenPath)
+                .maxAge(refreshTokenMaxAge)
+                .sameSite(refreshTokenSameSite)
+                .build();
+
+        result.setAccessToken(null);
+        result.setRefreshToken(null);
+
+        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+
+        return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Success")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
 }

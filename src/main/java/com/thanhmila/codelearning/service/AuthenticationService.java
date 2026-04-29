@@ -129,6 +129,37 @@ public class AuthenticationService {
         }
     }
 
+    public AuthenticationResponse refresh(String token) throws ParseException, JOSEException {
+        SignedJWT signedJWT = verifyToken(token, true);
+
+        String jti = signedJWT.getJWTClaimsSet().getJWTID();
+        Date expiryTime = signedJWT.getJWTClaimsSet().getExpirationTime();
+
+        OffsetDateTime expireOSDT = expiryTime.toInstant()
+                .atOffset(ZoneOffset.UTC);
+
+        InvalidatedTokenEntity invalidatedTokenEntity = InvalidatedTokenEntity
+                .builder()
+                .tokenJti(jti)
+                .expiryTime(expireOSDT)
+                .build();
+        invalidatedTokenRepository.save(invalidatedTokenEntity);
+
+        String username = signedJWT.getJWTClaimsSet().getSubject();
+        UserEntity userEntity = userRepository.findByUsername(username)
+                .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
+
+        String accessToken = generateToken(userEntity, false);
+        String refreshToken = generateToken(userEntity, true);
+
+        AuthenticationResponse authenticationResponse = userMapper.toAuthenticationResponse(userEntity);
+        authenticationResponse.setAccessToken(accessToken);
+        authenticationResponse.setRefreshToken(refreshToken);
+
+        return authenticationResponse;
+
+    }
+
     public IntrospectResponse introspect(IntrospectRequest request)  {
         String token = request.getToken();
         boolean isValid = true;
