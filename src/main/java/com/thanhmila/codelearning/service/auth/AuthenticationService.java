@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
@@ -62,6 +63,7 @@ public class AuthenticationService {
     @Value("${jwt.refreshable-duration}")
     long REFRESHABLE_DURATION;
 
+    @Transactional(readOnly = true)
     public AuthenticationResponse login(AuthenticationRequest request){
         UserEntity userEntity = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
@@ -88,6 +90,7 @@ public class AuthenticationService {
         return authenticationResponse;
     }
 
+    @Transactional
     public AuthenticationResponse register(RegisterRequest registerRequest){
         if(userRepository.existsByUsername(registerRequest.getUsername())){
             throw new AppException(ErrorCode.USERNAME_ALREADY_EXISTS);
@@ -117,6 +120,7 @@ public class AuthenticationService {
 
     }
 
+    @Transactional
     public void logout(String accessToken, String refreshToken){
         if(accessToken != null && !accessToken.isBlank()){
             processTokenInvalidation(accessToken, "ACCESS");
@@ -127,6 +131,7 @@ public class AuthenticationService {
         }
     }
 
+    @Transactional
     public AuthenticationResponse refresh(String token) throws ParseException, JOSEException {
         SignedJWT signedJWT = verifyToken(token, true);
 
@@ -147,6 +152,7 @@ public class AuthenticationService {
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
 
+        validateUserStatus(userEntity);
         String accessToken = generateToken(userEntity, false);
         String refreshToken = generateToken(userEntity, true);
 
@@ -158,6 +164,7 @@ public class AuthenticationService {
 
     }
 
+    @Transactional(readOnly = true)
     public IntrospectResponse introspect(IntrospectRequest request)  {
         String token = request.getToken();
         boolean isValid = true;
@@ -261,6 +268,16 @@ public class AuthenticationService {
             });
         }
         return stringJoiner.toString();
+    }
+
+    private void validateUserStatus(UserEntity userEntity) {
+        if (userEntity.getStatus().equals(UserStatus.LOCKED)) {
+            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
+        }
+
+        if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
+            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
+        }
     }
 
 }
