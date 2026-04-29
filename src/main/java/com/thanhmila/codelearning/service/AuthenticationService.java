@@ -1,6 +1,20 @@
 package com.thanhmila.codelearning.service;
 
+import com.nimbusds.jose.*;
+import com.nimbusds.jose.crypto.MACSigner;
+import com.nimbusds.jose.crypto.MACVerifier;
+import com.nimbusds.jose.jca.JCAContext;
+import com.nimbusds.jose.util.Base64URL;
+import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
+import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
+import com.thanhmila.codelearning.dto.request.IntrospectRequest;
+import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
+import com.thanhmila.codelearning.dto.response.IntrospectResponse;
 import com.thanhmila.codelearning.entity.UserEntity;
+import com.thanhmila.codelearning.entity.enums.UserStatus;
+import com.thanhmila.codelearning.exception.AppException;
+import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
 import com.thanhmila.codelearning.repository.InvalidatedTokenRepository;
 import com.thanhmila.codelearning.repository.RefreshTokenRepository;
@@ -16,7 +30,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.StringJoiner;
+import java.text.ParseException;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -32,7 +49,7 @@ public class AuthenticationService {
     UserMapper userMapper;
 
     @NonFinal
-    @Value("${jwt.signerKey}")
+    @Value("${jwt.signer-key}")
     String SIGNER_KEY;
 
     @NonFinal
@@ -42,5 +59,113 @@ public class AuthenticationService {
     @NonFinal
     @Value("${jwt.refreshable-duration}")
     long REFRESHABLE_DURATION;
+
+    public AuthenticationResponse login(AuthenticationRequest request){
+        UserEntity userEntity = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
+
+        boolean authenticated = passwordEncoder.matches(request.getPassword(), userEntity.getPasswordHash());
+
+        if(!authenticated){
+            throw new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD);
+        }
+
+        if(userEntity.getStatus().equals(UserStatus.LOCKED)){
+            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
+        }else if(userEntity.getStatus().equals(UserStatus.DISABLED)){
+            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
+        }
+
+        String accessToken = generateToken(userEntity, false);
+        String refreshToken = generateToken(userEntity, true);
+
+        AuthenticationResponse authenticationResponse = userMapper.toAuthenticationResponse(userEntity);
+        authenticationResponse.setAccessToken(accessToken);
+        authenticationResponse.setRefreshToken(refreshToken);
+
+        return authenticationResponse;
+    }
+
+    public IntrospectResponse introspect(IntrospectRequest request)  {
+        String token = request.getToken();
+        boolean isValid = true;
+
+        try{
+            SignedJWT signedJWT = verifyToken(token, false);
+        }catch (Exception exception){
+            isValid = false;
+        }
+
+        return IntrospectResponse.builder().valid(isValid).build();
+    }
+
+    private SignedJWT verifyToken(String token, boolean isRefresh) throws JOSEException, ParseException {
+        if(Objects.isNull(token) || token.isBlank()){
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
+
+        JWSVerifier jwsVerifier = new MACVerifier(SIGNER_KEY.getBytes());
+
+        SignedJWT signedJWT = SignedJWT.parse(token);
+
+        Date expiryTime = signedJWT.getJWTClaimsSet().getExpirationTime();
+        boolean verified = signedJWT.verify(jwsVerifier);
+
+        if(!verified) throw new AppException(ErrorCode.UNAUTHENTICATED);
+        else if (expiryTime.before(new Date())) throw new AppException(ErrorCode.EXPIRED_TOKEN);
+
+        if(invalidatedTokenRepository.existsByTokenJti(signedJWT.getJWTClaimsSet().getJWTID())){
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
+
+        String expectedType = isRefresh ? "REFRESH" : "ACCESS";
+        Object type = signedJWT.getJWTClaimsSet().getClaim("type");
+        if(Objects.isNull(type) || !expectedType.equals(type)){
+            throw new AppException(ErrorCode.INVALID_TOKEN);
+        }
+
+        return signedJWT;
+
+    }
+
+    private String generateToken(UserEntity userEntity, boolean isRefresh) {
+        JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
+
+        JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
+                .subject(userEntity.getUsername())
+                .issuer("codelearning.thanhmila.com")
+                .issueTime(new Date())
+                .expirationTime(new Date(
+                        Instant.now().plus(isRefresh ? REFRESHABLE_DURATION : VALID_DURATION, ChronoUnit.SECONDS).toEpochMilli()))
+                .jwtID(UUID.randomUUID().toString())
+                .claim("scope", buildScope(userEntity))
+                .claim("type", isRefresh ? "REFRESH" : "ACCESS")
+                .build();
+
+        Payload payload = new Payload(jwtClaimsSet.toJSONObject());
+
+        JWSObject jwsObject = new JWSObject(header, payload);
+
+        try {
+            jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
+            return jwsObject.serialize();
+        } catch (JOSEException e) {
+            log.error("Cannot create token!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String buildScope(UserEntity userEntity) {
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        if (!CollectionUtils.isEmpty(userEntity.getRoles())) {
+            userEntity.getRoles().forEach(role -> {
+                stringJoiner.add("ROLE_" + role.getName());
+                if (!role.getPermissions().isEmpty()) {
+                    role.getPermissions().forEach(permission -> stringJoiner.add(permission.getName()));
+                }
+            });
+        }
+        return stringJoiner.toString();
+    }
 
 }
