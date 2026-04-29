@@ -30,7 +30,11 @@ public enum ErrorCode {
     PHONE_INVALID(2010, "Phone number is invalid", HttpStatus.BAD_REQUEST),
     DISPLAY_NAME_INVALID(2011, "Display name is invalid", HttpStatus.BAD_REQUEST),
     PASSWORD_NOT_MATCH(2012, "Password and confirm password not match", HttpStatus.BAD_REQUEST),
-
+    OLD_PASSWORD_NOT_MATCH(2013, "Old password not match", HttpStatus.BAD_REQUEST),
+    NEW_PASSWORD_SAME_AS_OLD_PASSWORD(2014, "New password must be different from old password", HttpStatus.BAD_REQUEST),
+    OLD_PASSWORD_INVALID(2015, "Old password must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    NEW_PASSWORD_INVALID(2016, "New password must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    CONFIRM_NEW_PASSWORD_INVALID(2017, "Confirm new password must be at least 4 chars", HttpStatus.BAD_REQUEST),
 
     INVALID_TOKEN(2020, "Invalid token", HttpStatus.UNAUTHORIZED),
     EXPIRED_TOKEN(2021, "Token has expired", HttpStatus.UNAUTHORIZED),

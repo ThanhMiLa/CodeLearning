@@ -1,19 +1,26 @@
 package com.thanhmila.codelearning.service.user;
 
 import com.nimbusds.jwt.SignedJWT;
+import com.thanhmila.codelearning.dto.request.ChangePasswordRequest;
 import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
 import com.thanhmila.codelearning.dto.response.UserResponse;
+import com.thanhmila.codelearning.entity.InvalidatedTokenEntity;
 import com.thanhmila.codelearning.entity.UserEntity;
+import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
+import com.thanhmila.codelearning.repository.InvalidatedTokenRepository;
 import com.thanhmila.codelearning.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -22,6 +29,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
+    PasswordEncoder passwordEncoder;
+    InvalidatedTokenRepository invalidatedTokenRepository;
 
     @Transactional(readOnly = true)
     public UserResponse getMyInfo(String username){
@@ -42,6 +51,40 @@ public class UserService {
 
         return userMapper.toUserResponse(userEntity);
 
+    }
+
+    @Transactional
+    public void changePassword(String username, ChangePasswordRequest changePasswordRequest){
+        UserEntity userEntity = userRepository.findByUsername(username)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+
+        validateUserStatus(userEntity);
+
+        if(!passwordEncoder.matches(changePasswordRequest.getOldPassword(), userEntity.getPasswordHash())){
+            throw new AppException(ErrorCode.OLD_PASSWORD_NOT_MATCH);
+        }
+
+        if(!Objects.equals(changePasswordRequest.getNewPassword(), changePasswordRequest.getConfirmNewPassword())){
+            throw new AppException(ErrorCode.PASSWORD_NOT_MATCH);
+        }
+
+        if (passwordEncoder.matches(changePasswordRequest.getNewPassword(), userEntity.getPasswordHash())) {
+            throw new AppException(ErrorCode.NEW_PASSWORD_SAME_AS_OLD_PASSWORD);
+        }
+
+        userEntity.setPasswordHash(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+        userRepository.save(userEntity);
+
+    }
+
+    private void validateUserStatus(UserEntity userEntity) {
+        if (userEntity.getStatus().equals(UserStatus.LOCKED)) {
+            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
+        }
+
+        if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
+            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
+        }
     }
 
 }

@@ -114,7 +114,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
                 .code(1000)
-                .message("Success")
+                .message("Login successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
@@ -151,7 +151,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
                 .code(1000)
-                .message("Success")
+                .message("Register account successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
@@ -187,7 +187,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(ApiResponse.<Void>builder()
                 .status(200)
                 .code(1000)
-                .message("Success")
+                .message("Logout successfully")
                 .result(null)
                 .timestamp(Instant.now().toString())
                 .build());
@@ -226,7 +226,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
                 .code(1000)
-                .message("Success")
+                .message("Refresh token successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
