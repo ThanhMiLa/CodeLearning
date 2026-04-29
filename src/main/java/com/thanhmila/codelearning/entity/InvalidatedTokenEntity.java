@@ -20,10 +20,6 @@ public class InvalidatedTokenEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    UserEntity userEntity;
-
     @Column(name = "token_jti", nullable = false, unique = true, length = 255)
     String tokenJti;
 

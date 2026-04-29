@@ -12,6 +12,7 @@ import com.thanhmila.codelearning.dto.request.IntrospectRequest;
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.dto.response.IntrospectResponse;
+import com.thanhmila.codelearning.entity.InvalidatedTokenEntity;
 import com.thanhmila.codelearning.entity.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
@@ -33,6 +34,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -116,6 +119,16 @@ public class AuthenticationService {
 
     }
 
+    public void logout(String accessToken, String refreshToken){
+        if(accessToken != null && !accessToken.isBlank()){
+            processTokenInvalidation(accessToken, "ACCESS");
+        }
+
+        if(refreshToken != null && !refreshToken.isBlank()){
+            processTokenInvalidation(refreshToken, "REFRESH");
+        }
+    }
+
     public IntrospectResponse introspect(IntrospectRequest request)  {
         String token = request.getToken();
         boolean isValid = true;
@@ -156,6 +169,29 @@ public class AuthenticationService {
 
         return signedJWT;
 
+    }
+
+    private void processTokenInvalidation(String token, String type){
+        try{
+            SignedJWT signedJWT = SignedJWT.parse(token);
+
+            String jti = signedJWT.getJWTClaimsSet().getJWTID();
+            Date expireDate = signedJWT.getJWTClaimsSet().getExpirationTime();
+
+            OffsetDateTime expireOSDT = expireDate.toInstant()
+                    .atOffset(ZoneOffset.UTC);
+
+            InvalidatedTokenEntity invalidatedTokenEntity = InvalidatedTokenEntity
+                    .builder()
+                    .tokenJti(jti)
+                    .expiryTime(expireOSDT)
+                    .build();
+
+            invalidatedTokenRepository.save(invalidatedTokenEntity);
+
+        }catch (Exception e){
+            log.warn("Invalid {} format, skipping blacklist: {}", type, e.getMessage());
+        }
     }
 
     private String generateToken(UserEntity userEntity, boolean isRefresh) {

@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtException;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -59,14 +56,16 @@ public class CustomJwtDecoder implements JwtDecoder {
             );
 
             if (!introspectResponse.isValid()) {
-                throw new JwtException("Token invalid");
+                throw new BadJwtException("Token invalid");
             }
 
             return nimbusJwtDecoder.decode(token);
-        } catch (JwtException exception) {
+        } catch (BadJwtException exception) {
             throw exception;
+        } catch (JwtException exception) {
+            throw new BadJwtException("Token invalid", exception);
         } catch (Exception exception) {
-            throw new JwtException("Token introspection failed", exception);
+            throw new BadJwtException("Token introspection failed", exception);
         }
     }
 }

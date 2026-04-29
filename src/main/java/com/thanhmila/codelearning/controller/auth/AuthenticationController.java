@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.controller.authentication;
+package com.thanhmila.codelearning.controller.auth;
 
 import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
@@ -17,10 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 
@@ -154,6 +151,42 @@ public class AuthenticationController {
                 .code(1000)
                 .message("Success")
                 .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse<Void>> logout(
+            @CookieValue(name = "access_token", required = false) String accessToken,
+            @CookieValue(name = "refresh_token", required = false) String refreshToken,
+            HttpServletResponse response){
+
+        authenticationService.logout(accessToken, refreshToken);
+
+        ResponseCookie deleteCookieAccessToken = ResponseCookie.from("access_token", "")
+                .httpOnly(accessTokenHttpOnly)
+                .secure(isCookieAccessTokenSecure)
+                .path(accessTokenPath)
+                .maxAge(0)
+                .sameSite(accessTokenSameSite)
+                .build();
+
+        ResponseCookie deleteCookieRefreshToken = ResponseCookie.from("refresh_token", "")
+                .httpOnly(refreshTokenHttpOnly)
+                .secure(isCookieRefreshTokenSecure)
+                .path(refreshTokenPath)
+                .maxAge(0)
+                .sameSite(refreshTokenSameSite)
+                .build();
+
+        response.addHeader(HttpHeaders.SET_COOKIE, deleteCookieAccessToken.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, deleteCookieRefreshToken.toString());
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(1000)
+                .message("Success")
+                .result(null)
                 .timestamp(Instant.now().toString())
                 .build());
     }

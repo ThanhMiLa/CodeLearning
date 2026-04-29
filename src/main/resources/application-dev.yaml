@@ -40,7 +40,7 @@ auth:
       secure: ${REFRESH_TOKEN_SECURE:false}
       http-only: ${REFRESH_TOKEN_HTTP_ONLY:true}
       same-site: ${REFRESH_TOKEN_SAME_SITE:Lax}
-      path: ${REFRESH_TOKEN_PATH:/api/auth}
+      path: ${REFRESH_TOKEN_PATH:/codelearning/auth}
 
 
 
