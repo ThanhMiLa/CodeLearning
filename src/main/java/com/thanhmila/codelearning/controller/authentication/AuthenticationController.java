@@ -1,11 +1,13 @@
 package com.thanhmila.codelearning.controller.authentication;
 
 import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
+import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -87,6 +89,43 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response){
 
         AuthenticationResponse result = authenticationService.login(authenticationRequest);
+
+        ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
+                .httpOnly(accessTokenHttpOnly)
+                .secure(isCookieAccessTokenSecure)
+                .path(accessTokenPath)
+                .maxAge(accessTokenMaxAge)
+                .sameSite(accessTokenSameSite)
+                .build();
+
+        ResponseCookie refreshTokenCookie = ResponseCookie.from(refreshTokenName, result.getRefreshToken())
+                .httpOnly(refreshTokenHttpOnly)
+                .secure(isCookieRefreshTokenSecure)
+                .path(refreshTokenPath)
+                .maxAge(refreshTokenMaxAge)
+                .sameSite(refreshTokenSameSite)
+                .build();
+
+        result.setAccessToken(null);
+        result.setRefreshToken(null);
+
+        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+
+        return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Success")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<ApiResponse<AuthenticationResponse>> register(
+            @RequestBody @Valid RegisterRequest registerRequest, HttpServletResponse response){
+
+        AuthenticationResponse result = authenticationService.register(registerRequest);
 
         ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
                 .httpOnly(accessTokenHttpOnly)

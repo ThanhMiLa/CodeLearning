@@ -9,6 +9,7 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
 import com.thanhmila.codelearning.dto.request.IntrospectRequest;
+import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.dto.response.IntrospectResponse;
 import com.thanhmila.codelearning.entity.UserEntity;
@@ -84,6 +85,35 @@ public class AuthenticationService {
         authenticationResponse.setRefreshToken(refreshToken);
 
         return authenticationResponse;
+    }
+
+    public AuthenticationResponse register(RegisterRequest registerRequest){
+        if(userRepository.existsByUsername(registerRequest.getUsername())){
+            throw new AppException(ErrorCode.USERNAME_ALREADY_EXISTS);
+        }
+
+        if(!Objects.equals(registerRequest.getPassword(), registerRequest.getConfirmPassword())){
+            throw new AppException(ErrorCode.PASSWORD_NOT_MATCH);
+        }
+
+        if(userRepository.existsByEmail(registerRequest.getEmail())){
+            throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
+        }
+
+        UserEntity userEntity = userMapper.toUserEntity(registerRequest);
+        userEntity.setPasswordHash(passwordEncoder.encode(registerRequest.getPassword()));
+        userEntity.setRoles(Set.of(roleRepository.findByName("USER")));
+
+        userEntity = userRepository.save(userEntity);
+
+        AuthenticationRequest authenticationRequest = AuthenticationRequest
+                .builder()
+                .username(registerRequest.getUsername())
+                .password(registerRequest.getPassword())
+                .build();
+
+        return login(authenticationRequest);
+
     }
 
     public IntrospectResponse introspect(IntrospectRequest request)  {

@@ -23,9 +23,19 @@ public enum ErrorCode {
     INVALID_USERNAME_OR_PASSWORD(2003, "Invalid username or password", HttpStatus.UNAUTHORIZED),
     ACCOUNT_LOCKED(2004, "Account is locked", HttpStatus.FORBIDDEN),
     ACCOUNT_DISABLED(2005, "Account is disabled", HttpStatus.FORBIDDEN),
-    INVALID_TOKEN(2008, "Invalid token", HttpStatus.UNAUTHORIZED),
-    EXPIRED_TOKEN(2009, "Token has expired", HttpStatus.UNAUTHORIZED),
-    REFRESH_TOKEN_EXPIRED(2012, "Refresh token has expired", HttpStatus.UNAUTHORIZED),
+    USERNAME_INVALID(2006, "Username must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    PASSWORD_INVALID(2007, "Password must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    CONFIRM_PASSWORD_INVALID(2008, "Confirm password must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    EMAIL_INVALID(2009, "Email is invalid", HttpStatus.BAD_REQUEST),
+    PHONE_INVALID(2010, "Phone number is invalid", HttpStatus.BAD_REQUEST),
+    DISPLAY_NAME_INVALID(2011, "Display name is invalid", HttpStatus.BAD_REQUEST),
+    PASSWORD_NOT_MATCH(2012, "Password and confirm password not match", HttpStatus.BAD_REQUEST),
+
+
+    INVALID_TOKEN(2020, "Invalid token", HttpStatus.UNAUTHORIZED),
+    EXPIRED_TOKEN(2021, "Token has expired", HttpStatus.UNAUTHORIZED),
+    REFRESH_TOKEN_EXPIRED(2022, "Refresh token has expired", HttpStatus.UNAUTHORIZED),
+
 
     COURSE_NOT_FOUND(3000, "Course not found", HttpStatus.NOT_FOUND),
     LESSON_NOT_FOUND(3200, "Lesson not found", HttpStatus.NOT_FOUND),
