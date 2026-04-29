@@ -14,6 +14,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegisterRequest {
+
+    @NotBlank(message = "USERNAME_INVALID")
+    @Size(min = 4, message = "DISPLAY_NAME_INVALID")
     String displayName;
 
     @NotBlank(message = "USERNAME_INVALID")

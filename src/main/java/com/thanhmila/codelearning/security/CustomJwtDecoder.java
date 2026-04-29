@@ -2,7 +2,7 @@ package com.thanhmila.codelearning.security;
 
 import com.thanhmila.codelearning.dto.request.IntrospectRequest;
 import com.thanhmila.codelearning.dto.response.IntrospectResponse;
-import com.thanhmila.codelearning.service.AuthenticationService;
+import com.thanhmila.codelearning.service.auth.AuthenticationService;
 import jakarta.annotation.PostConstruct;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

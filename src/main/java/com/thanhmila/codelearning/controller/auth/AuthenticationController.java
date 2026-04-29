@@ -5,7 +5,7 @@ import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
-import com.thanhmila.codelearning.service.AuthenticationService;
+import com.thanhmila.codelearning.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
