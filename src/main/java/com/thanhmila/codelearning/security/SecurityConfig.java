@@ -36,10 +36,19 @@ public class SecurityConfig {
     @Order(1)
     SecurityFilterChain authChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh")
+                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**")
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .bearerTokenResolver(bearerTokenResolver())
+                        .jwt(jwt -> jwt
+                                .decoder(customJwtDecoder)
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                        )
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                        .accessDeniedHandler(jwtAccessDeniedHandler)
+                );
 
         return http.build();
     }

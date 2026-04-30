@@ -1,0 +1,38 @@
+package com.thanhmila.codelearning.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+@Table(
+        name = "chapters",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uq_chapters_course_order",
+                        columnNames = {"course_id", "order_index"}
+                )
+        }
+)
+public class ChapterEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "course_id", nullable = false)
+    CourseEntity course;
+
+    @Column(name = "title", nullable = false, length = 255)
+    String title;
+
+    @Column(name = "order_index", nullable = false)
+    Integer orderIndex;
+}
