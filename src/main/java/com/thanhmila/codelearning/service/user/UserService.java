@@ -1,10 +1,8 @@
 package com.thanhmila.codelearning.service.user;
 
-import com.nimbusds.jwt.SignedJWT;
 import com.thanhmila.codelearning.dto.request.ChangePasswordRequest;
 import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
 import com.thanhmila.codelearning.dto.response.UserResponse;
-import com.thanhmila.codelearning.entity.InvalidatedTokenEntity;
 import com.thanhmila.codelearning.entity.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
@@ -20,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 @Slf4j
@@ -46,7 +45,7 @@ public class UserService {
 
         userEntity.setDisplayName(request.getDisplayName() != null ? request.getDisplayName() : userEntity.getDisplayName());
         userEntity.setPhoneNumber(request.getPhoneNumber() != null ? request.getPhoneNumber() : userEntity.getPhoneNumber());
-
+        userEntity.setUpdatedAt(OffsetDateTime.now());
         userRepository.save(userEntity);
 
         return userMapper.toUserResponse(userEntity);
@@ -73,6 +72,7 @@ public class UserService {
         }
 
         userEntity.setPasswordHash(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+        userEntity.setUpdatedAt(OffsetDateTime.now());
         userRepository.save(userEntity);
 
     }
