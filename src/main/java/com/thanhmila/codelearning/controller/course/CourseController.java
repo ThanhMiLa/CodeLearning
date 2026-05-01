@@ -40,7 +40,7 @@ public class CourseController {
         }
 
         var result = courseService.
-                getCourseList(username, PageRequest.of(page, size, Sort.by("createdAt").descending()));
+                getCourseList(username, PageRequest.of(page, size, Sort.by("created_at").descending()));
 
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<CourseListItemResponse>>builder()

@@ -1,8 +1,8 @@
 package com.thanhmila.codelearning.repository;
 
-import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
 import com.thanhmila.codelearning.entity.CourseEntity;
 import com.thanhmila.codelearning.entity.enums.CourseStatus;
+import com.thanhmila.codelearning.repository.projection.CourseListItemProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,34 +11,39 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@SuppressWarnings("all")
 public interface CourseRepository extends JpaRepository<CourseEntity, Long> {
     Page<CourseEntity> findAllByStatus(CourseStatus status, Pageable pageable);
 
-//    @Query(
-//            value = """
-//                    SELECT new com.thanhmila.codelearning.dto.response.CourseListItemResponse(
-//                        c.id,
-//                        c.title,
-//                        c.shortDescription,
-//                        c.thumbnailUrl,
-//                        c.price,
-//                        COALESCE(AVG(r.rating), 0.0),
-//                        COUNT(r.id)
-//                    )
-//                    FROM CourseEntity c
-//                    LEFT JOIN CourseReviewEntity r ON r.course = c
-//                    WHERE c.status = :status
-//                    GROUP BY c.id, c.title, c.shortDescription, c.thumbnailUrl, c.price
-//                    ORDER BY COUNT(r.id) DESC, c.createdAt DESC
-//                    """,
-//            countQuery = """
-//                    SELECT COUNT(c)
-//                    FROM CourseEntity c
-//                    WHERE c.status = :status
-//                    """
-//    )
-//    Page<CourseListItemResponse> findCourseListOrderByTotalReviews(
-//            @Param("status") CourseStatus status,
-//            Pageable pageable
-//    );
+    @Query(value = """
+        SELECT 
+            c.id AS id, 
+            c.title AS title, 
+            c.short_description AS shortDescription, 
+            c.thumbnail_url AS thumbnailUrl, 
+            c.price AS price,
+            COALESCE(AVG(cr.rating), 0.0) AS averageRating,
+            COUNT(DISTINCT cr.id) AS totalReviews,
+            CASE WHEN COUNT(e.id) > 0 THEN true ELSE false END AS enrolled,
+            COALESCE(MAX(clc.completed_lessons_count), 0) AS completedLessons,
+            (
+                SELECT COUNT(l.id) 
+                FROM lessons l 
+                JOIN chapters ch ON l.chapter_id = ch.id 
+                WHERE ch.course_id = c.id AND l.status = 'ACTIVE'
+            ) AS totalActiveLessons
+        FROM courses c
+        LEFT JOIN course_reviews cr ON c.id = cr.course_id
+        LEFT JOIN enrollments e ON c.id = e.course_id 
+                                 AND e.user_id = :userId 
+                                 AND e.status IN ('ACTIVE', 'COMPLETED')
+        LEFT JOIN completed_lessons_count clc ON c.id = clc.course_id 
+                                              AND clc.user_id = :userId
+        WHERE c.status = 'ACTIVE'
+        GROUP BY 
+            c.id, c.title, c.short_description, c.thumbnail_url, c.price
+        """,
+            countQuery = "SELECT COUNT(id) FROM courses WHERE status = 'ACTIVE'",
+            nativeQuery = true)
+    Page<CourseListItemProjection> findAllCoursesWithDetails(@Param("userId") Long userId, Pageable pageable);
 }
