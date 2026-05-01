@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS teachers (
                                         user_id BIGINT NOT NULL UNIQUE,
                                         status teacher_status NOT NULL DEFAULT 'ACTIVE',
                                         created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+                                        updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
 
     CONSTRAINT fk_teachers_user
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

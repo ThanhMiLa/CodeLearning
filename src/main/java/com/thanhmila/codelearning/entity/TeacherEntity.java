@@ -39,6 +39,9 @@ public class TeacherEntity {
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
 
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
     @PrePersist
     void prePersist() {
         OffsetDateTime now = OffsetDateTime.now();

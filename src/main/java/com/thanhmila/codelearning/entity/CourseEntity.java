@@ -9,6 +9,8 @@ import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -72,6 +74,26 @@ public class CourseEntity {
 
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
+
+    @Column(name = "average_rating", nullable = false)
+    Double averageRating = 0.0;
+
+    @Column(name = "total_reviews", nullable = false)
+    Integer totalReviews = 0;
+
+    @Column(name = "total_enrolled", nullable = false)
+    Integer totalEnrolled = 0;
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_category_mappings",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    Set<CategoryEntity> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    Set<TeacherCourseAssignmentEntity> teacherAssignments = new HashSet<>();
 
     @PrePersist
     void prePersist() {
