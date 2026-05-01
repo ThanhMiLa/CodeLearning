@@ -10,6 +10,7 @@ public interface CourseListItemProjection {
     BigDecimal getPrice();
     Double getAverageRating();
     Long getTotalReviews();
+    Long getTotalEnrolled();
     Boolean getEnrolled();
     Long getCompletedLessons();
     Long getTotalActiveLessons();

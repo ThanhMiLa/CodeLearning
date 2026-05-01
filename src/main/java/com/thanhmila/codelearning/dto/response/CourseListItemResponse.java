@@ -27,6 +27,8 @@ public class CourseListItemResponse {
 
     Long totalReviews;
 
+    Long totalEnrolled;
+
     Boolean enrolled;
 
     Double progressPercentage;

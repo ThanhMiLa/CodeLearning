@@ -56,6 +56,7 @@ public class CourseService {
                 .thumbnailUrl(projection.getThumbnailUrl())
                 .price(projection.getPrice())
                 .totalReviews(projection.getTotalReviews())
+                .totalEnrolled(projection.getTotalEnrolled())
                 .averageRating(projection.getAverageRating())
                 .enrolled(projection.getEnrolled())
                 .progressPercentage(progressPercentage)
