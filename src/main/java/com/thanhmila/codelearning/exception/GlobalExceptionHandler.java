@@ -41,5 +41,21 @@ public class GlobalExceptionHandler {
                         .build());
     }
 
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiResponse<Object>> handleTypeMismatch(MethodArgumentTypeMismatchException exception ){
+        String paramName = exception.getName();
+        String wrongValue = exception.getValue() != null ? exception.getValue().toString() : "null";
+        String expectedType = exception.getRequiredType() != null ? exception.getRequiredType().getSimpleName() : "unknown";
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.builder()
+                        .status(400)
+                        .code(4000)
+                        .message(String.format("Type mismatch for parameter '%s': value '%s' cannot be converted to '%s'.",
+                                paramName, wrongValue, expectedType))
+                        .result(null)
+                        .timestamp(Instant.now().toString())
+                        .build());
+    }
 
 }
