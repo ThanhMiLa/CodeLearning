@@ -4,9 +4,7 @@ import com.thanhmila.codelearning.dto.request.CourseSearchRequest;
 import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.entity.CourseEntity;
-import com.thanhmila.codelearning.entity.UserEntity;
 import com.thanhmila.codelearning.repository.*;
-import com.thanhmila.codelearning.repository.projection.CourseListItemProjection;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +58,7 @@ public class CourseService {
                 .totalEnrolled(entity.getTotalEnrolled().longValue())
                 .averageRating(entity.getAverageRating())
                 .enrolled(false)
+                .progressPercentage(null)
                 .build();
     }
 

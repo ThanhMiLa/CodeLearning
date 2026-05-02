@@ -5,11 +5,13 @@ import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.service.course.CourseService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,17 +32,17 @@ public class CourseController {
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<CourseListItemResponse>>> getCourseList(
             @AuthenticationPrincipal Jwt jwt,
-            CourseSearchRequest courseSearchRequest,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "12") int size){
+            @Valid CourseSearchRequest courseSearchRequest){
 
         String username = null;
         if(jwt != null){
             username = jwt.getSubject();
         }
 
+        Pageable pageable = courseSearchRequest.getPageable();
+
         var result = courseService.
-                getCourseList(courseSearchRequest, PageRequest.of(page, size, Sort.by("totalEnrolled").descending()));
+                getCourseList(courseSearchRequest, pageable);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<CourseListItemResponse>>builder()
                 .status(200)

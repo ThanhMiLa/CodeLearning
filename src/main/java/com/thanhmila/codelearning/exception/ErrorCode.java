@@ -35,6 +35,8 @@ public enum ErrorCode {
     OLD_PASSWORD_INVALID(2015, "Old password must be at least 4 chars", HttpStatus.BAD_REQUEST),
     NEW_PASSWORD_INVALID(2016, "New password must be at least 4 chars", HttpStatus.BAD_REQUEST),
     CONFIRM_NEW_PASSWORD_INVALID(2017, "Confirm new password must be at least 4 chars", HttpStatus.BAD_REQUEST),
+    PAGE_INVALID(2020, "Page cannot less than 0", HttpStatus.BAD_REQUEST),
+    PAGE_SIZE_INVALID(2021, "Page size cannot greater than 20", HttpStatus.BAD_REQUEST),
 
     INVALID_TOKEN(2020, "Invalid token", HttpStatus.UNAUTHORIZED),
     EXPIRED_TOKEN(2021, "Token has expired", HttpStatus.UNAUTHORIZED),

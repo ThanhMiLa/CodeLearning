@@ -31,4 +31,6 @@ public class CourseListItemResponse {
 
     Boolean enrolled;
 
+    Double progressPercentage;
+
 }
