@@ -13,6 +13,9 @@ import java.util.Optional;
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity, Long>, JpaSpecificationExecutor<CourseEntity> {
     @EntityGraph(attributePaths = {"categories", "teacherAssignments", "teacherAssignments.teacher"})
-    @Query("SELECT c FROM CourseEntity c WHERE c.id = :courseId AND c.status = 'ACTIVE'")
+    @Query( "SELECT c " +
+            "FROM CourseEntity c " +
+            "WHERE c.id = :courseId " +
+                   "AND c.status = 'ACTIVE'")
     Optional<CourseEntity> findCourseDetailById(@Param("courseId") Long courseId);
 }

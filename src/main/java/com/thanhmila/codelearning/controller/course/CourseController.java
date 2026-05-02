@@ -41,7 +41,7 @@ public class CourseController {
         Pageable pageable = courseSearchRequest.getPageable();
 
         var result = courseService.
-                getCourseList(courseSearchRequest, pageable);
+                getCourseList(userId, courseSearchRequest, pageable);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<CourseListItemResponse>>builder()
                 .status(200)

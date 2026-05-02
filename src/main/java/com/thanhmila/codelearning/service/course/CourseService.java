@@ -8,8 +8,6 @@ import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.entity.ChapterEntity;
 import com.thanhmila.codelearning.entity.CompletedLessonsCountEntity;
 import com.thanhmila.codelearning.entity.CourseEntity;
-import com.thanhmila.codelearning.entity.UserEntity;
-import com.thanhmila.codelearning.entity.enums.CourseStatus;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
@@ -26,7 +24,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -41,7 +40,7 @@ public class CourseService {
     ChapterMapper chapterMapper;
     CompletedLessonCountRepository completedLessonCountRepository;
 
-    public PageResponse<CourseListItemResponse> getCourseList(CourseSearchRequest searchRequest, Pageable pageable) {
+    public PageResponse<CourseListItemResponse> getCourseList(Long userId, CourseSearchRequest searchRequest, Pageable pageable) {
 
         // 1. Khởi tạo Specification cơ bản (Luôn là khóa học ACTIVE)
         Specification<CourseEntity> spec = Specification.allOf(CourseSpecification.isStatusActive());
@@ -55,16 +54,61 @@ public class CourseService {
                     .and(CourseSpecification.hasTeacherName(searchRequest.getTeacherName()));
         }
 
-        // 3. Gọi DB (JpaSpecificationExecutor lo toàn bộ việc sinh câu SQL)
+        // 3. Gọi DB (JpaSpecificationExecutor lo toàn bộ việc sinh câu SQL) (QUERY 1)
         Page<CourseEntity> courseEntities = courseRepository.findAll(spec, pageable);
 
-        // 4. Map Entity sang Response DTO
-        Page<CourseListItemResponse> responses = courseEntities.map(this::buildCourseListItemResponse);
+        Set<Long> enrolledCourseIds = new HashSet<>();
+        Map<Long, Integer> courseProgressMap = new HashMap<>();
 
-        return PageResponse.from(responses);
+        if (userId != null) {
+            // Lấy ra các courseId hiện có
+            List<Long> currentCourseIds = courseEntities.getContent().stream()
+                    .map(CourseEntity::getId)
+                    .toList();
+
+            // 4. Lấy danh sách các Course ID mà user đã mua trong số các ID trên (QUERY 2)
+            enrolledCourseIds = enrollmentRepository.findEnrolledCourseIdsByUserIdAndCourseIds(userId, currentCourseIds, List.of(EnrollmentStatus.ACTIVE, EnrollmentStatus.COMPLETED));
+
+            // 5. Nếu user có mua ít nhất 1 khóa, tiến hành lấy tiến độ (QUERY 3)
+            if (!enrolledCourseIds.isEmpty()) {
+                List<CompletedLessonsCountEntity> completedLessonsCountEntity =
+                        completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, new ArrayList<>(enrolledCourseIds));
+
+                courseProgressMap = completedLessonsCountEntity.stream()
+                        .collect(Collectors.toMap(
+                                entity -> entity.getCourse().getId(),
+                                CompletedLessonsCountEntity::getCompletedLessonsCount
+                        ));
+            }
+        }
+
+        // 6. Lắp ráp dữ liệu trên RAM
+        final Set<Long> finalEnrolledIds = enrolledCourseIds;
+        final Map<Long, Integer> finalProgressMap = courseProgressMap;
+
+        Page<CourseListItemResponse> courseListItemResponsePage = courseEntities.map(courseEntity -> {
+            CourseListItemResponse courseListItemResponse = courseMapper.toCourseListItemResponse(courseEntity);
+
+            boolean isEnrolled = finalEnrolledIds.contains(courseEntity.getId());
+            courseListItemResponse.setEnrolled(isEnrolled);
+
+            int progressPercentage = 0;
+            if (isEnrolled) {
+                int completeLessons = finalProgressMap.getOrDefault(courseEntity.getId(), 0);
+                int totalLesson = courseEntity.getTotalLessons() != null ? courseEntity.getTotalLessons() : 0;
+                progressPercentage = getProgressPercentage(completeLessons, totalLesson);
+            }
+
+            courseListItemResponse.setProgressPercentage(progressPercentage);
+
+            return courseListItemResponse;
+
+        });
+
+        return PageResponse.from(courseListItemResponsePage);
     }
 
-    public CourseDetailResponse getCourseDetail(Long courseId, Long userId){
+    public CourseDetailResponse getCourseDetail(Long courseId, Long userId) {
         CourseEntity courseEntity = courseRepository.findCourseDetailById(courseId)
                 .orElseThrow(() -> new AppException(ErrorCode.COURSE_NOT_FOUND));
         CourseDetailResponse courseDetailResponse = courseMapper.toCourseDetailResponse(courseEntity);
@@ -78,10 +122,11 @@ public class CourseService {
         Boolean isEnrolled = false;
         Integer progressPercentage = 0;
 
-        if(userId != null){
+        if (userId != null) {
             isEnrolled = isEnrollCourseById(courseId, userId);
-            if(isEnrolled == true){
-                progressPercentage = getProgressPercentage(courseId, userId, courseDetailResponse.getTotalLessons());
+            if (isEnrolled == true) {
+                int completedLessons = getCompleteLessons(courseId, userId);
+                progressPercentage = getProgressPercentage(completedLessons, courseDetailResponse.getTotalLessons());
             }
         }
 
@@ -92,38 +137,23 @@ public class CourseService {
         return courseDetailResponse;
     }
 
-    private CourseListItemResponse buildCourseListItemResponse(CourseEntity entity) {
-        return CourseListItemResponse.builder()
-                .id(entity.getId())
-                .title(entity.getTitle())
-                .shortDescription(entity.getShortDescription())
-                .thumbnailUrl(entity.getThumbnailUrl())
-                .price(entity.getPrice())
-                .totalReviews(entity.getTotalReviews().longValue())
-                .totalEnrolled(entity.getTotalEnrolled().longValue())
-                .averageRating(entity.getAverageRating())
-                .enrolled(false)
-                .progressPercentage(null)
-                .build();
-    }
 
-
-    private Boolean isEnrollCourseById(Long courseId, Long userId){
+    private Boolean isEnrollCourseById(Long courseId, Long userId) {
         return enrollmentRepository.existsByUserIdAndCourseIdAndStatusIn(
                 userId, courseId, List.of(EnrollmentStatus.ACTIVE, EnrollmentStatus.COMPLETED));
     }
 
-    private Integer getProgressPercentage(Long courseId, Long userId, Integer totalLesson){
-        if(totalLesson == null || totalLesson == 0) return 0;
-
+    private Integer getCompleteLessons(Long courseId, Long userId) {
         CompletedLessonsCountEntity completedLessonsCountEntity = completedLessonCountRepository.getByUserIdAndCourseId(userId, courseId)
                 .orElse(null);
 
-        Integer completedLesson = (completedLessonsCountEntity != null)
-                ? completedLessonsCountEntity.getCompletedLessonsCount()
-                : 0;
+        return completedLessonsCountEntity != null ? completedLessonsCountEntity.getCompletedLessonsCount() : 0;
+    }
 
-        return (int) Math.round((double) completedLesson / totalLesson * 100);
+    private Integer getProgressPercentage(Integer completeLessons, Integer totalLesson) {
+        if (totalLesson == null || totalLesson <= 0) return 0;
+
+        return (int) Math.round((double) completeLessons / totalLesson * 100);
 
     }
 
