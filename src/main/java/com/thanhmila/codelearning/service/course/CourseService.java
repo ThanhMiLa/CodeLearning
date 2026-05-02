@@ -1,9 +1,20 @@
 package com.thanhmila.codelearning.service.course;
 
 import com.thanhmila.codelearning.dto.request.CourseSearchRequest;
+import com.thanhmila.codelearning.dto.response.ChapterResponse;
+import com.thanhmila.codelearning.dto.response.CourseDetailResponse;
 import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
+import com.thanhmila.codelearning.entity.ChapterEntity;
+import com.thanhmila.codelearning.entity.CompletedLessonsCountEntity;
 import com.thanhmila.codelearning.entity.CourseEntity;
+import com.thanhmila.codelearning.entity.UserEntity;
+import com.thanhmila.codelearning.entity.enums.CourseStatus;
+import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
+import com.thanhmila.codelearning.exception.AppException;
+import com.thanhmila.codelearning.exception.ErrorCode;
+import com.thanhmila.codelearning.mapper.ChapterMapper;
+import com.thanhmila.codelearning.mapper.CourseMapper;
 import com.thanhmila.codelearning.repository.*;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
 import lombok.AccessLevel;
@@ -15,6 +26,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Slf4j
 @Service
@@ -22,7 +35,11 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CourseService {
     CourseRepository courseRepository;
-    UserRepository userRepository;
+    EnrollmentRepository enrollmentRepository;
+    ChapterRepository chapterRepository;
+    CourseMapper courseMapper;
+    ChapterMapper chapterMapper;
+    CompletedLessonCountRepository completedLessonCountRepository;
 
     public PageResponse<CourseListItemResponse> getCourseList(CourseSearchRequest searchRequest, Pageable pageable) {
 
@@ -47,6 +64,34 @@ public class CourseService {
         return PageResponse.from(responses);
     }
 
+    public CourseDetailResponse getCourseDetail(Long courseId, Long userId){
+        CourseEntity courseEntity = courseRepository.findCourseDetailById(courseId)
+                .orElseThrow(() -> new AppException(ErrorCode.COURSE_NOT_FOUND));
+        CourseDetailResponse courseDetailResponse = courseMapper.toCourseDetailResponse(courseEntity);
+
+        List<ChapterEntity> chapterEntities = chapterRepository.findChaptersWithLessonsByCourseId(courseId);
+        List<ChapterResponse> chapterResponses = chapterEntities.stream()
+                .map(chapterMapper::toChapterResponse)
+                .toList();
+
+
+        Boolean isEnrolled = false;
+        Integer progressPercentage = 0;
+
+        if(userId != null){
+            isEnrolled = isEnrollCourseById(courseId, userId);
+            if(isEnrolled == true){
+                progressPercentage = getProgressPercentage(courseId, userId, courseDetailResponse.getTotalLessons());
+            }
+        }
+
+        courseDetailResponse.setProgressPercentage(progressPercentage);
+        courseDetailResponse.setIsEnrolled(isEnrolled);
+        courseDetailResponse.setChapters(chapterResponses);
+
+        return courseDetailResponse;
+    }
+
     private CourseListItemResponse buildCourseListItemResponse(CourseEntity entity) {
         return CourseListItemResponse.builder()
                 .id(entity.getId())
@@ -63,60 +108,23 @@ public class CourseService {
     }
 
 
+    private Boolean isEnrollCourseById(Long courseId, Long userId){
+        return enrollmentRepository.existsByUserIdAndCourseIdAndStatusIn(
+                userId, courseId, List.of(EnrollmentStatus.ACTIVE, EnrollmentStatus.COMPLETED));
+    }
 
+    private Integer getProgressPercentage(Long courseId, Long userId, Integer totalLesson){
+        if(totalLesson == null || totalLesson == 0) return 0;
 
+        CompletedLessonsCountEntity completedLessonsCountEntity = completedLessonCountRepository.getByUserIdAndCourseId(userId, courseId)
+                .orElse(null);
 
-//    public PageResponse<CourseListItemResponse> getCourseList(String username, Pageable pageable){
-//
-//        Long userId = getUserIdOrNull(username);
-//
-//        Page<CourseListItemProjection> courseListItemProjections =
-//                courseRepository.findAllCoursesWithDetails(userId, pageable);
-//
-//        Page<CourseListItemResponse> courseListItemResponses = courseListItemProjections.map(this::buildCourseListItemResponse);
-//
-//        return PageResponse.from(courseListItemResponses);
-//
-//    }
-//
-//    private CourseListItemResponse buildCourseListItemResponse(CourseListItemProjection projection){
-//        Double progressPercentage = null;
-//
-//        if(Boolean.TRUE.equals(projection.getEnrolled())){
-//            long totalLesson = projection.getTotalActiveLessons();
-//            long completedLesson = projection.getCompletedLessons();
-//
-//            if(totalLesson == 0){
-//                progressPercentage = 0.0;
-//            }else{
-//                progressPercentage = (completedLesson * 100.0) / totalLesson;
-//            }
-//        }
-//
-//        return CourseListItemResponse.builder()
-//                .id(projection.getId())
-//                .title(projection.getTitle())
-//                .shortDescription(projection.getShortDescription())
-//                .thumbnailUrl(projection.getThumbnailUrl())
-//                .price(projection.getPrice())
-//                .totalReviews(projection.getTotalReviews())
-//                .totalEnrolled(projection.getTotalEnrolled())
-//                .averageRating(projection.getAverageRating())
-//                .enrolled(projection.getEnrolled())
-//                .progressPercentage(progressPercentage)
-//                .build();
-//    }
-//
-//    private Long getUserIdOrNull(String username){
-//        if(username == null || username.isBlank()){
-//            return null;
-//        }
-//
-//        return userRepository.findByUsername(username)
-//                .map(UserEntity::getId)
-//                .orElse(-1L);
-//    }
+        Integer completedLesson = (completedLessonsCountEntity != null)
+                ? completedLessonsCountEntity.getCompletedLessonsCount()
+                : 0;
 
+        return (int) Math.round((double) completedLesson / totalLesson * 100);
 
+    }
 
 }

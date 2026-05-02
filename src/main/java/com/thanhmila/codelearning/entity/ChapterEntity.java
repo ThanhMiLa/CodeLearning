@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -35,4 +38,7 @@ public class ChapterEntity {
 
     @Column(name = "order_index", nullable = false)
     Integer orderIndex;
+
+    @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY)
+    List<LessonEntity> lessons = new ArrayList<>();
 }

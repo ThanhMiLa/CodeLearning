@@ -30,9 +30,6 @@ public class CourseDetailResponse {
     String prerequisites;
     String targetAudience;
     String completionBenefits;
-
-    // 3. Thông tin tổng quan (Thống kê)
-    // Lưu ý: Các field này tính toán bằng query/count chứ không lấy trực tiếp từ bảng Course
     Integer estimatedDurationHours;
     Integer totalLessons;
     Integer totalQuizzes;
@@ -40,17 +37,18 @@ public class CourseDetailResponse {
     Integer totalOnlineJudgeProblems;
     Integer totalVideos;
 
-    // 4. Trạng thái đối với User hiện tại
-    // Dùng để logic hiển thị nút "Vào học" hoặc "Mua ngay/Học thử"
+    // 3. Trạng thái đối với User hiện tại
     Boolean isEnrolled;
 
-    // 5. Giáo trình (Syllabus)
+    // 4. Giáo trình (Syllabus)
     List<ChapterResponse> chapters;
 
-    // 6. Thông tin Giảng viên (Teacher)
+    // 5. Thông tin Giảng viên (Teacher)
     List<TeacherResponse> instructors;
 
-    // T. Thông tin Category (Category)
+    // 6. Thông tin Category (Category)
     List<CategoryResponse> categories;
 
+    //7. Thông tin về progressPercentage
+    Integer progressPercentage;
 }

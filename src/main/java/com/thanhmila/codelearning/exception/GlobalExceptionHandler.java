@@ -1,10 +1,13 @@
 package com.thanhmila.codelearning.exception;
 
 import com.thanhmila.codelearning.dto.response.ApiResponse;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.Instant;
 
@@ -37,4 +40,6 @@ public class GlobalExceptionHandler {
                         .timestamp(Instant.now().toString())
                         .build());
     }
+
+
 }

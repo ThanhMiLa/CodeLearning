@@ -84,6 +84,26 @@ public class CourseEntity {
     @Column(name = "total_enrolled", nullable = false)
     Integer totalEnrolled = 0;
 
+    @Builder.Default
+    @Column(name = "total_lessons", nullable = false)
+    Integer totalLessons = 0;
+
+    @Builder.Default
+    @Column(name = "total_quizzes", nullable = false)
+    Integer totalQuizzes = 0;
+
+    @Builder.Default
+    @Column(name = "total_assignments", nullable = false)
+    Integer totalAssignments = 0;
+
+    @Builder.Default
+    @Column(name = "total_online_judge_problems", nullable = false)
+    Integer totalOnlineJudgeProblems = 0;
+
+    @Builder.Default
+    @Column(name = "total_videos", nullable = false)
+    Integer totalVideos = 0;
+
     @ManyToMany
     @JoinTable(
             name = "course_category_mappings",

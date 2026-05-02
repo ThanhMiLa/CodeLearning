@@ -242,6 +242,7 @@ public class AuthenticationService {
                 .jwtID(UUID.randomUUID().toString())
                 .claim("scope", buildScope(userEntity))
                 .claim("type", isRefresh ? "REFRESH" : "ACCESS")
+                .claim("userId", userEntity.getId())
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
