@@ -57,8 +57,8 @@ public class CourseService {
         // 3. Gọi DB (JpaSpecificationExecutor lo toàn bộ việc sinh câu SQL) (QUERY 1)
         Page<CourseEntity> courseEntities = courseRepository.findAll(spec, pageable);
 
-        Set<Long> enrolledCourseIds = new HashSet<>();
-        Map<Long, Integer> courseProgressMap = new HashMap<>();
+        Set<Long> enrolledCourseIds = new HashSet<>();  // Lưu danh sách courseId mà user đã enrolled
+        Map<Long, Integer> courseProgressMap = new HashMap<>(); // Lưu danh sách Map courseId + completedLesson
 
         if (userId != null) {
             // Lấy ra các courseId hiện có
@@ -71,14 +71,10 @@ public class CourseService {
 
             // 5. Nếu user có mua ít nhất 1 khóa, tiến hành lấy tiến độ (QUERY 3)
             if (!enrolledCourseIds.isEmpty()) {
-                List<CompletedLessonsCountEntity> completedLessonsCountEntity =
+                List<CompletedLessonsCountEntity> completedLessonsCountEntities =
                         completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, new ArrayList<>(enrolledCourseIds));
 
-                courseProgressMap = completedLessonsCountEntity.stream()
-                        .collect(Collectors.toMap(
-                                entity -> entity.getCourse().getId(),
-                                CompletedLessonsCountEntity::getCompletedLessonsCount
-                        ));
+                courseProgressMap = getCourseProgressMap(completedLessonsCountEntities);
             }
         }
 
@@ -137,6 +133,13 @@ public class CourseService {
         return courseDetailResponse;
     }
 
+    private Map<Long, Integer> getCourseProgressMap(List<CompletedLessonsCountEntity> completedLessonsCountEntities){
+        return completedLessonsCountEntities.stream()
+                .collect(Collectors.toMap(
+                        entity -> entity.getCourse().getId(),
+                        CompletedLessonsCountEntity::getCompletedLessonsCount
+                ));
+    }
 
     private Boolean isEnrollCourseById(Long courseId, Long userId) {
         return enrollmentRepository.existsByUserIdAndCourseIdAndStatusIn(
