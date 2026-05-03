@@ -36,7 +36,7 @@ public class SecurityConfig {
     @Order(1)
     SecurityFilterChain authChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**")
+                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**", "/lessons/{lessonId}")
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())

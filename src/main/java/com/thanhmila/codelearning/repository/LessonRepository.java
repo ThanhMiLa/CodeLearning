@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
     @Query("""
         SELECT COUNT(l)
@@ -14,4 +16,14 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
           AND l.status = 'ACTIVE'
         """)
     Long countActiveLessonsByCourseId(@Param("courseId") Long courseId);
+
+
+    @Query("SELECT l " +
+            "FROM LessonEntity l " +
+            "JOIN FETCH l.chapter c " +
+            "JOIN FETCH c.course " +
+            "WHERE l.id = :id")
+    Optional<LessonEntity> findDetailWithCourseById(@Param("id") Long id);
+
+
 }
