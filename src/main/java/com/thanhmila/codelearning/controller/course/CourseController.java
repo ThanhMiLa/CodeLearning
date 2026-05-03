@@ -1,10 +1,7 @@
 package com.thanhmila.codelearning.controller.course;
 
 import com.thanhmila.codelearning.dto.request.CourseSearchRequest;
-import com.thanhmila.codelearning.dto.response.ApiResponse;
-import com.thanhmila.codelearning.dto.response.CourseDetailResponse;
-import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
-import com.thanhmila.codelearning.dto.response.PageResponse;
+import com.thanhmila.codelearning.dto.response.*;
 import com.thanhmila.codelearning.service.course.CourseService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -18,6 +15,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -69,6 +67,28 @@ public class CourseController {
                 .status(200)
                 .code(1000)
                 .message("Get course detail successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/{courseId}/curriculum")
+    public ResponseEntity<ApiResponse<List<ChapterResponse>>> getCourseCurriculum(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable Long courseId){
+
+        Long userId = null;
+        if(jwt != null){
+            userId = jwt.getClaim("userId");
+        }
+
+        var result = courseService.
+                getCourseCurriculum(courseId);
+
+        return ResponseEntity.ok(ApiResponse.<List<ChapterResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get course curriculum successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

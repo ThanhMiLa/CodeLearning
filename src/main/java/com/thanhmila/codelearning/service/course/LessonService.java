@@ -18,16 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class LessonService {
-    LessonRepository lessonRepository;
-    ChapterRepository chapterRepository;
-    ChapterMapper chapterMapper;
 
-    public List<ChapterResponse> getLessonMenu(Long courseId){
-        List<ChapterEntity> chapterEntityList = chapterRepository.findChaptersWithLessonsByCourseId(courseId);
-        return chapterEntityList.stream()
-                .map(chapterMapper::toChapterResponse)
-                .toList();
-    }
 
 
 }

@@ -40,15 +40,12 @@ public class CourseDetailResponse {
     // 3. Trạng thái đối với User hiện tại
     Boolean isEnrolled;
 
-    // 4. Giáo trình (Syllabus)
-    List<ChapterResponse> chapters;
-
-    // 5. Thông tin Giảng viên (Teacher)
+    // 4. Thông tin Giảng viên (Teacher)
     List<TeacherResponse> instructors;
 
-    // 6. Thông tin Category (Category)
+    // 5. Thông tin Category (Category)
     List<CategoryResponse> categories;
 
-    //7. Thông tin về progressPercentage
+    // 6. Thông tin về progressPercentage
     Integer progressPercentage;
 }

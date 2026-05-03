@@ -109,12 +109,6 @@ public class CourseService {
                 .orElseThrow(() -> new AppException(ErrorCode.COURSE_NOT_FOUND));
         CourseDetailResponse courseDetailResponse = courseMapper.toCourseDetailResponse(courseEntity);
 
-        List<ChapterEntity> chapterEntities = chapterRepository.findChaptersWithLessonsByCourseId(courseId);
-        List<ChapterResponse> chapterResponses = chapterEntities.stream()
-                .map(chapterMapper::toChapterResponse)
-                .toList();
-
-
         Boolean isEnrolled = false;
         Integer progressPercentage = 0;
 
@@ -128,9 +122,15 @@ public class CourseService {
 
         courseDetailResponse.setProgressPercentage(progressPercentage);
         courseDetailResponse.setIsEnrolled(isEnrolled);
-        courseDetailResponse.setChapters(chapterResponses);
 
         return courseDetailResponse;
+    }
+
+    public List<ChapterResponse> getCourseCurriculum(Long courseId){
+        List<ChapterEntity> chapterEntityList = chapterRepository.findChaptersWithLessonsByCourseId(courseId);
+        return chapterEntityList.stream()
+                .map(chapterMapper::toChapterResponse)
+                .toList();
     }
 
     private Map<Long, Integer> getCourseProgressMap(List<CompletedLessonsCountEntity> completedLessonsCountEntities){
