@@ -1,5 +1,7 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.course;
 
+import com.thanhmila.codelearning.entity.payment.PaymentEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import jakarta.persistence.*;
 import lombok.*;

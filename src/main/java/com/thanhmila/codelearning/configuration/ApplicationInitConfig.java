@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.configuration;
 
-import com.thanhmila.codelearning.entity.UserEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.repository.RoleRepository;
 import com.thanhmila.codelearning.repository.UserRepository;

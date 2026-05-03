@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.repository;
 
-import com.thanhmila.codelearning.entity.CourseReviewEntity;
+import com.thanhmila.codelearning.entity.course.CourseReviewEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

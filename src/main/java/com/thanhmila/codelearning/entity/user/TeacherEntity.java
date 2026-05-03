@@ -1,8 +1,11 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.user;
 
+import com.thanhmila.codelearning.entity.enums.TeacherStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
 
@@ -13,34 +16,22 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(
-        name = "course_reviews",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uq_course_reviews_course_user",
-                        columnNames = {"course_id", "user_id"}
-                )
-        }
-)
-public class CourseReviewEntity {
+@Table(name = "teachers")
+public class TeacherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "course_id", nullable = false)
-    CourseEntity course;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     UserEntity user;
 
-    @Column(name = "content", columnDefinition = "TEXT")
-    String content;
-
-    @Column(name = "rating", nullable = false)
-    Integer rating;
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "status", nullable = false, columnDefinition = "teacher_status")
+    TeacherStatus status = TeacherStatus.ACTIVE;
 
     @Column(name = "created_at", nullable = false)
     OffsetDateTime createdAt;
@@ -48,9 +39,16 @@ public class CourseReviewEntity {
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
 
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
     @PrePersist
     void prePersist() {
         OffsetDateTime now = OffsetDateTime.now();
+
+        if (status == null) {
+            status = TeacherStatus.ACTIVE;
+        }
 
         if (createdAt == null) {
             createdAt = now;

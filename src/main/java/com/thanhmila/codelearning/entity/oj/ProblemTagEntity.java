@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.oj;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,20 +14,17 @@ import java.util.Set;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "categories")
-public class CategoryEntity {
+@Table(name = "problem_tags")
+public class ProblemTagEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     String name;
 
     @Column(nullable = false, unique = true)
     String slug;
-
-    @Column(columnDefinition = "TEXT")
-    String description;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     ZonedDateTime createdAt;
@@ -35,9 +32,9 @@ public class CategoryEntity {
     @Column(name = "updated_at", nullable = false)
     ZonedDateTime updatedAt;
 
-    // Quan hệ ngược lại với Course (Không bắt buộc, nhưng nên có để truy vấn ngược)
-    @ManyToMany(mappedBy = "categories")
-    Set<CourseEntity> courses = new HashSet<>();
+    @ManyToMany(mappedBy = "tags")
+    @Builder.Default
+    Set<OnlineJudgeProblemEntity> problems = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {

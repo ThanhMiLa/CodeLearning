@@ -3,7 +3,7 @@ package com.thanhmila.codelearning.service.user;
 import com.thanhmila.codelearning.dto.request.ChangePasswordRequest;
 import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
 import com.thanhmila.codelearning.dto.response.UserResponse;
-import com.thanhmila.codelearning.entity.UserEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;

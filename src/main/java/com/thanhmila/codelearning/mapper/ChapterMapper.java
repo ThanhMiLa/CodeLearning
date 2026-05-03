@@ -2,8 +2,8 @@ package com.thanhmila.codelearning.mapper;
 
 import com.thanhmila.codelearning.dto.response.ChapterResponse;
 import com.thanhmila.codelearning.dto.response.LessonSummaryResponse;
-import com.thanhmila.codelearning.entity.ChapterEntity;
-import com.thanhmila.codelearning.entity.LessonEntity;
+import com.thanhmila.codelearning.entity.course.ChapterEntity;
+import com.thanhmila.codelearning.entity.course.LessonEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

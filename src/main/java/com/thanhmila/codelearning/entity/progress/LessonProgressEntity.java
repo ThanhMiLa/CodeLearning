@@ -1,5 +1,8 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.progress;
 
+import com.thanhmila.codelearning.entity.user.UserEntity;
+import com.thanhmila.codelearning.entity.course.CourseEntity;
+import com.thanhmila.codelearning.entity.course.LessonEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,15 +17,15 @@ import java.time.OffsetDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(
-        name = "completed_lessons_count",
+        name = "lesson_progress",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name = "uq_completed_lessons_count_user_course",
-                        columnNames = {"user_id", "course_id"}
+                        name = "uq_lesson_progress_user_lesson",
+                        columnNames = {"user_id", "lesson_id"}
                 )
         }
 )
-public class CompletedLessonsCountEntity {
+public class LessonProgressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,29 +36,20 @@ public class CompletedLessonsCountEntity {
     UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lesson_id", nullable = false)
+    LessonEntity lesson;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id", nullable = false)
     CourseEntity course;
 
-    @Builder.Default
-    @Column(name = "completed_lessons_count", nullable = false)
-    Integer completedLessonsCount = 0;
-
-    @Column(name = "updated_at", nullable = false)
-    OffsetDateTime updatedAt;
+    @Column(name = "completed_at", nullable = false)
+    OffsetDateTime completedAt;
 
     @PrePersist
     void prePersist() {
-        if (completedLessonsCount == null) {
-            completedLessonsCount = 0;
+        if (completedAt == null) {
+            completedAt = OffsetDateTime.now();
         }
-
-        if (updatedAt == null) {
-            updatedAt = OffsetDateTime.now();
-        }
-    }
-
-    @PreUpdate
-    void preUpdate() {
-        updatedAt = OffsetDateTime.now();
     }
 }

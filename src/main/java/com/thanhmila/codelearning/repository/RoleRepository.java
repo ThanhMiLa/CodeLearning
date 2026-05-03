@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.repository;
 
-import com.thanhmila.codelearning.entity.RoleEntity;
+import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

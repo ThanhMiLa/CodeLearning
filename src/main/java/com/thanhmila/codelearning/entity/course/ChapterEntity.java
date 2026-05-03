@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.course;
 
 import jakarta.persistence.*;
 import lombok.*;

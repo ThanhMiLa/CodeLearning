@@ -1,6 +1,5 @@
 package com.thanhmila.codelearning.dto.response;
 
-import com.thanhmila.codelearning.entity.CategoryEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

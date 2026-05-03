@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.entity;
+package com.thanhmila.codelearning.entity.course;
 
 import com.thanhmila.codelearning.entity.enums.CourseStatus;
 import jakarta.persistence.*;

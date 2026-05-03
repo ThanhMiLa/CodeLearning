@@ -4,9 +4,9 @@ import com.thanhmila.codelearning.dto.response.CategoryResponse;
 import com.thanhmila.codelearning.dto.response.CourseDetailResponse;
 import com.thanhmila.codelearning.dto.response.CourseListItemResponse;
 import com.thanhmila.codelearning.dto.response.TeacherResponse;
-import com.thanhmila.codelearning.entity.CategoryEntity;
-import com.thanhmila.codelearning.entity.CourseEntity;
-import com.thanhmila.codelearning.entity.TeacherCourseAssignmentEntity;
+import com.thanhmila.codelearning.entity.course.CategoryEntity;
+import com.thanhmila.codelearning.entity.course.CourseEntity;
+import com.thanhmila.codelearning.entity.course.TeacherCourseAssignmentEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

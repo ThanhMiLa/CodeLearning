@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.repository;
 
-import com.thanhmila.codelearning.entity.CompletedLessonsCountEntity;
+import com.thanhmila.codelearning.entity.progress.CompletedLessonsCountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

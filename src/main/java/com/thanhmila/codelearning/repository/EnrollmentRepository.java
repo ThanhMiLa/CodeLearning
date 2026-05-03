@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.repository;
 
-import com.thanhmila.codelearning.entity.EnrollmentEntity;
+import com.thanhmila.codelearning.entity.course.EnrollmentEntity;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

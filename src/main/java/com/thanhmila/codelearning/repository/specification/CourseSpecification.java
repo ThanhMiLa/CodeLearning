@@ -1,9 +1,9 @@
 package com.thanhmila.codelearning.repository.specification;
 
-import com.thanhmila.codelearning.entity.CategoryEntity;
-import com.thanhmila.codelearning.entity.CourseEntity;
-import com.thanhmila.codelearning.entity.TeacherCourseAssignmentEntity;
-import com.thanhmila.codelearning.entity.TeacherEntity;
+import com.thanhmila.codelearning.entity.course.CategoryEntity;
+import com.thanhmila.codelearning.entity.course.CourseEntity;
+import com.thanhmila.codelearning.entity.course.TeacherCourseAssignmentEntity;
+import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.entity.enums.CourseStatus;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
