@@ -1,0 +1,93 @@
+{
+  "properties": [
+    {
+      "name": "jwt.signer-key",
+      "type": "java.lang.String",
+      "description": "Secret key used to sign JWT tokens."
+    },
+    {
+      "name": "jwt.valid-duration",
+      "type": "java.lang.Long",
+      "description": "Access token validity duration in seconds.",
+      "defaultValue": 60
+    },
+    {
+      "name": "jwt.refreshable-duration",
+      "type": "java.lang.Long",
+      "description": "Refresh token validity duration in seconds.",
+      "defaultValue": 120
+    },
+    {
+      "name": "auth.cookie.access-token.name",
+      "type": "java.lang.String",
+      "description": "Name of the access token cookie.",
+      "defaultValue": "access_token"
+    },
+    {
+      "name": "auth.cookie.access-token.max-age",
+      "type": "java.lang.Long",
+      "description": "Max age (seconds) for the access token cookie.",
+      "defaultValue": 60
+    },
+    {
+      "name": "auth.cookie.access-token.secure",
+      "type": "java.lang.Boolean",
+      "description": "Whether the access token cookie requires HTTPS.",
+      "defaultValue": false
+    },
+    {
+      "name": "auth.cookie.access-token.http-only",
+      "type": "java.lang.Boolean",
+      "description": "Whether the access token cookie is HTTP-only.",
+      "defaultValue": true
+    },
+    {
+      "name": "auth.cookie.access-token.same-site",
+      "type": "java.lang.String",
+      "description": "SameSite attribute for the access token cookie.",
+      "defaultValue": "Lax"
+    },
+    {
+      "name": "auth.cookie.access-token.path",
+      "type": "java.lang.String",
+      "description": "Path for the access token cookie.",
+      "defaultValue": "/"
+    },
+    {
+      "name": "auth.cookie.refresh-token.name",
+      "type": "java.lang.String",
+      "description": "Name of the refresh token cookie.",
+      "defaultValue": "refresh_token"
+    },
+    {
+      "name": "auth.cookie.refresh-token.max-age",
+      "type": "java.lang.Long",
+      "description": "Max age (seconds) for the refresh token cookie.",
+      "defaultValue": 120
+    },
+    {
+      "name": "auth.cookie.refresh-token.secure",
+      "type": "java.lang.Boolean",
+      "description": "Whether the refresh token cookie requires HTTPS.",
+      "defaultValue": false
+    },
+    {
+      "name": "auth.cookie.refresh-token.http-only",
+      "type": "java.lang.Boolean",
+      "description": "Whether the refresh token cookie is HTTP-only.",
+      "defaultValue": true
+    },
+    {
+      "name": "auth.cookie.refresh-token.same-site",
+      "type": "java.lang.String",
+      "description": "SameSite attribute for the refresh token cookie.",
+      "defaultValue": "Lax"
+    },
+    {
+      "name": "auth.cookie.refresh-token.path",
+      "type": "java.lang.String",
+      "description": "Path for the refresh token cookie.",
+      "defaultValue": "/codelearning/auth"
+    }
+  ]
+}
