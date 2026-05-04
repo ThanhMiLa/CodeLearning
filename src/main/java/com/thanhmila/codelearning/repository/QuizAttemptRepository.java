@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.repository;
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
@@ -17,6 +18,6 @@ public interface QuizAttemptRepository extends JpaRepository<QuizAttemptEntity, 
             ORDER BY qa.submittedAt DESC
             LIMIT 1
             """)
-    Optional<QuizAttemptEntity> findLatestAttemptByLesson(Long quizId, Long userId);
+    Optional<QuizAttemptEntity> findLatestAttemptByLesson(@Param("quizId") Long quizId, @Param("userId") Long userId);
 
 }

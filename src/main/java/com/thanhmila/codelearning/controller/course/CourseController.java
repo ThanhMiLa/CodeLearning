@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.Instant;
 import java.util.List;
 
@@ -83,7 +82,7 @@ public class CourseController {
         }
 
         var result = courseService.
-                getCourseCurriculum(courseId);
+                getCourseCurriculum(courseId, userId);
 
         return ResponseEntity.ok(ApiResponse.<List<ChapterResponse>>builder()
                 .status(200)

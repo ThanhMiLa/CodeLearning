@@ -19,5 +19,6 @@ public interface ChapterMapper {
     // ==========================================
     // 2. CÁC HÀM MAP PHỤ
     // ==========================================
+    @Mapping(target = "isCompleted", ignore = true)
     LessonSummaryResponse toLessonSummaryResponse(LessonEntity lessonEntity);
 }

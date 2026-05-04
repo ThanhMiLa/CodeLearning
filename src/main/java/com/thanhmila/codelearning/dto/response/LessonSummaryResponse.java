@@ -14,4 +14,7 @@ public class LessonSummaryResponse {
     Integer orderIndex;
     Integer estimatedDurationMinutes;
     Boolean trial;
+    
+    @Builder.Default
+    Boolean isCompleted = false;
 }

@@ -39,6 +39,7 @@ public class CourseService {
     CourseMapper courseMapper;
     ChapterMapper chapterMapper;
     CompletedLessonCountRepository completedLessonCountRepository;
+    LessonProgressRepository lessonProgressRepository;
 
     public PageResponse<CourseListItemResponse> getCourseList(Long userId, CourseSearchRequest searchRequest, Pageable pageable) {
 
@@ -126,11 +127,24 @@ public class CourseService {
         return courseDetailResponse;
     }
 
-    public List<ChapterResponse> getCourseCurriculum(Long courseId){
+    public List<ChapterResponse> getCourseCurriculum(Long courseId, Long userId){
         List<ChapterEntity> chapterEntityList = chapterRepository.findChaptersWithLessonsByCourseId(courseId);
-        return chapterEntityList.stream()
+        List<ChapterResponse> chapterResponseList = chapterEntityList.stream()
                 .map(chapterMapper::toChapterResponse)
                 .toList();
+
+        if(userId != null){
+            Set<Long> completedLessonIds = lessonProgressRepository.findCompletedLessonIds(userId, courseId);
+            if(completedLessonIds != null && !completedLessonIds.isEmpty()){
+                chapterResponseList.forEach(chapterResponse -> {
+                    chapterResponse.getLessonSummaryResponses().forEach(lessonSummaryResponse -> {
+                        boolean isCompleted = completedLessonIds.contains(lessonSummaryResponse.getId());
+                        lessonSummaryResponse.setIsCompleted(isCompleted);
+                    });
+                });
+            }
+        }
+        return chapterResponseList;
     }
 
     private Map<Long, Integer> getCourseProgressMap(List<CompletedLessonsCountEntity> completedLessonsCountEntities){

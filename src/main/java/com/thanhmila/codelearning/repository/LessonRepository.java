@@ -26,4 +26,8 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
     Optional<LessonEntity> findDetailWithCourseById(@Param("id") Long id);
 
 
+
+    
+
+
 }
