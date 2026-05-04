@@ -72,14 +72,17 @@ public class LessonEntity {
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
 
+    @Builder.Default
     @Column(name = "has_quiz", nullable = false)
-    private Boolean hasQuiz = false;
-
+    Boolean hasQuiz = false;
+    
+    @Builder.Default
     @Column(name = "has_assignment", nullable = false)
-    private Boolean hasAssignment = false;
-
+    Boolean hasAssignment = false;
+    
+    @Builder.Default
     @Column(name = "has_online_judge", nullable = false)
-    private Boolean hasOnlineJudge = false;
+    Boolean hasOnlineJudge = false;
 
 
 

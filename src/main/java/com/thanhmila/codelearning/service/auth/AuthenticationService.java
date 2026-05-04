@@ -42,13 +42,14 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@SuppressWarnings("all")
 public class AuthenticationService {
 
     UserRepository userRepository;
     PasswordEncoder passwordEncoder;
     RoleRepository roleRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
-    RefreshTokenRepository refreshTokenRepository;
+
     UserMapper userMapper;
 
     @NonFinal

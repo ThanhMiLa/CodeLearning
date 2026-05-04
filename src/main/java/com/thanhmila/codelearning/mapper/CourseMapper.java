@@ -15,12 +15,14 @@ public interface CourseMapper {
     // ==========================================
     // 1. HÀM MAP CHÍNH
     // ==========================================
+    @Mapping(target = "enrolled", ignore = true)
+    @Mapping(target = "progressPercentage", ignore = true)
     CourseListItemResponse toCourseListItemResponse(CourseEntity courseEntity);
 
 
     @Mapping(target = "isEnrolled", ignore = true)
-    @Mapping(target = "chapters", ignore = true)
     @Mapping(target = "instructors", source = "teacherAssignments")
+    @Mapping(target = "progressPercentage", ignore = true)
     CourseDetailResponse toCourseDetailResponse(CourseEntity courseEntity);
 
 

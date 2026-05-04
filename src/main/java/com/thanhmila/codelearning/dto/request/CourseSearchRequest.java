@@ -30,14 +30,18 @@ public class CourseSearchRequest {
     String teacherName;
 
     /* --- FILED PAGE --- */
+    @Builder.Default
     @Min(value = 0, message = "PAGE_INVALID")
     int page = 0;
 
+    @Builder.Default
     @Max(value = 20, message = "PAGE_SIZE_INVALID")
     int size = 12;
 
     /* --- FILED SEARCH --- */
+    @Builder.Default
     String[] sortBy = {"totalEnrolled"};
+    @Builder.Default
     String[] order = {"desc"};
 
 

@@ -3,7 +3,6 @@ package com.thanhmila.codelearning.controller.course;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
-import com.thanhmila.codelearning.dto.response.QuizQuestionResponse;
 import com.thanhmila.codelearning.service.course.LessonService;
 import com.thanhmila.codelearning.service.course.QuizService;
 import lombok.AccessLevel;

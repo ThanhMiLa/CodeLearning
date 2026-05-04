@@ -36,6 +36,7 @@ public class CategoryEntity {
     ZonedDateTime updatedAt;
 
     // Quan hệ ngược lại với Course (Không bắt buộc, nhưng nên có để truy vấn ngược)
+    @Builder.Default
     @ManyToMany(mappedBy = "categories")
     Set<CourseEntity> courses = new HashSet<>();
 

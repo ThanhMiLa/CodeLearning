@@ -74,13 +74,16 @@ public class CourseEntity {
 
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
-
+    
+    @Builder.Default
     @Column(name = "average_rating", nullable = false)
     Double averageRating = 0.0;
-
+    
+    @Builder.Default
     @Column(name = "total_reviews", nullable = false)
     Integer totalReviews = 0;
-
+    
+    @Builder.Default    
     @Column(name = "total_enrolled", nullable = false)
     Integer totalEnrolled = 0;
 
@@ -110,9 +113,12 @@ public class CourseEntity {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @Builder.Default
     Set<CategoryEntity> categories = new HashSet<>();
 
+    
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @Builder.Default    
     Set<TeacherCourseAssignmentEntity> teacherAssignments = new HashSet<>();
 
     @PrePersist

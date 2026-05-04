@@ -8,7 +8,6 @@ import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
-import com.thanhmila.codelearning.repository.InvalidatedTokenRepository;
 import com.thanhmila.codelearning.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
-    InvalidatedTokenRepository invalidatedTokenRepository;
 
     @Transactional(readOnly = true)
     public UserResponse getMyInfo(String username){

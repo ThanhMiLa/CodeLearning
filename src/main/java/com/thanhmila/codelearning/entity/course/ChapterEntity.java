@@ -39,6 +39,7 @@ public class ChapterEntity {
     @Column(name = "order_index", nullable = false)
     Integer orderIndex;
 
+    @Builder.Default
     @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY)
     List<LessonEntity> lessons = new ArrayList<>();
 }
