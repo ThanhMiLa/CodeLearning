@@ -29,7 +29,7 @@ jwt:
   valid-duration: ${JWT_VALID_DURATION:60}
   refreshable-duration: ${JWT_REFRESHABLE_DURATION:120}
 
-auth:
+auth: 
   cookie:
     access-token:
       name: ${ACCESS_TOKEN_COOKIE_NAME:access_token}
