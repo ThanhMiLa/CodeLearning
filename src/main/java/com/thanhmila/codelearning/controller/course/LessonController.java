@@ -62,7 +62,7 @@ public class LessonController {
             userId = jwt.getClaim("userId");
         }
 
-        var result = quizService.getQuizDetail(lessonId);
+        var result = quizService.getQuizDetail(lessonId, userId);
 
         return ResponseEntity.ok(ApiResponse.<QuizDetailResponse>builder()
                 .status(200)

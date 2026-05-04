@@ -15,4 +15,5 @@ public class QuizQuestionResponse {
     String questionContent;
     Integer orderIndex;
     List<QuizOptionResponse> options;
+    Long userSelectedOptionId;
 }

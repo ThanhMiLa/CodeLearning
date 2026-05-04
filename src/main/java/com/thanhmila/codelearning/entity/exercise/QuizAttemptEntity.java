@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,6 +40,15 @@ public class QuizAttemptEntity {
 
     @Column(name = "submitted_at", nullable = false, updatable = false)
     ZonedDateTime submittedAt;
+
+    @Column(name = "created_at", updatable = false)
+    ZonedDateTime createdAt;
+
+    @Column(name = "updated_at")
+    ZonedDateTime updatedAt;
+
+    @OneToMany(mappedBy = "attempt", cascade = CascadeType.ALL)
+    List<QuizAttemptAnswerEntity> answers;
 
     @PrePersist
     protected void onCreate() {

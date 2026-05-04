@@ -53,6 +53,7 @@ public enum ErrorCode {
     PROGRESS_SUMMARY_NOT_FOUND(4203, "Progress summary not found", HttpStatus.NOT_FOUND),
 
     QUIZ_NOT_FOUND(5000, "Quiz not found", HttpStatus.NOT_FOUND),
+    QUIZ_ATTEMPT_NOT_FOUND(5100, "Quiz attempt not found", HttpStatus.NOT_FOUND),
 
     OJ_PROBLEM_NOT_FOUND(6000, "Online judge problem not found", HttpStatus.NOT_FOUND),
     OJ_SUBMISSION_FAILED(6304, "Online judge submission failed", HttpStatus.BAD_GATEWAY),

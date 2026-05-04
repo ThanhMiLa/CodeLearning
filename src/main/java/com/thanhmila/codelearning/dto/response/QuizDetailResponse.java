@@ -2,7 +2,6 @@ package com.thanhmila.codelearning.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.util.List;
 
 @Data
@@ -15,4 +14,5 @@ public class QuizDetailResponse {
     String title;
     String description;
     List<QuizQuestionResponse> questions;
+    QuizAttemptResponse pastAttempt;
 }
