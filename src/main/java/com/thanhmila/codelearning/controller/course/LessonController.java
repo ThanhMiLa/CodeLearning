@@ -3,12 +3,18 @@ package com.thanhmila.codelearning.controller.course;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
+import com.thanhmila.codelearning.dto.response.RootLessonCommentResponse;
+import com.thanhmila.codelearning.service.course.LessonCommentService;
 import com.thanhmila.codelearning.service.course.LessonService;
 import com.thanhmila.codelearning.service.course.QuizService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,6 +34,7 @@ public class LessonController {
 
     LessonService lessonService;
     QuizService quizService;
+    LessonCommentService lessonCommentService;
 
     @GetMapping("/{lessonId}")
     public ResponseEntity<ApiResponse<LessonDetailResponse>> getLessonDetail(
@@ -72,4 +79,24 @@ public class LessonController {
                 .build());
 
     }
+
+    @GetMapping("/{lessonId}/comments")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    public ResponseEntity<ApiResponse<Page<RootLessonCommentResponse>>> getCommentList(
+            @PathVariable("lessonId") Long lessonId,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable){
+
+        var result = lessonCommentService.getRootComments(lessonId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<Page<RootLessonCommentResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get root lesson comment successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+
+    }
+
+
 }
