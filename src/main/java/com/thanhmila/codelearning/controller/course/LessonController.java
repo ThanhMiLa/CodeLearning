@@ -3,7 +3,7 @@ package com.thanhmila.codelearning.controller.course;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
-import com.thanhmila.codelearning.dto.response.RootLessonCommentResponse;
+import com.thanhmila.codelearning.dto.response.LessonCommentResponse;
 import com.thanhmila.codelearning.service.course.LessonCommentService;
 import com.thanhmila.codelearning.service.course.LessonService;
 import com.thanhmila.codelearning.service.course.QuizService;
@@ -82,16 +82,35 @@ public class LessonController {
 
     @GetMapping("/{lessonId}/comments")
     @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
-    public ResponseEntity<ApiResponse<Page<RootLessonCommentResponse>>> getCommentList(
+    public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentList(
             @PathVariable("lessonId") Long lessonId,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable){
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable){
 
         var result = lessonCommentService.getRootComments(lessonId, pageable);
 
-        return ResponseEntity.ok(ApiResponse.<Page<RootLessonCommentResponse>>builder()
+        return ResponseEntity.ok(ApiResponse.<Page<LessonCommentResponse>>builder()
                 .status(200)
                 .code(1000)
                 .message("Get root lesson comment successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+
+    }
+
+    @GetMapping("/{lessonId}/comments/{commentId}/replies")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentListWithReply(
+            @PathVariable("lessonId") Long lessonId,
+            @PathVariable("commentId") Long commentId,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable){
+
+        var result = lessonCommentService.getReplies(commentId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<Page<LessonCommentResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get replies of lesson comment successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

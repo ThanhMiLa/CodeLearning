@@ -35,4 +35,7 @@ public interface LessonCommentRepository extends JpaRepository<LessonCommentEnti
             countQuery = "SELECT COUNT(id) FROM lesson_comments WHERE lesson_id = :lessonId AND parent_comment_id IS NULL",
             nativeQuery = true)
     Page<RootLessonCommentProjection> findRootCommentsWithReplyCount(@Param("lessonId") Long lessonId, Pageable pageable);
+
+
+    Page<LessonCommentEntity> findByParentCommentId(Long parentCommentId, Pageable pageable);
 }

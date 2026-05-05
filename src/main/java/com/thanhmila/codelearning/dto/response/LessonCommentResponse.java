@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RootLessonCommentResponse {
+public class LessonCommentResponse {
     Long id;
     Long userId;
     String displayName;
