@@ -188,6 +188,8 @@
                 <configuration>
                     <!-- Khớp Java 21 -->
                     <release>${java.version}</release>
+                    <!-- BẮT BUỘC: để SpEL trong @PreAuthorize resolve được #paramName -->
+                    <parameters>true</parameters>
 
                     <!-- Khai báo annotation processors -->
                     <annotationProcessorPaths>
@@ -210,10 +212,8 @@
 
                     </annotationProcessorPaths>
 
-                    <!-- Nếu muốn MapStruct generate mapper dạng Spring Bean -->
                     <compilerArgs>
                         <arg>-Amapstruct.defaultComponentModel=spring</arg>
-                        <arg>-parameters</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>

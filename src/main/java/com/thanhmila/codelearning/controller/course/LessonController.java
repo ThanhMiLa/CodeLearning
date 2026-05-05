@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.time.Instant;
 
 @Slf4j
@@ -33,7 +32,7 @@ public class LessonController {
     @GetMapping("/{lessonId}")
     public ResponseEntity<ApiResponse<LessonDetailResponse>> getLessonDetail(
             @AuthenticationPrincipal Jwt jwt,
-            @PathVariable Long lessonId){
+            @PathVariable("lessonId") Long lessonId){
 
         Long userId = null;
         if(jwt != null){
@@ -53,10 +52,10 @@ public class LessonController {
 
 
     @GetMapping("/{lessonId}/quiz")
-    @PreAuthorize("@courseSecurity.isEnrolledCourse(#lessonId)")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<QuizDetailResponse>> getQuizDetail(
             @AuthenticationPrincipal Jwt jwt,
-            @PathVariable Long lessonId){
+            @PathVariable("lessonId") Long lessonId){
         Long userId = null;
         if(jwt != null){
             userId = jwt.getClaim("userId");

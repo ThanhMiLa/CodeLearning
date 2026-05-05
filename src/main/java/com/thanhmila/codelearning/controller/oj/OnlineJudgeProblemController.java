@@ -7,13 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
+import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
 import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 
@@ -28,9 +31,10 @@ public class OnlineJudgeProblemController {
 
 
     @GetMapping("/problems")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<List<OnlineJudgeProblemResponse>>> getOnlineJudgeProblemList(
             @AuthenticationPrincipal Jwt jwt,
-            @RequestParam Long lessonId){
+            @RequestParam("lessonId") Long lessonId){
 
         Long userId = null;
         if(jwt != null){
@@ -43,6 +47,28 @@ public class OnlineJudgeProblemController {
                 .status(200)
                 .code(1000)
                 .message("Get online judge problem list successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/problems/{problemId}")
+    @PreAuthorize("@courseSecurity.canAccessProblem(#problemId)")
+    public ResponseEntity<ApiResponse<OnlineJudgeProblemDetailResponse>> getOnlineJudgeProblemDetail(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable("problemId") Long problemId){
+
+        Long userId = null;
+        if(jwt != null){
+            userId = jwt.getClaim("userId");
+        }
+
+        var result = onlineJudgeProblemService.getOnlineJudgeProblemDetail(problemId, userId);
+
+        return ResponseEntity.ok(ApiResponse.<OnlineJudgeProblemDetailResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Get online judge problem successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

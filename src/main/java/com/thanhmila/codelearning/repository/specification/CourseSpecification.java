@@ -35,7 +35,9 @@ public class CourseSpecification {
 
             Join<CourseEntity, CategoryEntity> categoryJoin = root.join("categories", JoinType.INNER);
 
-            query.distinct(true);
+            if (query != null) {    
+                query.distinct(true);
+            }
 
             return categoryJoin.get("id").in(categoryIds);
         };
@@ -68,7 +70,9 @@ public class CourseSpecification {
             Join<CourseEntity, TeacherCourseAssignmentEntity> teacherCourseAssignmentJoin = root.join("teacherAssignments", JoinType.INNER);
             Join<TeacherCourseAssignmentEntity, TeacherEntity> teacherJoin = teacherCourseAssignmentJoin.join("teacher", JoinType.INNER);
 
-            query.distinct(true);
+            if (query != null) {    
+                query.distinct(true);
+            }
 
             return cb.like(cb.lower(teacherJoin.get("fullName")), pattern);
         });

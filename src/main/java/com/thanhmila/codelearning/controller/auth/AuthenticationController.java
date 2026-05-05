@@ -28,6 +28,7 @@ import java.time.Instant;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@SuppressWarnings("null")
 public class AuthenticationController {
 
     AuthenticationService authenticationService;
@@ -165,7 +166,7 @@ public class AuthenticationController {
 
         authenticationService.logout(accessToken, refreshToken);
 
-        ResponseCookie deleteCookieAccessToken = ResponseCookie.from("access_token", "")
+        ResponseCookie deleteCookieAccessToken = ResponseCookie.from(accessTokenName, "")
                 .httpOnly(accessTokenHttpOnly)
                 .secure(isCookieAccessTokenSecure)
                 .path(accessTokenPath)
@@ -173,7 +174,7 @@ public class AuthenticationController {
                 .sameSite(accessTokenSameSite)
                 .build();
 
-        ResponseCookie deleteCookieRefreshToken = ResponseCookie.from("refresh_token", "")
+        ResponseCookie deleteCookieRefreshToken = ResponseCookie.from(refreshTokenName, "")
                 .httpOnly(refreshTokenHttpOnly)
                 .secure(isCookieRefreshTokenSecure)
                 .path(refreshTokenPath)
@@ -201,7 +202,7 @@ public class AuthenticationController {
 
         var result = authenticationService.refresh(refreshToken);
 
-        ResponseCookie accessTokenCookie = ResponseCookie.from("access_token", result.getAccessToken())
+        ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
                 .httpOnly(accessTokenHttpOnly)
                 .secure(isCookieAccessTokenSecure)
                 .path(accessTokenPath)
@@ -209,7 +210,7 @@ public class AuthenticationController {
                 .sameSite(accessTokenSameSite)
                 .build();
 
-        ResponseCookie refreshTokenCookie = ResponseCookie.from("refresh_token", result.getRefreshToken())
+        ResponseCookie refreshTokenCookie = ResponseCookie.from(refreshTokenName, result.getRefreshToken())
                 .httpOnly(refreshTokenHttpOnly)
                 .secure(isCookieRefreshTokenSecure)
                 .path(refreshTokenPath)

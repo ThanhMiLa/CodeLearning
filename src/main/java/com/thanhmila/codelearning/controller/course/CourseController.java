@@ -52,7 +52,7 @@ public class CourseController {
     @GetMapping("/{courseId}")
     public ResponseEntity<ApiResponse<CourseDetailResponse>> getCourseDetail(
             @AuthenticationPrincipal Jwt jwt,
-            @PathVariable Long courseId){
+            @PathVariable("courseId") Long courseId){
 
         Long userId = null;
         if(jwt != null){
@@ -74,7 +74,7 @@ public class CourseController {
     @GetMapping("/{courseId}/curriculum")
     public ResponseEntity<ApiResponse<List<ChapterResponse>>> getCourseCurriculum(
             @AuthenticationPrincipal Jwt jwt,
-            @PathVariable Long courseId){
+            @PathVariable("courseId") Long courseId){
 
         Long userId = null;
         if(jwt != null){
