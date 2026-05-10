@@ -3,9 +3,18 @@ package com.thanhmila.codelearning.service.course;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.thanhmila.codelearning.dto.request.LessonCommentRequest;
 import com.thanhmila.codelearning.dto.response.LessonCommentResponse;
 import com.thanhmila.codelearning.entity.course.LessonCommentEntity;
+import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
+import com.thanhmila.codelearning.exception.AppException;
+import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.LessonCommentRepository;
+import com.thanhmila.codelearning.repository.LessonRepository;
+import com.thanhmila.codelearning.repository.UserRepository;
 import com.thanhmila.codelearning.repository.projection.RootLessonCommentProjection;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 public class LessonCommentService {
     
     LessonCommentRepository lessonCommentRepository;
+    LessonRepository lessonRepository;
+    UserRepository userRepository;
     
     public Page<LessonCommentResponse> getRootComments(Long lessonId, Pageable pageable){
         Page<RootLessonCommentProjection> rootCommentsProjection = lessonCommentRepository.findRootCommentsWithReplyCount(lessonId, pageable);
@@ -30,6 +41,25 @@ public class LessonCommentService {
         return replies.map(this::mapToLessonCommentResponse);
     }
 
+    @Transactional
+    public LessonCommentResponse createComment(Long lessonId, Long userId, LessonCommentRequest request){
+        LessonEntity lesson = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new AppException(ErrorCode.LESSON_NOT_FOUND));
+
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+
+        LessonCommentEntity lessonComment = LessonCommentEntity.builder()
+                .lesson(lesson)
+                .user(user)
+                .content(request.getContent())
+                .parentComment(null)
+                .build();
+        
+        lessonComment = lessonCommentRepository.save(lessonComment);
+        return mapToLessonCommentResponse(lessonComment);
+    }
+    
     private LessonCommentResponse mapToLessonCommentResponse(LessonCommentEntity entity){
         return LessonCommentResponse.builder()
                 .id(entity.getId())
@@ -54,4 +84,7 @@ public class LessonCommentService {
                 .replyCount(projection.getReplyCount())
                 .build();
     }
+
+
+
 }

@@ -36,10 +36,7 @@ public class QuizController {
             @Valid @RequestBody QuizSubmitRequest quizSubmitRequest,
             @PathVariable("quizId") Long quizId){
 
-        Long userId = null;
-        if(jwt != null){
-            userId = jwt.getClaim("userId");
-        }
+        Long userId = jwt.getClaim("userId");
 
         var result = quizService.submitQuiz(quizId, userId, quizSubmitRequest);
 

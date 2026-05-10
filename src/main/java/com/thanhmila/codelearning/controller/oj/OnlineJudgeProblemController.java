@@ -36,10 +36,7 @@ public class OnlineJudgeProblemController {
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){
 
-        Long userId = null;
-        if(jwt != null){
-            userId = jwt.getClaim("userId");
-        }
+        Long userId = jwt.getClaim("userId");
 
         var result = onlineJudgeProblemService.getOnlineJudgeProblemList(lessonId, userId);
 
@@ -58,10 +55,7 @@ public class OnlineJudgeProblemController {
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("problemId") Long problemId){
 
-        Long userId = null;
-        if(jwt != null){
-            userId = jwt.getClaim("userId");
-        }
+        Long userId = jwt.getClaim("userId");
 
         var result = onlineJudgeProblemService.getOnlineJudgeProblemDetail(problemId, userId);
 

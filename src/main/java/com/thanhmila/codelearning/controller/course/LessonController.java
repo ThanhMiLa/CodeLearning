@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.controller.course;
 
+import com.thanhmila.codelearning.dto.request.LessonCommentRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
@@ -23,6 +24,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
@@ -65,10 +67,7 @@ public class LessonController {
     public ResponseEntity<ApiResponse<QuizDetailResponse>> getQuizDetail(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("lessonId") Long lessonId){
-        Long userId = null;
-        if(jwt != null){
-            userId = jwt.getClaim("userId");
-        }
+        Long userId = jwt.getClaim("userId");
 
         var result = quizService.getQuizDetail(lessonId, userId);
 
@@ -119,16 +118,35 @@ public class LessonController {
 
     }
 
+    @PostMapping("/{lessonId}/comments")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    public ResponseEntity<ApiResponse<LessonCommentResponse>> createComment(
+            @PathVariable("lessonId") Long lessonId,
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestBody LessonCommentRequest request){
+
+        Long userId = jwt.getClaim("userId");
+
+        var result = lessonCommentService.createComment(lessonId, userId, request);
+
+        return ResponseEntity.ok(ApiResponse.<LessonCommentResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Create lesson comment successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+
+    }
+
+
     @PostMapping("/{lessonId}/complete")
     @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<LessonCompletionResponse>> completedLesson(
             @PathVariable("lessonId") Long lessonId,
             @AuthenticationPrincipal Jwt jwt){
 
-        Long userId = null;
-        if(jwt != null){
-            userId = jwt.getClaim("userId");
-        }
+        Long userId = jwt.getClaim("userId");
 
         var result = lessonService.completedLesson(lessonId, userId);
 
