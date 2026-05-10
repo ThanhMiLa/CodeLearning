@@ -16,4 +16,5 @@ import lombok.experimental.FieldDefaults;
 public class LessonCommentRequest {
     @NotEmpty(message = "Nội dung bình luận không được để trống")
     String content;
+    Long parentCommentId;
 }

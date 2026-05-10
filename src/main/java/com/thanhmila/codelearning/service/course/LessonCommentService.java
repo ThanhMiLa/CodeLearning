@@ -49,11 +49,28 @@ public class LessonCommentService {
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
+        LessonCommentEntity actualParentComment = null;
+
+        if(request.getParentCommentId() != null){
+            LessonCommentEntity targetComment = lessonCommentRepository.findById(request.getParentCommentId())
+                    .orElseThrow(() -> new AppException(ErrorCode.COMMENT_NOT_FOUND));
+
+            if(!targetComment.getLesson().getId().equals(lessonId)){
+                throw new AppException(ErrorCode.INVALID_COMMENT_LESSON);
+            }
+
+            if(targetComment.getParentComment() != null){
+                actualParentComment = targetComment.getParentComment();
+            } else {
+                actualParentComment = targetComment;
+            }
+        }
+
         LessonCommentEntity lessonComment = LessonCommentEntity.builder()
                 .lesson(lesson)
                 .user(user)
                 .content(request.getContent())
-                .parentComment(null)
+                .parentComment(actualParentComment)
                 .build();
         
         lessonComment = lessonCommentRepository.save(lessonComment);
