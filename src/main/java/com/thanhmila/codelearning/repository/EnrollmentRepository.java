@@ -59,4 +59,23 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
         void updateStatusByUserIdAndCourseId( @Param("userId") Long userId, 
                                               @Param("courseId") Long courseId, 
                                               @Param("status") EnrollmentStatus status);
+
+
+
+
+
+
+        @Query(value = """
+                        SELECT EXISTS (
+                            SELECT 1
+                            FROM enrollments e
+                            JOIN chapters ch ON e.course_id = ch.course_id
+                            JOIN lessons l ON l.chapter_id = ch.id
+                            JOIN quizzes q ON q.lesson_id = l.id
+                            WHERE q.id = :quizId
+                              AND e.user_id = :userId
+                              AND e.status IN ('ACTIVE', 'COMPLETED')
+                        )
+                        """, nativeQuery = true)
+        boolean isUserEnrolledInQuiz(@Param("userId") Long userId, @Param("quizId") Long quizId);
 }

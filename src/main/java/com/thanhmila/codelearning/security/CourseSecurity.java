@@ -41,6 +41,18 @@ public class CourseSecurity {
         return result;
     }
 
+    public boolean canAccessQuiz(Long quizId){
+        Long userId = getCurrentUserId();
+        log.info("[CourseSecurity] canAccessQuiz - userId: {}, quizId: {}", userId, quizId);
+        if (userId == null || quizId == null) {
+            log.warn("[CourseSecurity] canAccessQuiz - userId or quizId is null!");
+            return false;
+        }
+        boolean result = enrollmentRepository.isUserEnrolledInQuiz(userId, quizId);
+        log.info("[CourseSecurity] canAccessQuiz - result: {}", result);
+        return result;
+    }   
+
     private Long getCurrentUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null || !auth.isAuthenticated() || !(auth.getPrincipal() instanceof Jwt jwt)) {

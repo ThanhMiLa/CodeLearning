@@ -2,6 +2,7 @@ package com.thanhmila.codelearning.mapper;
 
 import com.thanhmila.codelearning.dto.response.QuizOptionResponse;
 import com.thanhmila.codelearning.dto.response.QuizQuestionResponse;
+import com.thanhmila.codelearning.dto.response.QuizSubmitResponse;
 import com.thanhmila.codelearning.dto.response.QuizAttemptResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptEntity;
@@ -24,5 +25,10 @@ public interface QuizMapper {
 
     @Mapping(target = "score", ignore = true)
     QuizAttemptResponse toQuizAttemptResponse(QuizAttemptEntity quizAttemptEntity);
+
+
+    @Mapping(target = "attemptId",  source = "id")
+    @Mapping(target = "quizId", source = "quiz.id")
+    QuizSubmitResponse toQuizSubmitResponse(QuizAttemptEntity quizAttemptEntity);
 
 }

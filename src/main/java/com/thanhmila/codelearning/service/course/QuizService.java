@@ -1,18 +1,30 @@
 package com.thanhmila.codelearning.service.course;
 
+import com.thanhmila.codelearning.dto.request.QuizSubmitRequest;
+import com.thanhmila.codelearning.dto.request.SubmissionDetail;
 import com.thanhmila.codelearning.dto.response.QuizAttemptResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
+import com.thanhmila.codelearning.dto.response.QuizSubmitResponse;
+import com.thanhmila.codelearning.entity.exercise.QuizAttemptAnswerEntity;
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptEntity;
 import com.thanhmila.codelearning.entity.exercise.QuizEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.QuizMapper;
+import com.thanhmila.codelearning.repository.QuizAttemptAnswerRepository;
 import com.thanhmila.codelearning.repository.QuizAttemptRepository;
+import com.thanhmila.codelearning.repository.QuizOptionRepository;
+import com.thanhmila.codelearning.repository.QuizQuestionRepository;
 import com.thanhmila.codelearning.repository.QuizRepository;
+import com.thanhmila.codelearning.repository.UserRepository;
+import com.thanhmila.codelearning.repository.projection.CorrectAnswerProjection;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -26,6 +38,10 @@ public class QuizService {
     QuizRepository quizRepository;
     QuizAttemptRepository quizAttemptRepository;
     QuizMapper quizMapper;
+    UserRepository userRepository;
+    QuizQuestionRepository quizQuestionRepository;
+    QuizOptionRepository quizOptionRepository;
+    QuizAttemptAnswerRepository quizAttemptAnswerRepository;
 
     @Transactional(readOnly = true)
     public QuizDetailResponse getQuizDetail(Long lessonId, Long userId){
@@ -71,14 +87,66 @@ public class QuizService {
         return quizDetailResponse;
     }
 
+    @Transactional
+    public QuizSubmitResponse submitQuiz(Long quizId, Long userId, QuizSubmitRequest quizSubmitRequest){
+        List<CorrectAnswerProjection> correctAnswerProjections = quizRepository.findCorrectAnswersByQuizId(quizId);
+        Map<Long, Long> correctAnswerMap = correctAnswerProjections.stream()
+                .collect(Collectors.toMap(
+                    CorrectAnswerProjection::getQuestionId, 
+                    CorrectAnswerProjection::getCorrectOptionId,
+                    (existing, replacement) -> existing
+                ));
+
+        int correctAnswers = 0;
+        int totalQuestions = correctAnswerProjections.size();
+
+        for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
+        {
+            Long correctOptionId = correctAnswerMap.get(submission.getQuestionId());
+            if(correctOptionId != null && correctOptionId.equals(submission.getSelectedOptionId()))
+            {
+                correctAnswers++;
+            }
+        }
+
+        double calculatedScore = totalQuestions == 0 ? 0.0 : (correctAnswers / (double) totalQuestions) * 10.0;
+
+        QuizAttemptEntity quizAttemptEntity = QuizAttemptEntity.builder()
+                .user(userRepository.getReferenceById(userId))
+                .quiz(quizRepository.getReferenceById(quizId))
+                .totalQuestions(totalQuestions)
+                .correctAnswers(correctAnswers)
+                .score(BigDecimal.valueOf(calculatedScore))
+                .build();
+       quizAttemptEntity = quizAttemptRepository.save(quizAttemptEntity);
+
+       List<QuizAttemptAnswerEntity> attemptAnswersToSave = new ArrayList<>();
+
+       for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
+        {
+            var selectedOptionRef = submission.getSelectedOptionId() != null ? 
+                quizOptionRepository.getReferenceById(submission.getSelectedOptionId()) : null;
+
+            attemptAnswersToSave.add(QuizAttemptAnswerEntity.builder()
+                    .attempt(quizAttemptEntity)
+                    .question(quizQuestionRepository.getReferenceById(submission.getQuestionId()))
+                    .selectedOption(selectedOptionRef)
+                    .build());
+        }
+
+        quizAttemptAnswerRepository.saveAll(attemptAnswersToSave);
+    
+        return quizMapper.toQuizSubmitResponse(quizAttemptEntity);
+    }
 
     private Double getScore(QuizAttemptEntity quizAttemptEntity){
+
         Integer totalQuestion = quizAttemptEntity.getTotalQuestions();
         Integer correctAnswers = quizAttemptEntity.getCorrectAnswers();
         if (totalQuestion == null || totalQuestion == 0 || correctAnswers == null) {
             return 0.0;
         }
-        return correctAnswers * 100.0 / totalQuestion;   
+        return correctAnswers * 10.0 / totalQuestion;   
     }
 
 }
