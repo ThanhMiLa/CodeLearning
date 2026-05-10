@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.repository;
 import com.thanhmila.codelearning.entity.course.EnrollmentEntity;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -50,4 +51,12 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
                         )
                         """, nativeQuery = true)
         boolean isUserEnrolledByProblemId(@Param("userId") Long userId, @Param("problemId") Long problemId);
+
+
+
+        @Modifying
+        @Query("UPDATE EnrollmentEntity e SET e.status = :status WHERE e.user.id = :userId AND e.course.id = :courseId")
+        void updateStatusByUserIdAndCourseId( @Param("userId") Long userId, 
+                                              @Param("courseId") Long courseId, 
+                                              @Param("status") EnrollmentStatus status);
 }

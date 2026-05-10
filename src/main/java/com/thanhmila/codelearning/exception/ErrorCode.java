@@ -52,6 +52,7 @@ public enum ErrorCode {
     ALREADY_ENROLLED(4101, "User already enrolled this course", HttpStatus.CONFLICT),
     NOT_ENROLLED(4102, "User is not enrolled in this course", HttpStatus.FORBIDDEN),
     PROGRESS_SUMMARY_NOT_FOUND(4203, "Progress summary not found", HttpStatus.NOT_FOUND),
+    LESSON_ALREADY_COMPLETED(4204, "Lesson already completed", HttpStatus.CONFLICT),
 
     QUIZ_NOT_FOUND(5000, "Quiz not found", HttpStatus.NOT_FOUND),
     QUIZ_ATTEMPT_NOT_FOUND(5100, "Quiz attempt not found", HttpStatus.NOT_FOUND),

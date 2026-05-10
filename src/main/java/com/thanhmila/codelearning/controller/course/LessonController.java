@@ -4,6 +4,7 @@ import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
 import com.thanhmila.codelearning.dto.response.LessonCommentResponse;
+import com.thanhmila.codelearning.dto.response.LessonCompletionResponse;
 import com.thanhmila.codelearning.service.course.LessonCommentService;
 import com.thanhmila.codelearning.service.course.LessonService;
 import com.thanhmila.codelearning.service.course.QuizService;
@@ -21,6 +22,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
@@ -117,5 +119,25 @@ public class LessonController {
 
     }
 
+    @PostMapping("/{lessonId}/complete")
+    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    public ResponseEntity<ApiResponse<LessonCompletionResponse>> completedLesson(
+            @PathVariable("lessonId") Long lessonId,
+            @AuthenticationPrincipal Jwt jwt){
 
+        Long userId = null;
+        if(jwt != null){
+            userId = jwt.getClaim("userId");
+        }
+
+        var result = lessonService.completedLesson(lessonId, userId);
+
+        return ResponseEntity.ok(ApiResponse.<LessonCompletionResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Completed lesson successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
 }
