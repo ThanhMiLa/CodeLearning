@@ -61,7 +61,6 @@ public class LessonController {
                 .build());
     }
 
-
     @GetMapping("/{lessonId}/quiz")
     @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<QuizDetailResponse>> getQuizDetail(

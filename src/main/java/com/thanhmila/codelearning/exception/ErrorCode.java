@@ -16,6 +16,7 @@ public enum ErrorCode {
     RESOURCE_NOT_FOUND(1003, "Resource not found", HttpStatus.NOT_FOUND),
     ACCESS_DENIED(1004, "Access denied", HttpStatus.FORBIDDEN),
     UNAUTHENTICATED(1005, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    INVALID_REQUEST_BODY(1006, "Request body is missing or invalid format", HttpStatus.BAD_REQUEST),
 
     USERNAME_ALREADY_EXISTS(2000, "Username already exists", HttpStatus.CONFLICT),
     EMAIL_ALREADY_EXISTS(2001, "Email already exists", HttpStatus.CONFLICT),

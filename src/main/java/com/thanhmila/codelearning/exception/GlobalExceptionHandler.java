@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.exception;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -55,6 +56,17 @@ public class GlobalExceptionHandler {
                         .result(null)
                         .timestamp(Instant.now().toString())
                         .build());
+    }
+
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiResponse<Object>> handlingHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiResponse.<Object>builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .code(ErrorCode.INVALID_REQUEST_BODY.getCode())
+                .message(ErrorCode.INVALID_REQUEST_BODY.getMessage())
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
     }
 
 }
