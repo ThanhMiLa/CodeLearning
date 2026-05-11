@@ -30,7 +30,7 @@ public class QuizController {
     QuizService quizService;
 
     @PostMapping("/{quizId}/submit")
-    @PreAuthorize("@courseSecurity.canAccessQuiz(#quizId)")
+    @PreAuthorize("hasAuthority('QUIZ_SUBMIT') and @courseSecurity.canAccessQuiz(#quizId)")
     public ResponseEntity<ApiResponse<QuizSubmitResponse>> submitQuiz(
             @AuthenticationPrincipal Jwt jwt,
             @Valid @RequestBody QuizSubmitRequest quizSubmitRequest,
