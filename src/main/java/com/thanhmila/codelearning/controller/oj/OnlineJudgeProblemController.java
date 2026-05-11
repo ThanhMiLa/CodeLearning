@@ -10,11 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
@@ -29,9 +26,10 @@ public class OnlineJudgeProblemController {
     
     OnlineJudgeProblemService onlineJudgeProblemService;
 
-
     @GetMapping("/problems")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    // Lớp 1: Có quyền xem bài tập lập trình không?
+    // Lớp 2: Có quyền truy cập vào bài học chứa bài tập này không?
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<List<OnlineJudgeProblemResponse>>> getOnlineJudgeProblemList(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){
@@ -50,7 +48,9 @@ public class OnlineJudgeProblemController {
     }
 
     @GetMapping("/problems/{problemId}")
-    @PreAuthorize("@courseSecurity.canAccessProblem(#problemId)")
+    // Lớp 1: Có quyền xem bài tập lập trình không?
+    // Lớp 2: Có quyền sở hữu/truy cập bài tập cụ thể này không? (Ví dụ: thông qua bài học đã enroll)
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessProblem(#problemId)")
     public ResponseEntity<ApiResponse<OnlineJudgeProblemDetailResponse>> getOnlineJudgeProblemDetail(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("problemId") Long problemId){
@@ -67,6 +67,4 @@ public class OnlineJudgeProblemController {
                 .timestamp(Instant.now().toString())
                 .build());
     }
-
-    
 }

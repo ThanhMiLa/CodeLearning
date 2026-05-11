@@ -2,7 +2,6 @@ package com.thanhmila.codelearning.service.user;
 
 import com.thanhmila.codelearning.dto.response.CourseProgressResponse;
 import com.thanhmila.codelearning.entity.course.CourseEntity;
-import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.entity.progress.CompletedLessonsCountEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
@@ -11,7 +10,6 @@ import com.thanhmila.codelearning.repository.CompletedLessonCountRepository;
 import com.thanhmila.codelearning.repository.EnrollmentRepository;
 import com.thanhmila.codelearning.repository.UserRepository;
 import com.thanhmila.codelearning.util.ProgressUtils;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
