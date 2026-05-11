@@ -10,6 +10,8 @@ import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.CompletedLessonCountRepository;
 import com.thanhmila.codelearning.repository.EnrollmentRepository;
 import com.thanhmila.codelearning.repository.UserRepository;
+import com.thanhmila.codelearning.util.ProgressUtils;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -36,7 +38,7 @@ public class ProgressService {
     public List<CourseProgressResponse> getCourseProgress(Long userId) {
         UserEntity userEntity = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-        validateUserStatus(userEntity);
+        userEntity.validateStatus();
 
         // Danh sách course mà người dùng đã đăng ký
         Set<CourseEntity> courses = enrollmentRepository.findActiveCoursesByUserId(userId);
@@ -59,7 +61,7 @@ public class ProgressService {
                 .map(course -> {
                     int completedLessons = progressMap.getOrDefault(course.getId(), 0);
                     int totalLessons = course.getTotalLessons();
-                    int progressPercentage = getProgressPercentage(completedLessons, totalLessons);
+                    int progressPercentage = ProgressUtils.calculatePercentage(completedLessons, totalLessons);
 
                     return CourseProgressResponse.builder()
                             .courseId(course.getId())
@@ -72,21 +74,4 @@ public class ProgressService {
                 }).collect(Collectors.toList());
     }
 
-    private void validateUserStatus(UserEntity userEntity) {
-        if (userEntity.getStatus().equals(UserStatus.LOCKED)) {
-            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
-        }
-
-        if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
-            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
-        }
-    }
-
-    private Integer getProgressPercentage(Integer completeLessons, Integer totalLesson) {
-        if (totalLesson == null || totalLesson <= 0)
-            return 0;
-
-        return (int) Math.round((double) completeLessons / totalLesson * 100);
-
-    }
 }

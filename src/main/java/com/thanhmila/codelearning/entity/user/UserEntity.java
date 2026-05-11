@@ -2,6 +2,9 @@ package com.thanhmila.codelearning.entity.user;
 
 import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
+import com.thanhmila.codelearning.exception.AppException;
+import com.thanhmila.codelearning.exception.ErrorCode;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -81,5 +84,15 @@ public class UserEntity {
     @PreUpdate
     void preUpdate() {
         updatedAt = OffsetDateTime.now();
+    }
+
+
+    public void validateStatus() {
+        if (this.status == UserStatus.LOCKED) {
+            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
+        }
+        if (this.status == UserStatus.DISABLED) {
+            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
+        }
     }
 }

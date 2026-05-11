@@ -15,6 +15,8 @@ import com.thanhmila.codelearning.mapper.ChapterMapper;
 import com.thanhmila.codelearning.mapper.CourseMapper;
 import com.thanhmila.codelearning.repository.*;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
+import com.thanhmila.codelearning.util.ProgressUtils;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -93,7 +95,7 @@ public class CourseService {
             if (isEnrolled) {
                 int completeLessons = finalProgressMap.getOrDefault(courseEntity.getId(), 0);
                 int totalLesson = courseEntity.getTotalLessons() != null ? courseEntity.getTotalLessons() : 0;
-                progressPercentage = getProgressPercentage(completeLessons, totalLesson);
+                progressPercentage = ProgressUtils.calculatePercentage(completeLessons, totalLesson);
             }
 
             courseListItemResponse.setProgressPercentage(progressPercentage);
@@ -117,7 +119,7 @@ public class CourseService {
             isEnrolled = isEnrollCourseById(courseId, userId);
             if (isEnrolled == true) {
                 int completedLessons = getCompleteLessons(courseId, userId);
-                progressPercentage = getProgressPercentage(completedLessons, courseDetailResponse.getTotalLessons());
+                progressPercentage = ProgressUtils.calculatePercentage(completedLessons, courseDetailResponse.getTotalLessons());
             }
         }
 
@@ -167,11 +169,5 @@ public class CourseService {
         return completedLessonsCountEntity != null ? completedLessonsCountEntity.getCompletedLessonsCount() : 0;
     }
 
-    private Integer getProgressPercentage(Integer completeLessons, Integer totalLesson) {
-        if (totalLesson == null || totalLesson <= 0) return 0;
-
-        return (int) Math.round((double) completeLessons / totalLesson * 100);
-
-    }
 
 }

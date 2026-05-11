@@ -13,7 +13,7 @@ public interface ChapterRepository extends JpaRepository<ChapterEntity, Long> {
     @Query( "SELECT ch " +
             "FROM ChapterEntity ch " +
             "LEFT JOIN FETCH ch.lessons l " +
-            "WHERE ch.course.id = :courseId " +
+            "WHERE ch.course.id = :courseId AND l.status = 'ACTIVE'" +
             "ORDER BY ch.orderIndex ASC, " +
                       "l.orderIndex ASC")
     List<ChapterEntity> findChaptersWithLessonsByCourseId(@Param("courseId") Long courseId);

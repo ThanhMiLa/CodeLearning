@@ -13,8 +13,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +54,7 @@ public class UserService {
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        validateUserStatus(userEntity);
+        userEntity.validateStatus();
 
         if(!passwordEncoder.matches(changePasswordRequest.getOldPassword(), userEntity.getPasswordHash())){
             throw new AppException(ErrorCode.OLD_PASSWORD_NOT_MATCH);
@@ -76,14 +74,6 @@ public class UserService {
 
     }    
 
-    private void validateUserStatus(UserEntity userEntity) {
-        if (userEntity.getStatus().equals(UserStatus.LOCKED)) {
-            throw new AppException(ErrorCode.ACCOUNT_LOCKED);
-        }
-
-        if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
-            throw new AppException(ErrorCode.ACCOUNT_DISABLED);
-        }
-    }
+    
 
 }
