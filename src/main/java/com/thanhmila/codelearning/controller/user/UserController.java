@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +89,7 @@ public class UserController {
         String refreshTokenPath;
 
         @GetMapping("me")
+        @PreAuthorize("hasAuthority('USER_VIEW')")
         public ResponseEntity<ApiResponse<UserResponse>> getMyInfo(
                         @AuthenticationPrincipal Jwt jwt) {
                 String username = jwt.getSubject();
@@ -102,6 +104,7 @@ public class UserController {
         }
 
         @PatchMapping("/me")
+        @PreAuthorize("hasAuthority('USER_UPDATE')")
         public ResponseEntity<ApiResponse<UserResponse>> updateProfile(
                         @AuthenticationPrincipal Jwt jwt,
                         @RequestBody @Valid UpdateProfileRequest updateProfileRequest) {
@@ -117,6 +120,7 @@ public class UserController {
         }
 
         @PutMapping("/me/password")
+        @PreAuthorize("hasAuthority('USER_UPDATE')")
         public ResponseEntity<ApiResponse<Void>> changePassword(
                         @AuthenticationPrincipal Jwt jwt,
                         @CookieValue(name = "access_token", required = false) String accessToken,
@@ -137,6 +141,7 @@ public class UserController {
         }
 
         @GetMapping("/me/progress/courses")
+        @PreAuthorize("hasAuthority('LEARNING_PROGRESS_VIEW_OWN')")
         public ResponseEntity<ApiResponse<List<CourseProgressResponse>>> getCourseProgress(
                         @AuthenticationPrincipal Jwt jwt) {
                 Long userId = jwt.getClaim("userId");
