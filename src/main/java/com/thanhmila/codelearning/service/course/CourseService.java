@@ -73,7 +73,7 @@ public class CourseService {
             // 5. Nếu user có mua ít nhất 1 khóa, tiến hành lấy tiến độ (QUERY 3)
             if (!enrolledCourseIds.isEmpty()) {
                 List<CompletedLessonsCountEntity> completedLessonsCountEntities =
-                        completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, new ArrayList<>(enrolledCourseIds));
+                        completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, enrolledCourseIds);
 
                 courseProgressMap = getCourseProgressMap(completedLessonsCountEntities);
             }

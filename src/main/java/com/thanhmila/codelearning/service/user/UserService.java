@@ -13,10 +13,11 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
@@ -73,7 +74,7 @@ public class UserService {
         userEntity.setUpdatedAt(OffsetDateTime.now());
         userRepository.save(userEntity);
 
-    }
+    }    
 
     private void validateUserStatus(UserEntity userEntity) {
         if (userEntity.getStatus().equals(UserStatus.LOCKED)) {

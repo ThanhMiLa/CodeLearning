@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
     
 @Repository
 public interface CompletedLessonCountRepository extends JpaRepository<CompletedLessonsCountEntity, Long> {
     Optional<CompletedLessonsCountEntity> getByUserIdAndCourseId(Long userId, Long courseId);
 
-    List<CompletedLessonsCountEntity> findByUserIdAndCourseIdIn(Long userId, List<Long> courseIds);
+    List<CompletedLessonsCountEntity> findByUserIdAndCourseIdIn(Long userId, Set<Long> courseIds);
 
     @Query(value = "UPDATE completed_lessons_count " +
                    "SET completed_lessons_count = completed_lessons_count + 1, updated_at = CURRENT_TIMESTAMP " +
