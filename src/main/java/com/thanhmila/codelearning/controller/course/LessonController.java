@@ -21,12 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.time.Instant;
 
 @Slf4j
@@ -40,6 +36,8 @@ public class LessonController {
     QuizService quizService;
     LessonCommentService lessonCommentService;
 
+    // API này cho phép user chưa đăng nhập xem bài học (nếu là bài học thử), 
+    // nên không gắn @PreAuthorize ở Controller. Logic chặn quyền nằm trong Service.
     @GetMapping("/{lessonId}")
     public ResponseEntity<ApiResponse<LessonDetailResponse>> getLessonDetail(
             @AuthenticationPrincipal Jwt jwt,
@@ -62,7 +60,7 @@ public class LessonController {
     }
 
     @GetMapping("/{lessonId}/quiz")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAuthority('QUIZ_VIEW') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<QuizDetailResponse>> getQuizDetail(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("lessonId") Long lessonId){
@@ -77,11 +75,10 @@ public class LessonController {
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
-
     }
 
     @GetMapping("/{lessonId}/comments")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAuthority('COMMENT_VIEW') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentList(
             @PathVariable("lessonId") Long lessonId,
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable){
@@ -95,11 +92,10 @@ public class LessonController {
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
-
     }
 
     @GetMapping("/{lessonId}/comments/{commentId}/replies")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAuthority('COMMENT_VIEW') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentListWithReply(
             @PathVariable("lessonId") Long lessonId,
             @PathVariable("commentId") Long commentId,
@@ -114,11 +110,10 @@ public class LessonController {
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
-
     }
 
     @PostMapping("/{lessonId}/comments")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAuthority('COMMENT_CREATE') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<LessonCommentResponse>> createComment(
             @PathVariable("lessonId") Long lessonId,
             @AuthenticationPrincipal Jwt jwt,
@@ -135,12 +130,11 @@ public class LessonController {
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
-
     }
 
 
     @PostMapping("/{lessonId}/complete")
-    @PreAuthorize("@courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAuthority('LESSON_COMPLETE') and @courseSecurity.canAccessLesson(#lessonId)")
     public ResponseEntity<ApiResponse<LessonCompletionResponse>> completedLesson(
             @PathVariable("lessonId") Long lessonId,
             @AuthenticationPrincipal Jwt jwt){
