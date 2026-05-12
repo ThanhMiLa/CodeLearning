@@ -116,8 +116,8 @@ public class LessonController {
         }
 
         @PostMapping("/{lessonId}/comments")
-        @PreAuthorize("hasAnyAuthority('COMMENT_CREATE', 'COMMENT_REPLY_ASSIGNED_COURSE') and "
-                        + "(@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
+        @PreAuthorize("(hasAuthority('COMMENT_CREATE') and @courseSecurity.canAccessLesson(#lessonId)) or " + 
+                "(hasAnyAuthority('COMMENT_CREATE', 'COMMENT_REPLY_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId))")
         public ResponseEntity<ApiResponse<LessonCommentResponse>> createComment(
                         @PathVariable("lessonId") Long lessonId,
                         @AuthenticationPrincipal Jwt jwt,
@@ -161,12 +161,29 @@ public class LessonController {
                         @PathVariable Long lessonId,
                         @AuthenticationPrincipal Jwt jwt,
                         @Valid @RequestBody QuizRequest request) {
-                Long userId = jwt.getClaim("userId");
-                quizService.createQuiz(lessonId, userId, request);
+                Long teacherId = jwt.getClaim("userId");
+                quizService.createQuiz(lessonId, teacherId, request);
                 return ResponseEntity.ok(ApiResponse.<Void>builder()
                                 .status(200)
                                 .code(1000)
                                 .message("Create quiz successfully")
+                                .timestamp(Instant.now().toString())
+                                .build());
+        }
+
+        @PutMapping("/{lessonId}/quiz")
+        @PreAuthorize("hasAuthority('QUIZ_UPDATE_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId)")
+        public ResponseEntity<ApiResponse<Void>> updateQuiz(
+                        @PathVariable("lessonId") Long lessonId,
+                        @AuthenticationPrincipal Jwt jwt,
+                        @Valid @RequestBody QuizRequest request) {
+                Long userId = jwt.getClaim("userId");
+                quizService.updateQuiz(lessonId, userId, request);
+
+                return ResponseEntity.ok(ApiResponse.<Void>builder()
+                                .status(200)
+                                .code(1000)
+                                .message("Update quiz successfully")
                                 .timestamp(Instant.now().toString())
                                 .build());
         }

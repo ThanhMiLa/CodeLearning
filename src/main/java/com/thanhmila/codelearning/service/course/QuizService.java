@@ -1,5 +1,7 @@
 package com.thanhmila.codelearning.service.course;
 
+import com.thanhmila.codelearning.dto.request.QuizOptionRequest;
+import com.thanhmila.codelearning.dto.request.QuizQuestionRequest;
 import com.thanhmila.codelearning.dto.request.QuizRequest;
 import com.thanhmila.codelearning.dto.request.QuizSubmitRequest;
 import com.thanhmila.codelearning.dto.request.SubmissionDetail;
@@ -52,7 +54,7 @@ public class QuizService {
     TeacherRepository teacherRepository;
 
     @Transactional(readOnly = true)
-    public QuizDetailResponse getQuizDetail(Long lessonId, Long userId){
+    public QuizDetailResponse getQuizDetail(Long lessonId, Long userId) {
         // 1. Lấy thông tin Quiz và Map ra DTO cơ bản (Kích hoạt sẵn Batch Size)
         QuizEntity quizEntity = quizRepository.findQuizByLessonId(lessonId)
                 .orElseThrow(() -> new AppException(ErrorCode.QUIZ_NOT_FOUND));
@@ -63,61 +65,59 @@ public class QuizService {
                 .orElse(null);
 
         // 3. Xử lý lắp ghép nếu User đã từng làm bài
-        if(quizAttempEntity != null){
+        if (quizAttempEntity != null) {
             // 3.1. Map thông tin tổng quan điểm số
             QuizAttemptResponse quizAttemptResponse = quizMapper.toQuizAttemptResponse(quizAttempEntity);
             quizAttemptResponse.setScore(getScore(quizAttempEntity));
             quizDetailResponse.setPastAttempt(quizAttemptResponse);
 
             // 3.2. Biến danh sách câu trả lời thành Map<QuestionId, OptionId>
-            // Lọc bỏ những câu user để trống (getSelectedOption() == null) để tránh NullPointerException
+            // Lọc bỏ những câu user để trống (getSelectedOption() == null) để tránh
+            // NullPointerException
             if (quizAttempEntity.getAnswers() != null) {
                 Map<Long, Long> userAnswersMap = quizAttempEntity.getAnswers().stream()
                         .filter(answer -> answer.getSelectedOption() != null && answer.getQuestion() != null)
                         .collect(Collectors.toMap(
-                            answer -> answer.getQuestion().getId(),
-                            answer -> answer.getSelectedOption().getId(),
-                            (existing, replacement) -> existing // Xử lý nếu bị trùng lặp QuestionId
+                                answer -> answer.getQuestion().getId(),
+                                answer -> answer.getSelectedOption().getId(),
+                                (existing, replacement) -> existing // Xử lý nếu bị trùng lặp QuestionId
                         ));
 
                 // 3.3. Lặp qua danh sách DTO Questions và "nhét" ID option đã chọn vào
                 if (quizDetailResponse.getQuestions() != null) {
                     quizDetailResponse.getQuestions().forEach(question -> {
                         Long selectedOptionId = userAnswersMap.get(question.getId());
-                        if(selectedOptionId != null){
+                        if (selectedOptionId != null) {
                             question.setUserSelectedOptionId(selectedOptionId);
                         }
-                    });        
+                    });
                 }
             }
         }
-                
+
         return quizDetailResponse;
     }
 
     @Transactional
-    public QuizSubmitResponse submitQuiz(Long quizId, Long userId, QuizSubmitRequest quizSubmitRequest){
-        
+    public QuizSubmitResponse submitQuiz(Long quizId, Long userId, QuizSubmitRequest quizSubmitRequest) {
+
         // 1. Lấy đáp án đúng của từng câu
         List<CorrectAnswerProjection> correctAnswerProjections = quizRepository.findCorrectAnswersByQuizId(quizId);
-        
+
         // 2. Map sang Map<QuestionId, CorrectOptionId>
         Map<Long, Long> correctAnswerMap = correctAnswerProjections.stream()
                 .collect(Collectors.toMap(
-                    CorrectAnswerProjection::getQuestionId, 
-                    CorrectAnswerProjection::getCorrectOptionId,
-                    (existing, replacement) -> existing
-                ));
+                        CorrectAnswerProjection::getQuestionId,
+                        CorrectAnswerProjection::getCorrectOptionId,
+                        (existing, replacement) -> existing));
 
         int correctAnswers = 0;
         int totalQuestions = correctAnswerProjections.size();
 
         // 3. Duyệt qua bài nộp để chấm điểm
-        for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
-        {
+        for (SubmissionDetail submission : quizSubmitRequest.getSubmissions()) {
             Long correctOptionId = correctAnswerMap.get(submission.getQuestionId());
-            if(correctOptionId != null && correctOptionId.equals(submission.getSelectedOptionId()))
-            {
+            if (correctOptionId != null && correctOptionId.equals(submission.getSelectedOptionId())) {
                 correctAnswers++;
             }
         }
@@ -132,15 +132,15 @@ public class QuizService {
                 .correctAnswers(correctAnswers)
                 .score(BigDecimal.valueOf(calculatedScore))
                 .build();
-       quizAttemptEntity = quizAttemptRepository.save(quizAttemptEntity);
+        quizAttemptEntity = quizAttemptRepository.save(quizAttemptEntity);
 
-       // 5. Lưu chi tiết câu trả lời
-       List<QuizAttemptAnswerEntity> attemptAnswersToSave = new ArrayList<>();
+        // 5. Lưu chi tiết câu trả lời
+        List<QuizAttemptAnswerEntity> attemptAnswersToSave = new ArrayList<>();
 
-       for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
-        {
-            var selectedOptionRef = submission.getSelectedOptionId() != null ? 
-                quizOptionRepository.getReferenceById(submission.getSelectedOptionId()) : null;
+        for (SubmissionDetail submission : quizSubmitRequest.getSubmissions()) {
+            var selectedOptionRef = submission.getSelectedOptionId() != null
+                    ? quizOptionRepository.getReferenceById(submission.getSelectedOptionId())
+                    : null;
 
             attemptAnswersToSave.add(QuizAttemptAnswerEntity.builder()
                     .attempt(quizAttemptEntity)
@@ -150,23 +150,22 @@ public class QuizService {
         }
 
         quizAttemptAnswerRepository.saveAll(attemptAnswersToSave);
-    
+
         return quizMapper.toQuizSubmitResponse(quizAttemptEntity);
     }
-
 
     @Transactional
     public void createQuiz(Long lessonId, Long userId, QuizRequest request) {
 
         // Kiểm tra xem bài học đã có quiz chưa
-        if(quizRepository.existsByLessonId(lessonId)){
+        if (quizRepository.existsByLessonId(lessonId)) {
             throw new AppException(ErrorCode.QUIZ_ALREADY_EXISTS);
         }
-        
-        if(request.getQuestions() == null || request.getQuestions().isEmpty()){
+
+        if (request.getQuestions() == null || request.getQuestions().isEmpty()) {
             throw new AppException(ErrorCode.QUIZ_QUESTIONS_EMPTY);
         }
-        
+
         Long teacherId = teacherRepository.findIdByUserId(userId);
         if (teacherId == null) {
             throw new AppException(ErrorCode.ACCESS_DENIED);
@@ -183,33 +182,33 @@ public class QuizService {
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .build();
-        
+
         // Map Questions và Options từ DTO sang Entity
         List<QuizQuestionEntity> questions = request.getQuestions().stream().map(questionRequest -> {
-            
+
             // Validate ít nhất 1 đáp án đúng
-            boolean isCorrectOption = questionRequest.getOptions().stream().
-                anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
-                
-            if(!isCorrectOption){
+            boolean isCorrectOption = questionRequest.getOptions().stream()
+                    .anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
+
+            if (!isCorrectOption) {
                 throw new AppException(ErrorCode.QUIZ_QUESTION_CORRECT_OPTION_INVALID);
             }
 
             // Tạo Question Entity
             QuizQuestionEntity questionEntity = QuizQuestionEntity.builder()
-                .quiz(quizEntity)
-                .questionContent(questionRequest.getQuestionContent())
-                .orderIndex(questionRequest.getOrderIndex())
-                .build();
-            
+                    .quiz(quizEntity)
+                    .questionContent(questionRequest.getQuestionContent())
+                    .orderIndex(questionRequest.getOrderIndex())
+                    .build();
+
             // Map Options sang Entity
             List<QuizOptionEntity> options = questionRequest.getOptions().stream().map(optionRequest -> {
                 return QuizOptionEntity.builder()
-                    .question(questionEntity)
-                    .content(optionRequest.getContent())
-                    .isCorrect(optionRequest.getIsCorrect())
-                    .orderIndex(optionRequest.getOrderIndex())
-                    .build();
+                        .question(questionEntity)
+                        .content(optionRequest.getContent())
+                        .isCorrect(optionRequest.getIsCorrect())
+                        .orderIndex(optionRequest.getOrderIndex())
+                        .build();
             }).collect(Collectors.toList());
 
             questionEntity.setOptions(options);
@@ -221,15 +220,128 @@ public class QuizService {
 
         lessonEntity.setHasQuiz(true);
     }
-    
-    private Double getScore(QuizAttemptEntity quizAttemptEntity){
+
+    @Transactional
+    public void updateQuiz(Long lessonId, Long userId, QuizRequest request) {
+
+        QuizEntity quizEntity = quizRepository.findQuizByLessonId(lessonId)
+                    .orElseThrow(() -> new AppException(ErrorCode.QUIZ_NOT_FOUND));
+        
+        // Set giữ liệu cơ bản của quiz
+        quizEntity.setDescription(request.getDescription());
+        quizEntity.setTitle(request.getTitle());
+
+        // Xử lý logic Sync Questions
+        List<QuizQuestionEntity> existingQuestions = quizEntity.getQuestions();
+        if(existingQuestions == null )
+        {
+            existingQuestions = new ArrayList<>();
+            quizEntity.setQuestions(existingQuestions);
+        }
+
+        // Tạo Map chứa các question đã có để check update/insert
+        Map<Long, QuizQuestionEntity> existingQuestionsMap = existingQuestions.stream()
+                                .collect(Collectors.toMap(
+                                    QuizQuestionEntity::getId, 
+                                    q -> q,
+                                    (existing, replacement) -> existing
+                                ));
+
+        List<QuizQuestionEntity> updateQuestions = new ArrayList<>();
+        
+        for(QuizQuestionRequest questionRequest : request.getQuestions())
+        {
+            // Validate ít nhất 1 đáp án đúng
+            boolean isCorrectOption = questionRequest.getOptions().stream().
+                anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
+            if(!isCorrectOption)
+            {
+                throw new AppException(ErrorCode.QUIZ_QUESTION_CORRECT_OPTION_INVALID);
+            }
+
+            // Khởi tạo hoặc tìm Question Entity
+            QuizQuestionEntity newQuestionEntity;
+
+            // Kiểm tra nếu Question có Id và tồn tại trong danh sách
+            if(questionRequest.getId() != null && existingQuestionsMap.containsKey(questionRequest.getId())){
+                // Update Question hiện có
+                newQuestionEntity = existingQuestionsMap.get(questionRequest.getId());
+                newQuestionEntity.setQuestionContent(questionRequest.getQuestionContent());
+                newQuestionEntity.setOrderIndex(questionRequest.getOrderIndex());
+                syncOptions(newQuestionEntity, questionRequest.getOptions());
+            }else{
+                // Insert Question mới
+                newQuestionEntity = QuizQuestionEntity.builder()
+                    .quiz(quizEntity)
+                    .questionContent(questionRequest.getQuestionContent())
+                    .orderIndex(questionRequest.getOrderIndex())
+                    .build();
+                syncOptions(newQuestionEntity, questionRequest.getOptions());
+            }
+
+            updateQuestions.add(newQuestionEntity);
+        } 
+
+        existingQuestions.clear();
+        existingQuestions.addAll(updateQuestions);
+         
+        quizRepository.save(quizEntity);
+    }
+
+    private void syncOptions(QuizQuestionEntity question, List<QuizOptionRequest> optionRequests)
+    {
+        List<QuizOptionEntity> existingOptions = question.getOptions();
+        if(existingOptions == null )
+        {
+            existingOptions = new ArrayList<>();
+            question.setOptions(existingOptions);
+        }
+
+        Map<Long, QuizOptionEntity> existingOptionsMap = existingOptions.stream()
+                                .collect(Collectors.toMap(
+                                    QuizOptionEntity::getId, 
+                                    q -> q,
+                                    (existing, replacement) -> existing
+                                ));
+
+        List<QuizOptionEntity> updateOptions = new ArrayList<>();
+
+        for(QuizOptionRequest optionRequest : optionRequests)
+        {
+            QuizOptionEntity newOptionEntity;
+
+            if(optionRequest.getId() != null && existingOptionsMap.containsKey(optionRequest.getId()))
+            {
+                // Update Option hiện có
+                newOptionEntity = existingOptionsMap.get(optionRequest.getId());
+                newOptionEntity.setContent(optionRequest.getContent());
+                newOptionEntity.setIsCorrect(optionRequest.getIsCorrect());
+                newOptionEntity.setOrderIndex(optionRequest.getOrderIndex());
+            }else{
+                // Insert Option mới
+                newOptionEntity = QuizOptionEntity.builder()
+                    .question(question)
+                    .content(optionRequest.getContent())
+                    .isCorrect(optionRequest.getIsCorrect())
+                    .orderIndex(optionRequest.getOrderIndex())
+                    .build();
+            }
+
+            updateOptions.add(newOptionEntity);
+        }
+
+        existingOptions.clear();
+        existingOptions.addAll(updateOptions);
+    }
+
+    private Double getScore(QuizAttemptEntity quizAttemptEntity) {
 
         Integer totalQuestion = quizAttemptEntity.getTotalQuestions();
         Integer correctAnswers = quizAttemptEntity.getCorrectAnswers();
         if (totalQuestion == null || totalQuestion == 0 || correctAnswers == null) {
             return 0.0;
         }
-        return correctAnswers * 10.0 / totalQuestion;   
+        return correctAnswers * 10.0 / totalQuestion;
     }
 
 }

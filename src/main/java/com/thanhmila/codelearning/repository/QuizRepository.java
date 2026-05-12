@@ -27,4 +27,5 @@ public interface QuizRepository extends JpaRepository<QuizEntity, Long> {
 
     Boolean existsByLessonId(Long lessonId);
 
+
 }
