@@ -42,6 +42,7 @@ public class QuizEntity {
     ZonedDateTime updatedAt;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("orderIndex ASC")
     List<QuizQuestionEntity> questions;
 
     @PrePersist

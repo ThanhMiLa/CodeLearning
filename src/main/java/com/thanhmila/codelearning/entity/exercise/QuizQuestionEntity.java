@@ -29,5 +29,6 @@ public class QuizQuestionEntity {
     Integer orderIndex;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("orderIndex ASC")
     List<QuizOptionEntity> options;
 }
