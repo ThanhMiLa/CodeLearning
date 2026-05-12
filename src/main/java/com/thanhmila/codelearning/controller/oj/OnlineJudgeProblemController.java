@@ -27,9 +27,7 @@ public class OnlineJudgeProblemController {
     OnlineJudgeProblemService onlineJudgeProblemService;
 
     @GetMapping("/problems")
-    // Lớp 1: Có quyền xem bài tập lập trình không?
-    // Lớp 2: Có quyền truy cập vào bài học chứa bài tập này không?
-    @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessLesson(#lessonId)")
+    @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
     public ResponseEntity<ApiResponse<List<OnlineJudgeProblemResponse>>> getOnlineJudgeProblemList(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){
@@ -48,8 +46,6 @@ public class OnlineJudgeProblemController {
     }
 
     @GetMapping("/problems/{problemId}")
-    // Lớp 1: Có quyền xem bài tập lập trình không?
-    // Lớp 2: Có quyền sở hữu/truy cập bài tập cụ thể này không? (Ví dụ: thông qua bài học đã enroll)
     @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessProblem(#problemId)")
     public ResponseEntity<ApiResponse<OnlineJudgeProblemDetailResponse>> getOnlineJudgeProblemDetail(
             @AuthenticationPrincipal Jwt jwt,
