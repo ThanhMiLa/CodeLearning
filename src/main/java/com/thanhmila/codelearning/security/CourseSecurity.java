@@ -1,6 +1,8 @@
 package com.thanhmila.codelearning.security;
 
 import com.thanhmila.codelearning.repository.EnrollmentRepository;
+import com.thanhmila.codelearning.repository.TeacherCourseAssignmentRepository;
+import com.thanhmila.codelearning.repository.TeacherRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CourseSecurity {
     EnrollmentRepository enrollmentRepository;
+    TeacherRepository teacherRepository;
+    TeacherCourseAssignmentRepository teacherCourseAssignmentRepository;
 
     public boolean canAccessLesson(Long lessonId){
         Long userId = getCurrentUserId();
@@ -52,6 +56,26 @@ public class CourseSecurity {
         log.info("[CourseSecurity] canAccessQuiz - result: {}", result);
         return result;
     }   
+
+    public boolean canManageLesson(Long lessonId){
+        Long userId = getCurrentUserId();
+        log.info("[CourseSecurity] canManageLesson - userId: {}, lessonId: {}", userId, lessonId);
+        if (userId == null || lessonId == null) {
+            log.warn("[CourseSecurity] canManageLesson - userId or lessonId is null!");
+            return false;
+        }
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+
+        if (teacherId == null) {
+            log.warn("[CourseSecurity] canManageLesson - teacherId is null!");
+            return false;
+        }
+
+        boolean result = teacherCourseAssignmentRepository.existsByTeacherIdAndLessonId(teacherId, lessonId);
+        log.info("[CourseSecurity] canManageLesson - result: {}", result);
+        return result;
+    }
 
     private Long getCurrentUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

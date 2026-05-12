@@ -121,6 +121,10 @@ public class CourseEntity {
     @Builder.Default    
     Set<TeacherCourseAssignmentEntity> teacherAssignments = new HashSet<>();
 
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Builder.Default    
+    Set<ChapterEntity> chapters = new HashSet<>();
+
     @PrePersist
     void prePersist() {
         OffsetDateTime now = OffsetDateTime.now();

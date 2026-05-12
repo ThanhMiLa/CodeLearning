@@ -56,7 +56,18 @@ public enum ErrorCode {
     LESSON_ALREADY_COMPLETED(4204, "Lesson already completed", HttpStatus.CONFLICT),
 
     QUIZ_NOT_FOUND(5000, "Quiz not found", HttpStatus.NOT_FOUND),
+    QUIZ_TITLE_INVALID(5001, "Quiz title cannot be blank", HttpStatus.BAD_REQUEST),
+    QUIZ_QUESTIONS_EMPTY(5002, "Quiz must have at least one question", HttpStatus.BAD_REQUEST),
+    QUIZ_ALREADY_EXISTS(5003, "Quiz already exists for this lesson", HttpStatus.CONFLICT),
     QUIZ_ATTEMPT_NOT_FOUND(5100, "Quiz attempt not found", HttpStatus.NOT_FOUND),
+
+    QUESTION_CONTENT_INVALID(5201, "Question content cannot be blank", HttpStatus.BAD_REQUEST),
+    QUESTION_ORDER_INVALID(5202, "Order index cannot be null", HttpStatus.BAD_REQUEST),
+    QUESTION_OPTIONS_EMPTY(5203, "Question must have at least one option", HttpStatus.BAD_REQUEST),
+    QUIZ_QUESTION_CORRECT_OPTION_INVALID(5204, "Each question must have at least one correct option", HttpStatus.BAD_REQUEST),
+
+    OPTION_CONTENT_INVALID(5301, "Option content cannot be blank", HttpStatus.BAD_REQUEST),
+    OPTION_IS_CORRECT_INVALID(5302, "Must specify if this is the correct option", HttpStatus.BAD_REQUEST),
 
     OJ_PROBLEM_NOT_FOUND(6000, "Online judge problem not found", HttpStatus.NOT_FOUND),
     OJ_SUBMISSION_FAILED(6304, "Online judge submission failed", HttpStatus.BAD_GATEWAY),

@@ -26,8 +26,8 @@ spring:
 
 jwt:
   signer-key: ${JWT_SIGNER_KEY}
-  valid-duration: ${JWT_VALID_DURATION:60}
-  refreshable-duration: ${JWT_REFRESHABLE_DURATION:120}
+  valid-duration: ${JWT_VALID_DURATION:180}
+  refreshable-duration: ${JWT_REFRESHABLE_DURATION:360}
 
 auth: 
   cookie:

@@ -1,21 +1,27 @@
 package com.thanhmila.codelearning.service.course;
 
+import com.thanhmila.codelearning.dto.request.QuizRequest;
 import com.thanhmila.codelearning.dto.request.QuizSubmitRequest;
 import com.thanhmila.codelearning.dto.request.SubmissionDetail;
 import com.thanhmila.codelearning.dto.response.QuizAttemptResponse;
 import com.thanhmila.codelearning.dto.response.QuizDetailResponse;
 import com.thanhmila.codelearning.dto.response.QuizSubmitResponse;
+import com.thanhmila.codelearning.entity.course.LessonEntity;
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptAnswerEntity;
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptEntity;
 import com.thanhmila.codelearning.entity.exercise.QuizEntity;
+import com.thanhmila.codelearning.entity.exercise.QuizOptionEntity;
+import com.thanhmila.codelearning.entity.exercise.QuizQuestionEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.QuizMapper;
+import com.thanhmila.codelearning.repository.LessonRepository;
 import com.thanhmila.codelearning.repository.QuizAttemptAnswerRepository;
 import com.thanhmila.codelearning.repository.QuizAttemptRepository;
 import com.thanhmila.codelearning.repository.QuizOptionRepository;
 import com.thanhmila.codelearning.repository.QuizQuestionRepository;
 import com.thanhmila.codelearning.repository.QuizRepository;
+import com.thanhmila.codelearning.repository.TeacherRepository;
 import com.thanhmila.codelearning.repository.UserRepository;
 import com.thanhmila.codelearning.repository.projection.CorrectAnswerProjection;
 import lombok.AccessLevel;
@@ -42,6 +48,8 @@ public class QuizService {
     QuizQuestionRepository quizQuestionRepository;
     QuizOptionRepository quizOptionRepository;
     QuizAttemptAnswerRepository quizAttemptAnswerRepository;
+    LessonRepository lessonRepository;
+    TeacherRepository teacherRepository;
 
     @Transactional(readOnly = true)
     public QuizDetailResponse getQuizDetail(Long lessonId, Long userId){
@@ -89,7 +97,11 @@ public class QuizService {
 
     @Transactional
     public QuizSubmitResponse submitQuiz(Long quizId, Long userId, QuizSubmitRequest quizSubmitRequest){
+        
+        // 1. Lấy đáp án đúng của từng câu
         List<CorrectAnswerProjection> correctAnswerProjections = quizRepository.findCorrectAnswersByQuizId(quizId);
+        
+        // 2. Map sang Map<QuestionId, CorrectOptionId>
         Map<Long, Long> correctAnswerMap = correctAnswerProjections.stream()
                 .collect(Collectors.toMap(
                     CorrectAnswerProjection::getQuestionId, 
@@ -100,6 +112,7 @@ public class QuizService {
         int correctAnswers = 0;
         int totalQuestions = correctAnswerProjections.size();
 
+        // 3. Duyệt qua bài nộp để chấm điểm
         for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
         {
             Long correctOptionId = correctAnswerMap.get(submission.getQuestionId());
@@ -111,6 +124,7 @@ public class QuizService {
 
         double calculatedScore = totalQuestions == 0 ? 0.0 : (correctAnswers / (double) totalQuestions) * 10.0;
 
+        // 4. Lưu lịch sử Attempt (QuizAttemptEntity)
         QuizAttemptEntity quizAttemptEntity = QuizAttemptEntity.builder()
                 .user(userRepository.getReferenceById(userId))
                 .quiz(quizRepository.getReferenceById(quizId))
@@ -120,6 +134,7 @@ public class QuizService {
                 .build();
        quizAttemptEntity = quizAttemptRepository.save(quizAttemptEntity);
 
+       // 5. Lưu chi tiết câu trả lời
        List<QuizAttemptAnswerEntity> attemptAnswersToSave = new ArrayList<>();
 
        for(SubmissionDetail submission : quizSubmitRequest.getSubmissions())
@@ -139,6 +154,74 @@ public class QuizService {
         return quizMapper.toQuizSubmitResponse(quizAttemptEntity);
     }
 
+
+    @Transactional
+    public void createQuiz(Long lessonId, Long userId, QuizRequest request) {
+
+        // Kiểm tra xem bài học đã có quiz chưa
+        if(quizRepository.existsByLessonId(lessonId)){
+            throw new AppException(ErrorCode.QUIZ_ALREADY_EXISTS);
+        }
+        
+        if(request.getQuestions() == null || request.getQuestions().isEmpty()){
+            throw new AppException(ErrorCode.QUIZ_QUESTIONS_EMPTY);
+        }
+        
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        if (teacherId == null) {
+            throw new AppException(ErrorCode.ACCESS_DENIED);
+        }
+
+        // Lấy LessonEntity
+        LessonEntity lessonEntity = lessonRepository.findById(lessonId)
+                .orElseThrow(() -> new AppException(ErrorCode.LESSON_NOT_FOUND));
+
+        // Tạo QuizEntity
+        QuizEntity quizEntity = QuizEntity.builder()
+                .lesson(lessonEntity)
+                .createdByTeacher(teacherRepository.getReferenceById(teacherId))
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .build();
+        
+        // Map Questions và Options từ DTO sang Entity
+        List<QuizQuestionEntity> questions = request.getQuestions().stream().map(questionRequest -> {
+            
+            // Validate ít nhất 1 đáp án đúng
+            boolean isCorrectOption = questionRequest.getOptions().stream().
+                anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
+                
+            if(!isCorrectOption){
+                throw new AppException(ErrorCode.QUIZ_QUESTION_CORRECT_OPTION_INVALID);
+            }
+
+            // Tạo Question Entity
+            QuizQuestionEntity questionEntity = QuizQuestionEntity.builder()
+                .quiz(quizEntity)
+                .questionContent(questionRequest.getQuestionContent())
+                .orderIndex(questionRequest.getOrderIndex())
+                .build();
+            
+            // Map Options sang Entity
+            List<QuizOptionEntity> options = questionRequest.getOptions().stream().map(optionRequest -> {
+                return QuizOptionEntity.builder()
+                    .question(questionEntity)
+                    .content(optionRequest.getContent())
+                    .isCorrect(optionRequest.getIsCorrect())
+                    .orderIndex(optionRequest.getOrderIndex())
+                    .build();
+            }).collect(Collectors.toList());
+
+            questionEntity.setOptions(options);
+            return questionEntity;
+        }).collect(Collectors.toList());
+
+        quizEntity.setQuestions(questions);
+        quizRepository.save(quizEntity);
+
+        lessonEntity.setHasQuiz(true);
+    }
+    
     private Double getScore(QuizAttemptEntity quizAttemptEntity){
 
         Integer totalQuestion = quizAttemptEntity.getTotalQuestions();
