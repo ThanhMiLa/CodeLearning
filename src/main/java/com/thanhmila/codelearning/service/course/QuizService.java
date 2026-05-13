@@ -225,37 +225,33 @@ public class QuizService {
     public void updateQuiz(Long lessonId, Long userId, QuizRequest request) {
 
         QuizEntity quizEntity = quizRepository.findQuizByLessonId(lessonId)
-                    .orElseThrow(() -> new AppException(ErrorCode.QUIZ_NOT_FOUND));
-        
+                .orElseThrow(() -> new AppException(ErrorCode.QUIZ_NOT_FOUND));
+
         // Set giữ liệu cơ bản của quiz
         quizEntity.setDescription(request.getDescription());
         quizEntity.setTitle(request.getTitle());
 
         // Xử lý logic Sync Questions
         List<QuizQuestionEntity> existingQuestions = quizEntity.getQuestions();
-        if(existingQuestions == null )
-        {
+        if (existingQuestions == null) {
             existingQuestions = new ArrayList<>();
             quizEntity.setQuestions(existingQuestions);
         }
 
         // Tạo Map chứa các question đã có để check update/insert
         Map<Long, QuizQuestionEntity> existingQuestionsMap = existingQuestions.stream()
-                                .collect(Collectors.toMap(
-                                    QuizQuestionEntity::getId, 
-                                    q -> q,
-                                    (existing, replacement) -> existing
-                                ));
+                .collect(Collectors.toMap(
+                        QuizQuestionEntity::getId,
+                        q -> q,
+                        (existing, replacement) -> existing));
 
         List<QuizQuestionEntity> updateQuestions = new ArrayList<>();
-        
-        for(QuizQuestionRequest questionRequest : request.getQuestions())
-        {
+
+        for (QuizQuestionRequest questionRequest : request.getQuestions()) {
             // Validate ít nhất 1 đáp án đúng
-            boolean isCorrectOption = questionRequest.getOptions().stream().
-                anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
-            if(!isCorrectOption)
-            {
+            boolean isCorrectOption = questionRequest.getOptions().stream()
+                    .anyMatch(optionRequest -> Boolean.TRUE.equals(optionRequest.getIsCorrect()));
+            if (!isCorrectOption) {
                 throw new AppException(ErrorCode.QUIZ_QUESTION_CORRECT_OPTION_INVALID);
             }
 
@@ -263,68 +259,83 @@ public class QuizService {
             QuizQuestionEntity newQuestionEntity;
 
             // Kiểm tra nếu Question có Id và tồn tại trong danh sách
-            if(questionRequest.getId() != null && existingQuestionsMap.containsKey(questionRequest.getId())){
+            if (questionRequest.getId() != null && existingQuestionsMap.containsKey(questionRequest.getId())) {
                 // Update Question hiện có
                 newQuestionEntity = existingQuestionsMap.get(questionRequest.getId());
                 newQuestionEntity.setQuestionContent(questionRequest.getQuestionContent());
                 newQuestionEntity.setOrderIndex(questionRequest.getOrderIndex());
                 syncOptions(newQuestionEntity, questionRequest.getOptions());
-            }else{
+            } else {
                 // Insert Question mới
                 newQuestionEntity = QuizQuestionEntity.builder()
-                    .quiz(quizEntity)
-                    .questionContent(questionRequest.getQuestionContent())
-                    .orderIndex(questionRequest.getOrderIndex())
-                    .build();
+                        .quiz(quizEntity)
+                        .questionContent(questionRequest.getQuestionContent())
+                        .orderIndex(questionRequest.getOrderIndex())
+                        .build();
                 syncOptions(newQuestionEntity, questionRequest.getOptions());
             }
 
             updateQuestions.add(newQuestionEntity);
-        } 
+        }
 
         existingQuestions.clear();
         existingQuestions.addAll(updateQuestions);
-         
+
         quizRepository.save(quizEntity);
     }
 
-    private void syncOptions(QuizQuestionEntity question, List<QuizOptionRequest> optionRequests)
-    {
+    @Transactional
+    public void deleteQuiz(Long lessonId, Long userId) {
+        // 1. Tìm Quiz đang hoạt động của Lesson
+        // (Nhờ @SQLRestriction, hàm này sẽ tự động ngầm định thêm "AND is_deleted =
+        // false", không sợ lấy nhầm quiz cũ)
+        QuizEntity quizEntity = quizRepository.findQuizByLessonId(lessonId)
+                .orElseThrow(() -> new AppException(ErrorCode.QUIZ_NOT_FOUND));
+
+        // Lấy Lesson ra trước khi xóa
+        LessonEntity lessonEntity = quizEntity.getLesson();
+
+        // 2. Thực hiện xóa
+        // (Nhờ @SQLDelete, Hibernate sẽ tự sinh lệnh: UPDATE quizzes SET is_deleted =
+        // true WHERE id = ?)
+        quizRepository.delete(quizEntity);
+
+        // 3. Cập nhật lại cờ hasQuiz cho Lesson
+        lessonEntity.setHasQuiz(false);
+    }
+
+    private void syncOptions(QuizQuestionEntity question, List<QuizOptionRequest> optionRequests) {
         List<QuizOptionEntity> existingOptions = question.getOptions();
-        if(existingOptions == null )
-        {
+        if (existingOptions == null) {
             existingOptions = new ArrayList<>();
             question.setOptions(existingOptions);
         }
 
         Map<Long, QuizOptionEntity> existingOptionsMap = existingOptions.stream()
-                                .collect(Collectors.toMap(
-                                    QuizOptionEntity::getId, 
-                                    q -> q,
-                                    (existing, replacement) -> existing
-                                ));
+                .collect(Collectors.toMap(
+                        QuizOptionEntity::getId,
+                        q -> q,
+                        (existing, replacement) -> existing));
 
         List<QuizOptionEntity> updateOptions = new ArrayList<>();
 
-        for(QuizOptionRequest optionRequest : optionRequests)
-        {
+        for (QuizOptionRequest optionRequest : optionRequests) {
             QuizOptionEntity newOptionEntity;
 
-            if(optionRequest.getId() != null && existingOptionsMap.containsKey(optionRequest.getId()))
-            {
+            if (optionRequest.getId() != null && existingOptionsMap.containsKey(optionRequest.getId())) {
                 // Update Option hiện có
                 newOptionEntity = existingOptionsMap.get(optionRequest.getId());
                 newOptionEntity.setContent(optionRequest.getContent());
                 newOptionEntity.setIsCorrect(optionRequest.getIsCorrect());
                 newOptionEntity.setOrderIndex(optionRequest.getOrderIndex());
-            }else{
+            } else {
                 // Insert Option mới
                 newOptionEntity = QuizOptionEntity.builder()
-                    .question(question)
-                    .content(optionRequest.getContent())
-                    .isCorrect(optionRequest.getIsCorrect())
-                    .orderIndex(optionRequest.getOrderIndex())
-                    .build();
+                        .question(question)
+                        .content(optionRequest.getContent())
+                        .isCorrect(optionRequest.getIsCorrect())
+                        .orderIndex(optionRequest.getOrderIndex())
+                        .build();
             }
 
             updateOptions.add(newOptionEntity);

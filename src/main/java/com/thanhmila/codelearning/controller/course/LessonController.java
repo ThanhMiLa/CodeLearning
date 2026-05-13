@@ -187,4 +187,22 @@ public class LessonController {
                                 .timestamp(Instant.now().toString())
                                 .build());
         }
+
+        @DeleteMapping("/{lessonId}/quiz")
+        @PreAuthorize("hasAuthority('QUIZ_DELETE_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId)")
+        public ResponseEntity<ApiResponse<Void>> deleteQuiz(
+                        @PathVariable("lessonId") Long lessonId,
+                        @AuthenticationPrincipal Jwt jwt) {
+                Long userId = jwt.getClaim("userId");
+                quizService.deleteQuiz(lessonId, userId);
+
+                return ResponseEntity.ok(ApiResponse.<Void>builder()
+                                .status(200)
+                                .code(1000)
+                                .message("Delete quiz successfully")
+                                .timestamp(Instant.now().toString())
+                                .build());
+        }
+
+
 }
