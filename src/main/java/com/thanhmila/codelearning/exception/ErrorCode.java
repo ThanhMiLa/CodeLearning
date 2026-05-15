@@ -71,6 +71,9 @@ public enum ErrorCode {
 
     OJ_PROBLEM_NOT_FOUND(6000, "Online judge problem not found", HttpStatus.NOT_FOUND),
     OJ_SUBMISSION_FAILED(6304, "Online judge submission failed", HttpStatus.BAD_GATEWAY),
+    OJ_PROBLEM_ID_REQUIRED(6305, "Problem ID is required", HttpStatus.BAD_REQUEST),
+    OJ_LANGUAGE_ID_REQUIRED(6306, "Language ID is required", HttpStatus.BAD_REQUEST),
+    OJ_SOURCE_CODE_EMPTY(6307, "Source code cannot be empty", HttpStatus.BAD_REQUEST),
 
     FILE_ASSIGNMENT_NOT_FOUND(7000, "File assignment not found", HttpStatus.NOT_FOUND),
     FILE_SUBMISSION_NOT_FOUND(7100, "File submission not found", HttpStatus.NOT_FOUND),

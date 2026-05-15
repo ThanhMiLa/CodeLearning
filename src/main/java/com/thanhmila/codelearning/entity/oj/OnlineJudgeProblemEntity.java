@@ -1,6 +1,7 @@
 package com.thanhmila.codelearning.entity.oj;
 
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
+import com.thanhmila.codelearning.entity.contest.ContestEntity;
 import com.thanhmila.codelearning.entity.course.LessonEntity;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.entity.enums.ProblemScope;
@@ -28,6 +29,10 @@ public class OnlineJudgeProblemEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     LessonEntity lesson;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contest_id")
+    ContestEntity contest;
 
     @Column(nullable = false)
     String title;

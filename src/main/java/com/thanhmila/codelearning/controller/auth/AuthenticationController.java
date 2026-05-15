@@ -28,7 +28,6 @@ import java.time.Instant;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@SuppressWarnings("null")
 public class AuthenticationController {
 
     AuthenticationService authenticationService;

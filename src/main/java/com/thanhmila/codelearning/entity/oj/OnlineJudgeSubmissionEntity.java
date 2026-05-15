@@ -46,7 +46,7 @@ public class OnlineJudgeSubmissionEntity {
     String sourceCode;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "verdict", nullable = false)
     OjVerdict verdict;
 
     @Column(name = "execution_time_ms")

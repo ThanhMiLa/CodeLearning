@@ -44,8 +44,6 @@ public class OnlineJudgeProblemService {
         return mapToOnlineJudgeProblemDetailResponse(ojProblemDetail);       
     }
 
-
-
     private OnlineJudgeProblemDetailResponse mapToOnlineJudgeProblemDetailResponse(OjProblemDetailProjection ojProblem) {
         List<String> tags = ojProblem.getTagsRaw() != null
                 ? Arrays.stream(ojProblem.getTagsRaw().split(",")).collect(Collectors.toList())
