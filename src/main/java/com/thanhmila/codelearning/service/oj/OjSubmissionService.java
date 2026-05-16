@@ -182,8 +182,7 @@ public class OjSubmissionService {
 
         // RẼ NHÁNH GỬI WEBSOCKET
         if (!isContestMode) {
-            // CHẾ ĐỘ LUYỆN TẬP (PRACTICE): Chấm xong testcase nào, bắn ngay testcase đó để
-            // chạy Progress Bar
+            // CHẾ ĐỘ LUYỆN TẬP (PRACTICE): Chấm xong testcase nào, bắn ngay testcase đó để chạy Progress Bar
             simpMessagingTemplate.convertAndSend("/topic/submissions/" + submissionEntity.getUser().getId(), wsMessage);
             log.info("PRACTICE MODE: Bắn WebSocket tiến trình {}/{} cho Submission {}",
                     wsMessage.getProcessedTestcases(), wsMessage.getTotalTestcases(), submissionId);
