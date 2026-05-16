@@ -1,7 +1,7 @@
 package com.thanhmila.codelearning.mapper;
 
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -3,23 +3,19 @@ package com.thanhmila.codelearning.service.oj;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
+import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
-
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
-import com.thanhmila.codelearning.repository.OnlineJudgeProblemRepository;
 import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjection;
 import com.thanhmila.codelearning.repository.projection.OjProblemListProjection;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-
 
 @Slf4j
 @Service

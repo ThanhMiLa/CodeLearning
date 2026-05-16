@@ -6,6 +6,8 @@ import com.thanhmila.codelearning.entity.enums.ContestStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class ContestEntity {
     ZonedDateTime endTime;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(nullable = false)
     @Builder.Default
     ContestStatus status = ContestStatus.UPCOMING;

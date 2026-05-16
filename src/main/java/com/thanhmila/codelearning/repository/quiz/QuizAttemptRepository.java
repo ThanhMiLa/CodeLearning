@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.quiz;
 
 import com.thanhmila.codelearning.entity.exercise.QuizAttemptEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

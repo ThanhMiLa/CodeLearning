@@ -2,12 +2,14 @@ package com.thanhmila.codelearning.entity.oj;
 
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.entity.enums.ProblemScope;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -59,10 +61,12 @@ public class OnlineJudgeProblemEntity {
     String hint;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "problem_scope", nullable = false)
     ProblemScope problemScope;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(nullable = false)
     ProblemDifficulty difficulty;
 

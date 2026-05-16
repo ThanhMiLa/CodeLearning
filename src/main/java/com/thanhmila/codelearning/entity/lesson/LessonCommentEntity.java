@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.entity.course;
+package com.thanhmila.codelearning.entity.lesson;
 
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import jakarta.persistence.*;

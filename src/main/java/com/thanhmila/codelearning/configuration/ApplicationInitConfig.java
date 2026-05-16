@@ -2,8 +2,8 @@ package com.thanhmila.codelearning.configuration;
 
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
-import com.thanhmila.codelearning.repository.RoleRepository;
-import com.thanhmila.codelearning.repository.UserRepository;
+import com.thanhmila.codelearning.repository.auth.RoleRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

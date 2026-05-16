@@ -7,7 +7,7 @@ import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
-import com.thanhmila.codelearning.repository.UserRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

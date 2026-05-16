@@ -6,6 +6,8 @@ import com.thanhmila.codelearning.entity.enums.FileSubmissionStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -52,6 +54,7 @@ public class FileSubmissionEntity {
     TeacherEntity gradedByTeacher;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(nullable = false)
     @Builder.Default
     FileSubmissionStatus status = FileSubmissionStatus.SUBMITTED;

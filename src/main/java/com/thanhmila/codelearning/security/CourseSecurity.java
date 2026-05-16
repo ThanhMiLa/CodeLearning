@@ -1,8 +1,10 @@
 package com.thanhmila.codelearning.security;
 
-import com.thanhmila.codelearning.repository.EnrollmentRepository;
-import com.thanhmila.codelearning.repository.TeacherCourseAssignmentRepository;
-import com.thanhmila.codelearning.repository.TeacherRepository;
+import com.thanhmila.codelearning.repository.course.EnrollmentRepository;
+import com.thanhmila.codelearning.repository.course.TeacherCourseAssignmentRepository;
+import com.thanhmila.codelearning.repository.user.TeacherRepository;
+import com.thanhmila.codelearning.repository.contest.ContestParticipantRepository;
+import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,6 +22,28 @@ public class CourseSecurity {
     EnrollmentRepository enrollmentRepository;
     TeacherRepository teacherRepository;
     TeacherCourseAssignmentRepository teacherCourseAssignmentRepository;
+    ContestParticipantRepository contestParticipantRepository;
+    OnlineJudgeProblemRepository onlineJudgeProblemRepository;
+
+    public boolean canAccessContest(Long problemId){
+        Long userId = getCurrentUserId();
+        log.info("[CourseSecurity] canAccessContest - userId: {}, problemId: {}", userId, problemId);
+        if (userId == null || problemId == null) {
+            log.warn("[CourseSecurity] canAccessContest - userId or problemId is null!");
+            return false;
+        }
+
+        Long contestId = onlineJudgeProblemRepository.findContestIdByProblemId(problemId);
+        if (contestId == null) {
+             log.warn("[CourseSecurity] canAccessContest - problem is not part of a contest!");
+             return false;
+        }
+
+        boolean result = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        log.info("[CourseSecurity] canAccessContest - result: {}", result);
+        return result;
+    }
+
 
     public boolean canAccessLesson(Long lessonId){
         Long userId = getCurrentUserId();

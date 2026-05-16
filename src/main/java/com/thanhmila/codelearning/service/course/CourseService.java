@@ -13,7 +13,11 @@ import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.ChapterMapper;
 import com.thanhmila.codelearning.mapper.CourseMapper;
-import com.thanhmila.codelearning.repository.*;
+import com.thanhmila.codelearning.repository.course.ChapterRepository;
+import com.thanhmila.codelearning.repository.course.CourseRepository;
+import com.thanhmila.codelearning.repository.course.EnrollmentRepository;
+import com.thanhmila.codelearning.repository.progress.CompletedLessonCountRepository;
+import com.thanhmila.codelearning.repository.progress.LessonProgressRepository;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
 import com.thanhmila.codelearning.util.ProgressUtils;
 

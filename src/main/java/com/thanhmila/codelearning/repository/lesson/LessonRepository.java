@@ -1,7 +1,7 @@
 package com.thanhmila.codelearning.repository.lesson;
 
 import com.thanhmila.codelearning.entity.course.CourseEntity;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

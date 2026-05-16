@@ -1,5 +1,7 @@
 package com.thanhmila.codelearning.service.course;
 
+import com.thanhmila.codelearning.repository.lesson.LessonCommentRepository;
+import com.thanhmila.codelearning.repository.lesson.LessonRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -7,14 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.thanhmila.codelearning.dto.request.LessonCommentRequest;
 import com.thanhmila.codelearning.dto.response.LessonCommentResponse;
-import com.thanhmila.codelearning.entity.course.LessonCommentEntity;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonCommentEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
-import com.thanhmila.codelearning.repository.LessonCommentRepository;
-import com.thanhmila.codelearning.repository.LessonRepository;
-import com.thanhmila.codelearning.repository.UserRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
 import com.thanhmila.codelearning.repository.projection.RootLessonCommentProjection;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

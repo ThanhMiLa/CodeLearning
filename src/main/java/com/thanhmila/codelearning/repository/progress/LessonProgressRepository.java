@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository.lesson;
+package com.thanhmila.codelearning.repository.progress;
 
 import com.thanhmila.codelearning.entity.progress.LessonProgressEntity;
 import org.springframework.data.repository.query.Param;

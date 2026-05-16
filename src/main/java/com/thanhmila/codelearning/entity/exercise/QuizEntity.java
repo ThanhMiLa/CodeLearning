@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.entity.exercise;
 
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import jakarta.persistence.*;
 import lombok.*;

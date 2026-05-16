@@ -2,7 +2,7 @@ package com.thanhmila.codelearning.entity.progress;
 
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.course.CourseEntity;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

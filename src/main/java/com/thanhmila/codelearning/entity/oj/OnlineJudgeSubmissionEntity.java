@@ -1,11 +1,13 @@
 package com.thanhmila.codelearning.entity.oj;
 
-import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
-import com.thanhmila.codelearning.entity.course.LessonEntity;
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import lombok.experimental.FieldDefaults;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -46,6 +48,7 @@ public class OnlineJudgeSubmissionEntity {
     String sourceCode;
 
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "verdict", nullable = false)
     OjVerdict verdict;
 

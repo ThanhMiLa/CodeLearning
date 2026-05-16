@@ -77,5 +77,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     @Query("SELECT p.lesson.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
     Long findLessonIdByProblemId(@Param("problemId") Long problemId);
 
+    @Query("SELECT p.contest.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
+    Long findContestIdByProblemId(@Param("problemId") Long problemId);
 }
 

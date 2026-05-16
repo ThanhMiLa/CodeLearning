@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.user;
 
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

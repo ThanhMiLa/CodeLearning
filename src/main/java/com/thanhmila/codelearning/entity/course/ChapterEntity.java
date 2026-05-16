@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.entity.course;
 
+import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
