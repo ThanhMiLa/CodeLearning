@@ -1,10 +1,10 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.course;
 
 import com.thanhmila.codelearning.entity.course.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 }
+

@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.oj;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,7 +70,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
         WHERE olp.id = :problemId
         """, nativeQuery = true)
     Optional<OjProblemDetailProjection> findProblemDetailWithStatus(
-            @Param("problemId") Long problemId, 
+            @Param("problemId") Long problemId,
             @Param("userId") Long userId
     );
 
@@ -78,3 +78,4 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     Long findLessonIdByProblemId(@Param("problemId") Long problemId);
 
 }
+

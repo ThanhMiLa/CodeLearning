@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.course;
 
 import com.thanhmila.codelearning.entity.course.CourseEntity;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -19,3 +19,4 @@ public interface CourseRepository extends JpaRepository<CourseEntity, Long>, Jpa
                    "AND c.status = 'ACTIVE'")
     Optional<CourseEntity> findCourseDetailById(@Param("courseId") Long courseId);
 }
+

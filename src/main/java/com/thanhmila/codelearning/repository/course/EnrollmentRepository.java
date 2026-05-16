@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.course;
 
 import com.thanhmila.codelearning.entity.course.CourseEntity;
 import com.thanhmila.codelearning.entity.course.EnrollmentEntity;
@@ -74,5 +74,6 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
   boolean isUserEnrolledInQuiz(@Param("userId") Long userId, @Param("quizId") Long quizId);
 
   @Query("SELECT c FROM EnrollmentEntity e JOIN e.course c WHERE e.user.id = :userId AND e.status IN ('ACTIVE', 'COMPLETED')")
-Set<CourseEntity> findActiveCoursesByUserId(@Param("userId") Long userId);
+ Set<CourseEntity> findActiveCoursesByUserId(@Param("userId") Long userId);
 }
+

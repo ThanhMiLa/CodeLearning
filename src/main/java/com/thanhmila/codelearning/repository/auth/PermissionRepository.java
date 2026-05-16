@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.auth;
 
 import com.thanhmila.codelearning.entity.auth.PermissionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,3 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
 }
+

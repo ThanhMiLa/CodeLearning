@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.lesson;
 
 import com.thanhmila.codelearning.entity.progress.LessonProgressEntity;
 import org.springframework.data.repository.query.Param;
@@ -21,3 +21,4 @@ public interface LessonProgressRepository extends JpaRepository<LessonProgressEn
       Boolean existsByLessonIdAndUserId(Long lessonId, Long userId);
 
 }
+

@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.lesson;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +31,7 @@ public interface LessonCommentRepository extends JpaRepository<LessonCommentEnti
             JOIN users u ON lm.user_id = u.id
             LEFT JOIN ReplyCounts rc ON lm.id = rc.parent_comment_id
             WHERE lm.lesson_id = :lessonId AND lm.parent_comment_id IS NULL
-            """, 
+            """,
             countQuery = "SELECT COUNT(id) FROM lesson_comments WHERE lesson_id = :lessonId AND parent_comment_id IS NULL",
             nativeQuery = true)
     Page<RootLessonCommentProjection> findRootCommentsWithReplyCount(@Param("lessonId") Long lessonId, Pageable pageable);
@@ -39,3 +39,4 @@ public interface LessonCommentRepository extends JpaRepository<LessonCommentEnti
 
     Page<LessonCommentEntity> findByParentCommentId(Long parentCommentId, Pageable pageable);
 }
+

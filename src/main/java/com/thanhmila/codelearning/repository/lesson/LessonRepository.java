@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.repository;
+package com.thanhmila.codelearning.repository.lesson;
 
 import com.thanhmila.codelearning.entity.course.CourseEntity;
 import com.thanhmila.codelearning.entity.course.LessonEntity;
@@ -35,3 +35,4 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
   Optional<CourseEntity> findCourseByLessonId(Long lessonId);
 
 }
+
