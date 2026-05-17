@@ -21,9 +21,17 @@ Courses/Lessons (Frontend learning content)
 └── Progress Tracking (user completion, counts cached)
 
 Online Judge (OJ) Problems (Coding exercises)
-├── Integration with Judge0 (async webhook-based)
+├── Lesson-bound problems (practice mode)
+├── Contest-bound problems (competition mode - suppressed feedback)
+├── Judge0 integration (async webhook-based)
 ├── Asynchronous submission workflow
-└── WebSocket real-time result delivery
+└── WebSocket real-time result delivery (lesson mode only)
+
+Contests (Timed competitions)
+├── ContestEntity (start_time, end_time, status: UPCOMING/RUNNING/ENDED)
+├── ContestParticipant (registration + ranking)
+├── ContestProblems (linked via OnlineJudgeProblemEntity.contest)
+└── Verdict suppression during contest (no real-time feedback)
 
 User/Auth System
 ├── OAuth2 Resource Server (JWT in cookies/Bearer tokens)
@@ -39,7 +47,9 @@ Payment/Enrollment (Course access management)
 - **LessonService**: Lesson detail, completion tracking, progress updates
 - **QuizService**: Quiz attempts, answer evaluation, scoring logic
 - **ProgressService**: User progress calculation across courses/lessons
-- **OnlineJudgeProblemService**: Problem listing, Judge0 webhook integration
+- **OnlineJudgeProblemService**: Problem listing, Judge0 webhook integration (lessons & contests)
+- **OjSubmissionService**: Async Judge0 submission lifecycle, webhook callback processing, real-time WebSocket push
+- **Judge0ClientService**: WebClient wrapper for Judge0 batch submission API
 - **AuthenticationService**: JWT token generation, login/refresh flows
 - **LessonCommentService**: Nested comment threads with reply counts (PostgreSQL CTEs)
 
@@ -54,11 +64,14 @@ Payment/Enrollment (Course access management)
 ```java
 // In controller:
 @PreAuthorize("hasAuthority('LESSON_COMPLETE') and @courseSecurity.canAccessLesson(#lessonId)")
+@PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
 
 // CourseSecurity methods check:
-// - canAccessLesson(lessonId) → enrolled in course
-// - canManageLesson(lessonId) → teacher assigned to course
+// - canAccessLesson(lessonId) → enrolled in course + lesson accessible
+// - canAccessProblem(problemId) → enrolled in lesson OR contest
+// - canAccessContest(problemId) → registered as contest participant
 // - canAccessQuiz(quizId) → enrolled in quiz's lesson
+// - canManageLesson(lessonId) → teacher assigned to course
 ```
 
 **JWT Claims**: `userId` extracted from JWT claim (not Spring authorities) for all service operations.
@@ -160,27 +173,36 @@ public interface CourseMapper {
 
 ### 6. Asynchronous Judge0 Integration (Key Workflow)
 
-**3-Phase Workflow** (documented in `workflow_judge0.md`):
+**4-Phase Workflow** (full details in `workflow_judge0.md`):
 
-**Phase 1: Fast Submission**
-- Frontend → POST `/online-judge/submissions` with code
-- Backend: Package Testcases + set `callback_url` → POST Judge0 API → Get token
-- Store submission with status=PENDING
-- Return immediately (thread freed)
+**Phase 1: Fast Submission (Initiation)**
+- Frontend → POST `/online-judge/submissions` with code, problemId, lessonId/contestId
+- Backend packages testcases + sets `callback_url` → POST Judge0 API `/submissions/batch`
+- Store submission with status=PENDING + save each testcase token with status=PENDING
+- Return immediately with `submissionId` (thread freed)
 
-**Phase 2: Judge0 Processing** (Independent, no polling)
-- Judge0 workers process in sandbox
+**Phase 2: Judge0 Processing** (Independent, no backend polling)
+- Judge0 workers process each submission in sandbox (compile, run, compare output)
 - No backend involvement
 
-**Phase 3: Webhook Callback**
-- Judge0 → PUT `/judge0/callback` with verdict + token
-- Backend: Find submission by token → Update status (ACCEPTED/WRONG_ANSWER)
-- **CRITICAL**: Push result via SimpMessagingTemplate WebSocket to `/topic/submissions/{userId}`
+**Phase 3: Webhook Callback (Real-time Updates)**
+- Judge0 → PUT `/judge0/callback` with verdict + token (after each testcase completes)
+- Backend finds submission detail by token → Update status (ACCEPTED/WRONG_ANSWER/TLE/etc.)
+- **Context-aware logic**:
+  - **Lesson context**: Push intermediate result via SimpMessagingTemplate WebSocket to `/topic/submissions/{userId}` (for progress bar)
+  - **Contest context**: Suppress per-testcase WebSocket (only final verdict visible)
 
-**Files**:
-- `controller/oj/OnlineJudgeSubmissionController.java`
-- `service/oj/OnlineJudgeSubmissionService.java`
-- WebSocket config in `configuration/`
+**Phase 4: Aggregation & Final Verdict**
+- After testcase update: Count processed vs total testcases
+- If all processed → Find first error testcase (by order_index), determine final verdict
+- Update parent submission with final status + score
+- Push final WebSocket message with overall verdict
+
+**Key Files**:
+- `service/oj/OjSubmissionService.java` - Initiation, callback handler, aggregation logic
+- `service/oj/Judge0ClientService.java` - WebClient wrapper for Judge0 API
+- `controller/oj/OnlineJudgeProblemController.java` - Submission endpoint + webhook receiver
+- `configuration/WebSocketConfig.java` - STOMP broker config (`/topic/submissions/{userId}`)
 
 ### 7. Error Handling Convention
 **All errors** must use `ErrorCode` enum:
@@ -206,7 +228,17 @@ DB_USERNAME=postgres
 DB_PASSWORD=...
 JWT_SIGNER_KEY=... (base64-encoded key for signing)
 REDIS_HOST=localhost (default: localhost:6379)
+JUDGE0_BASE_URL=http://localhost:2358
+JUDGE0_TIMEOUT=20s
+WEBSOCKET_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173
+APP_WEBHOOK_BASE_URL=http://192.168.1.90:8080/codelearning (for Judge0 callbacks)
 ```
+
+**Judge0 Integration Config** (ProjectProperties.java):
+- `judge0.base-url`: Judge0 API endpoint (default: `http://localhost:2358`)
+- `judge0.timeout`: WebClient request timeout for batch submission (default: 20s)
+- `app.webhook-base-url`: Backend URL that Judge0 calls on webhook (must be externally accessible)
+- `websocket.allowed-origins`: CORS-allowed domains for WebSocket connections
 
 **Build & Run**:
 ```bash
@@ -225,23 +257,30 @@ mvnw.cmd spring-boot:run        # Dev server on http://localhost:8080/codelearni
 
 | File | Purpose |
 |------|---------|
-| `security/SecurityConfig.java` | OAuth2 chain config, bearer token resolution |
-| `security/CourseSecurity.java` | Custom @{bean} for @PreAuthorize (canAccessLesson, etc.) |
-| `repository/specification/CourseSpecification.java` | Dynamic filter builder template |
-| `mapper/*.java` | Entity ↔ DTO conversion (impl auto-generated) |
-| `service/course/CourseService.java` | Specification chaining example |
-| `exception/ErrorCode.java` | Centralized error definitions |
-| `dto/response/ApiResponse.java` | Response wrapper template |
-| `workflow_judge0.md` | Judge0 async submission architecture |
+| `security/SecurityConfig.java` | OAuth2 chain config (2 tiers), bearer token resolution from Authorization header or `access_token` cookie |
+| `security/CourseSecurity.java` | Custom @{bean} for @PreAuthorize (canAccessLesson, canAccessProblem, canAccessContest, canAccessQuiz, canManageLesson) |
+| `repository/specification/CourseSpecification.java` | Dynamic filter builder template (status, keyword, categories, price, rating, teacher) |
+| `mapper/*.java` | Entity ↔ DTO conversion (impl auto-generated by MapStruct) |
+| `service/course/CourseService.java` | Specification chaining example + progress aggregation |
+| `service/oj/OjSubmissionService.java` | Judge0 submission lifecycle (initiation, callback handler, WebSocket push, verdict aggregation) |
+| `service/oj/Judge0ClientService.java` | WebClient wrapper for Judge0 batch submission endpoint |
+| `controller/oj/OnlineJudgeProblemController.java` | GET `/online-judge/problems`, POST `/online-judge/submissions`, PUT `/online-judge/submissions/{id}` (webhook) |
+| `exception/ErrorCode.java` | Centralized error definitions (with HTTP status mapping) |
+| `dto/response/ApiResponse.java` | Response wrapper template (status, code, message, result, timestamp) |
+| `configuration/WebSocketConfig.java` | STOMP broker config with `/topic` (server push) and `/app` (client request) prefixes |
+| `configuration/ProjectProperties.java` | External config properties binding (judge0, websocket, app) |
+| `workflow_judge0.md` | Detailed 4-phase async submission workflow diagram
 
 ## When Adding Features
 
-1. **New endpoint** → Add to controller + create `@PreAuthorize` rule using `@courseSecurity` bean
-2. **New validation error** → Add to `ErrorCode` enum
-3. **New query** → Create `@Query` in repository or `Specification` if flexible filter needed
-4. **Entity ↔ DTO** → Add `@Mapping` to mapper interface; impl auto-generated
+1. **New endpoint** → Add to controller + create `@PreAuthorize` rule using `@courseSecurity` bean (check CourseSecurity for available methods)
+2. **New validation error** → Add to `ErrorCode` enum with code, message, HttpStatus
+3. **New query** → Create `@Query` in repository or `Specification` if flexible filtering needed
+4. **Entity ↔ DTO** → Add `@Mapping` to mapper interface; impl auto-generated by MapStruct
 5. **Multi-step business logic** → Add `@Transactional` to service method
 6. **User progress affected** → Update `LessonProgressEntity` + call `CompletedLessonCountRepository.incrementAndGetCount()`
+7. **Real-time updates** → Use `SimpMessagingTemplate.convertAndSendToUser()` to push via WebSocket to `/topic/submissions/{userId}`
+8. **Contest vs Lesson context** → Check `submission.lesson != null` (lesson) vs `submission.contest != null` (contest) to determine feedback behavior
 
 ## Debugging Tips
 
@@ -250,4 +289,7 @@ mvnw.cmd spring-boot:run        # Dev server on http://localhost:8080/codelearni
 - Lazy loading issues: Use `JOIN FETCH` in queries or `@EntityGraph`
 - Specifications return `null` for skipped conditions (safe chaining)
 - Native queries must use schema names from `db/schema-only.sql` exactly
+- **WebSocket testing**: Open `static/test-ws.html` (simple STOMP client) to manually test real-time submissions
+- **Judge0 callback debugging**: Ensure `app.webhook-base-url` is externally accessible; use ngrok for local testing
+- **Race condition prevention**: All Judge0 callback handlers must check `processedTestcases == totalTestcases` before computing final verdict (see `OjSubmissionService`)
 

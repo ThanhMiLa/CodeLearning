@@ -23,6 +23,7 @@ spring:
     redis:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
+      timeout: 60000
 
 jwt:
   signer-key: ${JWT_SIGNER_KEY}
@@ -57,3 +58,4 @@ websocket:
 
 app:
   webhook-base-url: http://192.168.1.90:8080/codelearning
+

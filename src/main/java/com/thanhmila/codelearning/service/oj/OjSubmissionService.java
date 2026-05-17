@@ -126,12 +126,12 @@ public class OjSubmissionService {
     @Transactional
     public void processJudge0Callback(Judge0CallbackPayload judge0CallbackPayload) {
 
-        // Tìm Testcase dựa trên Token
+        // Lấy thông tin SubmissionDetail (Submission Con) dựa trên token
         OnlineJudgeSubmissionDetailEntity submissionDetail = onlineJudgeSubmissionDetailRepository
                 .findByToken(judge0CallbackPayload.getToken())
                 .orElseThrow(() -> new AppException(ErrorCode.JUDGE0_SUBMISSION_FAILED));
 
-        // Lấy thông tin bài nộp (Submission cha)
+        // Lấy thông tin Submission (Submission cha) với lock để đảm bảo tính nhất quán khi cập nhật trạng thái tổng
         OnlineJudgeSubmissionEntity submissionEntity = onlineJudgeSubmissionRepository
                 .findByIdWithLock(submissionDetail.getSubmission().getId())
                 .orElseThrow(() -> new AppException(ErrorCode.SUBMISSION_NOT_FOUND));
@@ -139,7 +139,7 @@ public class OjSubmissionService {
         // Chuyển đổi trạng thái từ Judge0 sang hệ thống của mình
         OjVerdict testcaseVerdict = mapJudge0StatusToOjVerdict(judge0CallbackPayload.getStatus().getId());
 
-        // Cập nhật kết quả cho Testcase (Detail)
+        // Cập nhật kết quả cho SubmissionDetail (Submission Con)
         submissionDetail.setVerdict(testcaseVerdict);
         submissionDetail.setExecutionTimeMs(parseExecutionTime(judge0CallbackPayload.getTime()));
         submissionDetail.setMemoryUsedKb(judge0CallbackPayload.getMemory());
@@ -149,8 +149,9 @@ public class OjSubmissionService {
         Long submissionId = submissionEntity.getId();
         SubmissionCountDto submissionCountDto = onlineJudgeSubmissionDetailRepository
                 .countTestcasesStatus(submissionId);
-
         boolean isFinish = submissionCountDto.totalTestcases().equals(submissionCountDto.processedTestcases());
+
+        // Khởi tạo overallVerdict (mặc định là PENDING)
         OjVerdict overallVerdict = OjVerdict.PENDING;
 
         if (isFinish) {

@@ -96,6 +96,9 @@ public class OnlineJudgeProblemEntity {
     @Builder.Default
     Set<ProblemTagEntity> tags = new HashSet<>();
 
+    @Column(name = "total_testcase", nullable = false)
+    private Integer totalTestCase = 0;
+
     @PrePersist
     protected void onCreate() {
         createdAt = ZonedDateTime.now();
