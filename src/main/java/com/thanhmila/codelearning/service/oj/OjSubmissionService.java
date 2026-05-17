@@ -23,9 +23,12 @@ import org.springframework.beans.factory.annotation.Value;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +47,8 @@ public class OjSubmissionService {
 
     Judge0ClientService judge0ClientService;
     SimpMessagingTemplate simpMessagingTemplate;
+
+    StringRedisTemplate stringRedisTemplate;
 
     @NonFinal
     @Value("${app.webhook-base-url}")
@@ -131,9 +136,9 @@ public class OjSubmissionService {
                 .findByToken(judge0CallbackPayload.getToken())
                 .orElseThrow(() -> new AppException(ErrorCode.JUDGE0_SUBMISSION_FAILED));
 
-        // Lấy thông tin Submission (Submission cha) với lock để đảm bảo tính nhất quán khi cập nhật trạng thái tổng
+        // Lấy thông tin Submission (Submission cha)
         OnlineJudgeSubmissionEntity submissionEntity = onlineJudgeSubmissionRepository
-                .findByIdWithLock(submissionDetail.getSubmission().getId())
+                .findById(submissionDetail.getSubmission().getId())
                 .orElseThrow(() -> new AppException(ErrorCode.SUBMISSION_NOT_FOUND));
 
         // Chuyển đổi trạng thái từ Judge0 sang hệ thống của mình
@@ -147,9 +152,21 @@ public class OjSubmissionService {
 
         // Kiểm tra xem ĐÃ CHẤM XONG HẾT CHƯA?
         Long submissionId = submissionEntity.getId();
-        SubmissionCountDto submissionCountDto = onlineJudgeSubmissionDetailRepository
-                .countTestcasesStatus(submissionId);
-        boolean isFinish = submissionCountDto.totalTestcases().equals(submissionCountDto.processedTestcases());
+        Integer totalTestcases = submissionEntity.getProblem().getTotalTestCase();
+
+        // ==========================================
+        // 3. LOGIC REDIS ATOMIC COUNTER BẮT ĐẦU
+        // ==========================================
+        String redisKey = "oj_progress:" + submissionId;
+        Long processedCount = stringRedisTemplate.opsForValue().increment(redisKey);
+
+        // Đặt TTL 1 tiếng cho lần đếm đầu tiên đề phòng Judge0 chết giữa chừng
+        if(processedCount != null && processedCount == 1L) {
+            stringRedisTemplate.expire(redisKey, Duration.ofHours(1));
+        }
+
+        boolean isFinish = processedCount.equals(totalTestcases.longValue());
+
 
         // Khởi tạo overallVerdict (mặc định là PENDING)
         OjVerdict overallVerdict = OjVerdict.PENDING;
@@ -164,6 +181,9 @@ public class OjSubmissionService {
             // Cập nhật trạng thái tổng của Submission
             submissionEntity.setVerdict(overallVerdict);
             onlineJudgeSubmissionRepository.save(submissionEntity);
+
+            // HIỆU SUẤT: Xóa ngay key Redis khi đã đếm xong toàn bộ để giải phóng RAM ngay lập tức
+            stringRedisTemplate.delete(redisKey);
         }
 
         // Gửi thông báo WebSocket CHỈ ở chế độ Luyện tập (Practice)
@@ -177,8 +197,8 @@ public class OjSubmissionService {
                 .overallVerdict(overallVerdict)
                 .executionTimeMs(submissionDetail.getExecutionTimeMs())
                 .memoryUsedKb(submissionDetail.getMemoryUsedKb())
-                .totalTestcases(submissionCountDto.totalTestcases().intValue())
-                .processedTestcases(submissionCountDto.processedTestcases().intValue())
+                .totalTestcases(totalTestcases)
+                .processedTestcases(processedCount.intValue())
                 .build();
 
         // RẼ NHÁNH GỬI WEBSOCKET

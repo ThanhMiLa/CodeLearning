@@ -18,8 +18,7 @@ public interface OnlineJudgeSubmissionRepository extends JpaRepository<OnlineJud
     List<OnlineJudgeSubmissionEntity> findByProblemIdOrderBySubmittedAtDesc(Long problemId);
     List<OnlineJudgeSubmissionEntity> findByUserIdOrderBySubmittedAtDesc(Long userId);
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT s FROM OnlineJudgeSubmissionEntity s WHERE s.id = :id")
-    Optional<OnlineJudgeSubmissionEntity> findByIdWithLock(@Param("id") Long id);
+    Optional<OnlineJudgeSubmissionEntity> findById(@Param("id") Long id);
 }
 
