@@ -97,7 +97,8 @@ public class OnlineJudgeProblemEntity {
     Set<ProblemTagEntity> tags = new HashSet<>();
 
     @Column(name = "total_testcase", nullable = false)
-    private Integer totalTestCase = 0;
+    @Builder.Default
+    Integer totalTestCase = 0;
 
     @Column(name = "time_limit_ms", nullable = false)
     @Builder.Default
