@@ -25,4 +25,10 @@ public class Judge0SubmissionItem {
 
     @JsonProperty("callback_url")
     String callbackUrl; // ĐỊA CHỈ WEBHOOK cực kỳ quan trọng
+
+    @JsonProperty("cpu_time_limit")
+    Double cpuTimeLimit;
+
+    @JsonProperty("memory_limit")
+    Integer memoryLimit;
 }

@@ -80,6 +80,9 @@ public class OjSubmissionService {
         List<Judge0SubmissionItem> judge0SubmissionItemList = new ArrayList<>();
         String callbackUrl = webhookBaseUrl + "/online-judge/submissions";
 
+        // Tính limit dựa trên ngôn ngữ (Gợi ý dùng hệ số nhân)
+        double timeLimitSeconds = calculateTimeLimitForLanguage(onlineJudgeSubmissionEntity.getProblem().getTimeLimitMs(), request.getLanguageId());
+
         for (ProblemTestcaseEntity testcase : problemTestcaseEntityList) {
             Judge0SubmissionItem item = Judge0SubmissionItem.builder()
                     .languageId(request.getLanguageId())
@@ -87,6 +90,8 @@ public class OjSubmissionService {
                     .stdin(testcase.getInputData())
                     .expectedOutput(testcase.getExpectedOutput())
                     .callbackUrl(callbackUrl)
+                    .cpuTimeLimit(timeLimitSeconds)
+                    .memoryLimit(onlineJudgeSubmissionEntity.getProblem().getMemoryLimitKb())
                     .build();
             judge0SubmissionItemList.add(item);
         }
@@ -131,15 +136,13 @@ public class OjSubmissionService {
     @Transactional
     public void processJudge0Callback(Judge0CallbackPayload judge0CallbackPayload) {
 
-        // Lấy thông tin SubmissionDetail (Submission Con) dựa trên token
+        // Lấy thông tin SubmissionDetail (bao gồm luôn Submission cha và Problem nhờ JOIN FETCH)
         OnlineJudgeSubmissionDetailEntity submissionDetail = onlineJudgeSubmissionDetailRepository
-                .findByToken(judge0CallbackPayload.getToken())
+                .findByTokenWithSubmissionAndProblem(judge0CallbackPayload.getToken())
                 .orElseThrow(() -> new AppException(ErrorCode.JUDGE0_SUBMISSION_FAILED));
 
-        // Lấy thông tin Submission (Submission cha)
-        OnlineJudgeSubmissionEntity submissionEntity = onlineJudgeSubmissionRepository
-                .findById(submissionDetail.getSubmission().getId())
-                .orElseThrow(() -> new AppException(ErrorCode.SUBMISSION_NOT_FOUND));
+        // Không cần truy vấn tìm Submission nữa vì đã JOIN FETCH ở trên
+        OnlineJudgeSubmissionEntity submissionEntity = submissionDetail.getSubmission();
 
         // Chuyển đổi trạng thái từ Judge0 sang hệ thống của mình
         OjVerdict testcaseVerdict = mapJudge0StatusToOjVerdict(judge0CallbackPayload.getStatus().getId());
@@ -153,11 +156,25 @@ public class OjSubmissionService {
         // Kiểm tra xem ĐÃ CHẤM XONG HẾT CHƯA?
         Long submissionId = submissionEntity.getId();
         Integer totalTestcases = submissionEntity.getProblem().getTotalTestCase();
+        boolean isContestMode = submissionEntity.getContest() != null;
 
         // ==========================================
-        // 3. LOGIC REDIS ATOMIC COUNTER BẮT ĐẦU
+        // 3. LOGIC REDIS ATOMIC COUNTER & SHORT-CIRCUIT
         // ==========================================
         String redisKey = "oj_progress:" + submissionId;
+        String failedKey = "oj_failed:" + submissionId; // Cờ đánh dấu đã có testcase sai
+        
+        boolean isEarlyFinish = false;
+        
+        // SHORT-CIRCUIT (CONTEST MODE): Chốt sổ ngay lập tức nếu gặp testcase sai đầu tiên!
+        if (isContestMode && testcaseVerdict != OjVerdict.ACCEPTED) {
+            // setIfAbsent đảm bảo chỉ có 1 luồng duy nhất (lỗi đầu tiên) được quyền chốt sổ
+            Boolean isFirstFail = stringRedisTemplate.opsForValue().setIfAbsent(failedKey, "1", Duration.ofHours(1));
+            if (Boolean.TRUE.equals(isFirstFail)) {
+                isEarlyFinish = true;
+            }
+        }
+
         Long processedCount = stringRedisTemplate.opsForValue().increment(redisKey);
 
         // Đặt TTL 1 tiếng cho lần đếm đầu tiên đề phòng Judge0 chết giữa chừng
@@ -165,38 +182,49 @@ public class OjSubmissionService {
             stringRedisTemplate.expire(redisKey, Duration.ofHours(1));
         }
 
-        boolean isFinish = processedCount.equals(totalTestcases.longValue());
-
+        // Chấm xong bình thường: Đủ testcase VÀ chưa từng bị chốt sổ sớm (short-circuit)
+        boolean isNormalFinish = processedCount.equals(totalTestcases.longValue()) 
+                                && Boolean.FALSE.equals(stringRedisTemplate.hasKey(failedKey));
 
         // Khởi tạo overallVerdict (mặc định là PENDING)
         OjVerdict overallVerdict = OjVerdict.PENDING;
 
-        if (isFinish) {
-            // Đã chấm xong tất cả Testcase -> Tìm lỗi đầu tiên (nếu có)
-            overallVerdict = onlineJudgeSubmissionDetailRepository
-                    .findFirstBySubmissionIdAndVerdictNotOrderByTestcaseOrderIndexAsc(submissionId, OjVerdict.ACCEPTED)
-                    .map(OnlineJudgeSubmissionDetailEntity::getVerdict)
-                    .orElse(OjVerdict.ACCEPTED);
+        if (isEarlyFinish || isNormalFinish) {
+            if (isEarlyFinish) {
+                overallVerdict = testcaseVerdict; // Chốt ngay kết quả lỗi hiện tại
+            } else {
+                // Đã chấm xong tất cả Testcase bình thường -> Tìm lỗi đầu tiên (nếu có)
+                overallVerdict = onlineJudgeSubmissionDetailRepository
+                        .findFirstBySubmissionIdAndVerdictNotOrderByTestcaseOrderIndexAsc(submissionId, OjVerdict.ACCEPTED)
+                        .map(OnlineJudgeSubmissionDetailEntity::getVerdict)
+                        .orElse(OjVerdict.ACCEPTED);
+            }
 
-            // Cập nhật trạng thái tổng của Submission
+            // Lấy thời gian và bộ nhớ sử dụng tối đa (tính đến thời điểm hiện tại)
+            var maxStats = onlineJudgeSubmissionDetailRepository.findMaxStatsBySubmissionId(submissionId)
+                    .orElseThrow(() -> new AppException(ErrorCode.SUBMISSION_NOT_FOUND));
+
+            // Cập nhật trạng thái, thời gian, bộ nhớ tổng của Submission và lưu vào DB
             submissionEntity.setVerdict(overallVerdict);
+            submissionEntity.setExecutionTimeMs(maxStats.getMaxTime());
+            submissionEntity.setMemoryUsedKb(maxStats.getMaxMemory());
             onlineJudgeSubmissionRepository.save(submissionEntity);
-
-            // HIỆU SUẤT: Xóa ngay key Redis khi đã đếm xong toàn bộ để giải phóng RAM ngay lập tức
-            stringRedisTemplate.delete(redisKey);
         }
-
-        // Gửi thông báo WebSocket CHỈ ở chế độ Luyện tập (Practice)
-        // Chế độ Thi đấu (Contest): ĐỌC ĐOC, không bắn WebSocket lẻ tẻ để ém kết quả
-        boolean isContestMode = submissionEntity.getContest() != null;
+        
+        // HIỆU SUẤT: Luôn dọn dẹp key Redis giải phóng RAM khi tất cả webhook đã về đủ
+        if (processedCount != null && processedCount.equals(totalTestcases.longValue())) {
+            stringRedisTemplate.delete(redisKey);
+            stringRedisTemplate.delete(failedKey);
+        }
 
         OjWebSocketMessage wsMessage = OjWebSocketMessage.builder()
                 .submissionId(submissionId)
                 .testcaseId(submissionDetail.getTestcase().getId())
                 .testcaseVerdict(testcaseVerdict)
                 .overallVerdict(overallVerdict)
-                .executionTimeMs(submissionDetail.getExecutionTimeMs())
-                .memoryUsedKb(submissionDetail.getMemoryUsedKb())
+                // Nếu đã chốt sổ (Early hoặc Normal), gửi MAX time/memory. Nếu chưa, gửi time/memory hiện tại
+                .executionTimeMs((isEarlyFinish || isNormalFinish) ? submissionEntity.getExecutionTimeMs() : submissionDetail.getExecutionTimeMs())
+                .memoryUsedKb((isEarlyFinish || isNormalFinish) ? submissionEntity.getMemoryUsedKb() : submissionDetail.getMemoryUsedKb())
                 .totalTestcases(totalTestcases)
                 .processedTestcases(processedCount.intValue())
                 .build();
@@ -208,10 +236,9 @@ public class OjSubmissionService {
             log.info("PRACTICE MODE: Bắn WebSocket tiến trình {}/{} cho Submission {}",
                     wsMessage.getProcessedTestcases(), wsMessage.getTotalTestcases(), submissionId);
 
-        } else if (isFinish) {
-            // CHẾ ĐỘ THI ĐẤU (CONTEST): Ém kết quả lẻ. CHỈ BẮN 1 LẦN DUY NHẤT khi đã chấm
-            // xong toàn bộ
-            // (Tùy chọn) Giấu thông tin testcase cuối cùng để bảo mật Contest
+        } else if (isEarlyFinish || isNormalFinish) {
+            // CHẾ ĐỘ THI ĐẤU (CONTEST): ĐỌC ĐOC, không bắn lẻ tẻ. 
+            // CHỈ BẮN 1 LẦN DUY NHẤT khi chốt sổ (Short-circuit sớm HOẶC chấm xong toàn bộ)
             wsMessage.setTestcaseId(null);
             wsMessage.setTestcaseVerdict(null);
 
@@ -246,6 +273,29 @@ public class OjSubmissionService {
         } catch (NumberFormatException e) {
             return 0;
         }
+    }
+
+    private double calculateTimeLimitForLanguage(Integer baseTimeMs, Integer languageId) {
+        if (baseTimeMs == null) {
+            return 2.0; // Default fallback to 2 seconds if null
+        }
+        double baseSec = baseTimeMs / 1000.0;
+        return switch (languageId) {
+            // C, C++ & Golang (compiled languages, extremely fast execution)
+            case 48, 49, 50, 75, 52, 53, 54, 76, 60 -> baseSec;
+            
+            // Java & C# (VM/CLR-based, needs JVM/Mono startup overhead buffer)
+            case 62, 51 -> baseSec * 2.0 + 1.0;
+            
+            // JavaScript & TypeScript (Node.js JIT startup overhead)
+            case 63, 74 -> baseSec * 2.0;
+            
+            // Python (interpreted, slower execution speed)
+            case 70, 71 -> baseSec * 3.0;
+            
+            // Default fallback to base time
+            default -> baseSec;
+        };
     }
 
 }

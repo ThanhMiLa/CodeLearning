@@ -99,6 +99,14 @@ public class OnlineJudgeProblemEntity {
     @Column(name = "total_testcase", nullable = false)
     private Integer totalTestCase = 0;
 
+    @Column(name = "time_limit_ms", nullable = false)
+    @Builder.Default
+    Integer timeLimitMs = 2000;
+
+    @Column(name = "memory_limit_kb", nullable = false)
+    @Builder.Default
+    Integer memoryLimitKb = 128000;
+
     @PrePersist
     protected void onCreate() {
         createdAt = ZonedDateTime.now();

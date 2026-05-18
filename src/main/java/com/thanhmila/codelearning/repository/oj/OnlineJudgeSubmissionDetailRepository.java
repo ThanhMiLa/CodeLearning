@@ -3,6 +3,8 @@ package com.thanhmila.codelearning.repository.oj;
 import com.thanhmila.codelearning.dto.judge0.SubmissionCountDto;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionDetailEntity;
+import com.thanhmila.codelearning.repository.projection.SubmissionMaxStats;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,8 +14,12 @@ import java.util.Optional;
 @Repository
 public interface OnlineJudgeSubmissionDetailRepository extends JpaRepository<OnlineJudgeSubmissionDetailEntity, Long> {
 
-    // 1. Tìm Detail bằng Token (Dành cho Webhook gọi về)
-    Optional<OnlineJudgeSubmissionDetailEntity> findByToken(String token);
+    // 1. Tìm Detail bằng Token (Dành cho Webhook gọi về) - TỐI ƯU: JOIN FETCH để lấy luôn Parent và Problem
+    @Query("SELECT d FROM OnlineJudgeSubmissionDetailEntity d " +
+            "JOIN FETCH d.submission s " +
+            "JOIN FETCH s.problem " +
+            "WHERE d.token = :token")
+    Optional<OnlineJudgeSubmissionDetailEntity> findByTokenWithSubmissionAndProblem(@Param("token") String token);
 
     // 2. Query "1 mũi tên trúng 2 đích": Đếm tổng số và số đã chấm
     @Query("""
@@ -31,5 +37,9 @@ public interface OnlineJudgeSubmissionDetailRepository extends JpaRepository<Onl
             Long submissionId,
             OjVerdict verdict
     );
+
+
+    @Query("SELECT MAX(d.executionTimeMs) as maxTime, MAX(d.memoryUsedKb) as maxMemory FROM OnlineJudgeSubmissionDetailEntity d WHERE d.submission.id = :submissionId")
+    Optional<SubmissionMaxStats> findMaxStatsBySubmissionId(@Param("submissionId") Long submissionId);
 }
 
