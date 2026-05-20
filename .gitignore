@@ -4,7 +4,6 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 AGENTS.md
-workflow_judge0.md
 
 ### Logs ###
 logs/
