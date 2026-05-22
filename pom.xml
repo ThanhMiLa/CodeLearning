@@ -140,8 +140,8 @@
         <!-- ========== PAYOS ========== -->
         <dependency>
             <groupId>vn.payos</groupId>
-            <artifactId>java-sdk</artifactId>
-            <version>1.0.10</version>
+            <artifactId>payos-java</artifactId>
+            <version>1.0.2</version>
         </dependency>
 
     </dependencies>

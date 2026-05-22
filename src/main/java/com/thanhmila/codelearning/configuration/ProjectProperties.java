@@ -34,4 +34,15 @@ public class ProjectProperties {
     public static class App {
         private String webhookBaseUrl;
     }
+
+    @Configuration
+    @ConfigurationProperties(prefix = "payos")
+    @Data
+    public static class Payos {
+        private String clientId;
+        private String apiKey;
+        private String checksumKey;
+        private String returnUrl;
+        private String cancelUrl;
+    }
 }
