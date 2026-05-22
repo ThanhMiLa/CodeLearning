@@ -23,13 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.payos.PayOS;
-import vn.payos.type.CheckoutResponseData;
-import vn.payos.type.PaymentData;
 import vn.payos.type.Webhook;
 import vn.payos.type.WebhookData;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Slf4j
 @Service

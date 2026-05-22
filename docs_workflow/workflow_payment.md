@@ -50,16 +50,20 @@
 ### Luồng 3.1: Nạp tiền vào hệ thống (Deposit) - Tích hợp PayOS/VietQR
 *Luồng này liên quan đến TIỀN THẬT, giao tiếp với ngân hàng thực tế thông qua PayOS.*
 
-1. **Khởi tạo (Client):** User nhập số tiền muốn nạp (VD: nạp 500.000 VND lấy 500 Xu).
-2. **Tạo lệnh (Server):** Backend tạo record trong `payment_transactions` (Type: `DEPOSIT`, Status: `PENDING`), sinh ra mã giao dịch duy nhất ở trường `transaction_code` (VD: `CODE_123`).
-3. **Hiển thị QR (Server -> Client):** Backend gọi API PayOS sinh QR code nhúng sẵn số tiền và mã thanh toán `CODE_123`. User dùng app ngân hàng quét và thanh toán.
-4. **Nhận Webhook (Bank -> Server):** Ngân hàng nhận tiền -> PayOS bắn Webhook về Backend.
+1. **Khởi tạo (Client):** User gọi API `/payment/deposit` kèm số tiền muốn nạp (Ví dụ: nạp 50,000 VND).
+2. **Tạo lệnh (Server):** 
+    * Backend lấy ví (Wallet) của User đang request.
+    * Tạo record `payment_transactions` (Type: `DEPOSIT`, Status: `PENDING`), sinh mã đơn hàng (orderCode) bằng Timestamp hiện tại.
+    * **Xử lý gọi API PayOS:** Do SDK Java chính thức của PayOS gặp lỗi tương thích ngược (`UnrecognizedPropertyException` khi PayOS thêm các trường mới như `expiredAt`), Backend **không dùng SDK** mà tự sinh chữ ký bảo mật (HMAC SHA256) và gọi API trực tiếp qua `WebClient` để lấy `checkoutUrl`.
+3. **Hiển thị QR (Server -> Client):** Backend trả `checkoutUrl` về. Frontend redirect người dùng sang giao diện thanh toán của PayOS. Sau khi thanh toán/hủy, PayOS sẽ chuyển hướng người dùng về `return-url` (`success.html`) hoặc `cancel-url` (`cancel.html`) của Backend.
+4. **Nhận Webhook (PayOS -> Server):** Ngân hàng nhận tiền -> PayOS bắn Webhook về API `/api/payment/webhook`. **Lưu ý quan trọng:** Endpoint này được bọc trong khối `try-catch` và luôn luôn trả về HTTP 200 OK `{"success": true}` để PayOS không đánh dấu Webhook là bị lỗi (ngay cả khi test payload không chứa orderCode thực tế).
 5. **Xác thực & Cộng tiền ảo (Server):**
-    * Xác thực chữ ký số HMAC Signature từ Webhook để chống giả mạo.
+    * Xác thực chữ ký số HMAC Signature từ Webhook để chống giả mạo (thông qua hàm `payOS.verifyPaymentWebhookData`).
     * Check Idempotency: Kiểm tra `payment_transactions` theo mã giao dịch, phải đang ở trạng thái `PENDING`.
+    * **Khóa Ví (Pessimistic Lock):** Áp dụng `@Lock(LockModeType.PESSIMISTIC_WRITE)` khi truy vấn `wallets` để ngăn chặn nạp tiền đúp nếu có nhiều Webhook gọi đến cùng lúc.
     * Đổi trạng thái `payment_transactions` -> `SUCCESS`.
-    * Tạo một record ở `wallet_transactions` (Tiền ảo) tương ứng (Type: `DEPOSIT`, Status: `SUCCESS`, amount: 500, `reference_id` trỏ vào ID của `payment_transactions`).
-    * Tăng `balance` trong `wallets`.
+    * Tạo một record ở `wallet_transactions` (Sổ cái lưu vết) (Type: `DEPOSIT`, Status: `SUCCESS`, `reference_id` trỏ vào ID của `payment_transactions`).
+    * Tăng `balance` trong `wallets`. Toàn bộ thao tác cập nhật này nằm trong `@Transactional`.
 
 ### Luồng 3.2: Mua Khóa Học (Course Purchase)
 *Luồng này xử lý bằng TIỀN ẢO nội bộ 100%, không gọi ra ngoài internet.*
