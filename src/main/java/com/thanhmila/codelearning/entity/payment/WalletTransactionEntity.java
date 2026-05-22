@@ -43,6 +43,10 @@ public class WalletTransactionEntity {
     @Column(name = "status", nullable = false, columnDefinition = "transaction_status")
     TransactionStatus status = TransactionStatus.PENDING;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    OrderEntity order;
+
     @Column(name = "reference_id")
     Long referenceId;
 

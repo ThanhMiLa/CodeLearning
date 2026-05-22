@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.service.payment;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thanhmila.codelearning.configuration.ProjectProperties;
@@ -20,8 +21,16 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
+
 import vn.payos.PayOS;
 import vn.payos.type.Webhook;
 import vn.payos.type.WebhookData;
@@ -62,7 +71,7 @@ public class PaymentService {
         // 4. Create link with PayOS SDK
         try {
             // Manual call to bypass SDK ObjectMapper bug with new fields (expiredAt)
-            java.util.Map<String, Object> body = new java.util.HashMap<>();
+            Map<String, Object> body = new HashMap<>();
             body.put("orderCode", orderCode);
             body.put("amount", request.getAmount().intValue());
             body.put("description", "Thanh toan nap Xu");
@@ -79,18 +88,18 @@ public class PaymentService {
             body.put("signature", signature);
 
             // Create WebClient
-            org.springframework.web.reactive.function.client.WebClient webClient = org.springframework.web.reactive.function.client.WebClient.builder()
+            WebClient webClient = WebClient.builder()
                     .baseUrl("https://api-merchant.payos.vn/v2/payment-requests")
                     .defaultHeader("x-client-id", payosProps.getClientId())
                     .defaultHeader("x-api-key", payosProps.getApiKey())
-                    .defaultHeader(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+                    .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .build();
 
             // Execute POST request synchronously
-            com.fasterxml.jackson.databind.JsonNode responseNode = webClient.post()
+            JsonNode responseNode = webClient.post()
                     .bodyValue(body)
                     .retrieve()
-                    .bodyToMono(com.fasterxml.jackson.databind.JsonNode.class)
+                    .bodyToMono(JsonNode.class)
                     .block(); // Block since the outer method is synchronous
 
             if (responseNode == null || !responseNode.has("data")) {
