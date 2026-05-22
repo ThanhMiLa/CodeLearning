@@ -53,6 +53,12 @@ public class PaymentService {
 
     @Transactional
     public PaymentDepositResponse createDepositPayment(Long userId, PaymentDepositRequest request) {
+
+        // 0. Fetch user
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        user.validateStatus();
+
         // 1. Get Wallet
         WalletEntity wallet = walletRepository.findByUserId(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));

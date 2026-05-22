@@ -57,6 +57,11 @@ public class OjSubmissionService {
 
     @Transactional
     public OjSubmissionInitialResponse submitCode(OjSubmissionRequest request, Long userId) {
+        // Check user status
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        user.validateStatus();
+        
         // Kiểm tra bài toán và lấy danh sách Testcases từ Database
         List<ProblemTestcaseEntity> problemTestcaseEntityList = problemTestcaseRepository
                 .findByProblemIdOrderByOrderIndex(request.getProblemId());

@@ -52,6 +52,7 @@ public class OrderService {
         // 1. Fetch user
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        user.validateStatus();
 
         // 2. Fetch courses
         List<CourseEntity> courses = courseRepository.findAllById(request.getCourseIds());
