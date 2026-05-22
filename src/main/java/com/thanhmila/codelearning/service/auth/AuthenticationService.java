@@ -12,6 +12,7 @@ import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.dto.response.IntrospectResponse;
 import com.thanhmila.codelearning.entity.auth.InvalidatedTokenEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
+import com.thanhmila.codelearning.event.UserRegisteredEvent;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
@@ -25,6 +26,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,6 +50,7 @@ public class AuthenticationService {
     PasswordEncoder passwordEncoder;
     RoleRepository roleRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
+    ApplicationEventPublisher applicationEventPublisher;
 
     UserMapper userMapper;
 
@@ -109,6 +112,8 @@ public class AuthenticationService {
         userEntity.setRoles(Set.of(roleRepository.findByName("USER")));
 
         userEntity = userRepository.save(userEntity);
+
+        applicationEventPublisher.publishEvent(UserRegisteredEvent.builder().userEntity(userEntity).build());
 
         AuthenticationRequest authenticationRequest = AuthenticationRequest
                 .builder()

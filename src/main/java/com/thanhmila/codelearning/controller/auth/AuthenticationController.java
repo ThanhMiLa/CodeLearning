@@ -88,28 +88,7 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response){
 
         AuthenticationResponse result = authenticationService.login(authenticationRequest);
-
-        ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
-                .httpOnly(accessTokenHttpOnly)
-                .secure(isCookieAccessTokenSecure)
-                .path(accessTokenPath)
-                .maxAge(accessTokenMaxAge)
-                .sameSite(accessTokenSameSite)
-                .build();
-
-        ResponseCookie refreshTokenCookie = ResponseCookie.from(refreshTokenName, result.getRefreshToken())
-                .httpOnly(refreshTokenHttpOnly)
-                .secure(isCookieRefreshTokenSecure)
-                .path(refreshTokenPath)
-                .maxAge(refreshTokenMaxAge)
-                .sameSite(refreshTokenSameSite)
-                .build();
-
-        result.setAccessToken(null);
-        result.setRefreshToken(null);
-
-        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
-        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+        addAuthCookies(response, result);
 
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
@@ -125,28 +104,7 @@ public class AuthenticationController {
             @RequestBody @Valid RegisterRequest registerRequest, HttpServletResponse response){
 
         AuthenticationResponse result = authenticationService.register(registerRequest);
-
-        ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
-                .httpOnly(accessTokenHttpOnly)
-                .secure(isCookieAccessTokenSecure)
-                .path(accessTokenPath)
-                .maxAge(accessTokenMaxAge)
-                .sameSite(accessTokenSameSite)
-                .build();
-
-        ResponseCookie refreshTokenCookie = ResponseCookie.from(refreshTokenName, result.getRefreshToken())
-                .httpOnly(refreshTokenHttpOnly)
-                .secure(isCookieRefreshTokenSecure)
-                .path(refreshTokenPath)
-                .maxAge(refreshTokenMaxAge)
-                .sameSite(refreshTokenSameSite)
-                .build();
-
-        result.setAccessToken(null);
-        result.setRefreshToken(null);
-
-        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
-        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+        addAuthCookies(response, result);
 
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
@@ -164,25 +122,7 @@ public class AuthenticationController {
             HttpServletResponse response){
 
         authenticationService.logout(accessToken, refreshToken);
-
-        ResponseCookie deleteCookieAccessToken = ResponseCookie.from(accessTokenName, "")
-                .httpOnly(accessTokenHttpOnly)
-                .secure(isCookieAccessTokenSecure)
-                .path(accessTokenPath)
-                .maxAge(0)
-                .sameSite(accessTokenSameSite)
-                .build();
-
-        ResponseCookie deleteCookieRefreshToken = ResponseCookie.from(refreshTokenName, "")
-                .httpOnly(refreshTokenHttpOnly)
-                .secure(isCookieRefreshTokenSecure)
-                .path(refreshTokenPath)
-                .maxAge(0)
-                .sameSite(refreshTokenSameSite)
-                .build();
-
-        response.addHeader(HttpHeaders.SET_COOKIE, deleteCookieAccessToken.toString());
-        response.addHeader(HttpHeaders.SET_COOKIE, deleteCookieRefreshToken.toString());
+        clearAuthCookies(response);
 
         return ResponseEntity.ok(ApiResponse.<Void>builder()
                 .status(200)
@@ -200,28 +140,7 @@ public class AuthenticationController {
             throws ParseException, JOSEException {
 
         var result = authenticationService.refresh(refreshToken);
-
-        ResponseCookie accessTokenCookie = ResponseCookie.from(accessTokenName, result.getAccessToken())
-                .httpOnly(accessTokenHttpOnly)
-                .secure(isCookieAccessTokenSecure)
-                .path(accessTokenPath)
-                .maxAge(accessTokenMaxAge)
-                .sameSite(accessTokenSameSite)
-                .build();
-
-        ResponseCookie refreshTokenCookie = ResponseCookie.from(refreshTokenName, result.getRefreshToken())
-                .httpOnly(refreshTokenHttpOnly)
-                .secure(isCookieRefreshTokenSecure)
-                .path(refreshTokenPath)
-                .maxAge(refreshTokenMaxAge)
-                .sameSite(refreshTokenSameSite)
-                .build();
-
-        result.setAccessToken(null);
-        result.setRefreshToken(null);
-
-        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
-        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+        addAuthCookies(response, result);
 
         return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
                 .status(200)
@@ -230,6 +149,61 @@ public class AuthenticationController {
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
+    }
+
+    // ==================== Private Helper Methods ====================
+
+    /**
+     * Sets access token and refresh token as HttpOnly cookies on the response,
+     * then clears the token values from the response body for security.
+     */
+    private void addAuthCookies(HttpServletResponse response, AuthenticationResponse result) {
+        ResponseCookie accessTokenCookie = buildCookie(
+                accessTokenName, result.getAccessToken(),
+                accessTokenHttpOnly, isCookieAccessTokenSecure,
+                accessTokenPath, accessTokenMaxAge, accessTokenSameSite);
+
+        ResponseCookie refreshTokenCookie = buildCookie(
+                refreshTokenName, result.getRefreshToken(),
+                refreshTokenHttpOnly, isCookieRefreshTokenSecure,
+                refreshTokenPath, refreshTokenMaxAge, refreshTokenSameSite);
+
+        response.addHeader(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
+
+        // Clear tokens from response body — they are now in cookies only
+        result.setAccessToken(null);
+        result.setRefreshToken(null);
+    }
+
+    /**
+     * Clears access token and refresh token cookies by setting maxAge to 0.
+     */
+    private void clearAuthCookies(HttpServletResponse response) {
+        ResponseCookie expiredAccessToken = buildCookie(
+                accessTokenName, "",
+                accessTokenHttpOnly, isCookieAccessTokenSecure,
+                accessTokenPath, 0, accessTokenSameSite);
+
+        ResponseCookie expiredRefreshToken = buildCookie(
+                refreshTokenName, "",
+                refreshTokenHttpOnly, isCookieRefreshTokenSecure,
+                refreshTokenPath, 0, refreshTokenSameSite);
+
+        response.addHeader(HttpHeaders.SET_COOKIE, expiredAccessToken.toString());
+        response.addHeader(HttpHeaders.SET_COOKIE, expiredRefreshToken.toString());
+    }
+
+    private ResponseCookie buildCookie(String name, String value,
+                                       boolean httpOnly, boolean secure,
+                                       String path, long maxAge, String sameSite) {
+        return ResponseCookie.from(name, value)
+                .httpOnly(httpOnly)
+                .secure(secure)
+                .path(path)
+                .maxAge(maxAge)
+                .sameSite(sameSite)
+                .build();
     }
 
 }
