@@ -26,40 +26,40 @@ Frontend (React) ──➤ Backend (Spring Boot + PostgreSQL + Redis) ──➤ 
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                      ENTITY RELATIONSHIP DIAGRAM                          │
+│                      ENTITY RELATIONSHIP DIAGRAM                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                           │
-│  ┌──────────┐    ┌──────────────────────────┐    ┌───────────────────────┐ │
-│  │  users    │    │ online_judge_submissions  │    │ online_judge_problems │ │
-│  └────┬─────┘    │ (Parent / Submission Me)  │    └───────────┬───────────┘ │
-│       │          ├──────────────────────────┤                │           │
-│       │  1:N     │ id              PK       │     1:N        │           │
-│       └─────────►│ user_id         FK       │◄───────────────┘           │
-│                  │ problem_id      FK       │                            │
-│  ┌──────────┐    │ lesson_id       FK (opt) │                            │
-│  │ lessons  │◄───│ contest_id      FK (opt) │───►┌──────────┐            │
-│  │(practice)│    │ language_id              │    │ contests │            │
-│  └──────────┘    │ source_code     TEXT     │    │ (contest)│            │
-│                  │ verdict         ENUM     │    └──────────┘            │
-│                  │ execution_time_ms INT    │                            │
-│                  │ memory_used_kb    INT    │                            │
-│                  │ submitted_at             │                            │
-│                  └────────────┬─────────────┘                            │
-│                               │                                          │
-│                               │ 1:N (One submission has N details)       │
-│                               ▼                                          │
-│                  ┌──────────────────────────────┐   ┌──────────────────┐  │
-│                  │ online_judge_submission_details│   │problem_testcases│  │
-│                  │ (Child / Submission Con)      │   └───────┬──────────┘  │
-│                  ├──────────────────────────────┤           │            │
-│                  │ id               PK          │           │            │
-│                  │ submission_id    FK ──────────┤ (parent)  │            │
-│                  │ testcase_id      FK ─────────────────────┘ (1:1 map) │
-│                  │ token            UK (UUID)    │                        │
-│                  │ verdict          ENUM         │                        │
-│                  │ execution_time_ms INT         │                        │
-│                  │ memory_used_kb    INT         │                        │
-│                  └──────────────────────────────┘                        │
+│                                                                             │
+│  ┌──────────┐    ┌──────────────────────────┐    ┌───────────────────────┐  │
+│  │  users   │    │ online_judge_submissions │    │ online_judge_problems │  │
+│  └────┬─────┘    │ (Parent / Submission Me) │    └───────────┬───────────┘  │
+│       │          ├──────────────────────────┤                │              │
+│       │  1:N     │ id              PK       │     1:N        │              │
+│       └─────────►│ user_id         FK       │◄───────────────┘              │
+│                  │ problem_id      FK       │                               │
+│  ┌──────────┐    │ lesson_id       FK (opt) │                               │
+│  │ lessons  │◄───│ contest_id      FK (opt) │───►┌──────────┐               │
+│  │(practice)│    │ language_id              │    │ contests │               │
+│  └──────────┘    │ source_code     TEXT     │    │ (contest)│               │
+│                  │ verdict         ENUM     │    └──────────┘               │
+│                  │ execution_time_ms INT    │                               │
+│                  │ memory_used_kb    INT    │                               │
+│                  │ submitted_at             │                               │
+│                  └────────────┬─────────────┘                               │
+│                               │                                             │
+│                               │ 1:N (One submission has N details)          │
+│                               ▼                                             │
+│                  ┌────────────────────────────────┐   ┌──────────────────┐  │
+│                  │ online_judge_submission_details│   │problem_testcases │  │
+│                  │ (Child / Submission Con)       │   └───────┬──────────┘  │
+│                  ├────────────────────────────────┤           │             │
+│                  │ id               PK            │           │             │
+│                  │ submission_id    FK ───────────┤ (parent)  │             │
+│                  │ testcase_id      FK ─────────────────────┘ (1:1 map)     │
+│                  │ token            UK (UUID)     │                         │
+│                  │ verdict          ENUM          │                         │
+│                  │ execution_time_ms INT          │                         │
+│                  │ memory_used_kb    INT          │                         │
+│                  └────────────────────────────────┘                         │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 

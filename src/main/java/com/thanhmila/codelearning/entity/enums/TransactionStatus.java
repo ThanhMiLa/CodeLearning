@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.entity.enums;
 
-public enum PaymentStatus {
+public enum TransactionStatus {
     PENDING,
     SUCCESS,
     FAILED,

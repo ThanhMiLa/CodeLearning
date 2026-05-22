@@ -1,6 +1,6 @@
 package com.thanhmila.codelearning.entity.course;
 
-import com.thanhmila.codelearning.entity.payment.PaymentEntity;
+import com.thanhmila.codelearning.entity.payment.WalletTransactionEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import jakarta.persistence.*;
@@ -42,8 +42,8 @@ public class EnrollmentEntity {
     CourseEntity course;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id")
-    PaymentEntity payment;
+    @JoinColumn(name = "wallet_transaction_id")
+    WalletTransactionEntity walletTransaction;
 
     @Column(name = "enrolled_at", nullable = false)
     OffsetDateTime enrolledAt;
