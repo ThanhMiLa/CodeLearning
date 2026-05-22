@@ -3,6 +3,8 @@ package com.thanhmila.codelearning.dto.response;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,4 +17,5 @@ public class AuthenticationResponse {
     String displayName;
     String email;
     String phoneNumber;
+    BigDecimal balance;
 }

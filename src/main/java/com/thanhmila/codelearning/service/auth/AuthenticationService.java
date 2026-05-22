@@ -51,7 +51,6 @@ public class AuthenticationService {
     RoleRepository roleRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
     ApplicationEventPublisher applicationEventPublisher;
-
     UserMapper userMapper;
 
     @NonFinal
@@ -68,7 +67,7 @@ public class AuthenticationService {
 
     @Transactional(readOnly = true)
     public AuthenticationResponse login(AuthenticationRequest request){
-        UserEntity userEntity = userRepository.findByUsername(request.getUsername())
+        UserEntity userEntity = userRepository.findByUsernameWithWallet(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
 
         boolean authenticated = passwordEncoder.matches(request.getPassword(), userEntity.getPasswordHash());
@@ -86,9 +85,7 @@ public class AuthenticationService {
         String accessToken = generateToken(userEntity, false);
         String refreshToken = generateToken(userEntity, true);
 
-        AuthenticationResponse authenticationResponse = userMapper.toAuthenticationResponse(userEntity);
-        authenticationResponse.setAccessToken(accessToken);
-        authenticationResponse.setRefreshToken(refreshToken);
+        AuthenticationResponse authenticationResponse = buildAuthResponse(userEntity, accessToken, refreshToken);
 
         return authenticationResponse;
     }
@@ -154,16 +151,14 @@ public class AuthenticationService {
         invalidatedTokenRepository.save(invalidatedTokenEntity);
 
         String username = signedJWT.getJWTClaimsSet().getSubject();
-        UserEntity userEntity = userRepository.findByUsername(username)
+        UserEntity userEntity = userRepository.findByUsernameWithWallet(username)
                 .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
 
         validateUserStatus(userEntity);
         String accessToken = generateToken(userEntity, false);
         String refreshToken = generateToken(userEntity, true);
 
-        AuthenticationResponse authenticationResponse = userMapper.toAuthenticationResponse(userEntity);
-        authenticationResponse.setAccessToken(accessToken);
-        authenticationResponse.setRefreshToken(refreshToken);
+        AuthenticationResponse authenticationResponse = buildAuthResponse(userEntity, accessToken, refreshToken);
 
         return authenticationResponse;
 
@@ -284,6 +279,18 @@ public class AuthenticationService {
         if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
             throw new AppException(ErrorCode.ACCOUNT_DISABLED);
         }
+    }
+
+    private AuthenticationResponse buildAuthResponse(UserEntity userEntity, String accessToken, String refreshToken) {
+        AuthenticationResponse response = userMapper.toAuthenticationResponse(userEntity);
+        response.setAccessToken(accessToken);
+        response.setRefreshToken(refreshToken);
+
+        if (userEntity.getWallet() != null) {
+            response.setBalance(userEntity.getWallet().getBalance());
+        }
+
+        return response;
     }
 
 }

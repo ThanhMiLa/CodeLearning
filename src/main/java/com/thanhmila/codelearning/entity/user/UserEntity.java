@@ -2,6 +2,7 @@ package com.thanhmila.codelearning.entity.user;
 
 import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
+import com.thanhmila.codelearning.entity.payment.WalletEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 
@@ -63,6 +64,9 @@ public class UserEntity {
     )
     @Builder.Default
     Set<RoleEntity> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = true)
+    WalletEntity wallet;
 
     @PrePersist
     void prePersist() {

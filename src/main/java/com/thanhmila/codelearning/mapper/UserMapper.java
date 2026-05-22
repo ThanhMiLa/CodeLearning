@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
     @Mapping(target = "accessToken", ignore = true)
     @Mapping(target = "refreshToken", ignore = true)
+    @Mapping(target = "balance", ignore = true)
     AuthenticationResponse toAuthenticationResponse(UserEntity userEntity);
 
     @Mapping(target = "id", ignore = true)
