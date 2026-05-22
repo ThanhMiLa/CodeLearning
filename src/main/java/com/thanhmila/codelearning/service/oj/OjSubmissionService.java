@@ -8,6 +8,7 @@ import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionDetailEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionEntity;
 import com.thanhmila.codelearning.entity.oj.ProblemTestcaseEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.contest.ContestRepository;

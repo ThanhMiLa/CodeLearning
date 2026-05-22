@@ -31,6 +31,7 @@ public class UserService {
     public UserResponse getMyInfo(String username){
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        userEntity.validateStatus();
         return userMapper.toUserResponse(userEntity);
     }
 
@@ -38,6 +39,7 @@ public class UserService {
     public UserResponse updateProfile(String username, UpdateProfileRequest request){
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        userEntity.validateStatus();
 
         userEntity.setDisplayName(request.getDisplayName() != null ? request.getDisplayName() : userEntity.getDisplayName());
         userEntity.setPhoneNumber(request.getPhoneNumber() != null ? request.getPhoneNumber() : userEntity.getPhoneNumber());
@@ -52,7 +54,6 @@ public class UserService {
     public void changePassword(String username, ChangePasswordRequest changePasswordRequest){
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-
         userEntity.validateStatus();
 
         if(!passwordEncoder.matches(changePasswordRequest.getOldPassword(), userEntity.getPasswordHash())){

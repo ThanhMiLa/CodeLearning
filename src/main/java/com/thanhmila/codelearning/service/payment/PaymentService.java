@@ -12,11 +12,14 @@ import com.thanhmila.codelearning.entity.enums.WalletTransactionType;
 import com.thanhmila.codelearning.entity.payment.PaymentTransactionEntity;
 import com.thanhmila.codelearning.entity.payment.WalletEntity;
 import com.thanhmila.codelearning.entity.payment.WalletTransactionEntity;
+import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.payment.PaymentTransactionRepository;
 import com.thanhmila.codelearning.repository.payment.WalletRepository;
 import com.thanhmila.codelearning.repository.payment.WalletTransactionRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -46,6 +49,7 @@ public class PaymentService {
     WalletRepository walletRepository;
     PaymentTransactionRepository paymentTransactionRepository;
     WalletTransactionRepository walletTransactionRepository;
+    UserRepository userRepository;
 
     @Transactional
     public PaymentDepositResponse createDepositPayment(Long userId, PaymentDepositRequest request) {
