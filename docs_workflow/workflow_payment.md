@@ -1,6 +1,6 @@
 # BÀI TOÁN THIẾT KẾ: HỆ THỐNG VÍ ĐIỆN TỬ VÀ THANH TOÁN (VIRTUAL WALLET ECOSYSTEM)
 
-**Mục tiêu:** Chuyển đổi mô hình thanh toán khóa học trực tiếp sang mô hình nạp và sử dụng "Tiền ảo nội bộ" (Xu/Coin). Hệ thống cho phép User nạp tiền (VietQR), mua khóa học, nhận thưởng, hoàn tiền và yêu cầu rút tiền.
+**Mục tiêu:** Chuyển đổi mô hình thanh toán khóa học trực tiếp sang mô hình nạp và sử dụng "Tiền ảo nội bộ" (Xu/Coin). Hệ thống phân tách rõ ràng luồng Giao dịch Tiền thật (Nạp/Rút VND qua PayOS/VietQR) và Giao dịch Tiền ảo nội bộ (Mua khóa học, Nhận thưởng, Hoàn Xu).
 
 ---
 
@@ -13,78 +13,93 @@
 
 ## 2. Thiết kế Cơ sở dữ liệu (Database Schema)
 
-### Bảng `wallets` (Quản lý số dư)
+### Bảng `wallets` (Quản lý số dư Xu)
 | Cột | Kiểu dữ liệu | Ràng buộc / Ý nghĩa |
 | :--- | :--- | :--- |
 | `id` | SERIAL | Primary Key |
 | `user_id` | BIGINT | Foreign Key -> `users(id)`, UNIQUE |
-| `balance` | NUMERIC(12,2) | Số dư hiện tại (DEFAULT 0). **CHECK (balance >= 0)** |
-| `status` | VARCHAR | 'ACTIVE', 'LOCKED' (Khóa nếu phát hiện gian lận) |
+| `balance` | NUMERIC(12,2) | Số dư Xu hiện tại (DEFAULT 0.00). **CHECK (balance >= 0)** |
+| `status` | ENUM | `wallet_status`: 'ACTIVE', 'LOCKED' |
 
-### Bảng `wallet_transactions` (Lịch sử giao dịch - Sổ cái)
+### Bảng `payment_transactions` (Tiền thật: Nạp qua VietQR, Rút về thẻ)
 | Cột | Kiểu dữ liệu | Ràng buộc / Ý nghĩa |
 | :--- | :--- | :--- |
 | `id` | SERIAL | Primary Key |
 | `wallet_id` | BIGINT | Foreign Key -> `wallets(id)` |
-| `amount` | NUMERIC(12,2) | Số tiền giao dịch (Ví dụ: 500 hoặc -500) |
-| `type` | VARCHAR | DEPOSIT (Nạp), PURCHASE (Mua), REWARD (Thưởng), REFUND (Hoàn), WITHDRAW (Rút) |
-| `status` | VARCHAR | PENDING, SUCCESS, FAILED, CANCELLED |
-| `reference_id` | VARCHAR | ID tham chiếu (Mã VietQR, ID khóa học, ID Contest) |
-| `note` | VARCHAR | Ghi chú (VD: "Thưởng top 1 contest") |
-| `created_by` | BIGINT | ID người thực hiện (User ID hoặc Admin ID) |
+| `transaction_code`| VARCHAR(50)| Mã giao dịch duy nhất (UNIQUE) sinh tự động, gửi cho PayOS |
+| `amount` | NUMERIC(12,2) | Số tiền thật giao dịch (VND) |
+| `type` | ENUM | `payment_transaction_type`: DEPOSIT (Nạp tiền), WITHDRAW (Rút tiền) |
+| `status` | ENUM | `transaction_status`: PENDING, SUCCESS, FAILED, CANCELLED |
+| `note` | TEXT | Ghi chú giao dịch tiền thật |
+
+### Bảng `wallet_transactions` (Tiền ảo: Sổ cái lưu vết biến động Xu)
+| Cột | Kiểu dữ liệu | Ràng buộc / Ý nghĩa |
+| :--- | :--- | :--- |
+| `id` | SERIAL | Primary Key |
+| `wallet_id` | BIGINT | Foreign Key -> `wallets(id)` |
+| `amount` | NUMERIC(12,2) | Mức biến động Xu (Ví dụ: 500.00 hoặc -500.00) |
+| `type` | ENUM | `wallet_transaction_type`: DEPOSIT, PURCHASE, REWARD, REFUND, WITHDRAW |
+| `status` | ENUM | `transaction_status`: PENDING, SUCCESS, FAILED, CANCELLED |
+| `reference_id` | BIGINT | ID tham chiếu (VD: ID của `payment_transactions`, `courses.id`, `contests.id`) |
+| `note` | TEXT | Ghi chú (VD: "Thưởng top 1 contest") |
 
 ---
 
 ## 3. Chi tiết 4 Luồng Nghiệp Vụ (Workflows)
 
-### Luồng 3.1: Nạp tiền vào hệ thống (Deposit) - Tích hợp VietQR
-*Luồng này giao tiếp với ngân hàng thực tế thông qua dịch vụ trung gian (PayOS/SePay).*
+### Luồng 3.1: Nạp tiền vào hệ thống (Deposit) - Tích hợp PayOS/VietQR
+*Luồng này liên quan đến TIỀN THẬT, giao tiếp với ngân hàng thực tế thông qua PayOS.*
 
-1. **Khởi tạo (Client):** User nhập số tiền muốn nạp (VD: nạp 500k lấy 500 Xu).
-2. **Tạo lệnh (Server):** Backend tạo record trong `wallet_transactions` (Type: `DEPOSIT`, Status: `PENDING`), sinh ra mã giao dịch duy nhất (VD: `NAPXU_123`).
-3. **Hiển thị QR (Server -> Client):** Backend gọi API VietQR sinh ảnh QR nhúng sẵn số tiền và nội dung chuyển khoản là `NAPXU_123`. User dùng app ngân hàng quét và thanh toán.
-4. **Nhận Webhook (Bank -> Server):** Ngân hàng nhận tiền -> PayOS/SePay bắn Webhook về Backend.
-5. **Xác thực & Cộng tiền (Server):**
-    * Xác thực chữ ký số (HMAC Signature) để chống giả mạo Webhook.
-    * Check Idempotency (Trạng thái giao dịch phải là PENDING).
-    * Cập nhật `wallet_transactions` -> `SUCCESS`.
-    * Cộng tiền vào `wallets.balance`.
+1. **Khởi tạo (Client):** User nhập số tiền muốn nạp (VD: nạp 500.000 VND lấy 500 Xu).
+2. **Tạo lệnh (Server):** Backend tạo record trong `payment_transactions` (Type: `DEPOSIT`, Status: `PENDING`), sinh ra mã giao dịch duy nhất ở trường `transaction_code` (VD: `CODE_123`).
+3. **Hiển thị QR (Server -> Client):** Backend gọi API PayOS sinh QR code nhúng sẵn số tiền và mã thanh toán `CODE_123`. User dùng app ngân hàng quét và thanh toán.
+4. **Nhận Webhook (Bank -> Server):** Ngân hàng nhận tiền -> PayOS bắn Webhook về Backend.
+5. **Xác thực & Cộng tiền ảo (Server):**
+    * Xác thực chữ ký số HMAC Signature từ Webhook để chống giả mạo.
+    * Check Idempotency: Kiểm tra `payment_transactions` theo mã giao dịch, phải đang ở trạng thái `PENDING`.
+    * Đổi trạng thái `payment_transactions` -> `SUCCESS`.
+    * Tạo một record ở `wallet_transactions` (Tiền ảo) tương ứng (Type: `DEPOSIT`, Status: `SUCCESS`, amount: 500, `reference_id` trỏ vào ID của `payment_transactions`).
+    * Tăng `balance` trong `wallets`.
 
 ### Luồng 3.2: Mua Khóa Học (Course Purchase)
-*Luồng này xử lý nội bộ 100%, không gọi ra ngoài internet.*
+*Luồng này xử lý bằng TIỀN ẢO nội bộ 100%, không gọi ra ngoài internet.*
 
 1. **Yêu cầu:** User bấm mua khóa học giá 500 Xu.
 2. **Khóa ví (Pessimistic Lock):** Backend chạy lệnh `SELECT * FROM wallets WHERE user_id = ? FOR UPDATE;` để ngăn chặn User mở 2 tab mua 2 khóa học cùng lúc.
-3. **Kiểm tra số dư:** Check `balance >= 500`. Nếu không đủ, throw Exception (Báo nạp thêm tiền).
-4. **Trừ tiền & Lưu lịch sử:** * `UPDATE wallets SET balance = balance - 500`.
-    * Tạo record `wallet_transactions` (Type: `PURCHASE`, Status: `SUCCESS`, ref_id: `course_id`).
-5. **Cấp quyền:** Tạo record trong bảng `enrollments`.
-6. **Commit Transaction:** Hoàn tất và nhả Lock.
+3. **Kiểm tra số dư:** Check `balance >= 500`. Nếu không đủ, throw Exception (Báo nạp thêm Xu).
+4. **Trừ tiền & Lưu lịch sử:** 
+    * Trừ tiền: `UPDATE wallets SET balance = balance - 500`.
+    * Tạo record `wallet_transactions` (Type: `PURCHASE`, Status: `SUCCESS`, amount: -500, `reference_id`: `course_id`).
+5. **Cấp quyền:** Tạo record trong bảng `enrollments`, lưu `wallet_transaction_id` để track lại giao dịch mua này.
+6. **Commit Transaction:** Hoàn tất lưu DB và nhả Lock.
 
-### Luồng 3.3: Thưởng / Hoàn tiền (System Reward & Refund)
+### Luồng 3.3: Thưởng / Hoàn tiền Xu (System Reward & Refund)
 *Hệ thống đóng vai trò "Ngân hàng Trung ương", Admin không cần ví riêng.*
 
-1. **Kích hoạt:** Admin bấm nút hoàn tiền cho User, hoặc Hệ thống tự động phát thưởng sau khi Contest kết thúc.
+1. **Kích hoạt:** Admin bấm nút hoàn tiền cho User, hoặc Hệ thống tự động phát thưởng Xu sau khi Contest kết thúc.
 2. **Khóa ví:** Khóa ví của User nhận tiền (`FOR UPDATE`).
 3. **Cộng tiền trực tiếp:** Tăng `balance` cho User.
-4. **Ghi dấu vết (Audit Trail):** BẮT BUỘC tạo record `wallet_transactions` (Type: `REWARD` hoặc `REFUND`) với `note` giải thích lý do, `status` là `SUCCESS`, và `created_by` là ID của Admin thao tác.
+4. **Ghi dấu vết (Audit Trail):** BẮT BUỘC tạo record `wallet_transactions` (Type: `REWARD` hoặc `REFUND`, Status: `SUCCESS`, amount > 0) với `note` giải thích lý do.
 
 ### Luồng 3.4: Rút Tiền (Withdrawal / Payout)
-*Phân tách giữa Môi trường thực tế (Bán tự động) và Môi trường Test/Dev (Giả lập tự động).*
+*Rút Xu từ hệ thống quy đổi ra VND, phân tách giữa Môi trường thực tế (Bán tự động) và Môi trường Test/Dev (Giả lập tự động).*
 
-1. **Yêu cầu Rút:** User nhập số lượng Xu muốn rút và thông tin STK Ngân hàng.
-2. **Khóa và Trừ tiền ngay lập tức:** Backend dùng Lock, trừ thẳng số Xu trong ví User (để tránh đem đi mua khóa học), tạo `wallet_transactions` với trạng thái **`PENDING`**.
+1. **Yêu cầu Rút:** User nhập số lượng Xu muốn rút (VD: Rút 1000 Xu) và cung cấp STK Ngân hàng.
+2. **Khóa và Trừ tiền ảo ngay lập tức:** Backend dùng Lock, trừ thẳng số Xu trong ví User (`UPDATE wallets SET balance = balance - 1000`).
+3. **Ghi nhận giao dịch:**
+    * Tạo `wallet_transactions` (Type: `WITHDRAW`, Status: `PENDING`, amount: -1000 Xu).
+    * Tạo `payment_transactions` tương ứng (Type: `WITHDRAW`, Status: `PENDING`, amount: 1.000.000 VND).
 
 **Cách xử lý tiếp theo tùy thuộc môi trường:**
 * **Môi trường Production (Thực tế - Khuyên dùng cho Startup):**
     * Gửi notification cho Admin.
-    * Admin tự mở app ngân hàng trên điện thoại chuyển tiền thật cho User.
+    * Admin kiểm tra và tự mở app ngân hàng chuyển tiền thật (VND) cho User.
     * Admin lên trang quản trị Web bấm "Duyệt lệnh rút".
-    * Backend chuyển status transaction thành `SUCCESS`. (Nếu từ chối, chuyển thành `FAILED` và cộng lại tiền cho User).
+    * Backend chuyển status của `payment_transactions` và `wallet_transactions` thành `SUCCESS`. (Nếu từ chối, chuyển thành `FAILED` và cộng lại Xu vào Ví).
 * **Môi trường Dev / Test Đồ án (Giả lập bằng Code):**
     * Sử dụng kiến trúc Dependency Injection, tiêm một `MockPayoutService`.
     * Chạy luồng bất đồng bộ `@Async`. Service giả vờ `Thread.sleep(3000)` để mô phỏng độ trễ của ngân hàng.
-    * Sau 3 giây, tự động gọi Database chuyển status thành `SUCCESS` và bắn WebSocket báo về Frontend.
+    * Sau 3 giây, tự động chuyển status 2 giao dịch thành `SUCCESS` và bắn WebSocket báo về Frontend.
 
 ---
 

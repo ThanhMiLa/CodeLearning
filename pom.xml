@@ -137,6 +137,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- ========== PAYOS ========== -->
+        <dependency>
+            <groupId>vn.payos</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
     </dependencies>
 
     <build>
