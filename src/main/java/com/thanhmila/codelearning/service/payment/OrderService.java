@@ -24,7 +24,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,10 +133,8 @@ public class OrderService {
         enrollmentRepository.saveAll(enrollments);
 
         // 12. Update course total_enrolled counter
-        for (CourseEntity course : courses) {
-            course.setTotalEnrolled(course.getTotalEnrolled() + 1);
-        }
-        courseRepository.saveAll(courses);
+        List<Long> enrolledCourseIds = courses.stream().map(CourseEntity::getId).toList();
+        courseRepository.incrementTotalEnrolledForCourses(enrolledCourseIds);
 
         return OrderCheckoutResponse.builder()
                 .orderId(order.getId())

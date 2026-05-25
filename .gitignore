@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 AGENTS.md
+.cloc
+.cloc.exe
+cloc.exe
 
 ### Logs ###
 logs/

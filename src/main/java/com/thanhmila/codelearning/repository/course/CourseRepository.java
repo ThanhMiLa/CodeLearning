@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.data.jpa.repository.Modifying;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,5 +19,13 @@ public interface CourseRepository extends JpaRepository<CourseEntity, Long>, Jpa
             "WHERE c.id = :courseId " +
                    "AND c.status = 'ACTIVE'")
     Optional<CourseEntity> findCourseDetailById(@Param("courseId") Long courseId);
+
+    @Modifying
+    @Query("UPDATE CourseEntity c SET c.totalEnrolled = c.totalEnrolled + 1 WHERE c.id = :courseId")
+    void incrementTotalEnrolled(@Param("courseId") Long courseId);
+
+    @Modifying
+    @Query("UPDATE CourseEntity c SET c.totalEnrolled = c.totalEnrolled + 1 WHERE c.id IN :courseIds")
+    void incrementTotalEnrolledForCourses(@Param("courseIds") List<Long> courseIds);
 }
 
