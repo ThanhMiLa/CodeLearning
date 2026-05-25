@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjection;
 import com.thanhmila.codelearning.repository.projection.OjProblemListProjection;
+import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
 
 @Repository
 public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeProblemEntity, Long> {
@@ -79,5 +82,34 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
 
     @Query("SELECT p.contest.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
     Long findContestIdByProblemId(@Param("problemId") Long problemId);
+
+    @Query(value = """
+            SELECT
+                olp.id AS id,
+                olp.title AS title,
+                olp.difficulty::varchar AS difficulty,
+                olp.total_submissions AS totalSubmissions,
+                olp.total_accepted AS totalAccepted,
+                CASE WHEN :userId IS NOT NULL THEN
+                    EXISTS (
+                        SELECT 1
+                        FROM online_judge_submissions ols
+                        WHERE ols.problem_id = olp.id
+                          AND ols.user_id = :userId
+                          AND ols.verdict = 'ACCEPTED'
+                    )
+                ELSE FALSE END AS isAccepted
+            FROM online_judge_problems olp
+            WHERE olp.is_public = true AND olp.is_active = true
+            """,
+            countQuery = """
+            SELECT COUNT(*)
+            FROM online_judge_problems olp
+            WHERE olp.is_public = true AND olp.is_active = true
+            """,
+            nativeQuery = true)
+    Page<OjPracticeProblemProjection> findPracticeProblems(
+            @Param("userId") Long userId,
+            Pageable pageable);
 }
 

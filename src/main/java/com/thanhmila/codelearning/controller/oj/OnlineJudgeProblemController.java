@@ -11,11 +11,15 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
 import java.util.List;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
+import com.thanhmila.codelearning.dto.response.PageResponse;
+import com.thanhmila.codelearning.dto.response.OnlineJudgePracticeProblemResponse;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
@@ -30,6 +34,29 @@ public class OnlineJudgeProblemController {
     
     OnlineJudgeProblemService onlineJudgeProblemService;
     OjSubmissionService ojSubmissionService;
+
+    @GetMapping("/problems/practice")
+    public ResponseEntity<ApiResponse<PageResponse<OnlineJudgePracticeProblemResponse>>> getPracticeProblems(
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Long userId = null;
+        if (jwt != null) {
+            userId = jwt.getClaim("userId");
+        }
+
+        Pageable pageable = PageRequest.of(page, size);
+        var result = onlineJudgeProblemService.getPracticeProblems(userId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<OnlineJudgePracticeProblemResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get practice problems successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
 
     @GetMapping("/problems")
     @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")

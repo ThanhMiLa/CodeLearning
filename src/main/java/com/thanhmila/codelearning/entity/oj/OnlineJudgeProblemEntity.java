@@ -74,6 +74,18 @@ public class OnlineJudgeProblemEntity {
     @Builder.Default
     Boolean isActive = true;
 
+    @Column(name = "is_public", nullable = false)
+    @Builder.Default
+    Boolean isPublic = false;
+
+    @Column(name = "total_submissions", nullable = false)
+    @Builder.Default
+    Integer totalSubmissions = 0;
+
+    @Column(name = "total_accepted", nullable = false)
+    @Builder.Default
+    Integer totalAccepted = 0;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by_teacher_id", nullable = false)
     TeacherEntity createdByTeacher;

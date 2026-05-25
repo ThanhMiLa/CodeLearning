@@ -3,6 +3,11 @@ package com.thanhmila.codelearning.service.oj;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import com.thanhmila.codelearning.dto.response.PageResponse;
+import com.thanhmila.codelearning.dto.response.OnlineJudgePracticeProblemResponse;
+import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
@@ -24,6 +29,43 @@ import lombok.extern.slf4j.Slf4j;
 public class OnlineJudgeProblemService {
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
 
+
+    public PageResponse<OnlineJudgePracticeProblemResponse> getPracticeProblems(Long userId, Pageable pageable) {
+        Page<OjPracticeProblemProjection> pageData = onlineJudgeProblemRepository.findPracticeProblems(userId, pageable);
+        
+        List<OnlineJudgePracticeProblemResponse> content = pageData.getContent().stream()
+                .map(this::mapToOnlineJudgePracticeProblemResponse)
+                .collect(Collectors.toList());
+                
+        return PageResponse.<OnlineJudgePracticeProblemResponse>builder()
+                .page(pageData.getNumber())
+                .size(pageData.getSize())
+                .numberOfElements(pageData.getNumberOfElements())
+                .totalElements(pageData.getTotalElements())
+                .totalPages(pageData.getTotalPages())
+                .first(pageData.isFirst())
+                .last(pageData.isLast())
+                .content(content)
+                .build();
+    }
+
+    private OnlineJudgePracticeProblemResponse mapToOnlineJudgePracticeProblemResponse(OjPracticeProblemProjection projection) {
+        double acceptanceRate = 0.0;
+        if (projection.getTotalSubmissions() != null && projection.getTotalSubmissions() > 0) {
+            acceptanceRate = ((double) projection.getTotalAccepted() / projection.getTotalSubmissions()) * 100.0;
+            acceptanceRate = Math.round(acceptanceRate * 100.0) / 100.0;
+        }
+
+        return OnlineJudgePracticeProblemResponse.builder()
+                .id(projection.getId())
+                .title(projection.getTitle())
+                .difficulty(ProblemDifficulty.valueOf(projection.getDifficulty()))
+                .isAccepted(projection.getIsAccepted())
+                .totalSubmissions(projection.getTotalSubmissions())
+                .totalAccepted(projection.getTotalAccepted())
+                .acceptanceRate(acceptanceRate)
+                .build();
+    }
 
     public List<OnlineJudgeProblemResponse> getOnlineJudgeProblemList(Long lessonId, Long userId) {
         List<OjProblemListProjection> ojProblemList = onlineJudgeProblemRepository.findProblemsByLessonWithStatus(lessonId, userId);
