@@ -64,9 +64,34 @@ public class CourseSecurity {
             log.warn("[CourseSecurity] canAccessProblem - userId or problemId is null!");
             return false;
         }
-        boolean result = enrollmentRepository.isUserEnrolledByProblemId(userId, problemId);
-        log.info("[CourseSecurity] canAccessProblem - result: {}", result);
-        return result;
+
+        var accessDetailsOpt = onlineJudgeProblemRepository.findAccessDetailsByProblemId(problemId);
+        if (accessDetailsOpt.isEmpty()) {
+            log.warn("[CourseSecurity] canAccessProblem - problem not found: {}", problemId);
+            return false;
+        }
+
+        var details = accessDetailsOpt.get();
+
+        if (Boolean.TRUE.equals(details.getIsPublic())) {
+            log.info("[CourseSecurity] canAccessProblem - problem is public, granting access");
+            return true;
+        }
+
+        if (details.getLessonId() != null) {
+            boolean result = enrollmentRepository.isUserEnrolledInLesson(userId, details.getLessonId());
+            log.info("[CourseSecurity] canAccessProblem - lesson check: {}", result);
+            return result;
+        }
+
+        if (details.getContestId() != null) {
+            boolean result = contestParticipantRepository.findByContestIdAndUserId(details.getContestId(), userId).isPresent();
+            log.info("[CourseSecurity] canAccessProblem - contest check: {}", result);
+            return result;
+        }
+
+        log.info("[CourseSecurity] canAccessProblem - practice problem (non-public but no lesson/contest), granting access");
+        return true;
     }
 
     public boolean canAccessQuiz(Long quizId){

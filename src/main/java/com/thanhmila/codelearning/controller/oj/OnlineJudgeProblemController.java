@@ -78,7 +78,7 @@ public class OnlineJudgeProblemController {
 
     @GetMapping("/problems/{problemId}")
     @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessProblem(#problemId)")
-    public ResponseEntity<ApiResponse<OjProblemDetailResponse>> getLessonProblemDetail(
+    public ResponseEntity<ApiResponse<OjProblemDetailResponse>> getProblemDetail(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("problemId") Long problemId){
 
@@ -96,8 +96,7 @@ public class OnlineJudgeProblemController {
     }
 
     @PostMapping("/submissions")
-    @PreAuthorize("hasAuthority('OJ_PROBLEM_SUBMIT') and " +
-                "(@courseSecurity.canAccessProblem(#request.problemId) or @courseSecurity.canAccessContest(#request.problemId))")
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_SUBMIT') and @courseSecurity.canAccessProblem(#request.problemId)")
     public ResponseEntity<ApiResponse<OjSubmissionInitialResponse>> submitCode(
             @Valid @RequestBody OjSubmissionRequest request,
             @AuthenticationPrincipal Jwt jwt) {

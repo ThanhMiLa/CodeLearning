@@ -12,6 +12,7 @@ import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjection;
 import com.thanhmila.codelearning.repository.projection.OjProblemListProjection;
 import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
+import com.thanhmila.codelearning.repository.projection.ProblemAccessProjection;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -126,5 +127,12 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     Page<OjPracticeProblemProjection> findPracticeProblems(
             @Param("userId") Long userId,
             Pageable pageable);
+
+    @Query("SELECT p.isPublic AS isPublic, " +
+            "p.lesson.id AS lessonId, " +
+            "p.contest.id AS contestId " +
+            "FROM OnlineJudgeProblemEntity p " +
+            "WHERE p.id = :problemId")
+    Optional<ProblemAccessProjection> findAccessDetailsByProblemId(@Param("problemId") Long problemId);
 }
 
