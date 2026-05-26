@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class OnlineJudgeProblemDetailResponse {
+public class OjProblemDetailResponse {
     Long id;
     String title;
     String description;

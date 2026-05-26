@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import com.thanhmila.codelearning.dto.response.PageResponse;
-import com.thanhmila.codelearning.dto.response.OnlineJudgePracticeProblemResponse;
-import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
+import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
-import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjProblemDetailResponse;
+import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjection;
@@ -38,8 +37,8 @@ public class OnlineJudgeProblemService {
     OnlineJudgeSubmissionRepository onlineJudgeSubmissionRepository;
 
 
-    public PageResponse<OnlineJudgePracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
-        Specification<OnlineJudgeProblemEntity> spec = Specification.where(ProblemSpecification.isPublicAndActive());
+    public PageResponse<OjPracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
+        Specification<OnlineJudgeProblemEntity> spec = Specification.allOf(ProblemSpecification.isPublicAndActive());
 
         if (StringUtils.hasText(request.getKeyword())) {
             spec = spec.and(ProblemSpecification.hasKeyword(request.getKeyword()));
@@ -68,12 +67,12 @@ public class OnlineJudgeProblemService {
 
         final Set<Long> finalAcceptedProblemIds = acceptedProblemIds;
 
-        List<OnlineJudgePracticeProblemResponse> content = problemPage.getContent().stream()
+        List<OjPracticeProblemResponse> content = problemPage.getContent().stream()
                 .map(entity -> {
                     Double acceptanceRate = entity.getAcceptanceRate() != null ? entity.getAcceptanceRate() : 0.0;
                     acceptanceRate = Math.round(acceptanceRate * 100.0) / 100.0;
 
-                    return OnlineJudgePracticeProblemResponse.builder()
+                    return OjPracticeProblemResponse.builder()
                             .id(entity.getId())
                             .title(entity.getTitle())
                             .difficulty(entity.getDifficulty())
@@ -85,7 +84,7 @@ public class OnlineJudgeProblemService {
                 })
                 .collect(Collectors.toList());
 
-        return PageResponse.<OnlineJudgePracticeProblemResponse>builder()
+        return PageResponse.<OjPracticeProblemResponse>builder()
                 .page(problemPage.getNumber())
                 .size(problemPage.getSize())
                 .numberOfElements(problemPage.getNumberOfElements())
@@ -97,7 +96,7 @@ public class OnlineJudgeProblemService {
                 .build();
     }
 
-    public List<OnlineJudgeProblemResponse> getOnlineJudgeProblemList(Long lessonId, Long userId) {
+    public List<OjLessonProblemResponse> getLessonProblemList(Long lessonId, Long userId) {
         List<OjProblemListProjection> ojProblemList = onlineJudgeProblemRepository.findProblemsByLessonWithStatus(lessonId, userId);
         return ojProblemList.stream()
                 .map(this::mapToOnlineJudgeProblemResponse)
@@ -105,19 +104,19 @@ public class OnlineJudgeProblemService {
     }
 
 
-    public OnlineJudgeProblemDetailResponse getOnlineJudgeProblemDetail(Long problemId, Long userId) {
+    public OjProblemDetailResponse getProblemDetail(Long problemId, Long userId) {
         OjProblemDetailProjection ojProblemDetail = onlineJudgeProblemRepository.findProblemDetailWithStatus(problemId, userId)
                     .orElseThrow(() -> new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND));
 
         return mapToOnlineJudgeProblemDetailResponse(ojProblemDetail);       
     }
 
-    private OnlineJudgeProblemDetailResponse mapToOnlineJudgeProblemDetailResponse(OjProblemDetailProjection ojProblem) {
+    private OjProblemDetailResponse mapToOnlineJudgeProblemDetailResponse(OjProblemDetailProjection ojProblem) {
         List<String> tags = ojProblem.getTagsRaw() != null
                 ? Arrays.stream(ojProblem.getTagsRaw().split(",")).collect(Collectors.toList())
                 : List.of();
 
-        return OnlineJudgeProblemDetailResponse.builder()
+        return OjProblemDetailResponse.builder()
                 .id(ojProblem.getId())
                 .title(ojProblem.getTitle())
                 .description(ojProblem.getDescription())
@@ -135,8 +134,8 @@ public class OnlineJudgeProblemService {
     }
 
 
-    private OnlineJudgeProblemResponse mapToOnlineJudgeProblemResponse(OjProblemListProjection ojProblem) {
-        return OnlineJudgeProblemResponse.builder()
+    private OjLessonProblemResponse mapToOnlineJudgeProblemResponse(OjProblemListProjection ojProblem) {
+        return OjLessonProblemResponse.builder()
                 .id(ojProblem.getId())
                 .title(ojProblem.getTitle())
                 .difficulty(ProblemDifficulty.valueOf(ojProblem.getDifficulty()))

@@ -11,18 +11,17 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
 import java.util.List;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import com.thanhmila.codelearning.dto.response.PageResponse;
-import com.thanhmila.codelearning.dto.response.OnlineJudgePracticeProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
-import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
-import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjProblemDetailResponse;
+import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
 import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 
 import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
@@ -38,7 +37,7 @@ public class OnlineJudgeProblemController {
     OjSubmissionService ojSubmissionService;
 
     @GetMapping("/problems/practice")
-    public ResponseEntity<ApiResponse<PageResponse<OnlineJudgePracticeProblemResponse>>> getPracticeProblems(
+    public ResponseEntity<ApiResponse<PageResponse<OjPracticeProblemResponse>>> getPracticeProblems(
             @AuthenticationPrincipal Jwt jwt,
             @Valid ProblemSearchRequest request) {
 
@@ -49,7 +48,7 @@ public class OnlineJudgeProblemController {
 
         var result = onlineJudgeProblemService.getPracticeProblems(request, userId);
 
-        return ResponseEntity.ok(ApiResponse.<PageResponse<OnlineJudgePracticeProblemResponse>>builder()
+        return ResponseEntity.ok(ApiResponse.<PageResponse<OjPracticeProblemResponse>>builder()
                 .status(200)
                 .code(1000)
                 .message("Get practice problems successfully")
@@ -60,15 +59,15 @@ public class OnlineJudgeProblemController {
 
     @GetMapping("/problems")
     @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
-    public ResponseEntity<ApiResponse<List<OnlineJudgeProblemResponse>>> getOnlineJudgeProblemList(
+    public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getLessonProblemList(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){
 
         Long userId = jwt.getClaim("userId");
 
-        var result = onlineJudgeProblemService.getOnlineJudgeProblemList(lessonId, userId);
+        var result = onlineJudgeProblemService.getLessonProblemList(lessonId, userId);
 
-        return ResponseEntity.ok(ApiResponse.<List<OnlineJudgeProblemResponse>>builder()
+        return ResponseEntity.ok(ApiResponse.<List<OjLessonProblemResponse>>builder()
                 .status(200)
                 .code(1000)
                 .message("Get online judge problem list successfully")
@@ -79,15 +78,15 @@ public class OnlineJudgeProblemController {
 
     @GetMapping("/problems/{problemId}")
     @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessProblem(#problemId)")
-    public ResponseEntity<ApiResponse<OnlineJudgeProblemDetailResponse>> getOnlineJudgeProblemDetail(
+    public ResponseEntity<ApiResponse<OjProblemDetailResponse>> getLessonProblemDetail(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("problemId") Long problemId){
 
         Long userId = jwt.getClaim("userId");
 
-        var result = onlineJudgeProblemService.getOnlineJudgeProblemDetail(problemId, userId);
+        var result = onlineJudgeProblemService.getProblemDetail(problemId, userId);
 
-        return ResponseEntity.ok(ApiResponse.<OnlineJudgeProblemDetailResponse>builder()
+        return ResponseEntity.ok(ApiResponse.<OjProblemDetailResponse>builder()
                 .status(200)
                 .code(1000)
                 .message("Get online judge problem successfully")
