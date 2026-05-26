@@ -1,11 +1,14 @@
 package com.thanhmila.codelearning.service.oj;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
+import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
@@ -62,7 +65,7 @@ public class OnlineJudgeProblemService {
         Set<Long> acceptedProblemIds = new HashSet<>();
         if (userId != null && !problemIds.isEmpty()) {
             acceptedProblemIds = onlineJudgeSubmissionRepository.findProblemIdsByUserIdAndProblemIdsAndVerdict(
-                    userId, problemIds, com.thanhmila.codelearning.entity.enums.OjVerdict.ACCEPTED);
+                    userId, problemIds, OjVerdict.ACCEPTED);
         }
 
         final Set<Long> finalAcceptedProblemIds = acceptedProblemIds;
@@ -70,7 +73,9 @@ public class OnlineJudgeProblemService {
         List<OjPracticeProblemResponse> content = problemPage.getContent().stream()
                 .map(entity -> {
                     Double acceptanceRate = entity.getAcceptanceRate() != null ? entity.getAcceptanceRate() : 0.0;
-                    acceptanceRate = Math.round(acceptanceRate * 100.0) / 100.0;
+                    acceptanceRate = BigDecimal.valueOf(acceptanceRate)
+                            .setScale(2, RoundingMode.HALF_UP)
+                            .doubleValue();
 
                     return OjPracticeProblemResponse.builder()
                             .id(entity.getId())

@@ -52,26 +52,39 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             olp.hint,
             olp.difficulty::varchar AS difficulty,
             (SELECT string_agg(t.name, ',')
-            FROM problem_tags t 
-            JOIN problem_tag_mappings ptm ON t.id = ptm.tag_id 
-            WHERE ptm.problem_id = olp.id) AS tagsRaw,
-            latest_sub.source_code AS latestSourceCode,
-            EXISTS (
-                SELECT 1 
-                FROM online_judge_submissions ac_sub 
-                WHERE ac_sub.problem_id = olp.id 
-                  AND ac_sub.user_id = :userId 
-                  AND ac_sub.verdict = 'ACCEPTED'
-            ) AS isAccepted
+             FROM problem_tags t 
+             JOIN problem_tag_mappings ptm ON t.id = ptm.tag_id 
+             WHERE ptm.problem_id = olp.id) AS tagsRaw,
+            COALESCE(latest_accepted_sub.source_code, latest_any_sub.source_code) AS latestSourceCode,
+            CASE WHEN :userId IS NOT NULL THEN
+                EXISTS (
+                    SELECT 1 
+                    FROM online_judge_submissions ac_sub 
+                    WHERE ac_sub.problem_id = olp.id 
+                      AND ac_sub.user_id = :userId 
+                      AND ac_sub.verdict = 'ACCEPTED'
+                )
+            ELSE FALSE END AS isAccepted
         FROM online_judge_problems olp
         LEFT JOIN LATERAL (
             SELECT source_code 
             FROM online_judge_submissions sub 
-            WHERE sub.problem_id = olp.id 
+            WHERE :userId IS NOT NULL 
+              AND sub.problem_id = olp.id 
+              AND sub.user_id = :userId 
+              AND sub.verdict = 'ACCEPTED'
+            ORDER BY sub.submitted_at DESC 
+            LIMIT 1
+        ) latest_accepted_sub ON true
+        LEFT JOIN LATERAL (
+            SELECT source_code 
+            FROM online_judge_submissions sub 
+            WHERE :userId IS NOT NULL 
+              AND sub.problem_id = olp.id 
               AND sub.user_id = :userId 
             ORDER BY sub.submitted_at DESC 
             LIMIT 1
-        ) latest_sub ON true
+        ) latest_any_sub ON true
         WHERE olp.id = :problemId
         """, nativeQuery = true)
     Optional<OjProblemDetailProjection> findProblemDetailWithStatus(
