@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.hibernate.annotations.Formula;
 
 @Getter
 @Setter
@@ -85,6 +86,12 @@ public class OnlineJudgeProblemEntity {
     @Column(name = "total_accepted", nullable = false)
     @Builder.Default
     Integer totalAccepted = 0;
+
+    @Formula("CASE WHEN total_submissions = 0 THEN 0 ELSE (total_accepted * 100.0 / total_submissions) END")
+    Double acceptanceRate;
+
+    @Formula("CASE difficulty WHEN 'EASY' THEN 1 WHEN 'MEDIUM' THEN 2 WHEN 'HARD' THEN 3 ELSE 0 END")
+    Integer difficultyLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by_teacher_id", nullable = false)

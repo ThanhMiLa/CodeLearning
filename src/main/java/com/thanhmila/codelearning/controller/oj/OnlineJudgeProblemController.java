@@ -25,6 +25,8 @@ import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
 import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 
+import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -38,16 +40,14 @@ public class OnlineJudgeProblemController {
     @GetMapping("/problems/practice")
     public ResponseEntity<ApiResponse<PageResponse<OnlineJudgePracticeProblemResponse>>> getPracticeProblems(
             @AuthenticationPrincipal Jwt jwt,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @Valid ProblemSearchRequest request) {
 
         Long userId = null;
         if (jwt != null) {
             userId = jwt.getClaim("userId");
         }
 
-        Pageable pageable = PageRequest.of(page, size);
-        var result = onlineJudgeProblemService.getPracticeProblems(userId, pageable);
+        var result = onlineJudgeProblemService.getPracticeProblems(request, userId);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<OnlineJudgePracticeProblemResponse>>builder()
                 .status(200)

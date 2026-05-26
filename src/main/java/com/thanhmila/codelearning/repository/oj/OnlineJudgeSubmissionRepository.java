@@ -1,12 +1,14 @@
 package com.thanhmila.codelearning.repository.oj;
 
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionEntity;
-import io.lettuce.core.dynamic.annotation.Param;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import com.thanhmila.codelearning.entity.enums.OjVerdict;
 
 @Repository
 public interface OnlineJudgeSubmissionRepository extends JpaRepository<OnlineJudgeSubmissionEntity, Long> {
@@ -15,5 +17,8 @@ public interface OnlineJudgeSubmissionRepository extends JpaRepository<OnlineJud
 
     @Query("SELECT s FROM OnlineJudgeSubmissionEntity s WHERE s.id = :id")
     Optional<OnlineJudgeSubmissionEntity> findById(@Param("id") Long id);
+
+    @Query("SELECT DISTINCT s.problem.id FROM OnlineJudgeSubmissionEntity s WHERE s.user.id = :userId AND s.problem.id IN :problemIds AND s.verdict = :verdict")
+    Set<Long> findProblemIdsByUserIdAndProblemIdsAndVerdict(@Param("userId") Long userId, @Param("problemIds") List<Long> problemIds, @Param("verdict") OjVerdict verdict);
 }
 

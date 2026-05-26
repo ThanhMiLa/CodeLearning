@@ -13,8 +13,10 @@ import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjectio
 import com.thanhmila.codelearning.repository.projection.OjProblemListProjection;
 import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 @Repository
-public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeProblemEntity, Long> {
+public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeProblemEntity, Long>, JpaSpecificationExecutor<OnlineJudgeProblemEntity> {
 
     @Query(value = """
             SELECT

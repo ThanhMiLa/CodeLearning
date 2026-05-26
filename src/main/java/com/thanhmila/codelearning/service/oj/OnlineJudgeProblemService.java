@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgePracticeProblemResponse;
 import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProjection;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OnlineJudgeProblemResponse;
 import com.thanhmila.codelearning.exception.AppException;
@@ -21,6 +21,13 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.domain.Specification;
+import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
+import com.thanhmila.codelearning.repository.specification.ProblemSpecification;
+import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
+import com.thanhmila.codelearning.repository.oj.OnlineJudgeSubmissionRepository;
+import java.util.Set;
+import java.util.HashSet;
 
 @Slf4j
 @Service
@@ -28,42 +35,65 @@ import lombok.extern.slf4j.Slf4j;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class OnlineJudgeProblemService {
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
+    OnlineJudgeSubmissionRepository onlineJudgeSubmissionRepository;
 
 
-    public PageResponse<OnlineJudgePracticeProblemResponse> getPracticeProblems(Long userId, Pageable pageable) {
-        Page<OjPracticeProblemProjection> pageData = onlineJudgeProblemRepository.findPracticeProblems(userId, pageable);
-        
-        List<OnlineJudgePracticeProblemResponse> content = pageData.getContent().stream()
-                .map(this::mapToOnlineJudgePracticeProblemResponse)
-                .collect(Collectors.toList());
-                
-        return PageResponse.<OnlineJudgePracticeProblemResponse>builder()
-                .page(pageData.getNumber())
-                .size(pageData.getSize())
-                .numberOfElements(pageData.getNumberOfElements())
-                .totalElements(pageData.getTotalElements())
-                .totalPages(pageData.getTotalPages())
-                .first(pageData.isFirst())
-                .last(pageData.isLast())
-                .content(content)
-                .build();
-    }
+    public PageResponse<OnlineJudgePracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
+        Specification<OnlineJudgeProblemEntity> spec = Specification.where(ProblemSpecification.isPublicAndActive());
 
-    private OnlineJudgePracticeProblemResponse mapToOnlineJudgePracticeProblemResponse(OjPracticeProblemProjection projection) {
-        double acceptanceRate = 0.0;
-        if (projection.getTotalSubmissions() != null && projection.getTotalSubmissions() > 0) {
-            acceptanceRate = ((double) projection.getTotalAccepted() / projection.getTotalSubmissions()) * 100.0;
-            acceptanceRate = Math.round(acceptanceRate * 100.0) / 100.0;
+        if (StringUtils.hasText(request.getKeyword())) {
+            spec = spec.and(ProblemSpecification.hasKeyword(request.getKeyword()));
+        }
+        if (request.getTagIds() != null && !request.getTagIds().isEmpty()) {
+            spec = spec.and(ProblemSpecification.hasTags(request.getTagIds()));
+        }
+        if (request.getDifficulties() != null && !request.getDifficulties().isEmpty()) {
+            spec = spec.and(ProblemSpecification.hasDifficulties(request.getDifficulties()));
+        }
+        if (request.getIsAccepted() != null && userId != null) {
+            spec = spec.and(ProblemSpecification.hasUserAccepted(request.getIsAccepted(), userId));
         }
 
-        return OnlineJudgePracticeProblemResponse.builder()
-                .id(projection.getId())
-                .title(projection.getTitle())
-                .difficulty(ProblemDifficulty.valueOf(projection.getDifficulty()))
-                .isAccepted(projection.getIsAccepted())
-                .totalSubmissions(projection.getTotalSubmissions())
-                .totalAccepted(projection.getTotalAccepted())
-                .acceptanceRate(acceptanceRate)
+        Page<OnlineJudgeProblemEntity> problemPage = onlineJudgeProblemRepository.findAll(spec, request.getPageable());
+
+        List<Long> problemIds = problemPage.getContent().stream()
+                .map(OnlineJudgeProblemEntity::getId)
+                .collect(Collectors.toList());
+
+        Set<Long> acceptedProblemIds = new HashSet<>();
+        if (userId != null && !problemIds.isEmpty()) {
+            acceptedProblemIds = onlineJudgeSubmissionRepository.findProblemIdsByUserIdAndProblemIdsAndVerdict(
+                    userId, problemIds, com.thanhmila.codelearning.entity.enums.OjVerdict.ACCEPTED);
+        }
+
+        final Set<Long> finalAcceptedProblemIds = acceptedProblemIds;
+
+        List<OnlineJudgePracticeProblemResponse> content = problemPage.getContent().stream()
+                .map(entity -> {
+                    Double acceptanceRate = entity.getAcceptanceRate() != null ? entity.getAcceptanceRate() : 0.0;
+                    acceptanceRate = Math.round(acceptanceRate * 100.0) / 100.0;
+
+                    return OnlineJudgePracticeProblemResponse.builder()
+                            .id(entity.getId())
+                            .title(entity.getTitle())
+                            .difficulty(entity.getDifficulty())
+                            .isAccepted(finalAcceptedProblemIds.contains(entity.getId()))
+                            .totalSubmissions(entity.getTotalSubmissions())
+                            .totalAccepted(entity.getTotalAccepted())
+                            .acceptanceRate(acceptanceRate)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        return PageResponse.<OnlineJudgePracticeProblemResponse>builder()
+                .page(problemPage.getNumber())
+                .size(problemPage.getSize())
+                .numberOfElements(problemPage.getNumberOfElements())
+                .totalElements(problemPage.getTotalElements())
+                .totalPages(problemPage.getTotalPages())
+                .first(problemPage.isFirst())
+                .last(problemPage.isLast())
+                .content(content)
                 .build();
     }
 
