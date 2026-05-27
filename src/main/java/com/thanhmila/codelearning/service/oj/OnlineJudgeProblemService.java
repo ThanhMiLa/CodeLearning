@@ -101,7 +101,7 @@ public class OnlineJudgeProblemService {
                 .build();
     }
 
-    public List<OjLessonProblemResponse> getLessonProblemList(Long lessonId, Long userId) {
+    public List<OjLessonProblemResponse> getLessonProblems(Long lessonId, Long userId) {
         List<OjProblemListProjection> ojProblemList = onlineJudgeProblemRepository.findProblemsByLessonWithStatus(lessonId, userId);
         return ojProblemList.stream()
                 .map(this::mapToOnlineJudgeProblemResponse)

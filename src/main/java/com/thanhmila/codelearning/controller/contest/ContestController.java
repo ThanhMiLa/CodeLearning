@@ -3,7 +3,9 @@ package com.thanhmila.codelearning.controller.contest;
 import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
+import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
+import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.service.contest.ContestService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -24,6 +26,22 @@ import java.time.Instant;
 public class ContestController {
 
     ContestService contestService;
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<PageResponse<ContestListResponse>>> getContests(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        PageResponse<ContestListResponse> response = contestService.getContests(page, size);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<ContestListResponse>>builder()
+                .status(200)
+                .code(200)
+                .message("Fetched contests successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
 
     @PostMapping
     @PreAuthorize("hasAuthority('CONTEST_CREATE')")

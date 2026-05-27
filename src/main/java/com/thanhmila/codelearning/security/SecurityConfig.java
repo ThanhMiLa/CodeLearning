@@ -63,7 +63,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/online-judge/submissions/**").permitAll() // Cho phép PUT /online-judge/submissions/** để Judge0 callback
-                        .requestMatchers("/test-ws.html", "/ws/**").permitAll()// Frontend giả lập WebSocket
+                        .requestMatchers("/test-ws.html", "/ws/**").permitAll() // Frontend giả lập WebSocket
+                        .requestMatchers(HttpMethod.GET, "/contests").permitAll()
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )

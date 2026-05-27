@@ -2,7 +2,9 @@ package com.thanhmila.codelearning.service.contest;
 
 import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
+import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
+import com.thanhmila.codelearning.dto.response.PageResponse;
 
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
 import com.thanhmila.codelearning.entity.enums.ContestStatus;
@@ -16,6 +18,9 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +42,12 @@ public class ContestService {
     PasswordEncoder passwordEncoder;
     ContestMapper contestMapper;
     RabbitTemplate rabbitTemplate;
+
+    public PageResponse<ContestListResponse> getContests(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ContestListResponse> contestPage = contestRepository.findAllContestsWithCustomSort(pageable);
+        return PageResponse.from(contestPage);
+    }
 
     @Transactional
     public ContestResponse createContest(ContestCreateRequest request, Long userId) {

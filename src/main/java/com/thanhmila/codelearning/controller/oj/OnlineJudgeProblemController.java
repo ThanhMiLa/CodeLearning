@@ -59,13 +59,13 @@ public class OnlineJudgeProblemController {
 
     @GetMapping("/problems")
     @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
-    public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getLessonProblemList(
+    public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getLessonProblems(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){
 
         Long userId = jwt.getClaim("userId");
 
-        var result = onlineJudgeProblemService.getLessonProblemList(lessonId, userId);
+        var result = onlineJudgeProblemService.getLessonProblems(lessonId, userId);
 
         return ResponseEntity.ok(ApiResponse.<List<OjLessonProblemResponse>>builder()
                 .status(200)

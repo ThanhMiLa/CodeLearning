@@ -42,13 +42,13 @@ public class ContestEntity {
 
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "contest_status")
     @Builder.Default
     ContestStatus status = ContestStatus.UPCOMING;
 
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(name = "scoring_rule", nullable = false)
+    @Column(name = "scoring_rule", nullable = false, columnDefinition = "scoring_rule")
     @Builder.Default
     ScoringRule scoringRule = ScoringRule.ICPC;
 
