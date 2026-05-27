@@ -1,6 +1,7 @@
 package com.thanhmila.codelearning.controller.contest;
 
 import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
+import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
 import com.thanhmila.codelearning.service.contest.ContestService;
@@ -42,4 +43,25 @@ public class ContestController {
                 .timestamp(Instant.now().toString())
                 .build());
     }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('CONTEST_UPDATE_OWN')")
+    public ResponseEntity<ApiResponse<ContestResponse>> updateContest(
+            @PathVariable Long id,
+            @Valid @RequestBody ContestUpdateRequest request,
+            @AuthenticationPrincipal Jwt jwt) {
+        
+        Long userId = jwt.getClaim("userId");
+        
+        ContestResponse response = contestService.updateContest(id, request, userId);
+        
+        return ResponseEntity.ok(ApiResponse.<ContestResponse>builder()
+                .status(200)
+                .code(200)
+                .message("Contest updated successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
 }
+

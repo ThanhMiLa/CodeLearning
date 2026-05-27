@@ -25,6 +25,13 @@ spring:
       port: ${REDIS_PORT:6379}
       timeout: 60000
 
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+
 jwt:
   signer-key: ${JWT_SIGNER_KEY}
   valid-duration: ${JWT_VALID_DURATION:180}
