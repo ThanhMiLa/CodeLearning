@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.entity.contest;
 
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.entity.enums.ContestStatus;
+import com.thanhmila.codelearning.entity.enums.ScoringRule;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,6 +45,12 @@ public class ContestEntity {
     @Column(nullable = false)
     @Builder.Default
     ContestStatus status = ContestStatus.UPCOMING;
+
+    @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(name = "scoring_rule", nullable = false)
+    @Builder.Default
+    ScoringRule scoringRule = ScoringRule.ICPC;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by_teacher_id", nullable = false)

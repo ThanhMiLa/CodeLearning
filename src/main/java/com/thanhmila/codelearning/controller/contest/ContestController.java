@@ -1,0 +1,45 @@
+package com.thanhmila.codelearning.controller.contest;
+
+import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
+import com.thanhmila.codelearning.dto.response.ApiResponse;
+import com.thanhmila.codelearning.dto.response.ContestResponse;
+import com.thanhmila.codelearning.service.contest.ContestService;
+import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+
+@RestController
+@RequestMapping("/contests")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class ContestController {
+
+    ContestService contestService;
+
+    @PostMapping
+    @PreAuthorize("hasAuthority('CONTEST_CREATE')")
+    public ResponseEntity<ApiResponse<ContestResponse>> createContest(
+            @Valid @RequestBody ContestCreateRequest request,
+            @AuthenticationPrincipal Jwt jwt) {
+        
+        Long userId = jwt.getClaim("userId");
+        
+        ContestResponse response = contestService.createContest(request, userId);
+        
+        return ResponseEntity.ok(ApiResponse.<ContestResponse>builder()
+                .status(200)
+                .code(200)
+                .message("Contest created successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+}

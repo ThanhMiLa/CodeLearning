@@ -82,6 +82,19 @@ CREATE TYPE public.contest_status AS ENUM (
 ALTER TYPE public.contest_status OWNER TO postgres;
 
 --
+-- Name: scoring_rule; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.scoring_rule AS ENUM (
+    'ICPC',
+    'IOI',
+    'CUSTOM'
+);
+
+
+ALTER TYPE public.scoring_rule OWNER TO postgres;
+
+--
 -- TOC entry 932 (class 1247 OID 16810)
 -- Name: course_status; Type: TYPE; Schema: public; Owner: postgres
 --
@@ -529,6 +542,7 @@ CREATE TABLE public.contests (
     start_time timestamp with time zone NOT NULL,
     end_time timestamp with time zone NOT NULL,
     status public.contest_status DEFAULT 'UPCOMING'::public.contest_status NOT NULL,
+    scoring_rule public.scoring_rule DEFAULT 'ICPC'::public.scoring_rule NOT NULL,
     created_by_teacher_id bigint NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL,

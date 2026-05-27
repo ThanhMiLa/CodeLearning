@@ -36,7 +36,8 @@ public class SecurityConfig {
     @Order(1)
     SecurityFilterChain authChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**", "/lessons/{lessonId}", "/payment/success.html", "/payment/cancel.html", "/payment/webhook", "/online-judge/problems/practice")
+                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**", "/lessons/{lessonId}",
+                        "/payment/success.html", "/payment/cancel.html", "/payment/webhook", "/online-judge/problems/practice")
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
