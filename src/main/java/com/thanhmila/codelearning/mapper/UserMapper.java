@@ -21,6 +21,7 @@ public interface UserMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "wallet", ignore = true)
+    @Mapping(target = "cart", ignore = true)
     UserEntity toUserEntity(RegisterRequest registerRequest);
 
     

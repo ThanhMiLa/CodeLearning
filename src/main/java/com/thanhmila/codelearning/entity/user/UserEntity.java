@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.entity.user;
 import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.entity.payment.WalletEntity;
+import com.thanhmila.codelearning.entity.payment.CartEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 
@@ -67,6 +68,9 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = true)
     WalletEntity wallet;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    CartEntity cart;
 
     @PrePersist
     void prePersist() {
