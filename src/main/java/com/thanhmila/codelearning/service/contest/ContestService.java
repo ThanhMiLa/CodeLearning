@@ -65,8 +65,8 @@ public class ContestService {
 
         ContestEntity savedContest = contestRepository.save(contest);
 
-//        publishStartMessage(savedContest);
-//        publishEndMessage(savedContest);
+        publishStartMessage(savedContest);
+        publishEndMessage(savedContest);
 
         return contestMapper.toContestResponse(savedContest);
     }
@@ -120,45 +120,45 @@ public class ContestService {
 
         ContestEntity savedContest = contestRepository.save(contest);
 
-//        if (startTimeChanged && savedContest.getStatus() == ContestStatus.UPCOMING) {
-//            publishStartMessage(savedContest);
-//        }
-//        if (endTimeChanged && savedContest.getStatus() != ContestStatus.ENDED) {
-//            publishEndMessage(savedContest);
-//        }
+        if (startTimeChanged && savedContest.getStatus() == ContestStatus.UPCOMING) {
+            publishStartMessage(savedContest);
+        }
+        if (endTimeChanged && savedContest.getStatus() != ContestStatus.ENDED) {
+            publishEndMessage(savedContest);
+        }
 
         return contestMapper.toContestResponse(savedContest);
     }
 
-//    private void publishStartMessage(ContestEntity contest) {
-//        long delayStart = contest.getStartTime().toInstant().toEpochMilli() - Instant.now().toEpochMilli();
-//        if (delayStart > 0) {
-//            ContestStatusMessage startMsg = ContestStatusMessage.builder()
-//                    .contestId(contest.getId().toString())
-//                    .action("START")
-//                    .targetTime(contest.getStartTime().toInstant())
-//                    .build();
-//            rabbitTemplate.convertAndSend(RabbitMQConfig.CONTEST_EXCHANGE, RabbitMQConfig.ROUTING_KEY_RUNNING, startMsg, message -> {
-//                message.getMessageProperties().setHeader("x-delay", delayStart);
-//                return message;
-//            });
-//            log.info("Scheduled START message for contest {} with delay {}ms", contest.getId(), delayStart);
-//        }
-//    }
-//
-//    private void publishEndMessage(ContestEntity contest) {
-//        long delayEnd = contest.getEndTime().toInstant().toEpochMilli() - Instant.now().toEpochMilli();
-//        if (delayEnd > 0) {
-//            ContestStatusMessage endMsg = ContestStatusMessage.builder()
-//                    .contestId(contest.getId().toString())
-//                    .action("END")
-//                    .targetTime(contest.getEndTime().toInstant())
-//                    .build();
-//            rabbitTemplate.convertAndSend(RabbitMQConfig.CONTEST_EXCHANGE, RabbitMQConfig.ROUTING_KEY_ENDED, endMsg, message -> {
-//                message.getMessageProperties().setHeader("x-delay", delayEnd);
-//                return message;
-//            });
-//            log.info("Scheduled END message for contest {} with delay {}ms", contest.getId(), delayEnd);
-//        }
-//    }
+    private void publishStartMessage(ContestEntity contest) {
+        long delayStart = contest.getStartTime().toInstant().toEpochMilli() - Instant.now().toEpochMilli();
+        if (delayStart > 0) {
+            ContestStatusMessage startMsg = ContestStatusMessage.builder()
+                    .contestId(contest.getId().toString())
+                    .action("START")
+                    .targetTime(contest.getStartTime().toInstant())
+                    .build();
+            rabbitTemplate.convertAndSend(RabbitMQConfig.CONTEST_EXCHANGE, RabbitMQConfig.ROUTING_KEY_RUNNING, startMsg, message -> {
+                message.getMessageProperties().setHeader("x-delay", delayStart);
+                return message;
+            });
+            log.info("Scheduled START message for contest {} with delay {}ms", contest.getId(), delayStart);
+        }
+    }
+
+    private void publishEndMessage(ContestEntity contest) {
+        long delayEnd = contest.getEndTime().toInstant().toEpochMilli() - Instant.now().toEpochMilli();
+        if (delayEnd > 0) {
+            ContestStatusMessage endMsg = ContestStatusMessage.builder()
+                    .contestId(contest.getId().toString())
+                    .action("END")
+                    .targetTime(contest.getEndTime().toInstant())
+                    .build();
+            rabbitTemplate.convertAndSend(RabbitMQConfig.CONTEST_EXCHANGE, RabbitMQConfig.ROUTING_KEY_ENDED, endMsg, message -> {
+                message.getMessageProperties().setHeader("x-delay", delayEnd);
+                return message;
+            });
+            log.info("Scheduled END message for contest {} with delay {}ms", contest.getId(), delayEnd);
+        }
+    }
 }
