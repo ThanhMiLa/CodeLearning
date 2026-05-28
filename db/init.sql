@@ -140,6 +140,17 @@ CREATE TYPE public.file_submission_status AS ENUM (
 ALTER TYPE public.file_submission_status OWNER TO postgres;
 
 --
+-- Name: quiz_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.quiz_status AS ENUM (
+    'IN_PROGRESS',
+    'COMPLETED'
+);
+
+ALTER TYPE public.quiz_status OWNER TO postgres;
+
+--
 -- TOC entry 935 (class 1247 OID 16818)
 -- Name: lesson_status; Type: TYPE; Schema: public; Owner: postgres
 --
@@ -1455,9 +1466,10 @@ ALTER SEQUENCE public.problem_testcases_id_seq OWNED BY public.problem_testcases
 
 CREATE TABLE public.quiz_attempt_answers (
     id bigint NOT NULL,
-    attempt_id bigint NOT NULL,
-    question_id bigint NOT NULL,
-    selected_option_id bigint
+    quiz_attempt_id bigint NOT NULL,
+    quiz_question_id bigint NOT NULL,
+    quiz_option_id bigint,
+    is_correct boolean DEFAULT false NOT NULL
 );
 
 
@@ -1496,15 +1508,10 @@ CREATE TABLE public.quiz_attempts (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     quiz_id bigint NOT NULL,
-    total_questions integer NOT NULL,
-    correct_answers integer NOT NULL,
-    score numeric(5,2) NOT NULL,
-    submitted_at timestamp with time zone DEFAULT now() NOT NULL,
-    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT chk_quiz_attempts_correct_answers_valid CHECK (((correct_answers >= 0) AND (correct_answers <= total_questions))),
-    CONSTRAINT chk_quiz_attempts_score_non_negative CHECK ((score >= (0)::numeric)),
-    CONSTRAINT chk_quiz_attempts_total_questions_positive CHECK ((total_questions > 0))
+    score character varying(50),
+    started_at timestamp with time zone DEFAULT now() NOT NULL,
+    submitted_at timestamp with time zone,
+    status public.quiz_status DEFAULT 'IN_PROGRESS'::public.quiz_status NOT NULL
 );
 
 
@@ -1532,6 +1539,41 @@ ALTER SEQUENCE public.quiz_attempts_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.quiz_attempts_id_seq OWNED BY public.quiz_attempts.id;
+
+
+--
+-- Name: invalidated_tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.invalidated_tokens (
+    id bigint NOT NULL,
+    token character varying(500) NOT NULL,
+    expiry_time timestamp with time zone NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.invalidated_tokens OWNER TO postgres;
+
+--
+-- Name: invalidated_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.invalidated_tokens_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.invalidated_tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: invalidated_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.invalidated_tokens_id_seq OWNED BY public.invalidated_tokens.id;
 
 
 --
@@ -2183,11 +2225,6 @@ ALTER TABLE ONLY public.problem_tags ALTER COLUMN id SET DEFAULT nextval('public
 ALTER TABLE ONLY public.problem_testcases ALTER COLUMN id SET DEFAULT nextval('public.problem_testcases_id_seq'::regclass);
 
 
---
--- TOC entry 5195 (class 2604 OID 17874)
--- Name: quiz_attempt_answers id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
 ALTER TABLE ONLY public.quiz_attempt_answers ALTER COLUMN id SET DEFAULT nextval('public.quiz_attempt_answers_id_seq'::regclass);
 
 
@@ -2197,6 +2234,13 @@ ALTER TABLE ONLY public.quiz_attempt_answers ALTER COLUMN id SET DEFAULT nextval
 --
 
 ALTER TABLE ONLY public.quiz_attempts ALTER COLUMN id SET DEFAULT nextval('public.quiz_attempts_id_seq'::regclass);
+
+
+--
+-- Name: invalidated_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.invalidated_tokens ALTER COLUMN id SET DEFAULT nextval('public.invalidated_tokens_id_seq'::regclass);
 
 
 --
@@ -3028,27 +3072,27 @@ COPY public.problem_testcases (id, problem_id, input_data, expected_output, is_h
 -- Data for Name: quiz_attempt_answers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.quiz_attempt_answers (id, attempt_id, question_id, selected_option_id) FROM stdin;
-1	1	1	2
-2	1	2	7
-3	1	3	11
-4	1	4	16
-5	1	5	18
-6	1	6	21
-7	1	7	26
-8	1	8	30
-9	1	9	34
-10	1	10	\N
-11	2	12	45
-12	2	19	76
-13	2	18	71
-14	2	17	66
-15	2	13	49
-16	2	15	\N
-17	2	20	79
-18	2	11	43
-19	2	16	63
-20	2	14	56
+COPY public.quiz_attempt_answers (id, quiz_attempt_id, quiz_question_id, quiz_option_id, is_correct) FROM stdin;
+1	1	1	2	t
+2	1	2	7	t
+3	1	3	11	t
+4	1	4	16	t
+5	1	5	18	t
+6	1	6	21	t
+7	1	7	26	t
+8	1	8	30	t
+9	1	9	34	f
+10	1	10	\N	f
+11	2	12	45	f
+12	2	19	76	t
+13	2	18	71	t
+14	2	17	66	t
+15	2	13	49	t
+16	2	15	\N	f
+17	2	20	79	t
+18	2	11	43	t
+19	2	16	63	t
+20	2	14	56	f
 \.
 
 
@@ -3058,9 +3102,9 @@ COPY public.quiz_attempt_answers (id, attempt_id, question_id, selected_option_i
 -- Data for Name: quiz_attempts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.quiz_attempts (id, user_id, quiz_id, total_questions, correct_answers, score, submitted_at, created_at, updated_at) FROM stdin;
-1	2	1	10	8	80.00	2026-05-04 18:32:50.763517+07	2026-05-04 18:32:50.763517+07	2026-05-04 18:32:50.763517+07
-2	5	2	10	7	7.00	2026-05-10 21:15:19.743333+07	\N	\N
+COPY public.quiz_attempts (id, user_id, quiz_id, score, started_at, submitted_at, status) FROM stdin;
+1	2	1	8/10	2026-05-04 18:32:50.763517+07	2026-05-04 18:32:50.763517+07	COMPLETED
+2	5	2	7/10	2026-05-10 21:15:19.743333+07	2026-05-10 21:15:19.743333+07	COMPLETED
 \.
 
 
@@ -3728,13 +3772,14 @@ SELECT pg_catalog.setval('public.problem_tags_id_seq', 14, true);
 SELECT pg_catalog.setval('public.problem_testcases_id_seq', 167, true);
 
 
+SELECT pg_catalog.setval('public.quiz_attempt_answers_id_seq', 20, true);
+
+
 --
--- TOC entry 5827 (class 0 OID 0)
--- Dependencies: 282
--- Name: quiz_attempt_answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: invalidated_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.quiz_attempt_answers_id_seq', 20, true);
+SELECT pg_catalog.setval('public.invalidated_tokens_id_seq', 1, false);
 
 
 --
@@ -4134,6 +4179,22 @@ ALTER TABLE ONLY public.quiz_attempt_answers
 
 
 --
+-- Name: invalidated_tokens invalidated_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.invalidated_tokens
+    ADD CONSTRAINT invalidated_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: invalidated_tokens invalidated_tokens_token_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.invalidated_tokens
+    ADD CONSTRAINT invalidated_tokens_token_key UNIQUE (token);
+
+
+--
 -- TOC entry 5346 (class 2606 OID 17359)
 -- Name: quiz_attempts quiz_attempts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -4247,7 +4308,7 @@ ALTER TABLE ONLY public.teachers
 --
 
 ALTER TABLE ONLY public.quiz_attempt_answers
-    ADD CONSTRAINT unique_attempt_question UNIQUE (attempt_id, question_id);
+    ADD CONSTRAINT unique_attempt_question UNIQUE (quiz_attempt_id, quiz_question_id);
 
 
 --
@@ -5023,12 +5084,7 @@ CREATE TRIGGER trg_wallet_tx_set_updated_at BEFORE UPDATE ON public.wallet_trans
 CREATE TRIGGER trg_wallets_set_updated_at BEFORE UPDATE ON public.wallets FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
 
---
--- TOC entry 5522 (class 2620 OID 17900)
--- Name: quiz_attempts trigger_quiz_attempts_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
---
 
-CREATE TRIGGER trigger_quiz_attempts_updated_at BEFORE UPDATE ON public.quiz_attempts FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
 
 --
@@ -5577,7 +5633,7 @@ ALTER TABLE ONLY public.wallets
 --
 
 ALTER TABLE ONLY public.quiz_attempt_answers
-    ADD CONSTRAINT quiz_attempt_answers_attempt_id_fkey FOREIGN KEY (attempt_id) REFERENCES public.quiz_attempts(id) ON DELETE CASCADE;
+    ADD CONSTRAINT quiz_attempt_answers_attempt_id_fkey FOREIGN KEY (quiz_attempt_id) REFERENCES public.quiz_attempts(id) ON DELETE CASCADE;
 
 
 --
@@ -5586,7 +5642,7 @@ ALTER TABLE ONLY public.quiz_attempt_answers
 --
 
 ALTER TABLE ONLY public.quiz_attempt_answers
-    ADD CONSTRAINT quiz_attempt_answers_question_id_fkey FOREIGN KEY (question_id) REFERENCES public.quiz_questions(id);
+    ADD CONSTRAINT quiz_attempt_answers_question_id_fkey FOREIGN KEY (quiz_question_id) REFERENCES public.quiz_questions(id);
 
 
 --
@@ -5595,7 +5651,7 @@ ALTER TABLE ONLY public.quiz_attempt_answers
 --
 
 ALTER TABLE ONLY public.quiz_attempt_answers
-    ADD CONSTRAINT quiz_attempt_answers_selected_option_id_fkey FOREIGN KEY (selected_option_id) REFERENCES public.quiz_options(id);
+    ADD CONSTRAINT quiz_attempt_answers_selected_option_id_fkey FOREIGN KEY (quiz_option_id) REFERENCES public.quiz_options(id);
 
 
 -- Completed on 2026-05-26 17:54:19

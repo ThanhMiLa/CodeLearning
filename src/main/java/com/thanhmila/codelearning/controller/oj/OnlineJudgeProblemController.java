@@ -58,7 +58,7 @@ public class OnlineJudgeProblemController {
     }
 
     @GetMapping("/problems")
-    @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW', 'FILE_ASSIGNMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
+    @PreAuthorize("hasAnyAuthority('OJ_PROBLEM_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
     public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getLessonProblems(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("lessonId") Long lessonId){

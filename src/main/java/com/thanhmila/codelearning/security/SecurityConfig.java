@@ -7,7 +7,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -33,39 +32,30 @@ public class SecurityConfig {
     final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     @Bean
-    @Order(1)
-    SecurityFilterChain authChain(HttpSecurity http) throws Exception {
-        http
-                .securityMatcher("/auth/login", "/auth/register", "/auth/refresh", "/courses/**", "/lessons/{lessonId}",
-                        "/payment/success.html", "/payment/cancel.html", "/payment/webhook", "/online-judge/problems/practice")
-                .cors(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .bearerTokenResolver(bearerTokenResolver())
-                        .jwt(jwt -> jwt
-                                .decoder(customJwtDecoder)
-                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                        )
-                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                        .accessDeniedHandler(jwtAccessDeniedHandler)
-                );
-
-        return http.build();
-    }
-
-    @Bean
-    @Order(2)
-    SecurityFilterChain apiChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        // 1. Pre-flight request (CORS)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/online-judge/submissions/**").permitAll() // Cho phép PUT /online-judge/submissions/** để Judge0 callback
-                        .requestMatchers("/test-ws.html", "/ws/**").permitAll() // Frontend giả lập WebSocket
-                        .requestMatchers(HttpMethod.GET, "/contests").permitAll()
+
+                        // 2. Các API xác thực (Auth)
+                        .requestMatchers("/auth/login", "/auth/register", "/auth/refresh").permitAll()
+
+                        // 3. Các API Public để xem dữ liệu (Giới hạn HTTP GET)
+                        .requestMatchers(HttpMethod.GET, "/courses/**", "/lessons/{lessonId}", "/contests").permitAll()
+                        .requestMatchers("/online-judge/problems/practice").permitAll()
+
+                        // 4. Các API Webhook / Callback từ hệ thống bên thứ 3
+                        .requestMatchers("/payment/success.html", "/payment/cancel.html", "/payment/webhook").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/online-judge/submissions/**").permitAll()
+
+                        // 5. WebSocket & System
+                        .requestMatchers("/test-ws.html", "/ws/**").permitAll()
                         .requestMatchers("/error").permitAll()
+
+                        // 6. Tất cả các request còn lại đều yêu cầu xác thực
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
