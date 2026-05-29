@@ -68,6 +68,13 @@ public class ContestEntity {
     @OneToMany(mappedBy = "contest")
     List<ContestParticipantEntity> participants;
 
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
+    List<ContestRankingEntity> rankings;
+
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
+    List<ContestProblemAttemptEntity> problemAttempts;
+
+
     @PrePersist
     protected void onCreate() {
         createdAt = ZonedDateTime.now();
