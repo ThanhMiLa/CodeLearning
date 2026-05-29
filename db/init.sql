@@ -1425,8 +1425,9 @@ ALTER SEQUENCE public.problem_tags_id_seq OWNED BY public.problem_tags.id;
 CREATE TABLE public.problem_testcases (
     id bigint NOT NULL,
     problem_id bigint NOT NULL,
-    input_data text NOT NULL,
-    expected_output text NOT NULL,
+    token character varying(255),
+    input_data text,
+    expected_output text,
     is_hidden boolean DEFAULT false NOT NULL,
     order_index integer NOT NULL,
     CONSTRAINT chk_problem_testcases_order_positive CHECK ((order_index > 0))
@@ -4417,6 +4418,15 @@ ALTER TABLE ONLY public.problem_tag_mappings
 
 ALTER TABLE ONLY public.problem_testcases
     ADD CONSTRAINT uq_problem_testcases_problem_order UNIQUE (problem_id, order_index);
+
+
+--
+-- TOC entry 263 (class 1259 OID 17444)
+-- Name: problem_testcases uq_problem_testcases_token; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.problem_testcases
+    ADD CONSTRAINT uq_problem_testcases_token UNIQUE (token);
 
 
 --

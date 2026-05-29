@@ -5,6 +5,7 @@ import com.thanhmila.codelearning.repository.course.TeacherCourseAssignmentRepos
 import com.thanhmila.codelearning.repository.user.TeacherRepository;
 import com.thanhmila.codelearning.repository.contest.ContestParticipantRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -33,13 +34,13 @@ public class CourseSecurity {
             return false;
         }
 
-        Long contestId = onlineJudgeProblemRepository.findContestIdByProblemId(problemId);
-        if (contestId == null) {
+        List<Long> contestIds = onlineJudgeProblemRepository.findContestIdsByProblemId(problemId);
+        if (contestIds == null || contestIds.isEmpty()) {
              log.warn("[CourseSecurity] canAccessContest - problem is not part of a contest!");
              return false;
         }
 
-        boolean result = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        boolean result = contestParticipantRepository.isUserParticipantOfAnyContest(userId, contestIds);
         log.info("[CourseSecurity] canAccessContest - result: {}", result);
         return result;
     }
@@ -84,8 +85,9 @@ public class CourseSecurity {
             return result;
         }
 
-        if (details.getContestId() != null) {
-            boolean result = contestParticipantRepository.findByContestIdAndUserId(details.getContestId(), userId).isPresent();
+        List<Long> contestIds = onlineJudgeProblemRepository.findContestIdsByProblemId(problemId);
+        if (contestIds != null && !contestIds.isEmpty()) {
+            boolean result = contestParticipantRepository.isUserParticipantOfAnyContest(userId, contestIds);
             log.info("[CourseSecurity] canAccessProblem - contest check: {}", result);
             return result;
         }

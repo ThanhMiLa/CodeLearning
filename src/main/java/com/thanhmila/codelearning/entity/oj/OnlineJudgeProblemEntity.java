@@ -33,9 +33,6 @@ public class OnlineJudgeProblemEntity {
     @JoinColumn(name = "lesson_id")
     LessonEntity lesson;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contest_id")
-    ContestEntity contest;
 
     @Column(nullable = false)
     String title;

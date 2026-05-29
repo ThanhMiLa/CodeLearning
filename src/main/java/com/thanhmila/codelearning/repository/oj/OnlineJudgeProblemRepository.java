@@ -96,8 +96,10 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     @Query("SELECT p.lesson.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
     Long findLessonIdByProblemId(@Param("problemId") Long problemId);
 
-    @Query("SELECT p.contest.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
-    Long findContestIdByProblemId(@Param("problemId") Long problemId);
+    @Query("SELECT cp.contest.id " +
+            "FROM ContestProblemEntity cp " +
+            "WHERE cp.problem.id = :problemId")
+    List<Long> findContestIdsByProblemId(@Param("problemId") Long problemId);
 
     @Query(value = """
             SELECT
@@ -129,8 +131,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             Pageable pageable);
 
     @Query("SELECT p.isPublic AS isPublic, " +
-            "p.lesson.id AS lessonId, " +
-            "p.contest.id AS contestId " +
+            "p.lesson.id AS lessonId " +
             "FROM OnlineJudgeProblemEntity p " +
             "WHERE p.id = :problemId")
     Optional<ProblemAccessProjection> findAccessDetailsByProblemId(@Param("problemId") Long problemId);

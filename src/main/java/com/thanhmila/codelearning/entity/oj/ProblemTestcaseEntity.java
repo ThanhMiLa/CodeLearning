@@ -21,10 +21,13 @@ public class ProblemTestcaseEntity {
     @JoinColumn(name = "problem_id", nullable = false)
     OnlineJudgeProblemEntity problem;
 
-    @Column(name = "input_data", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "token", unique = true)
+    String token;
+
+    @Column(name = "input_data", columnDefinition = "TEXT")
     String inputData;
 
-    @Column(name = "expected_output", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "expected_output", columnDefinition = "TEXT")
     String expectedOutput;
 
     @Column(name = "is_hidden", nullable = false)
