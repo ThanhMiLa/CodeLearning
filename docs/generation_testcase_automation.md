@@ -10,16 +10,12 @@ Khi Admin/Teacher tạo một Problem và kích hoạt chế độ tự động 
 
 ### 📥 API Endpoint
 * **Method:** `POST`
-* **URL:** `/api/v1/admin/problems/generate-testcases`
-* **Access Control:** `@PreAuthorize("hasAuthority('PROBLEM_CREATE')")`
+* **URL:** `/api/v1/admin/problems/{problemId}/generate-testcases`
+* **Access Control:** `@PreAuthorize("hasAuthority('PROBLEM_UPDATE')")`
 
 ### 📦 Request Body (Payload DTO)
 ```json
 {
-  "title": "Tính tổng mảng số nguyên",
-  "description": "Cho mảng A gồm N phần tử, hãy in ra tổng của chúng...",
-  "timeLimit": 1.0,
-  "memoryLimit": 128000,
   "totalTestcasesToGenerate": 20, 
   "generatorCode": "import random\nN = random.randint(5, 50)\nprint(N)\nprint(' '.join(str(random.randint(1, 100)) for _ in range(N)))",
   "solutionCode": "import sys\nlines = sys.stdin.read().split()\nif lines:\n    N = int(lines[0])\n    arr = [int(x) for x in lines[1:]]\n    print(sum(arr))"
@@ -95,40 +91,9 @@ Judge0 chạy xong code Giải Mẫu của từng testcase sẽ gọi `PUT /api/
 ## 4. Thiết kế Thực thể & Cơ sở dữ liệu liên quan
 
 ### 📊 Thực thể Testcase (ProblemTestcaseEntity)
-Bổ sung thêm trường `token` để tra cứu bản ghi khi nhận Webhook Callback từ Judge0.
 
-```java
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "problem_testcases")
-public class ProblemTestcaseEntity extends BaseEntity {
+Để đáp ứng được tính chất bất đồng bộ của Webhook (không biết kết quả trả về thuộc về testcase nào), bắt buộc phải có một cột `token` đóng vai trò là "chìa khóa" đối chiếu.
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "problem_id", nullable = false)
-    private OnlineJudgeProblemEntity problem;
-
-    @Column(name = "token", unique = true)
-    private String token; // Dùng để tra cứu nhanh khi Webhook gọi về (ghi đè khi từ Pha 2 sang Pha 4)
-
-    @Column(name = "input_data", columnDefinition = "TEXT")
-    private String inputData; // Cho phép null ban đầu, cập nhật ở Pha 2
-
-    @Column(name = "expected_output", columnDefinition = "TEXT")
-    private String expectedOutput; // Cho phép null ban đầu, cập nhật ở Pha 4
-
-    @Column(name = "is_hidden", nullable = false)
-    private boolean isHidden = true;
-
-    @Column(name = "order_index", nullable = false)
-    private int orderIndex;
-}
-```t kế Thực thể & Cơ sở dữ liệu liên quan
-
-### 📊 Thực thể Testcase (ProblemTestcaseEntity)
 Ánh xạ trực tiếp sang cấu trúc dữ liệu lưu trữ tại PostgreSQL:
 
 ```java
@@ -145,11 +110,19 @@ public class ProblemTestcaseEntity extends BaseEntity {
     @JoinColumn(name = "problem_id", nullable = false)
     private OnlineJudgeProblemEntity problem;
 
-    @Column(name = "input_data", nullable = false, columnDefinition = "TEXT")
-    private String inputData;
+    // Cột token dùng để tra cứu nhanh khi Webhook gọi về 
+    // - Pha 1: Lưu token của mảng Input
+    // - Pha 3: Ghi đè bằng token của mảng Output
+    @Column(name = "token", unique = true)
+    private String token; 
 
-    @Column(name = "expected_output", nullable = false, columnDefinition = "TEXT")
-    private String expectedOutput;
+    // Cho phép NULL ban đầu, được Webhook cập nhật ở Pha 2
+    @Column(name = "input_data", columnDefinition = "TEXT")
+    private String inputData; 
+
+    // Cho phép NULL ban đầu, được Webhook cập nhật ở Pha 4
+    @Column(name = "expected_output", columnDefinition = "TEXT")
+    private String expectedOutput; 
 
     @Column(name = "is_hidden", nullable = false)
     private boolean isHidden = true;
@@ -158,3 +131,11 @@ public class ProblemTestcaseEntity extends BaseEntity {
     private int orderIndex;
 }
 ```
+
+---
+
+### 💡 Ưu điểm của Kiến trúc Này:
+1. **Khả năng chịu tải (High Concurrency):** Spring Boot Server hoàn toàn rảnh tay, không bị block threads nào trong suốt quá trình sinh testcase.
+2. **Tốc độ tối đa (Parallel Execution):** Tận dụng tối đa sức mạnh của Judge0 nhờ API Batch Submissions. 20 Testcases được xử lý song song thay vì tuần tự.
+3. **Chống lỗi Race Condition:** Nhờ sử dụng Redis `INCR`, việc đếm tiến trình luôn chính xác tuyệt đối dù 20 Webhooks có gọi về cùng một lúc.
+4. **Tối ưu Network & UX:** Chỉ gửi 1 tín hiệu WebSocket duy nhất khi thực sự hoàn thành toàn bộ công việc, giảm thiểu băng thông vô ích và đơn giản hóa logic phía Frontend.
