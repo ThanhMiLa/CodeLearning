@@ -2,7 +2,6 @@ package com.thanhmila.codelearning.entity.oj;
 
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
-import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.entity.enums.ProblemScope;
 import jakarta.persistence.*;
@@ -11,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import java.time.ZonedDateTime;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,9 +29,8 @@ public class OnlineJudgeProblemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lesson_id")
-    LessonEntity lesson;
+    @Column(precision = 6, scale = 2)
+    BigDecimal score;
 
 
     @Column(nullable = false)

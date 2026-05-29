@@ -1,4 +1,4 @@
-package com.thanhmila.codelearning.entity.contest;
+package com.thanhmila.codelearning.entity.lesson;
 
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import jakarta.persistence.*;
@@ -12,15 +12,17 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "contest_problems")
-public class ContestProblemEntity {
+@Table(name = "lesson_problems", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"lesson_id", "problem_id"})
+})
+public class LessonProblemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contest_id", nullable = false)
-    ContestEntity contest;
+    @JoinColumn(name = "lesson_id", nullable = false)
+    LessonEntity lesson;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "problem_id", nullable = false)

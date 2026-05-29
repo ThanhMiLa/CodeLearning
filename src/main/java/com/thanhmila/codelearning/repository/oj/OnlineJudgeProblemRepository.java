@@ -32,7 +32,9 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
                       AND ols.verdict = 'ACCEPTED'
                 ) AS is_accepted
             FROM online_judge_problems olp
-            WHERE olp.lesson_id = :lessonId
+            JOIN lesson_problems lp ON lp.problem_id = olp.id
+            WHERE lp.lesson_id = :lessonId
+            ORDER BY lp.order_index ASC
             """, nativeQuery = true)
     List<OjProblemListProjection> findProblemsByLessonWithStatus(
             @Param("lessonId") Long lessonId,
@@ -93,8 +95,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             @Param("userId") Long userId
     );
 
-    @Query("SELECT p.lesson.id FROM OnlineJudgeProblemEntity p WHERE p.id = :problemId")
-    Long findLessonIdByProblemId(@Param("problemId") Long problemId);
+
 
     @Query("SELECT cp.contest.id " +
             "FROM ContestProblemEntity cp " +
@@ -130,8 +131,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             @Param("userId") Long userId,
             Pageable pageable);
 
-    @Query("SELECT p.isPublic AS isPublic, " +
-            "p.lesson.id AS lessonId " +
+    @Query("SELECT p.isPublic AS isPublic " +
             "FROM OnlineJudgeProblemEntity p " +
             "WHERE p.id = :problemId")
     Optional<ProblemAccessProjection> findAccessDetailsByProblemId(@Param("problemId") Long problemId);

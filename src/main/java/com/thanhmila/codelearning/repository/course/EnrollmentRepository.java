@@ -45,8 +45,8 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
                 FROM enrollments e
                 JOIN chapters ch ON e.course_id = ch.course_id
                 JOIN lessons l ON l.chapter_id = ch.id
-                JOIN online_judge_problems p ON p.lesson_id = l.id
-                WHERE p.id = :problemId
+                JOIN lesson_problems lp ON lp.lesson_id = l.id
+                WHERE lp.problem_id = :problemId
                   AND e.user_id = :userId
                   AND e.status IN ('ACTIVE', 'COMPLETED')
             )
