@@ -5,6 +5,7 @@ import com.thanhmila.codelearning.dto.request.OjSubmissionRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionInitialResponse;
 import com.thanhmila.codelearning.dto.response.OjWebSocketMessage;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
+import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionDetailEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionEntity;
 import com.thanhmila.codelearning.entity.oj.ProblemTestcaseEntity;
@@ -65,6 +66,9 @@ public class OjSubmissionService {
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         user.validateStatus();
+
+        OnlineJudgeProblemEntity ojProblem = onlineJudgeProblemRepository.findByIdAndIsPublicTrue(request.getProblemId())
+                .orElseThrow(() -> new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND));
         
         // Xác thực bài toán có thuộc cuộc thi hoặc bài học không
         if (request.getContestId() != null) {

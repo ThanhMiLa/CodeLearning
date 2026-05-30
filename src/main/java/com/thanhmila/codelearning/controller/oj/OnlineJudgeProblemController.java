@@ -26,6 +26,7 @@ import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
 import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 
 import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
+import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
 
 @Slf4j
 @RestController
@@ -160,5 +161,23 @@ public class OnlineJudgeProblemController {
         log.info("➔ Nhận Output Webhook từ Judge0 cho token: {}", payload.getToken());
         ojTestcaseGenerationService.processOutputWebhook(payload);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/admin/problems")
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_CREATE')")
+    public ResponseEntity<ApiResponse<Long>> createProblemInBank(
+            @AuthenticationPrincipal Jwt jwt,
+            @Valid @RequestBody CreateOjProblemRequest request) {
+
+        Long userId = jwt.getClaim("userId");
+        Long problemId = onlineJudgeProblemService.createProblemInBank(request, userId);
+
+        return ResponseEntity.ok(ApiResponse.<Long>builder()
+                .status(200)
+                .code(1000)
+                .message("Create problem in bank successfully")
+                .result(problemId)
+                .timestamp(Instant.now().toString())
+                .build());
     }
 }

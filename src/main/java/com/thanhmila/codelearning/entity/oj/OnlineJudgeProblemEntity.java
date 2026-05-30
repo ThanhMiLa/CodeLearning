@@ -69,7 +69,7 @@ public class OnlineJudgeProblemEntity {
 
     @Column(name = "is_active", nullable = false)
     @Builder.Default
-    Boolean isActive = true;
+    Boolean isActive = false;
 
     @Column(name = "is_public", nullable = false)
     @Builder.Default

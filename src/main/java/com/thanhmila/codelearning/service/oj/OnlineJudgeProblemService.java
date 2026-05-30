@@ -30,6 +30,13 @@ import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeSubmissionRepository;
 import java.util.Set;
 import java.util.HashSet;
+import org.springframework.transaction.annotation.Transactional;
+import com.thanhmila.codelearning.repository.user.TeacherRepository;
+import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
+import com.thanhmila.codelearning.entity.enums.ProblemScope;
+import com.thanhmila.codelearning.mapper.OjProblemMapper;
+import com.thanhmila.codelearning.repository.oj.ProblemTagRepository;
+import com.thanhmila.codelearning.entity.oj.ProblemTagEntity;
 
 @Slf4j
 @Service
@@ -38,6 +45,9 @@ import java.util.HashSet;
 public class OnlineJudgeProblemService {
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
     OnlineJudgeSubmissionRepository onlineJudgeSubmissionRepository;
+    TeacherRepository teacherRepository;
+    OjProblemMapper ojProblemMapper;
+    ProblemTagRepository problemTagRepository;
 
 
     public PageResponse<OjPracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
@@ -146,5 +156,30 @@ public class OnlineJudgeProblemService {
                 .difficulty(ProblemDifficulty.valueOf(ojProblem.getDifficulty()))
                 .isAccepted(ojProblem.getIsAccepted())
                 .build();
+    }
+
+    @Transactional
+    public Long createProblemInBank(CreateOjProblemRequest request, Long userId) {
+        if (request.getProblemScope() == ProblemScope.SHARED) {
+            throw new AppException(ErrorCode.INVALID_REQUEST_BODY);
+        }
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        if (teacherId == null) {
+            throw new AppException(ErrorCode.USER_NOT_FOUND);
+        }
+
+        OnlineJudgeProblemEntity problem = ojProblemMapper.toEntity(request);
+        problem.setCreatedByTeacher(teacherRepository.getReferenceById(teacherId));
+        
+        if (request.getTagIds() != null && !request.getTagIds().isEmpty()) {
+            Set<ProblemTagEntity> tags = request.getTagIds().stream()
+                    .map(problemTagRepository::getReferenceById)
+                    .collect(Collectors.toSet());
+            problem.setTags(tags);
+        }
+
+        onlineJudgeProblemRepository.save(problem);
+        return problem.getId();
     }
 }

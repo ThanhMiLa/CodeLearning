@@ -20,4 +20,10 @@ public class GenerateTestcaseRequest {
 
     @NotBlank(message = "Solution code cannot be blank")
     String solutionCode;
+    
+    @NotNull(message = "Generator language ID is required")
+    Integer generatorLanguageId;
+    
+    @NotNull(message = "Solution language ID is required")
+    Integer solutionLanguageId;
 }

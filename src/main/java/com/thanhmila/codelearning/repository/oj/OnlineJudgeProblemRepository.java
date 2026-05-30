@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 @Repository
 public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeProblemEntity, Long>, JpaSpecificationExecutor<OnlineJudgeProblemEntity> {
+    Optional<OnlineJudgeProblemEntity> findByIdAndIsPublicTrue(Long id);
 
     @Query(value = """
             SELECT

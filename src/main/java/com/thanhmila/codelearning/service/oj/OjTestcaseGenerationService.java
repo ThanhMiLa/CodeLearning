@@ -60,15 +60,16 @@ public class OjTestcaseGenerationService {
         // Xóa testcase cũ nếu có
         problemTestcaseRepository.deleteByProblemId(problemId);
 
-        // Lưu tạm solutionCode vào Redis để Pha 3 sử dụng
+        // Lưu tạm solutionCode và languageId vào Redis để Pha 3 sử dụng
         stringRedisTemplate.opsForValue().set("gen_solution_code:" + problemId, request.getSolutionCode(), Duration.ofHours(1));
+        stringRedisTemplate.opsForValue().set("gen_solution_lang:" + problemId, String.valueOf(request.getSolutionLanguageId()), Duration.ofHours(1));
         // Reset counter
         stringRedisTemplate.delete("gen_input_progress:" + problemId);
         stringRedisTemplate.delete("gen_output_progress:" + problemId);
 
         List<ProblemTestcaseEntity> newTestcases = new ArrayList<>();
         List<Judge0SubmissionItem> items = new ArrayList<>();
-        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-inputs";
+        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-inputs?base64_encoded=true";
 
         int total = request.getTotalTestcasesToGenerate();
         for (int i = 1; i <= total; i++) {
@@ -79,7 +80,7 @@ public class OjTestcaseGenerationService {
                     .build());
 
             items.add(Judge0SubmissionItem.builder()
-                    .languageId(PYTHON_LANGUAGE_ID)
+                    .languageId(request.getGeneratorLanguageId())
                     .sourceCode(request.getGeneratorCode())
                     .callbackUrl(callbackUrl)
                     .cpuTimeLimit(5.0)
@@ -125,18 +126,22 @@ public class OjTestcaseGenerationService {
     // Pha 3: Gửi Batch sinh Output
     private void startOutputGeneration(Long problemId, Long totalTestcases) {
         String solutionCode = stringRedisTemplate.opsForValue().get("gen_solution_code:" + problemId);
-        if (solutionCode == null) {
-            log.error("Solution code not found in Redis for problem {}", problemId);
+        String solutionLangStr = stringRedisTemplate.opsForValue().get("gen_solution_lang:" + problemId);
+        
+        if (solutionCode == null || solutionLangStr == null) {
+            log.error("Solution code or language not found in Redis for problem {}", problemId);
             return;
         }
+        
+        int solutionLang = Integer.parseInt(solutionLangStr);
 
         List<ProblemTestcaseEntity> testcases = problemTestcaseRepository.findByProblemIdOrderByOrderIndex(problemId);
         List<Judge0SubmissionItem> items = new ArrayList<>();
-        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-outputs";
+        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-outputs?base64_encoded=true";
 
         for (ProblemTestcaseEntity testcase : testcases) {
             items.add(Judge0SubmissionItem.builder()
-                    .languageId(PYTHON_LANGUAGE_ID)
+                    .languageId(solutionLang)
                     .sourceCode(solutionCode)
                     .stdin(testcase.getInputData())
                     .callbackUrl(callbackUrl)
@@ -190,6 +195,7 @@ public class OjTestcaseGenerationService {
             stringRedisTemplate.delete("gen_input_progress:" + problemId);
             stringRedisTemplate.delete("gen_output_progress:" + problemId);
             stringRedisTemplate.delete("gen_solution_code:" + problemId);
+            stringRedisTemplate.delete("gen_solution_lang:" + problemId);
 
             // Bắn WebSocket báo hoàn tất 100%
             OjTestcaseGenWsMessage wsMessage = OjTestcaseGenWsMessage.builder()
@@ -204,7 +210,13 @@ public class OjTestcaseGenerationService {
     private String decodeBase64(String encoded) {
         if (encoded == null || encoded.isEmpty()) return "";
         try {
-            return new String(Base64.getDecoder().decode(encoded.trim()));
+            // Remove any whitespaces or newlines
+            String cleanEncoded = encoded.replaceAll("\\s", "");
+            // Add padding if missing
+            while (cleanEncoded.length() % 4 != 0) {
+                cleanEncoded += "=";
+            }
+            return new String(Base64.getDecoder().decode(cleanEncoded));
         } catch (Exception e) {
             log.warn("Failed to decode base64: {}", encoded);
             return encoded.trim();
