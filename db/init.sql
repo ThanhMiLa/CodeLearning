@@ -1142,7 +1142,7 @@ CREATE TABLE public.online_judge_submissions (
     score numeric(6,2),
     submitted_at timestamp with time zone DEFAULT now() NOT NULL,
     verdict public.oj_verdict DEFAULT 'PENDING'::public.oj_verdict NOT NULL,
-    CONSTRAINT chk_online_judge_submissions_context CHECK ((((lesson_id IS NOT NULL) AND (contest_id IS NULL)) OR ((lesson_id IS NULL) AND (contest_id IS NOT NULL)))),
+    CONSTRAINT chk_online_judge_submissions_context CHECK (((lesson_id IS NOT NULL AND contest_id IS NULL) OR (lesson_id IS NULL AND contest_id IS NOT NULL) OR (lesson_id IS NULL AND contest_id IS NULL))),
     CONSTRAINT chk_online_judge_submissions_execution_time_non_negative CHECK (((execution_time_ms IS NULL) OR (execution_time_ms >= 0))),
     CONSTRAINT chk_online_judge_submissions_memory_non_negative CHECK (((memory_used_kb IS NULL) OR (memory_used_kb >= 0))),
     CONSTRAINT chk_online_judge_submissions_score_non_negative CHECK (((score IS NULL) OR (score >= (0)::numeric)))

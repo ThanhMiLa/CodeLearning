@@ -12,7 +12,9 @@ import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.contest.ContestRepository;
+import com.thanhmila.codelearning.repository.contest.ContestProblemRepository;
 import com.thanhmila.codelearning.repository.lesson.LessonRepository;
+import com.thanhmila.codelearning.repository.lesson.LessonProblemRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeSubmissionDetailRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeSubmissionRepository;
@@ -45,6 +47,8 @@ public class OjSubmissionService {
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
     LessonRepository lessonRepository;
     ContestRepository contestRepository;
+    ContestProblemRepository contestProblemRepository;
+    LessonProblemRepository lessonProblemRepository;
 
     Judge0ClientService judge0ClientService;
     SimpMessagingTemplate simpMessagingTemplate;
@@ -61,6 +65,21 @@ public class OjSubmissionService {
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         user.validateStatus();
+        
+        // Xác thực bài toán có thuộc cuộc thi hoặc bài học không
+        if (request.getContestId() != null) {
+            boolean belongsToContest = contestProblemRepository.existsByContestIdAndProblemId(request.getContestId(), request.getProblemId());
+            if (!belongsToContest) {
+                throw new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND);
+            }
+        }
+        
+        if (request.getLessonId() != null) {
+            boolean belongsToLesson = lessonProblemRepository.existsByLessonIdAndProblemId(request.getLessonId(), request.getProblemId());
+            if (!belongsToLesson) {
+                throw new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND);
+            }
+        }
         
         // Kiểm tra bài toán và lấy danh sách Testcases từ Database
         List<ProblemTestcaseEntity> problemTestcaseEntityList = problemTestcaseRepository

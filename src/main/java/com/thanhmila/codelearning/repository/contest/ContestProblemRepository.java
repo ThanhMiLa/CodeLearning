@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ContestProblemRepository extends JpaRepository<ContestProblemEntity, Long> {
     List<ContestProblemEntity> findByContestIdOrderByOrderIndex(Long contestId);
+    boolean existsByContestIdAndProblemId(Long contestId, Long problemId);
 }
 
