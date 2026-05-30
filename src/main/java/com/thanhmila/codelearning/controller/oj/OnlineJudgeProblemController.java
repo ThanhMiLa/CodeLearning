@@ -1,6 +1,7 @@
 package com.thanhmila.codelearning.controller.oj;
 
 import com.thanhmila.codelearning.dto.judge0.Judge0CallbackPayload;
+import com.thanhmila.codelearning.dto.request.GenerateTestcaseRequest;
 import com.thanhmila.codelearning.dto.request.OjSubmissionRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionInitialResponse;
 import com.thanhmila.codelearning.service.oj.OjSubmissionService;
@@ -35,6 +36,7 @@ public class OnlineJudgeProblemController {
     
     OnlineJudgeProblemService onlineJudgeProblemService;
     OjSubmissionService ojSubmissionService;
+    com.thanhmila.codelearning.service.oj.OjTestcaseGenerationService ojTestcaseGenerationService;
 
     @GetMapping("/problems/practice")
     public ResponseEntity<ApiResponse<PageResponse<OjPracticeProblemResponse>>> getPracticeProblems(
@@ -128,5 +130,35 @@ public class OnlineJudgeProblemController {
                 .result(null)
                 .timestamp(Instant.now().toString())
                 .build());
+    }
+
+    @PostMapping("/problems/{problemId}/generate-testcases")
+    @PreAuthorize("hasAuthority('PROBLEM_UPDATE')")
+    public ResponseEntity<ApiResponse<Void>> generateTestcases(
+            @PathVariable("problemId") Long problemId,
+            @Valid @RequestBody GenerateTestcaseRequest request) {
+        
+        ojTestcaseGenerationService.generateTestcases(problemId, request);
+
+        return ResponseEntity.status(202).body(ApiResponse.<Void>builder()
+                .status(202)
+                .code(1000)
+                .message("Testcase generation started")
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PutMapping("/webhooks/generate-inputs")
+    public ResponseEntity<Void> processInputWebhook(@RequestBody Judge0CallbackPayload payload) {
+        log.info("➔ Nhận Input Webhook từ Judge0 cho token: {}", payload.getToken());
+        ojTestcaseGenerationService.processInputWebhook(payload);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/webhooks/generate-outputs")
+    public ResponseEntity<Void> processOutputWebhook(@RequestBody Judge0CallbackPayload payload) {
+        log.info("➔ Nhận Output Webhook từ Judge0 cho token: {}", payload.getToken());
+        ojTestcaseGenerationService.processOutputWebhook(payload);
+        return ResponseEntity.ok().build();
     }
 }

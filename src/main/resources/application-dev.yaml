@@ -64,7 +64,8 @@ websocket:
   allowed-origins: http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173
 
 app:
-  webhook-base-url: http://192.168.240.1:8080/codelearning
+  webhook-base-url: http://172.20.10.6:8080/codelearning
+
 
 
 
@@ -74,4 +75,7 @@ payos:
   checksum-key: ${PAYOS_CHECKSUM_KEY}
   return-url: "http://localhost:8080/codelearning/payment/success.html"
   cancel-url: "http://localhost:8080/codelearning/payment/cancel.html"
+
+
+
 

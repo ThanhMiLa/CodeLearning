@@ -79,10 +79,9 @@ public class CourseSecurity {
             return true;
         }
 
-        if (details.getLessonId() != null) {
-            boolean result = enrollmentRepository.isUserEnrolledInLesson(userId, details.getLessonId());
-            log.info("[CourseSecurity] canAccessProblem - lesson check: {}", result);
-            return result;
+        if (enrollmentRepository.isUserEnrolledByProblemId(userId, problemId)) {
+            log.info("[CourseSecurity] canAccessProblem - lesson check: true");
+            return true;
         }
 
         List<Long> contestIds = onlineJudgeProblemRepository.findContestIdsByProblemId(problemId);

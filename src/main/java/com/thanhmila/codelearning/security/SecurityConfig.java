@@ -50,9 +50,10 @@ public class SecurityConfig {
                         // 4. Các API Webhook / Callback từ hệ thống bên thứ 3
                         .requestMatchers("/payment/success.html", "/payment/cancel.html", "/payment/webhook").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/online-judge/submissions/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/online-judge/webhooks/**").permitAll()
 
                         // 5. WebSocket & System
-                        .requestMatchers("/test-ws.html", "/ws/**").permitAll()
+                        .requestMatchers("/test-ws.html", "/test-ws-gen.html", "/ws/**").permitAll()
                         .requestMatchers("/error").permitAll()
 
                         // 6. Tất cả các request còn lại đều yêu cầu xác thực
