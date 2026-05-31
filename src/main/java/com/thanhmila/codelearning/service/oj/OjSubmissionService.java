@@ -113,11 +113,15 @@ public class OjSubmissionService {
         double timeLimitSeconds = calculateTimeLimitForLanguage(onlineJudgeSubmissionEntity.getProblem().getTimeLimitMs(), request.getLanguageId());
 
         for (ProblemTestcaseEntity testcase : problemTestcaseEntityList) {
+            // Chuẩn hóa lại chuỗi \n bị gõ nhầm thành ký tự literal trong DB
+            String cleanStdin = testcase.getInputData() != null ? testcase.getInputData().replace("\\n", "\n") : "";
+            String cleanExpected = testcase.getExpectedOutput() != null ? testcase.getExpectedOutput().replace("\\n", "\n") : "";
+
             Judge0SubmissionItem item = Judge0SubmissionItem.builder()
                     .languageId(request.getLanguageId())
                     .sourceCode(request.getSourceCode())
-                    .stdin(testcase.getInputData())
-                    .expectedOutput(testcase.getExpectedOutput())
+                    .stdin(cleanStdin)
+                    .expectedOutput(cleanExpected)
                     .callbackUrl(callbackUrl)
                     .cpuTimeLimit(timeLimitSeconds)
                     .memoryLimit(onlineJudgeSubmissionEntity.getProblem().getMemoryLimitKb())
@@ -180,6 +184,12 @@ public class OjSubmissionService {
         submissionDetail.setVerdict(testcaseVerdict);
         submissionDetail.setExecutionTimeMs(parseExecutionTime(judge0CallbackPayload.getTime()));
         submissionDetail.setMemoryUsedKb(judge0CallbackPayload.getMemory());
+        
+        // Judge0 Webhook luôn trả output dưới dạng Base64, nên ta cần giải mã nó
+        submissionDetail.setStdout(decodeBase64Safe(judge0CallbackPayload.getStdout()));
+        submissionDetail.setStderr(decodeBase64Safe(judge0CallbackPayload.getStderr()));
+        submissionDetail.setCompileOutput(decodeBase64Safe(judge0CallbackPayload.getCompileOutput()));
+        
         onlineJudgeSubmissionDetailRepository.save(submissionDetail);
 
         // Kiểm tra xem ĐÃ CHẤM XONG HẾT CHƯA?
@@ -258,6 +268,20 @@ public class OjSubmissionService {
                 .processedTestcases(processedCount.intValue())
                 .build();
 
+        // Thêm dữ liệu output nếu không phải Contest (Thi đấu)
+        if (!isContestMode) {
+            wsMessage.setInput(submissionDetail.getTestcase().getInputData());
+            wsMessage.setExpectedOutput(submissionDetail.getTestcase().getExpectedOutput());
+            wsMessage.setCompileOutput(submissionDetail.getCompileOutput());
+            
+            // Ưu tiên hiển thị stderr vào actualOutput nếu stdout trống (giúp user dễ debug Runtime Error)
+            String actual = submissionDetail.getStdout();
+            if ((actual == null || actual.trim().isEmpty()) && submissionDetail.getStderr() != null && !submissionDetail.getStderr().trim().isEmpty()) {
+                actual = submissionDetail.getStderr();
+            }
+            wsMessage.setActualOutput(actual);
+        }
+
         // RẼ NHÁNH GỬI WEBSOCKET
         if (!isContestMode) {
             // CHẾ ĐỘ LUYỆN TẬP (PRACTICE): Chấm xong testcase nào, bắn ngay testcase đó để chạy Progress Bar
@@ -325,6 +349,20 @@ public class OjSubmissionService {
             // Default fallback to base time
             default -> baseSec;
         };
+    }
+
+    private String decodeBase64Safe(String base64Str) {
+        if (base64Str == null || base64Str.trim().isEmpty()) return base64Str;
+        try {
+            // Loại bỏ khoảng trắng/xuống dòng thừa vì Judge0 có thể có \n trong chuỗi Base64
+            String cleanBase64 = base64Str.replaceAll("\\s+", "");
+            byte[] decodedBytes = java.util.Base64.getDecoder().decode(cleanBase64);
+            return new String(decodedBytes, java.nio.charset.StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            log.warn("Lỗi giải mã Base64 từ Judge0: {}", e.getMessage());
+            // Trả về chuỗi gốc nếu không phải Base64 hợp lệ
+            return base64Str; 
+        }
     }
 
 }

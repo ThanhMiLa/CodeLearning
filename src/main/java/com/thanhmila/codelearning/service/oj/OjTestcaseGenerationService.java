@@ -6,7 +6,6 @@ import com.thanhmila.codelearning.dto.judge0.Judge0SubmissionItem;
 import com.thanhmila.codelearning.dto.judge0.Judge0TokenResponse;
 import com.thanhmila.codelearning.dto.request.GenerateTestcaseRequest;
 import com.thanhmila.codelearning.dto.response.OjTestcaseGenWsMessage;
-import com.thanhmila.codelearning.dto.response.OjWebSocketMessage;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.oj.ProblemTestcaseEntity;
 import com.thanhmila.codelearning.exception.AppException;
@@ -23,7 +22,6 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;

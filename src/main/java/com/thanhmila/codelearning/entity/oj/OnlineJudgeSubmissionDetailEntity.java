@@ -47,6 +47,15 @@ public class OnlineJudgeSubmissionDetailEntity {
     @Column(name = "memory_used_kb")
     Integer memoryUsedKb;
 
+    @Column(name = "stdout", columnDefinition = "TEXT")
+    String stdout;
+
+    @Column(name = "stderr", columnDefinition = "TEXT")
+    String stderr;
+
+    @Column(name = "compile_output", columnDefinition = "TEXT")
+    String compileOutput;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     @Builder.Default
     ZonedDateTime createdAt = ZonedDateTime.now();

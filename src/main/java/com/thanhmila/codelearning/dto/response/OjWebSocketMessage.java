@@ -21,4 +21,10 @@ public class OjWebSocketMessage {
 
     Integer totalTestcases;
     Integer processedTestcases;
+
+    // Fields for non-contest mode
+    String input;
+    String expectedOutput;
+    String actualOutput;
+    String compileOutput;
 }
