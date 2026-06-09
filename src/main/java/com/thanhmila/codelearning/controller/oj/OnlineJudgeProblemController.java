@@ -16,6 +16,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import com.thanhmila.codelearning.dto.response.PageResponse;
@@ -101,7 +102,7 @@ public class OnlineJudgeProblemController {
     @PostMapping("/submissions")
     @PreAuthorize("hasAuthority('OJ_PROBLEM_SUBMIT') and @courseSecurity.canAccessProblem(#request.problemId)")
     public ResponseEntity<ApiResponse<OjSubmissionInitialResponse>> submitCode(
-            @Valid @RequestBody OjSubmissionRequest request,
+            @Valid @RequestBody @P("request") OjSubmissionRequest request,
             @AuthenticationPrincipal Jwt jwt) {
 
         Long mockUserId = jwt.getClaim("userId");
