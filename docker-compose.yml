@@ -1,8 +1,17 @@
 version: '3.8'
 
+# Định nghĩa cấu hình logging chung để sử dụng lại qua các anchor (<<: *default-logging)
+x-logging: &default-logging
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "5"
+
 services:
+  # --- MODULE 1: HẠ TẦNG CỐT LÕI CỦA ỨNG DỤNG CHÍNH (CODELEARNING WEB APP) ---
   db:
-    image: postgres:15-alpine # Nên dùng bản ổn định 15 hoặc 16
+    image: postgres:15-alpine
     container_name: codelearning_db
     restart: always
     ports:
@@ -11,9 +20,9 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/schema-only.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/schema-only.sql:/docker-entrypoint-initdb.d/init.sql # Trỏ đến đúng file cấu hình schema của bạn
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -32,9 +41,8 @@ services:
       timeout: 5s
       retries: 5
 
-  # Bổ sung RabbitMQ để quản lý bất đồng bộ
   rabbitmq:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.rabbitmq
     container_name: codelearning_rabbitmq
@@ -48,17 +56,72 @@ services:
       timeout: 5s
       retries: 5
 
-  # Profile "full" dành cho khi cần test các tính năng nặng như Online Judge
-  judge0:
-    image: judge0/judge0:1.13.0
-    container_name: codelearning_judge0
+  # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
+  judge0-server:
+    image: judge0/judge0:1.13.1
+    container_name: judge0_codelearning_server
+    env_file: judge0.conf
+    volumes:
+      - ./judge0.conf:/judge0.conf:ro
     ports:
-      - "2358:2358"
-    profiles: ["full"]
+      - "2359:2358" # Chuyển đổi port ngoài thành 2359 để không tranh chấp với dự án cũ dùng 2358
+    privileged: true
+    <<: *default-logging
+    restart: always
     depends_on:
-      redis:
+      judge0-db:
         condition: service_healthy
+      judge0-redis:
+        condition: service_healthy
+
+  judge0-workers:
+    image: judge0/judge0:1.13.1
+    container_name: judge0_codelearning_workers
+    command: [ "./scripts/workers" ]
+    env_file: judge0.conf
+    volumes:
+      - ./judge0.conf:/judge0.conf:ro
+    privileged: true
+    <<: *default-logging
+    restart: always
+    depends_on:
+      judge0-db:
+        condition: service_healthy
+      judge0-redis:
+        condition: service_healthy
+
+  judge0-db:
+    image: postgres:16.2
+    container_name: judge0_codelearning_db
+    env_file: judge0.conf  # <-- Chỉ giữ lại dòng này, xóa block environment bên dưới đi
+    volumes:
+      - judge0_postgres_data:/var/lib/postgresql/data/
+    healthcheck:
+      # Sửa lại healthcheck một chút để nó không phụ thuộc vào biến môi trường bị lỗi
+      test: [ "CMD-SHELL", "pg_isready -U judge0 -d judge0" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    <<: *default-logging
+    restart: always
+
+  judge0-redis:
+    image: redis:7.2.4
+    container_name: judge0_codelearning_redis
+    command: [
+      "bash", "-c",
+      'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"'
+    ]
+    env_file: judge0.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    <<: *default-logging
+    restart: always
 
 volumes:
   postgres_data:
   redis_data:
+  judge0_postgres_data:
