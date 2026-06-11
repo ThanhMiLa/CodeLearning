@@ -7,6 +7,7 @@ import com.thanhmila.codelearning.dto.response.TeacherResponse;
 import com.thanhmila.codelearning.entity.course.CategoryEntity;
 import com.thanhmila.codelearning.entity.course.CourseEntity;
 import com.thanhmila.codelearning.entity.course.TeacherCourseAssignmentEntity;
+import com.thanhmila.codelearning.dto.request.CourseCreationRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -15,6 +16,24 @@ public interface CourseMapper {
     // ==========================================
     // 1. HÀM MAP CHÍNH
     // ==========================================
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "thumbnailUrl", ignore = true)
+    @Mapping(target = "thumbnailPublicId", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "averageRating", ignore = true)
+    @Mapping(target = "totalReviews", ignore = true)
+    @Mapping(target = "totalEnrolled", ignore = true)
+    @Mapping(target = "totalLessons", ignore = true)
+    @Mapping(target = "totalQuizzes", ignore = true)
+    @Mapping(target = "totalAssignments", ignore = true)
+    @Mapping(target = "totalOnlineJudgeProblems", ignore = true)
+    @Mapping(target = "totalVideos", ignore = true)
+    @Mapping(target = "categories", ignore = true)
+    @Mapping(target = "teacherAssignments", ignore = true)
+    @Mapping(target = "chapters", ignore = true)
+    CourseEntity toCourseEntity(CourseCreationRequest request);
     @Mapping(target = "enrolled", ignore = true)
     @Mapping(target = "progressPercentage", ignore = true)
     CourseListItemResponse toCourseListItemResponse(CourseEntity courseEntity);

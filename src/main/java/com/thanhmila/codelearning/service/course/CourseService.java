@@ -20,6 +20,12 @@ import com.thanhmila.codelearning.repository.progress.CompletedLessonCountReposi
 import com.thanhmila.codelearning.repository.progress.LessonProgressRepository;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
 import com.thanhmila.codelearning.util.ProgressUtils;
+import com.thanhmila.codelearning.dto.request.CourseCreationRequest;
+import com.thanhmila.codelearning.repository.course.CategoryRepository;
+import com.thanhmila.codelearning.service.cloudinary.CloudinaryService;
+import com.thanhmila.codelearning.entity.course.CategoryEntity;
+import com.thanhmila.codelearning.dto.response.CloudinaryResponse;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -42,10 +48,47 @@ public class CourseService {
     CourseRepository courseRepository;
     EnrollmentRepository enrollmentRepository;
     ChapterRepository chapterRepository;
+    CategoryRepository categoryRepository;
+    CloudinaryService cloudinaryService;
     CourseMapper courseMapper;
     ChapterMapper chapterMapper;
     CompletedLessonCountRepository completedLessonCountRepository;
     LessonProgressRepository lessonProgressRepository;
+
+    @Transactional
+    public CourseDetailResponse createCourse(CourseCreationRequest request) {
+        CourseEntity courseEntity = courseMapper.toCourseEntity(request);
+
+        // 1. Upload thumbnail to Cloudinary if present
+        if (request.getThumbnailFile() != null && !request.getThumbnailFile().isEmpty()) {
+            try {
+                CloudinaryResponse uploadResult = cloudinaryService.uploadFile(request.getThumbnailFile(), "courses/thumbnails");
+                courseEntity.setThumbnailUrl(uploadResult.getSecureUrl());
+                courseEntity.setThumbnailPublicId(uploadResult.getPublicId());
+            } catch (Exception e) {
+                log.error("Failed to upload course thumbnail: ", e);
+                throw new AppException(ErrorCode.CLOUDINARY_UPLOAD_FAILED);
+            }
+        }
+
+        // 2. Set categories
+        if (request.getCategoryIds() != null && !request.getCategoryIds().isEmpty()) {
+            List<CategoryEntity> categoryEntities = categoryRepository.findAllById(request.getCategoryIds());
+            if (categoryEntities.size() != request.getCategoryIds().size()) {
+                throw new AppException(ErrorCode.CATEGORY_NOT_FOUND);
+            }
+            courseEntity.setCategories(new HashSet<>(categoryEntities));
+        }
+
+        // 3. Save to database
+        CourseEntity savedCourse = courseRepository.save(courseEntity);
+
+        // 4. Return detailed response
+        CourseDetailResponse response = courseMapper.toCourseDetailResponse(savedCourse);
+        response.setIsEnrolled(false);
+        response.setProgressPercentage(0);
+        return response;
+    }
 
     public PageResponse<CourseListItemResponse> getCourseList(Long userId, CourseSearchRequest searchRequest, Pageable pageable) {
 

@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.List;
 
+import com.thanhmila.codelearning.dto.request.CourseCreationRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.MediaType;
+
 @Slf4j
 @RestController
 @RequestMapping("/courses")
@@ -88,6 +92,22 @@ public class CourseController {
                 .status(200)
                 .code(1000)
                 .message("Get course curriculum successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAuthority('COURSE_CREATE')")
+    public ResponseEntity<ApiResponse<CourseDetailResponse>> createCourse(
+            @ModelAttribute @Valid CourseCreationRequest request) {
+
+        var result = courseService.createCourse(request);
+
+        return ResponseEntity.ok(ApiResponse.<CourseDetailResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Create course successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

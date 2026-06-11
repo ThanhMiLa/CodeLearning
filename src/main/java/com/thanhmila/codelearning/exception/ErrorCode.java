@@ -47,6 +47,12 @@ public enum ErrorCode {
     COURSE_NOT_FOUND(3000, "Course not found", HttpStatus.NOT_FOUND),
     COURSE_INACTIVE(3001, "Course is not active", HttpStatus.BAD_REQUEST),
     COURSE_IS_NOT_FREE(3002, "Course is not free", HttpStatus.BAD_REQUEST),
+    COURSE_TITLE_REQUIRED(3003, "Course title is required", HttpStatus.BAD_REQUEST),
+    COURSE_TITLE_TOO_LONG(3004, "Course title cannot exceed 255 characters", HttpStatus.BAD_REQUEST),
+    COURSE_PRICE_REQUIRED(3005, "Course price is required", HttpStatus.BAD_REQUEST),
+    COURSE_PRICE_INVALID(3006, "Course price must be non-negative", HttpStatus.BAD_REQUEST),
+    CATEGORY_NOT_FOUND(3007, "One or more categories not found", HttpStatus.NOT_FOUND),
+    CLOUDINARY_UPLOAD_FAILED(3008, "Failed to upload file to Cloudinary", HttpStatus.INTERNAL_SERVER_ERROR),
     LESSON_NOT_FOUND(3200, "Lesson not found", HttpStatus.NOT_FOUND),
     ACCESS_DENIED_COURSE(3300, "Cannot access course", HttpStatus.CONFLICT),
 
