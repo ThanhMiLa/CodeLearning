@@ -41,6 +41,6 @@ public class ChapterEntity {
     Integer orderIndex;
 
     @Builder.Default
-    @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "chapter", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     List<LessonEntity> lessons = new ArrayList<>();
 }

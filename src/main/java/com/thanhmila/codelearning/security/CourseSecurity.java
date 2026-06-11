@@ -127,6 +127,46 @@ public class CourseSecurity {
         return result;
     }
 
+    public boolean canManageCourse(Long courseId){
+        Long userId = getCurrentUserId();
+        log.info("[CourseSecurity] canManageCourse - userId: {}, courseId: {}", userId, courseId);
+        if (userId == null || courseId == null) {
+            log.warn("[CourseSecurity] canManageCourse - userId or courseId is null!");
+            return false;
+        }
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+
+        if (teacherId == null) {
+            log.warn("[CourseSecurity] canManageCourse - teacherId is null!");
+            return false;
+        }
+
+        boolean result = teacherCourseAssignmentRepository.existsByTeacherIdAndCourseId(teacherId, courseId);
+        log.info("[CourseSecurity] canManageCourse - result: {}", result);
+        return result;
+    }
+
+    public boolean canManageChapter(Long chapterId){
+        Long userId = getCurrentUserId();
+        log.info("[CourseSecurity] canManageChapter - userId: {}, chapterId: {}", userId, chapterId);
+        if (userId == null || chapterId == null) {
+            log.warn("[CourseSecurity] canManageChapter - userId or chapterId is null!");
+            return false;
+        }
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+
+        if (teacherId == null) {
+            log.warn("[CourseSecurity] canManageChapter - teacherId is null!");
+            return false;
+        }
+
+        boolean result = teacherCourseAssignmentRepository.existsByTeacherIdAndChapterId(teacherId, chapterId);
+        log.info("[CourseSecurity] canManageChapter - result: {}", result);
+        return result;
+    }
+
     private Long getCurrentUserId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null || !auth.isAuthenticated() || !(auth.getPrincipal() instanceof Jwt jwt)) {

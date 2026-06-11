@@ -17,5 +17,11 @@ public interface ChapterRepository extends JpaRepository<ChapterEntity, Long> {
             "ORDER BY ch.orderIndex ASC, " +
                       "l.orderIndex ASC")
     List<ChapterEntity> findChaptersWithLessonsByCourseId(@Param("courseId") Long courseId);
-}
 
+    @Query("SELECT COALESCE(MAX(ch.orderIndex), 0) " +
+            "FROM ChapterEntity ch " +
+            "WHERE ch.course.id = :courseId")
+    int findMaxOrderIndexByCourseId(@Param("courseId") Long courseId);
+
+    List<ChapterEntity> findByCourseId(Long courseId);
+}
