@@ -45,6 +45,9 @@ public class LessonEntity {
     @Column(name = "video_url", length = 500)
     String videoUrl;
 
+    @Column(name = "video_public_id", length = 255)
+    String videoPublicId;
+
     @Column(name = "theory_content", columnDefinition = "TEXT")
     String theoryContent;
 

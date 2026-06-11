@@ -151,6 +151,13 @@
             <version>1.0.2</version>
         </dependency>
 
+        <!-- ========== CLOUDINARY ========== -->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.36.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
