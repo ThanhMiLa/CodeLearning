@@ -22,8 +22,4 @@ public class LessonDetailResponse {
     String theoryContent;
     String sampleCode;
 
-    // 3. Các cờ (Flags) quyết định việc hiển thị các Tab chức năng (Quiz, Bài tập, Code)
-    Boolean hasQuiz;
-    Boolean hasAssignment;
-    Boolean hasOnlineJudge;
 }

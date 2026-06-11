@@ -51,9 +51,6 @@ public class LessonEntity {
     @Column(name = "theory_content", columnDefinition = "TEXT")
     String theoryContent;
 
-    @Column(name = "sample_code", columnDefinition = "TEXT")
-    String sampleCode;
-
     @Builder.Default
     @Column(name = "is_trial", nullable = false)
     Boolean trial = false;
@@ -75,19 +72,6 @@ public class LessonEntity {
 
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
-
-    @Builder.Default
-    @Column(name = "has_quiz", nullable = false)
-    Boolean hasQuiz = false;
-    
-    @Builder.Default
-    @Column(name = "has_assignment", nullable = false)
-    Boolean hasAssignment = false;
-    
-    @Builder.Default
-    @Column(name = "has_online_judge", nullable = false)
-    Boolean hasOnlineJudge = false;
-
 
 
     @PrePersist

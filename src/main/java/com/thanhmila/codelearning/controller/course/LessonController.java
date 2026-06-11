@@ -1,6 +1,9 @@
 package com.thanhmila.codelearning.controller.course;
 
 import com.thanhmila.codelearning.dto.request.LessonCommentRequest;
+import com.thanhmila.codelearning.dto.request.LessonCreationRequest;
+import com.thanhmila.codelearning.dto.request.LessonReorderRequest;
+import com.thanhmila.codelearning.dto.request.LessonUpdateRequest;
 import com.thanhmila.codelearning.dto.request.QuizRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.LessonDetailResponse;
@@ -20,6 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,6 +31,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -39,8 +44,6 @@ public class LessonController {
         QuizService quizService;
         LessonCommentService lessonCommentService;
 
-        // API này cho phép user chưa đăng nhập xem bài học (nếu là bài học thử),
-        // nên không gắn @PreAuthorize ở Controller. Logic chặn quyền nằm trong Service.
         @GetMapping("/{lessonId}")
         public ResponseEntity<ApiResponse<LessonDetailResponse>> getLessonDetail(
                         @AuthenticationPrincipal Jwt jwt,
@@ -63,7 +66,8 @@ public class LessonController {
         }
 
         @GetMapping("/{lessonId}/quiz")
-        @PreAuthorize("hasAuthority('QUIZ_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
+        @PreAuthorize("hasAuthority('QUIZ_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) " +
+                "or @courseSecurity.canManageLesson(#lessonId))")
         public ResponseEntity<ApiResponse<QuizDetailResponse>> getQuizDetail(
                         @AuthenticationPrincipal Jwt jwt,
                         @PathVariable("lessonId") Long lessonId) {
@@ -81,7 +85,8 @@ public class LessonController {
         }
 
         @GetMapping("/{lessonId}/comments")
-        @PreAuthorize("hasAuthority('COMMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
+        @PreAuthorize("hasAuthority('COMMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) " +
+                "or @courseSecurity.canManageLesson(#lessonId))")
         public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentList(
                         @PathVariable("lessonId") Long lessonId,
                         @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.ASC) Pageable pageable) {
@@ -98,7 +103,8 @@ public class LessonController {
         }
 
         @GetMapping("/{lessonId}/comments/{commentId}/replies")
-        @PreAuthorize("hasAuthority('COMMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId) or @courseSecurity.canManageLesson(#lessonId))")
+        @PreAuthorize("hasAuthority('COMMENT_VIEW') and (@courseSecurity.canAccessLesson(#lessonId)" +
+                " or @courseSecurity.canManageLesson(#lessonId))")
         public ResponseEntity<ApiResponse<Page<LessonCommentResponse>>> getCommentListWithReply(
                         @PathVariable("lessonId") Long lessonId,
                         @PathVariable("commentId") Long commentId,
@@ -117,7 +123,7 @@ public class LessonController {
 
         @PostMapping("/{lessonId}/comments")
         @PreAuthorize("(hasAuthority('COMMENT_CREATE') and @courseSecurity.canAccessLesson(#lessonId)) or " + 
-                "(hasAnyAuthority('COMMENT_CREATE', 'COMMENT_REPLY_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId))")
+                "(hasAnyAuthority('COMMENT_CREATE') and @courseSecurity.canManageLesson(#lessonId))")
         public ResponseEntity<ApiResponse<LessonCommentResponse>> createComment(
                         @PathVariable("lessonId") Long lessonId,
                         @AuthenticationPrincipal Jwt jwt,
@@ -139,8 +145,8 @@ public class LessonController {
         @PostMapping("/{lessonId}/complete")
         @PreAuthorize("hasAuthority('LESSON_COMPLETE') and @courseSecurity.canAccessLesson(#lessonId)")
         public ResponseEntity<ApiResponse<LessonCompletionResponse>> completedLesson(
-                        @PathVariable("lessonId") Long lessonId,
-                        @AuthenticationPrincipal Jwt jwt) {
+                        @AuthenticationPrincipal Jwt jwt,
+                        @PathVariable("lessonId") Long lessonId) {
 
                 Long userId = jwt.getClaim("userId");
 
@@ -155,54 +161,68 @@ public class LessonController {
                                 .build());
         }
 
-        @PostMapping("/{lessonId}/quiz")
-        @PreAuthorize("hasAuthority('QUIZ_CREATE_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId)")
-        public ResponseEntity<ApiResponse<Void>> createQuiz(
-                        @PathVariable Long lessonId,
-                        @AuthenticationPrincipal Jwt jwt,
-                        @Valid @RequestBody QuizRequest request) {
-                Long teacherId = jwt.getClaim("userId");
-                quizService.createQuiz(lessonId, teacherId, request);
-                return ResponseEntity.ok(ApiResponse.<Void>builder()
+        @PostMapping(value = "/chapters/{chapterId}/lessons", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        @PreAuthorize("hasAuthority('LESSON_CREATE') and @courseSecurity.canManageChapter(#chapterId)")
+        public ResponseEntity<ApiResponse<LessonDetailResponse>> createLesson(
+                        @PathVariable("chapterId") Long chapterId,
+                        @ModelAttribute @Valid LessonCreationRequest request) {
+
+                var result = lessonService.createLesson(chapterId, request);
+
+                return ResponseEntity.ok(ApiResponse.<LessonDetailResponse>builder()
                                 .status(200)
                                 .code(1000)
-                                .message("Create quiz successfully")
+                                .message("Create lesson successfully")
+                                .result(result)
                                 .timestamp(Instant.now().toString())
                                 .build());
         }
 
-        @PutMapping("/{lessonId}/quiz")
-        @PreAuthorize("hasAuthority('QUIZ_UPDATE_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId)")
-        public ResponseEntity<ApiResponse<Void>> updateQuiz(
+        @PutMapping(value = "/{lessonId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        @PreAuthorize("hasAuthority('LESSON_UPDATE') and @courseSecurity.canManageLesson(#lessonId)")
+        public ResponseEntity<ApiResponse<LessonDetailResponse>> updateLesson(
                         @PathVariable("lessonId") Long lessonId,
-                        @AuthenticationPrincipal Jwt jwt,
-                        @Valid @RequestBody QuizRequest request) {
-                Long userId = jwt.getClaim("userId");
-                quizService.updateQuiz(lessonId, userId, request);
+                        @ModelAttribute @Valid LessonUpdateRequest request) {
 
-                return ResponseEntity.ok(ApiResponse.<Void>builder()
+                var result = lessonService.updateLesson(lessonId, request);
+
+                return ResponseEntity.ok(ApiResponse.<LessonDetailResponse>builder()
                                 .status(200)
                                 .code(1000)
-                                .message("Update quiz successfully")
+                                .message("Update lesson successfully")
+                                .result(result)
                                 .timestamp(Instant.now().toString())
                                 .build());
         }
 
-        @DeleteMapping("/{lessonId}/quiz")
-        @PreAuthorize("hasAuthority('QUIZ_DELETE_ASSIGNED_COURSE') and @courseSecurity.canManageLesson(#lessonId)")
-        public ResponseEntity<ApiResponse<Void>> deleteQuiz(
-                        @PathVariable("lessonId") Long lessonId,
-                        @AuthenticationPrincipal Jwt jwt) {
-                Long userId = jwt.getClaim("userId");
-                quizService.deleteQuiz(lessonId, userId);
+        @DeleteMapping("/{lessonId}")
+        @PreAuthorize("hasAuthority('LESSON_DELETE') and @courseSecurity.canManageLesson(#lessonId)")
+        public ResponseEntity<ApiResponse<Void>> deleteLesson(
+                        @PathVariable("lessonId") Long lessonId) {
+
+                lessonService.deleteLesson(lessonId);
 
                 return ResponseEntity.ok(ApiResponse.<Void>builder()
                                 .status(200)
                                 .code(1000)
-                                .message("Delete quiz successfully")
+                                .message("Delete lesson successfully")
                                 .timestamp(Instant.now().toString())
                                 .build());
         }
 
+        @PutMapping("/chapters/{chapterId}/lessons/reorder")
+        @PreAuthorize("hasAuthority('LESSON_UPDATE') and @courseSecurity.canManageChapter(#chapterId)")
+        public ResponseEntity<ApiResponse<Void>> reorderLessons(
+                        @PathVariable("chapterId") Long chapterId,
+                        @Valid @RequestBody List<LessonReorderRequest> requests) {
 
+                lessonService.reorderLessons(chapterId, requests);
+
+                return ResponseEntity.ok(ApiResponse.<Void>builder()
+                                .status(200)
+                                .code(1000)
+                                .message("Reorder lessons successfully")
+                                .timestamp(Instant.now().toString())
+                                .build());
+        }
 }

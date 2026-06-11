@@ -1162,9 +1162,6 @@ CREATE TABLE public.lessons (
     status public.lesson_status DEFAULT 'DRAFT'::public.lesson_status NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    has_quiz boolean DEFAULT false NOT NULL,
-    has_assignment boolean DEFAULT false NOT NULL,
-    has_online_judge boolean DEFAULT false NOT NULL,
     CONSTRAINT chk_lessons_estimated_duration_positive CHECK (((estimated_duration_minutes IS NULL) OR (estimated_duration_minutes > 0))),
     CONSTRAINT chk_lessons_order_positive CHECK ((order_index > 0)),
     CONSTRAINT chk_lessons_title_not_blank CHECK ((length(TRIM(BOTH FROM title)) > 0))

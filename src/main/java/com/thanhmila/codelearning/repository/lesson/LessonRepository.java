@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -34,5 +35,11 @@ public interface LessonRepository extends JpaRepository<LessonEntity, Long> {
       """)
   Optional<CourseEntity> findCourseByLessonId(Long lessonId);
 
+  @Query("SELECT COALESCE(MAX(l.orderIndex), 0) " +
+         "FROM LessonEntity l " +
+         "WHERE l.chapter.id = :chapterId")
+  int findMaxOrderIndexByChapterId(@Param("chapterId") Long chapterId);
+
+  List<LessonEntity> findByChapterId(Long chapterId);
 }
 

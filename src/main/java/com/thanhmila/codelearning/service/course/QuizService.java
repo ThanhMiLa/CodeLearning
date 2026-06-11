@@ -213,8 +213,6 @@ public class QuizService {
 
         quizEntity.setQuestions(questions);
         quizRepository.save(quizEntity);
-
-        lessonEntity.setHasQuiz(true);
     }
 
     @Transactional
@@ -295,9 +293,6 @@ public class QuizService {
         // (Nhờ @SQLDelete, Hibernate sẽ tự sinh lệnh: UPDATE quizzes SET is_deleted =
         // true WHERE id = ?)
         quizRepository.delete(quizEntity);
-
-        // 3. Cập nhật lại cờ hasQuiz cho Lesson
-        lessonEntity.setHasQuiz(false);
     }
 
     private void syncOptions(QuizQuestionEntity question, List<QuizOptionRequest> optionRequests) {
