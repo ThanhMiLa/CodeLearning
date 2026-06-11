@@ -116,71 +116,85 @@
         }
         .btn-icon:hover { color: var(--text-primary); background-color: var(--bg-overlay); }
 
-        /* --- SỬA ĐỔI CHÍNH TẠI ĐÂY --- */
+        /* --- SỬ DỤNG CSS GRID ĐỂ ÉP 4 TAG/HÀNG --- */
         .console-body {
-            flex: 1; padding: 12px; overflow-y: auto;
-            display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; /* Sử dụng flex wrap để dàn item */
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Luôn chia 4 cột đều nhau */
+            grid-auto-rows: max-content;
+            gap: 12px; /* Khoảng cách giữa các thẻ tag */
+            align-content: start;
         }
 
         .log-entry {
             background-color: var(--bg-overlay);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 10px;
             animation: fadeIn 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* System log chiếm toàn bộ chiều ngang */
+        /* Log hệ thống sẽ trải dài chiếm cả 4 cột */
         .log-entry.full-width {
-            width: 100%;
+            grid-column: 1 / -1;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        /* Thẻ Testcase card: Chiếm 1/4 hàng (4 cột) */
+        /* Thẻ Testcase Tag sẽ gọn gàng trong từng cột */
         .log-entry.card {
-            width: calc(25% - 6px); /* -6px để bù cho gap 8px */
-            min-width: 200px; /* Tránh card quá méo nếu màn hình nhỏ */
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* Giữ nội dung trong viền */
+            overflow: hidden;
+            position: relative;
         }
 
         /* Khung viền Đỏ - Xanh cho kết quả */
         .log-entry.border-ac {
             border: 2px solid var(--success-color);
-            background-color: rgba(34, 197, 94, 0.03);
+            background-color: rgba(34, 197, 94, 0.05);
         }
         .log-entry.border-rj {
             border: 2px solid var(--error-color);
-            background-color: rgba(239, 68, 68, 0.03);
+            background-color: rgba(239, 68, 68, 0.05);
         }
 
-        .log-time { color: var(--text-secondary); font-size: 0.7rem; font-weight: 500; }
+        .log-time { color: var(--text-secondary); font-size: 0.65rem; font-weight: 500; }
 
         .log-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .log-type-system { color: var(--accent-color); font-weight: bold; font-size: 0.8rem;}
         .log-type-success { color: var(--success-color); font-weight: bold; font-size: 0.8rem;}
         .log-type-error { color: var(--error-color); font-weight: bold; font-size: 0.8rem;}
-        .log-type-data { color: #eab308; font-weight: bold; font-size: 0.75rem;}
 
-        /* Thu nhỏ JSON */
+        /* Chỉnh tên Tag nổi bật */
+        .log-type-data {
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Thu gọn cục JSON lại để giao diện trông giống cái Tag hơn */
         .json-pre {
             background-color: rgba(0,0,0,0.3);
-            padding: 8px;
+            padding: 6px;
             border-radius: 4px;
             overflow-x: auto;
             overflow-y: auto;
             color: #d4d4d4;
             font-family: 'Fira Code', monospace;
-            font-size: 0.65rem; /* CHỮ NHỎ LẠI TẠI ĐÂY */
-            line-height: 1.35;
-            max-height: 140px; /* Giới hạn chiều cao, scroll bên trong */
-            flex: 1;
+            font-size: 0.6rem;
+            line-height: 1.3;
+            max-height: 80px; /* Cực kỳ nhỏ gọn, scroll nhẹ nếu cần */
+            margin-top: 8px;
         }
 
         .string { color: #ce9178; }
@@ -279,7 +293,6 @@
         });
     }
 
-    // Logic chính xử lý render Logs
     function appendLog(type, message, data = null) {
         var logDiv = document.getElementById("logConsole");
         var time = new Date().toLocaleTimeString();
@@ -291,20 +304,22 @@
         if (type === 'success') { typeClass = 'log-type-success'; icon = '✅'; }
         else if (type === 'error') { typeClass = 'log-type-error'; icon = '❌'; }
 
-        // Xử lý riêng cho Card hiển thị Testcase Data
+        // CẤU HÌNH GIAO DIỆN THEO DẠNG TAG CHO TESTCASE
         else if (type === 'data') {
             typeClass = 'log-type-data';
             icon = '📦';
-            entryClass = 'log-entry card'; // Card thu nhỏ chiếm 25% (4 cái 1 hàng)
+            entryClass = 'log-entry card'; // Thẻ card này sẽ tự động lọt vào Grid 4 cột
 
-            // --- ĐỔI MÀU VIỀN NẾU LÀ DATA JSON ---
+            // Đổi màu viền, đổi icon theo Verdict
             if (data && data.testcaseVerdict) {
                 if (data.testcaseVerdict === 'ACCEPTED') {
-                    entryClass += ' border-ac'; // Viền Xanh
+                    entryClass += ' border-ac'; // Màu xanh lá
                     icon = '✅';
+                    typeClass += ' log-type-success';
                 } else if (data.testcaseVerdict !== 'PENDING' && data.testcaseVerdict !== 'PROCESSING') {
-                    entryClass += ' border-rj'; // Viền Đỏ
+                    entryClass += ' border-rj'; // Màu đỏ cho lỗi (WA, TLE, RE...)
                     icon = '❌';
+                    typeClass += ' log-type-error';
                 }
             }
         }
@@ -316,14 +331,12 @@
                 </div>`;
 
         if (data) {
-            // Parse json nguyên vẹn (bỏ đi substring limit 80 như bản cũ)
             var jsonStr = typeof data !== 'string' ? JSON.stringify(data, null, 2) : data;
             html += `<pre class="json-pre">${syntaxHighlight(jsonStr)}</pre>`;
         }
 
         html += `</div>`;
         logDiv.innerHTML += html;
-
         logDiv.scrollTop = logDiv.scrollHeight;
     }
 
@@ -393,7 +406,6 @@
             stompClient.subscribe('/topic/submissions/' + userId, function (messageOutput) {
                 try {
                     var payload = JSON.parse(messageOutput.body);
-                    // Truyền thẳng payload Object vào appendLog để nó đọc biến testcaseVerdict
                     appendLog('data', `TC ${payload.processedTestcases}/${payload.totalTestcases}`, payload);
                 } catch (e) {
                     appendLog('data', 'Raw Message:', messageOutput.body);
