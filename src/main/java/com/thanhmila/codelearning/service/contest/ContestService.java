@@ -2,17 +2,24 @@ package com.thanhmila.codelearning.service.contest;
 
 import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
+import com.thanhmila.codelearning.dto.request.AddContestProblemsRequest;
+import com.thanhmila.codelearning.dto.request.ContestProblemReorderRequest;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
+import com.thanhmila.codelearning.entity.contest.ContestProblemEntity;
+import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.enums.ContestStatus;
+import com.thanhmila.codelearning.entity.enums.ProblemScope;
 import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.ContestMapper;
 import com.thanhmila.codelearning.repository.contest.ContestRepository;
+import com.thanhmila.codelearning.repository.contest.ContestProblemRepository;
+import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import com.thanhmila.codelearning.repository.user.TeacherRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +37,11 @@ import com.thanhmila.codelearning.configuration.RabbitMQConfig;
 import com.thanhmila.codelearning.dto.message.ContestStatusMessage;
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -42,6 +54,8 @@ public class ContestService {
     PasswordEncoder passwordEncoder;
     ContestMapper contestMapper;
     RabbitTemplate rabbitTemplate;
+    ContestProblemRepository contestProblemRepository;
+    OnlineJudgeProblemRepository onlineJudgeProblemRepository;
 
     public PageResponse<ContestListResponse> getContests(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -139,6 +153,177 @@ public class ContestService {
         }
 
         return contestMapper.toContestResponse(savedContest);
+    }
+
+    @Transactional
+    public void addProblemsToContest(Long contestId, AddContestProblemsRequest request, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        if (teacherId == null || !contest.getCreatedByTeacher().getId().equals(teacherId)) {
+            throw new AppException(ErrorCode.ACCESS_DENIED);
+        }
+
+        if (contest.getStatus() != ContestStatus.UPCOMING) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        if (request.getProblemIds() == null || request.getProblemIds().isEmpty()) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        // Ensure no duplicates in the input list
+        List<Long> problemIds = request.getProblemIds();
+        long distinctCount = problemIds.stream().distinct().count();
+        if (distinctCount != problemIds.size()) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        // Fetch all requested problems in one query
+        List<OnlineJudgeProblemEntity> problems = onlineJudgeProblemRepository.findAllById(problemIds);
+        if (problems.size() != problemIds.size()) {
+            throw new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND);
+        }
+
+        // Map problems by ID for quick lookup and preserving request order
+        Map<Long, OnlineJudgeProblemEntity> problemMap = problems.stream()
+                .collect(Collectors.toMap(OnlineJudgeProblemEntity::getId, p -> p));
+
+        // Get existing problems in the contest to check for duplicates
+        List<ContestProblemEntity> currentProblems = contestProblemRepository.findByContestIdOrderByOrderIndex(contestId);
+        Set<Long> existingProblemIds = currentProblems.stream()
+                .map(cp -> cp.getProblem().getId())
+                .collect(Collectors.toSet());
+
+        int currentMaxOrder = contestProblemRepository.findMaxOrderIndexByContestId(contestId);
+        List<ContestProblemEntity> newContestProblems = new ArrayList<>();
+
+        for (int i = 0; i < problemIds.size(); i++) {
+            Long problemId = problemIds.get(i);
+            OnlineJudgeProblemEntity problem = problemMap.get(problemId);
+
+            // Validate constraints
+            if (problem == null || problem.getProblemScope() != ProblemScope.CONTEST ||
+                    !Boolean.TRUE.equals(problem.getIsActive()) ||
+                    !Boolean.TRUE.equals(problem.getIsPublic())) {
+                throw new AppException(ErrorCode.INVALID_REQUEST);
+            }
+
+            // Check if already in the contest
+            if (existingProblemIds.contains(problemId)) {
+                throw new AppException(ErrorCode.INVALID_REQUEST);
+            }
+
+            ContestProblemEntity contestProblem = ContestProblemEntity.builder()
+                    .contest(contest)
+                    .problem(problem)
+                    .orderIndex(currentMaxOrder + i + 1)
+                    .build();
+
+            newContestProblems.add(contestProblem);
+        }
+
+        contestProblemRepository.saveAll(newContestProblems);
+    }
+
+    @Transactional
+    public void reorderContestProblems(Long contestId, List<ContestProblemReorderRequest> requests, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        if (teacherId == null || !contest.getCreatedByTeacher().getId().equals(teacherId)) {
+            throw new AppException(ErrorCode.ACCESS_DENIED);
+        }
+
+        if (contest.getStatus() != ContestStatus.UPCOMING) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        if (requests == null || requests.isEmpty()) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        List<ContestProblemEntity> contestProblemEntityList = contestProblemRepository.findByContestIdOrderByOrderIndex(contestId);
+        if (contestProblemEntityList.size() != requests.size()) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        // Ensure all requests have unique problemIds and unique, positive orderIndex values
+        long uniqueProblemIds = requests.stream()
+                .map(ContestProblemReorderRequest::getProblemId)
+                .distinct()
+                .count();
+        long uniqueOrderIndices = requests.stream().
+                map(ContestProblemReorderRequest::getOrderIndex)
+                .distinct()
+                .count();
+        if (uniqueProblemIds != requests.size() || uniqueOrderIndices != requests.size()) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        Map<Long, ContestProblemEntity> problemMap = contestProblemEntityList.stream()
+                .collect(Collectors.toMap(
+                        cp -> cp.getProblem().getId(),
+                        cp -> cp)
+                );
+
+        // Verify all request problemIds are valid and part of this contest
+        for (ContestProblemReorderRequest req : requests) {
+            if (req.getOrderIndex() <= 0 || !problemMap.containsKey(req.getProblemId())) {
+                throw new AppException(ErrorCode.INVALID_REQUEST);
+            }
+        }
+
+        // Step 1: Temporarily set all orderIndex values to satisfy UNIQUE constraints
+        for (ContestProblemEntity cp : contestProblemEntityList) {
+            cp.setOrderIndex(cp.getId().intValue() + 100000);
+        }
+        contestProblemRepository.saveAllAndFlush(contestProblemEntityList);
+
+        // Step 2: Set the requested orderIndex values
+        for (ContestProblemReorderRequest req : requests) {
+            ContestProblemEntity cp = problemMap.get(req.getProblemId());
+            cp.setOrderIndex(req.getOrderIndex());
+        }
+        contestProblemRepository.saveAll(contestProblemEntityList);
+    }
+
+    @Transactional
+    public void deleteProblemFromContest(Long contestId, Long problemId, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        if (teacherId == null || !contest.getCreatedByTeacher().getId().equals(teacherId)) {
+            throw new AppException(ErrorCode.ACCESS_DENIED);
+        }
+
+        if (contest.getStatus() != ContestStatus.UPCOMING) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
+        }
+
+        ContestProblemEntity contestProblem = contestProblemRepository.findByContestIdAndProblemId(contestId, problemId)
+                .orElseThrow(() -> new AppException(ErrorCode.INVALID_REQUEST));
+
+        contestProblemRepository.delete(contestProblem);
+        contestProblemRepository.flush();
+
+        // Re-index remaining problems
+        List<ContestProblemEntity> remainingProblems = contestProblemRepository.findByContestIdOrderByOrderIndex(contestId);
+
+        // Step 1: Set temporary order index values
+        for (ContestProblemEntity cp : remainingProblems) {
+            cp.setOrderIndex(cp.getId().intValue() + 100000);
+        }
+        contestProblemRepository.saveAllAndFlush(remainingProblems);
+
+        // Step 2: Assign consecutive 1-based order index values
+        for (int i = 0; i < remainingProblems.size(); i++) {
+            remainingProblems.get(i).setOrderIndex(i + 1);
+        }
+        contestProblemRepository.saveAll(remainingProblems);
     }
 
     private void publishStartMessage(ContestEntity contest) {

@@ -2,6 +2,9 @@ package com.thanhmila.codelearning.controller.contest;
 
 import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
+import com.thanhmila.codelearning.dto.request.AddContestProblemsRequest;
+import com.thanhmila.codelearning.dto.request.ContestProblemReorderRequest;
+import java.util.List;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
@@ -78,6 +81,66 @@ public class ContestController {
                 .code(200)
                 .message("Contest updated successfully")
                 .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping("/{id}/problems")
+    @PreAuthorize("hasAuthority('CONTEST_PROBLEM_ADD_OWN')")
+    public ResponseEntity<ApiResponse<Void>> addProblemsToContest(
+            @PathVariable Long id,
+            @Valid @RequestBody AddContestProblemsRequest request,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+
+        contestService.addProblemsToContest(id, request, userId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(200)
+                .message("Problems added to contest successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PutMapping("/{id}/problems/reorder")
+    @PreAuthorize("hasAuthority('CONTEST_UPDATE_OWN')")
+    public ResponseEntity<ApiResponse<Void>> reorderContestProblems(
+            @PathVariable Long id,
+            @Valid @RequestBody List<ContestProblemReorderRequest> request,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+
+        contestService.reorderContestProblems(id, request, userId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(200)
+                .message("Contest problems reordered successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @DeleteMapping("/{id}/problems/{problemId}")
+    @PreAuthorize("hasAuthority('CONTEST_PROBLEM_REMOVE_OWN')")
+    public ResponseEntity<ApiResponse<Void>> deleteProblemFromContest(
+            @PathVariable Long id,
+            @PathVariable Long problemId,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+
+        contestService.deleteProblemFromContest(id, problemId, userId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(200)
+                .message("Problem removed from contest successfully")
+                .result(null)
                 .timestamp(Instant.now().toString())
                 .build());
     }

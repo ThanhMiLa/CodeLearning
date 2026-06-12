@@ -223,7 +223,7 @@ public class LessonService {
                 .collect(Collectors.toMap(LessonEntity::getId, l -> l));
 
         for (LessonEntity lesson : lessons) {
-            lesson.setOrderIndex(lesson.getId().intValue());
+            lesson.setOrderIndex(lesson.getId().intValue() + 1000);
         }
         lessonRepository.saveAllAndFlush(lessons);
 
