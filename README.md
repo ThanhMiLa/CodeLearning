@@ -254,5 +254,5 @@ For deep-dive documentation on specific subsystems, refer to the documents insid
 ---
 
 ## 👩‍💻 Author
-*   **Thành** - [GitHub Profile](https://github.com/ThanhMiLa)
-*   **Role:** Java Backend Intern Applicant
+*   **Võ Ngọc Thanh (Thanh_MiLa)** - [GitHub Profile](https://github.com/ThanhMiLa)
+*   **Role:** Java Backend Developer
