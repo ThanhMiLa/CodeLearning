@@ -88,7 +88,7 @@ public class UserController {
         @Value("${auth.cookie.refresh-token.path}")
         String refreshTokenPath;
 
-        @GetMapping("me")
+        @GetMapping("/me")
         @PreAuthorize("hasAuthority('USER_VIEW')")
         public ResponseEntity<ApiResponse<UserResponse>> getMyInfo(
                         @AuthenticationPrincipal Jwt jwt) {

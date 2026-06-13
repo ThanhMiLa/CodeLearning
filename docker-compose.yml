@@ -20,7 +20,7 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/schema-only.sql:/docker-entrypoint-initdb.d/init.sql # Trỏ đến đúng file cấu hình schema của bạn
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql # Trỏ đến đúng file cấu hình schema của bạn
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -59,6 +59,7 @@ services:
   # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
   judge0-server:
     image: judge0/judge0:1.13.1
+    platform: linux/amd64
     container_name: judge0_codelearning_server
     env_file: judge0.conf
     volumes:
@@ -76,6 +77,7 @@ services:
 
   judge0-workers:
     image: judge0/judge0:1.13.1
+    platform: linux/amd64
     container_name: judge0_codelearning_workers
     command: [ "./scripts/workers" ]
     env_file: judge0.conf

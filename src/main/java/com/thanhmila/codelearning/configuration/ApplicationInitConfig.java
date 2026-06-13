@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.configuration;
 
+import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
 import com.thanhmila.codelearning.repository.auth.RoleRepository;
@@ -33,6 +34,33 @@ public class ApplicationInitConfig {
         log.info("Init application for dev environment...");
 
         return args -> {
+            RoleEntity adminRole = roleRepository.findByName("ADMIN");
+            if (adminRole == null) {
+                adminRole = RoleEntity.builder()
+                        .name("ADMIN")
+                        .build();
+                adminRole = roleRepository.save(adminRole);
+                log.info("Created default ADMIN role.");
+            }
+
+            RoleEntity userRole = roleRepository.findByName("USER");
+            if (userRole == null) {
+                userRole = RoleEntity.builder()
+                        .name("USER")
+                        .build();
+                roleRepository.save(userRole);
+                log.info("Created default USER role.");
+            }
+
+            RoleEntity teacherRole = roleRepository.findByName("TEACHER");
+            if (teacherRole == null) {
+                teacherRole = RoleEntity.builder()
+                        .name("TEACHER")
+                        .build();
+                roleRepository.save(teacherRole);
+                log.info("Created default TEACHER role.");
+            }
+
             if (userRepository.findByUsername("admin").isEmpty()) {
                 UserEntity adminUser = UserEntity.builder()
                         .username("admin")
@@ -41,7 +69,7 @@ public class ApplicationInitConfig {
                         .email("admin@gmail.com")
                         .status(UserStatus.ACTIVE)
                         .phoneNumber("9999999999")
-                        .roles(Set.of(roleRepository.findByName("ADMIN")))
+                        .roles(Set.of(adminRole))
                         .build();
 
                 userRepository.save(adminUser);
