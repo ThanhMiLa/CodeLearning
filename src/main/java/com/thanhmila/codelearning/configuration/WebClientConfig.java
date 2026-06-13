@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.configuration;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
+import io.netty.resolver.DefaultAddressResolverGroup;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,8 @@ public class WebClientConfig {
 
         // Cấu hình HttpClient của Netty với 3 lớp bảo vệ (3-Layer Protection)
         HttpClient httpClient = HttpClient.create()
+                .resolver(DefaultAddressResolverGroup.INSTANCE)
+
                 // Lớp 1: Giới hạn thời gian thiết lập kết nối ban đầu (TCP Handshake)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeoutMillis)
 

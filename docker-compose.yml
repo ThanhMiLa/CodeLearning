@@ -10,6 +10,7 @@ x-logging: &default-logging
 
 services:
   # --- MODULE 1: HẠ TẦNG CỐT LÕI CỦA ỨNG DỤNG CHÍNH (CODELEARNING WEB APP) ---
+  # Module này sẽ CHẠY MẶC ĐỊNH
   db:
     image: postgres:15-alpine
     container_name: codelearning_db
@@ -20,7 +21,7 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql # Trỏ đến đúng file cấu hình schema của bạn
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
@@ -57,15 +58,17 @@ services:
       retries: 5
 
   # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
+  # Đã gắn profile "judge0". Sẽ KHÔNG chạy mặc định.
   judge0-server:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
     container_name: judge0_codelearning_server
+    profiles: ["judge0"] # <-- Gắn nhãn profile
     env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
     ports:
-      - "2359:2358" # Chuyển đổi port ngoài thành 2359 để không tranh chấp với dự án cũ dùng 2358
+      - "2358:2358"
     privileged: true
     <<: *default-logging
     restart: always
@@ -79,6 +82,7 @@ services:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
     container_name: judge0_codelearning_workers
+    profiles: ["judge0"] # <-- Gắn nhãn profile
     command: [ "./scripts/workers" ]
     env_file: judge0.conf
     volumes:
@@ -95,11 +99,11 @@ services:
   judge0-db:
     image: postgres:16.2
     container_name: judge0_codelearning_db
-    env_file: judge0.conf  # <-- Chỉ giữ lại dòng này, xóa block environment bên dưới đi
+    profiles: ["judge0"] # <-- Gắn nhãn profile
+    env_file: judge0.conf
     volumes:
       - judge0_postgres_data:/var/lib/postgresql/data/
     healthcheck:
-      # Sửa lại healthcheck một chút để nó không phụ thuộc vào biến môi trường bị lỗi
       test: [ "CMD-SHELL", "pg_isready -U judge0 -d judge0" ]
       interval: 5s
       timeout: 5s
@@ -110,6 +114,7 @@ services:
   judge0-redis:
     image: redis:7.2.4
     container_name: judge0_codelearning_redis
+    profiles: ["judge0"] # <-- Gắn nhãn profile
     command: [
       "bash", "-c",
       'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"'
