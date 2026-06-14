@@ -232,13 +232,13 @@
         <div class="panel-header">Connection Settings</div>
         <div class="panel-content">
             <div class="form-group">
-                <label class="form-label" for="userId">Target User ID</label>
-                <input class="form-input" type="number" id="userId" value="1" placeholder="Enter User ID...">
+                <label class="form-label">Global Monitor</label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary);">Listening to all users' submissions.</p>
             </div>
 
             <button class="btn" id="connectBtn" onclick="toggleConnection()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg>
-                <span>Connect & Listen</span>
+                <span>Connect Global Live Monitor</span>
             </button>
 
             <div class="status-container">
@@ -360,7 +360,7 @@
             btn.style.opacity = "0.7";
         } else if (status === 'connected') {
             badge.classList.add("connected");
-            text.innerText = "CONNECTED (User: " + userId + ")";
+            text.innerText = "GLOBAL CONNECTED";
             btn.disabled = false;
             btn.style.opacity = "1";
             btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg><span>Disconnect</span>`;
@@ -387,11 +387,8 @@
     }
 
     function connectWebSocket() {
-        var userId = document.getElementById("userId").value;
-        if (!userId) { appendLog('error', 'Please enter a valid User ID.'); return; }
-
         updateStatus('connecting');
-        appendLog('system', 'Initializing connection to Spring Boot server...');
+        appendLog('system', 'Initializing GLOBAL connection to Spring Boot server...');
 
         var socket = new SockJS('http://localhost:8080/codelearning/ws');
         stompClient = Stomp.over(socket);
@@ -399,11 +396,11 @@
 
         stompClient.connect({}, function (frame) {
             isConnected = true;
-            updateStatus('connected', userId);
+            updateStatus('connected');
             appendLog('success', 'WebSocket connection established!');
-            appendLog('system', `Subscribing to topic: /topic/submissions/${userId}`);
+            appendLog('system', `Subscribing to global topic: /topic/submissions/admin`);
 
-            stompClient.subscribe('/topic/submissions/' + userId, function (messageOutput) {
+            stompClient.subscribe('/topic/submissions/admin', function (messageOutput) {
                 try {
                     var payload = JSON.parse(messageOutput.body);
                     appendLog('data', `TC ${payload.processedTestcases}/${payload.totalTestcases}`, payload);

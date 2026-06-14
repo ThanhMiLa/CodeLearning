@@ -4,6 +4,10 @@ server:
     context-path: /codelearning
 
 spring:
+  threads:
+    virtual:
+      enabled: true
+
   servlet:
     multipart:
       max-file-size: 100MB
@@ -13,6 +17,10 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/codelearning}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      connection-timeout: 30000
 
   jpa:
     hibernate:
@@ -39,14 +47,14 @@ spring:
 
 jwt:
   signer-key: ${JWT_SIGNER_KEY}
-  valid-duration: ${JWT_VALID_DURATION:600}
-  refreshable-duration: ${JWT_REFRESHABLE_DURATION:1200}
+  valid-duration: ${JWT_VALID_DURATION:1200}
+  refreshable-duration: ${JWT_REFRESHABLE_DURATION:2400}
 
 auth: 
   cookie:
     access-token:
       name: ${ACCESS_TOKEN_COOKIE_NAME:access_token}
-      max-age: ${ACCESS_TOKEN_MAX_AGE:600}
+      max-age: ${ACCESS_TOKEN_MAX_AGE:1200}
       secure: ${ACCESS_TOKEN_SECURE:false}
       http-only: ${ACCESS_TOKEN_HTTP_ONLY:true}
       same-site: ${ACCESS_TOKEN_SAME_SITE:Lax}
@@ -54,23 +62,23 @@ auth:
 
     refresh-token:
       name: ${REFRESH_TOKEN_COOKIE_NAME:refresh_token}
-      max-age: ${REFRESH_TOKEN_MAX_AGE:1200}
+      max-age: ${REFRESH_TOKEN_MAX_AGE:2400}
       secure: ${REFRESH_TOKEN_SECURE:false}
       http-only: ${REFRESH_TOKEN_HTTP_ONLY:true}
       same-site: ${REFRESH_TOKEN_SAME_SITE:Lax}
       path: ${REFRESH_TOKEN_PATH:/codelearning/auth}
 
 judge0:
-  #base-url: ${JUDGE0_URL:http://thanhmila.local:2358/}
-  base-url: ${JUDGE0_URL:https://humility-reflector-unarmored.ngrok-free.dev}
+  base-url: ${JUDGE0_URL:http://thanhmila.local:2358}
+  #base-url: ${JUDGE0_URL:https://humility-reflector-unarmored.ngrok-free.dev}
   timeout: 20s
 
 websocket:
   allowed-origins: http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173
 
 app:
-  #webhook-base-url: ${WEBHOOK_BASE_URL:http://macbook-pro-cua-ngoc.local:8080/codelearning}
-  webhook-base-url: ${WEBHOOK_BASE_URL:https://flattered-hamburger-shakiness.ngrok-free.dev/codelearning}
+  webhook-base-url: ${WEBHOOK_BASE_URL:http://192.168.1.69:8080/codelearning}
+  #webhook-base-url: ${WEBHOOK_BASE_URL:https://flattered-hamburger-shakiness.ngrok-free.dev/codelearning}
 
 cloudinary:
   cloud-name: ${CLOUDINARY_CLOUD_NAME}

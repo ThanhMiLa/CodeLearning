@@ -30,8 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +107,7 @@ public class OjSubmissionService {
         String callbackUrl = webhookBaseUrl + "/online-judge/submissions";
 
         // Tính limit dựa trên ngôn ngữ (Gợi ý dùng hệ số nhân)
-        double timeLimitSeconds = calculateTimeLimitForLanguage(onlineJudgeSubmissionEntity.getProblem().getTimeLimitMs(), request.getLanguageId());
+        double timeLimitSeconds = calculateTimeLimitForLanguage(ojProblem.getTimeLimitMs(), request.getLanguageId());
 
         for (ProblemTestcaseEntity testcase : problemTestcaseEntityList) {
             // Chuẩn hóa lại chuỗi \n bị gõ nhầm thành ký tự literal trong DB
@@ -123,7 +121,7 @@ public class OjSubmissionService {
                     .expectedOutput(cleanExpected)
                     .callbackUrl(callbackUrl)
                     .cpuTimeLimit(timeLimitSeconds)
-                    .memoryLimit(onlineJudgeSubmissionEntity.getProblem().getMemoryLimitKb())
+                    .memoryLimit(ojProblem.getMemoryLimitKb())
                     .build();
             judge0SubmissionItemList.add(item);
         }
@@ -165,7 +163,6 @@ public class OjSubmissionService {
 
     }
 
-    @Transactional
     public void processJudge0Callback(Judge0CallbackPayload judge0CallbackPayload) {
 
         // Lấy thông tin SubmissionDetail (bao gồm luôn Submission cha và Problem nhờ JOIN FETCH)
@@ -285,6 +282,7 @@ public class OjSubmissionService {
         if (!isContestMode) {
             // CHẾ ĐỘ LUYỆN TẬP (PRACTICE): Chấm xong testcase nào, bắn ngay testcase đó để chạy Progress Bar
             simpMessagingTemplate.convertAndSend("/topic/submissions/" + submissionEntity.getUser().getId(), wsMessage);
+            simpMessagingTemplate.convertAndSend("/topic/submissions/admin", wsMessage);
             log.info("PRACTICE MODE: Bắn WebSocket tiến trình {}/{} cho Submission {}",
                     wsMessage.getProcessedTestcases(), wsMessage.getTotalTestcases(), submissionId);
 
@@ -295,6 +293,8 @@ public class OjSubmissionService {
             wsMessage.setTestcaseVerdict(null);
 
             simpMessagingTemplate.convertAndSend("/topic/submissions/" + submissionEntity.getUser().getId(), wsMessage);
+            // Gửi thêm lên kênh Admin toàn cục để monitor
+            simpMessagingTemplate.convertAndSend("/topic/submissions/admin", wsMessage);
             log.info("CONTEST MODE: Đã chấm xong toàn bộ. Bắn WebSocket tổng kết (Verdict: {}) cho Submission {}",
                     overallVerdict, submissionId);
         } else {
