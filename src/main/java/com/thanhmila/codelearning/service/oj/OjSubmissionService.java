@@ -60,7 +60,6 @@ public class OjSubmissionService {
     @Value("${app.webhook-base-url}")
     String webhookBaseUrl;
 
-    @Transactional
     public OjSubmissionInitialResponse submitCode(OjSubmissionRequest request, Long userId) {
         // Check user status
         UserEntity user = userRepository.findById(userId)
@@ -290,7 +289,7 @@ public class OjSubmissionService {
                     wsMessage.getProcessedTestcases(), wsMessage.getTotalTestcases(), submissionId);
 
         } else if (isEarlyFinish || isNormalFinish) {
-            // CHẾ ĐỘ THI ĐẤU (CONTEST): ĐỌC ĐOC, không bắn lẻ tẻ. 
+            // CHẾ ĐỘ THI ĐẤU (CONTEST): ĐỌC , không bắn lẻ tẻ.
             // CHỈ BẮN 1 LẦN DUY NHẤT khi chốt sổ (Short-circuit sớm HOẶC chấm xong toàn bộ)
             wsMessage.setTestcaseId(null);
             wsMessage.setTestcaseVerdict(null);
