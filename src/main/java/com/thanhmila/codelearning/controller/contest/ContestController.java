@@ -4,11 +4,14 @@ import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
 import com.thanhmila.codelearning.dto.request.AddContestProblemsRequest;
 import com.thanhmila.codelearning.dto.request.ContestProblemReorderRequest;
+import com.thanhmila.codelearning.dto.request.ContestRegisterRequest;
 import java.util.List;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
+import com.thanhmila.codelearning.dto.response.ContestLeaderboardResponse;
+import com.thanhmila.codelearning.service.contest.ContestLeaderboardService;
 import com.thanhmila.codelearning.service.contest.ContestService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -29,6 +32,7 @@ import java.time.Instant;
 public class ContestController {
 
     ContestService contestService;
+    ContestLeaderboardService contestLeaderboardService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ContestListResponse>>> getContests(
@@ -140,6 +144,45 @@ public class ContestController {
                 .status(200)
                 .code(200)
                 .message("Problem removed from contest successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/{id}/leaderboard")
+    public ResponseEntity<ApiResponse<ContestLeaderboardResponse>> getLeaderboard(
+            @PathVariable Long id) {
+        
+        ContestLeaderboardResponse response = contestLeaderboardService.getLeaderboard(id);
+
+        return ResponseEntity.ok(ApiResponse.<ContestLeaderboardResponse>builder()
+                .status(200)
+                .code(200)
+                .message("Fetched leaderboard successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping("/{id}/register")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<Void>> registerContest(
+            @PathVariable Long id,
+            @RequestBody(required = false) ContestRegisterRequest request,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+
+        if (request == null) {
+            request = new ContestRegisterRequest();
+        }
+
+        contestService.registerContest(id, request, userId);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(200)
+                .message("Registered for contest successfully")
                 .result(null)
                 .timestamp(Instant.now().toString())
                 .build());

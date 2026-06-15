@@ -4,12 +4,14 @@ import com.thanhmila.codelearning.dto.request.ContestCreateRequest;
 import com.thanhmila.codelearning.dto.request.ContestUpdateRequest;
 import com.thanhmila.codelearning.dto.request.AddContestProblemsRequest;
 import com.thanhmila.codelearning.dto.request.ContestProblemReorderRequest;
+import com.thanhmila.codelearning.dto.request.ContestRegisterRequest;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
 import com.thanhmila.codelearning.entity.contest.ContestProblemEntity;
+import com.thanhmila.codelearning.entity.contest.ContestParticipantEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.enums.ContestStatus;
 import com.thanhmila.codelearning.entity.enums.ProblemScope;
@@ -19,8 +21,10 @@ import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.ContestMapper;
 import com.thanhmila.codelearning.repository.contest.ContestRepository;
 import com.thanhmila.codelearning.repository.contest.ContestProblemRepository;
+import com.thanhmila.codelearning.repository.contest.ContestParticipantRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import com.thanhmila.codelearning.repository.user.TeacherRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -56,6 +60,8 @@ public class ContestService {
     RabbitTemplate rabbitTemplate;
     ContestProblemRepository contestProblemRepository;
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
+    ContestParticipantRepository contestParticipantRepository;
+    UserRepository userRepository;
 
     public PageResponse<ContestListResponse> getContests(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -324,6 +330,34 @@ public class ContestService {
             remainingProblems.get(i).setOrderIndex(i + 1);
         }
         contestProblemRepository.saveAll(remainingProblems);
+    }
+
+    @Transactional
+    public void registerContest(Long contestId, ContestRegisterRequest request, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        if (contest.getStatus() != ContestStatus.UPCOMING) {
+            throw new AppException(ErrorCode.INVALID_REQUEST); // or CONTEST_ALREADY_STARTED if it existed
+        }
+
+        if (contest.getPasswordHash() != null) {
+            if (!StringUtils.hasText(request.getPassword()) || !passwordEncoder.matches(request.getPassword(), contest.getPasswordHash())) {
+                throw new AppException(ErrorCode.CONTEST_PASSWORD_INVALID);
+            }
+        }
+
+        boolean isAlreadyRegistered = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        if (isAlreadyRegistered) {
+            throw new AppException(ErrorCode.INVALID_REQUEST); // Could be ALREADY_REGISTERED
+        }
+
+        ContestParticipantEntity participant = ContestParticipantEntity.builder()
+                .contest(contestRepository.getReferenceById(contestId))
+                .user(userRepository.getReferenceById(userId))
+                .build();
+
+        contestParticipantRepository.save(participant);
     }
 
     private void publishStartMessage(ContestEntity contest) {

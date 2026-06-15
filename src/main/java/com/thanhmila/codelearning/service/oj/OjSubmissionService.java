@@ -33,6 +33,8 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import com.thanhmila.codelearning.event.SubmissionCompletedEvent;
+import org.springframework.context.ApplicationEventPublisher;
 
 @Slf4j
 @Service
@@ -51,6 +53,7 @@ public class OjSubmissionService {
 
     Judge0ClientService judge0ClientService;
     SimpMessagingTemplate simpMessagingTemplate;
+    ApplicationEventPublisher applicationEventPublisher;
 
     StringRedisTemplate stringRedisTemplate;
 
@@ -244,6 +247,16 @@ public class OjSubmissionService {
             submissionEntity.setExecutionTimeMs(maxStats.getMaxTime());
             submissionEntity.setMemoryUsedKb(maxStats.getMaxMemory());
             onlineJudgeSubmissionRepository.save(submissionEntity);
+            
+            SubmissionCompletedEvent event = SubmissionCompletedEvent.builder()
+                    .submissionId(submissionId)
+                    .userId(submissionEntity.getUser().getId())
+                    .problemId(submissionEntity.getProblem().getId())
+                    .contestId(isContestMode ? submissionEntity.getContest().getId() : null)
+                    .verdict(overallVerdict)
+                    .submitTime(submissionEntity.getSubmittedAt())
+                    .build();
+            applicationEventPublisher.publishEvent(event);
         }
         
         // HIỆU SUẤT: Luôn dọn dẹp key Redis giải phóng RAM khi tất cả webhook đã về đủ

@@ -22,11 +22,6 @@ public class CloudinaryConfig {
 
     @Bean
     public Cloudinary cloudinary() {
-        System.out.println("--- CHECK CLOUDINARY KEY ---");
-        System.out.println("Cloud Name: " + cloudName);
-        System.out.println("API Key: " + apiKey);
-        System.out.println("API Secret: " + apiSecret);
-
         Map<String, String> config = new HashMap<>();
         config.put("cloud_name", cloudName);
         config.put("api_key", apiKey);

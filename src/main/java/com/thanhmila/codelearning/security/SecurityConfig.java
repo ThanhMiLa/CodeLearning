@@ -50,7 +50,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login", "/auth/register", "/auth/refresh").permitAll()
 
                         // 3. Các API Public để xem dữ liệu (Giới hạn HTTP GET)
-                        .requestMatchers(HttpMethod.GET, "/courses/**", "/lessons/{lessonId}", "/contests").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/courses/**", "/lessons/{lessonId}", "/contests", "/contests/*/leaderboard").permitAll()
                         .requestMatchers("/online-judge/problems/practice").permitAll()
 
                         // 4. Các API Webhook / Callback từ hệ thống bên thứ 3
@@ -60,7 +60,7 @@ public class SecurityConfig {
                 
 
                         // 5. WebSocket & System
-                        .requestMatchers("/test-ws.html", "/test-ws-gen.html", "/ws/**").permitAll()
+                        .requestMatchers("/test-ws.html", "/test-ws-gen.html", "/leaderboard.html", "/ws/**").permitAll()
                         .requestMatchers("/error").permitAll()
 
                         // 6. Tất cả các request còn lại đều yêu cầu xác thực

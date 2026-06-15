@@ -12,6 +12,9 @@ public interface ContestRankingRepository extends JpaRepository<ContestRankingEn
     List<ContestRankingEntity> findByContestId(Long contestId);
     Optional<ContestRankingEntity> findByContestIdAndUserId(Long contestId, Long userId);
     
-    // Retrieves ranked participants sorted by ICPC rules (most problems solved first, then lowest penalty)
-    List<ContestRankingEntity> findByContestIdOrderByProblemsSolvedDescTotalPenaltyAsc(Long contestId);
+    // Retrieves ranked participants sorted by ICPC rules:
+    // 1. Most problems solved (Desc)
+    // 2. Lowest total penalty (Asc)
+    // 3. Reached the score earlier (updatedAt Asc)
+    List<ContestRankingEntity> findByContestIdOrderByProblemsSolvedDescTotalPenaltyAscUpdatedAtAsc(Long contestId);
 }
