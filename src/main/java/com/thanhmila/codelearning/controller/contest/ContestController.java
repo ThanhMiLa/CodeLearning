@@ -9,6 +9,7 @@ import java.util.List;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
+import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.ContestLeaderboardResponse;
 import com.thanhmila.codelearning.service.contest.ContestLeaderboardService;
@@ -37,9 +38,11 @@ public class ContestController {
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ContestListResponse>>> getContests(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size,
+            @AuthenticationPrincipal Jwt jwt) {
 
-        PageResponse<ContestListResponse> response = contestService.getContests(page, size);
+        Long userId = jwt != null ? jwt.getClaim("userId") : null;
+        PageResponse<ContestListResponse> response = contestService.getContests(page, size, userId);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<ContestListResponse>>builder()
                 .status(200)
@@ -184,6 +187,42 @@ public class ContestController {
                 .code(200)
                 .message("Registered for contest successfully")
                 .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<ContestResponse>> getContestById(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Jwt jwt) {
+        
+        Long userId = jwt.getClaim("userId");
+        ContestResponse response = contestService.getContestById(id, userId);
+
+        return ResponseEntity.ok(ApiResponse.<ContestResponse>builder()
+                .status(200)
+                .code(200)
+                .message("Fetched contest details successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/{id}/problems")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getContestProblems(
+            @PathVariable Long id,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+        List<OjLessonProblemResponse> response = contestService.getContestProblems(id, userId);
+
+        return ResponseEntity.ok(ApiResponse.<List<OjLessonProblemResponse>>builder()
+                .status(200)
+                .code(200)
+                .message("Fetched contest problems successfully")
+                .result(response)
                 .timestamp(Instant.now().toString())
                 .build());
     }

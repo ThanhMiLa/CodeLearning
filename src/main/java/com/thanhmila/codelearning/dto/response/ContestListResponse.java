@@ -21,4 +21,19 @@ public class ContestListResponse {
     String createdByTeacherName;
     long numberOfParticipants;
     boolean isPublic;
+    boolean isRegistered;
+
+    public ContestListResponse(Long id, String title, ZonedDateTime startTime, ZonedDateTime endTime, 
+                               ContestStatus status, String createdByTeacherName, 
+                               long numberOfParticipants, boolean isPublic) {
+        this.id = id;
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.status = status;
+        this.createdByTeacherName = createdByTeacherName;
+        this.numberOfParticipants = numberOfParticipants;
+        this.isPublic = isPublic;
+        this.isRegistered = false;
+    }
 }

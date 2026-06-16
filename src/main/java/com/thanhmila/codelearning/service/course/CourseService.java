@@ -18,6 +18,7 @@ import com.thanhmila.codelearning.repository.course.CourseRepository;
 import com.thanhmila.codelearning.repository.course.EnrollmentRepository;
 import com.thanhmila.codelearning.repository.progress.CompletedLessonCountRepository;
 import com.thanhmila.codelearning.repository.progress.LessonProgressRepository;
+import com.thanhmila.codelearning.repository.user.UserRepository;
 import com.thanhmila.codelearning.repository.specification.CourseSpecification;
 import com.thanhmila.codelearning.util.ProgressUtils;
 import com.thanhmila.codelearning.dto.request.CourseCreationRequest;
@@ -54,6 +55,7 @@ public class CourseService {
     ChapterMapper chapterMapper;
     CompletedLessonCountRepository completedLessonCountRepository;
     LessonProgressRepository lessonProgressRepository;
+    UserRepository userRepository;
 
     @Transactional
     public CourseDetailResponse createCourse(CourseCreationRequest request) {
@@ -125,6 +127,22 @@ public class CourseService {
                         completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, enrolledCourseIds);
 
                 courseProgressMap = getCourseProgressMap(completedLessonsCountEntities);
+
+                // Tự động đồng bộ/sửa lỗi nếu cache bị thiếu hoặc sai lệch
+                for (Long courseId : enrolledCourseIds) {
+                    if (!courseProgressMap.containsKey(courseId)) {
+                        int actualCount = lessonProgressRepository.countByUserIdAndCourseId(userId, courseId);
+                        if (actualCount > 0) {
+                            courseProgressMap.put(courseId, actualCount);
+                            CompletedLessonsCountEntity newCountEntity = CompletedLessonsCountEntity.builder()
+                                    .user(userRepository.getReferenceById(userId))
+                                    .course(courseRepository.getReferenceById(courseId))
+                                    .completedLessonsCount(actualCount)
+                                    .build();
+                            completedLessonCountRepository.save(newCountEntity);
+                        }
+                    }
+                }
             }
         }
 
@@ -213,7 +231,20 @@ public class CourseService {
         CompletedLessonsCountEntity completedLessonsCountEntity = completedLessonCountRepository.getByUserIdAndCourseId(userId, courseId)
                 .orElse(null);
 
-        return completedLessonsCountEntity != null ? completedLessonsCountEntity.getCompletedLessonsCount() : 0;
+        if (completedLessonsCountEntity != null) {
+            return completedLessonsCountEntity.getCompletedLessonsCount();
+        }
+
+        int actualCount = lessonProgressRepository.countByUserIdAndCourseId(userId, courseId);
+        if (actualCount > 0) {
+            CompletedLessonsCountEntity newCountEntity = CompletedLessonsCountEntity.builder()
+                    .user(userRepository.getReferenceById(userId))
+                    .course(courseRepository.getReferenceById(courseId))
+                    .completedLessonsCount(actualCount)
+                    .build();
+            completedLessonCountRepository.save(newCountEntity);
+        }
+        return actualCount;
     }
 
 

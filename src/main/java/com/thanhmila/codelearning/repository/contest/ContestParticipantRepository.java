@@ -16,5 +16,8 @@ public interface ContestParticipantRepository extends JpaRepository<ContestParti
 
     @Query("SELECT COUNT(cp.id) > 0 FROM ContestParticipantEntity cp WHERE cp.user.id = :userId AND cp.contest.id IN :contestIds")
     boolean isUserParticipantOfAnyContest(@Param("userId") Long userId, @Param("contestIds") List<Long> contestIds);
+
+    @Query("SELECT cp.contest.id FROM ContestParticipantEntity cp WHERE cp.user.id = :userId")
+    List<Long> findContestIdsByUserId(@Param("userId") Long userId);
 }
 

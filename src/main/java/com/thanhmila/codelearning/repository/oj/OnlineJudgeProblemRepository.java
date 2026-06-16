@@ -136,5 +136,26 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             "FROM OnlineJudgeProblemEntity p " +
             "WHERE p.id = :problemId")
     Optional<ProblemAccessProjection> findAccessDetailsByProblemId(@Param("problemId") Long problemId);
+
+    @Query(value = """
+            SELECT
+                olp.id AS id,
+                olp.title AS title,
+                olp.difficulty::varchar AS difficulty,
+                EXISTS (
+                    SELECT 1
+                    FROM online_judge_submissions ols
+                    WHERE ols.problem_id = olp.id
+                      AND ols.user_id = :userId
+                      AND ols.verdict = 'ACCEPTED'
+                ) AS is_accepted
+            FROM online_judge_problems olp
+            JOIN contest_problems cp ON cp.problem_id = olp.id
+            WHERE cp.contest_id = :contestId
+            ORDER BY cp.order_index ASC
+            """, nativeQuery = true)
+    List<OjProblemListProjection> findProblemsByContestWithStatus(
+            @Param("contestId") Long contestId,
+            @Param("userId") Long userId);
 }
 

@@ -51,7 +51,10 @@ public class OnlineJudgeProblemService {
 
 
     public PageResponse<OjPracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
-        Specification<OnlineJudgeProblemEntity> spec = Specification.allOf(ProblemSpecification.isPublicAndActive());
+        Specification<OnlineJudgeProblemEntity> spec = Specification.allOf(
+                ProblemSpecification.isPublicAndActive(),
+                ProblemSpecification.hasScope(ProblemScope.PRACTICE)
+        );
 
         if (StringUtils.hasText(request.getKeyword())) {
             spec = spec.and(ProblemSpecification.hasKeyword(request.getKeyword()));

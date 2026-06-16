@@ -93,19 +93,21 @@ public class LessonService {
                 .build();
         lessonProgressRepository.save(lessonProgress);
 
+        int actualCompletedCount = lessonProgressRepository.countByUserIdAndCourseId(userId, courseId);
         var completedCountOpt = completedLessonCountRepository.getByUserIdAndCourseId(userId, courseId);
-        Integer newCountCompletedLesson;
+        CompletedLessonsCountEntity countEntity;
         if (completedCountOpt.isEmpty()) {
-            CompletedLessonsCountEntity newCountEntity = CompletedLessonsCountEntity.builder()
+            countEntity = CompletedLessonsCountEntity.builder()
                     .user(userRepository.getReferenceById(userId))
                     .course(courseEntity)
-                    .completedLessonsCount(1)
+                    .completedLessonsCount(actualCompletedCount)
                     .build();
-            completedLessonCountRepository.save(newCountEntity);
-            newCountCompletedLesson = 1;
         } else {
-            newCountCompletedLesson = completedLessonCountRepository.incrementAndGetCount(userId, courseId);
+            countEntity = completedCountOpt.get();
+            countEntity.setCompletedLessonsCount(actualCompletedCount);
         }
+        completedLessonCountRepository.save(countEntity);
+        Integer newCountCompletedLesson = actualCompletedCount;
 
         boolean isCourseCompleted = newCountCompletedLesson >= totalLessons;
         if(isCourseCompleted){

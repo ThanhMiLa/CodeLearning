@@ -2,6 +2,7 @@ package com.thanhmila.codelearning.repository.specification;
 
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
+import com.thanhmila.codelearning.entity.enums.ProblemScope;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionEntity;
 import com.thanhmila.codelearning.entity.oj.ProblemTagEntity;
@@ -14,6 +15,10 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.List;
 
 public class ProblemSpecification {
+
+    public static Specification<OnlineJudgeProblemEntity> hasScope(ProblemScope scope) {
+        return (root, query, cb) -> cb.equal(root.get("problemScope"), scope);
+    }
 
     public static Specification<OnlineJudgeProblemEntity> isPublicAndActive() {
         return (root, query, cb) -> cb.and(

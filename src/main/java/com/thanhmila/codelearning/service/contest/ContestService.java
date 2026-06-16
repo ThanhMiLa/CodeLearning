@@ -63,10 +63,57 @@ public class ContestService {
     ContestParticipantRepository contestParticipantRepository;
     UserRepository userRepository;
 
-    public PageResponse<ContestListResponse> getContests(int page, int size) {
+    public PageResponse<ContestListResponse> getContests(int page, int size, Long userId) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ContestListResponse> contestPage = contestRepository.findAllContestsWithCustomSort(pageable);
+        
+        if (userId != null && contestPage.getContent() != null && !contestPage.getContent().isEmpty()) {
+            java.util.List<Long> registeredContestIds = contestParticipantRepository.findContestIdsByUserId(userId);
+            java.util.Set<Long> registeredSet = new java.util.HashSet<>(registeredContestIds);
+            contestPage.getContent().forEach(c -> c.setRegistered(registeredSet.contains(c.getId())));
+        }
+
         return PageResponse.from(contestPage);
+    }
+
+    public ContestResponse getContestById(Long contestId, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        boolean isParticipant = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        boolean isCreator = teacherId != null && contest.getCreatedByTeacher().getId().equals(teacherId);
+
+        if (!isParticipant && !isCreator) {
+            throw new AppException(ErrorCode.CONTEST_NOT_JOINED);
+        }
+
+        return contestMapper.toContestResponse(contest);
+    }
+
+    public List<com.thanhmila.codelearning.dto.response.OjLessonProblemResponse> getContestProblems(Long contestId, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        boolean isParticipant = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        Long teacherId = teacherRepository.findIdByUserId(userId);
+        boolean isCreator = teacherId != null && contest.getCreatedByTeacher().getId().equals(teacherId);
+
+        if (!isParticipant && !isCreator) {
+            throw new AppException(ErrorCode.CONTEST_NOT_JOINED);
+        }
+
+        List<com.thanhmila.codelearning.repository.projection.OjProblemListProjection> ojProblemList = 
+                onlineJudgeProblemRepository.findProblemsByContestWithStatus(contestId, userId);
+        
+        return ojProblemList.stream()
+                .map(projection -> com.thanhmila.codelearning.dto.response.OjLessonProblemResponse.builder()
+                        .id(projection.getId())
+                        .title(projection.getTitle())
+                        .difficulty(com.thanhmila.codelearning.entity.enums.ProblemDifficulty.valueOf(projection.getDifficulty()))
+                        .isAccepted(projection.getIsAccepted())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -172,7 +219,7 @@ public class ContestService {
         }
 
         if (contest.getStatus() != ContestStatus.UPCOMING) {
-            throw new AppException(ErrorCode.INVALID_REQUEST);
+            throw new AppException(ErrorCode.CONTEST_ALREADY_STARTED);
         }
 
         if (request.getProblemIds() == null || request.getProblemIds().isEmpty()) {
@@ -244,7 +291,7 @@ public class ContestService {
         }
 
         if (contest.getStatus() != ContestStatus.UPCOMING) {
-            throw new AppException(ErrorCode.INVALID_REQUEST);
+            throw new AppException(ErrorCode.CONTEST_ALREADY_STARTED);
         }
 
         if (requests == null || requests.isEmpty()) {
@@ -307,7 +354,7 @@ public class ContestService {
         }
 
         if (contest.getStatus() != ContestStatus.UPCOMING) {
-            throw new AppException(ErrorCode.INVALID_REQUEST);
+            throw new AppException(ErrorCode.CONTEST_ALREADY_STARTED);
         }
 
         ContestProblemEntity contestProblem = contestProblemRepository.findByContestIdAndProblemId(contestId, problemId)
@@ -337,19 +384,19 @@ public class ContestService {
         ContestEntity contest = contestRepository.findById(contestId)
                 .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
 
-        if (contest.getStatus() != ContestStatus.UPCOMING) {
-            throw new AppException(ErrorCode.INVALID_REQUEST); // or CONTEST_ALREADY_STARTED if it existed
+        boolean isAlreadyRegistered = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
+        if (isAlreadyRegistered) {
+            return; // Succeed silently
+        }
+
+        if (contest.getStatus() != ContestStatus.UPCOMING && contest.getStatus() != ContestStatus.RUNNING) {
+            throw new AppException(ErrorCode.INVALID_REQUEST);
         }
 
         if (contest.getPasswordHash() != null) {
             if (!StringUtils.hasText(request.getPassword()) || !passwordEncoder.matches(request.getPassword(), contest.getPasswordHash())) {
                 throw new AppException(ErrorCode.CONTEST_PASSWORD_INVALID);
             }
-        }
-
-        boolean isAlreadyRegistered = contestParticipantRepository.findByContestIdAndUserId(contestId, userId).isPresent();
-        if (isAlreadyRegistered) {
-            throw new AppException(ErrorCode.INVALID_REQUEST); // Could be ALREADY_REGISTERED
         }
 
         ContestParticipantEntity participant = ContestParticipantEntity.builder()
