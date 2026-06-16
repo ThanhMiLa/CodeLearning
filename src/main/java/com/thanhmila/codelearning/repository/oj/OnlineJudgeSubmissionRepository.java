@@ -9,11 +9,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Repository
 public interface OnlineJudgeSubmissionRepository extends JpaRepository<OnlineJudgeSubmissionEntity, Long> {
     List<OnlineJudgeSubmissionEntity> findByProblemIdOrderBySubmittedAtDesc(Long problemId);
     List<OnlineJudgeSubmissionEntity> findByUserIdOrderBySubmittedAtDesc(Long userId);
+
+    Page<OnlineJudgeSubmissionEntity> findByUserIdAndProblemIdOrderBySubmittedAtDesc(Long userId, Long problemId, Pageable pageable);
+
+    Page<OnlineJudgeSubmissionEntity> findByUserIdAndContestIdOrderBySubmittedAtDesc(Long userId, Long contestId, Pageable pageable);
 
     @Query("SELECT s FROM OnlineJudgeSubmissionEntity s WHERE s.id = :id")
     Optional<OnlineJudgeSubmissionEntity> findById(@Param("id") Long id);

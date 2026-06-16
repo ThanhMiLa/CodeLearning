@@ -51,51 +51,43 @@ public class ContestLeaderboardService {
     SimpMessagingTemplate messagingTemplate;
 
     @Transactional
-    public void initializeLeaderboardForContest(Long contestId) {
-        List<ContestParticipantEntity> participants = participantRepo.findByContestId(contestId);
+    public void initializeLeaderboardForUser(Long contestId, Long userId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
+        com.thanhmila.codelearning.entity.user.UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+
         List<ContestProblemEntity> problems = contestProblemRepository.findByContestIdOrderByOrderIndex(contestId);
 
-        if (participants.isEmpty() || problems.isEmpty()) return;
-
-        ContestEntity contest = contestRepository.getReferenceById(contestId);
-        List<ContestRankingEntity> newRankings = new ArrayList<>();
-        List<ContestProblemAttemptEntity> newAttempts = new ArrayList<>();
-
-        for (ContestParticipantEntity participant : participants) {
-            Long userId = participant.getUser().getId();
-            
-            boolean rankingExists = rankingRepo.findByContestIdAndUserId(contestId, userId).isPresent();
-            if (!rankingExists) {
-                newRankings.add(ContestRankingEntity.builder()
-                        .contest(contest)
-                        .user(participant.getUser())
-                        .problemsSolved(0)
-                        .totalPenalty(0)
-                        .build());
-            }
-
-            for (ContestProblemEntity cp : problems) {
-                boolean attemptExists = attemptRepo.findByContestIdAndUserIdAndProblemId(contestId, userId, cp.getProblem().getId()).isPresent();
-                if (!attemptExists) {
-                    newAttempts.add(ContestProblemAttemptEntity.builder()
-                            .contest(contest)
-                            .user(participant.getUser())
-                            .problem(cp.getProblem())
-                            .isSolved(false)
-                            .failedAttemptsCount(0)
-                            .build());
-                }
-            }
+        boolean rankingExists = rankingRepo.findByContestIdAndUserId(contestId, userId).isPresent();
+        if (!rankingExists) {
+            rankingRepo.save(ContestRankingEntity.builder()
+                    .contest(contest)
+                    .user(user)
+                    .problemsSolved(0)
+                    .totalPenalty(0)
+                    .build());
         }
 
-        if (!newRankings.isEmpty()) rankingRepo.saveAll(newRankings);
-        if (!newAttempts.isEmpty()) attemptRepo.saveAll(newAttempts);
-        
-        String topic = "/topic/contests/" + contestId + "/leaderboard";
-        String messagePayload = "{\"event\": \"LEADERBOARD_INITIALIZED\", \"contest_id\": " + contestId + "}";
-        messagingTemplate.convertAndSend(topic, messagePayload);
-        
-        log.info("Initialized leaderboard for contest {}: {} rankings, {} attempts created.", contestId, newRankings.size(), newAttempts.size());
+        List<ContestProblemAttemptEntity> newAttempts = new ArrayList<>();
+        for (ContestProblemEntity cp : problems) {
+            boolean attemptExists = attemptRepo.findByContestIdAndUserIdAndProblemId(contestId, userId, cp.getProblem().getId()).isPresent();
+            if (!attemptExists) {
+                newAttempts.add(ContestProblemAttemptEntity.builder()
+                        .contest(contest)
+                        .user(user)
+                        .problem(cp.getProblem())
+                        .isSolved(false)
+                        .failedAttemptsCount(0)
+                        .build());
+            }
+        }
+        if (!newAttempts.isEmpty()) {
+            attemptRepo.saveAll(newAttempts);
+        }
+
+        log.info("Initialized leaderboard for user {} in contest {}: attempts created = {}", userId, contestId, newAttempts.size());
     }
 
     @Transactional

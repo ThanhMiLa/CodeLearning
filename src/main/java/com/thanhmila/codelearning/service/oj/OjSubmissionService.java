@@ -4,6 +4,11 @@ import com.thanhmila.codelearning.dto.judge0.*;
 import com.thanhmila.codelearning.dto.request.OjSubmissionRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionInitialResponse;
 import com.thanhmila.codelearning.dto.response.OjWebSocketMessage;
+import com.thanhmila.codelearning.dto.response.OjSubmissionHistoryResponse;
+import com.thanhmila.codelearning.dto.response.OjContestSubmissionResponse;
+import com.thanhmila.codelearning.dto.response.PageResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionDetailEntity;
@@ -375,6 +380,78 @@ public class OjSubmissionService {
             // Trả về chuỗi gốc nếu không phải Base64 hợp lệ
             return base64Str; 
         }
+    }
+
+    private String getLanguageName(Integer languageId) {
+        if (languageId == null) return "Unknown";
+        return switch (languageId) {
+            case 48, 49, 50 -> "C (GCC)";
+            case 52, 53, 54 -> "C++ (GCC)";
+            case 75 -> "C (Clang)";
+            case 76 -> "C++ (Clang)";
+            case 60 -> "Go";
+            case 62 -> "Java";
+            case 51 -> "C#";
+            case 63 -> "JavaScript";
+            case 74 -> "TypeScript";
+            case 70, 71 -> "Python";
+            default -> "Language (" + languageId + ")";
+        };
+    }
+
+    public PageResponse<OjSubmissionHistoryResponse> getProblemSubmissions(Long problemId, Long userId, Pageable pageable) {
+        Page<OnlineJudgeSubmissionEntity> submissionPage = onlineJudgeSubmissionRepository
+                .findByUserIdAndProblemIdOrderBySubmittedAtDesc(userId, problemId, pageable);
+
+        List<OjSubmissionHistoryResponse> content = submissionPage.getContent().stream()
+                .map(entity -> OjSubmissionHistoryResponse.builder()
+                        .id(entity.getId())
+                        .language(getLanguageName(entity.getLanguageId()))
+                        .verdict(entity.getVerdict())
+                        .executionTimeMs(entity.getExecutionTimeMs())
+                        .memoryUsedKb(entity.getMemoryUsedKb())
+                        .submittedAt(entity.getSubmittedAt())
+                        .build())
+                .toList();
+
+        return PageResponse.<OjSubmissionHistoryResponse>builder()
+                .page(submissionPage.getNumber())
+                .size(submissionPage.getSize())
+                .numberOfElements(submissionPage.getNumberOfElements())
+                .totalElements(submissionPage.getTotalElements())
+                .totalPages(submissionPage.getTotalPages())
+                .first(submissionPage.isFirst())
+                .last(submissionPage.isLast())
+                .content(content)
+                .build();
+    }
+
+    public PageResponse<OjContestSubmissionResponse> getContestSubmissions(Long contestId, Long userId, Pageable pageable) {
+        Page<OnlineJudgeSubmissionEntity> submissionPage = onlineJudgeSubmissionRepository
+                .findByUserIdAndContestIdOrderBySubmittedAtDesc(userId, contestId, pageable);
+
+        List<OjContestSubmissionResponse> content = submissionPage.getContent().stream()
+                .map(entity -> OjContestSubmissionResponse.builder()
+                        .id(entity.getId())
+                        .problemId(entity.getProblem().getId())
+                        .language(getLanguageName(entity.getLanguageId()))
+                        .verdict(entity.getVerdict())
+                        .executionTimeMs(entity.getExecutionTimeMs())
+                        .memoryUsedKb(entity.getMemoryUsedKb())
+                        .submittedAt(entity.getSubmittedAt())
+                        .build())
+                .toList();
+
+        return PageResponse.<OjContestSubmissionResponse>builder()
+                .page(submissionPage.getNumber())
+                .size(submissionPage.getSize())
+                .numberOfElements(submissionPage.getNumberOfElements())
+                .totalElements(submissionPage.getTotalElements())
+                .totalPages(submissionPage.getTotalPages())
+                .first(submissionPage.isFirst())
+                .last(submissionPage.isLast())
+                .content(content)
+                .build();
     }
 
 }

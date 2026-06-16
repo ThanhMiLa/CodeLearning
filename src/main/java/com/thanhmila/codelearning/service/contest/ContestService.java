@@ -9,6 +9,7 @@ import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 
+import com.thanhmila.codelearning.dto.response.OjContestProblemResponse;
 import com.thanhmila.codelearning.entity.contest.ContestEntity;
 import com.thanhmila.codelearning.entity.contest.ContestProblemEntity;
 import com.thanhmila.codelearning.entity.contest.ContestParticipantEntity;
@@ -62,6 +63,7 @@ public class ContestService {
     OnlineJudgeProblemRepository onlineJudgeProblemRepository;
     ContestParticipantRepository contestParticipantRepository;
     UserRepository userRepository;
+    ContestLeaderboardService contestLeaderboardService;
 
     public PageResponse<ContestListResponse> getContests(int page, int size, Long userId) {
         Pageable pageable = PageRequest.of(page, size);
@@ -91,7 +93,7 @@ public class ContestService {
         return contestMapper.toContestResponse(contest);
     }
 
-    public List<com.thanhmila.codelearning.dto.response.OjLessonProblemResponse> getContestProblems(Long contestId, Long userId) {
+    public List<OjContestProblemResponse> getContestProblems(Long contestId, Long userId) {
         ContestEntity contest = contestRepository.findById(contestId)
                 .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
 
@@ -107,10 +109,9 @@ public class ContestService {
                 onlineJudgeProblemRepository.findProblemsByContestWithStatus(contestId, userId);
         
         return ojProblemList.stream()
-                .map(projection -> com.thanhmila.codelearning.dto.response.OjLessonProblemResponse.builder()
+                .map(projection -> OjContestProblemResponse.builder()
                         .id(projection.getId())
                         .title(projection.getTitle())
-                        .difficulty(com.thanhmila.codelearning.entity.enums.ProblemDifficulty.valueOf(projection.getDifficulty()))
                         .isAccepted(projection.getIsAccepted())
                         .build())
                 .collect(Collectors.toList());
@@ -389,8 +390,8 @@ public class ContestService {
             return; // Succeed silently
         }
 
-        if (contest.getStatus() != ContestStatus.UPCOMING && contest.getStatus() != ContestStatus.RUNNING) {
-            throw new AppException(ErrorCode.INVALID_REQUEST);
+        if (contest.getStatus() != ContestStatus.RUNNING) {
+            throw new AppException(ErrorCode.CONTEST_NOT_RUNNING);
         }
 
         if (contest.getPasswordHash() != null) {
@@ -405,6 +406,9 @@ public class ContestService {
                 .build();
 
         contestParticipantRepository.save(participant);
+
+        // Khởi tạo bảng xếp hạng và các lượt thử ngay lập tức cho user này
+        contestLeaderboardService.initializeLeaderboardForUser(contestId, userId);
     }
 
     private void publishStartMessage(ContestEntity contest) {

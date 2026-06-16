@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.context.ApplicationEventPublisher;
-import com.thanhmila.codelearning.event.ContestStartedEvent;
 
 @Slf4j
 @Component
@@ -19,7 +17,6 @@ import com.thanhmila.codelearning.event.ContestStartedEvent;
 public class ContestStatusListener {
 
     private final ContestRepository contestRepository;
-    private final ApplicationEventPublisher applicationEventPublisher;
 
     @RabbitListener(queues = RabbitMQConfig.CONTEST_QUEUE)
     @Transactional
@@ -38,10 +35,7 @@ public class ContestStatusListener {
                 if (contest.getStartTime().toInstant().equals(message.getTargetTime())) {
                     contest.setStatus(ContestStatus.RUNNING);
                     contestRepository.save(contest);
-                    log.info("Contest {} status updated to RUNNING", contestId);
-                    
-                    // Fire event to initialize leaderboard
-                    applicationEventPublisher.publishEvent(new ContestStartedEvent(this, contestId));
+                     log.info("Contest {} status updated to RUNNING", contestId);
                 } else {
                     log.info("Ignoring START message for contest {}, targetTime mismatch. Expected: {}, Actual: {}", 
                             contestId, message.getTargetTime(), contest.getStartTime().toInstant());

@@ -28,6 +28,9 @@ import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 
 import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
 import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
+import com.thanhmila.codelearning.dto.response.OjSubmissionHistoryResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @Slf4j
 @RestController
@@ -178,6 +181,27 @@ public class OnlineJudgeProblemController {
                 .code(1000)
                 .message("Create problem in bank successfully")
                 .result(problemId)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/problems/{problemId}/submissions")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<PageResponse<OjSubmissionHistoryResponse>>> getProblemSubmissions(
+            @PathVariable("problemId") Long problemId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+        Pageable pageable = PageRequest.of(page, size);
+        PageResponse<OjSubmissionHistoryResponse> result = ojSubmissionService.getProblemSubmissions(problemId, userId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<OjSubmissionHistoryResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get problem submissions successfully")
+                .result(result)
                 .timestamp(Instant.now().toString())
                 .build());
     }

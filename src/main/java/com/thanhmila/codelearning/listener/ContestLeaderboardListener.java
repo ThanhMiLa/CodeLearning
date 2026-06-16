@@ -1,7 +1,6 @@
 package com.thanhmila.codelearning.listener;
 
 import com.thanhmila.codelearning.event.SubmissionCompletedEvent;
-import com.thanhmila.codelearning.event.ContestStartedEvent;
 import com.thanhmila.codelearning.service.contest.ContestLeaderboardService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -36,17 +35,6 @@ public class ContestLeaderboardListener {
             } catch (Exception e) {
                 log.error("Error processing ICPC leaderboard for submission: {}", event.getSubmissionId(), e);
             }
-        }
-    }
-
-    @Async
-    @EventListener
-    public void handleContestStartedEvent(ContestStartedEvent event) {
-        log.info("Received ContestStartedEvent for contest {}. Initializing leaderboard...", event.getContestId());
-        try {
-            leaderboardService.initializeLeaderboardForContest(event.getContestId());
-        } catch (Exception e) {
-            log.error("Error initializing leaderboard for contest: {}", event.getContestId(), e);
         }
     }
 }

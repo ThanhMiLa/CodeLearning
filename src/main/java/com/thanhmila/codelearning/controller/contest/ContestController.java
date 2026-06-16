@@ -9,11 +9,15 @@ import java.util.List;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.ContestListResponse;
 import com.thanhmila.codelearning.dto.response.ContestResponse;
-import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjContestProblemResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.ContestLeaderboardResponse;
 import com.thanhmila.codelearning.service.contest.ContestLeaderboardService;
 import com.thanhmila.codelearning.service.contest.ContestService;
+import com.thanhmila.codelearning.service.oj.OjSubmissionService;
+import com.thanhmila.codelearning.dto.response.OjContestSubmissionResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +38,7 @@ public class ContestController {
 
     ContestService contestService;
     ContestLeaderboardService contestLeaderboardService;
+    OjSubmissionService ojSubmissionService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ContestListResponse>>> getContests(
@@ -211,17 +216,38 @@ public class ContestController {
 
     @GetMapping("/{id}/problems")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<ApiResponse<List<OjLessonProblemResponse>>> getContestProblems(
+    public ResponseEntity<ApiResponse<List<OjContestProblemResponse>>> getContestProblems(
             @PathVariable Long id,
             @AuthenticationPrincipal Jwt jwt) {
 
         Long userId = jwt.getClaim("userId");
-        List<OjLessonProblemResponse> response = contestService.getContestProblems(id, userId);
+        List<OjContestProblemResponse> response = contestService.getContestProblems(id, userId);
 
-        return ResponseEntity.ok(ApiResponse.<List<OjLessonProblemResponse>>builder()
+        return ResponseEntity.ok(ApiResponse.<List<OjContestProblemResponse>>builder()
                 .status(200)
                 .code(200)
                 .message("Fetched contest problems successfully")
+                .result(response)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/{id}/submissions")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<PageResponse<OjContestSubmissionResponse>>> getContestSubmissions(
+            @PathVariable("id") Long contestId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @AuthenticationPrincipal Jwt jwt) {
+
+        Long userId = jwt.getClaim("userId");
+        Pageable pageable = PageRequest.of(page, size);
+        PageResponse<OjContestSubmissionResponse> response = ojSubmissionService.getContestSubmissions(contestId, userId, pageable);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<OjContestSubmissionResponse>>builder()
+                .status(200)
+                .code(200)
+                .message("Fetched contest submissions successfully")
                 .result(response)
                 .timestamp(Instant.now().toString())
                 .build());

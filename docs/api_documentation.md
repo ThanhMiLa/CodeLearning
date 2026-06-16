@@ -287,6 +287,12 @@ export interface OjLessonProblemResponse {
   isAccepted: boolean | null;
 }
 
+export interface OjContestProblemResponse {
+  id: number;
+  title: string;
+  isAccepted: boolean | null;
+}
+
 export interface OjProblemDetailResponse {
   id: number;
   title: string;
@@ -868,6 +874,43 @@ export interface OjTestcaseGenWsMessage {
 - **Path Variable**: `problemId` (Long)
 - **Response (200 OK)**: Trả về `OjProblemDetailResponse`.
 
+#### 34a. Xem lịch sử nộp bài tập OJ của người dùng
+- **Method & URL**: `GET /online-judge/problems/{problemId}/submissions`
+- **Mục đích**: Lấy danh sách lịch sử các lần nộp bài (submission) của người dùng hiện tại đối với bài tập cụ thể.
+- **Yêu cầu JWT**: Có.
+- **Path Variable**: `problemId` (Long)
+- **Query Parameters**:
+  - `page` (Integer, mặc định: 0)
+  - `size` (Integer, mặc định: 10)
+- **Response (200 OK)**:
+  ```json
+  {
+    "status": 200,
+    "code": 1000,
+    "message": "Get problem submissions successfully",
+    "result": {
+      "page": 0,
+      "size": 10,
+      "numberOfElements": 1,
+      "totalElements": 1,
+      "totalPages": 1,
+      "first": true,
+      "last": true,
+      "content": [
+        {
+          "id": 42,
+          "language": "Java",
+          "verdict": "ACCEPTED",
+          "executionTimeMs": 45,
+          "memoryUsedKb": 2048,
+          "submittedAt": "2026-06-16T18:13:03.102Z"
+        }
+      ]
+    },
+    "timestamp": "2026-06-16T18:54:12.321Z"
+  }
+  ```
+
 #### 35. Nộp code chạy thử/chấm bài
 - **Method & URL**: `POST /online-judge/submissions`
 - **Mục đích**: Gửi source code người dùng lên hệ thống chấm điểm tự động. Hệ thống sẽ lưu và gửi tiếp sang Judge0 API.
@@ -1014,6 +1057,33 @@ export interface OjTestcaseGenWsMessage {
   ```
 - **Response (200 OK)**: Trả về `ContestResponse`.
 
+#### 43a. Lấy danh sách bài tập của cuộc thi
+- **Method & URL**: `GET /contests/{id}/problems`
+- **Mục đích**: Lấy danh sách các bài tập thuộc cuộc thi.
+- **Yêu cầu JWT**: Có.
+- **Path Variable**: `id` (Long) - ID cuộc thi
+- **Response (200 OK)**: Trả về `OjContestProblemResponse[]`.
+  ```json
+  {
+    "status": 200,
+    "code": 200,
+    "message": "Fetched contest problems successfully",
+    "result": [
+      {
+        "id": 1,
+        "title": "A cộng B",
+        "isAccepted": true
+      },
+      {
+        "id": 2,
+        "title": "Sắp xếp mảng",
+        "isAccepted": false
+      }
+    ],
+    "timestamp": "2026-06-16T18:54:12.321Z"
+  }
+  ```
+
 #### 44. Thêm bài tập từ ngân hàng đề vào cuộc thi
 - **Method & URL**: `POST /contests/{id}/problems`
 - **Mục đích**: Gán các bài tập lập trình vào bộ đề thi của cuộc thi này.
@@ -1067,6 +1137,44 @@ export interface OjTestcaseGenWsMessage {
   }
   ```
 - **Response (200 OK)**: Đăng ký tham gia thành công.
+
+#### 48a. Xem lịch sử nộp bài của bản thân trong cuộc thi
+- **Method & URL**: `GET /contests/{id}/submissions`
+- **Mục đích**: Lấy danh sách lịch sử nộp bài (submissions) của người dùng hiện tại trong cuộc thi cụ thể (bao gồm tất cả các bài nộp cho nhiều đề bài khác nhau thuộc cuộc thi này).
+- **Yêu cầu JWT**: Có.
+- **Path Variable**: `id` (Long) - ID của cuộc thi.
+- **Query Parameters**:
+  - `page` (Integer, mặc định: 0)
+  - `size` (Integer, mặc định: 10)
+- **Response (200 OK)**:
+  ```json
+  {
+    "status": 200,
+    "code": 200,
+    "message": "Fetched contest submissions successfully",
+    "result": {
+      "page": 0,
+      "size": 10,
+      "numberOfElements": 1,
+      "totalElements": 1,
+      "totalPages": 1,
+      "first": true,
+      "last": true,
+      "content": [
+        {
+          "id": 127,
+          "problemId": 5,
+          "language": "Java",
+          "verdict": "ACCEPTED",
+          "executionTimeMs": 110,
+          "memoryUsedKb": 4096,
+          "submittedAt": "2026-06-16T18:13:03.102Z"
+        }
+      ]
+    },
+    "timestamp": "2026-06-16T18:54:12.321Z"
+  }
+  ```
 
 ---
 

@@ -100,6 +100,7 @@ public enum ErrorCode {
     CONTEST_PASSWORD_INVALID(9003, "Contest password is invalid", HttpStatus.UNAUTHORIZED),
     CONTEST_NOT_JOINED(9202, "User has not joined this contest", HttpStatus.FORBIDDEN),
     CONTEST_ALREADY_STARTED(9004, "Contest has already started or ended", HttpStatus.BAD_REQUEST),
+    CONTEST_NOT_RUNNING(9005, "Contest is not running", HttpStatus.BAD_REQUEST),
 
     INSUFFICIENT_BALANCE(10001, "Insufficient wallet balance", HttpStatus.BAD_REQUEST),
     COURSE_ALREADY_IN_CART(10002, "Course already in cart", HttpStatus.CONFLICT);
