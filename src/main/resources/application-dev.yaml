@@ -14,7 +14,7 @@ spring:
       max-request-size: 100MB
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/codelearning}
+    url: jdbc:postgresql://localhost:5432/codelearning?options=-c timezone=Asia/Ho_Chi_Minh
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD}
     hikari:
@@ -69,16 +69,16 @@ auth:
       path: ${REFRESH_TOKEN_PATH:/codelearning/auth}
 
 judge0:
-  #base-url: ${JUDGE0_URL:http://thanhmila.local:2358}
-  base-url: ${JUDGE0_URL:https://humility-reflector-unarmored.ngrok-free.dev}
+  base-url: ${JUDGE0_URL:http://thanhmila.local:2358}
+  #base-url: ${JUDGE0_URL:https://humility-reflector-unarmored.ngrok-free.dev}
   timeout: 20s
 
 websocket:
   allowed-origins: http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173
 
 app:
-  #webhook-base-url: ${WEBHOOK_BASE_URL:http://192.168.1.69:8080/codelearning}
-  webhook-base-url: ${WEBHOOK_BASE_URL:https://flattered-hamburger-shakiness.ngrok-free.dev/codelearning}
+  webhook-base-url: ${WEBHOOK_BASE_URL:http://192.168.1.69:8080/codelearning}
+  #webhook-base-url: ${WEBHOOK_BASE_URL:https://flattered-hamburger-shakiness.ngrok-free.dev/codelearning}
 
 cloudinary:
   cloud-name: ${CLOUDINARY_CLOUD_NAME}

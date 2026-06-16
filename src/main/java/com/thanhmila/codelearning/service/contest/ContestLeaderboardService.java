@@ -179,6 +179,9 @@ public class ContestLeaderboardService {
 
     @Transactional(readOnly = true)
     public ContestLeaderboardResponse getLeaderboard(Long contestId) {
+        ContestEntity contest = contestRepository.findById(contestId)
+                .orElseThrow(() -> new AppException(ErrorCode.CONTEST_NOT_FOUND));
+
         List<ContestRankingEntity> rankings = rankingRepo.findByContestIdOrderByProblemsSolvedDescTotalPenaltyAscUpdatedAtAsc(contestId);
         
         // Lấy tất cả lịch sử làm bài của contest này để hiển thị chi tiết (ô xanh/đỏ)
@@ -217,6 +220,10 @@ public class ContestLeaderboardService {
 
         return ContestLeaderboardResponse.builder()
                 .contestId(contestId)
+                .title(contest.getTitle())
+                .startTime(contest.getStartTime())
+                .endTime(contest.getEndTime())
+                .status(contest.getStatus().name())
                 .leaderboard(finalItems)
                 .build();
     }
