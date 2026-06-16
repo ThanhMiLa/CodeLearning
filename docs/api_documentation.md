@@ -901,7 +901,7 @@ export interface OjTestcaseGenWsMessage {
 - **Method & URL**: `PUT /online-judge/submissions`
 - **Mục đích**: Nhận dữ liệu chấm xong từ Judge0 (Webhooks). API này do Judge0 server tự động gọi.
 - **Yêu cầu JWT**: Không.
-- **Response (204 No Content)**: Xử lý thành công.
+- **Response (200 OK)**: Xử lý thành công. Trả về đối tượng `ApiResponse<Void>` (chú ý: HTTP Status thực tế là 200 OK, nhưng trường `status` bên trong JSON body có giá trị là 204).
 
 #### 37. Khởi tạo sinh bộ Testcase tự động (dành cho Admin/Teacher)
 - **Method & URL**: `POST /online-judge/problems/{problemId}/generate-testcases`

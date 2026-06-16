@@ -9,6 +9,7 @@ import com.thanhmila.codelearning.entity.course.ChapterEntity;
 import com.thanhmila.codelearning.entity.course.CourseEntity;
 import com.thanhmila.codelearning.entity.lesson.LessonEntity;
 import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
+import com.thanhmila.codelearning.entity.progress.CompletedLessonsCountEntity;
 import com.thanhmila.codelearning.entity.progress.LessonProgressEntity;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
@@ -92,7 +93,19 @@ public class LessonService {
                 .build();
         lessonProgressRepository.save(lessonProgress);
 
-        Integer newCountCompletedLesson = completedLessonCountRepository.incrementAndGetCount(userId, courseId);
+        var completedCountOpt = completedLessonCountRepository.getByUserIdAndCourseId(userId, courseId);
+        Integer newCountCompletedLesson;
+        if (completedCountOpt.isEmpty()) {
+            CompletedLessonsCountEntity newCountEntity = CompletedLessonsCountEntity.builder()
+                    .user(userRepository.getReferenceById(userId))
+                    .course(courseEntity)
+                    .completedLessonsCount(1)
+                    .build();
+            completedLessonCountRepository.save(newCountEntity);
+            newCountCompletedLesson = 1;
+        } else {
+            newCountCompletedLesson = completedLessonCountRepository.incrementAndGetCount(userId, courseId);
+        }
 
         boolean isCourseCompleted = newCountCompletedLesson >= totalLessons;
         if(isCourseCompleted){
