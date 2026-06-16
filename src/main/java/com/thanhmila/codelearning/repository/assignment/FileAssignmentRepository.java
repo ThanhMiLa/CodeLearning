@@ -1,6 +1,5 @@
 package com.thanhmila.codelearning.repository.assignment;
 
-import com.thanhmila.codelearning.entity.exercise.FileAssignmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
