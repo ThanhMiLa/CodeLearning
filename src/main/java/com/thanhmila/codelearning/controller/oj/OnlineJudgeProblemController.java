@@ -87,11 +87,12 @@ public class OnlineJudgeProblemController {
     @PreAuthorize("hasAuthority('OJ_PROBLEM_VIEW') and @courseSecurity.canAccessProblem(#problemId)")
     public ResponseEntity<ApiResponse<OjProblemDetailResponse>> getProblemDetail(
             @AuthenticationPrincipal Jwt jwt,
-            @PathVariable("problemId") Long problemId){
+            @PathVariable("problemId") Long problemId,
+            @RequestParam(value = "contestId", required = false) Long contestId){
 
         Long userId = jwt.getClaim("userId");
 
-        var result = onlineJudgeProblemService.getProblemDetail(problemId, userId);
+        var result = onlineJudgeProblemService.getProblemDetail(problemId, userId, contestId);
 
         return ResponseEntity.ok(ApiResponse.<OjProblemDetailResponse>builder()
                 .status(200)

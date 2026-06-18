@@ -66,19 +66,23 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
              JOIN problem_tag_mappings ptm ON t.id = ptm.tag_id 
              WHERE ptm.problem_id = olp.id) AS tagsRaw,
             CASE 
-                WHEN olp.problem_scope::varchar = 'CONTEST' 
-                     OR EXISTS (SELECT 1 FROM contest_problems cp WHERE cp.problem_id = olp.id) 
+                WHEN (olp.problem_scope::varchar = 'CONTEST' OR EXISTS (SELECT 1 FROM contest_problems cp WHERE cp.problem_id = olp.id)) AND :contestId IS NULL
                 THEN NULL
                 ELSE COALESCE(latest_accepted_sub.source_code, latest_any_sub.source_code)
             END AS latestSourceCode,
             CASE WHEN :userId IS NOT NULL THEN
-                EXISTS (
-                    SELECT 1 
-                    FROM online_judge_submissions ac_sub 
-                    WHERE ac_sub.problem_id = olp.id 
-                      AND ac_sub.user_id = :userId 
-                      AND ac_sub.verdict = 'ACCEPTED'
-                )
+                CASE
+                    WHEN (olp.problem_scope::varchar = 'CONTEST' OR EXISTS (SELECT 1 FROM contest_problems cp WHERE cp.problem_id = olp.id)) AND :contestId IS NULL
+                    THEN NULL
+                    ELSE EXISTS (
+                        SELECT 1 
+                        FROM online_judge_submissions ac_sub 
+                        WHERE ac_sub.problem_id = olp.id 
+                          AND ac_sub.user_id = :userId 
+                          AND (:contestId IS NULL OR ac_sub.contest_id = :contestId)
+                          AND ac_sub.verdict = 'ACCEPTED'
+                    )
+                END
             ELSE FALSE END AS isAccepted
         FROM online_judge_problems olp
         LEFT JOIN LATERAL (
@@ -87,6 +91,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             WHERE :userId IS NOT NULL 
               AND sub.problem_id = olp.id 
               AND sub.user_id = :userId 
+              AND (:contestId IS NULL OR sub.contest_id = :contestId)
               AND sub.verdict = 'ACCEPTED'
             ORDER BY sub.submitted_at DESC 
             LIMIT 1
@@ -97,6 +102,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             WHERE :userId IS NOT NULL 
               AND sub.problem_id = olp.id 
               AND sub.user_id = :userId 
+              AND (:contestId IS NULL OR sub.contest_id = :contestId)
             ORDER BY sub.submitted_at DESC 
             LIMIT 1
         ) latest_any_sub ON true
@@ -104,7 +110,8 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
         """, nativeQuery = true)
     Optional<OjProblemDetailProjection> findProblemDetailWithStatus(
             @Param("problemId") Long problemId,
-            @Param("userId") Long userId
+            @Param("userId") Long userId,
+            @Param("contestId") Long contestId
     );
 
 

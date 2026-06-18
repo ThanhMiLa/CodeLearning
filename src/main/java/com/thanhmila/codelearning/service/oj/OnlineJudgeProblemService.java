@@ -122,8 +122,8 @@ public class OnlineJudgeProblemService {
     }
 
 
-    public OjProblemDetailResponse getProblemDetail(Long problemId, Long userId) {
-        OjProblemDetailProjection ojProblemDetail = onlineJudgeProblemRepository.findProblemDetailWithStatus(problemId, userId)
+    public OjProblemDetailResponse getProblemDetail(Long problemId, Long userId, Long contestId) {
+        OjProblemDetailProjection ojProblemDetail = onlineJudgeProblemRepository.findProblemDetailWithStatus(problemId, userId, contestId)
                     .orElseThrow(() -> new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND));
 
         return mapToOnlineJudgeProblemDetailResponse(ojProblemDetail);       
