@@ -870,6 +870,7 @@ export interface OjTestcaseGenWsMessage {
 #### 34. Xem chi tiết đề bài tập OJ
 - **Method & URL**: `GET /online-judge/problems/{problemId}`
 - **Mục đích**: Hiển thị mô tả đề bài, ví dụ đầu vào/đầu ra, giới hạn thời gian, bộ nhớ và code nộp gần nhất (nếu có).
+- **Lưu ý**: Nếu bài tập thuộc một cuộc thi (Contest), các trường `latestSourceCode` và `difficulty` trong phản hồi sẽ luôn trả về `null` để bảo mật thông tin cuộc thi và tránh lộ code đã nộp trước đó.
 - **Yêu cầu JWT**: Có (Quyền: `OJ_PROBLEM_VIEW` và đã mở khóa bài tập).
 - **Path Variable**: `problemId` (Long)
 - **Response (200 OK)**: Trả về `OjProblemDetailResponse`.
@@ -1060,6 +1061,7 @@ export interface OjTestcaseGenWsMessage {
 #### 43a. Lấy danh sách bài tập của cuộc thi
 - **Method & URL**: `GET /contests/{id}/problems`
 - **Mục đích**: Lấy danh sách các bài tập thuộc cuộc thi.
+- **Lưu ý**: Trạng thái `isAccepted` trả về `true` khi và chỉ khi người dùng đã có bài nộp được chấm `ACCEPTED` trong phạm vi cuộc thi hiện tại (không tính kết quả nộp ở phần luyện tập hoặc cuộc thi khác).
 - **Yêu cầu JWT**: Có.
 - **Path Variable**: `id` (Long) - ID cuộc thi
 - **Response (200 OK)**: Trả về `OjContestProblemResponse[]`.

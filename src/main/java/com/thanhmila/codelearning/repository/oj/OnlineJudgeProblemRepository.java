@@ -55,7 +55,12 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
             olp.example_input,
             olp.example_output,
             olp.hint,
-            olp.difficulty::varchar AS difficulty,
+            CASE 
+                WHEN olp.problem_scope::varchar = 'CONTEST' 
+                     OR EXISTS (SELECT 1 FROM contest_problems cp WHERE cp.problem_id = olp.id) 
+                THEN NULL
+                ELSE olp.difficulty::varchar
+            END AS difficulty,
             (SELECT string_agg(t.name, ',')
              FROM problem_tags t 
              JOIN problem_tag_mappings ptm ON t.id = ptm.tag_id 

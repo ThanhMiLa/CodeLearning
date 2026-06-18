@@ -145,7 +145,7 @@ public class OnlineJudgeProblemService {
                 .exampleOutput(ojProblem.getExampleOutput())
                 .hint(ojProblem.getHint())
                 .tags(tags)
-                .difficulty(ProblemDifficulty.valueOf(ojProblem.getDifficulty()))
+                .difficulty(ojProblem.getDifficulty() != null ? ProblemDifficulty.valueOf(ojProblem.getDifficulty()) : null)
                 .latestSourceCode(ojProblem.getLatestSourceCode())
                 .isAccepted(ojProblem.getIsAccepted())
                 .build();
