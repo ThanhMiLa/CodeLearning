@@ -3,6 +3,7 @@ package com.thanhmila.codelearning.repository.oj;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -157,5 +158,13 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     List<OjProblemListProjection> findProblemsByContestWithStatus(
             @Param("contestId") Long contestId,
             @Param("userId") Long userId);
+
+    @Modifying
+    @Query("UPDATE OnlineJudgeProblemEntity p SET p.totalSubmissions = p.totalSubmissions + 1 WHERE p.id = :problemId")
+    void incrementTotalSubmissions(@Param("problemId") Long problemId);
+
+    @Modifying
+    @Query("UPDATE OnlineJudgeProblemEntity p SET p.totalAccepted = p.totalAccepted + 1 WHERE p.id = :problemId")
+    void incrementTotalAccepted(@Param("problemId") Long problemId);
 }
 

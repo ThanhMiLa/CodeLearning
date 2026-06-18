@@ -24,6 +24,7 @@ import com.thanhmila.codelearning.repository.contest.ContestRepository;
 import com.thanhmila.codelearning.repository.contest.ContestProblemRepository;
 import com.thanhmila.codelearning.repository.contest.ContestParticipantRepository;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
+import com.thanhmila.codelearning.repository.projection.OjProblemListProjection;
 import com.thanhmila.codelearning.repository.user.TeacherRepository;
 import com.thanhmila.codelearning.repository.user.UserRepository;
 import lombok.AccessLevel;
@@ -105,7 +106,7 @@ public class ContestService {
             throw new AppException(ErrorCode.CONTEST_NOT_JOINED);
         }
 
-        List<com.thanhmila.codelearning.repository.projection.OjProblemListProjection> ojProblemList = 
+        List<OjProblemListProjection> ojProblemList =
                 onlineJudgeProblemRepository.findProblemsByContestWithStatus(contestId, userId);
         
         return ojProblemList.stream()

@@ -40,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.thanhmila.codelearning.event.SubmissionCompletedEvent;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Slf4j
 @Service
@@ -61,10 +63,12 @@ public class OjSubmissionService {
     ApplicationEventPublisher applicationEventPublisher;
 
     StringRedisTemplate stringRedisTemplate;
+    TransactionTemplate transactionTemplate;
 
     @NonFinal
     @Value("${app.webhook-base-url}")
     String webhookBaseUrl;
+
 
     public OjSubmissionInitialResponse submitCode(OjSubmissionRequest request, Long userId) {
         // Check user status
@@ -146,9 +150,6 @@ public class OjSubmissionService {
             throw new AppException(ErrorCode.JUDGE0_SUBMISSION_FAILED);
         }
 
-        // Lưu submission "mẹ" trước để có ID cho các chi tiết
-        onlineJudgeSubmissionRepository.save(onlineJudgeSubmissionEntity);
-
         // Tạo bản ghi "Con" (OnlineJudgeSubmissionDetailEntity) cho từng testcase
         List<OnlineJudgeSubmissionDetailEntity> submissionDetails = new ArrayList<>();
         for (int i = 0; i < tokenList.size(); i++) {
@@ -160,7 +161,18 @@ public class OjSubmissionService {
                     .build();
             submissionDetails.add(detailEntity);
         }
-        onlineJudgeSubmissionDetailRepository.saveAll(submissionDetails);
+
+        // Thực hiện lưu database trong một transaction ngắn
+        transactionTemplate.executeWithoutResult(status -> {
+            // Lưu submission "mẹ" trước để có ID cho các chi tiết
+            onlineJudgeSubmissionRepository.save(onlineJudgeSubmissionEntity);
+
+            // Cộng thêm 1 vào totalSubmissions của Problem ở DB
+            onlineJudgeProblemRepository.incrementTotalSubmissions(request.getProblemId());
+
+            // Lưu toàn bộ chi tiết (các bản ghi "con")
+            onlineJudgeSubmissionDetailRepository.saveAll(submissionDetails);
+        });
 
         // Trả về Response cho Frontend ngay lập tức
         return OjSubmissionInitialResponse.builder()
@@ -170,6 +182,7 @@ public class OjSubmissionService {
                 .build();
 
     }
+
 
     public void processJudge0Callback(Judge0CallbackPayload judge0CallbackPayload) {
 
@@ -247,11 +260,18 @@ public class OjSubmissionService {
             var maxStats = onlineJudgeSubmissionDetailRepository.findMaxStatsBySubmissionId(submissionId)
                     .orElseThrow(() -> new AppException(ErrorCode.SUBMISSION_NOT_FOUND));
 
-            // Cập nhật trạng thái, thời gian, bộ nhớ tổng của Submission và lưu vào DB
-            submissionEntity.setVerdict(overallVerdict);
-            submissionEntity.setExecutionTimeMs(maxStats.getMaxTime());
-            submissionEntity.setMemoryUsedKb(maxStats.getMaxMemory());
-            onlineJudgeSubmissionRepository.save(submissionEntity);
+            // Thực hiện ghi DB (Lưu submission mẹ & tăng totalAccepted) trong transaction ngắn
+            final OjVerdict finalOverallVerdict = overallVerdict;
+            transactionTemplate.executeWithoutResult(status -> {
+                submissionEntity.setVerdict(finalOverallVerdict);
+                submissionEntity.setExecutionTimeMs(maxStats.getMaxTime());
+                submissionEntity.setMemoryUsedKb(maxStats.getMaxMemory());
+                onlineJudgeSubmissionRepository.save(submissionEntity);
+
+                if (finalOverallVerdict == OjVerdict.ACCEPTED) {
+                    onlineJudgeProblemRepository.incrementTotalAccepted(submissionEntity.getProblem().getId());
+                }
+            });
             
             SubmissionCompletedEvent event = SubmissionCompletedEvent.builder()
                     .submissionId(submissionId)
