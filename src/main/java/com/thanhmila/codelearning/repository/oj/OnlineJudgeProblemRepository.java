@@ -60,7 +60,12 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
              FROM problem_tags t 
              JOIN problem_tag_mappings ptm ON t.id = ptm.tag_id 
              WHERE ptm.problem_id = olp.id) AS tagsRaw,
-            COALESCE(latest_accepted_sub.source_code, latest_any_sub.source_code) AS latestSourceCode,
+            CASE 
+                WHEN olp.problem_scope::varchar = 'CONTEST' 
+                     OR EXISTS (SELECT 1 FROM contest_problems cp WHERE cp.problem_id = olp.id) 
+                THEN NULL
+                ELSE COALESCE(latest_accepted_sub.source_code, latest_any_sub.source_code)
+            END AS latestSourceCode,
             CASE WHEN :userId IS NOT NULL THEN
                 EXISTS (
                     SELECT 1 
@@ -148,6 +153,7 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
                     FROM online_judge_submissions ols
                     WHERE ols.problem_id = olp.id
                       AND ols.user_id = :userId
+                      AND ols.contest_id = :contestId
                       AND ols.verdict = 'ACCEPTED'
                 ) AS is_accepted
             FROM online_judge_problems olp
