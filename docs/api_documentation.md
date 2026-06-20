@@ -1031,6 +1031,9 @@ export interface OjTestcaseGenWsMessage {
 - **Yêu cầu JWT**: Có (Quyền: `OJ_PROBLEM_ADMIN`).
 - **Query Parameters**:
   - `page` (int, default: 0): Chỉ mục trang (bắt đầu từ 0).
+  - `scope` (ProblemScope, optional): Lọc theo phạm vi (ví dụ: `PRACTICE`, `LESSON`, `CONTEST`).
+  - `isPublic` (Boolean, optional): Lọc theo trạng thái hiển thị (`true` hoặc `false`).
+  - `difficulty` (ProblemDifficulty, optional): Lọc theo độ khó (`EASY`, `MEDIUM`, `HARD`).
   - *Lưu ý*: Kích thước trang cố định ở server là 20 phần tử một trang.
 - **Response (200 OK)**: Trả về `PageResponse<OjAdminProblemResponse>`.
   ```json

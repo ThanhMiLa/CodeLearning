@@ -3,10 +3,13 @@ package com.thanhmila.codelearning.configuration;
 import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.auth.PermissionEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
+import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
+import com.thanhmila.codelearning.entity.enums.TeacherStatus;
 import com.thanhmila.codelearning.repository.auth.RoleRepository;
 import com.thanhmila.codelearning.repository.auth.PermissionRepository;
 import com.thanhmila.codelearning.repository.user.UserRepository;
+import com.thanhmila.codelearning.repository.user.TeacherRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,6 +34,7 @@ public class ApplicationInitConfig implements ApplicationRunner {
     UserRepository userRepository;
     RoleRepository roleRepository;
     PermissionRepository permissionRepository;
+    TeacherRepository teacherRepository;
 
     @Override
     @Transactional
@@ -85,6 +89,7 @@ public class ApplicationInitConfig implements ApplicationRunner {
             log.info("Assigned OJ_PROBLEM_ADMIN permission to ADMIN role.");
         }
 
+        UserEntity adminUserObj = null;
         if (userRepository.findByUsername("admin").isEmpty()) {
             UserEntity adminUser = UserEntity.builder()
                     .username("admin")
@@ -96,9 +101,21 @@ public class ApplicationInitConfig implements ApplicationRunner {
                     .roles(Set.of(adminRole))
                     .build();
 
-            userRepository.save(adminUser);
-
+            adminUserObj = userRepository.save(adminUser);
             log.warn("Dev admin user has been created. Please change the default password if needed.");
+        } else {
+            adminUserObj = userRepository.findByUsername("admin").get();
+        }
+
+        // Initialize teacher record for admin user if not present
+        if (adminUserObj != null && teacherRepository.findIdByUserId(adminUserObj.getId()) == null) {
+            TeacherEntity adminTeacher = TeacherEntity.builder()
+                    .user(adminUserObj)
+                    .status(TeacherStatus.ACTIVE)
+                    .fullName("Admin Teacher")
+                    .build();
+            teacherRepository.save(adminTeacher);
+            log.info("Created teacher profile for admin user.");
         }
     }
 }

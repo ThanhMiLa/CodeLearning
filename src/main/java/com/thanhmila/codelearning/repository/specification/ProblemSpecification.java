@@ -61,4 +61,12 @@ public class ProblemSpecification {
             }
         };
     }
+
+    public static Specification<OnlineJudgeProblemEntity> hasIsPublic(Boolean isPublic) {
+        return (root, query, cb) -> cb.equal(root.get("isPublic"), isPublic);
+    }
+
+    public static Specification<OnlineJudgeProblemEntity> hasDifficulty(ProblemDifficulty difficulty) {
+        return (root, query, cb) -> cb.equal(root.get("difficulty"), difficulty);
+    }
 }

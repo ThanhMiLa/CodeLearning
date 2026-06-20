@@ -30,6 +30,8 @@ import com.thanhmila.codelearning.service.oj.OnlineJudgeProblemService;
 import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
 import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionHistoryResponse;
+import com.thanhmila.codelearning.entity.enums.ProblemScope;
+import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -211,9 +213,12 @@ public class OnlineJudgeProblemController {
     @GetMapping("/admin/problems")
     @PreAuthorize("hasAuthority('OJ_PROBLEM_ADMIN')")
     public ResponseEntity<ApiResponse<PageResponse<OjAdminProblemResponse>>> getAdminProblems(
-            @RequestParam(defaultValue = "0") int page) {
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false) ProblemScope scope,
+            @RequestParam(required = false) Boolean isPublic,
+            @RequestParam(required = false) ProblemDifficulty difficulty) {
         
-        var result = onlineJudgeProblemService.getAdminProblems(page);
+        var result = onlineJudgeProblemService.getAdminProblems(page, scope, isPublic, difficulty);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<OjAdminProblemResponse>>builder()
                 .status(200)

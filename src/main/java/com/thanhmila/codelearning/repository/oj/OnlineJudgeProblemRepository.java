@@ -16,6 +16,8 @@ import com.thanhmila.codelearning.repository.projection.OjPracticeProblemProject
 import com.thanhmila.codelearning.repository.projection.ProblemAccessProjection;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.EntityGraph;
 
 @Repository
 public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeProblemEntity, Long>, JpaSpecificationExecutor<OnlineJudgeProblemEntity> {
@@ -188,5 +190,9 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     @Query(value = "SELECT p FROM OnlineJudgeProblemEntity p LEFT JOIN FETCH p.createdByTeacher",
             countQuery = "SELECT COUNT(p) FROM OnlineJudgeProblemEntity p")
     Page<OnlineJudgeProblemEntity> findAllWithTeacher(Pageable pageable);
+
+    @Override
+    @EntityGraph(attributePaths = {"createdByTeacher"})
+    Page<OnlineJudgeProblemEntity> findAll(Specification<OnlineJudgeProblemEntity> spec, Pageable pageable);
 }
 

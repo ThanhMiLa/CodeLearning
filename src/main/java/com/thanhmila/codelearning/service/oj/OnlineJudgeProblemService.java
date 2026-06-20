@@ -190,9 +190,21 @@ public class OnlineJudgeProblemService {
         return problem.getId();
     }
 
-    public PageResponse<OjAdminProblemResponse> getAdminProblems(int page) {
+    public PageResponse<OjAdminProblemResponse> getAdminProblems(int page, ProblemScope scope, Boolean isPublic, ProblemDifficulty difficulty) {
+        Specification<OnlineJudgeProblemEntity> spec = (root, query, cb) -> cb.conjunction();
+
+        if (scope != null) {
+            spec = spec.and(ProblemSpecification.hasScope(scope));
+        }
+        if (isPublic != null) {
+            spec = spec.and(ProblemSpecification.hasIsPublic(isPublic));
+        }
+        if (difficulty != null) {
+            spec = spec.and(ProblemSpecification.hasDifficulty(difficulty));
+        }
+
         Pageable pageable = PageRequest.of(page, 20, Sort.by("id").descending());
-        Page<OnlineJudgeProblemEntity> problemPage = onlineJudgeProblemRepository.findAllWithTeacher(pageable);
+        Page<OnlineJudgeProblemEntity> problemPage = onlineJudgeProblemRepository.findAll(spec, pageable);
 
         List<OjAdminProblemResponse> content = problemPage.getContent().stream()
                 .map(ojProblemMapper::toOjAdminProblemResponse)
