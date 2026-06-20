@@ -1,7 +1,10 @@
 package com.thanhmila.codelearning.mapper;
 
 import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
+import com.thanhmila.codelearning.dto.response.OjAdminProblemResponse;
+import com.thanhmila.codelearning.dto.response.TeacherResponse;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
+import com.thanhmila.codelearning.entity.user.TeacherEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -25,4 +28,10 @@ public interface OjProblemMapper {
     @Mapping(target = "testcases", ignore = true)
     @Mapping(target = "tags", ignore = true)
     OnlineJudgeProblemEntity toEntity(CreateOjProblemRequest request);
+
+    @Mapping(source = "problemScope", target = "scope")
+    OjAdminProblemResponse toOjAdminProblemResponse(OnlineJudgeProblemEntity entity);
+
+    TeacherResponse toTeacherResponse(TeacherEntity teacherEntity);
 }
+

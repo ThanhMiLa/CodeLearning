@@ -87,8 +87,8 @@ payos:
   client-id: ${PAYOS_CLIENT_ID}
   api-key: ${PAYOS_API_KEY}
   checksum-key: ${PAYOS_CHECKSUM_KEY}
-  return-url: "http://localhost:8080/codelearning/payment/success.html"
-  cancel-url: "http://localhost:8080/codelearning/payment/cancel.html"
+  return-url: "http://localhost:5173/payment/success"
+  cancel-url: "http://localhost:5173/payment/cancel"
 
 
 

@@ -280,6 +280,17 @@ export interface OjPracticeProblemResponse {
   acceptanceRate: number;
 }
 
+export interface OjAdminProblemResponse {
+  id: number;
+  title: string;
+  scope: ProblemScope;
+  difficulty: ProblemDifficulty;
+  totalSubmissions: number;
+  totalAccepted: number;
+  createdByTeacher: TeacherResponse;
+  isPublic: boolean;
+}
+
 export interface OjLessonProblemResponse {
   id: number;
   title: string;
@@ -1013,6 +1024,66 @@ export interface OjTestcaseGenWsMessage {
   }
   ```
 - **Response (200 OK)**: Trả về ID bài tập vừa được tạo thành công dưới dạng `ApiResponse<Long>`.
+
+#### 40a. Lấy toàn bộ danh sách bài tập trong Ngân hàng đề (Admin)
+- **Method & URL**: `GET /online-judge/admin/problems`
+- **Mục đích**: Trả về danh sách phân trang chứa toàn bộ các bài tập lập trình hiện có trong hệ thống (phục vụ trang quản trị).
+- **Yêu cầu JWT**: Có (Quyền: `OJ_PROBLEM_ADMIN`).
+- **Query Parameters**:
+  - `page` (int, default: 0): Chỉ mục trang (bắt đầu từ 0).
+  - *Lưu ý*: Kích thước trang cố định ở server là 20 phần tử một trang.
+- **Response (200 OK)**: Trả về `PageResponse<OjAdminProblemResponse>`.
+  ```json
+  {
+    "status": 200,
+    "code": 1000,
+    "message": "Get admin problems successfully",
+    "result": {
+      "page": 0,
+      "size": 20,
+      "numberOfElements": 1,
+      "totalElements": 1,
+      "totalPages": 1,
+      "first": true,
+      "last": true,
+      "content": [
+        {
+          "id": 105,
+          "title": "A cộng B",
+          "scope": "PRACTICE",
+          "difficulty": "EASY",
+          "totalSubmissions": 120,
+          "totalAccepted": 85,
+          "createdByTeacher": {
+            "id": 1,
+            "fullName": "Nguyễn Văn A"
+          },
+          "isPublic": true
+        }
+      ]
+    },
+    "timestamp": "2026-06-21T01:54:12.321Z"
+  }
+  ```
+
+#### 40b. Thay đổi chế độ công khai/riêng tư của bài tập (Admin)
+- **Method & URL**: `PUT /online-judge/admin/problems/{problemId}/public`
+- **Mục đích**: Cho phép quản trị viên điều chỉnh chế độ hiển thị (public hoặc private) của bài tập lập trình dựa trên thuộc tính `isPublic`.
+- **Yêu cầu JWT**: Có (Quyền: `OJ_PROBLEM_ADMIN`).
+- **Path Variable**:
+  - `problemId` (Long): ID của bài tập cần sửa đổi.
+- **Query Parameters**:
+  - `isPublic` (Boolean, required): Trạng thái hiển thị mới (`true` = công khai, `false` = riêng tư).
+- **Response (200 OK)**: Trả về `ApiResponse<Void>`.
+  ```json
+  {
+    "status": 200,
+    "code": 1000,
+    "message": "Update problem visibility successfully",
+    "result": null,
+    "timestamp": "2026-06-21T01:55:00.000Z"
+  }
+  ```
 
 ---
 

@@ -184,5 +184,9 @@ public interface OnlineJudgeProblemRepository extends JpaRepository<OnlineJudgeP
     @Modifying
     @Query("UPDATE OnlineJudgeProblemEntity p SET p.totalAccepted = p.totalAccepted + 1 WHERE p.id = :problemId")
     void incrementTotalAccepted(@Param("problemId") Long problemId);
+
+    @Query(value = "SELECT p FROM OnlineJudgeProblemEntity p LEFT JOIN FETCH p.createdByTeacher",
+            countQuery = "SELECT COUNT(p) FROM OnlineJudgeProblemEntity p")
+    Page<OnlineJudgeProblemEntity> findAllWithTeacher(Pageable pageable);
 }
 

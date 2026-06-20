@@ -21,6 +21,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjAdminProblemResponse;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.OjProblemDetailResponse;
 import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
@@ -203,6 +204,39 @@ public class OnlineJudgeProblemController {
                 .code(1000)
                 .message("Get problem submissions successfully")
                 .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/admin/problems")
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_ADMIN')")
+    public ResponseEntity<ApiResponse<PageResponse<OjAdminProblemResponse>>> getAdminProblems(
+            @RequestParam(defaultValue = "0") int page) {
+        
+        var result = onlineJudgeProblemService.getAdminProblems(page);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<OjAdminProblemResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get admin problems successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PutMapping("/admin/problems/{problemId}/public")
+    @PreAuthorize("hasAuthority('OJ_PROBLEM_ADMIN')")
+    public ResponseEntity<ApiResponse<Void>> updateProblemVisibility(
+            @PathVariable("problemId") Long problemId,
+            @RequestParam("isPublic") Boolean isPublic) {
+        
+        onlineJudgeProblemService.updateProblemVisibility(problemId, isPublic);
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(1000)
+                .message("Update problem visibility successfully")
+                .result(null)
                 .timestamp(Instant.now().toString())
                 .build());
     }

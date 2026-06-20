@@ -6,8 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import com.thanhmila.codelearning.dto.response.PageResponse;
 import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
+import com.thanhmila.codelearning.dto.response.OjAdminProblemResponse;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
@@ -184,5 +188,33 @@ public class OnlineJudgeProblemService {
 
         onlineJudgeProblemRepository.save(problem);
         return problem.getId();
+    }
+
+    public PageResponse<OjAdminProblemResponse> getAdminProblems(int page) {
+        Pageable pageable = PageRequest.of(page, 20, Sort.by("id").descending());
+        Page<OnlineJudgeProblemEntity> problemPage = onlineJudgeProblemRepository.findAllWithTeacher(pageable);
+
+        List<OjAdminProblemResponse> content = problemPage.getContent().stream()
+                .map(ojProblemMapper::toOjAdminProblemResponse)
+                .collect(Collectors.toList());
+
+        return PageResponse.<OjAdminProblemResponse>builder()
+                .page(problemPage.getNumber())
+                .size(problemPage.getSize())
+                .numberOfElements(problemPage.getNumberOfElements())
+                .totalElements(problemPage.getTotalElements())
+                .totalPages(problemPage.getTotalPages())
+                .first(problemPage.isFirst())
+                .last(problemPage.isLast())
+                .content(content)
+                .build();
+    }
+
+    @Transactional
+    public void updateProblemVisibility(Long problemId, Boolean isPublic) {
+        OnlineJudgeProblemEntity problem = onlineJudgeProblemRepository.findById(problemId)
+                .orElseThrow(() -> new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND));
+        problem.setIsPublic(isPublic);
+        onlineJudgeProblemRepository.save(problem);
     }
 }
