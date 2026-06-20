@@ -156,6 +156,18 @@ export interface CourseListItemResponse {
   progressPercentage: number | null;
 }
 
+export interface EnrolledCourseResponse {
+  id: number;
+  title: string;
+  shortDescription: string;
+  thumbnailUrl: string;
+  price: number;
+  averageRating: number;
+  totalReviews: number;
+  totalEnrolled: number;
+  progressPercentage: number | null;
+}
+
 export interface CourseDetailResponse {
   id: number;
   title: string;
@@ -577,7 +589,7 @@ export interface OjTestcaseGenWsMessage {
 
 ---
 
-### MODULE 3: COURSE MANAGEMENT (QUẢN LÝ KHÓA HỌC) - 4 APIs
+### MODULE 3: COURSE MANAGEMENT (QUẢN LÝ KHÓA HỌC) - 5 APIs
 
 #### 9. Lấy danh sách khóa học (Tìm kiếm/Phân trang)
 - **Method & URL**: `GET /courses`
@@ -594,6 +606,15 @@ export interface OjTestcaseGenWsMessage {
   - `sortBy` (String[], default: `["totalEnrolled"]`): Trường sắp xếp.
   - `order` (String[], default: `["desc"]`): Hướng sắp xếp (`asc` / `desc`).
 - **Response (200 OK)**: Trả về `PageResponse<CourseListItemResponse>`.
+
+#### 9.a. Lấy danh sách khóa học đã đăng ký (enroll)
+- **Method & URL**: `GET /courses/enrolled`
+- **Mục đích**: Hiển thị danh sách các khóa học mà người dùng hiện tại đã đăng ký/tham gia học.
+- **Yêu cầu JWT**: Có (`isAuthenticated()`).
+- **Query Parameters**:
+  - `page` (int, default: `0`): Chỉ mục trang (bắt đầu từ 0).
+  - `size` (int, default: `10`): Số phần tử trên một trang.
+- **Response (200 OK)**: Trả về `PageResponse<EnrolledCourseResponse>`.
 
 #### 10. Chi tiết một khóa học
 - **Method & URL**: `GET /courses/{courseId}`

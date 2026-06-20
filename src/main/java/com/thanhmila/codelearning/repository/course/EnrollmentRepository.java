@@ -6,6 +6,8 @@ import com.thanhmila.codelearning.entity.enums.EnrollmentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -75,4 +77,18 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, Lo
 
     @Query("SELECT c FROM EnrollmentEntity e JOIN e.course c WHERE e.user.id = :userId AND e.status IN ('ACTIVE', 'COMPLETED')")
     Set<CourseEntity> findActiveCoursesByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT e " +
+            "FROM EnrollmentEntity e " +
+            "JOIN FETCH e.course " +
+            "WHERE e.user.id = :userId " +
+            "AND e.status IN (:statuses)",
+           countQuery = "SELECT COUNT(e) " +
+                   "FROM EnrollmentEntity e " +
+                   "WHERE e.user.id = :userId " +
+                   "AND e.status IN (:statuses)")
+    Page<EnrollmentEntity> findActiveEnrollmentsByUserId(
+            @Param("userId") Long userId,
+            @Param("statuses") List<EnrollmentStatus> statuses,
+            Pageable pageable);
 }

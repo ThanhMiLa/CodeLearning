@@ -26,6 +26,10 @@ import com.thanhmila.codelearning.repository.course.CategoryRepository;
 import com.thanhmila.codelearning.service.cloudinary.CloudinaryService;
 import com.thanhmila.codelearning.entity.course.CategoryEntity;
 import com.thanhmila.codelearning.dto.response.CloudinaryResponse;
+import com.thanhmila.codelearning.dto.response.EnrolledCourseResponse;
+import com.thanhmila.codelearning.entity.course.EnrollmentEntity;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AccessLevel;
@@ -247,5 +251,59 @@ public class CourseService {
         return actualCount;
     }
 
+    public PageResponse<EnrolledCourseResponse> getEnrolledCourses(Long userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("enrolledAt").descending());
 
+        Page<EnrollmentEntity> enrollmentPage = enrollmentRepository.findActiveEnrollmentsByUserId(
+                userId,
+                List.of(EnrollmentStatus.ACTIVE, EnrollmentStatus.COMPLETED),
+                pageable
+        );
+
+        List<Long> courseIds = enrollmentPage.getContent().stream()
+                .map(e -> e.getCourse().getId())
+                .toList();
+
+        Map<Long, Integer> courseProgressMap = new HashMap<>();
+        if (!courseIds.isEmpty()) {
+            List<CompletedLessonsCountEntity> completedLessonsCountEntities =
+                    completedLessonCountRepository.findByUserIdAndCourseIdIn(userId, new HashSet<>(courseIds));
+
+            courseProgressMap = getCourseProgressMap(completedLessonsCountEntities);
+        }
+
+        final Map<Long, Integer> finalProgressMap = courseProgressMap;
+
+        List<EnrolledCourseResponse> content = enrollmentPage.getContent().stream()
+                .map(e -> {
+                    CourseEntity course = e.getCourse();
+                    int completedLessons = finalProgressMap.getOrDefault(course.getId(), 0);
+                    int totalLessons = course.getTotalLessons() != null ? course.getTotalLessons() : 0;
+                    int progressPercentage = ProgressUtils.calculatePercentage(completedLessons, totalLessons);
+
+                    return EnrolledCourseResponse.builder()
+                            .id(course.getId())
+                            .title(course.getTitle())
+                            .shortDescription(course.getShortDescription())
+                            .thumbnailUrl(course.getThumbnailUrl())
+                            .price(course.getPrice())
+                            .averageRating(course.getAverageRating())
+                            .totalReviews(course.getTotalReviews() != null ? course.getTotalReviews().longValue() : 0L)
+                            .totalEnrolled(course.getTotalEnrolled() != null ? course.getTotalEnrolled().longValue() : 0L)
+                            .progressPercentage(progressPercentage)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        return PageResponse.<EnrolledCourseResponse>builder()
+                .page(enrollmentPage.getNumber())
+                .size(enrollmentPage.getSize())
+                .numberOfElements(enrollmentPage.getNumberOfElements())
+                .totalElements(enrollmentPage.getTotalElements())
+                .totalPages(enrollmentPage.getTotalPages())
+                .first(enrollmentPage.isFirst())
+                .last(enrollmentPage.isLast())
+                .content(content)
+                .build();
+    }
 }

@@ -53,6 +53,25 @@ public class CourseController {
                 .build());
     }
 
+    @GetMapping("/enrolled")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<ApiResponse<PageResponse<EnrolledCourseResponse>>> getEnrolledCourses(
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Long userId = jwt.getClaim("userId");
+        var result = courseService.getEnrolledCourses(userId, page, size);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<EnrolledCourseResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get enrolled courses successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
     @GetMapping("/{courseId}")
     public ResponseEntity<ApiResponse<CourseDetailResponse>> getCourseDetail(
             @AuthenticationPrincipal Jwt jwt,
