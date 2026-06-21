@@ -17,10 +17,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // ✅ FIXED: Chỉ cho phép domain được config thay vì mọi domain
+        String[] origins = allowedOrigins.split(",");
+
         registry.addEndpoint("/ws")
-                //.setAllowedOrigins(allowedOrigins.split(","))  // Từ application.yaml
-                .setAllowedOriginPatterns("*")
+                .setAllowedOrigins(origins) // ✅ Khớp chính xác domain Frontend để trình duyệt cho phép kết nối
                 .withSockJS(); // Fallback nếu browser không hỗ trợ WebSocket thuần
     }
 
