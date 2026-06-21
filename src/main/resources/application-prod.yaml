@@ -1,0 +1,89 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /codelearning
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/codelearning?options=-c timezone=Asia/Ho_Chi_Minh}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX:50}
+      minimum-idle: ${DB_POOL_MIN:10}
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        '[default_batch_fetch_size]': 10
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 60000
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+jwt:
+  signer-key: ${JWT_SIGNER_KEY}
+  valid-duration: ${JWT_VALID_DURATION:1200}
+  refreshable-duration: ${JWT_REFRESHABLE_DURATION:2400}
+
+auth: 
+  cookie:
+    access-token:
+      name: ${ACCESS_TOKEN_COOKIE_NAME:access_token}
+      max-age: ${ACCESS_TOKEN_MAX_AGE:1200}
+      secure: ${ACCESS_TOKEN_SECURE:true}
+      http-only: ${ACCESS_TOKEN_HTTP_ONLY:true}
+      same-site: ${ACCESS_TOKEN_SAME_SITE:Lax}
+      path: ${ACCESS_TOKEN_PATH:/}
+
+    refresh-token:
+      name: ${REFRESH_TOKEN_COOKIE_NAME:refresh_token}
+      max-age: ${REFRESH_TOKEN_MAX_AGE:2400}
+      secure: ${REFRESH_TOKEN_SECURE:true}
+      http-only: ${REFRESH_TOKEN_HTTP_ONLY:true}
+      same-site: ${REFRESH_TOKEN_SAME_SITE:Lax}
+      path: ${REFRESH_TOKEN_PATH:/codelearning/auth}
+
+judge0:
+  base-url: ${JUDGE0_URL}
+  timeout: 20s
+
+websocket:
+  allowed-origins: ${WEBSOCKET_ALLOWED_ORIGINS}
+
+app:
+  webhook-base-url: ${WEBHOOK_BASE_URL}
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}
+
+payos:
+  client-id: ${PAYOS_CLIENT_ID}
+  api-key: ${PAYOS_API_KEY}
+  checksum-key: ${PAYOS_CHECKSUM_KEY}
+  return-url: ${PAYOS_RETURN_URL}
+  cancel-url: ${PAYOS_CANCEL_URL}
