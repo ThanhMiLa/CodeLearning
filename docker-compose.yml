@@ -57,6 +57,25 @@ services:
       timeout: 5s
       retries: 5
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codelearning_app
+    restart: always
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    <<: *default-logging
+
   # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
   # Đã gắn profile "judge0". Sẽ KHÔNG chạy mặc định.
   judge0-server:
