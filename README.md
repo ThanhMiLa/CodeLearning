@@ -1,12 +1,26 @@
 # CodeLearning Platform 🚀
 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Java 21](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
-[![Redis](https://img.shields.io/badge/Redis-Latest-red.svg)](https://redis.io/)
-[![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Latest-orange.svg)](https://www.rabbitmq.com/)
-[![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
-[![PayOS](https://img.shields.io/badge/Payment-PayOS-green.svg)](https://payos.vn/)
+<div align="center">
+  <a href="https://www.codelearning.io.vn/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-https://www.codelearning.io.vn/-blue?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+  
+  <p align="center">
+    <b>An advanced E-learning & Online Judge platform featuring automated code evaluation, real-time status updates, and interactive programming contest management.</b>
+  </p>
+  
+  <h3>🌐 Visit the Live Demo Website at: <a href="https://www.codelearning.io.vn/">www.codelearning.io.vn</a></h3>
+
+  <br/>
+
+  [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen.svg)](https://spring.io/projects/spring-boot)
+  [![Java 21](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/technologies/downloads/)
+  [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
+  [![Redis](https://img.shields.io/badge/Redis-Latest-red.svg)](https://redis.io/)
+  [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-Latest-orange.svg)](https://www.rabbitmq.com/)
+  [![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
+  [![PayOS](https://img.shields.io/badge/Payment-PayOS-green.svg)](https://payos.vn/)
+</div>
 
 An advanced **E-learning & Online Judge (OJ) platform** backend engineered with **Spring Boot 3.5.7** and **Java 21**. It integrates automated code execution sandboxes, real-time status updates, event-driven contest scheduling, and secure financial transactions.
 
