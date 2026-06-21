@@ -1029,6 +1029,26 @@ export interface OjTestcaseGenWsMessage {
     "timestamp": "2026-06-16T13:00:00Z"
   }
   ```
+- **Thông báo kết quả qua WebSocket (Bất đồng bộ)**:
+  Sau khi nhận được phản hồi HTTP 202, Frontend cần lắng nghe (subscribe) kênh WebSocket sau để nhận biết tiến trình hoàn thành hoặc thất bại:
+  * **Kênh (Topic)**: `/topic/testcase-generation/{problemId}`
+  * **Dữ liệu nhận về (JSON)**:
+    - **Khi sinh testcase thành công**:
+      ```json
+      {
+        "type": "TESTCASE_GENERATION_COMPLETED",
+        "status": "COMPLETED",
+        "message": "Tạo testcase thành công cho bài toán"
+      }
+      ```
+    - **Khi sinh testcase thất bại** (do lỗi biên dịch hoặc lỗi thực thi của mã nguồn sinh/giải mẫu):
+      ```json
+      {
+        "type": "TESTCASE_GENERATION_FAILED",
+        "status": "FAILED",
+        "message": "Lỗi sinh Output: Runtime Error (NZEC) | File \"script.py\", line 3 ... [nội dung lỗi chi tiết]"
+      }
+      ```
 
 #### 38. [WEBHOOK] Nhận dữ liệu sinh Input tự động
 - **Method & URL**: `PUT /online-judge/webhooks/generate-inputs`

@@ -108,6 +108,22 @@ public class OjTestcaseGenerationService {
         if (testcase == null) return;
 
         Long problemId = testcase.getProblem().getId();
+
+        // Kiểm tra xem tiến trình đã bị hủy/thất bại trước đó chưa
+        if (Boolean.FALSE.equals(stringRedisTemplate.hasKey("gen_solution_code:" + problemId))) {
+            return;
+        }
+
+        // Kiểm tra lỗi thực thi từ Judge0
+        if (payload.getStatus() == null || payload.getStatus().getId() != 3) {
+            String errorMsg = "Lỗi sinh Input: " + (payload.getStatus() != null ? payload.getStatus().getDescription() : "N/A");
+            if (payload.getStderr() != null) {
+                errorMsg += " | " + decodeBase64(payload.getStderr());
+            }
+            handleGenerationFailure(problemId, errorMsg);
+            return;
+        }
+
         String decodedStdout = decodeBase64(payload.getStdout());
         testcase.setInputData(decodedStdout);
         problemTestcaseRepository.save(testcase);
@@ -174,6 +190,24 @@ public class OjTestcaseGenerationService {
         if (testcase == null) return;
 
         Long problemId = testcase.getProblem().getId();
+
+        // Kiểm tra xem tiến trình đã bị hủy/thất bại trước đó chưa
+        if (Boolean.FALSE.equals(stringRedisTemplate.hasKey("gen_solution_code:" + problemId))) {
+            return;
+        }
+
+        // Kiểm tra lỗi thực thi từ Judge0
+        if (payload.getStatus() == null || payload.getStatus().getId() != 3) {
+            String errorMsg = "Lỗi sinh Output: " + (payload.getStatus() != null ? payload.getStatus().getDescription() : "N/A");
+            if (payload.getStderr() != null) {
+                errorMsg += " | " + decodeBase64(payload.getStderr());
+            } else if (payload.getCompileOutput() != null) {
+                errorMsg += " | " + decodeBase64(payload.getCompileOutput());
+            }
+            handleGenerationFailure(problemId, errorMsg);
+            return;
+        }
+
         String decodedStdout = decodeBase64(payload.getStdout());
         testcase.setExpectedOutput(decodedStdout);
         problemTestcaseRepository.save(testcase);
@@ -203,6 +237,33 @@ public class OjTestcaseGenerationService {
                     .build();
             simpMessagingTemplate.convertAndSend("/topic/testcase-generation/" + problemId, wsMessage);
         }
+    }
+
+    private void handleGenerationFailure(Long problemId, String errorMessage) {
+        // Tránh xử lý trùng lặp nếu nhiều webhook báo lỗi đồng thời
+        Boolean hasKey = stringRedisTemplate.hasKey("gen_solution_code:" + problemId);
+        if (Boolean.FALSE.equals(hasKey)) {
+            return;
+        }
+
+        log.error("Testcase generation failed for problem {}: {}", problemId, errorMessage);
+        
+        // Xóa các testcases dở dang
+        problemTestcaseRepository.deleteByProblemId(problemId);
+        
+        // Cleanup Redis
+        stringRedisTemplate.delete("gen_input_progress:" + problemId);
+        stringRedisTemplate.delete("gen_output_progress:" + problemId);
+        stringRedisTemplate.delete("gen_solution_code:" + problemId);
+        stringRedisTemplate.delete("gen_solution_lang:" + problemId);
+
+        // Bắn WebSocket báo thất bại
+        OjTestcaseGenWsMessage wsMessage = OjTestcaseGenWsMessage.builder()
+                .type("TESTCASE_GENERATION_FAILED")
+                .status("FAILED")
+                .message(errorMessage)
+                .build();
+        simpMessagingTemplate.convertAndSend("/topic/testcase-generation/" + problemId, wsMessage);
     }
 
     private String decodeBase64(String encoded) {

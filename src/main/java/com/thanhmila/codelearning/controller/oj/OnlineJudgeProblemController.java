@@ -5,6 +5,7 @@ import com.thanhmila.codelearning.dto.request.GenerateTestcaseRequest;
 import com.thanhmila.codelearning.dto.request.OjSubmissionRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionInitialResponse;
 import com.thanhmila.codelearning.service.oj.OjSubmissionService;
+import com.thanhmila.codelearning.service.oj.OjTestcaseGenerationService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class OnlineJudgeProblemController {
     
     OnlineJudgeProblemService onlineJudgeProblemService;
     OjSubmissionService ojSubmissionService;
-    com.thanhmila.codelearning.service.oj.OjTestcaseGenerationService ojTestcaseGenerationService;
+    OjTestcaseGenerationService ojTestcaseGenerationService;
 
     @GetMapping("/problems/practice")
     public ResponseEntity<ApiResponse<PageResponse<OjPracticeProblemResponse>>> getPracticeProblems(
