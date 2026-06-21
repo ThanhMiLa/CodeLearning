@@ -22,6 +22,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +37,9 @@ public class SecurityConfig {
     final CustomJwtDecoder customJwtDecoder;
     final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
+    @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000}")
+    List<String> allowedOrigins;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -118,7 +122,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Cấu hình các domain frontend được phép gọi API
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173")); 
+        configuration.setAllowedOrigins(allowedOrigins); 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept"));
         configuration.setAllowCredentials(true);
