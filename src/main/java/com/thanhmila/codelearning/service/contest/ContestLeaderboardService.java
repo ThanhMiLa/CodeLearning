@@ -41,7 +41,6 @@ import com.thanhmila.codelearning.dto.response.ContestLeaderboardResponse;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ContestLeaderboardService {
 
-    ContestParticipantRepository participantRepo;
     ContestProblemRepository contestProblemRepository;
     ContestProblemAttemptRepository attemptRepo;
     ContestRankingRepository rankingRepo;

@@ -133,6 +133,10 @@ export interface UserResponse {
   email: string;
 }
 
+export interface UserBalanceResponse {
+  balance: number;
+}
+
 export interface TeacherResponse {
   id: number;
   fullName: string;
@@ -463,7 +467,7 @@ export interface OjTestcaseGenWsMessage {
 
 ---
 
-## III. CHI TIẾT TÀI LIỆU API CATALOG (55 ENDPOINTS)
+## III. CHI TIẾT TÀI LIỆU API CATALOG (56 ENDPOINTS)
 
 ### MODULE 1: AUTHENTICATION (XÁC THỰC) - 4 APIs
 
@@ -537,7 +541,7 @@ export interface OjTestcaseGenWsMessage {
 
 ---
 
-### MODULE 2: USER PROFILE & PROGRESS (THÔNG TIN CÁ NHÂN & TIẾN ĐỘ) - 4 APIs
+### MODULE 2: USER PROFILE & PROGRESS (THÔNG TIN CÁ NHÂN & TIẾN ĐỘ) - 5 APIs
 
 #### 5. Lấy thông tin cá nhân hiện tại
 - **Method & URL**: `GET /users/me`
@@ -586,6 +590,23 @@ export interface OjTestcaseGenWsMessage {
 - **Mục đích**: Hiển thị trên Dashboard của học viên, danh sách các khóa học đã tham gia cùng tỉ lệ % hoàn thành.
 - **Yêu cầu JWT**: Có (Quyền tối thiểu: `LEARNING_PROGRESS_VIEW_OWN`).
 - **Response (200 OK)**: Trả về danh sách `CourseProgressResponse[]`.
+
+#### 8a. Lấy số dư ví hiện tại
+- **Method & URL**: `GET /users/me/balance`
+- **Mục đích**: Lấy số dư trong ví hiện tại của người dùng đang đăng nhập.
+- **Yêu cầu JWT**: Có (Quyền tối thiểu: `USER_VIEW`).
+- **Response (200 OK)**: Trả về đối tượng `UserBalanceResponse`.
+  ```json
+  {
+    "status": 200,
+    "code": 1000,
+    "message": "Get user balance successfully",
+    "result": {
+      "balance": 1000.00
+    },
+    "timestamp": "2026-06-21T16:43:12+07:00"
+  }
+  ```
 
 ---
 

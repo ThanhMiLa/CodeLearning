@@ -4,6 +4,7 @@ import com.thanhmila.codelearning.dto.request.ChangePasswordRequest;
 import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.CourseProgressResponse;
+import com.thanhmila.codelearning.dto.response.UserBalanceResponse;
 import com.thanhmila.codelearning.dto.response.UserResponse;
 import com.thanhmila.codelearning.service.auth.AuthenticationService;
 import com.thanhmila.codelearning.service.user.ProgressService;
@@ -48,10 +49,6 @@ public class UserController {
         boolean isCookieAccessTokenSecure;
 
         @NonFinal
-        @Value("${auth.cookie.access-token.max-age}")
-        long accessTokenMaxAge;
-
-        @NonFinal
         @Value("${auth.cookie.access-token.http-only}")
         boolean accessTokenHttpOnly;
 
@@ -71,10 +68,6 @@ public class UserController {
         @NonFinal
         @Value("${auth.cookie.refresh-token.secure}")
         boolean isCookieRefreshTokenSecure;
-
-        @NonFinal
-        @Value("${auth.cookie.refresh-token.max-age}")
-        long refreshTokenMaxAge;
 
         @NonFinal
         @Value("${auth.cookie.refresh-token.http-only}")
@@ -98,6 +91,21 @@ public class UserController {
                                 .status(200)
                                 .code(1000)
                                 .message("My information successfully")
+                                .result(result)
+                                .timestamp(Instant.now().toString())
+                                .build());
+        }
+
+        @GetMapping("/me/balance")
+        @PreAuthorize("hasAuthority('USER_VIEW')")
+        public ResponseEntity<ApiResponse<UserBalanceResponse>> getMyBalance(
+                        @AuthenticationPrincipal Jwt jwt) {
+                String username = jwt.getSubject();
+                UserBalanceResponse result = userService.getBalance(username);
+                return ResponseEntity.ok(ApiResponse.<UserBalanceResponse>builder()
+                                .status(200)
+                                .code(1000)
+                                .message("Get user balance successfully")
                                 .result(result)
                                 .timestamp(Instant.now().toString())
                                 .build());

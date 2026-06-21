@@ -2,8 +2,10 @@ package com.thanhmila.codelearning.service.user;
 
 import com.thanhmila.codelearning.dto.request.ChangePasswordRequest;
 import com.thanhmila.codelearning.dto.request.UpdateProfileRequest;
+import com.thanhmila.codelearning.dto.response.UserBalanceResponse;
 import com.thanhmila.codelearning.dto.response.UserResponse;
 import com.thanhmila.codelearning.entity.user.UserEntity;
+import java.math.BigDecimal;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
@@ -72,8 +74,21 @@ public class UserService {
         userEntity.setUpdatedAt(OffsetDateTime.now());
         userRepository.save(userEntity);
 
-    }    
+    }
 
-    
+    @Transactional(readOnly = true)
+    public UserBalanceResponse getBalance(String username) {
+        UserEntity userEntity = userRepository.findByUsername(username)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+        userEntity.validateStatus();
+
+        BigDecimal balance = userEntity.getWallet() != null
+                ? userEntity.getWallet().getBalance()
+                : BigDecimal.ZERO;
+
+        return UserBalanceResponse.builder()
+                .balance(balance)
+                .build();
+    }
 
 }
