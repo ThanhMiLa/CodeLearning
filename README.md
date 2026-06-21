@@ -269,4 +269,4 @@ For deep-dive documentation on specific subsystems, refer to the documents insid
 
 ## 👩‍💻 Author
 *   **Võ Ngọc Thanh (Thanh_MiLa)** - [GitHub Profile](https://github.com/ThanhMiLa)
-*   **Role:** Java Backend Developer
+*   **Role:** Java Developer
