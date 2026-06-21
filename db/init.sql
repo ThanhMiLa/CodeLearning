@@ -2,7 +2,6 @@
 -- PostgreSQL database dump
 --
 
-\restrict AV3msB1zxUDj5d0YfjZtfZT9cn1SD0NtWcl5etvhTlMDLF47kHzTOa2iMav04xw
 
 -- Dumped from database version 14.23 (Homebrew)
 -- Dumped by pg_dump version 14.23 (Homebrew)
@@ -30,7 +29,7 @@ CREATE TYPE public.contest_status AS ENUM (
 );
 
 
-ALTER TYPE public.contest_status OWNER TO postgres;
+-- ALTER TYPE public.contest_status OWNER TO postgres;
 
 --
 -- Name: conteststatus; Type: TYPE; Schema: public; Owner: postgres
@@ -44,7 +43,7 @@ CREATE TYPE public.conteststatus AS ENUM (
 );
 
 
-ALTER TYPE public.conteststatus OWNER TO postgres;
+-- ALTER TYPE public.conteststatus OWNER TO postgres;
 
 --
 -- Name: course_status; Type: TYPE; Schema: public; Owner: postgres
@@ -57,7 +56,7 @@ CREATE TYPE public.course_status AS ENUM (
 );
 
 
-ALTER TYPE public.course_status OWNER TO postgres;
+-- ALTER TYPE public.course_status OWNER TO postgres;
 
 --
 -- Name: coursestatus; Type: TYPE; Schema: public; Owner: postgres
@@ -70,7 +69,7 @@ CREATE TYPE public.coursestatus AS ENUM (
 );
 
 
-ALTER TYPE public.coursestatus OWNER TO postgres;
+-- ALTER TYPE public.coursestatus OWNER TO postgres;
 
 --
 -- Name: enrollment_status; Type: TYPE; Schema: public; Owner: postgres
@@ -83,7 +82,7 @@ CREATE TYPE public.enrollment_status AS ENUM (
 );
 
 
-ALTER TYPE public.enrollment_status OWNER TO postgres;
+-- ALTER TYPE public.enrollment_status OWNER TO postgres;
 
 --
 -- Name: enrollmentstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -96,7 +95,7 @@ CREATE TYPE public.enrollmentstatus AS ENUM (
 );
 
 
-ALTER TYPE public.enrollmentstatus OWNER TO postgres;
+-- ALTER TYPE public.enrollmentstatus OWNER TO postgres;
 
 --
 -- Name: file_submission_status; Type: TYPE; Schema: public; Owner: postgres
@@ -112,7 +111,7 @@ CREATE TYPE public.file_submission_status AS ENUM (
 );
 
 
-ALTER TYPE public.file_submission_status OWNER TO postgres;
+-- ALTER TYPE public.file_submission_status OWNER TO postgres;
 
 --
 -- Name: filesubmissionstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -128,7 +127,7 @@ CREATE TYPE public.filesubmissionstatus AS ENUM (
 );
 
 
-ALTER TYPE public.filesubmissionstatus OWNER TO postgres;
+-- ALTER TYPE public.filesubmissionstatus OWNER TO postgres;
 
 --
 -- Name: lesson_status; Type: TYPE; Schema: public; Owner: postgres
@@ -141,7 +140,7 @@ CREATE TYPE public.lesson_status AS ENUM (
 );
 
 
-ALTER TYPE public.lesson_status OWNER TO postgres;
+-- ALTER TYPE public.lesson_status OWNER TO postgres;
 
 --
 -- Name: lessonstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -154,7 +153,7 @@ CREATE TYPE public.lessonstatus AS ENUM (
 );
 
 
-ALTER TYPE public.lessonstatus OWNER TO postgres;
+-- ALTER TYPE public.lessonstatus OWNER TO postgres;
 
 --
 -- Name: oj_verdict; Type: TYPE; Schema: public; Owner: postgres
@@ -173,7 +172,7 @@ CREATE TYPE public.oj_verdict AS ENUM (
 );
 
 
-ALTER TYPE public.oj_verdict OWNER TO postgres;
+-- ALTER TYPE public.oj_verdict OWNER TO postgres;
 
 --
 -- Name: ojverdict; Type: TYPE; Schema: public; Owner: postgres
@@ -192,7 +191,7 @@ CREATE TYPE public.ojverdict AS ENUM (
 );
 
 
-ALTER TYPE public.ojverdict OWNER TO postgres;
+-- ALTER TYPE public.ojverdict OWNER TO postgres;
 
 --
 -- Name: order_status; Type: TYPE; Schema: public; Owner: postgres
@@ -206,7 +205,7 @@ CREATE TYPE public.order_status AS ENUM (
 );
 
 
-ALTER TYPE public.order_status OWNER TO postgres;
+-- ALTER TYPE public.order_status OWNER TO postgres;
 
 --
 -- Name: orderstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -220,7 +219,7 @@ CREATE TYPE public.orderstatus AS ENUM (
 );
 
 
-ALTER TYPE public.orderstatus OWNER TO postgres;
+-- ALTER TYPE public.orderstatus OWNER TO postgres;
 
 --
 -- Name: payment_transaction_type; Type: TYPE; Schema: public; Owner: postgres
@@ -232,7 +231,7 @@ CREATE TYPE public.payment_transaction_type AS ENUM (
 );
 
 
-ALTER TYPE public.payment_transaction_type OWNER TO postgres;
+-- ALTER TYPE public.payment_transaction_type OWNER TO postgres;
 
 --
 -- Name: paymenttransactiontype; Type: TYPE; Schema: public; Owner: postgres
@@ -244,7 +243,7 @@ CREATE TYPE public.paymenttransactiontype AS ENUM (
 );
 
 
-ALTER TYPE public.paymenttransactiontype OWNER TO postgres;
+-- ALTER TYPE public.paymenttransactiontype OWNER TO postgres;
 
 --
 -- Name: problem_difficulty; Type: TYPE; Schema: public; Owner: postgres
@@ -257,7 +256,7 @@ CREATE TYPE public.problem_difficulty AS ENUM (
 );
 
 
-ALTER TYPE public.problem_difficulty OWNER TO postgres;
+-- ALTER TYPE public.problem_difficulty OWNER TO postgres;
 
 --
 -- Name: problem_scope; Type: TYPE; Schema: public; Owner: postgres
@@ -271,7 +270,7 @@ CREATE TYPE public.problem_scope AS ENUM (
 );
 
 
-ALTER TYPE public.problem_scope OWNER TO postgres;
+-- ALTER TYPE public.problem_scope OWNER TO postgres;
 
 --
 -- Name: problemdifficulty; Type: TYPE; Schema: public; Owner: postgres
@@ -284,7 +283,7 @@ CREATE TYPE public.problemdifficulty AS ENUM (
 );
 
 
-ALTER TYPE public.problemdifficulty OWNER TO postgres;
+-- ALTER TYPE public.problemdifficulty OWNER TO postgres;
 
 --
 -- Name: problemscope; Type: TYPE; Schema: public; Owner: postgres
@@ -298,7 +297,7 @@ CREATE TYPE public.problemscope AS ENUM (
 );
 
 
-ALTER TYPE public.problemscope OWNER TO postgres;
+-- ALTER TYPE public.problemscope OWNER TO postgres;
 
 --
 -- Name: scoring_rule; Type: TYPE; Schema: public; Owner: postgres
@@ -311,7 +310,7 @@ CREATE TYPE public.scoring_rule AS ENUM (
 );
 
 
-ALTER TYPE public.scoring_rule OWNER TO postgres;
+-- ALTER TYPE public.scoring_rule OWNER TO postgres;
 
 --
 -- Name: scoringrule; Type: TYPE; Schema: public; Owner: postgres
@@ -324,7 +323,7 @@ CREATE TYPE public.scoringrule AS ENUM (
 );
 
 
-ALTER TYPE public.scoringrule OWNER TO postgres;
+-- ALTER TYPE public.scoringrule OWNER TO postgres;
 
 --
 -- Name: teacher_status; Type: TYPE; Schema: public; Owner: postgres
@@ -337,7 +336,7 @@ CREATE TYPE public.teacher_status AS ENUM (
 );
 
 
-ALTER TYPE public.teacher_status OWNER TO postgres;
+-- ALTER TYPE public.teacher_status OWNER TO postgres;
 
 --
 -- Name: teacherstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -350,7 +349,7 @@ CREATE TYPE public.teacherstatus AS ENUM (
 );
 
 
-ALTER TYPE public.teacherstatus OWNER TO postgres;
+-- ALTER TYPE public.teacherstatus OWNER TO postgres;
 
 --
 -- Name: transaction_status; Type: TYPE; Schema: public; Owner: postgres
@@ -364,7 +363,7 @@ CREATE TYPE public.transaction_status AS ENUM (
 );
 
 
-ALTER TYPE public.transaction_status OWNER TO postgres;
+-- ALTER TYPE public.transaction_status OWNER TO postgres;
 
 --
 -- Name: transactionstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -378,7 +377,7 @@ CREATE TYPE public.transactionstatus AS ENUM (
 );
 
 
-ALTER TYPE public.transactionstatus OWNER TO postgres;
+-- ALTER TYPE public.transactionstatus OWNER TO postgres;
 
 --
 -- Name: user_status; Type: TYPE; Schema: public; Owner: postgres
@@ -391,7 +390,7 @@ CREATE TYPE public.user_status AS ENUM (
 );
 
 
-ALTER TYPE public.user_status OWNER TO postgres;
+-- ALTER TYPE public.user_status OWNER TO postgres;
 
 --
 -- Name: userstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -404,7 +403,7 @@ CREATE TYPE public.userstatus AS ENUM (
 );
 
 
-ALTER TYPE public.userstatus OWNER TO postgres;
+-- ALTER TYPE public.userstatus OWNER TO postgres;
 
 --
 -- Name: wallet_status; Type: TYPE; Schema: public; Owner: postgres
@@ -416,7 +415,7 @@ CREATE TYPE public.wallet_status AS ENUM (
 );
 
 
-ALTER TYPE public.wallet_status OWNER TO postgres;
+-- ALTER TYPE public.wallet_status OWNER TO postgres;
 
 --
 -- Name: wallet_transaction_type; Type: TYPE; Schema: public; Owner: postgres
@@ -431,7 +430,7 @@ CREATE TYPE public.wallet_transaction_type AS ENUM (
 );
 
 
-ALTER TYPE public.wallet_transaction_type OWNER TO postgres;
+-- ALTER TYPE public.wallet_transaction_type OWNER TO postgres;
 
 --
 -- Name: walletstatus; Type: TYPE; Schema: public; Owner: postgres
@@ -443,7 +442,7 @@ CREATE TYPE public.walletstatus AS ENUM (
 );
 
 
-ALTER TYPE public.walletstatus OWNER TO postgres;
+-- ALTER TYPE public.walletstatus OWNER TO postgres;
 
 --
 -- Name: wallettransactiontype; Type: TYPE; Schema: public; Owner: postgres
@@ -458,7 +457,7 @@ CREATE TYPE public.wallettransactiontype AS ENUM (
 );
 
 
-ALTER TYPE public.wallettransactiontype OWNER TO postgres;
+-- ALTER TYPE public.wallettransactiontype OWNER TO postgres;
 
 --
 -- Name: CAST (public.conteststatus AS character varying); Type: CAST; Schema: -; Owner: -
@@ -698,7 +697,7 @@ END;
 $$;
 
 
-ALTER FUNCTION public.set_updated_at() OWNER TO postgres;
+-- ALTER FUNCTION public.set_updated_at() OWNER TO postgres;
 
 SET default_tablespace = '';
 
@@ -716,7 +715,7 @@ CREATE TABLE public.cart_items (
 );
 
 
-ALTER TABLE public.cart_items OWNER TO postgres;
+-- ALTER TABLE public.cart_items OWNER TO postgres;
 
 --
 -- Name: cart_items_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -730,7 +729,7 @@ CREATE SEQUENCE public.cart_items_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.cart_items_id_seq OWNER TO postgres;
+-- ALTER TABLE public.cart_items_id_seq OWNER TO postgres;
 
 --
 -- Name: cart_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -751,7 +750,7 @@ CREATE TABLE public.carts (
 );
 
 
-ALTER TABLE public.carts OWNER TO postgres;
+-- ALTER TABLE public.carts OWNER TO postgres;
 
 --
 -- Name: carts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -765,7 +764,7 @@ CREATE SEQUENCE public.carts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.carts_id_seq OWNER TO postgres;
+-- ALTER TABLE public.carts_id_seq OWNER TO postgres;
 
 --
 -- Name: carts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -788,7 +787,7 @@ CREATE TABLE public.categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO postgres;
+-- ALTER TABLE public.categories OWNER TO postgres;
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -802,7 +801,7 @@ CREATE SEQUENCE public.categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO postgres;
+-- ALTER TABLE public.categories_id_seq OWNER TO postgres;
 
 --
 -- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -827,7 +826,7 @@ CREATE TABLE public.chapters (
 );
 
 
-ALTER TABLE public.chapters OWNER TO postgres;
+-- ALTER TABLE public.chapters OWNER TO postgres;
 
 --
 -- Name: chapters_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -841,7 +840,7 @@ CREATE SEQUENCE public.chapters_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.chapters_id_seq OWNER TO postgres;
+-- ALTER TABLE public.chapters_id_seq OWNER TO postgres;
 
 --
 -- Name: chapters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -864,7 +863,7 @@ CREATE TABLE public.completed_lessons_count (
 );
 
 
-ALTER TABLE public.completed_lessons_count OWNER TO postgres;
+-- ALTER TABLE public.completed_lessons_count OWNER TO postgres;
 
 --
 -- Name: completed_lessons_count_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -878,7 +877,7 @@ CREATE SEQUENCE public.completed_lessons_count_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.completed_lessons_count_id_seq OWNER TO postgres;
+-- ALTER TABLE public.completed_lessons_count_id_seq OWNER TO postgres;
 
 --
 -- Name: completed_lessons_count_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -899,7 +898,7 @@ CREATE TABLE public.contest_participants (
 );
 
 
-ALTER TABLE public.contest_participants OWNER TO postgres;
+-- ALTER TABLE public.contest_participants OWNER TO postgres;
 
 --
 -- Name: contest_participants_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -913,7 +912,7 @@ CREATE SEQUENCE public.contest_participants_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.contest_participants_id_seq OWNER TO postgres;
+-- ALTER TABLE public.contest_participants_id_seq OWNER TO postgres;
 
 --
 -- Name: contest_participants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -941,7 +940,7 @@ CREATE TABLE public.contest_problem_attempts (
 );
 
 
-ALTER TABLE public.contest_problem_attempts OWNER TO postgres;
+-- ALTER TABLE public.contest_problem_attempts OWNER TO postgres;
 
 --
 -- Name: contest_problem_attempts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -970,7 +969,7 @@ CREATE TABLE public.contest_problems (
 );
 
 
-ALTER TABLE public.contest_problems OWNER TO postgres;
+-- ALTER TABLE public.contest_problems OWNER TO postgres;
 
 --
 -- Name: contest_problems_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -984,7 +983,7 @@ CREATE SEQUENCE public.contest_problems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.contest_problems_id_seq OWNER TO postgres;
+-- ALTER TABLE public.contest_problems_id_seq OWNER TO postgres;
 
 --
 -- Name: contest_problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1009,7 +1008,7 @@ CREATE TABLE public.contest_rankings (
 );
 
 
-ALTER TABLE public.contest_rankings OWNER TO postgres;
+-- ALTER TABLE public.contest_rankings OWNER TO postgres;
 
 --
 -- Name: contest_rankings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1046,7 +1045,7 @@ CREATE TABLE public.contests (
 );
 
 
-ALTER TABLE public.contests OWNER TO postgres;
+-- ALTER TABLE public.contests OWNER TO postgres;
 
 --
 -- Name: contests_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1060,7 +1059,7 @@ CREATE SEQUENCE public.contests_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.contests_id_seq OWNER TO postgres;
+-- ALTER TABLE public.contests_id_seq OWNER TO postgres;
 
 --
 -- Name: contests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1079,7 +1078,7 @@ CREATE TABLE public.course_category_mappings (
 );
 
 
-ALTER TABLE public.course_category_mappings OWNER TO postgres;
+-- ALTER TABLE public.course_category_mappings OWNER TO postgres;
 
 --
 -- Name: course_reviews; Type: TABLE; Schema: public; Owner: postgres
@@ -1097,7 +1096,7 @@ CREATE TABLE public.course_reviews (
 );
 
 
-ALTER TABLE public.course_reviews OWNER TO postgres;
+-- ALTER TABLE public.course_reviews OWNER TO postgres;
 
 --
 -- Name: course_reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1111,7 +1110,7 @@ CREATE SEQUENCE public.course_reviews_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.course_reviews_id_seq OWNER TO postgres;
+-- ALTER TABLE public.course_reviews_id_seq OWNER TO postgres;
 
 --
 -- Name: course_reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1156,7 +1155,7 @@ CREATE TABLE public.courses (
 );
 
 
-ALTER TABLE public.courses OWNER TO postgres;
+-- ALTER TABLE public.courses OWNER TO postgres;
 
 --
 -- Name: courses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1170,7 +1169,7 @@ CREATE SEQUENCE public.courses_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.courses_id_seq OWNER TO postgres;
+-- ALTER TABLE public.courses_id_seq OWNER TO postgres;
 
 --
 -- Name: courses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1192,7 +1191,7 @@ CREATE TABLE public.enrollments (
 );
 
 
-ALTER TABLE public.enrollments OWNER TO postgres;
+-- ALTER TABLE public.enrollments OWNER TO postgres;
 
 --
 -- Name: enrollments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1206,7 +1205,7 @@ CREATE SEQUENCE public.enrollments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.enrollments_id_seq OWNER TO postgres;
+-- ALTER TABLE public.enrollments_id_seq OWNER TO postgres;
 
 --
 -- Name: enrollments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1227,7 +1226,7 @@ CREATE TABLE public.invalidated_tokens (
 );
 
 
-ALTER TABLE public.invalidated_tokens OWNER TO postgres;
+-- ALTER TABLE public.invalidated_tokens OWNER TO postgres;
 
 --
 -- Name: invalidated_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1241,7 +1240,7 @@ CREATE SEQUENCE public.invalidated_tokens_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.invalidated_tokens_id_seq OWNER TO postgres;
+-- ALTER TABLE public.invalidated_tokens_id_seq OWNER TO postgres;
 
 --
 -- Name: invalidated_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1267,7 +1266,7 @@ CREATE TABLE public.lesson_comments (
 );
 
 
-ALTER TABLE public.lesson_comments OWNER TO postgres;
+-- ALTER TABLE public.lesson_comments OWNER TO postgres;
 
 --
 -- Name: lesson_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1281,7 +1280,7 @@ CREATE SEQUENCE public.lesson_comments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.lesson_comments_id_seq OWNER TO postgres;
+-- ALTER TABLE public.lesson_comments_id_seq OWNER TO postgres;
 
 --
 -- Name: lesson_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1302,7 +1301,7 @@ CREATE TABLE public.lesson_problems (
 );
 
 
-ALTER TABLE public.lesson_problems OWNER TO postgres;
+-- ALTER TABLE public.lesson_problems OWNER TO postgres;
 
 --
 -- Name: lesson_problems_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1316,7 +1315,7 @@ CREATE SEQUENCE public.lesson_problems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.lesson_problems_id_seq OWNER TO postgres;
+-- ALTER TABLE public.lesson_problems_id_seq OWNER TO postgres;
 
 --
 -- Name: lesson_problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1338,7 +1337,7 @@ CREATE TABLE public.lesson_progress (
 );
 
 
-ALTER TABLE public.lesson_progress OWNER TO postgres;
+-- ALTER TABLE public.lesson_progress OWNER TO postgres;
 
 --
 -- Name: lesson_progress_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1352,7 +1351,7 @@ CREATE SEQUENCE public.lesson_progress_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.lesson_progress_id_seq OWNER TO postgres;
+-- ALTER TABLE public.lesson_progress_id_seq OWNER TO postgres;
 
 --
 -- Name: lesson_progress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1386,7 +1385,7 @@ CREATE TABLE public.lessons (
 );
 
 
-ALTER TABLE public.lessons OWNER TO postgres;
+-- ALTER TABLE public.lessons OWNER TO postgres;
 
 --
 -- Name: lessons_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1400,7 +1399,7 @@ CREATE SEQUENCE public.lessons_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.lessons_id_seq OWNER TO postgres;
+-- ALTER TABLE public.lessons_id_seq OWNER TO postgres;
 
 --
 -- Name: lessons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1441,7 +1440,7 @@ CREATE TABLE public.online_judge_problems (
 );
 
 
-ALTER TABLE public.online_judge_problems OWNER TO postgres;
+-- ALTER TABLE public.online_judge_problems OWNER TO postgres;
 
 --
 -- Name: online_judge_problems_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1455,7 +1454,7 @@ CREATE SEQUENCE public.online_judge_problems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.online_judge_problems_id_seq OWNER TO postgres;
+-- ALTER TABLE public.online_judge_problems_id_seq OWNER TO postgres;
 
 --
 -- Name: online_judge_problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1483,7 +1482,7 @@ CREATE TABLE public.online_judge_submission_details (
 );
 
 
-ALTER TABLE public.online_judge_submission_details OWNER TO postgres;
+-- ALTER TABLE public.online_judge_submission_details OWNER TO postgres;
 
 --
 -- Name: online_judge_submission_details_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1498,7 +1497,7 @@ CREATE SEQUENCE public.online_judge_submission_details_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.online_judge_submission_details_id_seq OWNER TO postgres;
+-- ALTER TABLE public.online_judge_submission_details_id_seq OWNER TO postgres;
 
 --
 -- Name: online_judge_submission_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1531,7 +1530,7 @@ CREATE TABLE public.online_judge_submissions (
 );
 
 
-ALTER TABLE public.online_judge_submissions OWNER TO postgres;
+-- ALTER TABLE public.online_judge_submissions OWNER TO postgres;
 
 --
 -- Name: online_judge_submissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1545,7 +1544,7 @@ CREATE SEQUENCE public.online_judge_submissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.online_judge_submissions_id_seq OWNER TO postgres;
+-- ALTER TABLE public.online_judge_submissions_id_seq OWNER TO postgres;
 
 --
 -- Name: online_judge_submissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1566,7 +1565,7 @@ CREATE TABLE public.order_items (
 );
 
 
-ALTER TABLE public.order_items OWNER TO postgres;
+-- ALTER TABLE public.order_items OWNER TO postgres;
 
 --
 -- Name: order_items_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1580,7 +1579,7 @@ CREATE SEQUENCE public.order_items_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.order_items_id_seq OWNER TO postgres;
+-- ALTER TABLE public.order_items_id_seq OWNER TO postgres;
 
 --
 -- Name: order_items_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1603,7 +1602,7 @@ CREATE TABLE public.orders (
 );
 
 
-ALTER TABLE public.orders OWNER TO postgres;
+-- ALTER TABLE public.orders OWNER TO postgres;
 
 --
 -- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1617,7 +1616,7 @@ CREATE SEQUENCE public.orders_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.orders_id_seq OWNER TO postgres;
+-- ALTER TABLE public.orders_id_seq OWNER TO postgres;
 
 --
 -- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1643,7 +1642,7 @@ CREATE TABLE public.payment_transactions (
 );
 
 
-ALTER TABLE public.payment_transactions OWNER TO postgres;
+-- ALTER TABLE public.payment_transactions OWNER TO postgres;
 
 --
 -- Name: payment_transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1657,7 +1656,7 @@ CREATE SEQUENCE public.payment_transactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.payment_transactions_id_seq OWNER TO postgres;
+-- ALTER TABLE public.payment_transactions_id_seq OWNER TO postgres;
 
 --
 -- Name: payment_transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1677,7 +1676,7 @@ CREATE TABLE public.permissions (
 );
 
 
-ALTER TABLE public.permissions OWNER TO postgres;
+-- ALTER TABLE public.permissions OWNER TO postgres;
 
 --
 -- Name: permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1691,7 +1690,7 @@ CREATE SEQUENCE public.permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.permissions_id_seq OWNER TO postgres;
+-- ALTER TABLE public.permissions_id_seq OWNER TO postgres;
 
 --
 -- Name: permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1711,7 +1710,7 @@ CREATE TABLE public.problem_tag_mappings (
 );
 
 
-ALTER TABLE public.problem_tag_mappings OWNER TO postgres;
+-- ALTER TABLE public.problem_tag_mappings OWNER TO postgres;
 
 --
 -- Name: problem_tag_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1725,7 +1724,7 @@ CREATE SEQUENCE public.problem_tag_mappings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.problem_tag_mappings_id_seq OWNER TO postgres;
+-- ALTER TABLE public.problem_tag_mappings_id_seq OWNER TO postgres;
 
 --
 -- Name: problem_tag_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1749,7 +1748,7 @@ CREATE TABLE public.problem_tags (
 );
 
 
-ALTER TABLE public.problem_tags OWNER TO postgres;
+-- ALTER TABLE public.problem_tags OWNER TO postgres;
 
 --
 -- Name: problem_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1763,7 +1762,7 @@ CREATE SEQUENCE public.problem_tags_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.problem_tags_id_seq OWNER TO postgres;
+-- ALTER TABLE public.problem_tags_id_seq OWNER TO postgres;
 
 --
 -- Name: problem_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1788,7 +1787,7 @@ CREATE TABLE public.problem_testcases (
 );
 
 
-ALTER TABLE public.problem_testcases OWNER TO postgres;
+-- ALTER TABLE public.problem_testcases OWNER TO postgres;
 
 --
 -- Name: problem_testcases_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1802,7 +1801,7 @@ CREATE SEQUENCE public.problem_testcases_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.problem_testcases_id_seq OWNER TO postgres;
+-- ALTER TABLE public.problem_testcases_id_seq OWNER TO postgres;
 
 --
 -- Name: problem_testcases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1823,7 +1822,7 @@ CREATE TABLE public.quiz_attempt_answers (
 );
 
 
-ALTER TABLE public.quiz_attempt_answers OWNER TO postgres;
+-- ALTER TABLE public.quiz_attempt_answers OWNER TO postgres;
 
 --
 -- Name: quiz_attempt_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1837,7 +1836,7 @@ CREATE SEQUENCE public.quiz_attempt_answers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quiz_attempt_answers_id_seq OWNER TO postgres;
+-- ALTER TABLE public.quiz_attempt_answers_id_seq OWNER TO postgres;
 
 --
 -- Name: quiz_attempt_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1866,7 +1865,7 @@ CREATE TABLE public.quiz_attempts (
 );
 
 
-ALTER TABLE public.quiz_attempts OWNER TO postgres;
+-- ALTER TABLE public.quiz_attempts OWNER TO postgres;
 
 --
 -- Name: quiz_attempts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1880,7 +1879,7 @@ CREATE SEQUENCE public.quiz_attempts_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quiz_attempts_id_seq OWNER TO postgres;
+-- ALTER TABLE public.quiz_attempts_id_seq OWNER TO postgres;
 
 --
 -- Name: quiz_attempts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1904,7 +1903,7 @@ CREATE TABLE public.quiz_options (
 );
 
 
-ALTER TABLE public.quiz_options OWNER TO postgres;
+-- ALTER TABLE public.quiz_options OWNER TO postgres;
 
 --
 -- Name: quiz_options_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1918,7 +1917,7 @@ CREATE SEQUENCE public.quiz_options_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quiz_options_id_seq OWNER TO postgres;
+-- ALTER TABLE public.quiz_options_id_seq OWNER TO postgres;
 
 --
 -- Name: quiz_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1941,7 +1940,7 @@ CREATE TABLE public.quiz_questions (
 );
 
 
-ALTER TABLE public.quiz_questions OWNER TO postgres;
+-- ALTER TABLE public.quiz_questions OWNER TO postgres;
 
 --
 -- Name: quiz_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1955,7 +1954,7 @@ CREATE SEQUENCE public.quiz_questions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quiz_questions_id_seq OWNER TO postgres;
+-- ALTER TABLE public.quiz_questions_id_seq OWNER TO postgres;
 
 --
 -- Name: quiz_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -1981,7 +1980,7 @@ CREATE TABLE public.quizzes (
 );
 
 
-ALTER TABLE public.quizzes OWNER TO postgres;
+-- ALTER TABLE public.quizzes OWNER TO postgres;
 
 --
 -- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -1995,7 +1994,7 @@ CREATE SEQUENCE public.quizzes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quizzes_id_seq OWNER TO postgres;
+-- ALTER TABLE public.quizzes_id_seq OWNER TO postgres;
 
 --
 -- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2019,7 +2018,7 @@ CREATE TABLE public.refresh_tokens (
 );
 
 
-ALTER TABLE public.refresh_tokens OWNER TO postgres;
+-- ALTER TABLE public.refresh_tokens OWNER TO postgres;
 
 --
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2033,7 +2032,7 @@ CREATE SEQUENCE public.refresh_tokens_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.refresh_tokens_id_seq OWNER TO postgres;
+-- ALTER TABLE public.refresh_tokens_id_seq OWNER TO postgres;
 
 --
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2052,7 +2051,7 @@ CREATE TABLE public.role_permissions (
 );
 
 
-ALTER TABLE public.role_permissions OWNER TO postgres;
+-- ALTER TABLE public.role_permissions OWNER TO postgres;
 
 --
 -- Name: roles; Type: TABLE; Schema: public; Owner: postgres
@@ -2065,7 +2064,7 @@ CREATE TABLE public.roles (
 );
 
 
-ALTER TABLE public.roles OWNER TO postgres;
+-- ALTER TABLE public.roles OWNER TO postgres;
 
 --
 -- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2079,7 +2078,7 @@ CREATE SEQUENCE public.roles_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.roles_id_seq OWNER TO postgres;
+-- ALTER TABLE public.roles_id_seq OWNER TO postgres;
 
 --
 -- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2101,7 +2100,7 @@ CREATE TABLE public.teacher_course_assignments (
 );
 
 
-ALTER TABLE public.teacher_course_assignments OWNER TO postgres;
+-- ALTER TABLE public.teacher_course_assignments OWNER TO postgres;
 
 --
 -- Name: teacher_course_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2115,7 +2114,7 @@ CREATE SEQUENCE public.teacher_course_assignments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teacher_course_assignments_id_seq OWNER TO postgres;
+-- ALTER TABLE public.teacher_course_assignments_id_seq OWNER TO postgres;
 
 --
 -- Name: teacher_course_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2140,7 +2139,7 @@ CREATE TABLE public.teachers (
 );
 
 
-ALTER TABLE public.teachers OWNER TO postgres;
+-- ALTER TABLE public.teachers OWNER TO postgres;
 
 --
 -- Name: teachers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2154,7 +2153,7 @@ CREATE SEQUENCE public.teachers_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teachers_id_seq OWNER TO postgres;
+-- ALTER TABLE public.teachers_id_seq OWNER TO postgres;
 
 --
 -- Name: teachers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2173,7 +2172,7 @@ CREATE TABLE public.user_roles (
 );
 
 
-ALTER TABLE public.user_roles OWNER TO postgres;
+-- ALTER TABLE public.user_roles OWNER TO postgres;
 
 --
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
@@ -2194,7 +2193,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+-- ALTER TABLE public.users OWNER TO postgres;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2208,7 +2207,7 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO postgres;
+-- ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2235,7 +2234,7 @@ CREATE TABLE public.wallet_transactions (
 );
 
 
-ALTER TABLE public.wallet_transactions OWNER TO postgres;
+-- ALTER TABLE public.wallet_transactions OWNER TO postgres;
 
 --
 -- Name: wallet_transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2249,7 +2248,7 @@ CREATE SEQUENCE public.wallet_transactions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.wallet_transactions_id_seq OWNER TO postgres;
+-- ALTER TABLE public.wallet_transactions_id_seq OWNER TO postgres;
 
 --
 -- Name: wallet_transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -2273,7 +2272,7 @@ CREATE TABLE public.wallets (
 );
 
 
-ALTER TABLE public.wallets OWNER TO postgres;
+-- ALTER TABLE public.wallets OWNER TO postgres;
 
 --
 -- Name: wallets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -2287,7 +2286,7 @@ CREATE SEQUENCE public.wallets_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.wallets_id_seq OWNER TO postgres;
+-- ALTER TABLE public.wallets_id_seq OWNER TO postgres;
 
 --
 -- Name: wallets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
@@ -10516,7 +10515,7 @@ ALTER TABLE ONLY public.quiz_attempt_answers
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
 --
 
-REVOKE ALL ON SCHEMA public FROM ngocthanh;
+-- REVOKE ALL ON SCHEMA public FROM ngocthanh;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 GRANT ALL ON SCHEMA public TO pg_database_owner;
 GRANT ALL ON SCHEMA public TO PUBLIC;
@@ -10526,5 +10525,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 -- PostgreSQL database dump complete
 --
 
-\unrestrict AV3msB1zxUDj5d0YfjZtfZT9cn1SD0NtWcl5etvhTlMDLF47kHzTOa2iMav04xw
 
