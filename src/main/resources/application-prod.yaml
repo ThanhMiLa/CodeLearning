@@ -45,14 +45,14 @@ spring:
 
 jwt:
   signer-key: ${JWT_SIGNER_KEY}
-  valid-duration: ${JWT_VALID_DURATION:1200}
-  refreshable-duration: ${JWT_REFRESHABLE_DURATION:2400}
+  valid-duration: ${JWT_VALID_DURATION:900}
+  refreshable-duration: ${JWT_REFRESHABLE_DURATION:604800}
 
 auth: 
   cookie:
     access-token:
       name: ${ACCESS_TOKEN_COOKIE_NAME:access_token}
-      max-age: ${ACCESS_TOKEN_MAX_AGE:1200}
+      max-age: ${ACCESS_TOKEN_MAX_AGE:900}
       secure: ${ACCESS_TOKEN_SECURE:true}
       http-only: ${ACCESS_TOKEN_HTTP_ONLY:true}
       same-site: ${ACCESS_TOKEN_SAME_SITE:Lax}
@@ -60,7 +60,7 @@ auth:
 
     refresh-token:
       name: ${REFRESH_TOKEN_COOKIE_NAME:refresh_token}
-      max-age: ${REFRESH_TOKEN_MAX_AGE:2400}
+      max-age: ${REFRESH_TOKEN_MAX_AGE:604800}
       secure: ${REFRESH_TOKEN_SECURE:true}
       http-only: ${REFRESH_TOKEN_HTTP_ONLY:true}
       same-site: ${REFRESH_TOKEN_SAME_SITE:Lax}
