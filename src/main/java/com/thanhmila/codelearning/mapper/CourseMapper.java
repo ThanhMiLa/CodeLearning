@@ -36,6 +36,7 @@ public interface CourseMapper {
     CourseEntity toCourseEntity(CourseCreationRequest request);
     @Mapping(target = "enrolled", ignore = true)
     @Mapping(target = "progressPercentage", ignore = true)
+    @Mapping(target = "teacherName", expression = "java(getTeacherName(courseEntity))")
     CourseListItemResponse toCourseListItemResponse(CourseEntity courseEntity);
 
 
@@ -54,4 +55,13 @@ public interface CourseMapper {
 
 
     CategoryResponse toCategoryResponse(CategoryEntity categoryEntity);
+
+    default String getTeacherName(CourseEntity courseEntity) {
+        if (courseEntity.getTeacherAssignments() == null || courseEntity.getTeacherAssignments().isEmpty()) {
+            return null;
+        }
+        return courseEntity.getTeacherAssignments().stream()
+                .map(assignment -> assignment.getTeacher().getFullName())
+                .collect(java.util.stream.Collectors.joining(", "));
+    }
 }

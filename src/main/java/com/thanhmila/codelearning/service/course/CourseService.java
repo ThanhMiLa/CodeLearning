@@ -27,6 +27,7 @@ import com.thanhmila.codelearning.service.cloudinary.CloudinaryService;
 import com.thanhmila.codelearning.entity.course.CategoryEntity;
 import com.thanhmila.codelearning.dto.response.CloudinaryResponse;
 import com.thanhmila.codelearning.dto.response.EnrolledCourseResponse;
+import com.thanhmila.codelearning.dto.response.CategoryResponse;
 import com.thanhmila.codelearning.entity.course.EnrollmentEntity;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -291,6 +292,7 @@ public class CourseService {
                             .totalReviews(course.getTotalReviews() != null ? course.getTotalReviews().longValue() : 0L)
                             .totalEnrolled(course.getTotalEnrolled() != null ? course.getTotalEnrolled().longValue() : 0L)
                             .progressPercentage(progressPercentage)
+                            .teacherName(courseMapper.getTeacherName(course))
                             .build();
                 })
                 .collect(Collectors.toList());
@@ -306,4 +308,11 @@ public class CourseService {
                 .content(content)
                 .build();
     }
+
+    public List<CategoryResponse> getAllCategories() {
+        return categoryRepository.findAll().stream()
+                .map(courseMapper::toCategoryResponse)
+                .collect(Collectors.toList());
+    }
 }
+

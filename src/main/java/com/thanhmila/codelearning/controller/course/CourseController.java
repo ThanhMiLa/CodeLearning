@@ -116,6 +116,19 @@ public class CourseController {
                 .build());
     }
 
+    @GetMapping("/categories")
+    public ResponseEntity<ApiResponse<List<CategoryResponse>>> getCategories() {
+        var result = courseService.getAllCategories();
+
+        return ResponseEntity.ok(ApiResponse.<List<CategoryResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get categories successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAuthority('COURSE_CREATE')")
     public ResponseEntity<ApiResponse<CourseDetailResponse>> createCourse(

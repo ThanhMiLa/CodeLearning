@@ -33,4 +33,6 @@ public class CourseListItemResponse {
 
     Integer progressPercentage;
 
+    String teacherName;
+
 }

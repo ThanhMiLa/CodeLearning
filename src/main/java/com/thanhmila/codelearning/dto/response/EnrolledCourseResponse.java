@@ -21,4 +21,5 @@ public class EnrolledCourseResponse {
     Long totalReviews;
     Long totalEnrolled;
     Integer progressPercentage;
+    String teacherName;
 }

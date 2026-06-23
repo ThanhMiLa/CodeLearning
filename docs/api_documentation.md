@@ -158,6 +158,7 @@ export interface CourseListItemResponse {
   totalEnrolled: number;
   enrolled: boolean;
   progressPercentage: number | null;
+  teacherName: string | null;
 }
 
 export interface EnrolledCourseResponse {
@@ -170,6 +171,7 @@ export interface EnrolledCourseResponse {
   totalReviews: number;
   totalEnrolled: number;
   progressPercentage: number | null;
+  teacherName: string | null;
 }
 
 export interface CourseDetailResponse {
@@ -651,6 +653,12 @@ export interface OjTestcaseGenWsMessage {
 - **Yêu cầu JWT**: Không (Public). Nếu có JWT, sẽ hiển thị thêm bài học nào đã hoàn thành (`isCompleted: true`).
 - **Path Variable**: `courseId` (Long)
 - **Response (200 OK)**: Trả về `ChapterResponse[]`.
+
+#### 11.a. Lấy danh sách tất cả danh mục khóa học (Categories)
+- **Method & URL**: `GET /courses/categories`
+- **Mục đích**: Lấy danh sách tất cả các danh mục khóa học có sẵn trong hệ thống (để hiển thị bộ lọc, thanh tìm kiếm...).
+- **Yêu cầu JWT**: Không (Public).
+- **Response (200 OK)**: Trả về `List<CategoryResponse>` chứa `id` và `name`.
 
 #### 12. Tạo mới khóa học
 - **Method & URL**: `POST /courses`
