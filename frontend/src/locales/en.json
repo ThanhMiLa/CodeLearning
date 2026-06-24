@@ -11,6 +11,10 @@
     "register": "Register",
     "wallet": "Learning Wallet",
     "deposit": "Deposit",
+    "donate": "Donate",
+    "support": "Support Us",
+    "theme": "Theme",
+    "language": "Language",
     "home": "Home",
     "about": "About",
     "contact": "Contact",
@@ -157,5 +161,25 @@
     "subject_swr_desc": "Master software requirements elicitation, analysis, specification, validation, and requirements management techniques.",
     "quizzes_count_one": "{{count}} quiz set",
     "quizzes_count_other": "{{count}} quiz sets"
+  },
+  "donate": {
+    "title": "Donate to Platform",
+    "subtitle": "This platform is created free for everyone. Your donation helps us maintain the servers and continue improving the system.",
+    "select_amount": "Select Donation Amount:",
+    "custom_amount": "Or enter custom amount (VND):",
+    "min_amount": "* Minimum donation is 10,000 VND via PayOS gateway.",
+    "button_loading": "Generating Secure Link...",
+    "button_submit": "Proceed to Donate",
+    "secure_note": "Secure 256-bit encrypted transaction via PayOS",
+    "thank_you_title": "Thank You So Much!",
+    "thank_you_desc": "Your donation has been successfully received. We sincerely appreciate your support in keeping this platform free for everyone!",
+    "transaction_id": "Transaction ID:",
+    "status": "Status:",
+    "success": "Success",
+    "back_home": "Back to Home",
+    "cancel_title": "Donation Cancelled",
+    "cancel_desc": "The transaction was cancelled as requested. No funds were charged.",
+    "cancel_status": "Cancelled",
+    "button_retry": "Try Again"
   }
 }

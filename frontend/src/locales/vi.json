@@ -11,6 +11,10 @@
     "register": "Đăng ký",
     "wallet": "Ví học tập",
     "deposit": "Nạp tiền",
+    "donate": "Ủng hộ",
+    "support": "Ủng hộ dự án",
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
     "home": "Trang chủ",
     "about": "Giới thiệu",
     "contact": "Liên hệ",
@@ -157,5 +161,25 @@
     "subject_swr_desc": "Làm chủ các quy trình khơi gợi, phân tích, đặc tả, thẩm định và quản lý yêu cầu phần mềm chuyên nghiệp.",
     "quizzes_count_one": "{{count}} bộ đề",
     "quizzes_count_other": "{{count}} bộ đề"
+  },
+  "donate": {
+    "title": "Ủng Hộ Dự Án",
+    "subtitle": "Dự án này được xây dựng hoàn toàn miễn phí cho cộng đồng. Sự ủng hộ của bạn sẽ giúp duy trì máy chủ và phát triển thêm nhiều tính năng mới.",
+    "select_amount": "Chọn số tiền ủng hộ:",
+    "custom_amount": "Hoặc nhập số tiền khác (VND):",
+    "min_amount": "* Số tiền ủng hộ tối thiểu là 10.000 VND qua cổng PayOS.",
+    "button_loading": "Đang tạo liên kết thanh toán...",
+    "button_submit": "Tiến hành ủng hộ",
+    "secure_note": "Giao dịch được bảo mật mã hóa 256-bit qua PayOS",
+    "thank_you_title": "Cảm Ơn Bạn Rất Nhiều!",
+    "thank_you_desc": "Khoản đóng góp của bạn đã được hệ thống ghi nhận thành công. Chúng tôi vô cùng trân trọng sự đồng hành và hỗ trợ của bạn để duy trì dự án miễn phí này!",
+    "transaction_id": "Mã giao dịch:",
+    "status": "Trạng thái:",
+    "success": "Thành công",
+    "back_home": "Quay lại trang chủ",
+    "cancel_title": "Hủy Ủng Hộ",
+    "cancel_desc": "Giao dịch đã được hủy theo yêu cầu. Không có khoản tiền nào bị trừ khỏi tài khoản của bạn.",
+    "cancel_status": "Đã Hủy",
+    "button_retry": "Thử lại"
   }
 }

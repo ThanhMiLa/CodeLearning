@@ -16,31 +16,29 @@ import {
   ExternalLink,
   Heart,
   BookOpen,
-  Wallet
+  Settings
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import avatarImg from '../assets/ava.jpg';
 import logoImg from '../assets/LOGO_SINGLE.png';
-
+ 
 const GithubIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
   </svg>
 );
-
+ 
 const MainLayout: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
-  const formatVND = (amount: number) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
-  };
+  const { t, i18n } = useTranslation();
   const isWorkspaceRoute = location.pathname.includes('/oj/problems/') || location.pathname.includes('/contests/');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isGuestSettingsOpen, setIsGuestSettingsOpen] = useState(false);
   
 
   
@@ -137,28 +135,16 @@ const MainLayout: React.FC = () => {
 
             {/* Actions */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Language Switcher */}
-              <LanguageSwitcher />
-
-              {/* Theme Toggle */}
-              <button 
-                onClick={toggleTheme} 
-                className="p-2 text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-900"
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-              </button>
-
               {isAuthenticated ? (
                 <>
-                  {/* Wallet / Balance */}
+                  {/* Donate / Support Button */}
                   <button 
                     onClick={() => navigate('/deposit')}
-                    className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/40 dark:hover:bg-indigo-950/60 text-indigo-600 dark:text-indigo-405 border border-indigo-100/50 dark:border-indigo-900/30 text-xs font-bold transition-all cursor-pointer active:scale-95 shadow-sm"
-                    title="Top up wallet"
+                    className="flex items-center space-x-2.5 px-5 py-2.5 rounded-full bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/40 dark:hover:bg-rose-950/60 text-rose-600 dark:text-rose-400 border border-rose-100/50 dark:border-rose-900/30 text-sm font-extrabold transition-all cursor-pointer active:scale-95 shadow-sm group"
+                    title={t('navbar.support')}
                   >
-                    <Wallet className="h-4 w-4 text-indigo-500" />
-                    <span>{formatVND(user?.balance ?? 0)}</span>
+                    <Heart className="h-5.5 w-5.5 text-rose-500 fill-rose-500 animate-pulse group-hover:scale-110 transition-transform" />
+                    <span>{t('navbar.donate')}</span>
                   </button>
 
                   {/* User Menu Dropdown */}
@@ -177,7 +163,7 @@ const MainLayout: React.FC = () => {
                     </button>
 
                     {isUserDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl bg-white dark:bg-slate-900 shadow-xl border border-slate-300 dark:border-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none p-1.5 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                      <div className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl bg-white dark:bg-slate-900 shadow-xl border border-slate-300 dark:border-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none p-1.5 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                         {showDashboardLink && (
                           <Link
                             to="/admin/dashboard"
@@ -191,12 +177,43 @@ const MainLayout: React.FC = () => {
                         <Link
                           to="/profile"
                           onClick={() => setIsUserDropdownOpen(false)}
-                          className="flex w-full items-center space-x-2 rounded-lg px-3 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                          className="flex w-full items-center space-x-2 rounded-lg px-3 py-2 text-left text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-55 dark:hover:bg-slate-800 transition-colors"
                         >
                           <UserIcon className="h-4 w-4 text-indigo-500" />
                           <span>{t('navbar.profile')}</span>
                         </Link>
+                        
                         <hr className="my-1 border-slate-200 dark:border-slate-800" />
+                        
+                        {/* Theme Toggle option */}
+                        <button 
+                          onClick={toggleTheme} 
+                          className="flex w-full items-center justify-between px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                        >
+                          <span className="flex items-center space-x-2">
+                            {theme === 'light' ? <Moon className="h-4 w-4 text-indigo-500" /> : <Sun className="h-4 w-4 text-indigo-500" />}
+                            <span>{t('navbar.theme')}</span>
+                          </span>
+                          <span className="text-[10px] font-extrabold uppercase bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-500 dark:text-slate-400">
+                            {theme}
+                          </span>
+                        </button>
+                        
+                        {/* Language Switcher option */}
+                        <div className="flex w-full items-center justify-between px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300">
+                          <span>{t('navbar.language')}</span>
+                          <select
+                            value={i18n.language}
+                            onChange={(e) => i18n.changeLanguage(e.target.value)}
+                            className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2 py-1 text-xs font-bold text-slate-750 dark:text-slate-200 outline-none cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-750 transition-colors"
+                          >
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="en">English</option>
+                          </select>
+                        </div>
+
+                        <hr className="my-1 border-slate-200 dark:border-slate-800" />
+                        
                         <button
                           onClick={handleLogout}
                           className="flex w-full items-center space-x-2 rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
@@ -210,6 +227,36 @@ const MainLayout: React.FC = () => {
                 </>
               ) : (
                 <div className="flex items-center space-x-3">
+                  {/* Settings Icon Dropdown for guest */}
+                  <div className="relative">
+                    <button 
+                      onClick={() => setIsGuestSettingsOpen(!isGuestSettingsOpen)} 
+                      className="p-2 text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors cursor-pointer"
+                      title="Settings"
+                    >
+                      <Settings className="h-5 w-5" />
+                    </button>
+                    {isGuestSettingsOpen && (
+                      <div className="absolute right-0 mt-2 w-40 rounded-xl bg-white dark:bg-slate-900 shadow-xl border border-slate-300 dark:border-slate-800 p-2.5 z-50 flex flex-col space-y-2">
+                        <button 
+                          onClick={toggleTheme} 
+                          className="w-full flex items-center justify-between px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                        >
+                          <span>{t('navbar.theme')}</span>
+                          {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                        </button>
+                        <select
+                          value={i18n.language}
+                          onChange={(e) => i18n.changeLanguage(e.target.value)}
+                          className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-750 dark:text-slate-200 outline-none cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-750 transition-colors"
+                        >
+                          <option value="vi">Tiếng Việt</option>
+                          <option value="en">English</option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
+
                   <Link to="/login" className="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">
                     {t('navbar.login')}
                   </Link>
@@ -268,17 +315,16 @@ const MainLayout: React.FC = () => {
             {isAuthenticated && user ? (
               <>
                 <div className="h-[1px] bg-slate-100 dark:border-slate-800 my-1"></div>
-                <div 
+                 <div 
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     navigate('/deposit');
                   }}
-                  className="px-3 py-2.5 flex items-center justify-between bg-indigo-50/50 hover:bg-indigo-100/50 dark:bg-indigo-950/20 dark:hover:bg-indigo-950/40 rounded-xl text-indigo-700 dark:text-indigo-305 border border-indigo-200/50 dark:border-indigo-900/10 cursor-pointer transition-colors mb-2"
+                  className="px-3 py-2.5 flex items-center justify-between bg-rose-50/50 hover:bg-rose-100/50 dark:bg-rose-950/20 dark:hover:bg-rose-950/40 rounded-xl text-rose-700 dark:text-rose-300 border border-rose-200/50 dark:border-rose-900/10 cursor-pointer transition-colors mb-2"
                 >
-                  <span className="text-xs font-bold uppercase tracking-wider flex items-center"><Wallet className="h-4.5 w-4.5 mr-2" />{t('navbar.wallet')}:</span>
+                  <span className="text-xs font-bold uppercase tracking-wider flex items-center"><Heart className="h-5.5 w-5.5 mr-2 text-rose-500 fill-rose-500 animate-pulse" />{t('navbar.donate')}</span>
                   <span className="font-extrabold flex items-center space-x-1.5 text-sm">
-                    <span>{formatVND(user.balance)}</span>
-                    <span className="text-[10px] bg-indigo-200 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-1.5 py-0.5 rounded font-black">+ {t('navbar.deposit')}</span>
+                    <span className="text-[10px] bg-rose-200 dark:bg-rose-900 text-rose-800 dark:text-rose-200 px-1.5 py-0.5 rounded font-black">{t('navbar.support')}</span>
                   </span>
                 </div>
                 {showDashboardLink && (

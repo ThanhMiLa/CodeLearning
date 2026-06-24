@@ -112,11 +112,25 @@ public class PaymentService {
                     .bodyToMono(JsonNode.class)
                     .block(); // Block since the outer method is synchronous
 
-            if (responseNode == null || !responseNode.has("data")) {
+            if (responseNode == null) {
+                log.error("PayOS response is null");
+                throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
+            }
+
+            String code = responseNode.has("code") ? responseNode.get("code").asText() : "";
+            if (!"00".equals(code)) {
+                String desc = responseNode.has("desc") ? responseNode.get("desc").asText() : "Unknown error";
+                log.error("PayOS API error: code={}, description={}", code, desc);
+                throw new RuntimeException("PayOS error " + code + ": " + desc);
+            }
+
+            JsonNode dataNode = responseNode.get("data");
+            if (dataNode == null || dataNode.isNull() || !dataNode.has("checkoutUrl")) {
+                log.error("PayOS response data or checkoutUrl is missing. Response: {}", responseNode);
                 throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
             }
             
-            String checkoutUrl = responseNode.get("data").get("checkoutUrl").asText();
+            String checkoutUrl = dataNode.get("checkoutUrl").asText();
 
             return PaymentDepositResponse.builder()
                     .checkoutUrl(checkoutUrl)
