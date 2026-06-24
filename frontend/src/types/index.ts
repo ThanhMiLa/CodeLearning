@@ -97,6 +97,7 @@ export interface UserResponse {
   phoneNumber: string | null;
   email: string;
   avatarUrl?: string | null;
+  roles?: string[];
 }
 
 export interface UserBalanceResponse {
@@ -358,6 +359,8 @@ export interface OrderCheckoutResponse {
   status: OrderStatus;
 }
 
+
+
 export interface PaymentDepositResponse {
   checkoutUrl: string;
   transactionCode: string;
@@ -372,6 +375,7 @@ export interface AuthenticationResponse {
   phoneNumber: string | null;
   balance: number;
   avatarUrl?: string | null;
+  roles?: string[];
 }
 
 export interface CourseProgressResponse {

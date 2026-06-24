@@ -34,6 +34,9 @@ import QuizManager from './pages/admin/QuizManager';
 import TestcaseGenerator from './pages/admin/TestcaseGenerator';
 import QuizCatalog from './pages/quiz/QuizCatalog';
 import QuizWorkspace from './pages/quiz/QuizWorkspace';
+import CourseCatalog from './pages/courses/CourseCatalog';
+import CourseDetail from './pages/courses/CourseDetail';
+import MyLearning from './pages/courses/MyLearning';
 
 const App: React.FC = () => {
   return (
@@ -46,8 +49,22 @@ const App: React.FC = () => {
               <Route path="/" element={<MainLayout />}>
                 {/* Public Routes */}
                 <Route index element={<Home />} />
-                <Route path="courses" element={<Navigate to="/oj/practice" replace />} />
-                <Route path="courses/:courseId" element={<Navigate to="/oj/practice" replace />} />
+                <Route 
+                  path="courses" 
+                  element={
+                    <RoleRoute allowedRoles={['ADMIN']}>
+                      <CourseCatalog />
+                    </RoleRoute>
+                  } 
+                />
+                <Route 
+                  path="courses/:courseId" 
+                  element={
+                    <RoleRoute allowedRoles={['ADMIN']}>
+                      <CourseDetail />
+                    </RoleRoute>
+                  } 
+                />
                 <Route path="oj/practice" element={<PracticeCatalog />} />
                 <Route path="contests" element={<ContestList />} />
                 <Route path="quiz" element={<QuizCatalog />} />
@@ -86,7 +103,11 @@ const App: React.FC = () => {
                 />
                 <Route 
                   path="my-learning" 
-                  element={<Navigate to="/oj/practice" replace />} 
+                  element={
+                    <RoleRoute allowedRoles={['ADMIN']}>
+                      <MyLearning />
+                    </RoleRoute>
+                  } 
                 />
                 <Route 
                   path="cart" 

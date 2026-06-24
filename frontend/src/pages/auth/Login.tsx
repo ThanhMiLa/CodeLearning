@@ -44,9 +44,12 @@ const Login: React.FC = () => {
 
     setIsLoadingState(true);
     try {
-      await login({ username, password });
-      // Redirect back to original path or profile
-      const from = (location.state as any)?.from?.pathname || '/profile';
+      const user = await login({ username, password });
+      // Redirect back to original path or profile/dashboard
+      let from = (location.state as any)?.from?.pathname;
+      if (!from || from === '/login' || from === '/') {
+        from = user.roles?.includes('ADMIN') || user.roles?.includes('TEACHER') ? '/admin/dashboard' : '/profile';
+      }
       navigate(from, { replace: true });
     } catch (err: any) {
       setError(getErrorMessage(err, t('login.error_failed')));
@@ -186,8 +189,11 @@ const Login: React.FC = () => {
               onSuccess={async (credentialResponse) => {
                 try {
                   setIsLoadingState(true);
-                  await googleLogin(credentialResponse.credential!);
-                  const from = (location.state as any)?.from?.pathname || '/profile';
+                  const user = await googleLogin(credentialResponse.credential!);
+                  let from = (location.state as any)?.from?.pathname;
+                  if (!from || from === '/login' || from === '/') {
+                    from = user.roles?.includes('ADMIN') || user.roles?.includes('TEACHER') ? '/admin/dashboard' : '/profile';
+                  }
                   navigate(from, { replace: true });
                 } catch (err: any) {
                   setError(getErrorMessage(err, t('login.error_failed') || 'Login Failed'));

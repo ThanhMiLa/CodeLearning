@@ -22,12 +22,9 @@ const RoleRoute: React.FC<RoleRouteProps> = ({ children, allowedRoles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // Detect role. Since roles aren't strictly defined in the profile API UserResponse docs,
-  // we look for user.role, or check if the username contains 'admin' / 'teacher', or email has 'admin' / 'teacher'.
   const userRole = (user as any).role || 
-    (user.username?.toLowerCase() === 'admin' ? 'ADMIN' : null) ||
-    (user.email?.toLowerCase().includes('admin') ? 'ADMIN' : null) ||
-    (user.email?.toLowerCase().includes('teacher') ? 'TEACHER' : null) ||
+    (user.roles?.includes('ADMIN') ? 'ADMIN' : null) ||
+    (user.roles?.includes('TEACHER') ? 'TEACHER' : null) ||
     'USER';
 
   const hasAccess = allowedRoles.includes(userRole);

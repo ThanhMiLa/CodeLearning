@@ -15,6 +15,7 @@ export interface AuthUser {
   balance: number;
   username?: string;
   avatarUrl?: string | null;
+  roles?: string[];
 }
 
 interface AuthContextType {
@@ -54,7 +55,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         phoneNumber: profileData.phoneNumber,
         username: profileData.username,
         balance: balance,
-        avatarUrl: profileData.avatarUrl
+        avatarUrl: profileData.avatarUrl,
+        roles: profileData.roles
       };
       
       setUser(loggedInUser);
@@ -76,7 +78,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         phoneNumber: authData.phoneNumber,
         balance: authData.balance,
         username: credentials.username,
-        avatarUrl: authData.avatarUrl
+        avatarUrl: authData.avatarUrl,
+        roles: authData.roles
       };
       setUser(loggedInUser);
       return loggedInUser;
@@ -97,7 +100,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         phoneNumber: authData.phoneNumber,
         balance: authData.balance,
         username: data.username,
-        avatarUrl: authData.avatarUrl
+        avatarUrl: authData.avatarUrl,
+        roles: authData.roles
       };
       setUser(registeredUser);
       return registeredUser;
@@ -126,7 +130,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         phoneNumber: authData.phoneNumber,
         balance: authData.balance,
         username: (authData as any).username || authData.email,
-        avatarUrl: authData.avatarUrl
+        avatarUrl: authData.avatarUrl,
+        roles: authData.roles
       };
       setUser(loggedInUser);
       return loggedInUser;
@@ -156,7 +161,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         phoneNumber: profileData.phoneNumber,
         username: profileData.username,
         balance: balance,
-        avatarUrl: profileData.avatarUrl
+        avatarUrl: profileData.avatarUrl,
+        roles: profileData.roles
       };
 
       setUser(updatedUser);

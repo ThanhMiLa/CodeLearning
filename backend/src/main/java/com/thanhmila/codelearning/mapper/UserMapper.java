@@ -12,6 +12,7 @@ public interface UserMapper {
     @Mapping(target = "accessToken", ignore = true)
     @Mapping(target = "refreshToken", ignore = true)
     @Mapping(target = "balance", ignore = true)
+    @Mapping(target = "roles", expression = "java(mapRoles(userEntity.getRoles()))")
     AuthenticationResponse toAuthenticationResponse(UserEntity userEntity);
 
     @Mapping(target = "id", ignore = true)
@@ -27,5 +28,11 @@ public interface UserMapper {
     UserEntity toUserEntity(RegisterRequest registerRequest);
 
     
+    @Mapping(target = "roles", expression = "java(mapRoles(userEntity.getRoles()))")
     UserResponse toUserResponse(UserEntity userEntity);
+
+    default java.util.Set<String> mapRoles(java.util.Set<com.thanhmila.codelearning.entity.auth.RoleEntity> roles) {
+        if (roles == null) return java.util.Collections.emptySet();
+        return roles.stream().map(com.thanhmila.codelearning.entity.auth.RoleEntity::getName).collect(java.util.stream.Collectors.toSet());
+    }
 }
