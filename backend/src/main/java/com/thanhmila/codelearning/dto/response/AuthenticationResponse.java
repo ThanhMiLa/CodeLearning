@@ -18,4 +18,5 @@ public class AuthenticationResponse {
     String email;
     String phoneNumber;
     BigDecimal balance;
+    String avatarUrl;
 }

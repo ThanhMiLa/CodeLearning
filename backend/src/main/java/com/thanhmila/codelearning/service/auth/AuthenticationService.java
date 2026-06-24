@@ -107,6 +107,7 @@ public class AuthenticationService {
         UserEntity userEntity = userMapper.toUserEntity(registerRequest);
         userEntity.setPasswordHash(passwordEncoder.encode(registerRequest.getPassword()));
         userEntity.setRoles(Set.of(roleRepository.findByName("USER")));
+        userEntity.setAvatarUrl("https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y");
 
         userEntity = userRepository.save(userEntity);
 

@@ -96,6 +96,7 @@ export interface UserResponse {
   username: string;
   phoneNumber: string | null;
   email: string;
+  avatarUrl?: string | null;
 }
 
 export interface UserBalanceResponse {
@@ -370,6 +371,7 @@ export interface AuthenticationResponse {
   email: string;
   phoneNumber: string | null;
   balance: number;
+  avatarUrl?: string | null;
 }
 
 export interface CourseProgressResponse {

@@ -25,6 +25,8 @@ const Profile: React.FC = () => {
   // Profile Form States
   const [displayName, setDisplayName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | null>(null);
   const [isProfileUpdating, setIsProfileUpdating] = useState(false);
   const [profileSuccess, setProfileSuccess] = useState<string | null>(null);
   const [profileError, setProfileError] = useState<string | null>(null);
@@ -51,6 +53,22 @@ const Profile: React.FC = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    return () => {
+      if (avatarPreviewUrl) {
+        URL.revokeObjectURL(avatarPreviewUrl);
+      }
+    };
+  }, [avatarPreviewUrl]);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setAvatarFile(file);
+      setAvatarPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
   // Profile submit handler
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,13 +91,25 @@ const Profile: React.FC = () => {
 
     setIsProfileUpdating(true);
     try {
-      await api.patch<ApiResponse<UserResponse>>('/users/me', {
-        displayName,
-        phoneNumber: phoneNumber || null,
+      const formData = new FormData();
+      formData.append('displayName', displayName);
+      if (phoneNumber) {
+        formData.append('phoneNumber', phoneNumber);
+      }
+      if (avatarFile) {
+        formData.append('avatarFile', avatarFile);
+      }
+
+      await api.patch<ApiResponse<UserResponse>>('/users/me', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       
       await refreshProfile();
       setProfileSuccess('Profile updated successfully!');
+      setAvatarFile(null);
+      setAvatarPreviewUrl(null);
     } catch (err: any) {
       setProfileError(getErrorMessage(err));
     } finally {
@@ -144,9 +174,11 @@ const Profile: React.FC = () => {
         {/* User Card Showcase */}
         <div className="lg:col-span-1">
           <div className="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-lg text-center flex flex-col items-center">
-            <div className="h-24 w-24 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-3xl uppercase shadow-md mb-6 border-4 border-indigo-50 dark:border-indigo-950">
-              {user?.displayName.substring(0, 2)}
-            </div>
+            <img
+              src={user?.avatarUrl || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+              alt={user?.displayName}
+              className="h-24 w-24 rounded-full object-cover shadow-md mb-6 border-4 border-indigo-50 dark:border-indigo-950"
+            />
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">{user?.displayName}</h2>
             <p className="text-sm text-slate-400 dark:text-slate-500 mt-1">@{user?.username || 'user'}</p>
             
@@ -195,6 +227,34 @@ const Profile: React.FC = () => {
             )}
 
             <form onSubmit={handleUpdateProfile} className="space-y-4">
+              {/* Avatar Upload */}
+              <div className="flex items-center space-x-4 mb-6">
+                <img
+                  src={avatarPreviewUrl || user?.avatarUrl || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+                  alt="Avatar Preview"
+                  className="h-16 w-16 rounded-full object-cover border-2 border-indigo-500/20 shadow-sm"
+                />
+                <div className="flex-grow">
+                  <label htmlFor="avatarFileInput" className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                    Profile Picture
+                  </label>
+                  <input
+                    id="avatarFileInput"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleAvatarChange}
+                    className="block w-full text-xs text-slate-500 dark:text-slate-400
+                      file:mr-4 file:py-1.5 file:px-3
+                      file:rounded-xl file:border-0
+                      file:text-xs file:font-semibold
+                      file:bg-indigo-50 file:text-indigo-700
+                      dark:file:bg-indigo-950/40 dark:file:text-indigo-400
+                      hover:file:bg-indigo-100 dark:hover:file:bg-indigo-950/60
+                      file:cursor-pointer cursor-pointer"
+                  />
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Display Name Input */}
                 <div>

@@ -14,6 +14,7 @@ export interface AuthUser {
   phoneNumber: string | null;
   balance: number;
   username?: string;
+  avatarUrl?: string | null;
 }
 
 interface AuthContextType {
@@ -51,7 +52,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email: profileData.email,
         phoneNumber: profileData.phoneNumber,
         username: profileData.username,
-        balance: balance
+        balance: balance,
+        avatarUrl: profileData.avatarUrl
       };
       
       setUser(loggedInUser);
@@ -72,7 +74,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email: authData.email,
         phoneNumber: authData.phoneNumber,
         balance: authData.balance,
-        username: credentials.username
+        username: credentials.username,
+        avatarUrl: authData.avatarUrl
       };
       setUser(loggedInUser);
       return loggedInUser;
@@ -92,7 +95,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email: authData.email,
         phoneNumber: authData.phoneNumber,
         balance: authData.balance,
-        username: data.username
+        username: data.username,
+        avatarUrl: authData.avatarUrl
       };
       setUser(registeredUser);
       return registeredUser;
@@ -129,7 +133,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         email: profileData.email,
         phoneNumber: profileData.phoneNumber,
         username: profileData.username,
-        balance: balance
+        balance: balance,
+        avatarUrl: profileData.avatarUrl
       };
 
       setUser(updatedUser);

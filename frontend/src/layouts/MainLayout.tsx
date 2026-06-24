@@ -167,9 +167,11 @@ const MainLayout: React.FC = () => {
                       onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
                       className="flex items-center space-x-2 text-sm font-medium focus:outline-none py-1.5 px-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
                     >
-                      <div className="h-7 w-7 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs uppercase shadow-sm">
-                        {user?.displayName.substring(0, 2)}
-                      </div>
+                      <img
+                        src={user?.avatarUrl || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+                        alt={user?.displayName}
+                        className="h-7 w-7 rounded-full object-cover shadow-sm border border-indigo-100 dark:border-indigo-950"
+                      />
                       <span className="max-w-[120px] truncate">{user?.displayName}</span>
                       <ChevronDown className={`h-4 w-4 transition-transform ${isUserDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
