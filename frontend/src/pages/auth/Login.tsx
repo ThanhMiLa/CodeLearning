@@ -5,9 +5,10 @@ import { Lock, User, Eye, EyeOff, Loader, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { getErrorMessage } from '../../utils/errorUtils';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const { login, googleLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
@@ -168,6 +169,38 @@ const Login: React.FC = () => {
             </button>
           </div>
         </form>
+
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-200 dark:border-slate-800" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-slate-900 text-slate-500">
+                {t('login.or_continue_with') || 'Or continue with'}
+              </span>
+            </div>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                try {
+                  setIsLoadingState(true);
+                  await googleLogin(credentialResponse.credential!);
+                  const from = (location.state as any)?.from?.pathname || '/profile';
+                  navigate(from, { replace: true });
+                } catch (err: any) {
+                  setError(getErrorMessage(err, t('login.error_failed') || 'Login Failed'));
+                } finally {
+                  setIsLoadingState(false);
+                }
+              }}
+              onError={() => {
+                setError('Google Login Failed');
+              }}
+            />
+          </div>
+        </div>
 
         <div className="text-center pt-2 text-sm text-slate-500 dark:text-slate-400">
           {t('login.no_account')}{' '}

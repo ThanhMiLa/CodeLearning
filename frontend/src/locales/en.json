@@ -47,6 +47,7 @@
     "register_now": "Register now",
     "error_failed": "Login failed. Please check your credentials.",
     "login_now": "Login now",
+    "or_continue_with": "Or continue with",
     "validation": {
       "username_required": "Username is required",
       "password_required": "Password is required"

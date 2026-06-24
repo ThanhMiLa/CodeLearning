@@ -47,6 +47,7 @@
     "register_now": "Đăng ký ngay",
     "error_failed": "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.",
     "login_now": "Đăng nhập ngay",
+    "or_continue_with": "Hoặc tiếp tục với",
     "validation": {
       "username_required": "Tên đăng nhập không được để trống",
       "password_required": "Mật khẩu không được để trống"

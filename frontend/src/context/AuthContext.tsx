@@ -25,6 +25,7 @@ interface AuthContextType {
   register: (data: any) => Promise<AuthUser>;
   logout: () => Promise<void>;
   refreshProfile: () => Promise<AuthUser>;
+  googleLogin: (token: string) => Promise<AuthUser>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -114,6 +115,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const googleLogin = async (token: string): Promise<AuthUser> => {
+    try {
+      const response = await api.post<ApiResponse<AuthenticationResponse>>('/auth/google', { token });
+      const authData = response.data.result;
+      const loggedInUser: AuthUser = {
+        id: authData.id,
+        displayName: authData.displayName,
+        email: authData.email,
+        phoneNumber: authData.phoneNumber,
+        balance: authData.balance,
+        username: (authData as any).username || authData.email,
+        avatarUrl: authData.avatarUrl
+      };
+      setUser(loggedInUser);
+      return loggedInUser;
+    } catch (error) {
+      setUser(null);
+      throw error;
+    }
+  };
+
   const refreshProfile = async (): Promise<AuthUser> => {
     try {
       const response = await api.get<ApiResponse<UserResponse>>('/users/me');
@@ -167,7 +189,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         login,
         register,
         logout,
-        refreshProfile
+        refreshProfile,
+        googleLogin
       }}
     >
       {children}

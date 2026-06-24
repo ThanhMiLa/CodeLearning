@@ -20,6 +20,14 @@ import com.thanhmila.codelearning.mapper.UserMapper;
 import com.thanhmila.codelearning.repository.auth.InvalidatedTokenRepository;
 import com.thanhmila.codelearning.repository.auth.RoleRepository;
 import com.thanhmila.codelearning.repository.user.UserRepository;
+import com.thanhmila.codelearning.repository.user.UserOauthAccountRepository;
+import com.thanhmila.codelearning.entity.user.UserOauthAccountEntity;
+import com.thanhmila.codelearning.dto.request.GoogleLoginRequest;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -52,6 +60,11 @@ public class AuthenticationService {
     InvalidatedTokenRepository invalidatedTokenRepository;
     ApplicationEventPublisher applicationEventPublisher;
     UserMapper userMapper;
+    UserOauthAccountRepository userOauthAccountRepository;
+
+    @NonFinal
+    @Value("${google.client-id:your-google-client-id}")
+    String googleClientId;
 
     @NonFinal
     @Value("${jwt.signer-key}")
@@ -121,6 +134,71 @@ public class AuthenticationService {
 
         return login(authenticationRequest);
 
+    }
+
+    @Transactional
+    public AuthenticationResponse googleLogin(GoogleLoginRequest request) {
+        try {
+            NetHttpTransport transport = new NetHttpTransport();
+            JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
+            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+                    .setAudience(Collections.singletonList(googleClientId))
+                    .build();
+
+            GoogleIdToken idToken = verifier.verify(request.getToken());
+            if (idToken != null) {
+                GoogleIdToken.Payload payload = idToken.getPayload();
+
+                String userId = payload.getSubject();
+                String email = payload.getEmail();
+                String name = (String) payload.get("name");
+                String pictureUrl = (String) payload.get("picture");
+
+                Optional<UserOauthAccountEntity> oauthAccountOpt = userOauthAccountRepository.findByProviderAndProviderAccountId("GOOGLE", userId);
+
+                UserEntity userEntity;
+                if (oauthAccountOpt.isPresent()) {
+                    userEntity = oauthAccountOpt.get().getUser();
+                } else {
+                    Optional<UserEntity> existingUserOpt = userRepository.findByEmail(email);
+                    if (existingUserOpt.isPresent()) {
+                        userEntity = existingUserOpt.get();
+                    } else {
+                        userEntity = new UserEntity();
+                        userEntity.setUsername("google_" + userId);
+                        userEntity.setEmail(email);
+                        userEntity.setDisplayName(name);
+                        userEntity.setAvatarUrl(pictureUrl);
+                        userEntity.setPasswordHash(passwordEncoder.encode(UUID.randomUUID().toString()));
+                        userEntity.setRoles(Set.of(roleRepository.findByName("USER")));
+                        userEntity.setStatus(UserStatus.ACTIVE);
+                        userEntity = userRepository.save(userEntity);
+
+                        applicationEventPublisher.publishEvent(UserRegisteredEvent.builder().userEntity(userEntity).build());
+                    }
+
+                    UserOauthAccountEntity newOauthAccount = UserOauthAccountEntity.builder()
+                            .user(userEntity)
+                            .provider("GOOGLE")
+                            .providerAccountId(userId)
+                            .createdAt(OffsetDateTime.now())
+                            .build();
+                    userOauthAccountRepository.save(newOauthAccount);
+                }
+
+                validateUserStatus(userEntity);
+
+                String accessToken = generateToken(userEntity, false);
+                String refreshToken = generateToken(userEntity, true);
+
+                return buildAuthResponse(userEntity, accessToken, refreshToken);
+            } else {
+                throw new AppException(ErrorCode.UNAUTHENTICATED);
+            }
+        } catch (Exception e) {
+            log.error("Google login failed", e);
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
     }
 
     @Transactional

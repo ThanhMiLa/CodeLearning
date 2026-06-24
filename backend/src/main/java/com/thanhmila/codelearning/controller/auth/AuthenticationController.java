@@ -2,6 +2,7 @@ package com.thanhmila.codelearning.controller.auth;
 
 import com.nimbusds.jose.JOSEException;
 import com.thanhmila.codelearning.dto.request.AuthenticationRequest;
+import com.thanhmila.codelearning.dto.request.GoogleLoginRequest;
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
@@ -94,6 +95,22 @@ public class AuthenticationController {
                 .status(200)
                 .code(1000)
                 .message("Login successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @PostMapping("/google")
+    public ResponseEntity<ApiResponse<AuthenticationResponse>> googleLogin(
+            @RequestBody @Valid GoogleLoginRequest googleLoginRequest, HttpServletResponse response){
+
+        AuthenticationResponse result = authenticationService.googleLogin(googleLoginRequest);
+        addAuthCookies(response, result);
+
+        return ResponseEntity.ok(ApiResponse.<AuthenticationResponse>builder()
+                .status(200)
+                .code(1000)
+                .message("Google Login successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

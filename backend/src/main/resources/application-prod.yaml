@@ -89,3 +89,6 @@ payos:
   checksum-key: ${PAYOS_CHECKSUM_KEY}
   return-url: ${PAYOS_RETURN_URL}
   cancel-url: ${PAYOS_CANCEL_URL}
+
+google:
+  client-id: ${GOOGLE_CLIENT_ID}

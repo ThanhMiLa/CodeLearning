@@ -92,6 +92,5 @@ payos:
   return-url: "http://localhost:5173/payment/success"
   cancel-url: "http://localhost:5173/payment/cancel"
 
-
-
-
+google:
+  client-id: ${GOOGLE_CLIENT_ID}
