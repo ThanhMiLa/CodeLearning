@@ -201,7 +201,7 @@ public class ContestLeaderboardService {
 
             finalItems.add(ContestLeaderboardItemResponse.builder()
                     .userId(userId)
-                    .username(ranking.getUser().getUsername())
+                    .displayName(ranking.getUser().getDisplayName())
                     .problemsSolved(ranking.getProblemsSolved())
                     .totalPenalty(ranking.getTotalPenalty())
                     .rank(i + 1)

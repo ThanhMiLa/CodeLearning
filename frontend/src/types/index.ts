@@ -328,7 +328,7 @@ export interface ContestLeaderboardResponse {
 
 export interface ContestLeaderboardItemResponse {
   userId: number;
-  username: string;
+  displayName: string;
   problemsSolved: number;
   totalPenalty: number;
   rank: number;

@@ -8,7 +8,7 @@ import java.util.List;
 @Builder
 public class ContestLeaderboardItemResponse {
     private Long userId;
-    private String username; // Assume user has username
+    private String displayName;
     private Integer problemsSolved;
     private Integer totalPenalty;
     private Integer rank; // optional, to be populated by service

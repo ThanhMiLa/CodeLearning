@@ -1213,7 +1213,7 @@ const ContestWorkspace: React.FC = () => {
                             </td>
                             <td className="px-6 py-4">
                               <span className="font-bold text-slate-800 dark:text-white">
-                                {row.username}
+                                {row.displayName}
                               </span>
                             </td>
                             <td className="px-6 py-4 text-center font-black text-slate-900 dark:text-white">

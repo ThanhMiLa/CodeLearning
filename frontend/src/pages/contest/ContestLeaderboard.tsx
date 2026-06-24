@@ -249,10 +249,10 @@ const ContestLeaderboard: React.FC = () => {
                       </div>
                     </td>
 
-                    {/* Username */}
+                    {/* Participant Name */}
                     <td className="px-6 py-4">
                       <span className="font-bold text-slate-800 dark:text-white">
-                        {row.username}
+                        {row.displayName}
                       </span>
                     </td>
 
