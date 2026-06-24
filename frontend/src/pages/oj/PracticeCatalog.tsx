@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Trophy, CheckCircle, Code, HelpCircle, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Search, Trophy, CheckCircle, Code, HelpCircle, ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import api from '../../api/axios';
 import type { ApiResponse, PageResponse, OjPracticeProblemResponse } from '../../types';
@@ -130,36 +130,38 @@ const PracticeCatalog: React.FC = () => {
           </div>
 
           {/* Difficulty filter */}
-          <div>
+          <div className="relative">
             <select
               value={difficulty}
               onChange={(e) => {
                 setDifficulty(e.target.value);
                 setPage(0);
               }}
-              className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:text-white"
+              className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:text-white appearance-none cursor-pointer"
             >
               <option value="ALL">{t('practice.diff_all')}</option>
               <option value="EASY">{t('practice.diff_easy')}</option>
               <option value="MEDIUM">{t('practice.diff_medium')}</option>
               <option value="HARD">{t('practice.diff_hard')}</option>
             </select>
+            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
           </div>
 
           {/* Status filter */}
-          <div>
+          <div className="relative">
             <select
               value={status}
               onChange={(e) => {
                 setStatus(e.target.value);
                 setPage(0);
               }}
-              className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:text-white"
+              className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/40 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:text-white appearance-none cursor-pointer"
             >
               <option value="ALL">{t('practice.status_all')}</option>
               <option value="SOLVED">{t('practice.status_solved')}</option>
               <option value="UNSOLVED">{t('practice.status_unsolved')}</option>
             </select>
+            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
           </div>
         </form>
       </div>
