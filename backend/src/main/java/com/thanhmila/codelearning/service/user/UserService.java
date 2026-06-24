@@ -10,6 +10,7 @@ import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.mapper.UserMapper;
 import com.thanhmila.codelearning.repository.user.UserRepository;
+import com.thanhmila.codelearning.service.cloudinary.CloudinaryService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
@@ -28,6 +30,7 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
+    CloudinaryService cloudinaryService;
 
     @Transactional(readOnly = true)
     public UserResponse getMyInfo(String username){
@@ -45,6 +48,21 @@ public class UserService {
 
         userEntity.setDisplayName(request.getDisplayName() != null ? request.getDisplayName() : userEntity.getDisplayName());
         userEntity.setPhoneNumber(request.getPhoneNumber() != null ? request.getPhoneNumber() : userEntity.getPhoneNumber());
+
+        if (request.getAvatarFile() != null && !request.getAvatarFile().isEmpty()) {
+            try {
+                if (userEntity.getAvatarPublicId() != null) {
+                    cloudinaryService.deleteFile(userEntity.getAvatarPublicId());
+                }
+                var cloudinaryResponse = cloudinaryService.uploadFile(request.getAvatarFile(), "users/avatars");
+                userEntity.setAvatarUrl(cloudinaryResponse.getSecureUrl());
+                userEntity.setAvatarPublicId(cloudinaryResponse.getPublicId());
+            } catch (IOException e) {
+                log.error("Failed to upload avatar to Cloudinary: {}", e.getMessage());
+                throw new AppException(ErrorCode.CLOUDINARY_UPLOAD_FAILED);
+            }
+        }
+
         userEntity.setUpdatedAt(OffsetDateTime.now());
         userRepository.save(userEntity);
 

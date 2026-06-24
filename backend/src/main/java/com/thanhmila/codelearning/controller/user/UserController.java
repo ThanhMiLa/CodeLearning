@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -111,11 +112,11 @@ public class UserController {
                                 .build());
         }
 
-        @PatchMapping("/me")
+        @PatchMapping(value = "/me", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
         @PreAuthorize("hasAuthority('USER_UPDATE')")
         public ResponseEntity<ApiResponse<UserResponse>> updateProfile(
                         @AuthenticationPrincipal Jwt jwt,
-                        @RequestBody @Valid UpdateProfileRequest updateProfileRequest) {
+                        @ModelAttribute @Valid UpdateProfileRequest updateProfileRequest) {
                 String username = jwt.getSubject();
                 UserResponse result = userService.updateProfile(username, updateProfileRequest);
                 return ResponseEntity.ok(ApiResponse.<UserResponse>builder()

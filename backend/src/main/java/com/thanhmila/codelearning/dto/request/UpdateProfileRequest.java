@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
@@ -17,5 +18,7 @@ public class UpdateProfileRequest {
 
     @Pattern(regexp = "^(0\\d{9})?$", message = "PHONE_INVALID")
     String phoneNumber;
+
+    MultipartFile avatarFile;
 
 }

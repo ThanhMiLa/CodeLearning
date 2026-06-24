@@ -46,6 +46,12 @@ public class UserEntity {
     @Column(name = "phone_number", length = 30)
     String phoneNumber;
 
+    @Column(name = "avatar_url", length = 255)
+    String avatarUrl;
+
+    @Column(name = "avatar_public_id", length = 255)
+    String avatarPublicId;
+
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "status", nullable = false, columnDefinition = "user_status")

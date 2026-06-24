@@ -2185,6 +2185,8 @@ CREATE TABLE public.users (
     password_hash character varying(255) NOT NULL,
     display_name character varying(255),
     phone_number character varying(30),
+    avatar_url character varying(255),
+    avatar_public_id character varying(255),
     status public.user_status DEFAULT 'ACTIVE'::public.user_status NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL,
