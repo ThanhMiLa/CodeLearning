@@ -23,6 +23,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import type { ApiResponse, ContestResponse, OjProblemDetailResponse, OjWebSocketMessage, ContestLeaderboardResponse } from '../../types';
 import logoImg from '../../assets/LOGO_SINGLE.png';
+import { Judge0MaintenanceModal } from '../../components/Judge0MaintenanceModal';
 
 const LANGUAGES = [
   { id: 71, name: 'Python 3', monacoName: 'python', extension: 'py', defaultCode: 'import sys\n\ndef solve():\n    # Read data from stdin\n    # line = sys.stdin.readline()\n    print("Hello World")\n\nif __name__ == "__main__":\n    solve()' },
@@ -132,6 +133,10 @@ const ContestWorkspace: React.FC = () => {
   // Submission & Realtime Verdict states
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [verdict, setVerdict] = useState<OjWebSocketMessage | null>(null);
+
+  // Maintenance Modal states
+  const [maintenanceModalOpen, setMaintenanceModalOpen] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
 
   // Navigation Tab State
@@ -460,7 +465,9 @@ const ContestWorkspace: React.FC = () => {
       });
     } catch (error: any) {
       console.error('Contest submit failed:', error);
-      alert(getErrorMessage(error, 'An error occurred while submitting code.'));
+      const errMsg = getErrorMessage(error, 'An error occurred while submitting code.');
+      setSubmitError(errMsg);
+      setMaintenanceModalOpen(true);
       setIsSubmitting(false);
     }
   };
@@ -1332,6 +1339,13 @@ const ContestWorkspace: React.FC = () => {
         </div>
 
       </div>
+
+      <Judge0MaintenanceModal
+        isOpen={maintenanceModalOpen}
+        onClose={() => setMaintenanceModalOpen(false)}
+        errorMessage={submitError}
+        codeToCopy={sourceCodes[selectedLanguageId]}
+      />
 
     </div>
   );

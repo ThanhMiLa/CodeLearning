@@ -25,6 +25,7 @@ import { getErrorMessage } from '../../utils/errorUtils';
 import { useAuth } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import type { ApiResponse, OjProblemDetailResponse, OjWebSocketMessage, OjProblemSubmission, PageResponse } from '../../types';
+import { Judge0MaintenanceModal } from '../../components/Judge0MaintenanceModal';
 
 const LANGUAGES = [
   { id: 71, name: 'Python 3', monacoName: 'python', extension: 'py', defaultCode: 'import sys\n\ndef solve():\n    # Read data from stdin\n    # line = sys.stdin.readline()\n    print("Hello World")\n\nif __name__ == "__main__":\n    solve()' },
@@ -69,6 +70,10 @@ const ProblemWorkspace: React.FC = () => {
   const [problem, setProblem] = useState<OjProblemDetailResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Maintenance Modal states
+  const [maintenanceModalOpen, setMaintenanceModalOpen] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Editor states
   const [selectedLanguageId, setSelectedLanguageId] = useState(71); // Python default
@@ -302,7 +307,9 @@ const ProblemWorkspace: React.FC = () => {
 
     } catch (err: any) {
       console.error('Failed to submit code:', err);
-      alert(getErrorMessage(err, 'An error occurred while submitting code.'));
+      const errMsg = getErrorMessage(err, 'An error occurred while submitting code.');
+      setSubmitError(errMsg);
+      setMaintenanceModalOpen(true);
       setIsSubmitting(false);
     }
   };
@@ -894,6 +901,13 @@ const ProblemWorkspace: React.FC = () => {
         </div>
 
       </div>
+
+      <Judge0MaintenanceModal
+        isOpen={maintenanceModalOpen}
+        onClose={() => setMaintenanceModalOpen(false)}
+        errorMessage={submitError}
+        codeToCopy={sourceCodes[selectedLanguageId]}
+      />
 
     </div>
   );
