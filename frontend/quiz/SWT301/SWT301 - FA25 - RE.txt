@@ -1,0 +1,623 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Which one is not comes under international standard: (choose one answer)",
+    "option_A": "IEC",
+    "option_B": "IEEE",
+    "option_C": "ISO",
+    "option_D": "All of the others",
+    "correct_anwser": "B",
+    "explan": "ISO (Tổ chức Tiêu chuẩn hóa Quốc tế) và IEC (Ủy ban Kỹ thuật Điện Quốc tế) là các tổ chức tiêu chuẩn hóa quốc tế chính thức được công nhận trên toàn cầu. Trong khi đó, IEEE (Viện Kỹ sư Điện và Điện tử) là một tổ chức nghề nghiệp chuyên nghiệp có trụ sở tại Hoa Kỳ, mặc dù các tiêu chuẩn của họ được áp dụng rộng rãi trên quốc tế nhưng về mặt phân loại tổ chức, nó không phải là một tổ chức tiêu chuẩn quốc tế chính thức giống như ISO hay IEC."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Faults found by users are due to:",
+    "option_A": "Insufficient time for testing",
+    "option_B": "Poor software and poor testing",
+    "option_C": "Bad luck",
+    "option_D": "None of the others",
+    "correct_anwser": "B",
+    "explan": "Lỗi (Faults) mà người dùng cuối tìm thấy trong môi trường thực tế xuất phát từ hai nguyên nhân chính kết hợp: phần mềm được phát triển kém chất lượng (poor software) dẫn đến chứa nhiều lỗi ẩn, và quá trình kiểm thử không hiệu quả hoặc không đủ nghiêm ngặt (poor testing) nên đã bỏ sót những lỗi đó trước khi phát hành."
+  },
+  {
+    "question_id": 3,
+    "question_title": "A piece of software has been given _______ what tests in the following will you perform?\n1) Test the area's most critical to business processes\n2) Test the areas where faults will be maximum\n3) Test the easiest functionalities",
+    "option_A": "1&2 are true and 3 is false",
+    "option_B": "1,2&3 are true.",
+    "option_C": "1 is true, 2&3 are false.",
+    "option_D": "1&2 are false, 3 is true",
+    "correct_anwser": "A",
+    "explan": "Khi kiểm thử một phần mềm dưới áp lực thời gian và nguồn lực có hạn, chiến lược kiểm thử dựa trên rủi ro là tối ưu nhất. Do đó, việc tập trung vào các quy trình kinh doanh quan trọng nhất (1) và các khu vực có nguy cơ chứa nhiều lỗi nhất (2) là hoàn toàn đúng đắn. Việc ưu tiên kiểm thử các chức năng dễ nhất (3) không mang lại giá trị cao trong việc đảm bảo chất lượng hệ thống nên phát biểu này sai."
+  },
+  {
+    "question_id": 4,
+    "question_title": "EULA stands for",
+    "option_A": "End Usability License Agreement",
+    "option_B": "End User License Agreement",
+    "option_C": "End User License Arrangement",
+    "option_D": "End User License Attachment",
+    "correct_anwser": "B",
+    "explan": "EULA là viết tắt của 'End User License Agreement' (Thỏa thuận cấp phép người dùng cuối). Đây là hợp đồng pháp lý giữa nhà phát triển/nhà phát hành phần mềm và người sử dụng phần mềm, quy định quyền lợi và hạn chế của người dùng đối với phần mềm đó."
+  },
+  {
+    "question_id": 5,
+    "question_title": "CAST stands for",
+    "option_A": "Computer Aided Software Testing",
+    "option_B": "Computer Aided Software Tools",
+    "option_C": "Computer Analysis Software Techniques",
+    "option_D": "None of the others",
+    "correct_anwser": "A",
+    "explan": "Trong lĩnh vực kiểm thử phần mềm, CAST là viết tắt của 'Computer Aided Software Testing' (Kiểm thử phần mềm có sự hỗ trợ của máy tính), đề cập đến việc sử dụng các công cụ và phần mềm để hỗ trợ hoặc tự động hóa các hoạt động kiểm thử."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Defect Management process does include",
+    "option_A": "Defect prevention",
+    "option_B": "Deliverable base-lining",
+    "option_C": "Management reporting",
+    "option_D": "None of the others",
+    "correct_anwser": "B",
+    "explan": "Quy trình Quản lý lỗi (Defect Management) bao gồm các hoạt động như phòng ngừa lỗi (Defect prevention), phát hiện, ghi nhận, phân tích và báo cáo quản lý (Management reporting). Ngược lại, 'Deliverable base-lining' (Tạo cơ sở cấu hình cho sản phẩm bàn giao) là một hoạt động thuộc về quy trình Quản lý cấu hình (Configuration Management), không thuộc quy trình quản lý lỗi."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following will be the best definition for Testing:",
+    "option_A": "The goal / purpose of testing is to demonstrate that the program works.",
+    "option_B": "The purpose of testing is to demonstrate that the program is defect free.",
+    "option_C": "The purpose of testing is to demonstrate that the program does what it is supposed to do",
+    "option_D": "Testing is executing Software for the purpose of finding defects.",
+    "correct_anwser": "D",
+    "explan": "Theo định nghĩa kinh điển của Glenford Myers trong cuốn nghệ thuật kiểm thử phần mềm, kiểm thử là quá trình vận hành một chương trình với mục đích tìm ra lỗi (finding defects). Các phương án A, B, C mang tính chất chứng minh phần mềm đúng, điều này không phản ánh chính xác tư duy cốt lõi của kiểm thử là tìm kiếm những điểm sai sót để cải thiện chất lượng."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following is the standard for the Software product quality",
+    "option_A": "ISO 9126",
+    "option_B": "ISO 829",
+    "option_C": "ISO 1012",
+    "option_D": "ISO 1028",
+    "correct_anwser": "A",
+    "explan": "ISO/IEC 9126 là tiêu chuẩn quốc tế nổi tiếng quy định về chất lượng sản phẩm phần mềm, phân chia chất lượng phần mềm thành các đặc tính cốt lõi như tính chức năng, tính tin cậy, tính khả dụng, tính hiệu quả, tính khả trì và tính khả chuyển (sau này được thay thế và phát triển lên thành bộ tiêu chuẩn ISO/IEC 25010)."
+  },
+  {
+    "question_id": 9,
+    "question_title": "The cost of fixing a fault:",
+    "option_A": "Is not important",
+    "option_B": "Increases as we move the product towards live use",
+    "option_C": "Decreases as we move the product towards live use",
+    "option_D": "Is more expensive if found in requirements than functional design",
+    "option_E": "Can never be determined",
+    "correct_anwser": "B",
+    "explan": "Trong kỹ nghệ phần mềm, một nguyên tắc cơ bản là lỗi được phát hiện càng muộn trong vòng đời phát triển phần mềm (SDLC) thì chi phí để sửa chữa nó càng tăng theo cấp số nhân. Do đó, chi phí khắc phục lỗi sẽ tăng lên rất nhiều khi sản phẩm tiến dần về giai đoạn vận hành thực tế (live use)."
+  },
+  {
+    "question_id": 10,
+    "question_title": "Which of the following statements are true?",
+    "option_A": "Faults in program specifications are the most expensive to fix",
+    "option_B": "Faults in code are the most expensive to fix.",
+    "option_C": "Faults in requirements are the most expensive to fix",
+    "option_D": "Faults in designs are the most expensive to fix.",
+    "correct_anwser": "C",
+    "explan": "Giai đoạn Thu thập yêu cầu (Requirements) là giai đoạn đầu tiên của dự án. Nếu lỗi xảy ra tại đây mà không được phát hiện kịp thời, nó sẽ lan truyền sang giai đoạn thiết kế, lập trình và kiểm thử. Khi phát hiện muộn ở các giai đoạn sau hoặc khi hệ thống đã bàn giao, chi phí để sửa đổi lại toàn bộ tài liệu, thiết kế và mã nguồn liên quan đến yêu cầu đó là lớn nhất so với lỗi ở bất kỳ giai đoạn nào khác."
+  }
+]
+
+[
+  {
+    "question_id": 11,
+    "question_title": "Cost of the reviews will not include.",
+    "option_A": "Review process itself",
+    "option_B": "Metrics analysis",
+    "option_C": "Tool support.",
+    "option_D": "Process improvement.",
+    "correct_anwser": "D",
+    "explan": "Chi phí của hoạt động đánh giá (Cost of reviews) bao gồm chi phí chuẩn bị, thực hiện chính quá trình đánh giá (Review process itself), phân tích các số liệu thu thập được (Metrics analysis) và trang bị các công cụ hỗ trợ (Tool support). Trong khi đó, 'Process improvement' (Cải tiến quy trình) là kết quả/lợi ích lâu dài thu được từ việc đánh giá chứ không được tính vào chi phí trực tiếp của hoạt động đánh giá đó."
+  },
+  {
+    "question_id": 12,
+    "question_title": "Reviews, static analysis and dynamic testing have the same objective",
+    "option_A": "(i) Identifying defects.",
+    "option_B": "(ii) Fixing defects.",
+    "option_C": "(i) and (ii)",
+    "option_D": "None of (i) nor (ii)",
+    "correct_anwser": "A",
+    "explan": "Cả ba hoạt động: Đánh giá tài liệu (Reviews), phân tích tĩnh (Static analysis) và kiểm thử động (Dynamic testing) đều là các hoạt động kiểm thử (Testing) nhằm mục đích chung tối thượng là phát hiện và xác định lỗi (Identifying defects). Việc sửa lỗi (Fixing defects) thuộc về hoạt động gỡ lỗi (Debugging) do lập trình viên thực hiện, không phải mục tiêu trực tiếp của các phương pháp kiểm thử này."
+  },
+  {
+    "question_id": 13,
+    "question_title": "During the software development process, at what point can the test process start?",
+    "option_A": "When the code is complete.",
+    "option_B": "When the design is complete.",
+    "option_C": "When the software requirements have been approved.",
+    "option_D": "When the first code module is ready for unit testing",
+    "correct_anwser": "C",
+    "explan": "Theo triết lý kiểm thử sớm (Early Testing) trong ISTQB, quy trình kiểm thử có thể và nên bắt đầu ngay khi các yêu cầu phần mềm được phê duyệt (When the software requirements have been approved). Tại thời điểm này, kiểm thử viên có thể bắt đầu đánh giá yêu cầu, xây dựng kế hoạch kiểm thử và thiết kế các kịch bản kiểm thử (Test cases) mà không cần đợi có code."
+  },
+  {
+    "question_id": 14,
+    "question_title": "Drivers are also known as:\ni. Spade\nii. Test harness\niii. Scaffolding",
+    "option_A": "i, ii are true and iii is false",
+    "option_B": "i, iii are true and ii is false",
+    "option_C": "ii , iii are true and i is false",
+    "option_D": "All of i, ii and iii are true",
+    "correct_anwser": "C",
+    "explan": "Trong kiểm thử tích hợp, 'Drivers' (mô-đun điều khiển giả lập) và 'Stubs' thường được gọi chung là thành phần giàn giáo 'Scaffolding'. Đồng thời, môi trường thực thi và điều khiển kiểm thử chứa các Driver này cũng được gọi là 'Test harness'. Thuật ngữ 'Spade' không liên quan đến ngữ cảnh này, do đó phát biểu ii và iii đúng, i sai."
+  },
+  {
+    "question_id": 15,
+    "question_title": "Who would USUALLY perform debugging activities?",
+    "option_A": "Developers.",
+    "option_B": "Analysts.",
+    "option_C": "Testers.",
+    "option_D": "Incident Managers.",
+    "correct_anwser": "A",
+    "explan": "Gỡ lỗi (Debugging) là hành động tìm nguyên nhân gốc rễ, khoanh vùng và sửa đổi mã nguồn để khắc phục lỗi. Công việc này đòi hỏi quyền truy cập và hiểu biết sâu sắc về mã nguồn của hệ thống, vì vậy nó luôn được thực hiện bởi các lập trình viên (Developers), phân biệt rõ với việc tìm lỗi của Testers."
+  },
+  {
+    "question_id": 16,
+    "question_title": "Software testing accounts to what percent of software development costs?",
+    "option_A": "10-20",
+    "option_B": "40-50",
+    "option_C": "70-80",
+    "option_D": "5-10",
+    "correct_anwser": "B",
+    "explan": "Theo các số liệu thống kê tiêu chuẩn trong ngành kỹ nghệ phần mềm và các giáo trình kiểm thử phần mềm cổ điển, chi phí dành cho các hoạt động kiểm thử và đảm bảo chất lượng thường chiếm khoảng 40% đến 50% tổng ngân sách phát triển của một dự án phần mềm thông thường."
+  },
+  {
+    "question_id": 17,
+    "question_title": "Configuration and compatibility testing are typically good choices for outsourcing",
+    "option_A": "True",
+    "option_B": "False",
+    "option_C": "",
+    "option_D": "",
+    "correct_anwser": "A",
+    "explan": "Kiểm thử cấu hình (Configuration testing) và kiểm thử khả năng tương thích (Compatibility testing) yêu cầu rất nhiều môi trường, thiết bị phần cứng, hệ điều hành và trình duyệt khác nhau. Việc thuê ngoài (Outsourcing) cho các phòng lab chuyên dụng giúp doanh nghiệp tiết kiệm chi phí xây dựng hạ tầng kiểm thử tốn kém này, vì vậy đây là lựa chọn rất phổ biến và hợp lý (True)."
+  },
+  {
+    "question_id": 18,
+    "question_title": "Which of the following has highest level of independence in which test cases are:",
+    "option_A": "Designed by persons who write the software under test",
+    "option_B": "Designed by a person from a different section",
+    "option_C": "Designed by a person from a different organization",
+    "option_D": "Designed by another person",
+    "correct_anwser": "C",
+    "explan": "Mức độ độc lập của kiểm thử (Independence of testing) tăng dần theo khoảng cách giữa người kiểm thử và người viết mã nguồn. Các kịch bản kiểm thử được thiết kế bởi một người thuộc tổ chức/công ty hoàn toàn khác (Designed by a person from a different organization) như bên thứ ba độc lập sẽ mang lại góc nhìn khách quan nhất và có mức độ độc lập cao nhất."
+  },
+  {
+    "question_id": 19,
+    "question_title": "Majority of system errors occur in the _______ phase",
+    "option_A": "Requirements Phase.",
+    "option_B": "Analysis and Design Phase",
+    "option_C": "Development Phase",
+    "option_D": "Testing Phase",
+    "correct_anwser": "A",
+    "explan": "Các nghiên cứu thực tế về kỹ nghệ phần mềm chỉ ra rằng phần lớn (khoảng hơn 50% đến 60%) các lỗi nghiêm trọng của hệ thống có nguồn gốc từ giai đoạn xác định yêu cầu (Requirements Phase) do hiểu sai mong muốn của khách hàng, yêu cầu không rõ ràng hoặc mâu thuẫn lẫn nhau."
+  },
+  {
+    "question_id": 20,
+    "question_title": "Benefits of Independent Testing",
+    "option_A": "Independent testers are much more qualified than Developers",
+    "option_B": "Independent testers see other and different defects and are unbiased.",
+    "option_C": "Independent Testers cannot identify defects.",
+    "option_D": "Independent Testers can test better than developers",
+    "correct_anwser": "B",
+    "explan": "Lợi ích chính của kiểm thử độc lập là việc người kiểm thử không bị ảnh hưởng bởi tư duy lối mòn khi viết mã nguồn của lập trình viên (unbiased). Họ mang một góc nhìn khác, từ đó dễ dàng phát hiện ra các loại lỗi khác nhau và các lỗi giả định mà lập trình viên thường bỏ qua."
+  }
+]
+
+[
+  {
+    "question_id": 21,
+    "question_title": "Who is responsible for document all the issues, problems and open point that were identified during the review meeting",
+    "option_A": "Moderator",
+    "option_B": "Scribe",
+    "option_C": "Reviewers",
+    "option_D": "Author",
+    "correct_anwser": "B",
+    "explan": "Trong một cuộc họp đánh giá chính thức (Formal Review), thư ký (Scribe hay Recorder) là người có trách nhiệm ghi chép lại toàn bộ các lỗi, vấn đề và các điểm chưa giải quyết (open points) được phát hiện trong suốt cuộc họp một cách chính xác."
+  },
+  {
+    "question_id": 22,
+    "question_title": "The person who leads the review of the document(s), planning the review, running the meeting and follow-up after the meeting",
+    "option_A": "Reviewer",
+    "option_B": "Author",
+    "option_C": "Moderator",
+    "option_D": "Auditor",
+    "correct_anwser": "C",
+    "explan": "Điều phối viên (Moderator hoặc Review Leader) là người chịu trách nhiệm chính trong việc dẫn dắt toàn bộ quy trình đánh giá, bao gồm lập kế hoạch, điều phối và vận hành cuộc họp, cũng như theo dõi (follow-up) các hoạt động sửa lỗi sau cuộc họp."
+  },
+  {
+    "question_id": 23,
+    "question_title": "The Kick Off phase of a formal review includes the following:",
+    "option_A": "Explaining the objective",
+    "option_B": "Fixing defects found typically done by author",
+    "option_C": "Follow up",
+    "option_D": "Individual Meeting preparations",
+    "option_E": "",
+    "correct_anwser": "A",
+    "explan": "Mục đích chính của giai đoạn Khởi động (Kick Off phase) trong quy trình đánh giá chính thức là để phân phát tài liệu, giải thích mục tiêu (Explaining the objective) của buổi đánh giá, cũng như hướng dẫn các thành viên về cách thức thực hiện."
+  },
+  {
+    "question_id": 24,
+    "question_title": "Static analysis tools are typically used by",
+    "option_A": "Testers",
+    "option_B": "Developers",
+    "option_C": "Testers & Developers",
+    "option_D": "None of the others",
+    "correct_anwser": "B",
+    "explan": "Các công cụ phân tích tĩnh (Static analysis tools) thường chạy trực tiếp trên mã nguồn của ứng dụng (ví dụ: SonarQube, Checkstyle). Do đó, chúng thường được sử dụng phổ biến nhất bởi các lập trình viên (Developers) trong quá trình viết mã hoặc tích hợp mã nguồn nhằm phát hiện sớm các vi phạm chuẩn mã hóa và lỗi logic trước khi build."
+  },
+  {
+    "question_id": 25,
+    "question_title": "What can static analysis NOT find?",
+    "option_A": "The use of a variable before it has been defined",
+    "option_B": "Unreachable (\"dead\") code",
+    "option_C": "Memory leaks",
+    "option_D": "Array bound violations",
+    "correct_anwser": "C",
+    "explan": "Phân tích tĩnh kiểm tra mã nguồn mà không cần thực thi chương trình. Nó có thể dễ dàng phát hiện biến chưa định nghĩa (A), code không bao giờ chạy tới (B) hoặc nguy cơ vượt quá chỉ số mảng thông qua phân tích cú pháp (D). Tuy nhiên, rò rỉ bộ nhớ thực tế (Memory leaks) thường là lỗi phát sinh động trong quá trình phân phối/giải phóng vùng nhớ lúc chạy, rất khó phát hiện chính xác nếu không thực thi chương trình (kiểm thử động)."
+  },
+  {
+    "question_id": 26,
+    "question_title": "In a review meeting a moderator is a person who",
+    "option_A": "Takes minutes of the meeting",
+    "option_B": "Mediates between people",
+    "option_C": "Takes telephone calls",
+    "option_D": "Writes the documents to be reviewed",
+    "correct_anwser": "B",
+    "explan": "Bên cạnh việc dẫn dắt cuộc họp, vai trò quan trọng của một người điều phối (Moderator) là làm trung gian, hòa giải và định hướng thảo luận giữa các thành viên (Mediates between people) nhằm đảm bảo cuộc họp diễn ra khách quan, mang tính xây dựng và không bị xung đột cá nhân."
+  },
+  {
+    "question_id": 27,
+    "question_title": "The Phases of formal review process is mentioned below arrange them in the correct order.\ni) Planning\nii) Review Meeting\niii) Rework\niv) Individual Preparations\nv) Kick Off\nvi) Follow Up",
+    "option_A": "i,ii,iii,iv,v,vi",
+    "option_B": "vi,i,ii,iii,iv,v",
+    "option_C": "i,v,iv,ii,iii,vi",
+    "option_D": "i,ii,iii,v,iv,vi",
+    "correct_anwser": "C",
+    "explan": "Theo tiêu chuẩn ISTQB, các giai đoạn của một quy trình đánh giá chính thức diễn ra theo thứ tự nghiêm ngặt sau: Lập kế hoạch (Planning - i) -> Khởi động (Kick-off - v) -> Chuẩn bị cá nhân (Individual preparations - iv) -> Cuộc họp đánh giá (Review meeting - ii) -> Sửa lại (Rework - iii) -> Kiểm tra lại (Follow-up - vi)."
+  },
+  {
+    "question_id": 28,
+    "question_title": "People who don't participate in technical reviews",
+    "option_A": "Analysts",
+    "option_B": "Management",
+    "option_C": "Developers",
+    "option_D": "Testers",
+    "correct_anwser": "B",
+    "explan": "Đánh giá kỹ thuật (Technical Review) tập trung sâu vào các giải pháp công nghệ, kiến trúc và mã nguồn, do đó các vai trò chuyên môn như Analysts, Developers, Testers sẽ tham gia. Ban quản lý (Management) thường không tham gia trực tiếp vào các buổi đánh giá kỹ thuật chi tiết này nhằm tránh làm mất tính khách quan hoặc gây áp lực không cần thiết cho đội ngũ kỹ thuật."
+  },
+  {
+    "question_id": 29,
+    "question_title": "Which of the following is not a static testing technique?",
+    "option_A": "Error guessing",
+    "option_B": "Walkthrough",
+    "option_C": "Data flow analysis",
+    "option_D": "Inspections",
+    "correct_anwser": "A",
+    "explan": "Walkthrough (B), Data flow analysis (C), và Inspections (D) đều là các kỹ thuật kiểm thử tĩnh (không chạy chương trình). Ngược lại, Đoán lỗi (Error guessing - A) là một kỹ thuật kiểm thử hộp đen dựa trên kinh nghiệm, được áp dụng trong quá trình kiểm thử động khi thực thi phần mềm."
+  },
+  {
+    "question_id": 30,
+    "question_title": "Which expression best matches the following characteristics or review processes:\n1. Led by author\n2. Undocumented\n3. No management participation\n4. Led by a trained moderator or leader\n5. Uses entry exit criteria\ns) Inspection\nt) Peer review\nu) Informal review\nv) Walkthrough",
+    "option_A": "s = 4, t = 3, u = 2 and 5, v = 1",
+    "option_B": "s = 4 and 5, t = 3, u = 2, v = 1",
+    "option_C": "s = 1 and 5, t = 3, u = 2, v = 4",
+    "option_D": "s = 5, t = 4, u = 3, v = 1 and 2",
+    "option_E": "s = 4 and 5, t = 1, u = 2, v = 3",
+    "correct_anwser": "B",
+    "explan": "Phân tích các đặc trưng theo chuẩn ISTQB:\n- Inspection (s): Quy trình trang trọng nhất, được dẫn dắt bởi một Moderator có chứng chỉ/đào tạo (4) và sử dụng các tiêu chí đóng/mở rõ ràng (Entry/Exit criteria - 5).\n- Peer review / Technical Review (t): Tập trung vào đồng nghiệp chuyên môn, không có sự tham gia của quản lý (3).\n- Informal review (u): Đánh giá không chính thức, thường không lưu lại tài liệu ghi chép (Undocumented - 2).\n- Walkthrough (v): Do chính tác giả của sản phẩm dẫn dắt và trình bày (Led by author - 1).\nĐối chiếu lại ta có phương án B là hoàn toàn chính xác."
+  }
+]
+
+[
+  {
+    "question_id": 31,
+    "question_title": "Features of White Box Testing Technique:\ni. We use explicit knowledge of the internal workings of the item being tested to select the test data.\nii. Uses specific knowledge of programming code to examine outputs and assumes that the tester knows the path of logic in a unit or a program.\niii. Checking for the performance of the application\niv. Also checks for functionality.",
+    "option_A": "i, ii are true and iii and iv are false",
+    "option_B": "iii is true and i,ii, iv are false",
+    "option_C": "ii ,iii is true and i,iv is false",
+    "option_D": "iii and iv are true and i,ii are false",
+    "correct_anwser": "A",
+    "explan": "Kiểm thử hộp trắng (White Box Testing) tập trung vào cấu trúc mã nguồn bên trong của chương trình. Do đó, phát biểu (i) về việc hiểu rõ cách thức hoạt động bên trong và phát biểu (ii) về việc nắm vững đường đi của logic/mã nguồn để thiết kế dữ liệu kiểm thử là hoàn toàn chính xác. Ngược lại, kiểm thử hiệu năng (iii) và kiểm thử chức năng (iv) bản chất thuộc về kiểm thử hộp đen (Black Box Testing) dựa trên đặc tả yêu cầu bên ngoài."
+  },
+  {
+    "question_id": 32,
+    "question_title": "Complete statement and branch coverage means:",
+    "option_A": "That you have tested every statement in the program.",
+    "option_B": "That you have tested every statement and every branch in the program.",
+    "option_C": "That you have tested every IF statement in the program.",
+    "option_D": "That you have tested every combination of values of IF statements in the program",
+    "correct_anwser": "B",
+    "explan": "Khái niệm độ bao phủ đầy đủ cả dòng lệnh và nhánh (Complete statement and branch coverage) nghĩa là bộ test cases của bạn đảm bảo thực thi qua mọi dòng lệnh đơn lẻ ít nhất một lần (100% Statement Coverage) ĐỒNG THỜI đi qua mọi nhánh rẽ/kết quả đúng sai của các câu lệnh điều kiện trong chương trình ít nhất một lần (100% Branch Coverage)."
+  },
+  {
+    "question_id": 33,
+    "question_title": "Which of the following techniques is NOT a White box technique?",
+    "option_A": "Statement Testing and coverage",
+    "option_B": "Decision Testing and coverage",
+    "option_C": "Condition Coverage",
+    "option_D": "Boundary value analysis",
+    "correct_anwser": "D",
+    "explan": "Các phương án A, B, C đều dựa trên việc phân tích mã nguồn (dòng lệnh, quyết định, điều kiện) nên thuộc nhóm kiểm thử hộp trắng. Trong khi đó, Phân tích giá trị biên (Boundary value analysis - D) là một kỹ thuật thiết kế kiểm thử hộp đen kinh điển, dựa trên việc lựa chọn các giá trị tại biên của các phân vùng tương đương thuộc đặc tả yêu cầu."
+  },
+  {
+    "question_id": 34,
+    "question_title": "A program with high cyclometric complexity is almost likely to be:",
+    "option_A": "Large",
+    "option_B": "Small",
+    "option_C": "Difficult to write",
+    "option_D": "Difficult to test",
+    "correct_anwser": "D",
+    "explan": "Độ phức tạp vòng (Cyclomatic Complexity) đo số lượng các đường đi tuyến tính độc lập thông qua đồ thị luồng điều khiển của mã nguồn. Một chương trình có độ phức tạp vòng cao nghĩa là nó chứa rất nhiều câu lệnh điều kiện, vòng lặp đan xen rắc rối. Điều này trực tiếp dẫn đến việc thiết kế kịch bản kiểm thử để bao phủ hết các nhánh trở nên cực kỳ khó khăn và tốn kém (Difficult to test)."
+  },
+  {
+    "question_id": 35,
+    "question_title": "Which of the following is NOT part of system testing",
+    "option_A": "Business process-based testing",
+    "option_B": "Performance, load and stress testing",
+    "option_C": "Requirements-based testing",
+    "option_D": "Usability testing",
+    "option_E": "Top-down integration testing",
+    "correct_anwser": "E",
+    "explan": "Kiểm thử hệ thống (System Testing) đánh giá một hệ thống đã hoàn chỉnh và tích hợp toàn diện dựa trên các yêu cầu chức năng lẫn phi chức năng (bao gồm quy trình nghiệp vụ A, hiệu năng B, yêu cầu hệ thống C, độ khả dụng D). Trong khi đó, Kiểm thử tích hợp từ trên xuống (Top-down integration testing - E) là một chiến lược thuộc cấp độ Kiểm thử tích hợp (Integration Testing), mục đích để kiểm tra sự giao tiếp giữa các mô-đun chứ không phải kiểm thử toàn bộ hệ thống."
+  },
+  {
+    "question_id": 36,
+    "question_title": "Error guessing is:",
+    "option_A": "An appropriate way of deriving system tests.",
+    "option_B": "Only used if good requirements are not available.",
+    "option_C": "Only used when good requirements are available.",
+    "option_D": "The most appropriate way of deriving system tests.",
+    "correct_anwser": "A",
+    "explan": "Đoán lỗi (Error guessing) là kỹ thuật kiểm thử dựa trên kinh nghiệm, kiến thức của kiểm thử viên về các lỗi thường gặp trong quá trình phát triển. Nó được công nhận là một phương pháp phù hợp và bổ trợ rất tốt cho các kỹ thuật thiết kế kiểm thử chính thống khi xây dựng bộ kiểm thử hệ thống (An appropriate way of deriving system tests)."
+  },
+  {
+    "question_id": 37,
+    "question_title": "Cyclomatic Complexity method comes under which testing method",
+    "option_A": "White box",
+    "option_B": "Black box",
+    "option_C": "Green box",
+    "option_D": "Yellow box",
+    "correct_anwser": "A",
+    "explan": "Phương pháp đo độ phức tạp vòng (Cyclomatic Complexity) đòi hỏi phải phân tích cấu trúc mã nguồn, các câu lệnh rẽ nhánh trong mã của chương trình. Do đó, nó hoàn toàn thuộc về các kỹ thuật đo lường và kiểm thử hộp trắng (White box)."
+  },
+  {
+    "question_id": 38,
+    "question_title": "Given the following state transition diagram. Which of the following series of state transitions contains an INVALID transition which may indicate a fault in the system design?\nExhibit:\n[Sơ đồ chuyển trạng thái: Login -(A)-> Browse -(B)-> Basket -(D)-> Check-out -(F)-> Pay -(G)-> Log-out. Ngoài ra có nhánh quay lại Browse <-(C)- Basket và Basket <-(E)- Check-out]",
+    "option_A": "Login Browse Basket Checkout Basket Checkout Pay Logout.",
+    "option_B": "Login Browse Basket Checkout Pay Logout.",
+    "option_C": "Login Browse Basket Checkout Basket Logout.",
+    "option_D": "Login Browse Basket Browse Basket Checkout Pay Logout.",
+    "correct_anwser": "C",
+    "explan": "Dựa vào sơ đồ chuyển trạng thái được cung cấp:\n- Từ trạng thái 'Basket', ta có mũi tên đi ngược về 'Browse' (nhánh C) hoặc đi tới 'Check-out' (nhánh D).\n- Tại trạng thái 'Check-out', ta có mũi tên quay về 'Basket' (nhánh E) hoặc đi tới 'Pay' (nhánh F).\n- Tuy nhiên, nhìn vào chuỗi hành vi ở phương án C: `... -> Checkout -> Basket -> Logout`. Nhìn trên sơ đồ, tại nút trạng thái 'Basket' KHÔNG HỀ CÓ bất kỳ mũi tên nào dẫn trực tiếp tới nút 'Log-out' (chỉ có nút 'Pay' mới có mũi tên G dẫn đến 'Log-out'). Vì vậy, bước chuyển đổi từ Basket sang Logout là KHÔNG HỢP LỆ (INVALID)."
+  },
+  {
+    "question_id": 39,
+    "question_title": "Regression testing should be performed:\nv) Every week\nw) After the software has changed\nx) As often as possible\ny) When the environment has changed\nz) When the project manager says",
+    "option_A": "v & w are true, x - z are false",
+    "option_B": "w, x & y are true, v & z are false",
+    "option_C": "w & y are true, v, x & z are false",
+    "option_D": "w is true, v, x y and z are false",
+    "option_E": "All of them are true",
+    "correct_anwser": "C",
+    "explan": "Theo chuẩn ISTQB, kiểm thử hồi quy (Regression testing) là hoạt động kiểm thử lại phần mềm đã chạy ổn định trước đó nhằm đảm bảo rằng các chỉnh sửa mới không làm xuất hiện lỗi ở phần chức năng cũ. Do đó, hai thời điểm bắt buộc phải thực hiện là: sau khi mã nguồn phần mềm có sự thay đổi (w) hoặc khi môi trường triển khai hệ thống có sự thay đổi (y). Việc thực hiện hàng tuần (v), liên tục bất kể lý do (x), hoặc chỉ dựa trên cảm tính cá nhân của PM (z) mà không có tác nhân thay đổi thì không đúng với nguyên lý vận hành tối ưu chi phí của kiểm thử hồi quy."
+  },
+  {
+    "question_id": 40,
+    "question_title": "FPA is used to",
+    "option_A": "To measure the functional requirements of the project",
+    "option_B": "To measure the size of the functionality of an Information system",
+    "option_C": "To measure the functional testing effort",
+    "option_D": "To measure the functional flow",
+    "correct_anwser": "B",
+    "explan": "FPA viết tắt của 'Function Point Analysis' (Phân tích điểm chức năng). Đây là một phương pháp tiêu chuẩn hóa trong kỹ nghệ phần mềm dùng để đo lường quy mô/kích thước chức năng của một hệ thống thông tin (To measure the size of the functionality of an Information system) dựa trên góc nhìn người dùng, từ đó làm cơ sở ước lượng công sức, chi phí và thời gian phát triển dự án."
+  }
+]
+
+
+[
+  {
+    "question_id": 41,
+    "question_title": "Software quality is not relevant to _______",
+    "option_A": "Correctness",
+    "option_B": "Usability",
+    "option_C": "Viability",
+    "option_D": "Reusability",
+    "correct_anwser": "C",
+    "explan": "Theo mô hình chất lượng phần mềm tiêu chuẩn (như ISO 9126 hay McCall), chất lượng phần mềm được đánh giá qua các đặc tính kỹ thuật bao gồm: Tính đúng đắn (Correctness), Tính khả dụng (Usability), Tính tái sử dụng (Reusability), v.v. Ngược lại, 'Viability' (Tính khả thi thương mại/kinh doanh) là một thuộc tính quản trị dự án hoặc kinh tế, không thuộc nhóm đặc tính cấu thành nên chất lượng kỹ thuật nội tại của sản phẩm phần mềm."
+  },
+  {
+    "question_id": 42,
+    "question_title": "Which activities form part of test planning?\ni) Developing test cases.\nii) Defining the overall approach to testing.\niii) Assigning resources.\niv) Building the test environment\nv) Writing test conditions.",
+    "option_A": "i, ii & iv are true, iii & v are false.",
+    "option_B": "ii & iii are true, i, iv & v are false.",
+    "option_C": "iv & v are true, i, ii & iii are false.",
+    "option_D": "i, ii & iii are true iv & v are false.",
+    "correct_anwser": "B",
+    "explan": "Theo quy trình kiểm thử chuẩn ISTQB, giai đoạn Lập kế hoạch kiểm thử (Test Planning) bao gồm việc xác định phạm vi, mục tiêu và cách tiếp cận kiểm thử tổng quát (ii), cùng với việc phân bổ nguồn lực/nhân sự (iii). Các hoạt động như xác định điều kiện kiểm thử (v) thuộc bước Test Analysis; phát triển test cases (i) thuộc bước Test Design; và xây dựng môi trường (iv) thuộc bước Test Implementation."
+  },
+  {
+    "question_id": 43,
+    "question_title": "Which of the following is not a part of the Test Implementation and Execution Phase",
+    "option_A": "Creating test suites from the test cases",
+    "option_B": "Executing test cases either manually or by using test execution tools",
+    "option_C": "Comparing actual results",
+    "option_D": "Designing the Tests",
+    "correct_anwser": "D",
+    "explan": "Giai đoạn Thiết kế kiểm thử (Designing the Tests) là một giai đoạn riêng biệt (Test Design) diễn ra trước giai đoạn Thực thi. Trong khi đó, nhóm các hoạt động tạo bộ test suite (A), chạy kịch bản kịch bản kiểm thử (B) và so sánh kết quả thực tế với kết quả mong đợi (C) đều nằm trong giai đoạn Thực hiện và Thực thi kiểm thử (Test Implementation and Execution)."
+  },
+  {
+    "question_id": 44,
+    "question_title": "Test Case are grouped into Manageable (and scheduled) units are called as",
+    "option_A": "Test Harness",
+    "option_B": "Test Suite",
+    "option_C": "Test Cycle",
+    "option_D": "Test Driver",
+    "correct_anwser": "B",
+    "explan": "Một tập hợp hay nhóm các kịch bản kiểm thử (Test Cases) được tổ chức và sắp xếp lại với nhau thành các đơn vị có thể quản lý, phân loại và lên lịch chạy đồng thời được định nghĩa là một 'Test Suite' (Bộ kịch bản kiểm thử)."
+  },
+  {
+    "question_id": 45,
+    "question_title": "When should configuration management procedures be implemented?",
+    "option_A": "During test planning.",
+    "option_B": "During test analysis.",
+    "option_C": "During test execution.",
+    "option_D": "When evaluating exit criteria",
+    "correct_anwser": "A",
+    "explan": "Các thủ tục và quy trình Quản lý cấu hình (Configuration Management) dùng để định danh, kiểm soát các phiên bản tài liệu, mã nguồn và môi trường. Quy trình này cần phải được thiết lập và lên kế hoạch thực hiện ngay từ giai đoạn Lập kế hoạch kiểm thử (During test planning) để đảm bảo tính nhất quán xuyên suốt toàn bộ vòng đời kiểm thử."
+  },
+  {
+    "question_id": 46,
+    "question_title": "Which activity in the fundamental test process creates test suites for efficient test execution?",
+    "option_A": "Implementation and execution.",
+    "option_B": "Planning and control.",
+    "option_C": "Analysis and design.",
+    "option_D": "Test closure.",
+    "correct_anwser": "A",
+    "explan": "Hoạt động nhóm các kịch bản kiểm thử (test cases) thành các bộ kịch bản kiểm thử (test suites), sắp xếp thứ tự ưu tiên và chuẩn bị dữ liệu kiểm thử để chuẩn bị cho việc chạy kiểm thử hiệu quả là một nhiệm vụ cốt lõi nằm trong giai đoạn Thực hiện và Thực thi (Implementation and execution)."
+  },
+  {
+    "question_id": 47,
+    "question_title": "What is the main reason for testing software before releasing it?",
+    "option_A": "To show that system will work after release",
+    "option_B": "To decide when the software is of sufficient quality to release",
+    "option_C": "To find as many bugs as possible before release",
+    "option_D": "To give information for a risk based decision about release",
+    "correct_anwser": "D",
+    "explan": "Mục tiêu tối thượng mang lại giá trị cao nhất của việc kiểm thử trước khi bàn giao là cung cấp đầy đủ thông tin, số liệu báo cáo khách quan về chất lượng hiện tại và các lỗi tồn đọng. Từ đó, ban quản lý hoặc các bên liên quan có thể đưa ra quyết định dựa trên rủi ro (risk-based decision) xem có nên phát hành sản phẩm hay không."
+  },
+  {
+    "question_id": 48,
+    "question_title": "A _______ is the step-by-step method followed to ensure that standards are met",
+    "option_A": "SDLC",
+    "option_B": "Project Plan",
+    "option_C": "Policy",
+    "option_D": "Procedure",
+    "correct_anwser": "D",
+    "explan": "Trong hệ thống quản lý chất lượng phần mềm, 'Procedure' (Quy trình/Thủ tục) quy định trình tự các bước thực hiện chi tiết (step-by-step method) cần phải tuân thủ nghiêm ngặt để đảm bảo rằng các tiêu chuẩn chất lượng (standards) đã đề ra được đáp ứng đầy đủ."
+  },
+  {
+    "question_id": 49,
+    "question_title": "What is the MAIN objective when reviewing a software deliverable?",
+    "option_A": "To identify potential application failures by use of a test specification.",
+    "option_B": "To identify defects in any software work product.",
+    "option_C": "To identify spelling mistakes in a requirements specification.",
+    "option_D": "To identify standards inconsistencies in the code.",
+    "correct_anwser": "B",
+    "explan": "Mục tiêu chính và bao quát nhất của hoạt động đánh giá tĩnh (Review) đối với bất kỳ sản phẩm bàn giao nào (Work product từ tài liệu yêu cầu, thiết kế cho đến mã nguồn) là phát hiện sớm các khuyết tật (To identify defects) trước khi tiến hành các bước phát triển hoặc kiểm thử động tiếp theo."
+  },
+  {
+    "question_id": 50,
+    "question_title": "The principal attributes of tools and automation are (choose one answer)",
+    "option_A": "(1) Speed & efficiency",
+    "option_B": "(2) Accuracy & precision",
+    "option_C": "Both of (1) and (2)",
+    "option_D": "None of (1) nor (2)",
+    "correct_anwser": "C",
+    "explan": "Lợi ích và thuộc tính cốt lõi của việc ứng dụng công cụ và kiểm thử tự động hóa (Automation Testing) bao gồm cả hai yếu tố: giúp tăng tốc độ thực thi, tiết kiệm thời gian (Speed & efficiency), đồng thời loại bỏ sai sót chủ quan của con người, đảm bảo tính nhất quán và độ chính xác lặp lại tuyệt đối (Accuracy & precision)."
+  }
+]
+
+[
+  {
+    "question_id": 51,
+    "question_title": "What type of tools to be used for Regression Testing ?",
+    "option_A": "(1) Performance",
+    "option_B": "(2) Record/Playback",
+    "option_C": "Both of (1) and (2)",
+    "option_D": "None of (1) nor (2)",
+    "correct_anwser": "C",
+    "explan": "Kiểm thử hồi quy (Regression Testing) nhằm mục đích kiểm tra xem các thay đổi mới có làm ảnh hưởng đến các tính năng cũ của hệ thống hay không. Các công cụ ghi và phát lại (Record/Playback) được sử dụng rộng rãi để tự động hóa các kịch bản chức năng cũ. Đồng thời, các công cụ kiểm thử hiệu năng (Performance tools) cũng được sử dụng để chạy hồi quy nhằm đảm bảo các thay đổi về mã nguồn không làm giảm tốc độ phản hồi hoặc hiệu năng của hệ thống."
+  },
+  {
+    "question_id": 52,
+    "question_title": "Which tool will be used to test the flag memory leaks and unassigned pointers",
+    "option_A": "Dynamic analysis tool",
+    "option_B": "Static Analysis tool.",
+    "option_C": "Maintenance tool.",
+    "option_D": "Configuration tool.",
+    "correct_anwser": "A",
+    "explan": "Mặc dù phân tích tĩnh đôi khi có thể cảnh báo nguy cơ tiềm ẩn về con trỏ, nhưng các lỗi rò rỉ bộ nhớ thực tế (memory leaks) và con trỏ chưa được gán/định vị vùng nhớ (unassigned/wild pointers) chỉ xuất hiện và gây ra hậu quả trong thời gian chạy (runtime). Do đó, công cụ phân tích động (Dynamic analysis tool) - hoạt động bằng cách giám sát chương trình khi đang thực thi - là công cụ chính xác nhất để phát hiện các lỗi quản lý bộ nhớ này."
+  },
+  {
+    "question_id": 53,
+    "question_title": "Which of the following tools would be involved in the automation of regression test?",
+    "option_A": "Data tester",
+    "option_B": "Boundary tester",
+    "option_C": "Capture/Playback",
+    "option_D": "Output comparator.",
+    "correct_anwser": "C",
+    "explan": "Trong các phương án được đưa ra, công cụ Ghi và Phát lại (Capture/Playback hay Record/Playback) là công cụ đặc trưng và phổ biến nhất được sử dụng để tự động hóa các kịch bản kiểm thử hồi quy, giúp chạy lại nhanh chóng các bước thao tác của người dùng trên giao diện mà không cần thực hiện thủ công."
+  },
+  {
+    "question_id": 54,
+    "question_title": "The Provision and Management of a controlled library containing all the configurations items is called as",
+    "option_A": "Configuration Control",
+    "option_B": "Status Accounting",
+    "option_C": "Configuration Identification",
+    "option_D": "None of the others",
+    "correct_anwser": "A",
+    "explan": "Kiểm soát cấu hình (Configuration Control) là hoạt động tập trung vào việc quản lý các thay đổi và duy trì tính toàn vẹn của các mục cấu hình trong một kho lưu trữ được kiểm soát (controlled library/repository). Nó bao gồm các thủ tục phê duyệt thay đổi, lưu kho (check-in/check-out) các phiên bản phần mềm và tài liệu."
+  },
+  {
+    "question_id": 55,
+    "question_title": "Which of the following benefits are MOST likely to be achieved by using test tools?\ni) Easy to access information about tests and testing.\nii) Reduced maintenance of testware.\niii) Easy and cheap to implement.\niv) Greater consistency of tests.",
+    "option_A": "ii and iv",
+    "option_B": "ii and iii",
+    "option_C": "i and iv",
+    "option_D": "i and iii",
+    "correct_anwser": "C",
+    "explan": "Việc sử dụng các công cụ kiểm thử mang lại hai lợi ích lớn rõ rệt: (i) Giúp dễ dàng tập trung và truy cập các thông tin, báo cáo về tiến độ và kết quả kiểm thử; và (iv) Mang lại sự nhất quán, lặp lại chính xác cao giữa các lần chạy test (Greater consistency). Ngược lại, việc áp dụng công cụ thường làm tăng công sức bảo trì testware (ii) và đòi hỏi chi phí đầu tư ban đầu cao cùng quy trình triển khai phức tạp chứ không hề rẻ và dễ dàng (iii)."
+  },
+  {
+    "question_id": 56,
+    "question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool?\ni) Investigate the organisation's test process.\nii) Conduct a proof of concept.\niii) Implement the selected tool on a project behind schedule to save time.\niv) Identify coaching and mentoring requirements for the use of the selected tool.",
+    "option_A": "i, ii, iii.",
+    "option_B": "ii, iii, iv.",
+    "option_C": "i, iii, iv.",
+    "option_D": "i, ii, iv.",
+    "correct_anwser": "D",
+    "explan": "Khi lựa chọn và triển khai công cụ kiểm thử, các bước đi đúng đắn bao gồm: nghiên cứu kỹ quy trình kiểm thử hiện tại của tổ chức (i), chạy thử nghiệm để chứng minh tính khả thi (Conduct a proof of concept - ii), và xác định nhu cầu đào tạo/hướng dẫn cho đội ngũ sử dụng (iv). Việc áp dụng một công cụ mới vào một dự án đang bị chậm tiến độ (iii) là một rủi ro cực kỳ lớn và thường làm dự án trễ hơn do đội ngũ phải tốn thêm thời gian học cách sử dụng công cụ."
+  },
+  {
+    "question_id": 57,
+    "question_title": "With which of the following categories is a test comparator tool USUALLY associated?",
+    "option_A": "Tool support for performance and monitoring.",
+    "option_B": "Tool support for static testing.",
+    "option_C": "Tool support for test execution and logging.",
+    "option_D": "Tool support for the management of testing and tests.",
+    "correct_anwser": "C",
+    "explan": "Công cụ so sánh (Test comparator tool) có chức năng tự động đối chiếu kết quả thực tế (actual result) thu được khi chạy phần mềm với kết quả mong đợi (expected result). Hoạt động này diễn ra trực tiếp trong quá trình chạy test, vì vậy nó thuộc nhóm công cụ hỗ trợ thực thi và ghi nhật ký kiểm thử (Tool support for test execution and logging)."
+  },
+  {
+    "question_id": 58,
+    "question_title": "Find the mismatch",
+    "option_A": "Test data preparation tools - Manipulate Data bases",
+    "option_B": "Test design tools - Generate test inputs",
+    "option_C": "Requirement management tools - Enables individual tests to be traceable",
+    "option_D": "Configuration management tools - Check for consistence",
+    "correct_anwser": "D",
+    "explan": "Các phương án A, B, C đều mô tả đúng chức năng cốt lõi của từng loại công cụ. Phương án D bị sai lệch (mismatch) vì chức năng kiểm tra tính nhất quán (Check for consistency / Static analysis) thường thuộc về các công cụ Phân tích tĩnh (Static analysis tools) hoặc công cụ thiết kế, chứ không phải chức năng chính yếu của công cụ Quản lý cấu hình (vốn tập trung vào quản lý phiên bản và lưu trữ lịch sử thay đổi)."
+  },
+  {
+    "question_id": 59,
+    "question_title": "A thermometer measures temperature in whole degrees only. If the temperature falls below 18 degrees, the heating is switched off. It is switched on again when the temperature reaches 21 degrees. What are the best values in degrees to cover all equivalence partitions?",
+    "option_A": "15, 19 and 25.",
+    "option_B": "17, 18 and 19.",
+    "option_C": "18, 20 and 22.",
+    "option_D": "16, 26 and 32.",
+    "correct_anwser": "A",
+    "explan": "Dựa trên mô tả toán học của bài toán, hệ thống có 3 phân vùng tương đương (Equivalence Partitions) dựa trên trạng thái của hệ thống sưởi:\n1. Phân vùng dưới 18 độ (tắt sưởi): $T < 18$\n2. Phân vùng trung gian từ 18 đến 20 độ (giữ nguyên trạng thái trước đó): $18 \\le T \\le 20$\n3. Phân vùng từ 21 độ trở lên (bật sưởi): $T \\ge 21$\nĐể bao phủ tất cả các phân vùng tương đương, ta cần chọn ra các giá trị đại diện nằm trong từng phân vùng này. Đối chiếu với các phương án:\n- Phương án A: Giá trị 15 (thuộc vùng 1), 19 (thuộc vùng 2), và 25 (thuộc vùng 3). Bộ giá trị này đại diện hoàn hảo cho cả 3 phân vùng."
+  },
+  {
+    "question_id": 60,
+    "question_title": "The _________ Testing will be performed by the people at client own locations",
+    "option_A": "Alpha testing",
+    "option_B": "Field testing",
+    "option_C": "Performance testing",
+    "option_D": "System testing",
+    "correct_anwser": "B",
+    "explan": "Kiểm thử thực địa (Field testing) hoặc kiểm thử Beta (Beta testing) là hoạt động kiểm thử được thực hiện bởi người dùng cuối hoặc khách hàng trực tiếp tại chính môi trường và địa điểm vận hành thực tế của họ (client own locations), giúp phát hiện các lỗi phát sinh do điều kiện môi trường thực tế gây ra."
+  }
+]

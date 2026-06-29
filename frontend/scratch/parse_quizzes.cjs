@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const quizDir = '/Users/ngocthanh/Documents/Project/codelearning-frontend/quiz';
-const outputPath = '/Users/ngocthanh/Documents/Project/codelearning-frontend/src/data/quizzesData.ts';
+const quizDir = path.join(__dirname, '../quiz');
+const outputPath = path.join(__dirname, '../src/data/quizzesData.ts');
 
 function parseConcatJsonArrays(text) {
   let results = [];
@@ -64,6 +64,11 @@ function getDescription(title) {
     if (t.includes('FE')) return 'Software Requirement Final Exam Quiz';
     return 'Software Requirement Quiz';
   }
+  if (t.includes('SWT')) {
+    if (t.includes('RE')) return 'Software Testing Quiz';
+    if (t.includes('FE')) return 'Software Testing Final Exam Quiz';
+    return 'Software Testing Quiz';
+  }
   return `${title} Quiz`;
 }
 
@@ -73,9 +78,22 @@ try {
     process.exit(1);
   }
 
-  const files = fs.readdirSync(quizDir)
-    .filter(f => f.endsWith('.txt'))
-    .sort(); // sort alphabetically
+  function getTxtFilesRecursively(dir) {
+    let results = [];
+    if (!fs.existsSync(dir)) return results;
+    const list = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of list) {
+      const res = path.resolve(dir, entry.name);
+      if (entry.isDirectory()) {
+        results = results.concat(getTxtFilesRecursively(res));
+      } else if (entry.isFile() && entry.name.endsWith('.txt')) {
+        results.push(res);
+      }
+    }
+    return results;
+  }
+
+  const files = getTxtFilesRecursively(quizDir).sort();
 
   const quizzes = [];
 
@@ -94,9 +112,9 @@ try {
     return cleaned;
   };
 
-  for (const file of files) {
-    const filePath = path.join(quizDir, file);
-    const title = file.replace('.txt', '').trim();
+  for (const filePath of files) {
+    const fileName = path.basename(filePath);
+    const title = fileName.replace('.txt', '').trim();
     // Normalize id: lowercase, replace space-hyphen-space and any other spaces with single hyphens
     const id = title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-');
     

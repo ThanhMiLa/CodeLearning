@@ -158,8 +158,10 @@
     "back_to_subjects": "Quay lại danh sách môn học",
     "subject_hsf_title": "Working with Spring Framework",
     "subject_swr_title": "Software Requirement",
+    "subject_swt_title": "Software Testing",
     "subject_hsf_desc": "Làm chủ phát triển ứng dụng Java doanh nghiệp với Spring Boot, JPA, REST API và giao diện để bàn JavaFX.",
     "subject_swr_desc": "Làm chủ các quy trình khơi gợi, phân tích, đặc tả, thẩm định và quản lý yêu cầu phần mềm chuyên nghiệp.",
+    "subject_swt_desc": "Làm chủ các phương pháp, kỹ thuật thiết kế ca kiểm thử, quy trình kiểm thử phần mềm tĩnh và động theo chuẩn ISTQB.",
     "quizzes_count_one": "{{count}} bộ đề",
     "quizzes_count_other": "{{count}} bộ đề"
   },

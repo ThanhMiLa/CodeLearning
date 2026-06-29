@@ -1,0 +1,618 @@
+[
+{
+"question_id": 1,
+"question_title": "When we test or review a product, what are we looking for?",
+"option_A": "We are looking for errors and fixing them.",
+"option_B": "We are looking for defects in the product and thus are critical of it.",
+"option_C": "We are looking for different between the system and the requirement.",
+"option_D": "We are looking for the mistakes of the requirement.",
+"correct_anwser": "C",
+"explan": "Kiểm thử và đánh giá nhằm tìm ra sự khác biệt giữa hệ thống thực tế và yêu cầu, từ đó phát hiện lỗi. Việc sửa lỗi không thuộc phạm vi kiểm thử, và kiểm thử không phải chỉ trích sản phẩm hay chỉ tìm lỗi yêu cầu."
+},
+{
+"question_id": 2,
+"question_title": "What does the term \"failure\" mean in the context of testing?",
+"option_A": "A mistake made by a developer.",
+"option_B": "A defect in the software that is found during testing.",
+"option_C": "An incorrect behavior of the system in operation.",
+"option_D": "A missed requirement during design.",
+"correct_anwser": "C",
+"explan": "Failure (thất bại) là hành vi sai của hệ thống khi vận hành. Lỗi (error) là sai lầm của con người, khuyết điểm (defect) là lỗi trong phần mềm, và thiếu sót yêu cầu là một loại lỗi thiết kế, không phải failure."
+},
+{
+"question_id": 3,
+"question_title": "Independent testing - who is a tester? Choose the incorrect sentence:",
+"option_A": "Tests by the person who wrote the item under test.",
+"option_B": "Tests by a person from a different organizational group, such as an independent test team.",
+"option_C": "Tests by another person within the same team, such as another programmer.",
+"option_D": "Tests by the person who wrote the source code.",
+"correct_anwser": "A",
+"explan": "Kiểm thử độc lập (independent testing) yêu cầu người kiểm thử không phải là người viết sản phẩm dưới kiểm thử. Các phương án B và C đều thể hiện các mức độ độc lập, còn A và D đều không độc lập. Trong các đáp án, A là lựa chọn sai rõ ràng nhất vì nó khái quát việc người viết tự kiểm thử."
+},
+{
+"question_id": 4,
+"question_title": "What is the significance of context in testing according to the principles?",
+"option_A": "It is irrelevant since all testing follows the same standard.",
+"option_B": "It is critical as testing approaches should vary based on the specific context.",
+"option_C": "It suggests that testing should always follow the same international standards.",
+"option_D": "Context is only important in large, complex systems.",
+"correct_anwser": "B",
+"explan": "Nguyên lý kiểm thử cho rằng kiểm thử phụ thuộc vào ngữ cảnh (context-dependent). Phương pháp kiểm thử cần được điều chỉnh theo đặc thù của dự án, miền ứng dụng, rủi ro,... vì vậy ngữ cảnh là yếu tố then chốt."
+},
+{
+"question_id": 5,
+"question_title": "Find the explanation of \"Testing shows presence of defects\":",
+"option_A": "Testing can show that defects are present, but cannot prove that there are no defects. Testing reduces the probability of undiscovered defects remaining in the software but, even if no defects are found, it is not a proof of correctness.",
+"option_B": "Testing activities should start as early as possible in the software or system development life cycle and should be focused on defined objectives.",
+"option_C": "Finding and fixing defects does not help if the system built is unusable and does not fulfill the users' needs and expectations.",
+"option_D": "Testing is done differently in different contexts. For example, safety-critical software is tested differently from an e-commerce site.",
+"correct_anwser": "A",
+"explan": "Đây là định nghĩa chuẩn của nguyên lý 'kiểm thử chỉ cho thấy sự hiện diện của khuyết điểm, không thể chứng minh không có khuyết điểm'. Kiểm thử giúp giảm xác suất còn sót lỗi nhưng không đảm bảo đúng tuyệt đối."
+},
+{
+"question_id": 6,
+"question_title": "What types of defects are typically found more effectively during static testing than dynamic testing?",
+"option_A": "Performance-related defects",
+"option_B": "Defects in user interface design",
+"option_C": "Missing requirements or design defects",
+"option_D": "Runtime errors and exceptions",
+"correct_anwser": "C",
+"explan": "Kiểm thử tĩnh (review, inspection) hiệu quả trong việc phát hiện các khiếm khuyết ở giai đoạn đầu như yêu cầu thiếu sót, lỗi thiết kế. Lỗi runtime và hiệu năng thường được tìm thấy qua kiểm thử động."
+},
+{
+"question_id": 7,
+"question_title": "What is a key reason that software testing is necessary?",
+"option_A": "To increase software complexity",
+"option_B": "To identify defects in software",
+"option_C": "To reduce software features",
+"option_D": "To speed up software development",
+"correct_anwser": "B",
+"explan": "Mục đích chính của kiểm thử phần mềm là phát hiện khuyết điểm (defects) trong sản phẩm, từ đó nâng cao chất lượng. Các lý do khác không đúng với bản chất của kiểm thử."
+},
+{
+"question_id": 8,
+"question_title": "How much testing is enough?",
+"option_A": "Exhaustive testing is possible.",
+"option_B": "Testing everything (all combinations of inputs and preconditions).",
+"option_C": "We use risks and priorities to focus testing efforts.",
+"option_D": "Full testing.",
+"correct_anwser": "C",
+"explan": "Không thể kiểm thử toàn bộ mọi tổ hợp đầu vào. Do đó, cần dựa trên rủi ro và mức độ ưu tiên để tập trung nguồn lực vào các phần quan trọng, từ đó xác định mức độ kiểm thử đủ."
+},
+{
+"question_id": 9,
+"question_title": "What is an effect of poor communication between testers and developers?",
+"option_A": "It enhances the efficiency of the development and testing processes.",
+"option_B": "It may lead to misunderstandings and reduced software quality.",
+"option_C": "It improves the independence of the testing function.",
+"option_D": "It has no effect as long as testing is done independently.",
+"correct_anwser": "B",
+"explan": "Giao tiếp kém giữa tester và developer có thể gây hiểu nhầm, thiếu đồng bộ, dẫn đến giảm chất lượng phần mềm. Các tác động khác là không đúng hoặc không hợp lý."
+},
+{
+"question_id": 10,
+"question_title": "Which of the following strategies can help minimize psychological conflict between testers and developers? (Select all that apply)",
+"option_A": "Fostering mutual respect between roles.",
+"option_B": "Ensuring clear objectives for testing.",
+"option_C": "Feedback belittles the coder with errors found.",
+"option_D": "Encouraging collaboration on defect resolution.",
+"correct_anwser": "A, B, D",
+"explan": "Để giảm xung đột tâm lý, cần tôn trọng lẫn nhau, đặt mục tiêu kiểm thử rõ ràng và khuyến khích hợp tác trong việc giải quyết lỗi. Phản hồi mang tính chỉ trích, hạ thấp (phương án C) sẽ làm gia tăng xung đột, do đó không được chọn."
+}
+]
+
+[
+{
+"question_id": 11,
+"question_title": "What should integration testing primarily focus on?",
+"option_A": "Testing the database and data processing",
+"option_B": "Ensuring that software modules work together",
+"option_C": "Checking that the system is ready for live deployment",
+"option_D": "Evaluating user satisfaction with the product",
+"correct_anwser": "B",
+"explan": "Kiểm thử tích hợp tập trung vào việc kiểm tra các giao diện và tương tác giữa các module/ thành phần phần mềm để đảm bảo chúng làm việc cùng nhau đúng cách. Các phương án khác thuộc về kiểm thử hệ thống, kiểm thử chấp nhận hoặc kiểm thử cơ sở dữ liệu."
+},
+{
+"question_id": 12,
+"question_title": "How does stress testing differ from load testing?",
+"option_A": "Stress testing examines system performance under peak loads, while load testing focuses on typical conditions",
+"option_B": "Stress testing is concerned with usability under stress, while load testing measures performance thresholds",
+"option_C": "Stress testing evaluates system behavior beyond normal operational capacity, while load testing verifies normal usage conditions",
+"option_D": "",
+"correct_anwser": "C",
+"explan": "Stress testing (kiểm thử quá tải) đẩy hệ thống vượt quá khả năng hoạt động bình thường để xác định điểm phá vỡ, trong khi load testing (kiểm thử tải) kiểm tra hiệu suất với mức tải dự kiến trong điều kiện bình thường. Đáp án C mô tả chính xác sự khác biệt này."
+},
+{
+"question_id": 13,
+"question_title": "What is the main advantage of using the V-model in software development?",
+"option_A": "It eliminates the need for testing.",
+"option_B": "It integrates testing throughout the development phases.",
+"option_C": "It is less costly and time-consuming compared to other models.",
+"option_D": "It focuses on post-development testing only.",
+"correct_anwser": "B",
+"explan": "Mô hình V-mô hình nhấn mạnh việc ghép nối các pha phát triển với các pha kiểm thử tương ứng, tích hợp kiểm thử vào tất cả các giai đoạn phát triển. Do đó, ưu điểm chính là kiểm thử được thực hiện xuyên suốt, không chỉ sau khi phát triển."
+},
+{
+"question_id": 14,
+"question_title": "What is the purpose of unit testing in software development?",
+"option_A": "To test the entire system as a whole",
+"option_B": "To test individual units or components in isolation",
+"option_C": "To validate the software against user requirements",
+"option_D": "To perform performance testing",
+"correct_anwser": "B",
+"explan": "Kiểm thử đơn vị (unit testing) tập trung vào từng phần tử nhỏ nhất, thường là hàm hoặc lớp, để kiểm tra hoạt động độc lập. Các phương án còn lại thuộc kiểm thử hệ thống, kiểm thử chấp nhận hoặc kiểm thử hiệu năng."
+},
+{
+"question_id": 15,
+"question_title": "What is a characteristic of non-functional testing?",
+"option_A": "It is always performed after functional testing.",
+"option_B": "It focuses on how well the system performs certain actions.",
+"option_C": "It is concerned solely with what the system does.",
+"option_D": "It does not include performance testing.",
+"correct_anwser": "B",
+"explan": "Kiểm thử phi chức năng kiểm tra các thuộc tính như hiệu năng, bảo mật, khả dụng, khả năng mở rộng – tức là \"hệ thống thực hiện tốt như thế nào\". Phương án C là đặc trưng của kiểm thử chức năng, còn D sai vì kiểm thử hiệu năng là một loại kiểm thử phi chức năng."
+},
+{
+"question_id": 16,
+"question_title": "What is not test type?",
+"option_A": "Structural testing",
+"option_B": "Functional testing",
+"option_C": "Non-functional testing",
+"option_D": "Performance testing",
+"option_E": "Change-related testing",
+"correct_anwser": "D",
+"explan": "Theo phân loại kiểu kiểm thử của ISTQB, các loại chính bao gồm: Functional testing, Non-functional testing, Structural testing và Change-related testing. Performance testing chỉ là một loại con thuộc Non-functional testing, không phải là một loại kiểm thử độc lập ở cấp độ chính, nên đáp án đúng là D."
+},
+{
+"question_id": 17,
+"question_title": "What is the role of performance testing in system testing?",
+"option_A": "To verify that the system behaves correctly under load",
+"option_B": "To ensure that the system meets functional requirements",
+"option_C": "To check the accuracy of data processing",
+"option_D": "To confirm that the system is bug-free",
+"correct_anwser": "A",
+"explan": "Kiểm thử hiệu năng trong kiểm thử hệ thống nhằm đánh giá hành vi của hệ thống khi hoạt động với các mức tải khác nhau, đảm bảo đáp ứng các yêu cầu phi chức năng. Các phương án còn lại liên quan đến kiểm thử chức năng hoặc là mục tiêu không thực tế."
+},
+{
+"question_id": 18,
+"question_title": "What does the term \"Big-bang model\" imply about the approach to software development?",
+"option_A": "Detailed and extensive planning",
+"option_B": "Integration of all components at once without prior testing",
+"option_C": "Regular testing from the beginning of the project",
+"option_D": "User involvement is mandatory",
+"correct_anwser": "B",
+"explan": "Mô hình Big-bang trong tích hợp phần mềm có nghĩa là tất cả các thành phần được phát triển riêng lẻ sau đó ghép lại với nhau cùng một lúc và tiến hành kiểm thử sau, không có kiểm thử từng thành phần trước. Các phương án khác không phản ánh đặc điểm của mô hình này."
+},
+{
+"question_id": 19,
+"question_title": "What is the typical sequence of testing activities in the Waterfall model?",
+"option_A": "System testing, integration testing, acceptance testing",
+"option_B": "Acceptance testing, system testing, integration testing",
+"option_C": "Integration testing, system testing, acceptance testing",
+"option_D": "Component testing, system testing, integration testing",
+"correct_anwser": "C",
+"explan": "Trong mô hình Waterfall, sau giai đoạn phát triển, các cấp độ kiểm thử thường được thực hiện theo thứ tự: Integration testing -> System testing -> Acceptance testing (kiểm thử tích hợp, sau đó kiểm thử hệ thống, cuối cùng là kiểm thử chấp nhận). Mặc dù lý tưởng có thêm Component testing trước Integration, nhưng trong các phương án đưa ra, C là phương án đúng thứ tự các cấp độ còn lại."
+},
+{
+"question_id": 20,
+"question_title": "In which testing level would you test for defects in the interfaces and interaction between integrated components?",
+"option_A": "Component testing",
+"option_B": "Integration testing",
+"option_C": "System testing",
+"option_D": "Acceptance testing",
+"correct_anwser": "B",
+"explan": "Kiểm thử tích hợp (Integration testing) được thiết kế để phát hiện khiếm khuyết trong các giao diện và tương tác giữa các thành phần đã tích hợp. Các cấp độ khác không tập trung vào tương tác giữa các thành phần."
+}
+]
+
+[
+{
+"question_id": 21,
+"question_title": "What is dynamic testing?",
+"option_A": "Software work products are examined manually, or with a set of tools, but not executed.",
+"option_B": "Software is executed using a set of input values and its output is then examined and compared to what is expected.",
+"option_C": "Testing can start early in the life cycle, early feedback on quality issues can be established.",
+"option_D": "Testing can start early validation of user requirements and not just late in the life cycle during acceptance testing.",
+"correct_anwser": "B",
+"explan": "Kiểm thử động (dynamic testing) là quá trình thực thi phần mềm với các đầu vào cụ thể và so sánh kết quả đầu ra với dự kiến. Các phương án khác mô tả kiểm thử tĩnh hoặc lợi ích của kiểm thử sớm."
+},
+{
+"question_id": 22,
+"question_title": "Why are rules and checklists used during inspections?",
+"option_A": "To reduce the time spent on discussions",
+"option_B": "To ensure consistency and thoroughness in defect identification",
+"option_C": "To allow participants to avoid preparation",
+"option_D": "To document defects for legal compliance",
+"correct_anwser": "B",
+"explan": "Quy tắc và danh sách kiểm tra (checklists) trong các buổi đánh giá (inspection) được sử dụng để đảm bảo tính nhất quán và toàn diện trong việc phát hiện khiếm khuyết. Chúng không phải để giảm thời gian thảo luận hay tránh chuẩn bị."
+},
+{
+"question_id": 23,
+"question_title": "Which of the following is most likely to be performed by developers?",
+"option_A": "Technical review of a functional specification.",
+"option_B": "Walkthrough of a requirements document.",
+"option_C": "Informal review of a program specification.",
+"option_D": "Static analysis of a software model.",
+"correct_anwser": "D",
+"explan": "Phân tích tĩnh (static analysis) thường được thực hiện bởi các nhà phát triển bằng công cụ kiểm tra mã nguồn, trong khi các loại đánh giá khác thường có sự tham gia của nhiều bên và không chỉ riêng lập trình viên."
+},
+{
+"question_id": 24,
+"question_title": "What is a primary difference between static and dynamic testing techniques?",
+"option_A": "Static testing involves executing the code, while dynamic does not",
+"option_B": "Static testing does not involve executing the code, while dynamic does",
+"option_C": "Static testing is only performed by developers, while dynamic is not",
+"option_D": "Static testing cannot find defects, while dynamic can",
+"correct_anwser": "B",
+"explan": "Sự khác biệt cơ bản nhất là kiểm thử tĩnh (static testing) không thực thi mã nguồn, trong khi kiểm thử động (dynamic testing) có thực thi mã và so sánh kết quả. Các phương án khác sai về bản chất."
+},
+{
+"question_id": 25,
+"question_title": "What types of defects are typically found more effectively during static testing than dynamic testing?",
+"option_A": "Performance-related defects",
+"option_B": "Defects in user interface design",
+"option_C": "Runtime errors and exceptions",
+"option_D": "Missing requirements or design defects",
+"correct_anwser": "D",
+"explan": "Kiểm thử tĩnh (review, inspection, static analysis) phát hiện hiệu quả các khiếm khuyết ở giai đoạn đầu như yêu cầu thiếu sót hoặc lỗi thiết kế. Lỗi runtime và hiệu năng thường được tìm thấy qua kiểm thử động."
+},
+{
+"question_id": 26,
+"question_title": "How do reviews support software quality assurance?",
+"option_A": "By focusing solely on end-user needs",
+"option_B": "By providing a way to check compliance with standards",
+"option_C": "By testing software functionality through execution",
+"option_D": "By replacing the need for project management",
+"correct_anwser": "B",
+"explan": "Các buổi đánh giá (reviews) hỗ trợ đảm bảo chất lượng bằng cách cung cấp cơ chế kiểm tra sự tuân thủ các tiêu chuẩn, quy trình và yêu cầu, không thay thế quản lý dự án hay chỉ tập trung vào người dùng cuối."
+},
+{
+"question_id": 27,
+"question_title": "How do technical reviews differ from informal reviews?",
+"option_A": "Technical reviews are less structured and more ad-hoc",
+"option_B": "Technical reviews require the presence of software architects",
+"option_C": "Technical reviews are led by a trained moderator and follow a defined process",
+"option_D": "Informal reviews do not involve developers",
+"correct_anwser": "C",
+"explan": "Đánh giá kỹ thuật (technical review) được dẫn dắt bởi một người điều phối (moderator) có kỹ năng và tuân theo quy trình xác định, trong khi đánh giá không chính thức (informal review) ít cấu trúc hơn và thường diễn ra tự phát."
+},
+{
+"question_id": 28,
+"question_title": "Which of the following are the main activities of the work product review process?\n1. Planning\n2. Initiate review\n3. Select reviewers\n4. Individual review\n5. Review meeting\n6. Evaluating review findings against exit criteria\n7. Issue communication and analysis\n8. Fixing and reporting",
+"option_A": "1,2,4,7,8",
+"option_B": "2,3,4,5,8",
+"option_C": "1,2,3,5,7",
+"option_D": "1,4,5,6,7",
+"correct_anwser": "A",
+"explan": "Quy trình đánh giá sản phẩm công việc (work product review) theo ISTQB bao gồm các hoạt động chính: Lập kế hoạch (1), Khởi tạo đánh giá (2), Đánh giá cá nhân (4), Truyền thông và phân tích vấn đề (7), và Sửa lỗi & báo cáo (8). Các bước khác như chọn người đánh giá (3) và họp đánh giá (5) có thể là một phần nhưng không phải là các bước chính bắt buộc trong quy trình cốt lõi."
+},
+{
+"question_id": 29,
+"question_title": "What is a key feature of static analysis tools?",
+"option_A": "Executing the code",
+"option_B": "Checking coding standards",
+"option_C": "Testing system performance",
+"option_D": "Automating user feedback",
+"correct_anwser": "B",
+"explan": "Công cụ phân tích tĩnh (static analysis) thường kiểm tra các quy tắc mã hóa (coding standards), cấu trúc và độ phức tạp mà không cần thực thi mã. Chúng không kiểm tra hiệu năng hay tự động hóa phản hồi người dùng."
+},
+{
+"question_id": 30,
+"question_title": "What is static testing?",
+"option_A": "Software work products are examined manually, or with a set of tools, but not executed.",
+"option_B": "Software is executed using a set of input values and its output is then examined and compared to what is expected.",
+"option_C": "Execution is applied as a technique to detect defects and to determine quality attributes of the code.",
+"option_D": "Testing can start after dynamic testing.",
+"correct_anwser": "A",
+"explan": "Kiểm thử tĩnh (static testing) là việc xem xét các sản phẩm công việc (như mã nguồn, tài liệu) một cách thủ công hoặc với công cụ mà không thực thi. Các phương án khác mô tả kiểm thử động hoặc sai về thời điểm."
+}
+]
+
+[
+{
+"question_id": 31,
+"question_title": "What is the main purpose of specification-based testing techniques?",
+"option_A": "To evaluate the system's behavior from an external perspective",
+"option_B": "To assess the internal structure of the software",
+"option_C": "To improve the software design",
+"option_D": "To test the software without any formal requirements",
+"correct_anwser": "A",
+"explan": "Kỹ thuật kiểm thử dựa trên đặc tả (specification-based) còn gọi là hộp đen, tập trung vào hành vi hệ thống từ góc nhìn bên ngoài dựa trên yêu cầu. Các phương án khác là đặc trưng của kiểm thử cấu trúc hoặc không đúng."
+},
+{
+"question_id": 32,
+"question_title": "Why is decision coverage important in white-box testing?",
+"option_A": "It measures the software's performance metrics",
+"option_B": "It verifies the compatibility of new code with existing systems",
+"option_C": "It focuses on the user interface aspects of the software",
+"option_D": "It guarantees that all branches in decision points are executed",
+"correct_anwser": "D",
+"explan": "Decision coverage (bao phủ quyết định) trong kiểm thử hộp trắng đảm bảo rằng tất cả các nhánh (true/false) từ mỗi điểm quyết định đều được thực thi. Các lựa chọn khác không liên quan đến mục tiêu của coverage này."
+},
+{
+"question_id": 33,
+"question_title": "Which scenario is ideal for using exploratory testing?",
+"option_A": "When there is limited time and no detailed specifications",
+"option_B": "When detailed specifications are available",
+"option_C": "When the software is fully stable",
+"option_D": "When testing under controlled and stable conditions",
+"correct_anwser": "A",
+"explan": "Kiểm thử khám phá (exploratory testing) phù hợp khi có ít thời gian và không có tài liệu đặc tả chi tiết, vì nó dựa trên kinh nghiệm và trực giác của người kiểm thử. Các phương án khác mô tả điều kiện lý tưởng cho kiểm thử theo kịch bản."
+},
+{
+"question_id": 34,
+"question_title": "For the password field (8-12 alphanumeric characters), which of the following is a valid boundary value?",
+"option_A": "7 characters",
+"option_B": "8 characters",
+"option_C": "13 characters",
+"option_D": "10 characters",
+"correct_anwser": "B",
+"explan": "Giá trị biên hợp lệ cho trường mật khẩu yêu cầu 8-12 ký tự là 8 (biên dưới) và 12 (biên trên). Trong các đáp án, 8 là giá trị biên hợp lệ. 7 và 13 là biên không hợp lệ, còn 10 là giá trị trong khoảng nhưng không phải giá trị biên."
+},
+{
+"question_id": 35,
+"question_title": "Which white box technique has the main goal of ensuring that each one of the possible branches from each decision point is executed at least once?",
+"option_A": "Basis path coverage testing",
+"option_B": "Statement coverage testing",
+"option_C": "Branch coverage testing",
+"option_D": "Condition coverage testing",
+"correct_anwser": "C",
+"explan": "Branch coverage (bao phủ nhánh) yêu cầu thực thi tất cả các nhánh từ mỗi điểm quyết định. Statement coverage chỉ bao phủ câu lệnh, condition coverage kiểm tra từng điều kiện con, và basis path là kỹ thuật khác."
+},
+{
+"question_id": 36,
+"question_title": "Which type of test design technique is based on the tester's skills, intuition, and experience in testing?",
+"option_A": "Black-box testing",
+"option_B": "White-box testing",
+"option_C": "Experience-based testing",
+"option_D": "Specification-based testing",
+"correct_anwser": "C",
+"explan": "Kỹ thuật dựa trên kinh nghiệm (experience-based) dựa vào kỹ năng, trực giác và kinh nghiệm của người kiểm thử. Các kỹ thuật khác dựa trên đặc tả hoặc cấu trúc mã nguồn."
+},
+{
+"question_id": 37,
+"question_title": "Given the following pseudo-code, which is true about the minimum number of test cases required for full statement and branch coverage:\n\nRead A\nRead B\nIF A > 50 THEN\n Print \"Sum A and B\"\n IF B > 10 THEN\n Print \"B is greater than 10\"\n ENDIF\nENDIF",
+"option_A": "1 test case for statement coverage, 2 for branch coverage",
+"option_B": "1 test case for statement coverage, 3 for branch coverage",
+"option_C": "2 test case for statement coverage, 2 for branch coverage",
+"option_D": "2 test case for statement coverage, 3 for branch coverage",
+"correct_anwser": "D",
+"explan": "Statement coverage cần 2 test case: một với A>50, B>10 để thực thi mọi câu lệnh, và một với A<=50 để thực thi lệnh đọc (vì lệnh đọc nằm ngoài IF). Branch coverage cần 3 test case: (1) A>50 và B>10, (2) A>50 và B<=10, (3) A<=50 (với B bất kỳ) để bao phủ tất cả nhánh true/false của cả hai IF."
+},
+{
+"question_id": 38,
+"question_title": "What is the main purpose of use case testing?",
+"option_A": "To identify defects in process flows related to typical use of the system.",
+"option_B": "To identify defects in the connections between components.",
+"option_C": "To identify defects in the system related to extreme scenarios.",
+"option_D": "To identify defects in the system related to the use of unapproved programming practices.",
+"correct_anwser": "A",
+"explan": "Kiểm thử theo ca sử dụng (use case testing) tập trung vào luồng quy trình nghiệp vụ điển hình để phát hiện lỗi trong các tình huống sử dụng thực tế. Các phương án khác liên quan đến kiểm thử tích hợp, kiểm thử biên hoặc kiểm thử mã nguồn."
+},
+{
+"question_id": 39,
+"question_title": "Why is equivalence partitioning particularly effective in test case design?",
+"option_A": "It requires thorough knowledge of the internal structure of the system",
+"option_B": "It divides input data into valid and invalid partitions to simplify testing",
+"option_C": "It focuses solely on the output of the software",
+"option_D": "It is the best method for performance testing",
+"correct_anwser": "B",
+"explan": "Phân hoạch tương đương (equivalence partitioning) chia dữ liệu đầu vào thành các lớp (partition) hợp lệ và không hợp lệ, giảm số lượng ca kiểm thử mà vẫn đảm bảo bao phủ, giúp đơn giản hóa thiết kế ca kiểm thử. Phương án A là đặc trưng của hộp trắng, D sai vì đây là kỹ thuật kiểm thử chức năng."
+},
+{
+"question_id": 40,
+"question_title": "Which of the following statement is true about the bug/defect report?",
+"option_A": "It is technical document written to describe the symptoms of a bug.",
+"option_B": "It is designed to prescribe the scope, approach, resources, and schedule of all testing activities.",
+"option_C": "It is a document that delivers a detailed summary of what scenarios will be tested in a software during the software testing life cycle (STLC).",
+"option_D": "It is used to confirm the function of the application when the code is executed.",
+"correct_anwser": "A",
+"explan": "Báo cáo lỗi (bug/defect report) là tài liệu kỹ thuật mô tả triệu chứng của lỗi để hỗ trợ quá trình sửa chữa. Các phương án còn lại mô tả kế hoạch kiểm thử, chiến lược kiểm thử hoặc ca kiểm thử, không phải là mục đích của báo cáo lỗi."
+}
+]
+
+[
+{
+"question_id": 41,
+"question_title": "What role is responsible for leading the test effort?",
+"option_A": "Test manager",
+"option_B": "Test designer",
+"option_C": "Test analyst",
+"option_D": "Tester",
+"correct_anwser": "A",
+"explan": "Test Manager là người chịu trách nhiệm lãnh đạo toàn bộ nỗ lực kiểm thử, bao gồm lập kế hoạch, phân bổ nguồn lực và giám sát tiến độ. Các vai trò khác có nhiệm vụ chuyên môn hơn và không đảm nhiệm vai trò lãnh đạo."
+},
+{
+"question_id": 42,
+"question_title": "What is NOT a goal of incident management?",
+"option_A": "Fixing all defects regardless of their impact",
+"option_B": "Improving the quality of the software product",
+"option_C": "Reducing the risk of future defects",
+"option_D": "Ensuring stakeholder satisfaction with the product",
+"correct_anwser": "A",
+"explan": "Quản lý sự cố không nhằm mục đích sửa tất cả lỗi bất kể tác động, vì không khả thi về nguồn lực và ưu tiên. Các mục tiêu thực tế bao gồm cải thiện chất lượng, giảm rủi ro tương lai và đảm bảo hài lòng của các bên liên quan, đều có trong các đáp án còn lại."
+},
+{
+"question_id": 43,
+"question_title": "Which of the following is a risk of test automation?",
+"option_A": "Using an automation tool that will not be supported in the future",
+"option_B": "Developing test automation for particularly tedious manual testing areas",
+"option_C": "Using technical testers to implement the automation",
+"option_D": "Developing automated reporting",
+"correct_anwser": "A",
+"explan": "Rủi ro của tự động hóa là sử dụng công cụ không còn được hỗ trợ trong tương lai, dẫn đến chi phí bảo trì cao hoặc không thể sử dụng. Các phương án còn lại là các hoạt động hợp lý hoặc không phải rủi ro."
+},
+{
+"question_id": 44,
+"question_title": "How would you structure a test team for a project requiring specialized knowledge in both business processes and technical execution?",
+"option_A": "Assign only developers as testers",
+"option_B": "Use only external consultants",
+"option_C": "Focus on regression testing",
+"option_D": "Combine business experts with technical testers",
+"correct_anwser": "D",
+"explan": "Để đáp ứng cả kiến thức nghiệp vụ và kỹ thuật, cần kết hợp chuyên gia nghiệp vụ (hiểu quy trình) và kỹ thuật viên kiểm thử (thực thi kỹ thuật). Các phương án khác chỉ tiếp cận một khía cạnh hoặc không phù hợp."
+},
+{
+"question_id": 45,
+"question_title": "Which of the following tasks is MOST LIKELY to be performed by the test manager?",
+"option_A": "Write test summary reports based on the information gathered during testing",
+"option_B": "Review tests developed by others",
+"option_C": "Create the detailed test execution schedule",
+"option_D": "Analyze, review, and assess requirements, specifications and models for testability",
+"correct_anwser": "A",
+"explan": "Test Manager chịu trách nhiệm tổng hợp và viết báo cáo tóm tắt kiểm thử từ dữ liệu thu thập. Các nhiệm vụ còn lại như đánh giá ca kiểm thử, lập lịch chi tiết hoặc phân tích yêu cầu thường do test analyst hoặc test leader đảm nhiệm."
+},
+{
+"question_id": 46,
+"question_title": "What information is typically included in the summary section of an incident report? (Choose 2 correct answers)",
+"option_A": "Personal opinions of the tester.",
+"option_B": "Test progress metrics.",
+"option_C": "Incident description and impact.",
+"option_D": "Steps to reproduce the issue.",
+"correct_anwser": "C, D",
+"explan": "Phần tóm tắt của báo cáo sự cố thường bao gồm mô tả sự cố và tác động (C) cùng với các bước tái hiện (D). Ý kiến cá nhân của tester (A) không nên có, và số liệu tiến độ kiểm thử (B) thường không nằm trong phần tóm tắt mà thuộc báo cáo tiến độ riêng."
+},
+{
+"question_id": 47,
+"question_title": "Which one of the following test tools is mostly suitable for developers rather than testers?",
+"option_A": "Requirement management tools",
+"option_B": "Configuration management tools",
+"option_C": "Defect management tools",
+"option_D": "Performance testing tools",
+"correct_anwser": "B",
+"explan": "Công cụ quản lý cấu hình (Configuration management) thường được nhà phát triển sử dụng để quản lý mã nguồn và phiên bản. Các công cụ khác như quản lý yêu cầu, lỗi và hiệu năng thường được cả tester và developer sử dụng, nhưng phù hợp hơn với tester trong nhiều ngữ cảnh."
+},
+{
+"question_id": 48,
+"question_title": "Which element is critical in a test estimate?",
+"option_A": "The graphical design of the test documentation",
+"option_B": "The time and resources required to complete testing",
+"option_C": "The color scheme for the test report",
+"option_D": "The number of developers in the team",
+"correct_anwser": "B",
+"explan": "Trong ước lượng kiểm thử, yếu tố quan trọng nhất là thời gian và nguồn lực cần thiết để hoàn thành các hoạt động kiểm thử. Các yếu tố về thiết kế đồ họa, màu sắc báo cáo hoặc số lượng developer không phải là trọng tâm của ước lượng kiểm thử."
+},
+{
+"question_id": 49,
+"question_title": "Which is a key benefit of risk-based testing?",
+"option_A": "It reduces the need for a test plan",
+"option_B": "It ensures all defects are identified and fixed",
+"option_C": "It optimizes test coverage by focusing on high-risk areas",
+"option_D": "It eliminates the need for regression testing",
+"correct_anwser": "C",
+"explan": "Kiểm thử dựa trên rủi ro tập trung nguồn lực vào các khu vực có rủi ro cao, giúp tối ưu hóa mức độ bao phủ. Nó không loại bỏ kế hoạch kiểm thử, không đảm bảo phát hiện mọi lỗi và không loại bỏ kiểm thử hồi quy."
+},
+{
+"question_id": 50,
+"question_title": "Which of the following is a benefit of effective incident management?",
+"option_A": "Increased software development time",
+"option_B": "Decreased software reliability",
+"option_C": "Improved customer satisfaction",
+"option_D": "Reduced software functionality",
+"correct_anwser": "C",
+"explan": "Quản lý sự cố hiệu quả giúp xử lý lỗi nhanh chóng, cải thiện chất lượng sản phẩm, từ đó nâng cao sự hài lòng của khách hàng. Các phương án còn lại là tác động tiêu cực hoặc không phải lợi ích."
+}
+]
+
+[
+{
+"question_id": 51,
+"question_title": "Which of the following statement is CORRECT about of decision coverage?",
+"option_A": "Decision coverage is a measure of the percentage of possible paths through the source code exercised by tests",
+"option_B": "Decision coverage is a measure of the percentage of business flows through the component exercised by tests",
+"option_C": "Decision coverage is a measure of the 'if' statements in the code that are exercised with both the true and false outcomes",
+"option_D": "Decision coverage is a measure of the proportion of decision outcomes in the source code exercised by tests",
+"correct_anwser": "D",
+"explan": "Decision coverage đo tỷ lệ các kết quả quyết định (true/false) trong mã nguồn được thực thi bởi các ca kiểm thử. Phương án A là path coverage, B không đúng, C chỉ đề cập đến if statements trong khi decision points bao gồm cả switch, loop, v.v."
+},
+{
+"question_id": 52,
+"question_title": "Which one of the following is MOST likely to be a benefit of test execution tools?",
+"option_A": "It is easy to create regression tests",
+"option_B": "It is easy to maintain version control of test assets",
+"option_C": "It is easy to design tests for security testing",
+"option_D": "It is easy to run regression tests",
+"correct_anwser": "D",
+"explan": "Lợi ích lớn nhất của công cụ thực thi kiểm thử là tự động chạy các ca kiểm thử, đặc biệt hữu ích cho kiểm thử hồi quy. Các phương án khác không phải là lợi ích chính của công cụ thực thi."
+},
+{
+"question_id": 53,
+"question_title": "What is NOT typically a feature of a test management tool?",
+"option_A": "Scheduling tests",
+"option_B": "Generating test data",
+"option_C": "Logging test results",
+"option_D": "Managing testing activities",
+"correct_anwser": "B",
+"explan": "Test management tool thường có các chức năng như lập lịch, ghi nhật ký kết quả và quản lý hoạt động kiểm thử. Tạo dữ liệu kiểm thử thường do công cụ riêng hoặc công cụ tạo dữ liệu đảm nhận, không phải là tính năng chính của công cụ quản lý."
+},
+{
+"question_id": 54,
+"question_title": "Which metric would help monitor the progress of test execution?",
+"option_A": "Number of open defects compared to closed defects.",
+"option_B": "Number of passed requirements per code line.",
+"option_C": "Project manager's confidence level.",
+"option_D": "Test script reusability percentage.",
+"correct_anwser": "A",
+"explan": "Số lượng defect đang mở so với đã đóng phản ánh tiến trình xử lý lỗi trong quá trình thực thi kiểm thử, tuy không trực tiếp là số ca kiểm thử đã chạy nhưng trong các lựa chọn, đây là metric gần nhất để theo dõi tiến độ. Các lựa chọn khác không liên quan đến tiến độ thực thi."
+},
+{
+"question_id": 55,
+"question_title": "What is a key feature of a test execution tool?",
+"option_A": "Managing requirements traceability",
+"option_B": "Supporting static code analysis",
+"option_C": "Automatically running tests and recording results",
+"option_D": "Managing test incidents",
+"correct_anwser": "C",
+"explan": "Tính năng cốt lõi của công cụ thực thi kiểm thử là tự động chạy các ca kiểm thử và ghi lại kết quả. Các chức năng khác thuộc về quản lý yêu cầu, phân tích tĩnh hoặc quản lý sự cố."
+},
+{
+"question_id": 56,
+"question_title": "What type of test tool would you use to ensure coding standards are met?",
+"option_A": "Test design tool",
+"option_B": "Test execution tool",
+"option_C": "Static analysis tool",
+"option_D": "Configuration management tool",
+"correct_anwser": "C",
+"explan": "Công cụ phân tích tĩnh (static analysis) kiểm tra mã nguồn để đảm bảo tuân thủ các chuẩn mã hóa (coding standards). Các công cụ khác không phù hợp cho mục đích này."
+},
+{
+"question_id": 57,
+"question_title": "Which of the following tools would you use for dynamic analysis? (Choose 2 correct answers)",
+"option_A": "Static analysis tools",
+"option_B": "Test management tools",
+"option_C": "Performance testing tools",
+"option_D": "Monitoring tools",
+"correct_anwser": "C, D",
+"explan": "Phân tích động (dynamic analysis) yêu cầu thực thi chương trình. Performance testing tools và monitoring tools đều thực hiện phân tích khi chương trình đang chạy. Static analysis tools là phân tích tĩnh, test management tools là quản lý."
+},
+{
+"question_id": 58,
+"question_title": "What is a characteristic feature of a test harness?",
+"option_A": "Schedules tests",
+"option_B": "Supplies inputs to the software being tested",
+"option_C": "Manages software incidents",
+"option_D": "Analyzes software performance",
+"correct_anwser": "B",
+"explan": "Test harness (giá đỡ kiểm thử) cung cấp môi trường để chạy test, bao gồm stub, driver và cung cấp đầu vào cho phần mềm được kiểm thử. Các chức năng khác không phải là đặc trưng của test harness."
+},
+{
+"question_id": 59,
+"question_title": "What is an advantage of using data-driven scripts in test automation?",
+"option_A": "They do not require external data.",
+"option_B": "They separate test data from scripts, enhancing flexibility.",
+"option_C": "They are simpler to maintain than linear scripts.",
+"option_D": "They eliminate the need for scripting knowledge.",
+"correct_anwser": "B",
+"explan": "Ưu điểm chính của data-driven scripts là tách dữ liệu kiểm thử khỏi script, cho phép chạy cùng một script với nhiều bộ dữ liệu khác nhau, tăng tính linh hoạt. Phương án A sai vì chúng cần dữ liệu bên ngoài, C và D không chính xác."
+},
+{
+"question_id": 60,
+"question_title": "____ is the process of testing a single unit of code in an isolated manner and can be a method, a class, or a module.",
+"option_A": "Integration Testing",
+"option_B": "Unit Testing",
+"option_C": "Acceptance Testing",
+"option_D": "System Testing",
+"correct_anwser": "B",
+"explan": "Định nghĩa này mô tả chính xác kiểm thử đơn vị (Unit Testing), trong đó một đơn vị mã (phương thức, lớp, module) được kiểm thử cách ly. Các lựa chọn khác là các cấp độ kiểm thử khác không có đặc điểm này."
+}
+]

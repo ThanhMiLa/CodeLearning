@@ -158,8 +158,10 @@
     "back_to_subjects": "Back to Subjects",
     "subject_hsf_title": "Working with Spring Framework",
     "subject_swr_title": "Software Requirement",
+    "subject_swt_title": "Software Testing",
     "subject_hsf_desc": "Master enterprise Java applications with Spring Boot, JPA, REST APIs, and JavaFX desktop UI development.",
     "subject_swr_desc": "Master software requirements elicitation, analysis, specification, validation, and requirements management techniques.",
+    "subject_swt_desc": "Master software testing methods, test design techniques, static and dynamic testing processes according to ISTQB standards.",
     "quizzes_count_one": "{{count}} quiz set",
     "quizzes_count_other": "{{count}} quiz sets"
   },

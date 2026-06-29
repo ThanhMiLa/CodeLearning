@@ -2,28 +2,38 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QUIZZES } from '../../data/quizzesData';
-import { HelpCircle, CheckSquare, Sparkles, ArrowRight, BookOpenCheck, ArrowLeft, Code2, FileSpreadsheet, ChevronRight } from 'lucide-react';
+import { HelpCircle, CheckSquare, Sparkles, ArrowRight, BookOpenCheck, ArrowLeft, Code2, FileSpreadsheet, ChevronRight, ShieldCheck } from 'lucide-react';
 
 const QuizCatalog: React.FC = () => {
   const { t } = useTranslation();
-  const [selectedSubject, setSelectedSubject] = useState<'HSF302' | 'SWR302' | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<'HSF302' | 'SWR302' | 'SWT301' | null>(null);
 
   // Group and filter quizzes dynamically
   const hsfQuizzes = QUIZZES.filter(q => q.title.toUpperCase().includes('HSF302'));
   const swrQuizzes = QUIZZES.filter(q => q.title.toUpperCase().includes('SWR302'));
+  const swtQuizzes = QUIZZES.filter(q => q.title.toUpperCase().includes('SWT301'));
 
   const hsfCount = hsfQuizzes.length;
   const swrCount = swrQuizzes.length;
+  const swtCount = swtQuizzes.length;
 
   const headerTitle = selectedSubject 
-    ? (selectedSubject === 'HSF302' ? 'HSF302' : 'SWR302') 
+    ? selectedSubject 
     : t('quiz.title', 'Source');
 
   const headerSubtitle = selectedSubject
     ? (selectedSubject === 'HSF302' 
         ? t('quiz.subject_hsf_title', 'Working with Spring Framework') 
-        : t('quiz.subject_swr_title', 'Software Requirement'))
+        : selectedSubject === 'SWR302'
+          ? t('quiz.subject_swr_title', 'Software Requirement')
+          : t('quiz.subject_swt_title', 'Software Testing'))
     : t('quiz.subtitle', '');
+
+  const currentQuizzes = selectedSubject === 'HSF302'
+    ? hsfQuizzes
+    : selectedSubject === 'SWR302'
+      ? swrQuizzes
+      : swtQuizzes;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
@@ -50,7 +60,7 @@ const QuizCatalog: React.FC = () => {
 
         {selectedSubject === null ? (
           /* Subject Selector View */
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-4xl mx-auto pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto pt-4">
             {/* HSF302 Subject Card */}
             <button
               onClick={() => setSelectedSubject('HSF302')}
@@ -114,6 +124,38 @@ const QuizCatalog: React.FC = () => {
                 <ChevronRight className="h-4 w-4 ml-1.5 group-hover:translate-x-1 transition-transform duration-200" />
               </div>
             </button>
+
+            {/* SWT301 Subject Card */}
+            <button
+              onClick={() => setSelectedSubject('SWT301')}
+              className="group relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-md hover:shadow-xl dark:shadow-none hover:border-emerald-500/30 dark:hover:border-emerald-500/30 hover:-translate-y-1 transition-all duration-300 text-left overflow-hidden flex flex-col justify-between min-h-[300px]"
+            >
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <div className="absolute -right-16 -top-16 w-36 h-36 bg-emerald-500/5 dark:bg-emerald-500/[0.03] rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-all duration-500" />
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform duration-300">
+                    <ShieldCheck className="h-7 w-7" />
+                  </div>
+                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                    {t('quiz.quizzes_count', { count: swtCount, defaultValue: `${swtCount} quiz sets` })}
+                  </span>
+                </div>
+                <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
+                  SWT301
+                </h2>
+                <p className="text-sm font-semibold text-slate-400 dark:text-slate-500 mb-4">
+                  {t('quiz.subject_swt_title', 'Software Testing')}
+                </p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+                  {t('quiz.subject_swt_desc', 'Master software testing methods, test design techniques, static and dynamic testing processes according to ISTQB standards.')}
+                </p>
+              </div>
+              <div className="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-bold text-sm">
+                <span>{t('quiz.start_learning', 'Start Learning')}</span>
+                <ChevronRight className="h-4 w-4 ml-1.5 group-hover:translate-x-1 transition-transform duration-200" />
+              </div>
+            </button>
           </div>
         ) : (
           /* Specific Subject Quiz List View */
@@ -131,7 +173,7 @@ const QuizCatalog: React.FC = () => {
 
             {/* Quiz Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              {(selectedSubject === 'HSF302' ? hsfQuizzes : swrQuizzes).map((quiz) => (
+              {currentQuizzes.map((quiz) => (
                 <div
                   key={quiz.id}
                   className="group relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-md hover:shadow-xl dark:shadow-none hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
