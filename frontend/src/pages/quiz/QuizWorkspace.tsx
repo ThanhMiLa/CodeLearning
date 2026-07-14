@@ -204,6 +204,10 @@ const QuizWorkspace: React.FC = () => {
             grid-column: span 1 / span 1 !important;
             width: 100% !important;
           }
+          .quiz-scroll-container {
+            max-height: 564px !important;
+            overflow-y: auto !important;
+          }
         }
         .quiz-matrix-grid {
           display: grid !important;
@@ -412,20 +416,20 @@ const QuizWorkspace: React.FC = () => {
           {/* Sidebar Area (Stats and Question Grid) */}
           <div className="lg:col-span-3 flex flex-col gap-6 quiz-right-panel">
 
-            {/* Question Grid Card */}
-            <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
-                <span className="flex items-center">
-                  <BookOpen className="h-4.5 w-4.5 text-indigo-500 mr-2" />
-                  <span>Question Sheet</span>
-                </span>
-                <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
-                  {Object.keys(submittedQuestions).length}/{totalQuestions}
-                </span>
-              </h3>
-
-              {/* Scrollable grid for large question sets */}
-              <div className="max-h-[420px] overflow-y-auto pr-1" style={{ scrollbarWidth: 'thin' }}>
+             {/* Question Grid Card */}
+             <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
+               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+                 <span className="flex items-center">
+                   <BookOpen className="h-4.5 w-4.5 text-indigo-500 mr-2" />
+                   <span>Question Sheet</span>
+                 </span>
+                 <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+                   {Object.keys(submittedQuestions).length}/{totalQuestions}
+                 </span>
+               </h3>
+ 
+               {/* Scrollable grid for large question sets */}
+               <div className="max-h-[564px] lg:max-h-[564px] overflow-y-auto pr-1 quiz-scroll-container" style={{ scrollbarWidth: 'thin' }}>
                 <div className="grid grid-cols-5 gap-2 quiz-matrix-grid">
                   {Array.from({ length: totalQuestions }).map((_, idx) => {
                     const hasSubmitted = submittedQuestions[idx];
