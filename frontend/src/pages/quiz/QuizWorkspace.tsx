@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QUIZZES } from '../../data/quizzesData';
+import type { QuizQuestion } from '../../data/quizzesData';
 import { 
   ArrowLeft, 
   CheckCircle2, 
@@ -16,17 +17,63 @@ import {
   X
 } from 'lucide-react';
 
+// Fisher-Yates shuffle (creates a new shuffled copy)
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// Subject code mapping
+const SUBJECT_CODES: Record<string, string> = {
+  'hsf302': 'HSF302',
+  'swr302': 'SWR302',
+  'swt301': 'SWT301',
+};
+
+const SUBJECT_TITLES: Record<string, string> = {
+  'hsf302': 'HSF302 - All Questions (Shuffled)',
+  'swr302': 'SWR302 - All Questions (Shuffled)',
+  'swt301': 'SWT301 - All Questions (Shuffled)',
+};
+
 const QuizWorkspace: React.FC = () => {
   const { quizId } = useParams<{ quizId: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  // Find active quiz
-  const activeQuiz = useMemo(() => {
-    return QUIZZES.find(q => q.id === quizId);
-  }, [quizId]);
+  // Check if quizId is a subject code (merged mode) or a specific quiz set
+  const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
 
-  if (!activeQuiz) {
+  // Build the merged & shuffled question list (or single quiz set)
+  const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
+    if (!quizId) return { questions: [] as QuizQuestion[], title: '' };
+
+    if (isSubjectMode) {
+      const subjectKey = SUBJECT_CODES[quizId.toLowerCase()];
+      // Merge all questions from all quiz sets of this subject
+      const allQuestions = QUIZZES
+        .filter(q => q.title.toUpperCase().includes(subjectKey))
+        .flatMap(q => q.questions);
+      // Shuffle them
+      return {
+        questions: shuffleArray(allQuestions),
+        title: SUBJECT_TITLES[quizId.toLowerCase()] || quizId.toUpperCase(),
+      };
+    } else {
+      // Legacy: find single quiz set by id
+      const quiz = QUIZZES.find(q => q.id === quizId);
+      return {
+        questions: quiz ? quiz.questions : [],
+        title: quiz ? quiz.title : '',
+      };
+    }
+  }, [quizId, isSubjectMode]);
+
+  if (activeQuestions.length === 0) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4">
         <div className="max-w-md w-full text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-lg">
@@ -42,7 +89,7 @@ const QuizWorkspace: React.FC = () => {
     );
   }
 
-  const totalQuestions = activeQuiz.questions.length;
+  const totalQuestions = activeQuestions.length;
 
   // Local state
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(0);
@@ -50,7 +97,7 @@ const QuizWorkspace: React.FC = () => {
   const [submittedQuestions, setSubmittedQuestions] = useState<Record<number, boolean>>({});
   const [questionResults, setQuestionResults] = useState<Record<number, boolean>>({});
 
-  const currentQuestion = activeQuiz.questions[currentQuestionIdx];
+  const currentQuestion = activeQuestions[currentQuestionIdx];
   const userAnswers = selectedOptions[currentQuestionIdx] || [];
   const isSubmitted = submittedQuestions[currentQuestionIdx] || false;
 
@@ -180,7 +227,7 @@ const QuizWorkspace: React.FC = () => {
                 Quiz Workspace
               </span>
               <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                {activeQuiz.title}
+                {activeTitle}
               </h1>
             </div>
           </div>
@@ -367,50 +414,57 @@ const QuizWorkspace: React.FC = () => {
 
             {/* Question Grid Card */}
             <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm">
-              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center">
-                <BookOpen className="h-4.5 w-4.5 text-indigo-500 mr-2" />
-                <span>Question Sheet</span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
+                <span className="flex items-center">
+                  <BookOpen className="h-4.5 w-4.5 text-indigo-500 mr-2" />
+                  <span>Question Sheet</span>
+                </span>
+                <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+                  {Object.keys(submittedQuestions).length}/{totalQuestions}
+                </span>
               </h3>
 
-              {/* Lưới các câu hỏi 1-50 */}
-              <div className="grid grid-cols-5 gap-2.5 quiz-matrix-grid">
-                {Array.from({ length: totalQuestions }).map((_, idx) => {
-                  const hasSubmitted = submittedQuestions[idx];
-                  const isCorrect = questionResults[idx];
-                  const isCurrent = currentQuestionIdx === idx;
+              {/* Scrollable grid for large question sets */}
+              <div className="max-h-[420px] overflow-y-auto pr-1" style={{ scrollbarWidth: 'thin' }}>
+                <div className="grid grid-cols-5 gap-2 quiz-matrix-grid">
+                  {Array.from({ length: totalQuestions }).map((_, idx) => {
+                    const hasSubmitted = submittedQuestions[idx];
+                    const isCorrect = questionResults[idx];
+                    const isCurrent = currentQuestionIdx === idx;
 
-                  // Dynamic styles based on states
-                  let buttonStyle = "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-400";
-                  
-                  if (hasSubmitted) {
-                    if (isCorrect) {
-                      buttonStyle = "bg-emerald-500 border-emerald-500 text-white hover:bg-emerald-600";
+                    // Dynamic styles based on states
+                    let buttonStyle = "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 hover:border-slate-300 dark:hover:border-slate-700 text-slate-600 dark:text-slate-400";
+                    
+                    if (hasSubmitted) {
+                      if (isCorrect) {
+                        buttonStyle = "bg-emerald-500 border-emerald-500 text-white hover:bg-emerald-600";
+                      } else {
+                        buttonStyle = "bg-rose-500 border-rose-500 text-white hover:bg-rose-600";
+                      }
                     } else {
-                      buttonStyle = "bg-rose-500 border-rose-500 text-white hover:bg-rose-600";
+                      const isSelected = (selectedOptions[idx] || []).length > 0;
+                      if (isSelected) {
+                        // Option selected but not submitted yet
+                        buttonStyle = "border-indigo-400 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400";
+                      }
                     }
-                  } else {
-                    const isSelected = (selectedOptions[idx] || []).length > 0;
-                    if (isSelected) {
-                      // Option selected but not submitted yet
-                      buttonStyle = "border-indigo-400 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400";
-                    }
-                  }
 
-                  // Active highlight
-                  const currentStyle = isCurrent 
-                    ? "ring-2 ring-indigo-600 dark:ring-indigo-400 ring-offset-2 dark:ring-offset-slate-950 scale-105 z-10 font-bold" 
-                    : "";
+                    // Active highlight
+                    const currentStyle = isCurrent 
+                      ? "ring-2 ring-indigo-600 dark:ring-indigo-400 ring-offset-2 dark:ring-offset-slate-950 scale-105 z-10 font-bold" 
+                      : "";
 
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentQuestionIdx(idx)}
-                      className={`inline-flex items-center justify-center h-10 w-full rounded-xl border text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${buttonStyle} ${currentStyle}`}
-                    >
-                      {idx + 1}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentQuestionIdx(idx)}
+                        className={`inline-flex items-center justify-center h-9 w-full rounded-xl border text-xs font-semibold select-none cursor-pointer transition-all duration-150 ${buttonStyle} ${currentStyle}`}
+                      >
+                        {idx + 1}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
