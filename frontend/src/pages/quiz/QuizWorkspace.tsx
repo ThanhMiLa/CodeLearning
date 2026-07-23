@@ -17,15 +17,6 @@ import {
   X
 } from 'lucide-react';
 
-// Fisher-Yates shuffle (creates a new shuffled copy)
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
 
 // Subject code mapping
 const SUBJECT_CODES: Record<string, string> = {
@@ -60,7 +51,7 @@ const QuizWorkspace: React.FC = () => {
         .flatMap(q => q.questions);
       // Shuffle them
       return {
-        questions: shuffleArray(allQuestions),
+        questions: allQuestions,
         title: SUBJECT_TITLES[quizId.toLowerCase()] || quizId.toUpperCase(),
       };
     } else {
