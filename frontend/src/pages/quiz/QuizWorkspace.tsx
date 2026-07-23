@@ -266,8 +266,8 @@ const QuizWorkspace: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug mb-8">
-                {currentQuestion.question_title}
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug mb-8 whitespace-pre-line">
+                {currentQuestion.question_title ? currentQuestion.question_title.replace(/[ \t]+(i|ii|iii|iv|v|vi|vii|viii|ix|x|[1-9])\)/g, '\n$1)') : ''}
               </h3>
 
               {/* Option Mode Instruction Hint */}
@@ -406,7 +406,7 @@ const QuizWorkspace: React.FC = () => {
                     {t('quiz.explanation', 'Explanation')}
                   </h4>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-medium whitespace-pre-line">
                   {currentQuestion.explain}
                 </p>
               </div>

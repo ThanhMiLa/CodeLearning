@@ -10125,7 +10125,7 @@ export const QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 11,
-        "question_title": "Component Testing is also called as i) Unit Testing ii) Program Testing iii) Module Testing iv) System Component Testing.",
+        "question_title": "Component Testing is also called as\ni) Unit Testing\nii) Program Testing\niii) Module Testing\niv) System Component Testing.",
         "option_A": "i, ii, iii are true and iv is false",
         "option_B": "i, ii, iii, iv are false",
         "option_C": "i, ii, iv are true and iii is false",
@@ -10561,7 +10561,7 @@ export const QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 54,
-        "question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool? i) Investigate the organisation's test process. ii) Conduct a proof of concept. iii) Implement the selected tool on a project behind schedule to save time. iv) Identify coaching and mentoring requirements for the use of the selected tool.",
+        "question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool?\ni) Investigate the organisation's test process.\nii) Conduct a proof of concept.\niii) Implement the selected tool on a project behind schedule to save time.\niv) Identify coaching and mentoring requirements for the use of the selected tool.",
         "option_A": "i, ii, iii.",
         "option_B": "ii, iii, iv.",
         "option_C": "i, iii, iv.",
@@ -10602,7 +10602,7 @@ export const QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 58,
-        "question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool? i) Investigate the organisation's test process. ii) Conduct a proof of concept. iii) Implement the selected tool on a project behind schedule to save time. iv) Identify coaching and mentoring requirements for the use of the selected tool.",
+        "question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool?\ni) Investigate the organisation's test process.\nii) Conduct a proof of concept.\niii) Implement the selected tool on a project behind schedule to save time.\niv) Identify coaching and mentoring requirements for the use of the selected tool.",
         "option_A": "i, ii, iii.",
         "option_B": "ii, iii, iv.",
         "option_C": "i, iii, iv.",
@@ -10728,7 +10728,7 @@ export const QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 10,
-        "question_title": "A piece of software has been given ______ what tests in the following will you perform? 1) Test the area's most critical to business processes 2) Test the areas where faults will be maximum 3) Test the easiest functionalities",
+        "question_title": "A piece of software has been given ______ what tests in the following will you perform?\n1) Test the area's most critical to business processes\n2) Test the areas where faults will be maximum\n3) Test the easiest functionalities",
         "option_A": "1&2 are true and 3 is false",
         "option_B": "1,2&3 are true.",
         "option_C": "1 is true, 2&3 are false.",
@@ -11111,7 +11111,7 @@ export const QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 48,
-        "question_title": "Some tools are geared more for developer use. For the 5 tools listed, which statement BEST details those for developers. i) Performance testing tools ii) Coverage measurement tools iii) Test comparators iv) Dynamic analysis tools v) Incident management tools",
+        "question_title": "Some tools are geared more for developer use. For the 5 tools listed, which statement BEST details those for developers.\ni) Performance testing tools\nii) Coverage measurement tools\niii) Test comparators\niv) Dynamic analysis tools\nv) Incident management tools",
         "option_A": "i, iii and iv are more for developers.",
         "option_B": "ii and iv are more for developers.",
         "option_C": "ii, iii and iv are more for developers.",

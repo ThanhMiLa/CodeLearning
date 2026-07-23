@@ -107,7 +107,7 @@
 [
 {
 "question_id": 11,
-"question_title": "Component Testing is also called as i) Unit Testing ii) Program Testing iii) Module Testing iv) System Component Testing.",
+"question_title": "Component Testing is also called as\ni) Unit Testing\nii) Program Testing\niii) Module Testing\niv) System Component Testing.",
 "option_A": "i, ii, iii are true and iv is false",
 "option_B": "i, ii, iii, iv are false",
 "option_C": "i, ii, iv are true and iii is false",
@@ -555,7 +555,7 @@
 },
 {
 "question_id": 54,
-"question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool? i) Investigate the organisation's test process. ii) Conduct a proof of concept. iii) Implement the selected tool on a project behind schedule to save time. iv) Identify coaching and mentoring requirements for the use of the selected tool.",
+"question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool?\ni) Investigate the organisation's test process.\nii) Conduct a proof of concept.\niii) Implement the selected tool on a project behind schedule to save time.\niv) Identify coaching and mentoring requirements for the use of the selected tool.",
 "option_A": "i, ii, iii.",
 "option_B": "ii, iii, iv.",
 "option_C": "i, iii, iv.",
@@ -596,7 +596,7 @@
 },
 {
 "question_id": 58,
-"question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool? i) Investigate the organisation's test process. ii) Conduct a proof of concept. iii) Implement the selected tool on a project behind schedule to save time. iv) Identify coaching and mentoring requirements for the use of the selected tool.",
+"question_title": "Which of the following activities should be performed during the selection and implementation of a testing tool?\ni) Investigate the organisation's test process.\nii) Conduct a proof of concept.\niii) Implement the selected tool on a project behind schedule to save time.\niv) Identify coaching and mentoring requirements for the use of the selected tool.",
 "option_A": "i, ii, iii.",
 "option_B": "ii, iii, iv.",
 "option_C": "i, iii, iv.",

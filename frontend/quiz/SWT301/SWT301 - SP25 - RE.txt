@@ -89,7 +89,7 @@
 },
 {
 "question_id": 10,
-"question_title": "A piece of software has been given ______ what tests in the following will you perform? 1) Test the area's most critical to business processes 2) Test the areas where faults will be maximum 3) Test the easiest functionalities",
+"question_title": "A piece of software has been given ______ what tests in the following will you perform?\n1) Test the area's most critical to business processes\n2) Test the areas where faults will be maximum\n3) Test the easiest functionalities",
 "option_A": "1&2 are true and 3 is false",
 "option_B": "1,2&3 are true.",
 "option_C": "1 is true, 2&3 are false.",
@@ -484,7 +484,7 @@
 },
 {
 "question_id": 48,
-"question_title": "Some tools are geared more for developer use. For the 5 tools listed, which statement BEST details those for developers. i) Performance testing tools ii) Coverage measurement tools iii) Test comparators iv) Dynamic analysis tools v) Incident management tools",
+"question_title": "Some tools are geared more for developer use. For the 5 tools listed, which statement BEST details those for developers.\ni) Performance testing tools\nii) Coverage measurement tools\niii) Test comparators\niv) Dynamic analysis tools\nv) Incident management tools",
 "option_A": "i, iii and iv are more for developers.",
 "option_B": "ii and iv are more for developers.",
 "option_C": "ii, iii and iv are more for developers.",
