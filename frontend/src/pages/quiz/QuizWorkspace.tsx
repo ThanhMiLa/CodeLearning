@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QUIZZES } from '../../data/quizzesData';
@@ -31,7 +31,7 @@ const SUBJECT_TITLES: Record<string, string> = {
   'swt301': 'SWT301 - All Questions (Shuffled)',
 };
 
-const QuizWorkspace: React.FC = () => {
+const QuizWorkspaceContent: React.FC = () => {
   const { quizId } = useParams<{ quizId: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -82,11 +82,80 @@ const QuizWorkspace: React.FC = () => {
 
   const totalQuestions = activeQuestions.length;
 
+  const localStorageKey = `quiz_progress_${quizId?.toLowerCase() || ''}`;
+
   // Local state
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(0);
-  const [selectedOptions, setSelectedOptions] = useState<Record<number, string[]>>({});
-  const [submittedQuestions, setSubmittedQuestions] = useState<Record<number, boolean>>({});
-  const [questionResults, setQuestionResults] = useState<Record<number, boolean>>({});
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem(localStorageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.currentQuestionIdx === 'number') {
+          return parsed.currentQuestionIdx;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load currentQuestionIdx', e);
+    }
+    return 0;
+  });
+
+  const [selectedOptions, setSelectedOptions] = useState<Record<number, string[]>>(() => {
+    try {
+      const saved = localStorage.getItem(localStorageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.selectedOptions) {
+          return parsed.selectedOptions;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load selectedOptions', e);
+    }
+    return {};
+  });
+
+  const [submittedQuestions, setSubmittedQuestions] = useState<Record<number, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem(localStorageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.submittedQuestions) {
+          return parsed.submittedQuestions;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load submittedQuestions', e);
+    }
+    return {};
+  });
+
+  const [questionResults, setQuestionResults] = useState<Record<number, boolean>>(() => {
+    try {
+      const saved = localStorage.getItem(localStorageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.questionResults) {
+          return parsed.questionResults;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load questionResults', e);
+    }
+    return {};
+  });
+
+  // Save progress to localStorage whenever state changes
+  useEffect(() => {
+    if (!quizId) return;
+    const progress = {
+      currentQuestionIdx,
+      selectedOptions,
+      submittedQuestions,
+      questionResults,
+    };
+    localStorage.setItem(localStorageKey, JSON.stringify(progress));
+  }, [localStorageKey, quizId, currentQuestionIdx, selectedOptions, submittedQuestions, questionResults]);
 
   const currentQuestion = activeQuestions[currentQuestionIdx];
   const userAnswers = selectedOptions[currentQuestionIdx] || [];
@@ -152,6 +221,7 @@ const QuizWorkspace: React.FC = () => {
       setSubmittedQuestions({});
       setQuestionResults({});
       setCurrentQuestionIdx(0);
+      localStorage.removeItem(localStorageKey);
     }
   };
 
@@ -469,6 +539,11 @@ const QuizWorkspace: React.FC = () => {
       </div>
     </div>
   );
+};
+
+const QuizWorkspace: React.FC = () => {
+  const { quizId } = useParams<{ quizId: string }>();
+  return <QuizWorkspaceContent key={quizId} />;
 };
 
 export default QuizWorkspace;
