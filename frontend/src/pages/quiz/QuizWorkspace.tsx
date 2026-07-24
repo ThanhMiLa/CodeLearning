@@ -172,6 +172,18 @@ const QuizWorkspaceContent: React.FC = () => {
     return currentQuestion.correct_anwser.includes(',');
   }, [currentQuestion]);
 
+  const correctCount = useMemo(() => {
+    return Object.keys(submittedQuestions).filter(
+      key => submittedQuestions[Number(key)] && questionResults[Number(key)]
+    ).length;
+  }, [submittedQuestions, questionResults]);
+
+  const incorrectCount = useMemo(() => {
+    return Object.keys(submittedQuestions).filter(
+      key => submittedQuestions[Number(key)] && !questionResults[Number(key)]
+    ).length;
+  }, [submittedQuestions, questionResults]);
+
 
 
   const handleOptionClick = (optionKey: string) => {
@@ -488,6 +500,26 @@ const QuizWorkspaceContent: React.FC = () => {
                    {Object.keys(submittedQuestions).length}/{totalQuestions}
                  </span>
                </h3>
+
+               {/* Correct & Incorrect Counts */}
+               <div className="grid grid-cols-2 gap-3 mb-4">
+                 <div className="bg-emerald-500/10 dark:bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-3 text-center">
+                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-0.5">
+                     {t('quiz.correct', 'Correct')}
+                   </span>
+                   <span className="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">
+                     {correctCount}
+                   </span>
+                 </div>
+                 <div className="bg-rose-500/10 dark:bg-rose-500/5 border border-rose-500/10 rounded-2xl p-3 text-center">
+                   <span className="text-[10px] font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 block mb-0.5">
+                     {t('quiz.incorrect', 'Incorrect')}
+                   </span>
+                   <span className="text-lg font-extrabold text-rose-600 dark:text-rose-400">
+                     {incorrectCount}
+                   </span>
+                 </div>
+               </div>
  
                {/* Scrollable grid for large question sets */}
                <div className="max-h-[564px] lg:max-h-[564px] overflow-y-auto pr-1 quiz-scroll-container" style={{ scrollbarWidth: 'thin' }}>
