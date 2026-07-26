@@ -38,7 +38,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-rose-500 to-pink-500',
     iconBg: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
   },
-  'swr302-module-1-fundamentals-ba-role': {
+  'swr302-module-1': {
     moduleNum: 1,
     badgeLabel: 'MODULE 1',
     title: 'Module 1: Fundamentals, Product Vision & BA Role',
@@ -48,7 +48,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-indigo-500 to-blue-600',
     iconBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
   },
-  'swr302-module-2-elicitation-stakeholders': {
+  'swr302-module-2': {
     moduleNum: 2,
     badgeLabel: 'MODULE 2',
     title: 'Module 2: Requirements Elicitation & Stakeholders',
@@ -58,7 +58,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-blue-500 to-cyan-600',
     iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
   },
-  'swr302-module-3-analysis-modeling': {
+  'swr302-module-3': {
     moduleNum: 3,
     badgeLabel: 'MODULE 3',
     title: 'Module 3: Requirements Analysis & Modeling',
@@ -68,7 +68,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-cyan-500 to-teal-600',
     iconBg: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
   },
-  'swr302-module-4-specification-quality-attributes': {
+  'swr302-module-4': {
     moduleNum: 4,
     badgeLabel: 'MODULE 4',
     title: 'Module 4: Specification & Quality Attributes',
@@ -78,7 +78,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-emerald-500 to-green-600',
     iconBg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
   },
-  'swr302-module-5-validation-verification': {
+  'swr302-module-5': {
     moduleNum: 5,
     badgeLabel: 'MODULE 5',
     title: 'Module 5: Requirements Validation & Verification',
@@ -88,7 +88,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-amber-500 to-orange-600',
     iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
   },
-  'swr302-module-6-management-change-control': {
+  'swr302-module-6': {
     moduleNum: 6,
     badgeLabel: 'MODULE 6',
     title: 'Module 6: Management & Change Control',
@@ -98,7 +98,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-rose-500 to-pink-600',
     iconBg: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
   },
-  'swr302-module-7-prioritization-agile-requirements': {
+  'swr302-module-7': {
     moduleNum: 7,
     badgeLabel: 'MODULE 7',
     title: 'Module 7: Prioritization & Agile Requirements',
@@ -108,6 +108,22 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-violet-500 to-purple-600',
     iconBg: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
   },
+};
+
+const getModuleMeta = (id: string, title: string): Partial<ModuleInfo> => {
+  if (id === 'swr302-all-unique') return MODULE_METADATA['swr302-all-unique'];
+  if (id === 'swr302-random-exam') return MODULE_METADATA['swr302-random-exam'];
+
+  // Match module number 1 to 7
+  const match = (id + ' ' + title).match(/module[^\d]*(\d+)/i);
+  if (match) {
+    const num = parseInt(match[1], 10);
+    const key = `swr302-module-${num}`;
+    if (MODULE_METADATA[key]) {
+      return MODULE_METADATA[key];
+    }
+  }
+  return {};
 };
 
 const SWR302Catalog: React.FC = () => {
@@ -131,8 +147,10 @@ const SWR302Catalog: React.FC = () => {
     // 3. Modules 1 to 7
     const modules = QUIZZES.filter(q => q.id.includes('module'));
     modules.sort((a, b) => {
-      const numA = MODULE_METADATA[a.id]?.moduleNum || 99;
-      const numB = MODULE_METADATA[b.id]?.moduleNum || 99;
+      const matchA = (a.id + ' ' + a.title).match(/module[^\d]*(\d+)/i);
+      const matchB = (b.id + ' ' + b.title).match(/module[^\d]*(\d+)/i);
+      const numA = matchA ? parseInt(matchA[1], 10) : 99;
+      const numB = matchB ? parseInt(matchB[1], 10) : 99;
       return numA - numB;
     });
     list.push(...modules);
@@ -194,13 +212,17 @@ const SWR302Catalog: React.FC = () => {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allCards.map((quiz) => {
-            const meta = MODULE_METADATA[quiz.id] || {};
+            const meta = getModuleMeta(quiz.id, quiz.title);
             const qCount = quiz.questions?.length || 0;
             const progress = getProgress(quiz.id, qCount);
             const rawTitle = meta.title || quiz.title;
             const cardTitle = rawTitle.replace(/^SWR302\s*[-:]?\s*/i, '');
             const isMaster = quiz.id === 'swr302-all-unique';
             const isExam = quiz.id === 'swr302-random-exam';
+
+            const matchNum = (quiz.id + ' ' + quiz.title).match(/module[^\d]*(\d+)/i);
+            const modNum = matchNum ? matchNum[1] : (meta.moduleNum ? String(meta.moduleNum) : '');
+            const badgeLabelText = isMaster ? 'FULL LIST' : isExam ? 'MOCK EXAM' : `MODULE ${modNum}`;
 
             return (
               <Link
@@ -218,17 +240,17 @@ const SWR302Catalog: React.FC = () => {
                       {isMaster ? (
                         <>
                           <Award className="h-3.5 w-3.5" />
-                          <span>{meta.badgeLabel || 'FULL LIST'}</span>
+                          <span>FULL LIST</span>
                         </>
                       ) : isExam ? (
                         <>
                           <Flame className="h-3.5 w-3.5" />
-                          <span>{meta.badgeLabel || 'MOCK EXAM'}</span>
+                          <span>MOCK EXAM</span>
                         </>
                       ) : (
                         <>
                           <Layers className="h-3.5 w-3.5" />
-                          <span>{meta.badgeLabel || `MODULE ${meta.moduleNum}`}</span>
+                          <span>{badgeLabelText}</span>
                         </>
                       )}
                     </span>
