@@ -1,0 +1,411 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Some stakeholders are customers, such as legal staff, compliance auditors, suppliers, contractors, and venture capitalists",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explan": "Các đối tượng như nhân viên pháp lý, kiểm toán viên tuân thủ, nhà cung cấp, nhà thầu và nhà đầu tư mạo hiểm đều là các Stakeholders (bên liên quan), nhưng họ không được phân loại là Customers (khách hàng)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following statements accurately describe the use of context diagrams in representing project scope? Select two.",
+    "option_A": "A context diagram visually illustrates the boundary between the system being developed and external entities that interact with it.",
+    "option_B": "The context diagram includes detailed information about the system's internal processes and data.",
+    "option_C": "The primary purpose of a context diagram is to depict the interactions between the system and external entities without detailing the internal workings of the system.",
+    "option_D": "Context diagrams are typically used to represent the relationship between user interfaces and system components within the boundary.",
+    "correct_anwser": "A, C",
+    "explan": "Sơ đồ ngữ cảnh (Context Diagram) được dùng để xác định ranh giới hệ thống thông qua việc thể hiện hệ thống như một khối duy nhất tương tác với các thực thể bên ngoài (A và C). Sơ đồ này hoàn toàn không đi sâu vào cấu trúc hoặc luồng dữ liệu nội bộ chi tiết của hệ thống."
+  },
+  {
+    "question_id": 3,
+    "question_title": "What is not the purpose of a Use Case Diagram?",
+    "option_A": "Use case diagrams are both behavior diagrams because they describe the behavior of the system. They are also structure diagrams, serving as a special case of class diagrams where classifiers are restricted to be either actors or use cases related to each other with associations.",
+    "option_B": "Use case diagrams show the graphical user interface that needs to be implemented.",
+    "option_C": "Use case diagrams are usually referred to as behavior diagrams used to describe a set of actions (use cases) that some system or systems (subject) should or can perform in collaboration with one or more external users of the system (actors).",
+    "option_D": "A use case describes a sequence of interactions between a system and an external actor that results in the actor being able to achieve some outcome of value.",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ ca sử dụng (Use Case Diagram) dùng để mô tả mối quan hệ giữa tác nhân (actor) và các chức năng hệ thống ở mức tổng quan chứ hoàn toàn không có mục đích hay chức năng thể hiện giao diện đồ họa người dùng (Graphical User Interface - GUI)."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What is the distinction between users and actors?",
+    "option_A": "There is no real difference; the terms can be used interchangeably.",
+    "option_B": "Users are only relevant for use cases involving a graphical interface, while actors cover backend processes.",
+    "option_C": "Users are responsible for system development, and actors are responsible for testing.",
+    "option_D": "A user is an actual person (or system) using the product, while an actor is an abstraction that represents the role the user plays in a given use case.",
+    "option_E": "Users are always individuals, while actors are always systems.",
+    "correct_anwser": "D",
+    "explan": "Trong phân tích hệ thống và UML, 'User' là một người hoặc hệ thống thực tế bằng xương bằng thịt sử dụng sản phẩm phần mềm, còn 'Actor' là một thực thể trừu tượng đại diện cho một vai trò (role) mà người dùng đó đảm nhận khi tương tác với một ca sử dụng (use case) cụ thể."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Which of the following statements accurately describe preconditions and postconditions in the context of use cases? Select two.",
+    "option_A": "Preconditions define the prerequisites that must be met before the system can begin executing a use case.",
+    "option_B": "Preconditions describe the expected outcome after the use case has been successfully executed.",
+    "option_C": "Postconditions describe the state of the system after the use case has executed successfully.",
+    "option_D": "Postconditions determine whether the system should proceed with executing a use case.",
+    "correct_anwser": "A, C",
+    "explan": "Điều kiện tiên quyết (Preconditions) là các ràng buộc hoặc trạng thái hệ thống phải được thỏa mãn trước khi một ca sử dụng có thể bắt đầu chạy (A). Điều kiện sau (Postconditions) mô tả trạng thái cuối cùng hoặc kết quả mà hệ thống đạt được sau khi ca sử dụng kết thúc thành công (C)."
+  },
+  {
+    "question_id": 6,
+    "question_title": "What is the function of decision tables in requirements modeling?",
+    "option_A": "To represent complex Boolean logic and decisions in a tabular format",
+    "option_B": "To model user interface design",
+    "option_C": "To specify data flows",
+    "option_D": "To define system states",
+    "correct_anwser": "A",
+    "explan": "Bảng quyết định (Decision tables) được dùng trong mô hình hóa yêu cầu để biểu diễn các logic Boolean phức tạp gồm nhiều điều kiện và các hành động tương ứng dưới dạng bảng trực quan, giúp kiểm tra tính đầy đủ của logic nghiệp vụ."
+  },
+  {
+    "question_id": 7,
+    "question_title": "What is one guideline for naming processes in a DFD?",
+    "option_A": "Use a verb only",
+    "option_B": "Use a noun only",
+    "option_C": "Name the process after its corresponding data store",
+    "option_D": "Name each process using a concise verb-object action",
+    "correct_anwser": "D",
+    "explan": "Trong sơ đồ luồng dữ liệu (DFD), mỗi tiến trình (process) bắt buộc phải thực hiện một hành động biến đổi dữ liệu, do đó quy định đặt tên chuẩn là sử dụng cụm Động từ + Tân ngữ (verb-object) rõ ràng, súc tích."
+  },
+  {
+    "question_id": 8,
+    "question_title": "In an ERD, what is an entity typically represented by?",
+    "option_A": "A diamond shape",
+    "option_B": "A rectangle",
+    "option_C": "An oval shape",
+    "option_D": "A hexagon shape",
+    "correct_anwser": "B",
+    "explan": "Trong sơ đồ quan hệ thực thể (ERD), một thực thể (Entity) thường được biểu diễn bằng một hình chữ nhật (Rectangle). Hình thoi biểu diễn mối quan hệ, hình bầu dục biểu diễn thuộc tính."
+  },
+  {
+    "question_id": 9,
+    "question_title": "When selecting packaged solutions, what factors determine the level of detail and effort that should be put into specifying requirements?",
+    "option_A": "The availability of vendor documentation and training materials.",
+    "option_B": "The complexity of the existing system that the package will replace.",
+    "option_C": "The expected package costs, the evaluation timeline, and the number of candidate solutions.",
+    "option_D": "The size of the development team and their familiarity with packaged solutions",
+    "correct_anwser": "C",
+    "explan": "Khi lựa chọn các giải pháp phần mềm đóng gói thương mại (COTS), mức độ chi tiết và công sức bỏ ra để đặc tả yêu cầu phụ thuộc lớn vào chi phí dự kiến của gói phần mềm, quỹ thời gian đánh giá cho phép, và số lượng các giải pháp ứng viên cần cân nhắc sàng lọc."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What is the primary function of a \"Use Case\" in requirements engineering?",
+    "option_A": "To define the database schema and data relationships.",
+    "option_B": "To describe an interaction between a user (actor) and a system to achieve a specific goal.",
+    "option_C": "To outline the project schedule and milestones.",
+    "option_D": "To specify the non-functional constraints of the application.",
+    "correct_anwser": "B",
+    "explan": "Mục đích chính của Use Case (Trường hợp sử dụng) là mô tả một chuỗi tương tác hoàn chỉnh giữa một tác nhân bên ngoài (Actor) và hệ thống nhằm đạt được một mục tiêu cụ thể có giá trị đối với tác nhân đó."
+  },
+  {
+    "question_id": 11,
+    "question_title": "Which of the following describes the purpose of a context diagram in software requirements development?",
+    "option_A": "It maps out the full class structure and database schema.",
+    "option_B": "It defines the boundary between the system being developed and the external entities interacting with it.",
+    "option_C": "It tracks the project delivery schedule and milestones.",
+    "option_D": "It captures non-functional data constraints exclusively.",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ ngữ cảnh (Context Diagram) là một mô hình mức cao được sử dụng để xác định rõ ràng ranh giới (boundary) của hệ thống phần mềm cần xây dựng với thế giới bên ngoài, đồng thời hiển thị các tác nhân hoặc hệ thống ngoại vi (external entities) có trao đổi luồng thông tin với nó."
+  },
+  {
+    "question_id": 12,
+    "question_title": "An analytical model that visually represents the life cycle of an object, showing the valid sequences of conditions it can transition through, is called:",
+    "option_A": "A Data Flow Diagram",
+    "option_B": "A State Transition Diagram",
+    "option_C": "A Dialog Map",
+    "option_D": "An Entity-Relationship Diagram",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ chuyển trạng thái (State Transition Diagram) hiển thị một tập hợp các trạng thái mà một đối tượng có thể trải qua trong vòng đời của nó, đồng thời mô tả các sự kiện kích hoạt làm thay đổi trạng thái đó từ điều kiện này sang điều kiện khác."
+  },
+  {
+    "question_id": 13,
+    "question_title": "Which modeling technique is best suited for documenting complex business logic involving multiple combinations of conditional factors and corresponding actions?",
+    "option_A": "Use Case Diagram",
+    "option_B": "Decision Table or Decision Tree",
+    "option_C": "Context Diagram",
+    "option_D": "User Persona Grid",
+    "correct_anwser": "B",
+    "explan": "Bảng quyết định (Decision Table) hoặc Cây quyết định (Decision Tree) là công cụ phân tích nghiệp vụ lý tưởng nhất để biểu diễn các logic điều kiện phức tạp, nơi có nhiều sự kết hợp khác nhau giữa các yếu tố đầu vào dẫn đến các hành động xử lý khác nhau của hệ thống."
+  },
+  {
+    "question_id": 14,
+    "question_title": "Which element in a Use Case Description outlines the optimal pathway where everything works perfectly without errors?",
+    "option_A": "Preconditions",
+    "option_B": "Postconditions",
+    "option_C": "Alternative Flows",
+    "option_D": "Basic Flow or Main Success Scenario",
+    "correct_anwser": "D",
+    "explan": "Trong tài liệu mô tả Use Case, luồng cơ bản (Basic Flow hoặc Main Success Scenario) đại diện cho kịch bản lý tưởng nhất, nơi tất cả các bước tương tác diễn ra suôn sẻ theo đúng trình tự mong muốn và đạt được mục tiêu của tác nhân mà không gặp bất kỳ lỗi hay ngoại lệ nào."
+  },
+  {
+    "question_id": 15,
+    "question_title": "Which of the following describes the difference between an inclusion (<>) and an extension (<>) relationship in a Use Case Diagram?",
+    "option_A": "Inclusion is optional, while extension is always mandatory.",
+    "option_B": "Inclusion represents a mandatory subtask that is always executed as part of the base use case, while extension represents an optional behavior that occurs only under specific conditions.",
+    "option_C": "Inclusion is written by developers, while extension is drafted by users.",
+    "option_D": "Extension points down to the database, while inclusion points up to the user interface.",
+    "correct_anwser": "B",
+    "explan": "Mối quan hệ `<<include>>` chỉ ra rằng use case bị bao gồm là bắt buộc phải thực hiện mỗi khi use case gốc chạy. Ngược lại, mối quan hệ `<<extend>>` mô tả một hành vi tùy chọn (optional), chỉ được chèn vào use case gốc khi thỏa mãn một điều kiện hoặc điểm mở rộng (extension point) cụ thể."
+  },
+  {
+    "question_id": 16,
+    "question_title": "What is the key benefit of creating an entity-relationship diagram (ERD) during requirements analysis?",
+    "option_A": "It tracks the weekly hours billed by individual software contractors.",
+    "option_B": "It visually models the system's data objects and the logical relationships between them.",
+    "option_C": "It acts as a functional user experience interaction prototype.",
+    "option_D": "It compiles Java source code directly into relational database tables.",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ quan hệ thực thể (ERD) cung cấp một mô hình trực quan hóa cấu trúc dữ liệu của hệ thống, giúp xác định rõ các thực thể dữ liệu (data objects), các thuộc tính và mối liên kết logic giữa chúng."
+  },
+  {
+    "question_id": 17,
+    "question_title": "Which component in a standard Use Case Diagram represents an external entity that interacts with the system to achieve a goal?",
+    "option_A": "Extend point",
+    "option_B": "Boundary block",
+    "option_C": "Actor",
+    "option_D": "Include arrow",
+    "correct_anwser": "C",
+    "explan": "Tác nhân (Actor) trong sơ đồ Use Case đại diện cho một đối tượng bên ngoài (có thể là con người, phòng ban hoặc một hệ thống khác) trực tiếp tương tác với hệ thống để thực hiện một mục tiêu nhất định."
+  },
+  {
+    "question_id": 18,
+    "question_title": "In requirements modeling, a \"Data Flow Diagram\" (DFD) is primarily used to show:",
+    "option_A": "The visual layout arrangement of user interface buttons.",
+    "option_B": "How data moves through a system, including processes, data stores, and external entities.",
+    "option_C": "The chronological Gantt chart scheduling of project milestones.",
+    "option_D": "The object-oriented class inheritance structure tree.",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ luồng dữ liệu (DFD) được sử dụng để mô hình hóa sự chuyển động của dữ liệu trong hệ thống, chỉ ra cách dữ liệu được biến đổi qua các tiến trình (processes), lưu trữ tại các kho dữ liệu (data stores) và tương tác với các thực thể ngoài."
+  },
+  {
+    "question_id": 19,
+    "question_title": "How should the names of use cases be written?",
+    "option_A": "A noun followed by a verb",
+    "option_B": "A verb followed by an object",
+    "option_C": "A random combination of words",
+    "option_D": "A descriptive phrase",
+    "correct_anwser": "B",
+    "explan": "Tên của một ca sử dụng (use case) tiêu chuẩn phải luôn bắt đầu bằng một động từ thể hiện hành động hướng mục tiêu và theo sau là một bổ ngữ/đối tượng chịu tác động (Verb + Object). Ví dụ: 'Đăng nhập hệ thống', 'Rút tiền', 'Tạo hóa đơn'."
+  },
+  {
+    "question_id": 20,
+    "question_title": "Which of the following statements is TRUE about Use Cases?",
+    "option_A": "Use Cases are static and do not evolve throughout the software development process.",
+    "option_B": "Use case diagrams are the primary tool to document requirements",
+    "option_C": "Use Cases are not useful in capturing user requirements.",
+    "option_D": "Use Cases describe the interactions between the system and external entities.",
+    "correct_anwser": "D",
+    "explan": "Bản chất cốt lõi của ca sử dụng (Use Case) là mô tả chuỗi các sự kiện tương tác qua lại giữa một hệ thống và các tác nhân bên ngoài (external entities/actors) nhằm đạt được một mục tiêu cụ thể của người dùng."
+  },
+  {
+    "question_id": 21,
+    "question_title": "When choosing the appropriate representation techniques for analysis models, which of the following guidelines should be followed? Select two.",
+    "option_A": "Business process flows can be represented with high-level data flow diagrams or Swimlane diagrams that show roles and responsibilities in the process.",
+    "option_B": "Use only one type of model to avoid confusion and ensure clarity throughout the development process.",
+    "option_C": "Complex logic can be effectively represented using decision trees or decision tables, which show possible outcomes or unique functional requirements.",
+    "option_D": "Data relationships should be illustrated using state-transition diagrams or storyboard models.",
+    "correct_anwser": "A, C",
+    "explan": "Theo các nguyên tắc xây dựng mô hình phân tích: Luồng quy trình nghiệp vụ nên được mô tả bằng sơ đồ phân làn (Swimlane diagrams) để phân định rõ vai trò và trách nhiệm (A). Các logic nghiệp vụ phức tạp, chứa nhiều điều kiện rẽ nhánh rắc rối nên được biểu diễn rõ ràng qua bảng quyết định (decision tables) hoặc cây quyết định (decision trees) (C). Việc ép buộc chỉ dùng duy nhất một loại mô hình là sai lầm (loại B), và mối quan hệ dữ liệu phải dùng ERD chứ không dùng sơ đồ trạng thái (loại D)."
+  },
+  {
+    "question_id": 22,
+    "question_title": "How can a business analyst effectively translate the voice of the customer into specific model components? Select two.",
+    "option_A": "By focusing exclusively on the nouns mentioned by customers, as they represent the most critical elements.",
+    "option_B": "By identifying keywords such as nouns, verbs, and conditional statements that can be mapped to corresponding analysis model components.",
+    "option_C": "By using a predetermined set of model components without considering the specific word choices of the customer.",
+    "option_D": "By mapping verbs mentioned by customers to processes, activities, and use cases in the analysis models.",
+    "correct_anwser": "B, D",
+    "explan": "Để chuyển dịch ngôn ngữ của khách hàng sang mô hình phân tích một cách hiệu quả, BA cần phân tích các từ khóa ngữ pháp chính: Danh từ ánh xạ thành đối tượng/thực thể, động từ ánh xạ thành các tiến trình/ca sử dụng, và các từ điều kiện ánh xạ thành luật nghiệp vụ (B). Cụ thể, các động từ (verbs) mà khách hàng nói phản ánh trực tiếp hành động, do đó sẽ được đưa vào làm các quy trình, hoạt động hoặc ca sử dụng (D)."
+  },
+  {
+    "question_id": 23,
+    "question_title": "Which of the following is not a component of an Entity Relationship Diagrams (ERD)",
+    "option_A": "Entity",
+    "option_B": "Relationship",
+    "option_C": "Association",
+    "option_D": "Cardinality",
+    "option_E": "Attribute",
+    "correct_anwser": "C",
+    "explan": "Các thành phần cốt lõi của sơ đồ quan hệ thực thể (ERD) bao gồm Thực thể (Entity), Mối quan hệ (Relationship), Bản số/Quan hệ số lượng (Cardinality) và Thuộc tính (Attribute). Khái niệm 'Association' (Liên kết) là thuật ngữ đặc thù thường dùng trong Sơ đồ lớp (Class Diagram) của ngôn ngữ UML chứ không thuộc thành phần tiêu chuẩn của ERD."
+  },
+  {
+    "question_id": 24,
+    "question_title": "Which of the following statements is incorrect about ERD?",
+    "option_A": "Individual instances of an entity will have the same attribute values",
+    "option_B": "The cardinality, or multiplicity, of each relationship is shown with a number or letter on the lines that connect entities and relationships",
+    "option_C": "Each entity is described by one or more attributes",
+    "option_D": "The diamonds in the ERD represent relationships, which identify the logical linkages between pairs of entities",
+    "correct_anwser": "A",
+    "explan": "Phát biểu A sai vì các thực thể cụ thể (individual instances) thuộc cùng một tập thực thể sẽ có cùng cấu trúc các thuộc tính, nhưng giá trị dữ liệu chứa trong các thuộc tính đó của mỗi thực thể phải khác nhau để phân biệt chúng (ví dụ: các instance Sinh viên đều có thuộc tính 'Mã SV', nhưng giá trị Mã SV của mỗi người là duy nhất)."
+  },
+  {
+    "question_id": 25,
+    "question_title": "Consider the use case diagram for the Chemical Tracking System. How does the \"extend\" relationship between \"Request a Chemical\" and \"Search Vendor Catalogs\" affect the system's functionality?",
+    "option_A": "It allows \"Request a Chemical\" to function independently without any alternative flows.",
+    "option_B": "It integrates \"Search Vendor Catalogs\" into the normal flow of \"Request a Chemical.\"",
+    "option_C": "It provides an optional alternative flow for requesting chemicals from a vendor.",
+    "option_D": "It duplicates the steps of \"Search Vendor Catalogs\" within \"Request a Chemical.\"",
+    "correct_anwser": "C",
+    "explan": "Quan hệ `<<extend>>` (mở rộng) từ \"Search Vendor Catalogs\" đến \"Request a Chemical\" thể hiện một luồng hành vi tùy chọn (optional/alternative flow). Hành động tìm kiếm danh mục nhà cung cấp chỉ diễn ra trong một số điều kiện nhất định khi thực hiện ca sử dụng gốc, chứ không bắt buộc thực hiện như quan hệ include."
+  },
+  {
+    "question_id": 26,
+    "question_title": "What is the primary purpose of a state-transition diagram (STD)?",
+    "option_A": "To model the physical layout and hardware components of a system.",
+    "option_B": "To represent the possible states of an object and the transitions between these states based on various events or conditions.",
+    "option_C": "To outline the organizational roles and responsibilities within a business process.",
+    "option_D": "To visualize user interface flow and interactions in software applications.",
+    "correct_anwser": "B",
+    "explan": "Mục đích cốt lõi của sơ đồ chuyển trạng thái (State-Transition Diagram) là mô hình hóa các trạng thái có thể có của một đối tượng hoặc hệ thống, cùng với các quy tắc, điều kiện hoặc sự kiện kích hoạt sự dịch chuyển qua lại giữa các trạng thái đó."
+  },
+  {
+    "question_id": 27,
+    "question_title": "A collection of definitions for the data elements and data structures that are relevant to the problem domain",
+    "option_A": "Data dictionary",
+    "option_B": "Data flow diagram",
+    "option_C": "Database",
+    "option_D": "Relationship",
+    "correct_anwser": "A",
+    "explan": "Tập hợp tất cả các định nghĩa chi tiết về các phần tử dữ liệu (data elements) và cấu trúc dữ liệu (data structures) thuộc phạm vi bài toán của hệ thống được gọi là Từ điển dữ liệu (Data dictionary)."
+  },
+  {
+    "question_id": 28,
+    "question_title": "What is the definition of Pre-Condition in Use case?",
+    "option_A": "A condition that describes the state of a system after a use case is successfully completed.",
+    "option_B": "A condition that must be satisfied or a state the system must be in before a use case can begin.",
+    "option_C": "A condition that initiates execution of the use case",
+    "option_D": "A condition that must be satisfied so that system run successful.",
+    "correct_anwser": "B",
+    "explan": "Điều kiện tiên quyết (Pre-condition) trong ca sử dụng được định nghĩa là một ràng buộc hoặc trạng thái bắt buộc hệ thống phải thỏa mãn trước khi ca sử dụng đó được phép kích hoạt và bắt đầu thực thi."
+  },
+  {
+    "question_id": 29,
+    "question_title": "Which elements are mandatory in use case?",
+    "option_A": "Post-condition",
+    "option_B": "Actors",
+    "option_C": "Pre-condition",
+    "option_D": "Name",
+    "correct_anwser": "B, D",
+    "explan": "Trong một Use Case, hai thành phần tối thiểu và bắt buộc phải có để định danh và xác định đối tượng tương tác là Tên của Use Case (Name) và Tác nhân (Actors). Điều kiện tiên quyết (Pre-condition) và điều kiện sau khi hoàn thành (Post-condition) tuy quan trọng trong tài liệu đặc tả chi tiết nhưng không phải lúc nào cũng bắt buộc ở mọi mức độ biểu diễn Use Case tổng quan."
+  },
+  {
+    "question_id": 30,
+    "question_title": "In the Chemical Tracking System project, what is the relationship between use case: \"Play a bill\" and use case: \"Write a check\" ?",
+    "option_A": "include",
+    "option_B": "extend",
+    "option_C": "generalization",
+    "option_D": "N/A",
+    "correct_anwser": "B",
+    "explan": "Lưu ý đề bài hiển thị lỗi chính tả từ gốc \"Pay a bill\" thành \"Play a bill\". Mối quan hệ giữa hành động \"Thanh toán hóa đơn\" (Pay a bill) và \"Viết séc\" (Write a check) là quan hệ mở rộng (extend), vì viết séc là một trong những phương thức tùy chọn, không bắt buộc để hoàn thành việc thanh toán hóa đơn (người dùng có thể trả bằng tiền mặt, thẻ tín dụng,...)."
+  },
+  {
+    "question_id": 31,
+    "question_title": "How can requirements modeling assist in resolving conflicts between stakeholders?",
+    "option_A": "By providing a clear, visual representation of requirements for alignment",
+    "option_B": "By finalizing all functional requirements",
+    "option_C": "By focusing only on technical feasibility",
+    "option_D": "By eliminating the need for prototyping",
+    "correct_anwser": "A",
+    "explan": "Mô hình hóa yêu cầu (Requirements modeling) sử dụng các biểu đồ trực quan giúp các bên liên quan dễ dàng nhìn thấy bức tranh tổng thể, phát hiện ra các điểm bất đồng hoặc thiếu sót, từ đó thảo luận để đi đến sự thống nhất và đồng thuận cao hơn."
+  },
+  {
+    "question_id": 32,
+    "question_title": "Which of the following factors should be considered when classifying users? Select three.",
+    "option_A": "The platform they will be using, such as desktop PCs, laptops, tablets, or smartphones.",
+    "option_B": "The specific languages used in the system’s backend processes.",
+    "option_C": "The frequency with which they use the product and the tasks they perform during business operations.",
+    "option_D": "Their access privileges or security levels, such as ordinary user, guest user, or administrator.",
+    "correct_anwser": "A, C, D",
+    "explan": "Khi phân loại các lớp người dùng (user classes), chúng ta dựa trên nền tảng thiết bị họ sử dụng (A), tần suất sử dụng và tác vụ nghiệp vụ họ thực hiện (C), cùng với mức độ phân quyền/bảo mật của họ trong hệ thống (D). Ngôn ngữ lập trình backend (B) thuộc về mặt kỹ thuật nội bộ, không dùng để phân loại đối tượng người dùng."
+  },
+  {
+    "question_id": 33,
+    "question_title": "Which of the following statements accurately describe the use case approach? Select two.",
+    "option_A": "A use case describes a sequence of interactions between a system and an external actor that results in an outcome of value to the actor.",
+    "option_B": "In a use case diagram, the boundary between what’s inside and outside the system is not explicitly defined.",
+    "option_C": "Actors in a use case can include both human users and other systems that interact with the system being developed.",
+    "option_D": "The primary actor in a use case is always the system itself, as it initiates and controls all interactions.",
+    "correct_anwser": "A, C",
+    "explan": "Cách tiếp cận Use Case mô tả chuỗi tương tác giữa hệ thống và tác nhân bên ngoài để mang lại một giá trị cụ thể cho tác nhân đó (A đúng). Tác nhân (Actors) tham gia vào Use Case không chỉ là con người mà còn có thể là các hệ thống phần mềm/phần cứng khác kết nối tới hệ thống (C đúng)."
+  },
+  {
+    "question_id": 34,
+    "question_title": "If both \"Submit loan request\" and \"Offer line of credit\" use the \"Perform credit check\" use case, the relationship between \"Perform credit check\" and the other use cases is:",
+    "option_A": "Extend relationship",
+    "option_B": "Generalization relationship",
+    "option_C": "Include relationship",
+    "correct_anwser": "C",
+    "explan": "Khi nhiều use cases khác nhau đều sử dụng chung một chức năng con tuần tự và bắt buộc (ở đây là 'Perform credit check'), mối quan hệ giữa use case cơ sở và use case dùng chung đó được định nghĩa là quan hệ bao hàm (Include relationship)."
+  },
+  {
+    "question_id": 35,
+    "question_title": "How should data flows be represented between processes, data stores, and external entities in a DFD?",
+    "option_A": "Directly from one process to another.",
+    "option_B": "Directly from one data store to another.",
+    "option_C": "Through a process bubble, not directly between data stores or between external entities and data stores.",
+    "option_D": "Directly between external entities and data stores.",
+    "correct_anwser": "C",
+    "explan": "Trong Sơ đồ luồng dữ liệu (DFD), mọi luồng dữ liệu đi/đến kho dữ liệu (data stores) hoặc thực thể ngoài (external entities) đều bắt buộc phải đi qua một tiến trình xử lý (process bubble). Dữ liệu không thể tự di chuyển trực tiếp giữa hai kho dữ liệu, hoặc trực tiếp từ thực thể ngoài vào thẳng kho dữ liệu mà không có tiến trình xử lý tác động."
+  },
+  {
+    "question_id": 36,
+    "question_title": "Fill in the blank.\n______is a visual representation of the data objects and collections the system will process, and the relationships between them.",
+    "option_A": "Use case diagram",
+    "option_B": "Data model",
+    "option_C": "Data dictionary",
+    "option_D": "Reports",
+    "correct_anwser": "B",
+    "explan": "Mô hình dữ liệu (Data model), chẳng hạn như sơ đồ ERD, chính là sự thể hiện trực quan hóa cấu trúc của các đối tượng dữ liệu, tập hợp dữ liệu mà hệ thống sẽ xử lý, kèm theo các mối quan hệ ràng buộc logic giữa chúng."
+  },
+  {
+    "question_id": 37,
+    "question_title": "When defining installability requirements, which of the following factors is most important to measure how easy it is to install a system?",
+    "option_A": "The number of additional components that need to be installed with the system.",
+    "option_B": "The average time required for an untrained user to successfully complete the installation process.",
+    "option_C": "The type of hardware used during the installation process.",
+    "option_D": "The number of user profiles that need to be transferred during installation.",
+    "correct_anwser": "B",
+    "explan": "Yêu cầu về khả năng cài đặt (Installability) hướng tới tính dễ dàng thực hiện. Tiêu chí định lượng tốt nhất để đo lường độ 'dễ' này là thời gian trung bình cần thiết để một người dùng bình thường (chưa qua đào tạo huấn luyện) có thể tự hoàn thành việc cài đặt hệ thống thành công."
+  },
+  {
+    "question_id": 38,
+    "question_title": "In a use case diagram, an arrow from an actor to a use case indicates that he is the _________ actor for the use case.",
+    "option_A": "primary",
+    "option_B": "secondary",
+    "option_C": "main",
+    "option_D": "side",
+    "correct_anwser": "A",
+    "explan": "Trong sơ đồ use case, đường liên kết hoặc mũi tên xuất phát từ Actor hướng đến Use Case thường dùng để chỉ định Actor đó là tác nhân chính (Primary Actor) — người chủ động kích hoạt và tương tác trực tiếp để thực hiện use case."
+  },
+  {
+    "question_id": 39,
+    "question_title": "Which of the following would be an appropriate analysis model component for a ‘verb’ in customer language?",
+    "option_A": "External entities in a Data Flow Diagram (DFD)",
+    "option_B": "Relationships in an Entity Relationship Diagram (ERD)",
+    "option_C": "Processes in a Data Flow Diagram (DFD)",
+    "option_D": "Objects with states in a State Transition Diagram (STD)",
+    "correct_anwser": "C",
+    "explan": "Khi phân tích ngôn ngữ tự nhiên của khách hàng để chuyển sang mô hình hóa, các 'danh từ' thường đại diện cho thực thể (Entities/Data stores) hoặc tác nhân, còn các 'động từ' hành động (ví dụ: tính toán, kiểm tra, gửi...) sẽ tương ứng với các Tiến trình (Processes) xử lý trong sơ đồ dòng dữ liệu DFD."
+  },
+  {
+    "question_id": 40,
+    "question_title": "Fill in the blank.\n_______ is a visual representation of the data objects and collections the system will process and the relationships between them.",
+    "option_A": "Use case diagram",
+    "option_B": "Data model",
+    "option_C": "Data dictionary",
+    "option_D": "Reports",
+    "correct_anwser": "B",
+    "explan": "Mô hình dữ liệu (Data model) - ví dụ tiêu biểu là sơ đồ ERD - là một cách biểu diễn trực quan các đối tượng dữ liệu, tập hợp dữ liệu mà hệ thống xử lý cùng với mối quan hệ (relationships) ràng buộc giữa chúng."
+  },
+  {
+    "question_id": 41,
+    "question_title": "What technique is used to represent the scope of a project? (Choose 2 correct answers)",
+    "option_A": "Ecosystem map",
+    "option_B": "Use case",
+    "option_C": "Context diagram",
+    "option_D": "ERD",
+    "correct_anwser": "A, C",
+    "explan": "Theo tài liệu kỹ nghệ yêu cầu phần mềm, hai kỹ thuật mô hình hóa phân tích chuẩn mực nhất được sử dụng trực tiếp để định hình và biểu diễn phạm vi dự án (project scope) ở mức cao là Sơ đồ ngữ cảnh (Context diagram) và Sơ đồ hệ sinh thái (Ecosystem map)."
+  }
+]

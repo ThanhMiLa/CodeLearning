@@ -1,0 +1,570 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Which one of these is NOT a Business analyst's task?",
+    "option_A": "Communicate requirements",
+    "option_B": "Document requirements",
+    "option_C": "Analyze requirements",
+    "option_D": "Assure requirements",
+    "option_E": "Elicit requirements",
+    "correct_anwser": "D",
+    "explan": "'Assure requirements' (Đảm bảo chất lượng/kiểm định yêu cầu thường thuộc về vai trò QA/QC hoặc quy trình Validation tập thể), các nhiệm vụ cốt lõi của BA bao gồm khơi gợi (Elicit), phân tích (Analyze), tài liệu hóa (Document) và giao tiếp (Communicate) yêu cầu."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Why is it essential to validate requirements with stakeholders?",
+    "option_A": "To ensure they align with business goals and user expectations",
+    "option_B": "To reduce the scope of non-functional requirements",
+    "option_C": "To finalize the system design early",
+    "option_D": "To prioritize coding tasks over prototyping",
+    "correct_anwser": "A",
+    "explan": "Xác thực yêu cầu (Validate requirements) với stakeholders là hoạt động tối quan trọng nhằm đảm bảo chắc chắn rằng các yêu cầu đã thu thập hoàn toàn thống nhất, đồng bộ với mục tiêu kinh doanh chiến lược và kỳ vọng thực tế của người dùng."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which of the following is NOT an intended audience for a Software Requirements Specification (SRS)?",
+    "option_A": "Project Managers",
+    "option_B": "Testers",
+    "option_C": "Legal Staff",
+    "option_D": "Hardware Manufacturers",
+    "option_E": "Documentation Writers",
+    "correct_anwser": "C",
+    "explan": "Tài liệu SRS được thiết kế chủ yếu cho các bên liên quan trực tiếp đến việc xây dựng sản phẩm như PM, Developer, Tester, Hardware Manufacturers (nếu có tích hợp phần cứng) và người viết tài liệu hướng dẫn. 'Legal Staff' (Nhân viên pháp lý) thường chỉ quan tâm đến hợp đồng hoặc chính sách tuân thủ tầm cao chứ không phải là đối tượng độc giả mục tiêu trực tiếp để đọc hiểu các yêu cầu kỹ thuật chi tiết của SRS."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What does the \"STRETCH\" keyword in Planguage represent?",
+    "option_A": "The ideal performance level",
+    "option_B": "A benchmark for testing",
+    "option_C": "A more desirable performance objective than the minimum goal",
+    "option_D": "A failure condition",
+    "correct_anwser": "C",
+    "explan": "Trong ngôn ngữ đặc tả Planguage (được dùng để định lượng yêu cầu phi chức năng), từ khóa 'STRETCH' đại diện cho một mục tiêu hiệu năng mong muốn cao hơn, mang tính thách thức hơn so với cái đích tối thiểu phải đạt được (Target/Minimum)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What is the primary purpose of using a prototype in the software development process?",
+    "option_A": "To finalize the product design and ensure no further changes are needed.",
+    "option_B": "To validate requirements by finding errors and omissions, and assessing their accuracy and quality.",
+    "option_C": "To create a fully functional product that can be immediately deployed.",
+    "option_D": "To focus solely on the user experience without considering technical feasibility.",
+    "correct_anwser": "B",
+    "explan": "Mục đích cốt lõi của việc sử dụng mẫu thử (Prototype) là để xác thực yêu cầu (Validate requirements). Thông qua tương tác sớm với mẫu thử, người dùng và BA có thể phát hiện ra các sai sót, các điểm còn thiếu, đồng thời đánh giá được mức độ chính xác và chất lượng của tập yêu cầu trước khi tiến hành code thật."
+  },
+  {
+    "question_id": 6,
+    "question_title": "What is a key benefit of using mock-ups in prototyping?",
+    "option_A": "To test the performance of the system",
+    "option_B": "To demonstrate the system's functionality",
+    "option_C": "To clarify user interface designs early",
+    "option_D": "To finalize system features",
+    "correct_anwser": "C",
+    "explan": "Mock-up là bản mô phỏng tĩnh, tập trung chủ yếu vào khía cạnh trực quan của hệ thống. Lợi ích lớn nhất của nó là giúp các bên liên quan làm rõ và thống nhất về thiết kế giao diện người dùng (UI Design) ngay từ giai đoạn sớm của dự án."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Why is a defect checklist important during requirements validation?",
+    "option_A": "It helps to systematically identify potential issues in the requirements",
+    "option_B": "It ensures the system meets the design specifications",
+    "option_C": "It simplifies the testing process",
+    "option_D": "It provides detailed technical instructions for developers",
+    "correct_anwser": "A",
+    "explan": "Bảng kiểm lỗi (Defect checklist) đóng vai trò như một bộ hướng dẫn giúp đội ngũ kiểm định yêu cầu rà soát một cách có hệ thống, từ đó phát hiện ra các lỗi phổ biến như tính mơ hồ, sự mâu thuẫn, hoặc thiếu sót thông tin trong tài liệu đặc tả."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following is NOT about Requirements validation?",
+    "option_A": "It is the fourth component of requirements development.",
+    "option_B": "It is ensure that they have all the desired properties of high-quality requirements is also an essential activity.",
+    "option_C": "It is assesses whether you have written the right requirements: they trace back to business objectives.",
+    "option_D": "It allows teams to build a correct solution that meets the stated business objectives.",
+    "correct_anwser": "A",
+    "explan": "Trong mô hình phát triển yêu cầu (Requirements Development) gồm 4 phân nhánh cốt lõi: Elicitation (Khơi gợi), Analysis (Phân tích), Specification (Đặc tả) và Validation (Xác thực). Các phát biểu B, C, D đều mô tả chính xác mục tiêu của Validation. Do đó phát biểu A không có điểm khác biệt nổi bật để làm đáp án loại trừ, hoặc cấu trúc câu hỏi này đang kiểm tra một chi tiết phủ định trong tài liệu. Tuy nhiên, khi xét kỹ tính logic, 'validation' chính là thành phần thứ tư, nên để tìm phương án SAI, câu này thường là lỗi biên soạn đề hoặc đáp án đúng để chọn là một lựa chọn phủ định khía cạnh khác, nhưng xét theo chuẩn kỹ nghệ yêu cầu thì các ý B, C, D đều mô tả đúng bản chất của Validation."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Requirements development does not include:",
+    "option_A": "Analysis",
+    "option_B": "Validation",
+    "option_C": "Design",
+    "option_D": "Elicitation",
+    "correct_anwser": "C",
+    "explan": "Quy trình phát triển yêu cầu (Requirements Development) bao gồm 4 hoạt động chính: Gợi tiến/Thu thập (Elicitation), Phân tích (Analysis), Khai báo/Tài liệu hóa (Specification), và Kiểm chứng (Validation). Thiết kế (Design) thuộc giai đoạn tiếp theo của vòng đời phát triển phần mềm chứ không nằm trong quy trình này."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What is the first step in the Requirements Development Process?",
+    "option_A": "Analysis (Analyzing requirements)",
+    "option_B": "Validation (Validating requirements)",
+    "option_C": "Elicitation (Gathering requirements)",
+    "option_D": "Specification (Documenting requirements)",
+    "option_E": "Management (Managing requirements)",
+    "correct_anwser": "C",
+    "explan": "Bước đầu tiên luôn luôn là Gợi tiến/Thu thập yêu cầu (Elicitation) để tìm hiểu, khai thác thông tin từ người dùng và các bên liên quan trước khi có thể tiến hành phân tích hay viết tài liệu."
+  },
+  {
+    "question_id": 11,
+    "question_title": "Why should requirements be written in a way that avoids technical jargon?",
+    "option_A": "To ensure that stakeholders, who may not have a technical background, can easily understand and validate them.",
+    "option_B": "Because technical jargon slows down the development team.",
+    "option_C": "To keep the SRS document as short as possible.",
+    "option_D": "To allow the QA team to create automated tests directly from the text.",
+    "correct_anwser": "A",
+    "explan": "Tài liệu yêu cầu là phương tiện giao tiếp giữa nhiều bên. Việc tránh các thuật ngữ kỹ thuật quá chuyên sâu (technical jargon) giúp các bên liên quan thuộc khối nghiệp vụ (khách hàng, người dùng cuối) có thể dễ dàng đọc hiểu, rà soát và xác nhận tính chính xác của các yêu cầu một cách hiệu quả."
+  },
+  {
+    "question_id": 12,
+    "question_title": "What does a business analyst typically do with conflicting requirements from different stakeholders?",
+    "option_A": "Implement all requirements and let the testing team find the errors.",
+    "option_B": "Choose the requirement from the stakeholder with the highest job title without discussion.",
+    "option_C": "Facilitate discussions to negotiate and resolve the conflicts to reach an agreed-upon solution.",
+    "option_D": "Ignore both requirements until the stakeholders resolve the issue themselves.",
+    "correct_anwser": "C",
+    "explan": "Khi xảy ra xung đột yêu cầu giữa các bên liên quan, trách nhiệm của một BA là tổ chức và điều phối các buổi thảo luận, đàm phán nhằm giúp các bên hiểu rõ góc nhìn của nhau, từ đó tìm ra phương án tối ưu được đồng thuận chung."
+  },
+  {
+    "question_id": 13,
+    "question_title": "Why should non-functional requirements be measurable?",
+    "option_A": "So that developers know exactly how many lines of code to write.",
+    "option_B": "To ensure they can be objectively tested and verified by the QA team.",
+    "option_C": "To keep the software project under the allocated budget.",
+    "option_D": "To allow the project manager to rank the performance of individual developers.",
+    "correct_anwser": "B",
+    "explan": "Yêu cầu phi chức năng cần phải được định lượng và đo lường được (ví dụ: thời gian phản hồi dưới 2 giây) để đội ngũ kiểm thử (QA/QC) có thể thiết kế kịch bản đo đạc, kiểm chứng và xác nhận một cách khách quan xem hệ thống có đạt tiêu chuẩn hay không."
+  },
+  {
+    "question_id": 14,
+    "question_title": "An elicitation technique that involves studying existing system documentation, industry standards, or competitor product reviews is known as:",
+    "option_A": "Focus Groups",
+    "option_B": "Document Analysis",
+    "option_C": "Interface Analysis",
+    "option_D": "Prototyping",
+    "correct_anwser": "B",
+    "explan": "Phân tích tài liệu (Document Analysis) là kỹ thuật thu thập thông tin bằng cách nghiên cứu các tài liệu hiện có như quy trình nghiệp vụ, tài liệu hệ thống cũ, tiêu chuẩn ngành hoặc các đánh giá sản phẩm cạnh tranh để có được hiểu biết nền tảng về hệ thống."
+  },
+  {
+    "question_id": 15,
+    "question_title": "An analyst creates a mockup of a user interface screen to get early feedback from users about the navigation flow. This practice is known as:",
+    "option_A": "Data Modeling",
+    "option_B": "System Architecture Review",
+    "option_C": "Prototyping",
+    "option_D": "Unit Testing",
+    "correct_anwser": "C",
+    "explan": "Làm mẫu thử (Prototyping) bao gồm việc thiết kế các mô hình giao diện tĩnh hoặc động (mockups/wireframes) nhằm phác thảo sớm cách bố trí cấu trúc và luồng điều hướng của màn hình để lấy phản hồi nhanh chóng từ khách hàng trước khi tiến hành viết mã thực tế."
+  },
+  {
+    "question_id": 16,
+    "question_title": "Requirements validation involves:",
+    "option_A": "Writing technical code based on user requests.",
+    "option_B": "Ensuring the documented requirements accurately represent stakeholder needs and are of high quality.",
+    "option_C": "Configuring network server security firewalls.",
+    "option_D": "Drafting the initial project budget estimate spreadsheets.",
+    "correct_anwser": "B",
+    "explan": "Xác nhận yêu cầu (Requirements Validation) tập trung vào việc kiểm chứng, rà soát xem tài liệu yêu cầu phần mềm đã viết ra có phản ánh đúng và đủ mong muốn thực tế của khách hàng hay không, đồng thời đảm bảo tài liệu đạt các tiêu chí chất lượng (rõ ràng, nhất quán, không mơ hồ)."
+  },
+  {
+    "question_id": 17,
+    "question_title": "Which validation technique involves a structured team meeting where participants carefully review a requirements document line-by-line to find defects?",
+    "option_A": "Ad hoc informal chatting",
+    "option_B": "Formal Inspection or Peer Review",
+    "option_C": "Beta version user testing",
+    "option_D": "Automated regression compilation",
+    "correct_anwser": "B",
+    "explan": "Kiểm duyệt chính thức (Formal Inspection) hoặc Đánh giá đồng cấp (Peer Review) là phương pháp rà soát chất lượng có tính cấu trúc cao, trong đó một nhóm chuyên gia ngồi lại cùng nhau đọc và phân tích từng dòng nội dung trong tài liệu để chủ động bóc tách các lỗi hoặc điểm mâu thuẫn."
+  },
+  {
+    "question_id": 18,
+    "question_title": "When evaluating the quality of a requirement, what does the characteristic \"Unambiguous\" mean?",
+    "option_A": "The requirement can be interpreted in only one way by anyone who reads it.",
+    "option_B": "The requirement is written in a highly advanced technical programming language syntax.",
+    "option_C": "The requirement details the complete database index optimization strategy.",
+    "option_D": "The requirement is easily applicable to all alternative software projects.",
+    "correct_anwser": "A",
+    "explan": "Đặc tính \"Không mơ hồ\" (Unambiguous) của một yêu cầu đảm bảo rằng câu văn phải được viết cực kỳ rõ ràng, tường minh, khiến cho bất kỳ ai đọc (dù là khách hàng, BA, lập trình viên haytester) cũng đều chỉ có thể hiểu theo một nghĩa duy nhất."
+  },
+  {
+    "question_id": 19,
+    "question_title": "If a requirement cannot be checked by any objective test or verification method, it fails to meet which quality criterion?",
+    "option_A": "Complete",
+    "option_B": "Verifiable or Testable",
+    "option_C": "Traceable",
+    "option_D": "Consistent",
+    "option_E": "Feasible",
+    "correct_anwser": "B",
+    "explan": "Một yêu cầu nếu không thể được kiểm chứng bằng bất kỳ phép đo, bài thử hay phương pháp khách quan nào từ phía đội ngũ QA/QC thì yêu cầu đó đã vi phạm tiêu chí chất lượng là \"Có thể kiểm chứng\" (Verifiable or Testable)."
+  },
+  {
+    "question_id": 20,
+    "question_title": "When tracking a requirement's status throughout the project life cycle, which status indicates that the requirement has been successfully implemented and verified by tests?",
+    "option_A": "Proposed",
+    "option_B": "Approved",
+    "option_C": "Drafted",
+    "option_D": "Completed or Verified",
+    "correct_anwser": "D",
+    "explan": "Trạng thái \"Completed\" (Hoàn thành) hoặc \"Verified\" (Đã kiểm chứng) biểu thị rằng yêu cầu đó không những đã được lập trình viên viết mã xong mà còn vượt qua các bài kiểm thử xác nhận chất lượng từ phía đội ngũ QA/QC, sẵn sàng bàn giao."
+  },
+  {
+    "question_id": 21,
+    "question_title": "What role does the Business Analyst play during formal requirements peer reviews or inspections?",
+    "option_A": "Approving the financial project funding allocation unilaterally.",
+    "option_B": "Presenting the requirements document, answering questions, and capturing feedback to resolve identified defects.",
+    "option_C": "Writing the automated continuous integration script logic.",
+    "option_D": "Configuring the physical production cloud servers.",
+    "correct_anwser": "B",
+    "explan": "Trong các buổi Peer Review tài liệu yêu cầu, BA đóng vai trò giải trình nội dung, trả lời các thắc mắc của đội ngũ phát triển/kiểm thử, đồng thời ghi nhận lại các phản hồi, lỗi sai (defects) được phát hiện để tiến hành sửa đổi."
+  },
+  {
+    "question_id": 22,
+    "question_title": "Requirements validation should ideally happen:",
+    "option_A": "Only after the entire system has been coded and deployed to production.",
+    "option_B": "Continuously and iteratively throughout the requirements development phase before significant technical work begins.",
+    "option_C": "Only during the project budgeting initial meeting.",
+    "option_D": "Exclusively when a critical runtime database crash occurs.",
+    "option_E": "None of the mentioned",
+    "option_F": "All of the mentioned",
+    "correct_anwser": "B",
+    "explan": "Hoạt động xác nhận yêu cầu (Requirements Validation) cần phải được thực hiện liên tục và lặp đi lặp lại trong giai đoạn làm yêu cầu nhằm phát hiện sớm các lỗi sai ngay từ đầu, trước khi đội ngũ kỹ thuật tiến hành thiết kế kiến trúc và viết mã."
+  },
+  {
+    "question_id": 23,
+    "question_title": "Which one of the following is not step of requirement engineering?",
+    "option_A": "documentation",
+    "option_B": "elicitation",
+    "option_C": "analysis",
+    "option_D": "design",
+    "correct_anwser": "D",
+    "explan": "Kỹ nghệ yêu cầu (Requirement Engineering) bao gồm các bước chính như khơi gợi (elicitation), phân tích (analysis), tài liệu hóa (documentation/specification) và xác thực (validation). Trong khi đó, thiết kế (design) là một giai đoạn tiếp theo trong quy trình phát triển phần mềm (SDLC) dựa trên các yêu cầu đã thu thập, chứ không nằm trong kỹ nghệ yêu cầu."
+  },
+  {
+    "question_id": 24,
+    "question_title": "Which of the following statements about the requirements development process' framework is accurate? Select two.",
+    "option_A": "The process of requirements development is strictly linear, moving from elicitation to validation without any need for revisiting previous stages.",
+    "option_B": "Elicitation, analysis, specification, and validation are iterative activities that may require revisiting earlier stages to ensure accuracy and completeness.",
+    "option_C": "Validation is only performed at the end of the project to confirm that all requirements have been met.",
+    "option_D": "The framework allows for flexibility, with steps often revisited throughout the project to refine and correct requirements as needed.",
+    "correct_anwser": "B, D",
+    "explan": "Quy trình phát triển yêu cầu không phải là một đường thẳng tuyến tính (loại A) và xác thực không chỉ diễn ra vào cuối dự án (loại C). Thay vào đó, đây là một quy trình mang tính lặp (iterative) và linh hoạt (flexible). Các hoạt động khơi gợi, phân tích, đặc tả và xác thực được thực hiện liên tục và có thể quay lại các bước trước đó để làm mịn, điều chỉnh yêu cầu cho chính xác và đầy đủ nhất."
+  },
+  {
+    "question_id": 25,
+    "question_title": "Which of the following statements accurately describes the purpose and use of personas in requirements analysis? Select two.",
+    "option_A": "A persona is a real user from the target audience, used to validate requirements and ensure they meet actual user needs.",
+    "option_B": "Personas are hypothetical, generic users representing a group with similar characteristics, used to understand requirements and design user experiences.",
+    "option_C": "Creating a persona helps bring user classes to life and aids in visualizing how different types of users will interact with the system.",
+    "option_D": "Personas are only useful during the testing phase to ensure that the application functions as expected for diverse user groups.",
+    "correct_anwser": "B, C",
+    "explan": "Chân dung người dùng (Persona) là một hồ sơ giả định mang tính đại diện dựa trên dữ liệu thực tế (hypothetical, generic users) để mô tả một nhóm người dùng có chung đặc điểm hành vi (B). Việc tạo ra các Persona giúp hiện thực hóa các lớp người dùng, hỗ trợ đội ngũ thiết kế và phân tích hình dung sinh động cách các kiểu người dùng khác nhau sẽ tương tác với hệ thống ra sao (C). Persona không phải là một người dùng thật cụ thể (loại A) và có ích trong suốt quá trình phân tích/thiết kế chứ không chỉ riêng giai đoạn testing (loại D)."
+  },
+  {
+    "question_id": 26,
+    "question_title": "What does the term \"elicitation\" primarily refer to in requirements engineering?",
+    "option_A": "The process of gathering requirements from stakeholders",
+    "option_B": "The validation of technical requirements",
+    "option_C": "The prioritization of system constraints",
+    "option_D": "The finalization of the project budget",
+    "correct_anwser": "A",
+    "explan": "Trong kỹ nghệ yêu cầu, thuật ngữ 'Elicitation' (Khơi gợi yêu cầu) đề cập trực tiếp đến quá trình thu thập, khám phá và tìm hiểu các yêu cầu, mong đợi của hệ thống từ phía các bên liên quan (stakeholders) thông qua các kỹ thuật như phỏng vấn, khảo sát, workshop..."
+  },
+  {
+    "question_id": 27,
+    "question_title": "How does prototyping mitigate risks in requirements engineering?",
+    "option_A": "By providing stakeholders with a visual representation to validate ambiguous requirements",
+    "option_B": "By finalizing system requirements early",
+    "option_C": "By focusing on coding rather than design",
+    "option_D": "By skipping the requirements validation phase",
+    "correct_anwser": "A",
+    "explan": "Tương tự như câu 24, việc tạo mẫu thử giúp giảm thiểu rủi ro làm sai yêu cầu bằng cách cung cấp giao diện trực quan cho các bên liên quan xem xét, từ đó sớm phát hiện sai sót và xác thực các yêu cầu còn chưa rõ ràng trước khi tiến hành code thật."
+  },
+  {
+    "question_id": 28,
+    "question_title": "Consider the following statement: \"All the screens in the system must load quickly\". This requirement statement is _________",
+    "option_A": "Correct and Feasible",
+    "option_B": "Unambiguous and Testable",
+    "option_C": "Unambiguous and Non-Testable",
+    "option_D": "Ambiguous and Non-Testable",
+    "correct_anwser": "D",
+    "explan": "Câu phát biểu trên sử dụng từ ngữ định tính 'load quickly' (tải nhanh), một khái niệm rất mơ hồ (Ambiguous) vì mỗi người sẽ có định nghĩa 'nhanh' khác nhau. Do không có một con số cụ thể (ví dụ: trong vòng 2 giây), kiểm thử viên cũng không thể thiết lập tiêu chí để đo lường hay kiểm chứng, vì vậy nó hoàn toàn không thể kiểm thử được (Non-Testable)."
+  },
+  {
+    "question_id": 29,
+    "question_title": "Which of the following is NOT a purpose of creating a mock-up?",
+    "option_A": "To refine user interface design.",
+    "option_B": "To test architectural feasibility.",
+    "option_C": "To allow users to judge the overall workflow and requirements.",
+    "option_D": "To simulate a user interface with no real functionality.",
+    "correct_anwser": "B",
+    "explan": "Mock-up (mô hình giao diện tĩnh) được sử dụng để tinh chỉnh thiết kế UI (A), giúp người dùng đánh giá luồng công việc (C), và giả lập giao diện không có chức năng thực tế bên dưới (D). Việc kiểm tra tính khả thi của kiến trúc hệ thống (B) đòi hỏi các kỹ thuật hoặc mẫu thử kiến trúc sâu hơn (như Proof of Concept), chứ một mô hình giao diện tĩnh như mock-up không thể thực hiện được."
+  },
+  {
+    "question_id": 30,
+    "question_title": "Which approach to reviewing requirements involves the author describing a deliverable and soliciting comments on it?",
+    "option_A": "Peer deskcheck approach",
+    "option_B": "Passaround approach",
+    "option_C": "Walkthrough approach",
+    "option_D": "Inspection approach",
+    "correct_anwser": "C",
+    "explan": "Walkthrough (Đọc duyệt/Duyệt qua) là một hình thức đánh giá kỹ thuật, trong đó tác giả (author) đóng vai trò chủ trì dẫn dắt cuộc họp để mô tả, giải thích chi tiết về tài liệu sản phẩm và thu thập các ý kiến đóng góp, phản hồi trực tiếp từ người tham dự."
+  },
+  {
+    "question_id": 31,
+    "question_title": "The benefits of effective requirements reuse include: (choose 3 correct answers)",
+    "option_A": "faster delivery",
+    "option_B": "lower development costs",
+    "option_C": "reduced rework",
+    "option_D": "fewer test cases",
+    "correct_anwser": "A, B, C",
+    "explan": "Tái sử dụng yêu cầu hiệu quả giúp đội ngũ kế thừa các tài liệu chuẩn hóa đã có sẵn, mang lại các lợi ích lớn bao gồm: rút ngắn thời gian bàn giao dự án (A), hạ thấp chi phí phát triển (B), và giảm thiểu việc phải chỉnh sửa, làm lại do yêu cầu đã được kiểm chứng từ trước (C). Việc tái sử dụng không làm giảm số lượng test case (D) vì mỗi hệ thống mới vẫn cần bộ test case đầy đủ tương ứng để kiểm thử tính chính xác."
+  },
+  {
+    "question_id": 32,
+    "question_title": "What is the primary challenge of validating non-functional requirements?",
+    "option_A": "They are often subjective and difficult to measure accurately",
+    "option_B": "They focus only on technical constraints",
+    "option_C": "They eliminate the need for functional requirements",
+    "option_D": "They replace stakeholder reviews",
+    "correct_anwser": "A",
+    "explan": "Thách thức hàng đầu khi xác thực các yêu cầu phi chức năng (NFR) là chúng thường mang tính cảm tính, định tính và chủ quan (ví dụ: 'hệ thống phải thân thiện', 'tốc độ phải nhanh'), dẫn đến việc khó đo lường một cách chính xác nếu không được định lượng hóa."
+  },
+  {
+    "question_id": 33,
+    "question_title": "What is the advantage of using acceptance tests during validation?",
+    "option_A": "To ensure that all requirements are measurable and testabl",
+    "option_B": "To eliminate the need for non-functional requirements",
+    "option_C": "To skip stakeholder reviews",
+    "option_D": "To prioritize coding tasks",
+    "correct_anwser": "A",
+    "explan": "Việc thiết kế hoặc sử dụng các bài kiểm thử chấp nhận (Acceptance tests) ngay từ giai đoạn xác thực yêu cầu buộc các bên phải làm rõ tiêu chí nghiệm thu, từ đó đảm bảo rằng mọi yêu cầu bằng văn bản đều có thể đo lường và kiểm thử được (measurable and testable)."
+  },
+  {
+    "question_id": 34,
+    "question_title": "Why is stakeholder feedback critical during requirements validation?",
+    "option_A": "To ensure requirements align with business objectives and user needs",
+    "option_B": "To finalize coding strategies",
+    "option_C": "To skip ambiguous requirements",
+    "option_D": "To prioritize testing phases",
+    "correct_anwser": "A",
+    "explan": "Phản hồi từ các bên liên quan (stakeholders) là cơ sở tối thượng trong giai đoạn validation để đánh giá và khẳng định lại xem các yêu cầu đã viết ra có thực sự phản ánh đúng nhu cầu người dùng và đồng bộ với mục tiêu kinh doanh chiến lược hay không."
+  },
+  {
+    "question_id": 35,
+    "question_title": "When specifying the level of detail in software requirements, which of the following practices should be considered? Select two.",
+    "option_A": "It is always necessary to specify all requirements at the same high level of detail to ensure consistency.",
+    "option_B": "More detail should be included when the work is being done for an external client or when system testing will be based on the requirements.",
+    "option_C": "Less detail can be included if the work is being done internally for your company and developers have considerable domain experience.",
+    "option_D": "Writing all requirements at a very fine-grained level is always better, regardless of the project's context.",
+    "option_E": "None of the above",
+    "correct_anwser": "B, C",
+    "explan": "Mức độ chi tiết của tài liệu yêu cầu cần linh hoạt theo ngữ cảnh: Cần viết chi tiết hơn khi bàn giao cho đối tác bên ngoài hoặc làm căn cứ kiểm thử (B); và có thể viết gọn bớt nếu dự án làm nội bộ và đội ngũ lập trình viên đã có sẵn nhiều kinh nghiệm chuyên môn sâu về lĩnh vực đó (C)."
+  },
+  {
+    "question_id": 36,
+    "question_title": "What steps would you include in a peer review process to identify and resolve ambiguities in requirement statements?",
+    "option_A": "Have each participant review the requirements individually and submit their feedback separately.",
+    "option_B": "Conduct a formal peer review meeting where participants compare their understanding of each requirement and discuss any ambiguities.",
+    "option_C": "Skip the peer review process and rely on individual interpretations.",
+    "option_D": "Only review requirements after the development phase.",
+    "correct_anwser": "B",
+    "explan": "Để nhận diện và giải quyết triệt để tính mơ hồ (ambiguities) trong các câu yêu cầu, quy trình peer review cần tổ chức một buổi họp rà soát chính thức, nơi các thành viên có thể đối chiếu, so sánh mức độ hiểu của mình về từng yêu cầu, từ đó phát hiện ra những điểm diễn đạt nhập nhèm để đồng bộ lại thông tin."
+  },
+  {
+    "question_id": 37,
+    "question_title": "Validation of requirements assesses whether you have written _______.",
+    "option_A": "the right requirements",
+    "option_B": "the requirements right",
+    "option_C": "the flexible requirements",
+    "option_D": "the variable requirements",
+    "correct_anwser": "A",
+    "explan": "Theo câu nói kinh điển của kỹ nghệ phần mềm: 'Verification' (Kiểm định) giúp kiểm tra xem chúng ta có đang xây dựng hệ thống đúng cách hay không (building the product right), còn 'Validation' (Xác thực) giúp kiểm tra xem chúng ta có đang viết/thu thập đúng các yêu cầu cần thiết hay không (writing the right requirements) để giải quyết bài toán kinh doanh."
+  },
+  {
+    "question_id": 38,
+    "question_title": "What is the primary purpose of requirements reuse?",
+    "option_A": "To save time, improve consistency, and reduce risks",
+    "option_B": "To eliminate stakeholder reviews",
+    "option_C": "To finalize the coding phase",
+    "option_D": "To reduce prototyping efforts",
+    "correct_anwser": "A",
+    "explan": "Mục đích hàng đầu của việc tái sử dụng yêu cầu (Requirements reuse) là tận dụng các yêu cầu đã được chuẩn hóa từ dự án trước để tiết kiệm thời gian, tăng tính đồng bộ, nhất quán của hệ thống và giảm thiểu rủi ro sai sót."
+  },
+  {
+    "question_id": 39,
+    "question_title": "How does requirements reuse improve project efficiency?",
+    "option_A": "By reducing time and effort during the elicitation process",
+    "option_B": "By skipping stakeholder reviews",
+    "option_C": "By focusing only on functional requirements",
+    "option_D": "By eliminating non-functional requirements",
+    "correct_anwser": "A",
+    "explan": "Tái sử dụng yêu cầu giúp nâng cao hiệu suất dự án một cách trực tiếp bằng cách rút ngắn đáng kể thời gian và công sức bỏ ra cho việc khơi gợi, làm rõ yêu cầu (elicitation process) đối với các tính năng có tính tương đồng."
+  },
+  {
+    "question_id": 40,
+    "question_title": "Which one of the following is not a step of requirement development?",
+    "option_A": "elicitation",
+    "option_B": "design",
+    "option_C": "analysis",
+    "option_D": "validation",
+    "option_E": "documentation",
+    "correct_anwser": "B",
+    "explan": "Phát triển yêu cầu (Requirement Development) bao gồm bốn giai đoạn chính: khơi gợi (elicitation), phân tích (analysis), tài liệu hóa (specification/documentation), và thẩm định (validation). Thiết kế (design) là một giai đoạn tiếp theo trong vòng đời phát triển phần mềm sau khi các yêu cầu đã được xác định rõ ràng."
+  },
+  {
+    "question_id": 41,
+    "question_title": "Which of the following statements accurately describes the role of a business analyst in a project? Select two.",
+    "option_A": "The business analyst is solely responsible for managing communication between the customer(s) and the development team.",
+    "option_B": "The business analyst primarily focuses on eliciting, analyzing, documenting, and validating the needs of the project stakeholders.",
+    "option_C": "In agile projects, the business analyst often acts as the project manager, handling both internal and external project tasks.",
+    "option_D": "The business analyst plays a central role in collecting and disseminating product information, while the project manager focuses on communicating project information.",
+    "correct_anwser": "B, D",
+    "explan": "BA tập trung vào việc khơi gợi, phân tích, tài liệu hóa và thẩm định nhu cầu của stakeholders (B), đồng thời đóng vai trò trung tâm trong việc thu thập và phân phối thông tin liên quan đến sản phẩm (product information), phân biệt với PM tập trung vào thông tin quản lý dự án (D)."
+  },
+  {
+    "question_id": 42,
+    "question_title": "Which of the following are the signals indicating that you have completed requirements elicitation? Choose 3 correct answers.",
+    "option_A": "Users repeat issues they already covered in previous discussions.",
+    "option_B": "Suggested new features, user requirements, or functional requirements are all deemed to be out of scope.",
+    "option_C": "Proposed new requirements are all low priority.",
+    "option_D": "Developers and testers who review the requirements for an area raise many questions.",
+    "correct_anwser": "A, B, C",
+    "explan": "Dấu hiệu cho thấy việc khơi gợi yêu cầu đã có thể dừng lại bao gồm: người dùng bắt đầu nói lặp lại các vấn đề cũ (A), các tính năng mới đề xuất đều nằm ngoài phạm vi đã định (B), hoặc các yêu cầu mới phát sinh chỉ có mức độ ưu tiên rất thấp (C). Nếu dev và tester vẫn đặt ra quá nhiều câu hỏi (D), điều đó chứng tỏ yêu cầu chưa đủ rõ ràng và việc khơi gợi chưa hoàn tất."
+  },
+  {
+    "question_id": 43,
+    "question_title": "Requirement statements must be: (Choose 3 correct answers)",
+    "option_A": "Feasible",
+    "option_B": "Correct",
+    "option_C": "Verifiable",
+    "option_D": "Flexible",
+    "correct_anwser": "A, B, C",
+    "explan": "Một câu phát biểu yêu cầu chất lượng bắt buộc phải đáp ứng các đặc tính nền tảng bao gồm: Khả thi (Feasible - có thể làm được), Chính xác (Correct) và Có thể kiểm chứng được (Verifiable/Testable). Tính \"Linh hoạt\" (Flexible) dễ dẫn đến mơ hồ, không rõ ràng và không phải đặc tính tiêu chuẩn của câu yêu cầu."
+  },
+  {
+    "question_id": 44,
+    "question_title": "Which of the following characteristics should a well-written requirement statement exhibit? Select two.",
+    "option_A": "Each requirement should be complete, meaning it contains all the information necessary for the reader to understand it and for developers to implement it correctly.",
+    "option_B": "A requirement statement can be ambiguous as long as it is feasible to implement.",
+    "option_C": "Requirements should be prioritized based on their importance to achieving the desired business value, and should be assigned an implementation priority.",
+    "option_D": "Verifiability of a requirement is optional as long as it meets stakeholder needs.",
+    "correct_anwser": "A, C",
+    "explan": "Một câu phát biểu yêu cầu chuẩn mực cần có tính đầy đủ (Complete), chứa đựng toàn bộ thông tin cần thiết để lập trình viên hiểu và triển khai chính xác (A), đồng thời cần phải được phân loại độ ưu tiên dựa trên giá trị mang lại cho doanh nghiệp (C). Câu phát biểu không được phép mơ hồ (B sai) và tính kiểm chứng (Verifiability) luôn luôn là bắt buộc chứ không phải tùy chọn (D sai)."
+  },
+  {
+    "question_id": 45,
+    "question_title": "What is the purpose of peer reviews during the requirements validation process?",
+    "option_A": "To ensure requirements are written in technical language",
+    "option_B": "To identify ambiguous or unverifiable requirements",
+    "option_C": "To finalize the system design before development begins",
+    "option_D": "To align requirements with user interface designs",
+    "correct_anwser": "B",
+    "explan": "Mục đích của việc đánh giá đồng nghiệp (Peer review) trong giai đoạn validate yêu cầu là để các thành viên khác nhau rà soát chéo, từ đó cùng nhau chỉ ra những điểm yêu cầu còn mơ hồ (ambiguous) hoặc không có khả năng kiểm chứng (unverifiable) để kịp thời sửa đổi."
+  },
+  {
+    "question_id": 46,
+    "question_title": "What is the primary advantage of requirements reuse in software projects?",
+    "option_A": "Reducing time and effort during the elicitation process",
+    "option_B": "Skipping the stakeholder review phase",
+    "option_C": "Eliminating the need for prototyping",
+    "option_D": "Ensuring all requirements are functional",
+    "correct_anwser": "A",
+    "explan": "Ưu điểm hàng đầu của việc tái sử dụng yêu cầu (Requirements reuse) từ các dự án tương tự trước đó là giúp giảm bớt đáng kể thời gian cũng như công sức bỏ ra cho quá trình khơi gợi và viết lại các yêu cầu tiêu chuẩn (ví dụ: các yêu cầu về đăng nhập, phân quyền, bảo mật)."
+  },
+  {
+    "question_id": 47,
+    "question_title": "What does acceptance criteria include? Choose 3 correct answers.",
+    "option_A": "Passing a defined set of acceptance tests based on user requirements",
+    "option_B": "Demonstrating satisfaction of specific nonfunctional requirements",
+    "option_C": "Tracking open defects and issues",
+    "option_D": "Having a trendy user interface",
+    "correct_anwser": "A, B, C",
+    "explan": "Tiêu chí nghiệm thu (Acceptance criteria) bao gồm việc vượt qua các bài kiểm thử nghiệm thu dựa trên yêu cầu người dùng (A), chứng minh sự thỏa mãn các yêu cầu phi chức năng cụ thể (B) và theo dõi, kiểm soát các lỗi/vấn đề còn tồn đọng trước khi bàn giao (C). Việc có một giao diện hợp xu hướng (D) là một yếu tố thiết kế chủ quan, không phải tiêu chí nghiệm thu bắt buộc chuẩn mực."
+  },
+  {
+    "question_id": 48,
+    "question_title": "Fill in the blank: \"Define vision and scope\", \"select product champions\" activities should be done _____ stage.",
+    "option_A": "Specifications",
+    "option_B": "Validation",
+    "option_C": "Elicitation",
+    "option_D": "Analysis",
+    "correct_anwser": "C",
+    "explan": "Các hoạt động định hình tầm nhìn, phạm vi hệ thống (\"Define vision and scope\") và lựa chọn đại diện người dùng (\"select product champions\") là những bước khởi đầu quan trọng nằm trong giai đoạn Khơi gợi yêu cầu (Elicitation)."
+  },
+  {
+    "question_id": 49,
+    "question_title": "Your company developed a software system for a customer a long time ago, and the application works as intended. Now, the customer's business has grown, and they want the software system to handle 10x the number of transactions. They ask your company to upgrade the software system. Upon inspection, you find out that this system can't handle 10x transactions due to monolithic processes and tightly coupled logic.\n\nWhat is the quality attribute mentioned above?",
+    "option_A": "Availability",
+    "option_B": "Usability",
+    "option_C": "Scalability",
+    "option_D": "Robustness",
+    "correct_anwser": "C",
+    "explan": "Khả năng xử lý lượng giao dịch tăng lên gấp 10 lần khi quy mô doanh nghiệp mở rộng trực tiếp liên quan đến thuộc tính chất lượng Khả năng mở rộng (Scalability)."
+  },
+  {
+    "question_id": 50,
+    "question_title": "What is the primary distinction between requirements validation and verification?",
+    "option_A": "Validation ensures that the product meets the user's needs, while verification ensures it is free from defects.",
+    "option_B": "Validation ensures the product satisfies customer needs, while verification ensures the product meets its specifications.",
+    "option_C": "Validation occurs before the design phase, and verification occurs after.",
+    "option_D": "Validation is about internal testing, while verification is about external approval.",
+    "correct_anwser": "B",
+    "explan": "Khác biệt cơ bản: Thẩm định (Validation) đảm bảo chúng ta xây dựng đúng sản phẩm đáp ứng nhu cầu khách hàng ('Are we building the right thing?'), trong khi Kiểm chứng (Verification) đảm bảo sản phẩm được xây dựng chính xác theo đúng tài liệu đặc tả thiết kế ('Are we building it right?')."
+  },
+  {
+    "question_id": 51,
+    "question_title": "What does the term \"verifiable\" mean in the context of excellent requirements?",
+    "option_A": "The requirements cannot be tested",
+    "option_B": "The requirements are difficult to understand",
+    "option_C": "The requirements can be tested to ensure they are met",
+    "option_D": "The requirements are subjective and open to interpretation",
+    "correct_anwser": "C",
+    "explan": "Tính chất 'Có thể thẩm định/xác thực' (Verifiable) của một yêu cầu tốt có nghĩa là yêu cầu đó phải được viết cụ thể, rõ ràng, có định lượng để đội ngũ kiểm thử (Tester) có thể thiết kế các kịch bản kiểm thử (test cases) nhằm xác nhận hệ thống đã đáp ứng đúng hay chưa."
+  },
+  {
+    "question_id": 52,
+    "question_title": "Validation of requirements assesses whether you have written _________.",
+    "option_A": "the right requirements",
+    "option_B": "the requirements right",
+    "option_C": "the flexible requirements",
+    "option_D": "the variable requirements",
+    "correct_anwser": "A",
+    "explan": "Trong kỹ nghệ yêu cầu: Xác nhận/Thẩm định (Validation) là để kiểm tra xem chúng ta có đang viết 'đúng yêu cầu khách hàng mong muốn' hay không (Have we written the right requirements?). Còn Kiểm chứng (Verification) là đánh giá xem tài liệu có được viết đúng chuẩn kỹ thuật và quy trình không (Have we written the requirements right?)."
+  },
+  {
+    "question_id": 53,
+    "question_title": "Which of the following activities would be considered part of requirements management effort?",
+    "option_A": "Holding workshops and interviews to gather requirements.",
+    "option_B": "Submitting requirements changes and proposing new requirements change.",
+    "option_C": "Writing requirements specifications and prioritizing requirements.",
+    "option_D": "Creating and evaluating prototypes for requirements development.",
+    "correct_anwser": "B",
+    "explan": "Kỹ nghệ yêu cầu chia làm 2 nhánh: Phát triển yêu cầu (Elicitation, Analysis, Specification, Validation - thuộc phương án A, C, D) và Quản lý yêu cầu (Requirements Management). Hoạt động kiểm soát thay đổi, nộp và xử lý yêu cầu thay đổi (B) chính là trọng tâm của Quản lý yêu cầu."
+  },
+  {
+    "question_id": 54,
+    "question_title": "Who are the intended audiences for requirements specifications?",
+    "option_A": "System architects and developers",
+    "option_B": "Test engineers and quality analysts",
+    "option_C": "Stakeholders, reviewers, and project team members",
+    "option_D": "All of the others",
+    "correct_anwser": "D",
+    "explan": "Tài liệu đặc tả yêu cầu (Requirements Specification) là tài liệu nền tảng cho toàn bộ dự án, được sử dụng bởi kiến trúc sư/lập trình viên để thiết kế và phát triển hệ thống, kiểm thử viên để viết test case, và các bên liên quan cùng thành viên dự án để xem xét và đối chiếu."
+  },
+  {
+    "question_id": 55,
+    "question_title": "What is the advantage of using prototyping in early project phases?",
+    "option_A": "To validate requirements and reduce the risk of costly changes later",
+    "option_B": "To eliminate the design phase",
+    "option_C": "To prioritize functional over non-functional requirements",
+    "option_D": "To replace stakeholder engagement",
+    "correct_anwser": "A",
+    "explan": "Lợi ích lớn nhất của việc làm mẫu thử (prototyping) ở giai đoạn đầu dự án là giúp trực quan hóa để xác thực yêu cầu với khách hàng, từ đó phát hiện sớm các điểm chưa đúng và giảm thiểu rủi ro phải sửa đổi tốn kém về sau."
+  },
+  {
+    "question_id": 56,
+    "question_title": "To help reviewers look for typical kinds of errors in the products they review, develop a(n) _________ for each type of requirements document your projects create.",
+    "option_A": "defect checklist",
+    "option_B": "error checklist",
+    "option_C": "inspection meeting",
+    "option_D": "support documentation",
+    "correct_anwser": "A",
+    "explan": "Để hỗ trợ người kiểm duyệt tìm kiếm hiệu quả các lỗi phổ biến trong sản phẩm phần mềm hoặc tài liệu, dự án nên xây dựng một danh sách kiểm tra lỗi/khuyết tật (defect checklist) tương ứng với từng loại tài liệu đặc tả yêu cầu cụ thể."
+  }
+]

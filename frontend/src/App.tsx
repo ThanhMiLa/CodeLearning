@@ -33,6 +33,7 @@ import CourseCreator from './pages/admin/CourseCreator';
 import QuizManager from './pages/admin/QuizManager';
 import TestcaseGenerator from './pages/admin/TestcaseGenerator';
 import QuizCatalog from './pages/quiz/QuizCatalog';
+import SWR302Catalog from './pages/quiz/SWR302Catalog';
 import QuizWorkspace from './pages/quiz/QuizWorkspace';
 import CourseCatalog from './pages/courses/CourseCatalog';
 import CourseDetail from './pages/courses/CourseDetail';
@@ -68,6 +69,7 @@ const App: React.FC = () => {
                 <Route path="oj/practice" element={<PracticeCatalog />} />
                 <Route path="contests" element={<ContestList />} />
                 <Route path="quiz" element={<QuizCatalog />} />
+                <Route path="quiz/swr302" element={<SWR302Catalog />} />
                 <Route path="quiz/:quizId" element={<QuizWorkspace />} />
 
                 {/* Guest-only Routes */}

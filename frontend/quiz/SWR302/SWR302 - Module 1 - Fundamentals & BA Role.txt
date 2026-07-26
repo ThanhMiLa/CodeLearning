@@ -1,0 +1,596 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is NOT included in the list of Software Bill of Rights Requirements?",
+    "option_A": "Expect BAs to speak your language.",
+    "option_B": "Expect BAs to learn about your business and your objectives.",
+    "option_C": "Promptly communicate changes to the requirements.",
+    "option_D": "Receive explanations of requirements practices and deliverables.",
+    "option_E": "Change your requirements.",
+    "option_F": "Expect an environment of mutual respect.",
+    "correct_anwser": "C",
+    "explan": "Trong tuyên ngôn quyền lợi phần mềm (Software Bill of Rights), 'Promptly communicate changes to the requirements' (Thông báo kịp thời các thay đổi đối với yêu cầu) là nghĩa vụ/trách nhiệm (Responsibility) của khách hàng chứ không phải là một quyền lợi (Right) trong danh sách."
+  },
+  {
+    "question_id": 2,
+    "question_title": "In a project, who is primarily responsible for communicating project information?",
+    "option_A": "The business analyst",
+    "option_B": "The project manager",
+    "option_C": "The software development team",
+    "option_D": "The customer community",
+    "correct_anwser": "B",
+    "explan": "Quản lý dự án (Project Manager) là người chịu trách nhiệm chính trong việc quản lý và truyền thông các thông tin chung của dự án đến tất cả các bên liên quan."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Why is it crucial for a business analyst to communicate requirements effectively and efficiently?",
+    "option_A": "To ensure that requirements are documented only once.",
+    "option_B": "To facilitate ongoing collaboration and ensure the team understands the requirements.",
+    "option_C": "To avoid the need for visual analysis models.",
+    "option_D": "To reduce the number of requirements.",
+    "correct_anwser": "B",
+    "explan": "Giao tiếp hiệu quả giúp thúc đẩy sự hợp tác liên tục giữa các bên và đảm bảo toàn bộ đội ngũ phát triển cũng như khách hàng đều có chung một hiểu biết chính xác về các yêu cầu."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What is the relationship between \"product vision\" and \"project scope\"?",
+    "option_A": "Product vision and project scope are interchangeable terms.",
+    "option_B": "Product vision describes the ultimate product, while project scope identifies the portion of that vision to be addressed by the current project.",
+    "option_C": "Project scope defines business objectives, while product vision defines functional requirements.",
+    "option_D": "Product vision is a subset of project scope for each release.",
+    "correct_anwser": "B",
+    "explan": "Tầm nhìn sản phẩm (Product vision) định hình mục tiêu lâu dài mang tính tối thượng của sản phẩm, trong khi phạm vi dự án (Project scope) xác định rõ phần việc hoặc tập hợp các tính năng cụ thể thuộc tầm nhìn đó sẽ được giải quyết, hoàn thiện trong dự án hiện tại."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Which of the following is a recommended question to ask when probing for exceptions in processes?",
+    "option_A": "Why do you think this system is perfect?",
+    "option_B": "What are the three things you dislike about the current system?",
+    "option_C": "What happens when an error occurs?",
+    "option_D": "What is your favorite feature of this system?",
+    "correct_anwser": "C",
+    "explan": "Để khơi gợi và tìm kiếm các ngoại lệ (exceptions) hay kịch bản lỗi trong quy trình nghiệp vụ, câu hỏi khảo sát trực diện và chuẩn xác nhất là 'Điều gì xảy ra khi có lỗi phát sinh?' (What happens when an error occurs?)."
+  },
+  {
+    "question_id": 6,
+    "question_title": "What is the main advantage of using the active voice in writing requirements?",
+    "option_A": "It helps in reducing the length of the requirements.",
+    "option_B": "It makes the subject and action of the sentence clear, ensuring clarity.",
+    "option_C": "It makes the requirements sound more formal and professional.",
+    "option_D": "It is easier to translate into other languages.",
+    "correct_anwser": "B",
+    "explan": "Sử dụng thể chủ động (Active voice) trong viết yêu cầu giúp xác định rõ ràng ai hoặc hệ thống nào (chủ ngữ) thực hiện hành động gì, từ đó loại bỏ tính mơ hồ và đảm bảo tính minh xác, rõ ràng cho câu đặc tả."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following is a correct guideline for writing clear and concise requirements?",
+    "option_A": "Use long, descriptive sentences to cover all aspects of a requirement.",
+    "option_B": "Avoid using \"shall\" or \"must\" in favor of softer terms like \"could\" and \"may.\"",
+    "option_C": "Write in simple language, avoid jargon, and keep sentences short and direct.",
+    "option_D": "Use multiple terms for the same concept to make the document more interesting.",
+    "correct_anwser": "C",
+    "explan": "Nguyên tắc viết yêu cầu rõ ràng, súc tích là sử dụng ngôn từ đơn giản, dễ hiểu, tránh các thuật ngữ chuyên môn quá phức tạp (jargon) không cần thiết, câu văn ngắn gọn và trực diện để người đọc không hiểu sai ý."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following are true about a dashboard? Choose 3 correct answers.",
+    "option_A": "It is a screen display or printed report.",
+    "option_B": "It uses multiple textual and/or graphical representations of data.",
+    "option_C": "It aims to provide a consolidated, multidimensional view of what is going on in an organization or a process.",
+    "option_D": "It is a brochure to promote the product.",
+    "correct_anwser": "A, B, C",
+    "explan": "Dashboard (Bảng điều khiển trực quan) là màn hình hiển thị hoặc biểu mẫu báo cáo (A), dùng nhiều định dạng văn bản và đồ thị trực quan hóa dữ liệu (B) nhằm mục đích cung cấp một cái nhìn tổng hợp, đa chiều về tình hình vận hành của một tổ chức hoặc quy trình (C)."
+  },
+  {
+    "question_id": 9,
+    "question_title": "In the context of a data dictionary, which of the following is true about organizing data elements?",
+    "option_A": "Each data element in the dictionary should be represented only by primitive types.",
+    "option_B": "The data dictionary should only store information about complex data structures, not individual data elements",
+    "option_C": "The data dictionary should list all data elements alphabetically, regardless of their relationships or grouping in the system.",
+    "option_D": "The data dictionary should contain information about each data element, including its data type, length, and any associated constraints.",
+    "correct_anwser": "D",
+    "explan": "Từ điển dữ liệu (Data dictionary) cần lưu trữ thông tin chi tiết về từng phần tử dữ liệu trong hệ thống, bao gồm định nghĩa tên, kiểu dữ liệu, độ dài, mô tả và các ràng buộc/quy tắc giá trị đi kèm của phần tử đó."
+  },
+  {
+    "question_id": 10,
+    "question_title": "Which of the following is NOT considered a dimension of requirements reuse when adapting requirements from one project to another?",
+    "option_A": "The extent of reuse, including whether individual requirement statements or sets of requirements with their associated elements are reused.",
+    "option_B": "Reuse frequency, which measures how often a particular requirement has been reused in different projects.",
+    "option_C": "The extent of modification, which considers the degree to which reused requirements must be altered to fit the new project's context.",
+    "option_D": "The reuse mechanism, which involves how the requirement is reused, such as copying from a library of reusable requirements or referring to the original source.",
+    "option_E": "None of the above",
+    "correct_anwser": "B",
+    "explan": "Theo lý thuyết quản lý yêu cầu phần mềm của Karl Wiegers, các chiều không gian (dimensions) của việc tái sử dụng yêu cầu bao gồm: Extent of reuse (mức độ/phạm vi tái sử dụng), Extent of modification (mức độ sửa đổi), và Reuse mechanism (cơ chế tái sử dụng). Tần suất tái sử dụng (Reuse frequency) chỉ là một chỉ số đo lường thống kê sau đó, chứ không phải là một chiều kiến trúc cốt lõi khi tiến hành adapt yêu cầu."
+  },
+  {
+    "question_id": 11,
+    "question_title": "How can reusable requirements be stored for easy reference?",
+    "option_A": "By storing them in a spreadsheet.",
+    "option_B": "By copying them into every new project document.",
+    "option_C": "By linking to them from a shared location such as a database or a requirements management tool.",
+    "option_D": "By creating new versions for every instance they are used.",
+    "correct_anwser": "C",
+    "explan": "Để các yêu cầu có thể tái sử dụng được lưu trữ và tra cứu một cách hiệu quả nhất, người ta nên đưa chúng lên một vị trí chia sẻ tập trung (Shared location) như cơ sở dữ liệu chung hoặc công cụ quản lý yêu cầu chuyên dụng nhằm đảm bảo tính nhất quán và dễ dàng liên kết."
+  },
+  {
+    "question_id": 12,
+    "question_title": "What role does requirements estimation play in project planning?",
+    "option_A": "It helps determine the effort needed for design and development",
+    "option_B": "It dictates the project's release schedule",
+    "option_C": "It defines the testing strategy",
+    "option_D": "It allocates resources for the project",
+    "correct_anwser": "A",
+    "explan": "Ước lượng yêu cầu (Requirements estimation) cung cấp căn cứ kỹ thuật quan trọng giúp đội ngũ quản lý dự án xác định lượng công sức, thời gian và nguồn lực cần thiết (effort needed) để thực hiện các giai đoạn thiết kế, lập trình và hoàn thiện các tính năng đó."
+  },
+  {
+    "question_id": 13,
+    "question_title": "Which of the following is NOT a characteristic of Software as a service (SaaS)?",
+    "option_A": "Subscription-based pricing",
+    "option_B": "On-premises deployment",
+    "option_C": "Centralized hosting",
+    "option_D": "Internet accessibility",
+    "correct_anwser": "B",
+    "explan": "On-premises deployment (Triển khai tại chỗ/cài đặt cục bộ trên máy chủ của khách hàng) là đặc điểm của mô hình phần mềm truyền thống. Ngược lại, SaaS (Phần mềm dạng dịch vụ) được lưu trữ tập trung trên cloud (C), truy cập qua Internet (D) và thường thanh toán theo mô hình đăng ký định kỳ (A)."
+  },
+  {
+    "question_id": 14,
+    "question_title": "The elements of risk management are (choose 3 correct answers)",
+    "option_A": "Risk assessment",
+    "option_B": "Risk avoidance",
+    "option_C": "Risk control",
+    "option_D": "Risk reduction",
+    "correct_anwser": "A, B, C",
+    "explan": "Theo các khung quản trị rủi ro chuẩn (như SEI), Quản lý rủi ro (Risk management) gồm các thành phần cốt lõi ở cấp độ cao là: Risk assessment (Đánh giá rủi ro - bao gồm nhận diện, phân tích), Risk avoidance (Né tránh rủi ro) hoặc tổng quan hơn là Risk control (Kiểm soát rủi ro). Trong đó, Risk reduction (Giảm thiểu) thường được phân loại như một chiến thuật cụ thể nằm bên trong Risk control."
+  },
+  {
+    "question_id": 15,
+    "question_title": "Why is it critical to clearly distinguish between Business Requirements, User Requirements, and Functional Requirements in software projects?",
+    "option_A": "It reduces development time by eliminating unnecessary requirements from the outset.",
+    "option_B": "It guarantees that the system will comply with all security and performance standards.",
+    "option_C": "It ensures that all stakeholder needs are accurately understood and translated into specific system features.",
+    "option_D": "It allows developers to start coding immediately without needing further clarification.",
+    "correct_anwser": "C",
+    "explan": "Phân biệt rõ ba cấp độ yêu cầu này giúp đảm bảo mục tiêu chiến lược của doanh nghiệp (Business Requirements) được phản ánh đúng qua mong muốn của người dùng (User Requirements), từ đó chuyển hóa chính xác thành các chức năng kỹ thuật của hệ thống (Functional Requirements), tránh sai sót trong quá trình phát triển."
+  },
+  {
+    "question_id": 16,
+    "question_title": "What is meant by the \"Expectation Gap\" in software development?",
+    "option_A": "The difference between business requirements and technical requirements.",
+    "option_B": "The difference between the initial design and the final product.",
+    "option_C": "The discrepancy between the project plan and the actual budget.",
+    "option_D": "The difference between what customers expect and what the development team plans to deliver.",
+    "option_E": "The difference between customer requirements and testing criteria.",
+    "correct_anwser": "D",
+    "explan": "\"Khoảng cách kỳ vọng\" (Expectation Gap) mô tả sự sai lệch giữa những gì khách hàng hình dung, mong đợi về sản phẩm với những gì đội ngũ phát triển hiểu và lên kế hoạch bàn giao thực tế."
+  },
+  {
+    "question_id": 17,
+    "question_title": "What is a key action in the \"Analysis\" subdiscipline of requirements development?",
+    "option_A": "Discovering requirements.",
+    "option_B": "Documenting assumptions",
+    "option_C": "Decomposing high-level requirements into an appropriate level of detail",
+    "option_D": "Confirming requirements accuracy with customers.",
+    "correct_anwser": "C",
+    "explan": "Hành động cốt lõi của phân tích (Analysis) là bóc tách, chia nhỏ các yêu cầu ở mức vĩ mô, mơ hồ (high-level requirements) thành các yêu cầu chi tiết cụ thể, rõ ràng hơn để đội ngũ phát triển có thể hiểu và thực thi."
+  },
+  {
+    "question_id": 18,
+    "question_title": "Which of the following describes the difference between User Requirements and Functional Requirements?",
+    "option_A": "User requirements focus on technical solutions, while Functional requirements focus on business needs.",
+    "option_B": "User requirements are high-level and focus on user tasks, while Functional requirements describe what the system must do to support those tasks.",
+    "option_C": "User requirements are documented in code, while Functional requirements are documented in the SRS.",
+    "option_D": "There is no real difference; the terms are used interchangeably.",
+    "correct_anwser": "B",
+    "explan": "Yêu cầu người dùng (User Requirements) được viết dưới góc nhìn của người dùng để mô tả các tác vụ hoặc mục tiêu họ cần đạt được, trong khi yêu cầu chức năng (Functional Requirements) mô tả chi tiết các hành vi, tính năng kỹ thuật mà hệ thống phải thực hiện để hỗ trợ người dùng hoàn thành các tác vụ đó."
+  },
+  {
+    "question_id": 19,
+    "question_title": "A functional requirement describes:",
+    "option_A": "The financial budget of the software project.",
+    "option_B": "What the system should do under specific conditions.",
+    "option_C": "The user interface styling details.",
+    "option_D": "The security protocols required for data transmission.",
+    "correct_anwser": "B",
+    "explan": "Yêu cầu chức năng (Functional Requirement) định nghĩa rõ ràng các hành vi, dịch vụ hoặc chức năng cụ thể mà hệ thống phần mềm phải thực thi khi tiếp nhận một điều kiện đầu vào xác định."
+  },
+  {
+    "question_id": 20,
+    "question_title": "What is the primary objective of creating a Dialog Map (User Interface Architecture) during requirements analysis?",
+    "option_A": "To optimize backend relational SQL query indexing performance.",
+    "option_B": "To visually represent the navigation paths and relationship architecture between different screens or pages of the system.",
+    "option_C": "To establish encrypted secure network communications protocols.",
+    "option_D": "To verify the lines of unit test coverage automatically.",
+    "correct_anwser": "B",
+    "explan": "Bản đồ đối thoại (Dialog Map) trực quan hóa cấu trúc kiến trúc luồng đi của giao diện, chỉ ra các màn hình và cách thức người dùng có thể điều hướng qua lại giữa các màn hình hoặc trang giao diện trong hệ thống."
+  },
+  {
+    "question_id": 21,
+    "question_title": "How can better requirements practices reduce the cost of development?",
+    "option_A": "By increasing the number of features developed.",
+    "option_B": "By reducing rework, unnecessary features, and miscommunications.",
+    "option_C": "By increasing the project timeline.",
+    "option_D": "By focusing solely on technical specifications.",
+    "correct_anwser": "B",
+    "explan": "Quản lý yêu cầu tốt giúp làm rõ mong muốn của khách hàng ngay từ đầu, từ đó giảm thiểu việc hiểu lầm (miscommunications), tránh phát triển các tính năng không cần thiết, và hạn chế tối đa việc phải làm lại (rework), vốn là nguyên nhân chính gây tốn kém chi phí trong phát triển phần mềm."
+  },
+  {
+    "question_id": 22,
+    "question_title": "“The user must be able to sort the project list in forward and reverse alphabetical order” is a:",
+    "option_A": "business requirement",
+    "option_B": "user requirement",
+    "option_C": "functional requirement",
+    "option_D": "data requirement",
+    "correct_anwser": "C",
+    "explan": "Yêu cầu chức năng (Functional Requirement) mô tả những gì hệ thống phải làm, cụ thể là một hành vi hoặc chức năng của phần mềm để phản hồi lại thao tác từ người dùng. Phát biểu 'Người dùng phải có khả năng sắp xếp danh sách dự án theo thứ tự bảng chữ cái xuôi và ngược' mô tả trực tiếp một chức năng mà hệ thống cần thực hiện cung cấp cho người dùng."
+  },
+  {
+    "question_id": 23,
+    "question_title": "Two important goals of writing requirements are that:",
+    "option_A": "Anyone who reads the requirement comes to the same interpretation as any other reader.",
+    "option_B": "Each reader's interpretation matches what the author intended to communicate.",
+    "option_C": "Developers find the requirements technically easy to understand.",
+    "option_D": "Customers are happy.",
+    "correct_anwser": "A, B",
+    "explan": "Hai mục tiêu cốt lõi của việc viết tài liệu yêu cầu là tính không mơ hồ (Unambiguous) và tính chính xác (Correctness). Điều này có nghĩa là tất cả người đọc đều phải hiểu theo một cách duy nhất như nhau (A), và cách hiểu đó phải trùng khớp hoàn toàn với những gì tác giả/BA thực sự muốn truyền tải (B)."
+  },
+  {
+    "question_id": 24,
+    "question_title": "In a Swimlane diagram, process steps are shown as",
+    "option_A": "rectangles",
+    "option_B": "arrows connecting pairs of rectangles",
+    "option_C": "diamonds",
+    "option_D": "ovals",
+    "correct_anwser": "A",
+    "explan": "Trong sơ đồ phân làn (Swimlane / Flowchart), các bước xử lý hoặc hành động (process steps/activities) được quy ước thể hiện bằng các hình chữ nhật (rectangles). Trong khi đó, hình thoi (diamonds) dùng cho điểm quyết định rẽ nhánh và các mũi tên (arrows) dùng để chỉ hướng luồng đi."
+  },
+  {
+    "question_id": 25,
+    "question_title": "Entries in the data dictionary represent the following types of data elements: (choose 3 correct answers)",
+    "option_A": "Primitive",
+    "option_B": "Structure",
+    "option_C": "Repeating group",
+    "option_D": "Virtual",
+    "correct_anwser": "A, B, C",
+    "explan": "Trong từ điển dữ liệu (Data Dictionary), các mục nhập dữ liệu thường được phân loại thành 3 dạng cấu trúc thành phần chính bao gồm: Phần tử nguyên thủy dữ liệu (Primitive - không thể chia nhỏ hơn nữa), Cấu trúc dữ liệu kết hợp (Structure - gồm nhiều phần tử đi cùng nhau), và Nhóm lặp (Repeating group - tập hợp lặp lại của các phần tử)."
+  },
+  {
+    "question_id": 26,
+    "question_title": "What is Extent of reuse?",
+    "option_A": "You might reuse just a single functional requirement.",
+    "option_B": "You consider is how much modification will be needed to make existing requirements reusable on the new project.",
+    "option_C": "It is simply a copy-and-paste of a piece of requirements information, either from another specification or from a library of reusable requirements.",
+    "option_D": "It specific functional requirements within use cases, performance requirements, usability requirements, business rules.",
+    "correct_anwser": "A",
+    "explan": "Theo định nghĩa về tái sử dụng yêu cầu, 'Extent of reuse' (Mức độ/Phạm vi tái sử dụng) đề cập đến khối lượng hay quy mô của phần yêu cầu được tái sử dụng, ví dụ như từ mức nhỏ nhất là tái sử dụng chỉ một yêu cầu chức năng đơn lẻ (a single functional requirement) cho tới mức lớn hơn là toàn bộ một module hay hệ thống phụ."
+  },
+  {
+    "question_id": 27,
+    "question_title": "In software development, what do requirements drive? Choose 3 correct answers.",
+    "option_A": "Project planning",
+    "option_B": "Design and coding",
+    "option_C": "Testing activities",
+    "option_D": "Financial activities",
+    "correct_anwser": "A, B, C",
+    "explan": "Yêu cầu phần mềm là nền tảng định hướng cho toàn bộ vòng đời phát triển: chúng quyết định việc lập kế hoạch tiến độ dự án (A), làm cơ sở để thiết kế kiến trúc và viết mã nguồn (B), cũng như cung cấp tiêu chí để xây dựng các kịch bản kiểm thử (C). Ngược lại, các hoạt động tài chính tổng thể của doanh nghiệp (D) không chịu sự thúc đẩy trực tiếp từ các yêu cầu kỹ thuật phần mềm."
+  },
+  {
+    "question_id": 28,
+    "question_title": "What is an enhancement project?",
+    "option_A": "It is a project in which new capabilities are added to an existing system.",
+    "option_B": "It is a project that replaces an existing application with a new custom-built system, a commercial off-the-shelf system, or a hybrid of those.",
+    "option_C": "It is a project which costs less than planned.",
+    "option_D": "It is a project which generates more revenues.",
+    "correct_anwser": "A",
+    "explan": "Dự án nâng cấp (Enhancement project) được định nghĩa là dự án nhằm bổ sung các tính năng, năng lực mới (new capabilities) hoặc cải tiến các chức năng sẵn có của một hệ thống hiện tại."
+  },
+  {
+    "question_id": 29,
+    "question_title": "Which statement accurately describes the implementation of a COTS package?",
+    "option_A": "COTS packages always require significant customization.",
+    "option_B": "Some COTS packages can be used out of the box with little to no modification.",
+    "option_C": "COTS packages provide unlimited flexibility to meet all business requirements",
+    "option_D": "All COTS packages require integration with other systems.",
+    "correct_anwser": "B",
+    "explan": "COTS (Commercial Off-The-Shelf) là phần mềm thương mại có sẵn trên thị trường. Điểm đặc trưng của một số gói COTS là có thể sử dụng được ngay lập tức (out of the box) với rất ít hoặc không cần sửa đổi gì (B). Khẳng định chúng luôn luôn cần tùy biến mạnh (A), có sự linh hoạt vô hạn (C) hay bắt buộc phải tích hợp với hệ thống khác (D) đều là các phát biểu quá cực đoan và thiếu chính xác."
+  },
+  {
+    "question_id": 30,
+    "question_title": "What is the primary motivation for tracing requirements?",
+    "option_A": "To prevent any changes from being made to project requirements",
+    "option_B": "To document project assumptions",
+    "option_C": "To manage project team members",
+    "option_D": "To improve the quality of your products, reduce maintenance costs, and facilitate reuse",
+    "correct_anwser": "D",
+    "explan": "Động lực và lợi ích lớn nhất của việc truy vết yêu cầu (Tracing requirements) là giúp nâng cao chất lượng sản phẩm nhờ kiểm soát tốt phạm vi và kiểm thử, giảm thiểu chi phí bảo trì (do dễ phân tích tác động khi có thay đổi) và tạo điều kiện thuận lợi cho việc tái sử dụng cấu phần ở các dự án sau (D)."
+  },
+  {
+    "question_id": 31,
+    "question_title": "Which of the following statements correctly distinguishes between product requirements and project requirements? Select two.",
+    "option_A": "Product requirements describe the physical resources and training needs necessary for project completion.",
+    "option_B": "Project requirements include staff training and infrastructure changes needed in the operating environment.",
+    "option_C": "Project requirements are housed in the SRS along with product requirements.",
+    "option_D": "Product requirements focus on the characteristics and functionalities of the software system being built.",
+    "correct_anwser": "B, D",
+    "explan": "Yêu cầu sản phẩm (Product requirements) tập trung vào các đặc tính, chức năng của hệ thống phần mềm đang được xây dựng (D). Trong khi đó, yêu cầu dự án (Project requirements) liên quan đến các khía cạnh quản lý, vận hành để triển khai dự án thành công như đào tạo nhân sự, thay đổi hạ tầng kỹ thuật (B)."
+  },
+  {
+    "question_id": 32,
+    "question_title": "What is a potential way for someone to transition into the business analyst role?",
+    "option_A": "Through an apprenticeship program with mentoring",
+    "option_B": "By studying software development exclusively",
+    "option_C": "By focusing only on user interface design skills",
+    "option_D": "By avoiding involvement in diverse business activities",
+    "correct_anwser": "A",
+    "explan": "Một trong những lộ trình chuyển đổi phổ biến và hiệu quả để bước vào nghề Business Analyst (BA) là thông qua các chương trình thực tập, học việc (apprenticeship) có sự hướng dẫn sát sao của người đi trước (mentoring) để tích lũy cả kiến thức nghiệp vụ lẫn kỹ năng mềm."
+  },
+  {
+    "question_id": 33,
+    "question_title": "When defining the scope and limitations of a product, which of the following practices should be followed? Select two.",
+    "option_A": "List the product's major features or user capabilities, focusing on those that distinguish it from competitors.",
+    "option_B": "Include all possible features in the scope to ensure nothing is left out, even if some may be unnecessary.",
+    "option_C": "Clearly define the features that will be included in the initial release and those that will be excluded.",
+    "option_D": "Avoid mentioning any limitations or exclusions to keep the focus on what the product will do.",
+    "correct_anwser": "A, C",
+    "explan": "Khi định nghĩa phạm vi và giới hạn của sản phẩm, thực hành tốt nhất là liệt kê các tính năng/năng lực cốt lõi giúp phân biệt với đối thủ cạnh tranh (A), đồng thời phải phân định rõ ràng tính năng nào nằm trong đợt phát hành đầu tiên và tính năng nào bị loại trừ hoặc hoãn lại (C)."
+  },
+  {
+    "question_id": 34,
+    "question_title": "What is the main purpose of a Vision and Scope document?",
+    "option_A": "To define the boundaries and objectives of the project",
+    "option_B": "To specify all technical requirements",
+    "option_C": "To finalize the system's architecture",
+    "option_D": "To replace the requirements traceability matrix",
+    "correct_anwser": "A",
+    "explan": "Mục đích cốt lõi của tài liệu Tầm nhìn và Phạm vi (Vision and Scope document) là thiết lập ranh giới hệ thống ở mức tổng quan và xác định các mục tiêu chiến lược mang tính định hướng cho dự án, chứ không đi sâu vào chi tiết kỹ thuật hay kiến trúc."
+  },
+  {
+    "question_id": 35,
+    "question_title": "Which of the following statements best describes a key aspect of performance requirements for a software system?",
+    "option_A": "Performance requirements focus solely on the visual design and user interface of the system.",
+    "option_B": "Performance requirements include the responsiveness of the system to user inquiries, such as the number of seconds to display a webpage.",
+    "option_C": "Performance requirements are concerned only with the physical storage capacity of the system's database.",
+    "option_D": "Performance requirements are unrelated to the external factors like network connections and hardware components.",
+    "correct_anwser": "B",
+    "explan": "Yêu cầu về hiệu năng (Performance requirements) đo lường và ràng buộc các chỉ số vận hành về mặt thời gian và tốc độ của hệ thống, ví dụ điển hình nhất là độ phản hồi đối với các tương tác của người dùng, chẳng hạn như số giây tối đa để tải và hiển thị hoàn chỉnh một trang web."
+  },
+  {
+    "question_id": 36,
+    "question_title": "What is a potential consequence of adding more functionality through a series of iterations?",
+    "option_A": "Improved system performance.",
+    "option_B": "Increased system efficiency.",
+    "option_C": "Deterioration of system performance.",
+    "option_D": "Reduced need for performance testing.",
+    "correct_anwser": "C",
+    "explan": "Việc liên tục bổ sung thêm nhiều chức năng qua các vòng lặp (iterations) mà không tối ưu hóa cấu trúc hệ thống có nguy cơ làm tăng độ phức tạp, quá tải tài nguyên và dẫn đến sự suy giảm hiệu năng của hệ thống (Deterioration of system performance)."
+  },
+  {
+    "question_id": 37,
+    "question_title": "Which of the following statements about reaching agreement on requirements is accurate? Select two.",
+    "option_A": "Signing off on requirements is an infallible method to prevent any changes later in the project.",
+    "option_B": "All participants in the requirements approval process must understand what signing off implies.",
+    "option_C": "The purpose of signing off is to freeze requirements and prevent any future modifications.",
+    "option_D": "Reaching agreement on requirements ensures that both customers and developers have a shared understanding of project objectives.",
+    "correct_anwser": "B, D",
+    "explan": "Việc đạt được thỏa thuận về yêu cầu nhằm đảm bảo các bên liên quan (khách hàng và đội ngũ phát triển) có chung một hiểu biết về mục tiêu dự án (D), đồng thời tất cả những người tham gia phê duyệt cần hiểu rõ ý nghĩa của việc ký duyệt (B). Việc ký duyệt (sign-off) không thể ngăn chặn tuyệt đối các thay đổi trong tương lai (A và C sai vì yêu cầu luôn có thể thay đổi thông qua quy trình kiểm soát thay đổi)."
+  },
+  {
+    "question_id": 38,
+    "question_title": "If a report is generated but not used, what should a Business Analyst consider doing?",
+    "option_A": "Ensure it is included in the new system",
+    "option_B": "Modify it to meet new requirements",
+    "option_C": "Exclude it from the new system",
+    "option_D": "Increase its frequency of generation",
+    "correct_anwser": "C",
+    "explan": "Nếu một báo cáo trong hệ thống hiện tại vẫn được tạo ra tự động định kỳ nhưng trên thực tế không có ai sử dụng, Chuyên viên phân tích nghiệp vụ nên cân nhắc loại bỏ nó ra khỏi hệ thống mới để tiết kiệm chi phí phát triển, lưu trữ và tối ưu hiệu năng."
+  },
+  {
+    "question_id": 39,
+    "question_title": "We can resuse all authentication requirements from the previous project by copy from a library of reusable components. Which dimensions does the statement refer to?",
+    "option_A": "extent of modification",
+    "option_B": "reuse mechanism",
+    "option_C": "extent of reuses",
+    "option_D": "N/A",
+    "correct_anwser": "A, B",
+    "explan": "Câu phát biểu đề cập đến hành động \"copy nguyên vẹn\" -> phản ánh khía cạnh mức độ sửa đổi là giữ nguyên (extent of modification). Hành động lấy từ một \"thư viện các thành phần tái sử dụng\" (library of reusable components) -> phản ánh khía cạnh cơ chế thực hiện tái sử dụng (reuse mechanism)."
+  },
+  {
+    "question_id": 40,
+    "question_title": "Which JSTL tag is used to format numbers according to the default user's locale?",
+    "option_A": "<fmt:parseNumber>",
+    "option_B": "<fmt:setNumber>",
+    "option_C": "<fmt:formatNumber>",
+    "option_D": "<fmt:setLocale>",
+    "correct_anwser": "C",
+    "explan": "Trong JSTL (JavaServer Pages Standard Tag Library), thẻ `<fmt:formatNumber>` được sử dụng để định dạng dữ liệu số, tiền tệ hoặc tỷ lệ phần trăm theo cấu hình vùng quốc gia (Locale) hiện tại của người dùng. Thẻ `<fmt:parseNumber>` dùng để chuyển từ chuỗi thành số, còn các thẻ còn lại không đúng chức năng hoặc không tồn tại."
+  },
+  {
+    "question_id": 41,
+    "question_title": "Which of the following is NOT an objective of improving requirements processes?",
+    "option_A": "Improve the accuracy of project estimates",
+    "option_B": "Reduce the cost of creating and maintaining software",
+    "option_C": "Increase the value delivered by projects",
+    "option_D": "Increase the complexity of requirements",
+    "correct_anwser": "D",
+    "explan": "Mục tiêu của việc cải tiến quy trình kỹ nghệ yêu cầu nhằm giúp ước lượng chính xác hơn (A), giảm giá thành làm lại phần mềm lỗi (B), và tăng chất lượng giá trị bàn giao (C). Việc làm tăng độ phức tạp không mong muốn của các câu yêu cầu (D) hoàn toàn đi ngược lại mục tiêu cải tiến quy trình."
+  },
+  {
+    "question_id": 42,
+    "question_title": "Which is NOT element of risk management?",
+    "option_A": "Risk avoidance is one way to deal with a risk: don't do the risky thing.",
+    "option_B": "Risk assessment is the process of examining a project to identify potential threats.",
+    "option_C": "Risk control activities to manage the top-priority risks you identified.",
+    "option_D": "Risk management planning produces a plan for dealing with each significant risk, including mitigation approaches, contingency plans, owners, and timelines.",
+    "correct_anwser": "A",
+    "explan": "Trong lý thuyết quản trị rủi ro phần mềm tiêu chuẩn (Karl Wiegers), Quản trị rủi ro gồm hai nhánh chính lớn: Đánh giá rủi ro (Risk Assessment - gồm identify và analyze) và Kiểm soát rủi ro (Risk Control - gồm planning, resolution, monitoring). Do đó các mục B, C, D là các thành phần/tiến trình lớn của quản trị rủi ro. Còn Tránh rủi ro (Risk avoidance - A) chỉ là một chiến lược hoặc kỹ thuật cụ thể nằm bên trong bước xử lý rủi ro, không phải phân hệ cấu thành lớn của quy trình."
+  },
+  {
+    "question_id": 43,
+    "question_title": "Which of the following skills are essential for a business analyst? Select three.",
+    "option_A": "Literacy skills for effectively interpreting written material and communicating requirements.",
+    "option_B": "Technical skills to ensure the analyst can implement the software they are analyzing.",
+    "option_C": "Facilitation skills to manage group discussions and ensure effective participation from all stakeholders.",
+    "option_D": "Analytical skills to break down complex problems and identify feasible solutions.",
+    "correct_anwser": "A, C, D",
+    "explan": "Một Business Analyst cần có kỹ năng ngôn ngữ/đọc hiểu (A) để giao tiếp yêu cầu, kỹ năng điều phối (C) để quản lý thảo luận nhóm, và kỹ năng phân tích (D) để giải quyết vấn đề. BA không cần trực tiếp lập trình/triển khai phần mềm (B là công việc của Developer)."
+  },
+  {
+    "question_id": 44,
+    "question_title": "Which of the following are advantages of reusing requirements?\n(Choose 2 answers)",
+    "option_A": "Decreased consistency",
+    "option_B": "Reduced rework",
+    "option_C": "Lower development costs",
+    "option_D": "Increased number of defects",
+    "correct_anwser": "B, C",
+    "explan": "Việc tái sử dụng các yêu cầu đã được kiểm chứng và chuẩn hóa giúp giảm thiểu việc phải làm lại từ đầu (Reduced rework) và tiết kiệm đáng kể thời gian cũng như chi phí phát triển dự án (Lower development costs)."
+  },
+  {
+    "question_id": 45,
+    "question_title": "Which arrangement describes the increasing amount of requirements and development work when implementing packaged solutions?\n1. configured\n2. integrated\n3. extended\n4. out of the box",
+    "option_A": "1,2,3,4",
+    "option_B": "2,1,3,4",
+    "option_C": "2,4,3,1",
+    "option_D": "4,1,2,3",
+    "correct_anwser": "D",
+    "explan": "Thứ tự tăng dần về khối lượng công việc yêu cầu và lập trình khi triển khai giải pháp đóng gói (packaged solutions) là: 4. out of the box (dùng trực tiếp không sửa đổi, tốn ít công nhất) -> 1. configured (cấu hình lại thông số) -> 2. integrated (tích hợp kết nối hệ thống) -> 3. extended (viết thêm mã nguồn mở rộng, tốn nhiều công nhất)."
+  },
+  {
+    "question_id": 46,
+    "question_title": "Why is clear communication crucial in acquirer-supplier interactions in outsourced projects? (Choose 2 answers)",
+    "option_A": "It reduces the need for collaboration.",
+    "option_B": "It ensures both parties understand each other’s needs and capabilities.",
+    "option_C": "It helps in resolving potential issues early.",
+    "option_D": "It allows unilateral decision-making by the supplier",
+    "correct_anwser": "B, C",
+    "explan": "Trong các dự án thuê ngoài (outsourcing), giao tiếp rõ ràng giữa bên mua và nhà cung cấp giúp đảm bảo hai bên hiểu rõ năng lực cũng như nhu cầu của nhau (B), đồng thời phát hiện và giải quyết sớm các rủi ro, vấn đề phát sinh ngay từ giai đoạn đầu (C)."
+  },
+  {
+    "question_id": 47,
+    "question_title": "In a requirements development process, why is it important to establish a mechanism for managing changes to requirements?",
+    "option_A": "To discourage changes and maintain a fixed project scope",
+    "option_B": "To speed up the development process",
+    "option_C": "To adapt to evolving project needs while maintaining control",
+    "option_D": "To eliminate the need for documentation",
+    "correct_anwser": "C",
+    "explan": "Thiết lập cơ chế quản lý thay đổi không phải để cấm đoán thay đổi (A), mà là để giúp dự án thích ứng linh hoạt với các nhu cầu thực tế mới phát sinh của doanh nghiệp nhưng vẫn giữ được sự kiểm soát chặt chẽ về mặt nguồn lực, tiến độ và chi phí."
+  },
+  {
+    "question_id": 48,
+    "question_title": "Which is NOT an activitie of risk management?",
+    "option_A": "Risk avoidance",
+    "option_B": "Risk assessment",
+    "option_C": "Risk monitoring",
+    "option_D": "Risk control",
+    "correct_anwser": "A",
+    "explan": "Trong các hoạt động lớn thuộc quy trình Quản lý rủi ro (Risk Management framework), quy trình bao gồm Phân tích/Đánh giá (Assessment), Kiểm soát (Control) và Giám sát (Monitoring). Tránh rủi ro ('Risk avoidance') là một chiến lược phản ứng cụ thể (risk response strategy) nằm bên trong hoạt động kiểm soát rủi ro, chứ không phải là một nhánh hoạt động lớn ngang hàng."
+  },
+  {
+    "question_id": 49,
+    "question_title": "We can reuse all authentication requirements from the previous project by copy from a library of reusable components. Which dimensions does the statement refer to?",
+    "option_A": "extend of modification",
+    "option_B": "reuse mechanism",
+    "option_C": "extend of reuses",
+    "option_D": "D. None of the others",
+    "correct_anwser": "A, B",
+    "explan": "Phát biểu đề cập đến việc tái sử dụng bằng cách 'sao chép trực tiếp từ một thư viện thành phần' — mô tả cơ chế thực hiện tái sử dụng (Reuse mechanism - sao chép từ kho lưu trữ) và mức độ chỉnh sửa (Extent of modification - giữ nguyên toàn bộ, không sửa đổi)."
+  },
+  {
+    "question_id": 50,
+    "question_title": "What principle ensures that each code unit performs a specific, welldefined function without interference from other parts of the system?",
+    "option_A": "Loose coupling",
+    "option_B": "Information hiding",
+    "option_C": "Strong cohesion",
+    "option_D": "All of the others",
+    "correct_anwser": "C",
+    "explan": "Nguyên lý đảm bảo mỗi đơn vị mã nguồn (mô-đun/lớp/hàm) chỉ tập trung thực hiện duy nhất một nhiệm vụ cụ thể, rõ ràng và độc lập được gọi là tính Kết dính cao (Strong Cohesion)."
+  },
+  {
+    "question_id": 51,
+    "question_title": "Which of the following is NOT about packaged solution?",
+    "option_A": "You build systems by using your own staff.",
+    "option_B": "It needs to be configured, integrated, and extended to work in the target environment.",
+    "option_C": "You can purchase a package as part or all of the solution for a new project.",
+    "option_D": "Evaluate solution candidates so that you can select the most appropriate package.",
+    "correct_anwser": "A",
+    "explan": "Giải pháp đóng gói (Packaged solution / COTS) có nghĩa là bạn đi mua một sản phẩm phần mềm thương mại có sẵn trên thị trường về dùng, trái ngược hoàn toàn với việc tự xây dựng hệ thống từ đầu bằng đội ngũ nhân sự nội bộ của mình (A)."
+  },
+  {
+    "question_id": 52,
+    "question_title": "Which type of issue occurs when something isn't understood or decided about a requirement?",
+    "option_A": "Requirement question",
+    "option_B": "Incorrect requirement",
+    "option_C": "Implementation question",
+    "option_D": "Unneeded requirement",
+    "correct_anwser": "A",
+    "explan": "Khi một vấn đề liên quan đến yêu cầu chưa được hiểu rõ hoặc chưa được các bên thống nhất đưa ra quyết định cuối cùng, tình huống này được phân loại thuộc nhóm 'Câu hỏi/Vấn đề tồn đọng về yêu cầu' (Requirement question / Requirement issue)."
+  },
+  {
+    "question_id": 53,
+    "question_title": "Which of the following is a benefit of requirements tracing for reengineering efforts?",
+    "option_A": "It facilitates the reuse of components from the previous system.",
+    "option_B": "It helps identify where a system needs to be entirely replaced.",
+    "option_C": "It automates the reengineering process.",
+    "option_D": "It allows a system to function with fewer resources.",
+    "correct_anwser": "A",
+    "explan": "Khi thực hiện tái cấu trúc hệ thống (reengineering), việc có sẵn ma trận truy vết yêu cầu (requirements tracing) giúp đội ngũ biết rõ chức năng cũ tương ứng với những thành phần mã nguồn, module nào, từ đó tạo điều kiện thuận lợi cho việc tái sử dụng (reuse) các thành phần chạy tốt."
+  },
+  {
+    "question_id": 54,
+    "question_title": "What is the primary consequence of requirements problems?",
+    "option_A": "Delays and rework",
+    "option_B": "Increased resource costs",
+    "option_C": "Faster development process",
+    "option_D": "Improved product quality",
+    "correct_anwser": "A",
+    "explan": "Hệ lụy trực tiếp, phổ biến và nghiêm trọng nhất khi gặp các vấn đề hoặc sai sót về mặt yêu cầu là làm chậm trễ tiến độ dự án (delays) và buộc đội ngũ phải đập đi làm lại, sửa đổi mã nguồn rất nhiều lần (rework)."
+  },
+  {
+    "question_id": 55,
+    "question_title": "What is Vision and Scope Document derived from?",
+    "option_A": "System requirements",
+    "option_B": "User requirements",
+    "option_C": "Business requirements",
+    "option_D": "Original requirements",
+    "correct_anwser": "C",
+    "explan": "Tài liệu Tầm nhìn và Phạm vi (Vision and Scope Document) được hình thành và phát triển trực tiếp từ các Yêu cầu kinh doanh (Business Requirements), nhằm thiết lập mục tiêu chiến lược và giới hạn cho dự án."
+  },
+  {
+    "question_id": 56,
+    "question_title": "What is the primary purpose of a business case in software requirements?",
+    "option_A": "To justify the project's value and align it with organizational goals",
+    "option_B": "To finalize the technical requirements",
+    "option_C": "To replace the Vision and Scope document",
+    "option_D": "To eliminate stakeholder involvement in the early phases",
+    "correct_anwser": "A",
+    "explan": "Mục đích cốt lõi của một Business Case là chứng minh/luận giải giá trị lợi ích của dự án về mặt kinh tế, chi phí đầu tư và đảm bảo dự án đó hoàn toàn đồng nhất với các mục tiêu chiến lược dài hạn của tổ chức."
+  },
+  {
+    "question_id": 57,
+    "question_title": "What is the primary objective of requirements reuse in projects?",
+    "option_A": "To improve efficiency and consistency by leveraging existing requirements in new projects",
+    "option_B": "To finalize coding standards early",
+    "option_C": "To eliminate stakeholder involvement in the elicitation process",
+    "option_D": "To skip non-functional requirements entirely",
+    "correct_anwser": "A",
+    "explan": "Mục tiêu chính của việc tái sử dụng yêu cầu (requirements reuse) là nhằm tối ưu hóa hiệu suất làm việc, tiết kiệm thời gian và đảm bảo tính nhất quán của hệ thống bằng cách kế thừa, tận dụng các yêu cầu đã được chuẩn hóa từ các dự án trước đó vào dự án mới."
+  },
+  {
+    "question_id": 58,
+    "question_title": "What tool did Seilevel develop to assist with estimating requirements development effort?",
+    "option_A": "A coding tool for developers.",
+    "option_B": "A requirements effort estimation spreadsheet.",
+    "option_C": "A time-tracking tool for project managers.",
+    "option_D": "A documentation tool for stakeholders.",
+    "correct_anwser": "B",
+    "explan": "Seilevel đã phát triển một bảng tính chuyên dụng để ước lượng nỗ lực phát triển yêu cầu (a requirements effort estimation spreadsheet), giúp các BA tính toán khối lượng công việc cần thiết dựa trên các thuộc tính của dự án."
+  },
+  {
+    "question_id": 59,
+    "question_title": "Which arrangement describes the increasing amount of requirements and development work when implementing packaged solutions?",
+    "option_A": "1,2,3,4",
+    "option_B": "2,1,3,4",
+    "option_C": "2,4,3,1",
+    "option_D": "4,1,2,3",
+    "correct_anwser": "D",
+    "explan": "Khi triển khai các giải pháp phần mềm đóng gói (packaged solutions), khối lượng công việc phân tích yêu cầu và phát triển phần mềm tăng dần theo thứ tự: 4. Out of the box (Dùng ngay bản dựng sẵn, ít tốn công nhất) -> 1. Configured (Cấu hình hệ thống) -> 2. Integrated (Tích hợp hệ thống với các nền tảng khác) -> 3. Extended (Viết thêm mã nguồn mở rộng tính năng, tốn nhiều công sức nhất). Do đó đáp án đúng là 4,1,2,3."
+  }
+]

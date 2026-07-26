@@ -38,10 +38,52 @@ const QuizWorkspaceContent: React.FC = () => {
 
   // Check if quizId is a subject code (merged mode) or a specific quiz set
   const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
+  const isExamMode = quizId === 'swr302-random-exam';
 
-  // Build the merged & shuffled question list (or single quiz set)
+  // Build the merged & shuffled question list (or single quiz set / random exam)
   const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
     if (!quizId) return { questions: [] as QuizQuestion[], title: '' };
+
+    if (quizId === 'swr302-random-exam') {
+      let examQuestions: QuizQuestion[] = [];
+      try {
+        const saved = localStorage.getItem('swr302_random_exam_questions');
+        if (saved) {
+          examQuestions = JSON.parse(saved);
+        }
+      } catch (e) {}
+
+      if (!examQuestions || examQuestions.length === 0) {
+        const targetCounts: Record<number, number> = {
+          1: 11,
+          2: 10,
+          3: 7,
+          4: 7,
+          5: 10,
+          6: 6,
+          7: 9,
+        };
+
+        const sampled: QuizQuestion[] = [];
+        Object.entries(targetCounts).forEach(([modNum, count]) => {
+          const qSet = QUIZZES.find(q => q.id.includes(`module-${modNum}`));
+          if (qSet && qSet.questions.length > 0) {
+            const shuffled = [...qSet.questions].sort(() => 0.5 - Math.random());
+            sampled.push(...shuffled.slice(0, count));
+          }
+        });
+
+        examQuestions = sampled.sort(() => 0.5 - Math.random());
+        try {
+          localStorage.setItem('swr302_random_exam_questions', JSON.stringify(examQuestions));
+        } catch (e) {}
+      }
+
+      return {
+        questions: examQuestions,
+        title: 'SWR302 - 60-Question Mock Exam (Real Exam Simulation)',
+      };
+    }
 
     if (isSubjectMode) {
       const subjectKey = SUBJECT_CODES[quizId.toLowerCase()];
@@ -81,8 +123,20 @@ const QuizWorkspaceContent: React.FC = () => {
   }
 
   const totalQuestions = activeQuestions.length;
-
   const localStorageKey = `quiz_progress_${quizId?.toLowerCase() || ''}`;
+
+  // Exam mode submission state
+  const [isExamSubmitted, setIsExamSubmitted] = useState<boolean>(() => {
+    if (!isExamMode) return false;
+    try {
+      const saved = localStorage.getItem(localStorageKey);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return !!parsed.isExamSubmitted;
+      }
+    } catch (e) {}
+    return false;
+  });
 
   // Local state
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(() => {
@@ -153,13 +207,14 @@ const QuizWorkspaceContent: React.FC = () => {
       selectedOptions,
       submittedQuestions,
       questionResults,
+      isExamSubmitted,
     };
     localStorage.setItem(localStorageKey, JSON.stringify(progress));
-  }, [localStorageKey, quizId, currentQuestionIdx, selectedOptions, submittedQuestions, questionResults]);
+  }, [localStorageKey, quizId, currentQuestionIdx, selectedOptions, submittedQuestions, questionResults, isExamSubmitted]);
 
   const currentQuestion = activeQuestions[currentQuestionIdx];
   const userAnswers = selectedOptions[currentQuestionIdx] || [];
-  const isSubmitted = submittedQuestions[currentQuestionIdx] || false;
+  const isSubmitted = isExamMode ? isExamSubmitted : (submittedQuestions[currentQuestionIdx] || false);
 
   // Parse correct answers
   const correctAnswers = useMemo(() => {
@@ -183,8 +238,6 @@ const QuizWorkspaceContent: React.FC = () => {
       key => submittedQuestions[Number(key)] && !questionResults[Number(key)]
     ).length;
   }, [submittedQuestions, questionResults]);
-
-
 
   const handleOptionClick = (optionKey: string) => {
     if (isSubmitted) return;
@@ -225,6 +278,61 @@ const QuizWorkspaceContent: React.FC = () => {
       ...questionResults,
       [currentQuestionIdx]: isCorrect
     });
+  };
+
+  const handleFinalExamSubmit = () => {
+    const answeredCount = Object.keys(selectedOptions).filter(k => (selectedOptions[Number(k)] || []).length > 0).length;
+    const unAnswered = totalQuestions - answeredCount;
+
+    const msg = unAnswered > 0
+      ? `You have answered ${answeredCount}/${totalQuestions} questions (${unAnswered} unanswered). Are you sure you want to submit your exam?`
+      : `Are you sure you want to submit your 60-question exam now for final evaluation?`;
+
+    if (window.confirm(msg)) {
+      const newSubmitted: Record<number, boolean> = {};
+      const newResults: Record<number, boolean> = {};
+
+      activeQuestions.forEach((q, idx) => {
+        const uAnswers = selectedOptions[idx] || [];
+        const cAnswers = q.correct_anwser.split(',').map(s => s.trim()).filter(Boolean);
+        const isCorrect = cAnswers.length === uAnswers.length && cAnswers.every(opt => uAnswers.includes(opt));
+
+        newSubmitted[idx] = true;
+        newResults[idx] = isCorrect;
+      });
+
+      setSubmittedQuestions(newSubmitted);
+      setQuestionResults(newResults);
+      setIsExamSubmitted(true);
+    }
+  };
+
+  const handleRetakeRandomExam = () => {
+    if (window.confirm('Generate a new random 60-question mock exam? Current progress will be reset.')) {
+      localStorage.removeItem('swr302_random_exam_questions');
+      localStorage.removeItem(localStorageKey);
+      setSelectedOptions({});
+      setSubmittedQuestions({});
+      setQuestionResults({});
+      setIsExamSubmitted(false);
+      setCurrentQuestionIdx(0);
+      window.location.reload();
+    }
+  };
+
+  const handleRetryCurrentQuestion = () => {
+    const newSelected = { ...selectedOptions };
+    delete newSelected[currentQuestionIdx];
+
+    const newSubmitted = { ...submittedQuestions };
+    delete newSubmitted[currentQuestionIdx];
+
+    const newResults = { ...questionResults };
+    delete newResults[currentQuestionIdx];
+
+    setSelectedOptions(newSelected);
+    setSubmittedQuestions(newSubmitted);
+    setQuestionResults(newResults);
   };
 
   const handleResetQuiz = () => {
@@ -293,7 +401,13 @@ const QuizWorkspaceContent: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-200 dark:border-slate-800/80 pb-6 mb-8 gap-4">
           <div className="flex items-center space-x-4">
             <button
-              onClick={() => navigate('/quiz')}
+              onClick={() => {
+                if (quizId && quizId.toLowerCase().includes('swr302')) {
+                  navigate('/quiz/swr302');
+                } else {
+                  navigate('/quiz');
+                }
+              }}
               className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-500/20 shadow-sm active:scale-95 transition-all"
               title={t('quiz.back_to_catalog', 'Back to Hub')}
             >
@@ -319,6 +433,36 @@ const QuizWorkspaceContent: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* Exam Score Banner if Exam Mode is Finished */}
+        {isExamMode && isExamSubmitted && (
+          <div className="mb-8 rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-r from-slate-900 via-emerald-950/60 to-slate-900 p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className={`text-xs font-black uppercase px-3 py-1 rounded-full ${
+                  (correctCount / totalQuestions) >= 0.7 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                }`}>
+                  {(correctCount / totalQuestions) >= 0.7 ? 'PASSED (ĐẠT)' : 'FAILED (CHƯA ĐẠT)'}
+                </span>
+                <span className="text-slate-400 text-xs font-semibold">Real Exam Simulation (60 Questions)</span>
+              </div>
+              <h3 className="text-2xl font-black text-white mb-1">
+                Final Exam Score: {correctCount} / {totalQuestions} ({Math.round((correctCount / totalQuestions) * 100)}%)
+              </h3>
+              <p className="text-slate-300 text-xs">
+                Answers and detailed explanations are unlocked below. You can review each question or generate a new test.
+              </p>
+            </div>
+
+            <button
+              onClick={handleRetakeRandomExam}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-extrabold px-6 py-3 rounded-2xl shadow-md transition-all shrink-0 text-sm active:scale-95"
+            >
+              <RotateCcw className="h-4 w-4" />
+              <span>Generate New 60-Question Exam</span>
+            </button>
+          </div>
+        )}
 
         {/* Workspace Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 items-start quiz-split-container">
@@ -443,15 +587,24 @@ const QuizWorkspaceContent: React.FC = () => {
                 </div>
 
                 {!isSubmitted ? (
-                  <button
-                    onClick={handleSubmit}
-                    disabled={userAnswers.length === 0}
-                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white font-bold text-sm py-3 px-6 shadow-md hover:shadow-indigo-500/20 active:scale-97 transition-all"
-                  >
-                    <span>{t('quiz.submit_answer', 'Submit Answer')}</span>
-                  </button>
+                  isExamMode ? (
+                    <button
+                      onClick={handleFinalExamSubmit}
+                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-extrabold text-sm py-3 px-6 shadow-md hover:shadow-rose-500/20 active:scale-97 transition-all"
+                    >
+                      <span>Submit Exam ({totalQuestions} Questions)</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleSubmit}
+                      disabled={userAnswers.length === 0}
+                      className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white font-bold text-sm py-3 px-6 shadow-md hover:shadow-indigo-500/20 active:scale-97 transition-all"
+                    >
+                      <span>{t('quiz.submit_answer', 'Submit Answer')}</span>
+                    </button>
+                  )
                 ) : (
-                  <div className="flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-start">
+                  <div className="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-start">
                     {questionResults[currentQuestionIdx] ? (
                       <span className="inline-flex items-center px-4 py-2 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
                         <Check className="h-4.5 w-4.5 mr-1.5 stroke-[3]" />
@@ -463,6 +616,15 @@ const QuizWorkspaceContent: React.FC = () => {
                         {t('quiz.incorrect', 'Incorrect')}
                       </span>
                     )}
+
+                    <button
+                      onClick={handleRetryCurrentQuestion}
+                      className="inline-flex items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-bold text-xs px-3.5 py-2.5 transition-all active:scale-95 shadow-sm"
+                      title={t('quiz.retry_question', 'Retry Question')}
+                    >
+                      <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
+                      <span>{t('quiz.retry_question', 'Retry Question')}</span>
+                    </button>
                   </div>
                 )}
               </div>
@@ -471,13 +633,23 @@ const QuizWorkspaceContent: React.FC = () => {
             {/* Explanation box (Only display if submitted) */}
             {isSubmitted && (
               <div className="rounded-3xl border border-emerald-500/20 bg-emerald-50/20 dark:bg-emerald-950/5 p-6 sm:p-8 shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="h-8 w-8 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                    <Sparkles className="h-4.5 w-4.5" />
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="h-8 w-8 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                      <Sparkles className="h-4.5 w-4.5" />
+                    </div>
+                    <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                      {t('quiz.explanation', 'Explanation')}
+                    </h4>
                   </div>
-                  <h4 className="text-sm font-extrabold uppercase tracking-wider text-slate-800 dark:text-slate-200">
-                    {t('quiz.explanation', 'Explanation')}
-                  </h4>
+
+                  <button
+                    onClick={handleRetryCurrentQuestion}
+                    className="inline-flex items-center space-x-1.5 text-xs font-extrabold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 bg-white dark:bg-slate-900 border border-indigo-500/20 px-3 py-1.5 rounded-xl shadow-sm hover:shadow-md transition-all active:scale-95"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" />
+                    <span>{t('quiz.retry_question', 'Retry Question')}</span>
+                  </button>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-medium whitespace-pre-line">
                   {currentQuestion.explain}

@@ -1,0 +1,479 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "What are the purposes of prioritizing the requirements? Choose 2 correct answers.",
+    "option_A": "To ensure that the team implements the highest value or most timely functionality first",
+    "option_B": "To determine which release or increment will contain each feature or set of requirements",
+    "option_C": "To finish the project faster",
+    "option_D": "To facilitate the release of the product",
+    "correct_anwser": "A, B",
+    "explan": "Mục đích chính của việc ưu tiên hóa yêu cầu là đảm bảo đội ngũ phát triển những chức năng có giá trị cao nhất hoặc cấp thiết nhất trước (A) và xác định xem tính năng nào sẽ nằm trong đợt phát hành (release/increment) nào (B)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "What's the difference between Use Cases and User Stories?",
+    "option_A": "The use case is a business artifact which defines the software requirement or an application feature. Whereas user story is a test artifact which defines the steps to validate and verify that the software requirement or application feature exists",
+    "option_B": "The user story contains complete and lengthy descriptions. A use case contains simplified and short descriptions",
+    "option_C": "The user story is a business artifact which defines the software requirement or an application feature. Whereas use case is a test artifact which defines the steps to validate and verify that the software requirement or application feature exists",
+    "option_D": "The user story contains simplified and short descriptions. A use case contains complete and lengthy descriptions",
+    "correct_anwser": "D",
+    "explan": "User Story (Câu chuyện người dùng) là những mô tả ngắn gọn, đơn giản, cô đọng dưới góc nhìn của người dùng cuối (thường theo mẫu As a... I want to... So that...). Ngược lại, Use Case (Ca sử dụng) là một tài liệu chi tiết, đầy đủ, mô tả tường tận các luồng tương tác và kịch bản nghiệp vụ đầy đủ giữa tác nhân và hệ thống."
+  },
+  {
+    "question_id": 3,
+    "question_title": "An analysis model that visually depicts the various states in which a system or an object in the system can exist, the permitted transitions that can take place between states.",
+    "option_A": "State-transition diagram",
+    "option_B": "Swimlane diagram",
+    "option_C": "Use case diagram",
+    "option_D": "Data Flow diagram",
+    "correct_anwser": "A",
+    "explan": "Sơ đồ chuyển trạng thái (State-transition diagram) là mô hình phân tích mô tả trực quan các trạng thái khác nhau của một hệ thống hoặc một đối tượng, cũng như các điều kiện dịch chuyển hợp lệ giữa các trạng thái đó."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Prioritization is a way to deal with competing demands for limited resources. So, establishing the relative priority of each product capability lets you plan construction to provide the _______ value at the _______ cost.",
+    "option_A": "highest, lowest",
+    "option_B": "lowest, highest",
+    "option_C": "highest, highest",
+    "option_D": "lowest, lowest",
+    "correct_anwser": "A",
+    "explan": "Việc xác định mức độ ưu tiên tương đối của từng tính năng sản phẩm giúp người quản lý lập kế hoạch thi công nhằm mục đích mang lại giá trị cao nhất (highest value) với chi phí hoặc nguồn lực thấp nhất có thể (lowest cost)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Choose the incorrect answer when talking about the essential aspects of an agile approach to requirements.",
+    "option_A": "Customer involvement",
+    "option_B": "Expect stability",
+    "option_C": "The backlog and prioritization",
+    "option_D": "Timing",
+    "option_E": "Documentation detail",
+    "correct_anwser": "B",
+    "explan": "Trong cách tiếp cận Agile đối với yêu cầu, người ta luôn chuẩn bị tinh thần đón nhận sự thay đổi (Embrace change) chứ không bao giờ 'Kỳ vọng sự ổn định' (Expect stability). Các khía cạnh còn lại như sự tham gia của khách hàng, backlog/ưu tiên hóa, timing và mức độ chi tiết tài liệu vừa đủ đều là đặc trưng của Agile."
+  },
+  {
+    "question_id": 6,
+    "question_title": "According to the \"Three-level scale\" prioritization, how is a \"High-priority requirement\" defined?",
+    "option_A": "It is important (customers need the capability) but not urgent (it can wait for a later release).",
+    "option_B": "It is both important (customers need the capability) and urgent (customers need it in the next release), or contractual/compliance obligations mandate its inclusion.",
+    "option_C": "It is neither important nor urgent, and can be eliminated.",
+    "option_D": "It is urgent for political reasons but not important for achieving business objectives.",
+    "correct_anwser": "B",
+    "explan": "Theo thang đo ưu tiên 3 mức độ (High, Medium, Low), một yêu cầu có độ ưu tiên Cao (High-priority) được định nghĩa là yêu cầu vừa quan trọng (khách hàng thực sự cần tính năng đó) vừa cấp bách (phải xuất hiện ngay trong đợt phát hành tới), hoặc là yêu cầu bắt buộc tuân thủ theo hợp đồng/pháp lý."
+  },
+  {
+    "question_id": 7,
+    "question_title": "With whom should an Agile analyst collaborate closely to ensure the requirements accurately reflect business needs?",
+    "option_A": "Only the end customers.",
+    "option_B": "Only the development and testing teams.",
+    "option_C": "Only with the development team to relay technical requirements.",
+    "option_D": "With the customer, project management, the development team, and other stakeholders to ensure requirements align with business needs.",
+    "option_E": "With the business department solely for comparing statistical data.",
+    "correct_anwser": "D",
+    "explan": "Trong mô hình Agile, nhà phân tích cần đóng vai trò là cầu nối cộng tác liên tục và toàn diện với tất cả các bên bao gồm khách hàng, quản trị dự án, đội ngũ lập trình và các bên liên quan để đảm bảo mọi yêu cầu đưa ra đồng bộ với giá trị kinh doanh."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following describes the difference between a product's vision and its scope?",
+    "option_A": "Vision applies to Agile projects, while scope applies only to traditional projects.",
+    "option_B": "Vision is a long-term goal and ultimate state of the product, while scope defines what portion of the vision will be built in a specific release or project.",
+    "option_C": "Vision is documented by the developer, while scope is written by the customer.",
+    "option_D": "Vision defines the budget constraints, while scope defines the technical stack.",
+    "correct_anwser": "B",
+    "explan": "Tầm nhìn (Vision) mô tả mục tiêu lâu dài và trạng thái lý tưởng cuối cùng mà sản phẩm hướng tới, trong khi phạm vi (Scope) xác định giới hạn cụ thể những tính năng hoặc phần việc nào của tầm nhìn đó sẽ thực sự được xây dựng trong một phiên bản phát hành hoặc dự án cụ thể."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which technique is most effective for resolving conflicts among stakeholders?",
+    "option_A": "Prioritization workshops",
+    "option_B": "Eliminating conflicting requirements",
+    "option_C": "Focusing only on functional requirements",
+    "option_D": "Avoiding stakeholder feedback",
+    "correct_anwser": "A",
+    "explan": "Các buổi hội thảo ưu tiên hóa (Prioritization workshops) tập hợp các bên liên quan lại để cùng thảo luận, đánh giá giá trị và mức độ quan trọng của từng yêu cầu dưới góc nhìn kinh doanh, từ đó giúp đạt được sự đồng thuận và giải quyết xung đột lợi ích một cách hiệu quả nhất."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What is a common pitfall in writing non-functional requirements?",
+    "option_A": "Making them too vague or unmeasurable",
+    "option_B": "Prioritizing them over functional requirements",
+    "option_C": "Writing them without stakeholder input",
+    "option_D": "Skipping them in the documentation process",
+    "correct_anwser": "A",
+    "explan": "Một sai lầm phổ biến và nghiêm trọng nhất khi viết các yêu cầu phi chức năng (Non-functional requirements - NFR) là viết chúng quá mơ hồ, chung chung và không thể đo lường được (ví dụ: 'Hệ thống phải chạy nhanh', 'Giao diện phải thân thiện'). NFR đúng chuẩn cần phải định lượng được rõ ràng (ví dụ: 'Thời gian phản hồi phải dưới 2 giây')."
+  },
+  {
+    "question_id": 11,
+    "question_title": "What is the role of user stories in Agile requirements management?",
+    "option_A": "To provide concise, actionable descriptions of features from the user's perspective",
+    "option_B": "To replace the Vision and Scope document",
+    "option_C": "To prioritize non-functional requirements",
+    "option_D": "To finalize the system's architecture",
+    "correct_anwser": "A",
+    "explan": "Trong mô hình Agile, câu chuyện người dùng (User Story) đóng vai trò cung cấp các mô tả ngắn gọn, dễ hiểu và có thể thực thi được về một tính năng sản phẩm dưới góc nhìn/lăng kính của người sử dụng cuối (thường theo cấu trúc: As a... I want to... So that...)."
+  },
+  {
+    "question_id": 12,
+    "question_title": "What is the primary challenge of documenting requirements for complex systems?",
+    "option_A": "Ensuring clarity, consistency, and avoiding ambiguities",
+    "option_B": "Eliminating low-priority requirements",
+    "option_C": "Skipping stakeholder validation",
+    "option_D": "Focusing only on functional needs",
+    "correct_anwser": "A",
+    "explan": "Khi viết tài liệu yêu cầu cho các hệ thống lớn và phức tạp, thách thức hàng đầu luôn là đảm bảo tính rõ ràng (clarity), nhất quán (consistency) giữa hàng trăm yêu cầu đan xen và tuyệt đối tránh viết mơ hồ, đa nghĩa (avoiding ambiguities) gây hiểu lầm cho đội phát triển."
+  },
+  {
+    "question_id": 13,
+    "question_title": "If you prototype the whole solution rather than only the most uncertain, high-risk, or complex portions, your risk is",
+    "option_A": "investing excessive effort in prototypes",
+    "option_B": "distraction by details",
+    "option_C": "pressure to release the prototype",
+    "option_D": "unrealistic performance expectations",
+    "correct_anwser": "A",
+    "explan": "Nguyên tắc làm mẫu thử là chỉ nên tập trung vào các phần có rủi ro cao, phức tạp hoặc chưa rõ ràng để tối ưu chi phí. Nếu cố gắng làm mẫu thử cho toàn bộ giải pháp (the whole solution), dự án sẽ đối mặt với rủi ro lãng phí nguồn lực và bỏ ra công sức quá mức cần thiết vào mẫu thử (investing excessive effort in prototypes) trong khi nhiều phần trong đó đã rất rõ ràng."
+  },
+  {
+    "question_id": 14,
+    "question_title": "The four capitalized letters in the MoSCoW prioritization technique stand for:",
+    "option_A": "Must, Should, Could, Won't",
+    "option_B": "Must, Should, Could, Will",
+    "option_C": "Must, Should, Can, Will",
+    "option_D": "Must, Shall, Could, Won't",
+    "correct_anwser": "A",
+    "explan": "Kỹ thuật phân loại và ưu tiên yêu cầu MoSCoW là từ viết tắt của bốn nhóm: Must have (Phải có), Should have (Nên có), Could have (Có thể có), và Won't have this time (Chưa có vào lúc này)."
+  },
+  {
+    "question_id": 15,
+    "question_title": "Which of the following is NOT about prioritization techniques?",
+    "option_A": "In or out.",
+    "option_B": "Pairwise comparison and rank ordering.",
+    "option_C": "Three-level scale.",
+    "option_D": "MoSCoW.",
+    "option_E": "Based on risk.",
+    "correct_anwser": "E",
+    "explan": "Các phương án A, B, C, D đều là tên gọi của các kỹ thuật hoặc thang đo phân loại ưu tiên yêu cầu chuẩn hóa trong kỹ nghệ yêu cầu (In or out, So sánh cặp Pairwise, Thang đo 3 mức Three-level, MoSCoW). Trích theo lý thuyết sách Karl Wiegers, 'Based on risk' (Dựa trên rủi ro) chỉ là một trong các tiêu chí đánh giá khi phân tích, chứ không phải một tên gọi kỹ thuật phân loại ưu tiên độc lập."
+  },
+  {
+    "question_id": 16,
+    "question_title": "Which of the following is NOT about Change management on Agile projects?",
+    "option_A": "Agile processes harness change for the customer's competitive advantage.",
+    "option_B": "Agile projects manage change by maintaining a specific backlog of work to be done.",
+    "option_C": "Accepting change helps to meet evolving business objectives and priorities and to accommodate the limitations of human plans and foresight.",
+    "option_D": "Agile methods vary as to their philosophy on this point; there is no single “correct” approach.",
+    "correct_anwser": "B",
+    "explan": "Trong mô hình Agile, các dự án quản lý thay đổi thông qua một danh sách động gọi là Product Backlog luôn luôn được liên tục cập nhật, làm mịn và tái ưu tiên (prioritized backlog), chứ không phải duy trì một danh sách công việc cố định hay cụ thể không đổi (maintaining a specific backlog). Các phương án A, C, D đều phản ánh đúng tuyên ngôn và triết lý đón nhận sự thay đổi của Agile."
+  },
+  {
+    "question_id": 17,
+    "question_title": "Which of the following is an example of a risk avoidance strategy?",
+    "option_A": "Performing risk control activities to manage top-priority risks.",
+    "option_B": "Documenting potential risks without any action.",
+    "option_C": "Not engaging in the risky activity at all.",
+    "option_D": "Ignoring minor risks and focusing only on major risks.",
+    "correct_anwser": "C",
+    "explan": "Né tránh rủi ro (Risk avoidance) có nghĩa là thay đổi kế hoạch dự án hoặc chủ động không tham gia vào hoạt động có rủi ro đó nữa (Not engaging in the risky activity at all) nhằm loại bỏ hoàn toàn khả năng xuất hiện hoặc ảnh hưởng của rủi ro đó đối với dự án."
+  },
+  {
+    "question_id": 18,
+    "question_title": "Which statement best describes the purpose of an Epic in Agile project?",
+    "option_A": "To define detailed requirements and specifications for a project",
+    "option_B": "To represent a high-level user need or business requirement that can be broken down into smaller, more manageable user stories",
+    "option_C": "To assign tasks to team members for implementation",
+    "option_D": "To prioritize project deliverables",
+    "correct_anwser": "B",
+    "explan": "Trong mô hình Agile, một Epic đóng vai trò đại diện cho một khối yêu cầu nghiệp vụ hoặc nhu cầu lớn ở cấp độ vĩ mô (high-level user need) của người dùng, mà từ đó thực tế sẽ được phân rã ra thành nhiều câu chuyện người dùng nhỏ hơn, chi tiết hơn (user stories) để đội phát triển dễ dàng quản lý và thực thi trong từng Sprint."
+  },
+  {
+    "question_id": 19,
+    "question_title": "Which of the following are considered good practices in requirements analysis? Select three.",
+    "option_A": "Modeling the application environment to understand the system's boundaries and interactions with external entities.",
+    "option_B": "Prioritizing the requirements based solely on the preferences of the development team without considering business goals or customer needs.",
+    "option_C": "Creating prototypes to explore and validate uncertain requirements with stakeholders.",
+    "option_D": "Analyzing data flows to ensure that all interactions between the system and external entities are understood and documented.",
+    "correct_anwser": "A, C, D",
+    "explan": "Các hoạt động phân tích yêu cầu chuẩn và tốt bao gồm: Mô hình hóa môi trường để xác định ranh giới hệ thống (A), xây dựng mẫu thử (prototype) để xác thực các yêu cầu chưa rõ ràng (C), và phân tích luồng dữ liệu (D). Lựa chọn B sai vì không được phép ưu tiên yêu cầu chỉ dựa trên sở thích cá nhân của đội phát triển mà bỏ qua mục tiêu kinh doanh của khách hàng."
+  },
+  {
+    "question_id": 20,
+    "question_title": "What should a business analyst do in an Agile project? Chooses 3 correct answers.",
+    "option_A": "Define a lightweight, flexible requirements process and adapt it as the project warrants",
+    "option_B": "Ensure that requirements documentation is at the right level: very detailed",
+    "option_C": "Help validate that customer needs are accurately represented in the product backlog",
+    "option_D": "Facilitate backlog prioritization",
+    "correct_anwser": "A, C, D",
+    "explan": "Trong môi trường Agile, vai trò của BA là thiết lập quy trình yêu cầu linh hoạt, gọn nhẹ (A), hỗ trợ xác thực nhu cầu khách hàng được phản ánh đúng trong product backlog (C), và điều phối việc ưu tiên hóa backlog (D). Lựa chọn B sai vì Agile không hướng tới việc viết tài liệu yêu cầu 'rất chi tiết' (very detailed) ngay từ đầu mà chú trọng vào mức độ chi tiết vừa đủ và tiệm tiến."
+  },
+  {
+    "question_id": 21,
+    "question_title": "Propose a solution for a scenario where a product owner is unable to understand all user requirements due to the complexity of the project. Which approach would you recommend?",
+    "option_A": "Replace the product owner with a more knowledgeable individual.",
+    "option_B": "Collaborate with multiple business analysts and product champions to gather comprehensive requirements.",
+    "option_C": "Simplify the project to reduce complexity.",
+    "option_D": "Delegate all decision-making to the development team.",
+    "correct_anwser": "B",
+    "explan": "Khi dự án quá phức tạp khiến Product Owner không thể tự nắm bắt toàn bộ yêu cầu, giải pháp tối ưu và thực tế nhất là phân rã công việc bằng cách phối hợp chặt chẽ với nhiều Business Analyst và các Product Champion để cùng thu thập và làm rõ yêu cầu một cách toàn diện."
+  },
+  {
+    "question_id": 22,
+    "question_title": "Why is traceability essential for managing changing requirements?",
+    "option_A": "To track changes and ensure alignment with project goals",
+    "option_B": "To prioritize functional requirements",
+    "option_C": "To reduce the scope of stakeholder involvement",
+    "option_D": "To eliminate ambiguous requirements",
+    "correct_anwser": "A",
+    "explan": "Tính truy vết (Traceability) đóng vai trò sống còn trong việc quản lý thay đổi vì nó cho phép theo dõi lịch sử, nguồn gốc của yêu cầu và phân tích tác động, đảm bảo mọi thay đổi phát sinh luôn nhất quán và hướng tới mục tiêu chung của dự án."
+  },
+  {
+    "question_id": 23,
+    "question_title": "What is the most popular form of user stories?",
+    "option_A": "As a <type of user>, I want <some goal> so that <some reason>.",
+    "option_B": "As a <type of user>, I want <some goal>.",
+    "option_C": "As a <type of user>, I need <some need> so that <some reason>.",
+    "option_D": "As a <type of user>, I want <some goal> to <some purpose>.",
+    "correct_anwser": "A",
+    "explan": "Mẫu (template) phổ biến nhất của một User Story trong phát triển phần mềm theo Agile là: \"As a <role>, I want <goal/desire> so that <benefit/reason>\" (Với tư cách là..., tôi muốn... để...)."
+  },
+  {
+    "question_id": 24,
+    "question_title": "An analysis model that depicts a process flow proceeding from one activity to another",
+    "option_A": "Dialog map",
+    "option_B": "Swimlane diagram",
+    "option_C": "Context diagram",
+    "option_D": "Class diagram",
+    "correct_anwser": "B",
+    "explan": "Sơ đồ làn bơi (Swimlane diagram) là một dạng mô hình phân tích quy trình thể hiện rõ luồng công việc (process flow) tuần tự đi từ hoạt động này sang hoạt động khác, đồng thời phân định rõ ràng trách nhiệm thực hiện hoạt động đó thuộc về phòng ban hoặc tác nhân nào."
+  },
+  {
+    "question_id": 25,
+    "question_title": "Which of the following is NOT a requirements prioritization technique?",
+    "option_A": "Pairwise comparison",
+    "option_B": "In or out",
+    "option_C": "Three-level scale",
+    "option_D": "$1000",
+    "option_E": "MoSCoW",
+    "correct_anwser": "D",
+    "explan": "Kỹ thuật phân bổ nguồn vốn giả định để ưu tiên yêu cầu có tên chuẩn xác theo lý thuyết là kỹ thuật '$100 allocation' hoặc '100-dollar test'. Việc đưa ra con số '$1000' không phải là tên gọi chuẩn hóa của kỹ thuật này trong sách giáo trình kỹ nghệ yêu cầu."
+  },
+  {
+    "question_id": 26,
+    "question_title": "What does the MoSCoW method classify in requirements prioritization?",
+    "option_A": "Urgency and cost of requirements",
+    "option_B": "Must, Should, Could, and Won't categories",
+    "option_C": "Technical feasibility and design limitations",
+    "option_D": "High, Medium, and Low priorities",
+    "correct_anwser": "B",
+    "explan": "Phương pháp MoSCoW phân loại các yêu cầu thành 4 nhóm viết tắt rõ ràng bao gồm: M - Must have (Bắt buộc phải có), S - Should have (Nên có), C - Could have (Có thể có), và W - Won't have (Chưa phải lúc này/Không có trong đợt này)."
+  },
+  {
+    "question_id": 27,
+    "question_title": "How does the Kano model help analyze user requirements?",
+    "option_A": "By classifying features into basic, performance, and delight categories",
+    "option_B": "By prioritizing requirements based on technical feasibility",
+    "option_C": "By eliminating unnecessary requirements",
+    "option_D": "By focusing only on functional requirements",
+    "correct_anwser": "A",
+    "explan": "Mô hình Kano giúp phân tích mức độ hài lòng của khách hàng bằng cách phân loại các tính năng sản phẩm thành các nhóm: tính năng cơ bản bắt buộc (basic), tính năng tuyến tính/hiệu năng (performance), và tính năng gây bất ngờ thú vị (delight)."
+  },
+  {
+    "question_id": 28,
+    "question_title": "Why is it essential to specify acceptance criteria during requirements validation?",
+    "option_A": "To define clear and measurable conditions for success",
+    "option_B": "To prioritize functional requirements",
+    "option_C": "To finalize the design phase",
+    "option_D": "To eliminate stakeholder input",
+    "correct_anwser": "A",
+    "explan": "Tiêu chí nghiệm thu (Acceptance criteria) đóng vai trò then chốt trong việc thẩm định yêu cầu vì nó định nghĩa ra các điều kiện rõ ràng, có thể đo lường được để kiểm tra xem hệ thống có đáp ứng đúng mong đợi của người dùng và hoàn thành thành công hay không."
+  },
+  {
+    "question_id": 29,
+    "question_title": "Consider the following Statement: \"If a lead doesn't respond back within 30 days of the first contact, it must be a cold lead and can be marked accordingly\". What type of business rule is being depicted here?",
+    "option_A": "Facts",
+    "option_B": "Constraints",
+    "option_C": "Action enablers",
+    "option_D": "Inferences",
+    "option_E": "Computations",
+    "correct_anwser": "D",
+    "explan": "Quy tắc kinh doanh dạng Hệ quả/Suy luận (Inferences) tạo ra một sự thật hoặc tri thức mới từ các điều kiện sẵn có. Tuyên bố trên suy luận rằng: nếu không phản hồi trong 30 ngày (sự thật có sẵn) thì thông tin này được phân loại thành \"khách hàng tiềm năng nguội lạnh\" (tri thức mới suy luận ra)."
+  },
+  {
+    "question_id": 30,
+    "question_title": "What is the primary purpose of a Swimlane diagram?",
+    "option_A": "To represent detailed software architecture and coding structures.",
+    "option_B": "To visually depict the steps involved in a business process or the operations of a proposed software system, subdivided into lanes that represent different systems or actors.",
+    "option_C": "To exclusively model user interface interactions and design layouts.",
+    "option_D": "To show the organizational structure and management hierarchy within a company.",
+    "correct_anwser": "B",
+    "explan": "Mục đích chính của biểu đồ làn bơi (Swimlane diagram) là mô tả trực quan dòng chảy tuần tự của các bước trong một quy trình nghiệp vụ, trong đó chia thành các làn (lanes) song song đại diện cho vai trò chịu trách nhiệm của các tác nhân hoặc phân hệ hệ thống khác nhau."
+  },
+  {
+    "question_id": 31,
+    "question_title": "Which of the following is a benefit of prioritizing requirements?",
+    "option_A": "Improved project management",
+    "option_B": "Decreased stakeholder involvement",
+    "option_C": "Enhanced focus on high-value features",
+    "option_D": "Reduced scope creep",
+    "correct_anwser": "C",
+    "explan": "Lợi ích trực tiếp và quan trọng nhất của việc phân loại mức độ ưu tiên yêu cầu là giúp đội ngũ dự án tập trung tối đa nguồn lực vào việc phát triển các tính năng mang lại giá trị cao nhất cho khách hàng trước (Enhanced focus on high-value features)."
+  },
+  {
+    "question_id": 32,
+    "question_title": "Why is prioritization essential in agile projects, especially when customer expectations are high and timelines are short?",
+    "option_A": "It ensures that the project manager can handle the project without customer input, focusing solely on cost and efficiency.",
+    "option_B": "It allows developers to skip less important features, ensuring that only critical bugs are fixed before release.",
+    "option_C": "It helps in delivering the most critical or valuable functionality as early as possible, ensuring maximum business value within project constraints.",
+    "option_D": "It lets the project manager choose which requirements to ignore, focusing only on budget and staff limitations.",
+    "correct_anwser": "C",
+    "explan": "Trong các dự án Agile với thời gian ngắn (timeline gắt gao), việc ưu tiên giúp đội ngũ bàn giao được các gói tính năng cốt lõi và có giá trị nhất cho khách hàng ngay từ những phiên bản sớm, đảm bảo tối ưu hóa giá trị kinh doanh trong phạm vi ràng buộc của dự án."
+  },
+  {
+    "question_id": 33,
+    "question_title": "“Story point” is used to measure which one below?",
+    "option_A": "User story",
+    "option_B": "Code",
+    "option_C": "Function",
+    "option_D": "Architecture",
+    "correct_anwser": "A",
+    "explan": "Trong các phương pháp phát triển phần mềm linh hoạt (Agile/Scrum), điểm câu chuyện (Story point) là một đơn vị đo lường trừu tượng được sử dụng để ước lượng kích thước, độ phức tạp và nỗ lực cần thiết để hoàn thành một User story."
+  },
+  {
+    "question_id": 34,
+    "question_title": "The close collaboration of customers with developers on agile projects generally means that requirements can be documented in _______ detail than on traditional projects.",
+    "option_A": "less",
+    "option_B": "more",
+    "option_C": "shorter",
+    "option_D": "longer",
+    "correct_anwser": "A",
+    "explan": "Do đặc thù của các dự án Agile là khách hàng hợp tác và trao đổi rất thường xuyên, trực tiếp với đội ngũ phát triển nên các tài liệu yêu cầu thường được viết ngắn gọn, cô đọng và ít chi tiết hơn (\"less detail\") so với việc phải làm tài liệu đặc tả đồ sộ, kỹ lưỡng từ đầu như các mô hình truyền thống (Waterfall)."
+  },
+  {
+    "question_id": 35,
+    "question_title": "How does the MoSCoW method assist in prioritizing requirements?",
+    "option_A": "By categorizing requirements as Must-have, Should-have, Could-have, and Won’t-have",
+    "option_B": "By focusing on technical feasibility",
+    "option_C": "By skipping stakeholder engagement",
+    "option_D": "By eliminating low-priority requirements",
+    "correct_anwser": "A",
+    "explan": "Phương pháp MoSCoW là một kỹ thuật phân loại độ ưu tiên của yêu cầu bằng cách chia chúng thành 4 nhóm rõ ràng: Must-have (Bắt buộc phải có), Should-have (Nên có), Could-have (Có thể có nếu có nguồn lực), và Won't-have (Chưa cần thiết/Không có trong lần phát hành này)."
+  },
+  {
+    "question_id": 36,
+    "question_title": "Which of the following characteristics of excellent requirements is depicted by the statement: \"Requirements don't conflict with other requirements of the same type or with higher-level biz, user, or system requirements.\" ?",
+    "option_A": "Complete",
+    "option_B": "Unambiguous",
+    "option_C": "Consistent",
+    "option_D": "Traceable",
+    "option_E": "Modifiable",
+    "correct_anwser": "C",
+    "explan": "Phát biểu trên mô tả tính nhất quán (Consistent) của yêu cầu, nghĩa là các yêu cầu không được mâu thuẫn hay xung đột lẫn nhau, đồng thời phải đồng bộ với các yêu cầu ở cấp cao hơn như mục tiêu kinh doanh hay nhu cầu thực tế của người dùng."
+  },
+  {
+    "question_id": 37,
+    "question_title": "What is the purpose of categorizing requirements into \"Must-have\" and \"Should-have\"?",
+    "option_A": "To prioritize high-value requirements for early implementation",
+    "option_B": "To eliminate low-priority requirements altogether",
+    "option_C": "To finalize coding strategies",
+    "option_D": "To reduce the scope of non-functional requirements",
+    "correct_anwser": "A",
+    "explan": "Phân loại yêu cầu thành 'Must-have' và 'Should-have' (theo mô hình MoSCoW) nhằm mục đích sắp xếp thứ tự ưu tiên cho các yêu cầu có giá trị cao để đưa vào phát triển và triển khai sớm trong các giai đoạn đầu của dự án."
+  },
+  {
+    "question_id": 38,
+    "question_title": "What is a key characteristic of Agile projects?",
+    "option_A": "Strict adherence to a detailed project plan",
+    "option_B": "Regular adaptation to changing requirements and priorities",
+    "option_C": "Emphasis on comprehensive documentation over working software",
+    "option_D": "Minimal interaction with customers and stakeholders",
+    "correct_anwser": "B",
+    "explan": "Đặc trưng cốt lõi của phương pháp luận Agile (Tuyên ngôn Agile) là khả năng thích ứng nhanh chóng và phản hồi thường xuyên trước các thay đổi về yêu cầu cũng như độ ưu tiên của khách hàng trong suốt quá trình triển khai dự án."
+  },
+  {
+    "question_id": 39,
+    "question_title": "What is the primary challenge in defining system boundaries during requirements elicitation?",
+    "option_A": "Ensuring all stakeholders agree on the scope and avoiding scope creep",
+    "option_B": "Prioritizing functional requirements over non-functional requirements",
+    "option_C": "Eliminating technical constraints",
+    "option_D": "Finalizing coding strategies",
+    "correct_anwser": "A",
+    "explan": "Thách thức lớn nhất khi xác định ranh giới hệ thống (system boundaries) là làm sao để tất cả các bên liên quan thống nhất về phạm vi dự án, từ đó tránh hiện tượng phình đại phạm vi (scope creep) ngoài kiểm soát."
+  },
+  {
+    "question_id": 40,
+    "question_title": "How does the MoSCoW method contribute to prioritizing requirements based on business objectives",
+    "option_A": "It prioritizes requirements solely based on stakeholder preferences",
+    "option_B": "It categorizes requirements into Must-haves, Should-haves, Could-haves, and Won't-haves to guide prioritization",
+    "option_C": "It excludes business objectives from the prioritization process",
+    "option_D": "It only considers technical specifications in prioritization decisions",
+    "correct_anwser": "B",
+    "explan": "Phương pháp MoSCoW hỗ trợ phân định thứ tự ưu tiên bằng cách phân loại các yêu cầu rõ ràng thành 4 nhóm chiến lược: Must-have (Bắt buộc phải có), Should-have (Nên có), Could-have (Có thể có) và Won't-have (Chưa làm trong giai đoạn này)."
+  },
+  {
+    "question_id": 41,
+    "question_title": "How can risks be prioritized in project management?",
+    "option_A": "By focusing on risks that are least likely to occur",
+    "option_B": "By considering both the likelihood of occurrence and potential impact of risks",
+    "option_C": "By ignoring potential impact and only considering likelihood",
+    "option_D": "By assuming that all risks are equally important",
+    "correct_anwser": "B",
+    "explan": "Trong quản trị dự án, rủi ro được ưu tiên xử lý bằng cách đánh giá dựa trên hai yếu tố cốt lõi: Xác suất xảy ra rủi ro (Likelihood/Probability) và Mức độ ảnh hưởng/Tác động của rủi ro đó nếu nó xảy ra (Potential Impact)."
+  },
+  {
+    "question_id": 42,
+    "question_title": "How does modeling help in analyzing complex requirements?",
+    "option_A": "By visualizing requirements and identifying inconsistencies or gaps",
+    "option_B": "By prioritizing coding over documentation",
+    "option_C": "By finalizing all functional requirements early",
+    "option_D": "By reducing stakeholder engagement",
+    "correct_anwser": "A",
+    "explan": "Việc mô hình hóa (modeling) thông qua các sơ đồ (DFD, Use Case, Sequence...) giúp trực quan hóa các yêu cầu phức tạp, từ đó giúp các kỹ sư yêu cầu và khách hàng dễ dàng phát hiện ra các điểm mâu thuẫn (inconsistencies) hoặc khoảng trống thiếu sót (gaps)."
+  },
+  {
+    "question_id": 43,
+    "question_title": "How does prioritization help in managing conflicting requirements?",
+    "option_A": "It ensures that high-value requirements are implemented first.",
+    "option_B": "It eliminates non-functional requirements from consideration.",
+    "option_C": "It finalizes all requirements before the design phase.",
+    "option_D": "It focuses on budget over stakeholder needs",
+    "correct_anwser": "A",
+    "explan": "Định điểm ưu tiên (Prioritization) giúp giải quyết xung đột bằng cách xác định rõ yêu cầu nào mang lại giá trị cao nhất cho doanh nghiệp hoặc khách hàng để ưu tiên triển khai trước trong điều kiện nguồn lực có hạn."
+  },
+  {
+    "question_id": 44,
+    "question_title": "Why is it crucial to involve users during requirements elicitation?",
+    "option_A": "To gather insights about their needs and ensure requirements meet their expectations",
+    "option_B": "To prioritize system design over functional requirements",
+    "option_C": "To validate non-functional requirements",
+    "option_D": "To finalize system testing strategies",
+    "correct_anwser": "A",
+    "explan": "Việc lôi cuốn người dùng tham gia vào giai đoạn khơi gợi yêu cầu là vô cùng quan trọng nhằm thấu hiểu chính xác nhu cầu thực tế của họ, tránh việc đoán mò và đảm bảo phần mềm làm ra đáp ứng đúng kỳ vọng."
+  },
+  {
+    "question_id": 45,
+    "question_title": "Consider the following Statement: \"If a lead doesn't respond back within 30 days of the first contact, it must be a cold lead and can be marked accordingly\". What types of business rule is being depicted here?",
+    "option_A": "Facts",
+    "option_B": "Constraints",
+    "option_C": "Action enablers",
+    "option_D": "Inferences",
+    "option_E": "Computations",
+    "correct_anwser": "D",
+    "explan": "Phát biểu trên thuộc loại luật kinh doanh dạng Suy luận (Inferences) hoặc Luật phái sinh (Derivations). Từ một sự thật đã biết (không phản hồi trong 30 ngày), hệ thống tự động suy luận ra một tri thức mới hoặc trạng thái mới (đây là một 'cold lead')."
+  },
+  {
+    "question_id": 46,
+    "question_title": "Which of the following is NOT about Agile project?",
+    "option_A": "Developers have little interaction with customers after construction begins on projects.",
+    "option_B": "It encourage creating the minimum amount of documentation needed to accurately guide the developers and testers.",
+    "option_C": "BAs or other people responsible for requirements will develop the necessary precision through conversations and documentation when it is needed.",
+    "option_D": "The se collaboration of customers with developers on agile projects generally means that requirements can be documented in less detail.",
+    "correct_anwser": "A",
+    "explan": "Phát biểu A hoàn toàn sai lệch với tinh thần Agile. Trong dự án Agile, lập trình viên và khách hàng/Product Owner phải liên tục tương tác, trao đổi và phản hồi trong suốt các chu kỳ Sprint, chứ không phải ngắt kết nối sau khi bắt đầu giai đoạn code (construction)."
+  },
+  {
+    "question_id": 47,
+    "question_title": "Which of the following is NOT a principle of software process improvement?",
+    "option_A": "People and organizations change only when they have an incentive to do so.",
+    "option_B": "Prioritizing individual contributions over teamwork",
+    "option_C": "Process changes should be goal-oriented",
+    "option_D": "Process improvement should be evolutionary and continuous",
+    "correct_anwser": "B",
+    "explan": "Cải tiến quy trình phần mềm (SPI) luôn nhấn mạnh vào sự đồng lòng, tối ưu hóa quy trình làm việc chung và tinh thần đồng đội (teamwork) chứ không bao giờ đặt sự đóng góp mang tính cá nhân biệt lập lên trên (B)."
+  }
+]
