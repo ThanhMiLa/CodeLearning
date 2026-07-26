@@ -15,9 +15,6 @@ interface ModuleInfo {
   id: string;
   moduleNum: number;
   title: string;
-  subtitle?: string;
-  description?: string;
-  tags?: string[];
   gradient: string;
   iconBg: string;
   badgeLabel: string;
@@ -41,70 +38,49 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
   'swr302-module-1': {
     moduleNum: 1,
     badgeLabel: 'MODULE 1',
-    title: 'Module 1: Fundamentals, Product Vision & BA Role',
-    subtitle: 'Overview of Software Requirements, Product Vision & BA Role',
-    description: 'Covers 3 levels of Requirements, Scope Creep vs Gold Plating, Software Bill of Rights & Responsibilities, and core Business Analyst tasks.',
-    tags: ['Scope Creep', 'Gold Plating', 'Product Vision', 'Bill of Rights', 'BA Role'],
+    title: 'Module 1 - Fundamentals & BA Role',
     gradient: 'from-indigo-500 to-blue-600',
     iconBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
   },
   'swr302-module-2': {
     moduleNum: 2,
     badgeLabel: 'MODULE 2',
-    title: 'Module 2: Requirements Elicitation & Stakeholders',
-    subtitle: 'Requirements Elicitation & Stakeholder Management',
-    description: 'Stakeholder Classification, User Classes, Personas, Product Champions, and 6 Elicitation Techniques: Interviews, Workshops, Observation, Surveys, Prototypes.',
-    tags: ['Elicitation', 'Stakeholders', 'Personas', 'Product Champion', 'Interviews', 'Prototypes'],
+    title: 'Module 2 - Elicitation & Stakeholders',
     gradient: 'from-blue-500 to-cyan-600',
     iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
   },
   'swr302-module-3': {
     moduleNum: 3,
     badgeLabel: 'MODULE 3',
-    title: 'Module 3: Requirements Analysis & Modeling',
-    subtitle: 'Requirements Analysis & Visual Modeling',
-    description: 'Context Diagrams (System Boundaries), Use Case Specifications & Diagrams, DFD, ERD, and State Machine Diagrams.',
-    tags: ['Context Diagram', 'Use Cases', 'DFD', 'ERD', 'System Boundary', 'UML'],
+    title: 'Module 3 - Analysis & Modeling',
     gradient: 'from-cyan-500 to-teal-600',
     iconBg: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
   },
   'swr302-module-4': {
     moduleNum: 4,
     badgeLabel: 'MODULE 4',
-    title: 'Module 4: Specification & Quality Attributes',
-    subtitle: 'SRS Specification & Quality Attributes (NFR)',
-    description: 'SRS Document Structure (IEEE 830), Functional vs Non-Functional Requirements, NFR Quantification using Planguage (Tom Gilb), and Business Rules.',
-    tags: ['SRS (IEEE 830)', 'Quality Attributes', 'NFR', 'Planguage', 'Business Rules'],
+    title: 'Module 4 - Specification & Quality Attributes',
     gradient: 'from-emerald-500 to-green-600',
     iconBg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
   },
   'swr302-module-5': {
     moduleNum: 5,
     badgeLabel: 'MODULE 5',
-    title: 'Module 5: Requirements Validation & Verification',
-    subtitle: 'Requirements Validation & Verification Techniques',
-    description: 'Peer Reviews, Formal Inspections, Walkthroughs, Requirements Quality Criteria (Correct, Complete, Feasible), and Acceptance Criteria.',
-    tags: ['Formal Inspection', 'Walkthrough', 'Peer Review', 'Acceptance Criteria', 'Test Cases'],
+    title: 'Module 5 - Validation & Verification',
     gradient: 'from-amber-500 to-orange-600',
     iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
   },
   'swr302-module-6': {
     moduleNum: 6,
     badgeLabel: 'MODULE 6',
-    title: 'Module 6: Management & Change Control',
-    subtitle: 'Requirements Management, Traceability & Change Control',
-    description: 'Requirements Traceability Matrix (RTM), Change Control Process, Change Control Board (CCB), Impact Analysis, and Baselines.',
-    tags: ['Traceability (RTM)', 'Change Control (CCB)', 'Impact Analysis', 'Baseline'],
+    title: 'Module 6 - Management & Change Control',
     gradient: 'from-rose-500 to-pink-600',
     iconBg: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
   },
   'swr302-module-7': {
     moduleNum: 7,
     badgeLabel: 'MODULE 7',
-    title: 'Module 7: Prioritization & Agile Requirements',
-    subtitle: 'Requirements Prioritization & Agile Requirements',
-    description: 'Prioritization Techniques (MoSCoW, Kano Model, Pairwise Comparison), and Agile Requirements: User Stories, INVEST criteria, Epics, Product Backlog.',
-    tags: ['MoSCoW', 'Kano Model', 'User Stories', 'INVEST', 'Product Backlog', 'Agile BA'],
+    title: 'Module 7 - Prioritization & Agile Requirements',
     gradient: 'from-violet-500 to-purple-600',
     iconBg: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
   },
@@ -262,32 +238,9 @@ const SWR302Catalog: React.FC = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors leading-snug">
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors leading-snug">
                     {cardTitle}
                   </h3>
-
-                  {meta.subtitle && (
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3 line-clamp-2 leading-relaxed">
-                      {meta.subtitle}
-                    </p>
-                  )}
-
-                  {meta.description && (
-                    <p className="text-xs text-slate-400 dark:text-slate-500 leading-relaxed mb-4 line-clamp-2">
-                      {meta.description}
-                    </p>
-                  )}
-
-                  {/* Tag Pills */}
-                  {meta.tags && (
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {meta.tags.slice(0, 3).map((tag, i) => (
-                        <span key={i} className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
                 {/* Bottom Action & Progress Bar */}
