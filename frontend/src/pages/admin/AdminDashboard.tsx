@@ -18,7 +18,10 @@ import {
   ArrowLeft,
   ArrowRight,
   Trophy,
-  GripVertical
+  GripVertical,
+  Users,
+  CreditCard,
+  Search
 } from 'lucide-react';
 import { Reorder } from 'framer-motion';
 import api from '../../api/axios';
@@ -31,10 +34,12 @@ import type {
   OjAdminProblemResponse,
   PageResponse,
   ContestListResponse,
-  ContestResponse
+  ContestResponse,
+  AdminUserResponse,
+  AdminPaymentTransactionResponse
 } from '../../types';
 
-type DashboardTab = 'courses' | 'problems' | 'contests';
+type DashboardTab = 'courses' | 'problems' | 'contests' | 'users' | 'payments';
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<DashboardTab>('courses');
@@ -59,6 +64,24 @@ const AdminDashboard: React.FC = () => {
   const [contestsPage, setContestsPage] = useState(0);
   const [contestsTotalPages, setContestsTotalPages] = useState(0);
   const [contestsTotalElements, setContestsTotalElements] = useState(0);
+
+  // Users states
+  const [users, setUsers] = useState<AdminUserResponse[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState(false);
+  const [usersPage, setUsersPage] = useState(0);
+  const [usersTotalPages, setUsersTotalPages] = useState(0);
+  const [usersTotalElements, setUsersTotalElements] = useState(0);
+  const [userSearchKeyword, setUserSearchKeyword] = useState('');
+
+  // Payments states
+  const [payments, setPayments] = useState<AdminPaymentTransactionResponse[]>([]);
+  const [loadingPayments, setLoadingPayments] = useState(false);
+  const [paymentsPage, setPaymentsPage] = useState(0);
+  const [paymentsTotalPages, setPaymentsTotalPages] = useState(0);
+  const [paymentsTotalElements, setPaymentsTotalElements] = useState(0);
+  const [paymentSearchKeyword, setPaymentSearchKeyword] = useState('');
+  const [paymentStatusFilter, setPaymentStatusFilter] = useState<string>('');
+  const [paymentTypeFilter, setPaymentTypeFilter] = useState<string>('');
 
   // Contest CRUD Modals
   const [showContestModal, setShowContestModal] = useState(false);
@@ -135,6 +158,65 @@ const AdminDashboard: React.FC = () => {
       fetchContests(contestsPage);
     }
   }, [activeTab, contestsPage]);
+
+  const fetchUsers = async (page: number = 0, keyword: string = userSearchKeyword) => {
+    setLoadingUsers(true);
+    try {
+      const res = await api.get<ApiResponse<PageResponse<AdminUserResponse>>>('/admin/users', {
+        params: { page, size: 20, keyword: keyword || undefined }
+      });
+      const data = res.data.result;
+      setUsers(data.content || []);
+      setUsersPage(data.page || 0);
+      setUsersTotalPages(data.totalPages || 0);
+      setUsersTotalElements(data.totalElements || 0);
+    } catch (error) {
+      console.error('Failed to fetch admin users:', getErrorMessage(error));
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
+
+  const fetchPayments = async (
+    page: number = 0,
+    keyword: string = paymentSearchKeyword,
+    status: string = paymentStatusFilter,
+    type: string = paymentTypeFilter
+  ) => {
+    setLoadingPayments(true);
+    try {
+      const res = await api.get<ApiResponse<PageResponse<AdminPaymentTransactionResponse>>>('/admin/payment-transactions', {
+        params: {
+          page,
+          size: 20,
+          keyword: keyword || undefined,
+          status: status || undefined,
+          type: type || undefined
+        }
+      });
+      const data = res.data.result;
+      setPayments(data.content || []);
+      setPaymentsPage(data.page || 0);
+      setPaymentsTotalPages(data.totalPages || 0);
+      setPaymentsTotalElements(data.totalElements || 0);
+    } catch (error) {
+      console.error('Failed to fetch admin payment transactions:', getErrorMessage(error));
+    } finally {
+      setLoadingPayments(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'users') {
+      fetchUsers(usersPage);
+    }
+  }, [activeTab, usersPage]);
+
+  useEffect(() => {
+    if (activeTab === 'payments') {
+      fetchPayments(paymentsPage);
+    }
+  }, [activeTab, paymentsPage]);
 
   // Date converters with browser local timezone support
   const convertToIsoWithOffset = (datetimeLocalStr: string) => {
@@ -687,10 +769,10 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800 mb-6 shrink-0">
+      <div className="flex border-b border-slate-200 dark:border-slate-800 mb-6 shrink-0 overflow-x-auto">
         <button
           onClick={() => setActiveTab('courses')}
-          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all ${
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'courses'
               ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
               : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
@@ -700,23 +782,45 @@ const AdminDashboard: React.FC = () => {
         </button>
         <button
           onClick={() => setActiveTab('problems')}
-          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all ${
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'problems'
               ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
-              : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-255'
+              : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Problem Bank (OJ)
         </button>
         <button
           onClick={() => setActiveTab('contests')}
-          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all ${
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap ${
             activeTab === 'contests'
               ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
               : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Contests Management
+        </button>
+        <button
+          onClick={() => setActiveTab('users')}
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap flex items-center space-x-2 ${
+            activeTab === 'users'
+              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
+              : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+          }`}
+        >
+          <Users className="h-4 w-4" />
+          <span>Management User</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('payments')}
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap flex items-center space-x-2 ${
+            activeTab === 'payments'
+              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
+              : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+          }`}
+        >
+          <CreditCard className="h-4 w-4" />
+          <span>Payment Transaction</span>
         </button>
       </div>
 
@@ -1245,6 +1349,328 @@ const AdminDashboard: React.FC = () => {
             )}
           </div>
 
+        </div>
+      )}
+
+      {/* 4. MANAGEMENT USER TAB CONTENT */}
+      {activeTab === 'users' && (
+        <div className="space-y-6">
+          {/* Header Controls */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-base font-black text-slate-900 dark:text-white flex items-center space-x-2">
+                <Users className="h-5 w-5 text-indigo-500" />
+                <span>User Management</span>
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Total accounts registered: <span className="font-bold text-slate-800 dark:text-slate-200">{usersTotalElements}</span>
+              </p>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setUsersPage(0);
+                fetchUsers(0, userSearchKeyword);
+              }}
+              className="flex items-center space-x-2"
+            >
+              <div className="relative">
+                <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Search by ID, name, email, phone..."
+                  value={userSearchKeyword}
+                  onChange={(e) => setUserSearchKeyword(e.target.value)}
+                  className="pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64 sm:w-80"
+                />
+              </div>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+
+          {/* Users Table */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+            {loadingUsers ? (
+              <div className="p-12 flex justify-center items-center space-x-2 text-slate-500 text-xs">
+                <Loader2 className="h-5 w-5 animate-spin text-indigo-500" />
+                <span>Loading users data...</span>
+              </div>
+            ) : users.length === 0 ? (
+              <div className="p-12 text-center text-slate-400 text-xs">
+                <Users className="h-10 w-10 mx-auto opacity-30 mb-2" />
+                <p>No user records found matching criteria.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-extrabold uppercase tracking-wider text-[11px]">
+                      <th className="py-4 px-6">ID</th>
+                      <th className="py-4 px-6">Display Name</th>
+                      <th className="py-4 px-6">Email</th>
+                      <th className="py-4 px-6">Phone</th>
+                      <th className="py-4 px-6">Wallet Balance</th>
+                      <th className="py-4 px-6">Created At</th>
+                      <th className="py-4 px-6">Status / Roles</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                    {users.map((u) => (
+                      <tr key={u.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
+                        <td className="py-4 px-6 font-bold text-slate-900 dark:text-white">
+                          #{u.id}
+                        </td>
+                        <td className="py-4 px-6">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-black flex items-center justify-center text-xs">
+                              {(u.displayName || u.username || 'U').charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                              <p className="font-bold text-slate-900 dark:text-white">
+                                {u.displayName || u.username}
+                              </p>
+                              <p className="text-[10px] text-slate-400">@{u.username}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 font-medium text-slate-600 dark:text-slate-300">
+                          {u.email}
+                        </td>
+                        <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-mono">
+                          {u.phoneNumber || 'N/A'}
+                        </td>
+                        <td className="py-4 px-6 font-black text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                          {Number(u.balance || 0).toLocaleString('vi-VN')} đ
+                        </td>
+                        <td className="py-4 px-6 text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                          {formatDateTime(u.createdAt)}
+                        </td>
+                        <td className="py-4 px-6 whitespace-nowrap">
+                          <div className="flex items-center space-x-1.5">
+                            <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold border ${
+                              u.status === 'ACTIVE'
+                                ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800'
+                                : 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-950/30 dark:text-rose-400 dark:border-rose-800'
+                            }`}>
+                              {u.status || 'ACTIVE'}
+                            </span>
+                            {u.roles && u.roles.map((r) => (
+                              <span key={r} className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 dark:bg-indigo-950/30 dark:text-indigo-300 dark:border-indigo-800">
+                                {r}
+                              </span>
+                            ))}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Pagination Controls */}
+            {usersTotalPages > 1 && (
+              <div className="p-4 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Page {usersPage + 1} of {usersTotalPages} ({usersTotalElements} total users)
+                </span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    disabled={usersPage === 0 || loadingUsers}
+                    onClick={() => setUsersPage((prev) => Math.max(0, prev - 1))}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    disabled={usersPage >= usersTotalPages - 1 || loadingUsers}
+                    onClick={() => setUsersPage((prev) => prev + 1)}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 5. PAYMENT TRANSACTION TAB CONTENT */}
+      {activeTab === 'payments' && (
+        <div className="space-y-6">
+          {/* Header Controls */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-base font-black text-slate-900 dark:text-white flex items-center space-x-2">
+                <CreditCard className="h-5 w-5 text-indigo-500" />
+                <span>Payment Transactions</span>
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Total recorded transactions: <span className="font-bold text-slate-800 dark:text-slate-200">{paymentsTotalElements}</span>
+              </p>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setPaymentsPage(0);
+                fetchPayments(0, paymentSearchKeyword, paymentStatusFilter, paymentTypeFilter);
+              }}
+              className="flex flex-wrap items-center gap-2"
+            >
+              {/* Type Filter */}
+              <select
+                value={paymentTypeFilter}
+                onChange={(e) => {
+                  setPaymentTypeFilter(e.target.value);
+                  setPaymentsPage(0);
+                  fetchPayments(0, paymentSearchKeyword, paymentStatusFilter, e.target.value);
+                }}
+                className="px-3 py-2 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">All Types</option>
+                <option value="DEPOSIT">Deposit</option>
+                <option value="WITHDRAW">Withdraw</option>
+              </select>
+
+              {/* Status Filter */}
+              <select
+                value={paymentStatusFilter}
+                onChange={(e) => {
+                  setPaymentStatusFilter(e.target.value);
+                  setPaymentsPage(0);
+                  fetchPayments(0, paymentSearchKeyword, e.target.value, paymentTypeFilter);
+                }}
+                className="px-3 py-2 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">All Statuses</option>
+                <option value="SUCCESS">Success</option>
+                <option value="PENDING">Pending</option>
+                <option value="FAILED">Failed</option>
+                <option value="CANCELLED">Cancelled</option>
+              </select>
+
+              <div className="relative">
+                <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Search code, user name..."
+                  value={paymentSearchKeyword}
+                  onChange={(e) => setPaymentSearchKeyword(e.target.value)}
+                  className="pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-48 sm:w-64"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all"
+              >
+                Filter
+              </button>
+            </form>
+          </div>
+
+          {/* Payment Transactions Table */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+            {loadingPayments ? (
+              <div className="p-12 flex justify-center items-center space-x-2 text-slate-500 text-xs">
+                <Loader2 className="h-5 w-5 animate-spin text-indigo-500" />
+                <span>Loading transaction logs...</span>
+              </div>
+            ) : payments.length === 0 ? (
+              <div className="p-12 text-center text-slate-400 text-xs">
+                <CreditCard className="h-10 w-10 mx-auto opacity-30 mb-2" />
+                <p>No payment transaction records found.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-extrabold uppercase tracking-wider text-[11px]">
+                      <th className="py-4 px-6">Transaction Code</th>
+                      <th className="py-4 px-6">User Display Name</th>
+                      <th className="py-4 px-6">Amount</th>
+                      <th className="py-4 px-6">Type</th>
+                      <th className="py-4 px-6">Status</th>
+                      <th className="py-4 px-6">Created At</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+                    {payments.map((tx) => (
+                      <tr key={tx.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/30 transition-colors">
+                        <td className="py-4 px-6 font-mono font-bold text-indigo-600 dark:text-indigo-400">
+                          {tx.transactionCode}
+                        </td>
+                        <td className="py-4 px-6 font-bold text-slate-900 dark:text-white">
+                          {tx.userDisplayName || (tx.userId ? `User #${tx.userId}` : 'N/A')}
+                        </td>
+                        <td className="py-4 px-6 font-black text-slate-900 dark:text-white whitespace-nowrap">
+                          {Number(tx.amount || 0).toLocaleString('vi-VN')} đ
+                        </td>
+                        <td className="py-4 px-6 whitespace-nowrap">
+                          <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black border ${
+                            tx.type === 'DEPOSIT'
+                              ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
+                              : 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800'
+                          }`}>
+                            {tx.type}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 whitespace-nowrap">
+                          <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black border ${
+                            tx.status === 'SUCCESS'
+                              ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
+                              : tx.status === 'PENDING'
+                              ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800'
+                              : tx.status === 'FAILED'
+                              ? 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800'
+                              : 'bg-slate-50 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
+                          }`}>
+                            {tx.status}
+                          </span>
+                        </td>
+                        <td className="py-4 px-6 text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                          {formatDateTime(tx.createdAt)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* Pagination Controls */}
+            {paymentsTotalPages > 1 && (
+              <div className="p-4 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Page {paymentsPage + 1} of {paymentsTotalPages} ({paymentsTotalElements} total transactions)
+                </span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    disabled={paymentsPage === 0 || loadingPayments}
+                    onClick={() => setPaymentsPage((prev) => Math.max(0, prev - 1))}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    disabled={paymentsPage >= paymentsTotalPages - 1 || loadingPayments}
+                    onClick={() => setPaymentsPage((prev) => prev + 1)}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 

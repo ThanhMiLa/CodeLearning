@@ -394,16 +394,6 @@
     "explan": "Câu phát biểu đề cập đến hành động \"copy nguyên vẹn\" -> phản ánh khía cạnh mức độ sửa đổi là giữ nguyên (extent of modification). Hành động lấy từ một \"thư viện các thành phần tái sử dụng\" (library of reusable components) -> phản ánh khía cạnh cơ chế thực hiện tái sử dụng (reuse mechanism)."
   },
   {
-    "question_id": 40,
-    "question_title": "Which JSTL tag is used to format numbers according to the default user's locale?",
-    "option_A": "<fmt:parseNumber>",
-    "option_B": "<fmt:setNumber>",
-    "option_C": "<fmt:formatNumber>",
-    "option_D": "<fmt:setLocale>",
-    "correct_anwser": "C",
-    "explan": "Trong JSTL (JavaServer Pages Standard Tag Library), thẻ `<fmt:formatNumber>` được sử dụng để định dạng dữ liệu số, tiền tệ hoặc tỷ lệ phần trăm theo cấu hình vùng quốc gia (Locale) hiện tại của người dùng. Thẻ `<fmt:parseNumber>` dùng để chuyển từ chuỗi thành số, còn các thẻ còn lại không đúng chức năng hoặc không tồn tại."
-  },
-  {
     "question_id": 41,
     "question_title": "Which of the following is NOT an objective of improving requirements processes?",
     "option_A": "Improve the accuracy of project estimates",
@@ -582,15 +572,5 @@
     "option_D": "A documentation tool for stakeholders.",
     "correct_anwser": "B",
     "explan": "Seilevel đã phát triển một bảng tính chuyên dụng để ước lượng nỗ lực phát triển yêu cầu (a requirements effort estimation spreadsheet), giúp các BA tính toán khối lượng công việc cần thiết dựa trên các thuộc tính của dự án."
-  },
-  {
-    "question_id": 59,
-    "question_title": "Which arrangement describes the increasing amount of requirements and development work when implementing packaged solutions?",
-    "option_A": "1,2,3,4",
-    "option_B": "2,1,3,4",
-    "option_C": "2,4,3,1",
-    "option_D": "4,1,2,3",
-    "correct_anwser": "D",
-    "explan": "Khi triển khai các giải pháp phần mềm đóng gói (packaged solutions), khối lượng công việc phân tích yêu cầu và phát triển phần mềm tăng dần theo thứ tự: 4. Out of the box (Dùng ngay bản dựng sẵn, ít tốn công nhất) -> 1. Configured (Cấu hình hệ thống) -> 2. Integrated (Tích hợp hệ thống với các nền tảng khác) -> 3. Extended (Viết thêm mã nguồn mở rộng tính năng, tốn nhiều công sức nhất). Do đó đáp án đúng là 4,1,2,3."
   }
 ]

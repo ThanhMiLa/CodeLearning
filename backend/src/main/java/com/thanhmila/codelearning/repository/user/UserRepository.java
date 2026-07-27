@@ -1,6 +1,9 @@
 package com.thanhmila.codelearning.repository.user;
 
 import com.thanhmila.codelearning.entity.user.UserEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +20,16 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.wallet WHERE u.username = :username")
     Optional<UserEntity> findByUsernameWithWallet(@Param("username") String username);
+
+    @EntityGraph(attributePaths = {"roles", "wallet"})
+    @Query("SELECT u FROM UserEntity u")
+    Page<UserEntity> findAllForAdmin(Pageable pageable);
+
+    @EntityGraph(attributePaths = {"roles", "wallet"})
+    @Query("SELECT u FROM UserEntity u WHERE " +
+           "LOWER(u.username) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+           "LOWER(u.email) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+           "LOWER(u.displayName) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
+           "LOWER(u.phoneNumber) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    Page<UserEntity> searchForAdmin(@Param("keyword") String keyword, Pageable pageable);
 }

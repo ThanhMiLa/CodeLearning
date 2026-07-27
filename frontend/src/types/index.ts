@@ -442,3 +442,28 @@ export interface EnrolledCourseResponse {
   progressPercentage: number | null;
   teacherName: string | null;
 }
+
+export interface AdminUserResponse {
+  id: number;
+  displayName: string | null;
+  username: string;
+  email: string;
+  phoneNumber: string | null;
+  balance: number | null;
+  status: string;
+  roles: string[];
+  createdAt: string;
+}
+
+export interface AdminPaymentTransactionResponse {
+  id: number;
+  transactionCode: string;
+  userDisplayName: string | null;
+  userId: number | null;
+  amount: number;
+  type: 'DEPOSIT' | 'WITHDRAW';
+  status: 'PENDING' | 'SUCCESS' | 'FAILED' | 'CANCELLED';
+  note?: string | null;
+  createdAt: string;
+}
+
