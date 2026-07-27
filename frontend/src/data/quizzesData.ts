@@ -9670,7 +9670,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-1-fundamentals-&-ba-role",
+    "id": "swr302-module-1-fundamentals-and-ba-role",
     "title": "SWR302 - Module 1 - Fundamentals & BA Role",
     "description": "Software Requirement Quiz",
     "questionsCount": 57,
@@ -10252,7 +10252,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-2-elicitation-&-stakeholders",
+    "id": "swr302-module-2-elicitation-and-stakeholders",
     "title": "SWR302 - Module 2 - Elicitation & Stakeholders",
     "description": "Software Requirement Quiz",
     "questionsCount": 57,
@@ -10837,7 +10837,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-3-analysis-&-modeling",
+    "id": "swr302-module-3-analysis-and-modeling",
     "title": "SWR302 - Module 3 - Analysis & Modeling",
     "description": "Software Requirement Quiz",
     "questionsCount": 41,
@@ -11254,7 +11254,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-4-specification-&-quality-attributes",
+    "id": "swr302-module-4-specification-and-quality-attributes",
     "title": "SWR302 - Module 4 - Specification & Quality Attributes",
     "description": "Software Requirement Quiz",
     "questionsCount": 41,
@@ -11676,7 +11676,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-5-validation-&-verification",
+    "id": "swr302-module-5-validation-and-verification",
     "title": "SWR302 - Module 5 - Validation & Verification",
     "description": "Software Requirement Quiz",
     "questionsCount": 56,
@@ -12252,7 +12252,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-6-management-&-change-control",
+    "id": "swr302-module-6-management-and-change-control",
     "title": "SWR302 - Module 6 - Management & Change Control",
     "description": "Software Requirement Quiz",
     "questionsCount": 31,
@@ -12570,7 +12570,7 @@ export const QUIZZES: QuizSet[] = [
     ]
   },
   {
-    "id": "swr302-module-7-prioritization-&-agile-requirements",
+    "id": "swr302-module-7-prioritization-and-agile-requirements",
     "title": "SWR302 - Module 7 - Prioritization & Agile Requirements",
     "description": "Software Requirement Quiz",
     "questionsCount": 47,

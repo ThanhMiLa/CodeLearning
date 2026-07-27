@@ -97,8 +97,13 @@ const QuizWorkspaceContent: React.FC = () => {
         title: SUBJECT_TITLES[quizId.toLowerCase()] || quizId.toUpperCase(),
       };
     } else {
-      // Legacy: find single quiz set by id
-      const quiz = QUIZZES.find(q => q.id === quizId);
+      const targetId = quizId ? decodeURIComponent(quizId).toLowerCase().replace(/&/g, 'and') : '';
+      const quiz = QUIZZES.find(q => {
+        const qIdNorm = q.id.toLowerCase().replace(/&/g, 'and');
+        return qIdNorm === targetId ||
+               qIdNorm.replace(/-/g, '') === targetId.replace(/-/g, '') ||
+               q.id === quizId;
+      });
       return {
         questions: quiz ? quiz.questions : [],
         title: quiz ? quiz.title : '',
@@ -138,14 +143,14 @@ const QuizWorkspaceContent: React.FC = () => {
     return false;
   });
 
-  // Local state
+  // Local state with safe bound check against activeQuestions.length
   const [currentQuestionIdx, setCurrentQuestionIdx] = useState<number>(() => {
     try {
       const saved = localStorage.getItem(localStorageKey);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (typeof parsed.currentQuestionIdx === 'number') {
-          return parsed.currentQuestionIdx;
+        if (typeof parsed.currentQuestionIdx === 'number' && parsed.currentQuestionIdx < activeQuestions.length) {
+          return Math.max(0, parsed.currentQuestionIdx);
         }
       }
     } catch (e) {
@@ -212,9 +217,10 @@ const QuizWorkspaceContent: React.FC = () => {
     localStorage.setItem(localStorageKey, JSON.stringify(progress));
   }, [localStorageKey, quizId, currentQuestionIdx, selectedOptions, submittedQuestions, questionResults, isExamSubmitted]);
 
-  const currentQuestion = activeQuestions[currentQuestionIdx];
-  const userAnswers = selectedOptions[currentQuestionIdx] || [];
-  const isSubmitted = isExamMode ? isExamSubmitted : (submittedQuestions[currentQuestionIdx] || false);
+  const safeIdx = Math.min(Math.max(0, currentQuestionIdx), Math.max(0, activeQuestions.length - 1));
+  const currentQuestion = activeQuestions[safeIdx];
+  const userAnswers = selectedOptions[safeIdx] || [];
+  const isSubmitted = isExamMode ? isExamSubmitted : (submittedQuestions[safeIdx] || false);
 
   // Parse correct answers
   const correctAnswers = useMemo(() => {

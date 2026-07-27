@@ -115,8 +115,8 @@ try {
   for (const filePath of files) {
     const fileName = path.basename(filePath);
     const title = fileName.replace('.txt', '').trim();
-    // Normalize id: lowercase, replace space-hyphen-space and any other spaces with single hyphens
-    const id = title.toLowerCase().replace(/\s*-\s*/g, '-').replace(/\s+/g, '-');
+    // Normalize id: lowercase, replace & with and, replace spaces and hyphens with single hyphens, strip invalid URL chars
+    const id = title.toLowerCase().replace(/&/g, 'and').replace(/\s*-\s*/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     const content = fs.readFileSync(filePath, 'utf8');
     const rawQuestions = parseConcatJsonArrays(content);
