@@ -394,7 +394,7 @@
     "explan": "Câu phát biểu đề cập đến hành động \"copy nguyên vẹn\" -> phản ánh khía cạnh mức độ sửa đổi là giữ nguyên (extent of modification). Hành động lấy từ một \"thư viện các thành phần tái sử dụng\" (library of reusable components) -> phản ánh khía cạnh cơ chế thực hiện tái sử dụng (reuse mechanism)."
   },
   {
-    "question_id": 41,
+    "question_id": 40,
     "question_title": "Which of the following is NOT an objective of improving requirements processes?",
     "option_A": "Improve the accuracy of project estimates",
     "option_B": "Reduce the cost of creating and maintaining software",
@@ -404,7 +404,7 @@
     "explan": "Mục tiêu của việc cải tiến quy trình kỹ nghệ yêu cầu nhằm giúp ước lượng chính xác hơn (A), giảm giá thành làm lại phần mềm lỗi (B), và tăng chất lượng giá trị bàn giao (C). Việc làm tăng độ phức tạp không mong muốn của các câu yêu cầu (D) hoàn toàn đi ngược lại mục tiêu cải tiến quy trình."
   },
   {
-    "question_id": 42,
+    "question_id": 41,
     "question_title": "Which is NOT element of risk management?",
     "option_A": "Risk avoidance is one way to deal with a risk: don't do the risky thing.",
     "option_B": "Risk assessment is the process of examining a project to identify potential threats.",
@@ -414,7 +414,7 @@
     "explan": "Trong lý thuyết quản trị rủi ro phần mềm tiêu chuẩn (Karl Wiegers), Quản trị rủi ro gồm hai nhánh chính lớn: Đánh giá rủi ro (Risk Assessment - gồm identify và analyze) và Kiểm soát rủi ro (Risk Control - gồm planning, resolution, monitoring). Do đó các mục B, C, D là các thành phần/tiến trình lớn của quản trị rủi ro. Còn Tránh rủi ro (Risk avoidance - A) chỉ là một chiến lược hoặc kỹ thuật cụ thể nằm bên trong bước xử lý rủi ro, không phải phân hệ cấu thành lớn của quy trình."
   },
   {
-    "question_id": 43,
+    "question_id": 42,
     "question_title": "Which of the following skills are essential for a business analyst? Select three.",
     "option_A": "Literacy skills for effectively interpreting written material and communicating requirements.",
     "option_B": "Technical skills to ensure the analyst can implement the software they are analyzing.",
@@ -424,7 +424,7 @@
     "explan": "Một Business Analyst cần có kỹ năng ngôn ngữ/đọc hiểu (A) để giao tiếp yêu cầu, kỹ năng điều phối (C) để quản lý thảo luận nhóm, và kỹ năng phân tích (D) để giải quyết vấn đề. BA không cần trực tiếp lập trình/triển khai phần mềm (B là công việc của Developer)."
   },
   {
-    "question_id": 44,
+    "question_id": 43,
     "question_title": "Which of the following are advantages of reusing requirements?\n(Choose 2 answers)",
     "option_A": "Decreased consistency",
     "option_B": "Reduced rework",
@@ -434,7 +434,7 @@
     "explan": "Việc tái sử dụng các yêu cầu đã được kiểm chứng và chuẩn hóa giúp giảm thiểu việc phải làm lại từ đầu (Reduced rework) và tiết kiệm đáng kể thời gian cũng như chi phí phát triển dự án (Lower development costs)."
   },
   {
-    "question_id": 45,
+    "question_id": 44,
     "question_title": "Which arrangement describes the increasing amount of requirements and development work when implementing packaged solutions?\n1. configured\n2. integrated\n3. extended\n4. out of the box",
     "option_A": "1,2,3,4",
     "option_B": "2,1,3,4",
@@ -444,7 +444,7 @@
     "explan": "Thứ tự tăng dần về khối lượng công việc yêu cầu và lập trình khi triển khai giải pháp đóng gói (packaged solutions) là: 4. out of the box (dùng trực tiếp không sửa đổi, tốn ít công nhất) -> 1. configured (cấu hình lại thông số) -> 2. integrated (tích hợp kết nối hệ thống) -> 3. extended (viết thêm mã nguồn mở rộng, tốn nhiều công nhất)."
   },
   {
-    "question_id": 46,
+    "question_id": 45,
     "question_title": "Why is clear communication crucial in acquirer-supplier interactions in outsourced projects? (Choose 2 answers)",
     "option_A": "It reduces the need for collaboration.",
     "option_B": "It ensures both parties understand each other’s needs and capabilities.",
@@ -454,7 +454,7 @@
     "explan": "Trong các dự án thuê ngoài (outsourcing), giao tiếp rõ ràng giữa bên mua và nhà cung cấp giúp đảm bảo hai bên hiểu rõ năng lực cũng như nhu cầu của nhau (B), đồng thời phát hiện và giải quyết sớm các rủi ro, vấn đề phát sinh ngay từ giai đoạn đầu (C)."
   },
   {
-    "question_id": 47,
+    "question_id": 46,
     "question_title": "In a requirements development process, why is it important to establish a mechanism for managing changes to requirements?",
     "option_A": "To discourage changes and maintain a fixed project scope",
     "option_B": "To speed up the development process",
@@ -464,7 +464,7 @@
     "explan": "Thiết lập cơ chế quản lý thay đổi không phải để cấm đoán thay đổi (A), mà là để giúp dự án thích ứng linh hoạt với các nhu cầu thực tế mới phát sinh của doanh nghiệp nhưng vẫn giữ được sự kiểm soát chặt chẽ về mặt nguồn lực, tiến độ và chi phí."
   },
   {
-    "question_id": 48,
+    "question_id": 47,
     "question_title": "Which is NOT an activitie of risk management?",
     "option_A": "Risk avoidance",
     "option_B": "Risk assessment",
@@ -474,7 +474,7 @@
     "explan": "Trong các hoạt động lớn thuộc quy trình Quản lý rủi ro (Risk Management framework), quy trình bao gồm Phân tích/Đánh giá (Assessment), Kiểm soát (Control) và Giám sát (Monitoring). Tránh rủi ro ('Risk avoidance') là một chiến lược phản ứng cụ thể (risk response strategy) nằm bên trong hoạt động kiểm soát rủi ro, chứ không phải là một nhánh hoạt động lớn ngang hàng."
   },
   {
-    "question_id": 49,
+    "question_id": 48,
     "question_title": "We can reuse all authentication requirements from the previous project by copy from a library of reusable components. Which dimensions does the statement refer to?",
     "option_A": "extend of modification",
     "option_B": "reuse mechanism",
@@ -484,7 +484,7 @@
     "explan": "Phát biểu đề cập đến việc tái sử dụng bằng cách 'sao chép trực tiếp từ một thư viện thành phần' — mô tả cơ chế thực hiện tái sử dụng (Reuse mechanism - sao chép từ kho lưu trữ) và mức độ chỉnh sửa (Extent of modification - giữ nguyên toàn bộ, không sửa đổi)."
   },
   {
-    "question_id": 50,
+    "question_id": 49,
     "question_title": "What principle ensures that each code unit performs a specific, welldefined function without interference from other parts of the system?",
     "option_A": "Loose coupling",
     "option_B": "Information hiding",
@@ -494,7 +494,7 @@
     "explan": "Nguyên lý đảm bảo mỗi đơn vị mã nguồn (mô-đun/lớp/hàm) chỉ tập trung thực hiện duy nhất một nhiệm vụ cụ thể, rõ ràng và độc lập được gọi là tính Kết dính cao (Strong Cohesion)."
   },
   {
-    "question_id": 51,
+    "question_id": 50,
     "question_title": "Which of the following is NOT about packaged solution?",
     "option_A": "You build systems by using your own staff.",
     "option_B": "It needs to be configured, integrated, and extended to work in the target environment.",
@@ -504,7 +504,7 @@
     "explan": "Giải pháp đóng gói (Packaged solution / COTS) có nghĩa là bạn đi mua một sản phẩm phần mềm thương mại có sẵn trên thị trường về dùng, trái ngược hoàn toàn với việc tự xây dựng hệ thống từ đầu bằng đội ngũ nhân sự nội bộ của mình (A)."
   },
   {
-    "question_id": 52,
+    "question_id": 51,
     "question_title": "Which type of issue occurs when something isn't understood or decided about a requirement?",
     "option_A": "Requirement question",
     "option_B": "Incorrect requirement",
@@ -514,7 +514,7 @@
     "explan": "Khi một vấn đề liên quan đến yêu cầu chưa được hiểu rõ hoặc chưa được các bên thống nhất đưa ra quyết định cuối cùng, tình huống này được phân loại thuộc nhóm 'Câu hỏi/Vấn đề tồn đọng về yêu cầu' (Requirement question / Requirement issue)."
   },
   {
-    "question_id": 53,
+    "question_id": 52,
     "question_title": "Which of the following is a benefit of requirements tracing for reengineering efforts?",
     "option_A": "It facilitates the reuse of components from the previous system.",
     "option_B": "It helps identify where a system needs to be entirely replaced.",
@@ -524,7 +524,7 @@
     "explan": "Khi thực hiện tái cấu trúc hệ thống (reengineering), việc có sẵn ma trận truy vết yêu cầu (requirements tracing) giúp đội ngũ biết rõ chức năng cũ tương ứng với những thành phần mã nguồn, module nào, từ đó tạo điều kiện thuận lợi cho việc tái sử dụng (reuse) các thành phần chạy tốt."
   },
   {
-    "question_id": 54,
+    "question_id": 53,
     "question_title": "What is the primary consequence of requirements problems?",
     "option_A": "Delays and rework",
     "option_B": "Increased resource costs",
@@ -534,7 +534,7 @@
     "explan": "Hệ lụy trực tiếp, phổ biến và nghiêm trọng nhất khi gặp các vấn đề hoặc sai sót về mặt yêu cầu là làm chậm trễ tiến độ dự án (delays) và buộc đội ngũ phải đập đi làm lại, sửa đổi mã nguồn rất nhiều lần (rework)."
   },
   {
-    "question_id": 55,
+    "question_id": 54,
     "question_title": "What is Vision and Scope Document derived from?",
     "option_A": "System requirements",
     "option_B": "User requirements",
@@ -544,7 +544,7 @@
     "explan": "Tài liệu Tầm nhìn và Phạm vi (Vision and Scope Document) được hình thành và phát triển trực tiếp từ các Yêu cầu kinh doanh (Business Requirements), nhằm thiết lập mục tiêu chiến lược và giới hạn cho dự án."
   },
   {
-    "question_id": 56,
+    "question_id": 55,
     "question_title": "What is the primary purpose of a business case in software requirements?",
     "option_A": "To justify the project's value and align it with organizational goals",
     "option_B": "To finalize the technical requirements",
@@ -554,7 +554,7 @@
     "explan": "Mục đích cốt lõi của một Business Case là chứng minh/luận giải giá trị lợi ích của dự án về mặt kinh tế, chi phí đầu tư và đảm bảo dự án đó hoàn toàn đồng nhất với các mục tiêu chiến lược dài hạn của tổ chức."
   },
   {
-    "question_id": 57,
+    "question_id": 56,
     "question_title": "What is the primary objective of requirements reuse in projects?",
     "option_A": "To improve efficiency and consistency by leveraging existing requirements in new projects",
     "option_B": "To finalize coding standards early",
@@ -564,7 +564,7 @@
     "explan": "Mục tiêu chính của việc tái sử dụng yêu cầu (requirements reuse) là nhằm tối ưu hóa hiệu suất làm việc, tiết kiệm thời gian và đảm bảo tính nhất quán của hệ thống bằng cách kế thừa, tận dụng các yêu cầu đã được chuẩn hóa từ các dự án trước đó vào dự án mới."
   },
   {
-    "question_id": 58,
+    "question_id": 57,
     "question_title": "What tool did Seilevel develop to assist with estimating requirements development effort?",
     "option_A": "A coding tool for developers.",
     "option_B": "A requirements effort estimation spreadsheet.",

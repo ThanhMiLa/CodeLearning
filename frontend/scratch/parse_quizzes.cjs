@@ -133,6 +133,38 @@ try {
     });
   }
 
+  // Auto-generate swr302-all-unique set by combining all SWR302 module questions
+  const swr302Modules = quizzes.filter(q => q.id.includes('swr302-module'));
+  if (swr302Modules.length > 0) {
+    swr302Modules.sort((a, b) => {
+      const matchA = (a.id + ' ' + a.title).match(/module[^\d]*(\d+)/i);
+      const matchB = (b.id + ' ' + b.title).match(/module[^\d]*(\d+)/i);
+      const numA = matchA ? parseInt(matchA[1], 10) : 99;
+      const numB = matchB ? parseInt(matchB[1], 10) : 99;
+      return numA - numB;
+    });
+
+    const allSwr302Questions = [];
+    let qCounter = 1;
+    for (const mod of swr302Modules) {
+      for (const q of mod.questions) {
+        allSwr302Questions.push({
+          ...q,
+          question_id: qCounter++
+        });
+      }
+    }
+
+    quizzes.push({
+      id: 'swr302-all-unique',
+      title: `Full Question List (All ${allSwr302Questions.length} Unique Questions)`,
+      description: 'Software Requirement Full Questions Set',
+      questionsCount: allSwr302Questions.length,
+      questions: allSwr302Questions
+    });
+    console.log(`Generated swr302-all-unique master set with ${allSwr302Questions.length} questions`);
+  }
+
   // Sort quizzes: year descending (26 > 25), then semester descending (FA > SU > SP)
   function getSortKey(title) {
     const match = title.match(/(FA|SU|SP)(\d{2})/i);
