@@ -150,7 +150,7 @@ services:
     ]
     env_file: judge0.conf
     healthcheck:
-      test: ["CMD", "-a", "${REDIS_PASSWORD}", "ping"]
+      test: ["CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD}\" ping"]
       interval: 5s
       timeout: 5s
       retries: 5
