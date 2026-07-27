@@ -13,7 +13,7 @@ services:
   # Module này sẽ CHẠY MẶC ĐỊNH
   db:
     image: postgres:15-alpine
-    container_name: codelearning_db
+    container_name: codelearning-db
     restart: always
     ports:
       - "5432:5432"
@@ -30,7 +30,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: codelearning_redis
+    container_name: codelearning-redis
     restart: always
     ports:
       - "6379:6379"
@@ -46,7 +46,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.rabbitmq
-    container_name: codelearning_rabbitmq
+    container_name: codelearning-rabbitmq
     restart: always
     ports:
       - "5672:5672"
@@ -57,11 +57,11 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: codelearning_app
+    container_name: codelearning-app
     restart: always
     ports:
       - "8080:8080"
@@ -77,15 +77,17 @@ services:
     <<: *default-logging
 
   frontend:
+    profiles:
+      - frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: codelearning_frontend
+    container_name: codelearning-frontend
     restart: always
     ports:
       - "3000:80"
     depends_on:
-      - app
+      - backend
     <<: *default-logging
 
   # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
@@ -93,7 +95,7 @@ services:
   judge0-server:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
-    container_name: judge0_codelearning_server
+    container_name: judge0-codelearning-server
     env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
@@ -111,7 +113,7 @@ services:
   judge0-workers:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
-    container_name: judge0_codelearning_workers
+    container_name: judge0-codelearning-workers
     command: [ "./scripts/workers" ]
     env_file: judge0.conf
     volumes:
@@ -127,7 +129,7 @@ services:
 
   judge0-db:
     image: postgres:16.2
-    container_name: judge0_codelearning_db
+    container_name: judge0-codelearning-db
     env_file: judge0.conf
     volumes:
       - judge0_postgres_data:/var/lib/postgresql/data/
@@ -141,7 +143,7 @@ services:
 
   judge0-redis:
     image: redis:7.2.4
-    container_name: judge0_codelearning_redis
+    container_name: judge0-codelearning-redis
     command: [
       "bash", "-c",
       'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"'

@@ -67,7 +67,7 @@ auth:
       path: ${REFRESH_TOKEN_PATH:/codelearning/auth}
 
 judge0:
-  base-url: ${JUDGE0_URL}
+  base-url: ${JUDGE0_URL:http://judge0_codelearning_server:2358}
   timeout: 20s
 
 websocket:
