@@ -38,11 +38,48 @@ const QuizWorkspaceContent: React.FC = () => {
 
   // Check if quizId is a subject code (merged mode) or a specific quiz set
   const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
-  const isExamMode = quizId === 'swr302-random-exam';
+  const isExamMode = quizId === 'swr302-random-exam' || quizId === 'hsf302-random-exam';
 
   // Build the merged & shuffled question list (or single quiz set / random exam)
   const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
     if (!quizId) return { questions: [] as QuizQuestion[], title: '' };
+
+    if (quizId === 'hsf302-random-exam') {
+      let examQuestions: QuizQuestion[] = [];
+      try {
+        const saved = localStorage.getItem('hsf302_random_exam_questions');
+        if (saved) {
+          examQuestions = JSON.parse(saved);
+        }
+      } catch (e) {}
+
+      if (!examQuestions || examQuestions.length === 0) {
+        const targetCounts: Record<number, number> = {
+          1: 24, // Java Spring Boot
+          2: 8,  // Thymeleaf
+          3: 18, // JavaFX
+        };
+
+        const sampled: QuizQuestion[] = [];
+        Object.entries(targetCounts).forEach(([modNum, count]) => {
+          const qSet = QUIZZES.find(q => q.id.includes(`hsf302-module-${modNum}`));
+          if (qSet && qSet.questions.length > 0) {
+            const shuffled = [...qSet.questions].sort(() => 0.5 - Math.random());
+            sampled.push(...shuffled.slice(0, count));
+          }
+        });
+
+        examQuestions = sampled.sort(() => 0.5 - Math.random());
+        try {
+          localStorage.setItem('hsf302_random_exam_questions', JSON.stringify(examQuestions));
+        } catch (e) {}
+      }
+
+      return {
+        questions: examQuestions,
+        title: 'HSF302 - 50-Question Mock Exam (Real Exam Simulation)',
+      };
+    }
 
     if (quizId === 'swr302-random-exam') {
       let examQuestions: QuizQuestion[] = [];
@@ -66,7 +103,7 @@ const QuizWorkspaceContent: React.FC = () => {
 
         const sampled: QuizQuestion[] = [];
         Object.entries(targetCounts).forEach(([modNum, count]) => {
-          const qSet = QUIZZES.find(q => q.id.includes(`module-${modNum}`));
+          const qSet = QUIZZES.find(q => q.id.includes(`swr302-module-${modNum}`));
           if (qSet && qSet.questions.length > 0) {
             const shuffled = [...qSet.questions].sort(() => 0.5 - Math.random());
             sampled.push(...shuffled.slice(0, count));
@@ -292,7 +329,7 @@ const QuizWorkspaceContent: React.FC = () => {
 
     const msg = unAnswered > 0
       ? `You have answered ${answeredCount}/${totalQuestions} questions (${unAnswered} unanswered). Are you sure you want to submit your exam?`
-      : `Are you sure you want to submit your 60-question exam now for final evaluation?`;
+      : `Are you sure you want to submit your ${totalQuestions}-question exam now for final evaluation?`;
 
     if (window.confirm(msg)) {
       const newSubmitted: Record<number, boolean> = {};
@@ -314,8 +351,12 @@ const QuizWorkspaceContent: React.FC = () => {
   };
 
   const handleRetakeRandomExam = () => {
-    if (window.confirm('Generate a new random 60-question mock exam? Current progress will be reset.')) {
-      localStorage.removeItem('swr302_random_exam_questions');
+    if (window.confirm(`Generate a new random ${totalQuestions}-question mock exam? Current progress will be reset.`)) {
+      if (quizId === 'hsf302-random-exam') {
+        localStorage.removeItem('hsf302_random_exam_questions');
+      } else {
+        localStorage.removeItem('swr302_random_exam_questions');
+      }
       localStorage.removeItem(localStorageKey);
       setSelectedOptions({});
       setSubmittedQuestions({});
@@ -410,6 +451,8 @@ const QuizWorkspaceContent: React.FC = () => {
               onClick={() => {
                 if (quizId && quizId.toLowerCase().includes('swr302')) {
                   navigate('/quiz/swr302');
+                } else if (quizId && quizId.toLowerCase().includes('hsf302')) {
+                  navigate('/quiz/hsf302');
                 } else {
                   navigate('/quiz');
                 }

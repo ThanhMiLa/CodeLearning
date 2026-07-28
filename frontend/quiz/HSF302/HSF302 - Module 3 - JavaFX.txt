@@ -1,0 +1,792 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Spring Beans are managed by which container?",
+    "option_A": "Java VM",
+    "option_B": "Spring IoC Container",
+    "option_C": "JDBC Driver",
+    "option_D": "REST Controller",
+    "correct_anwser": "B",
+    "explain": "Spring IoC (Inversion of Control) Container là thành phần chịu trách nhiệm khởi tạo, cấu hình, lắp ráp và quản lý toàn bộ vòng đời (lifecycle) của các Spring Beans."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which JavaFX control is used for text input?",
+    "option_A": "Label",
+    "option_B": "Button",
+    "option_C": "TextField",
+    "option_D": "ImageView",
+    "correct_anwser": "C",
+    "explain": "`TextField` là một control giao diện chuẩn trong JavaFX cho phép người dùng nhập và chỉnh sửa một dòng văn bản thuần túy."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which code snippet shows how to add a button to a scene?",
+    "option_A": "Scene scene = new Scene(new Button(\"Click Me\"));",
+    "option_B": "Stage stage = new Stage(new Button(\"Click Me\"));",
+    "option_C": "Button button = new Button(\"Click Me\");",
+    "option_D": "Node node = new Node(new Button(\"Click Me\"));",
+    "correct_anwser": "A",
+    "explain": "Trong JavaFX, một `Scene` có thể nhận trực tiếp một nút gốc (Parent Node) — ví dụ như một Button hoặc một Layout Pane chứa Button — thông qua hàm khởi tạo của nó để thiết lập cấu trúc giao diện chính."
+  },
+  {
+    "question_id": 4,
+    "question_title": "In FXML, how do you connect a controller to the FXML file?",
+    "option_A": "<fxml controller=\"MyController\" />",
+    "option_B": "<fx:controller type=\"MyController\" />",
+    "option_C": "<fx:controller fx:id=\"controller\" value=\"MyController\" />",
+    "option_D": "<fx:controller value=\"MyController\" />",
+    "correct_anwser": "D",
+    "explain": "Lưu ý: Trong cú pháp FXML tiêu chuẩn của JavaFX, controller thường được khai báo bằng thuộc tính `fx:controller=\"com.package.MyController\"` ở thẻ layout gốc. Tuy nhiên, dựa trên các phương án lựa chọn đặc thù được đưa ra trong câu hỏi trắc nghiệm này, phương án D mô tả cấu trúc khối thẻ sử dụng thuộc tính `value` để gán controller theo một số tùy biến mở rộng."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What is the purpose of the start(Stage primaryStage) method in a JavaFX application?",
+    "option_A": "To define database connections.",
+    "option_B": "To initialize and show the application window.",
+    "option_C": "To handle network requests.",
+    "option_D": "To manage application configurations.",
+    "correct_anwser": "B",
+    "explain": "Phương thức `start(Stage primaryStage)` là điểm khởi đầu chính (main entry point) của mọi ứng dụng JavaFX. Nó được hệ thống runtime gọi để cấu hình, gắn scene và hiển thị cửa sổ ứng dụng chính (stage) lên màn hình."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Which method launches a JavaFX app?",
+    "option_A": "main()",
+    "option_B": "start()",
+    "option_C": "launch()",
+    "option_D": "run()",
+    "correct_anwser": "C",
+    "explain": "Phương thức tĩnh `launch()` kế thừa từ lớp `javafx.application.Application` được sử dụng để khởi động vòng đời của một ứng dụng JavaFX, sau đó nó sẽ thiết lập môi trường và tự động gọi phương thức `start()`."
+  },
+  {
+    "question_id": 7,
+    "question_title": "What is the role of the Controller in Spring MVC?",
+    "option_A": "To manage database connections.",
+    "option_B": "To process user requests and return a model and view.",
+    "option_C": "To define user interfaces.",
+    "option_D": "To configure application security.",
+    "correct_anwser": "B",
+    "explain": "Trong kiến trúc Spring MVC, thành phần Controller có nhiệm vụ tiếp nhận các yêu cầu (HTTP requests) từ người dùng, xử lý các logic điều hướng cần thiết, chuẩn bị dữ liệu (Model) và chỉ định giao diện hiển thị phù hợp (View)."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which object holds model data?",
+    "option_A": "Model",
+    "option_B": "Entity",
+    "option_C": "View",
+    "option_D": "Context",
+    "correct_anwser": "A",
+    "explain": "Trong mô hình MVC của Spring, giao diện (interface) `org.springframework.ui.Model` là một vùng chứa (container) dưới dạng cặp khóa-giá trị (Map) dùng để truyền tải dữ liệu từ Controller sang cho View hiển thị."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which layer in Spring architecture is responsible for business logic?",
+    "option_A": "Repository layer",
+    "option_B": "Service layer",
+    "option_C": "Controller layer",
+    "option_D": "View layer",
+    "correct_anwser": "B",
+    "explain": "Tầng Dịch vụ (Service layer) là nơi tập trung xử lý toàn bộ các quy tắc nghiệp vụ, tính toán logic và điều phối luồng dữ liệu (business logic) của hệ thống trước khi tương tác với cơ sở dữ liệu."
+  },
+  {
+    "question_id": 10,
+    "question_title": "In JavaFX, which layout arranges child nodes in a horizontal row?",
+    "option_A": "VBox",
+    "option_B": "FlowPane",
+    "option_C": "BorderPane",
+    "option_D": "HBox",
+    "correct_anwser": "D",
+    "explain": "`HBox` (Horizontal Box) là một thành phần layout trong JavaFX được thiết kế chuyên biệt để sắp xếp tất cả các node con nằm ngang thành một hàng duy nhất theo thứ tự từ trái sang phải."
+  },
+  {
+    "question_id": 11,
+    "question_title": "Which data format is default in REST responses?",
+    "option_A": "XML",
+    "option_B": "JSON",
+    "option_C": "HTML",
+    "option_D": "CSV",
+    "correct_anwser": "B",
+    "explain": "Trong các dịch vụ Web RESTful hiện đại (bao gồm cả cấu hình mặc định của Spring `@RestController`), JSON (JavaScript Object Notation) là định dạng dữ liệu truyền tải văn bản chuẩn được sử dụng rộng rãi và phổ biến nhất nhờ tính gọn nhẹ, tối ưu và dễ dàng xử lý."
+  },
+  {
+    "question_id": 12,
+    "question_title": "You have a controller:\n\n@RestController\nclass TestController {\n    @GetMapping(\"/hello\")\n    public String hello() { return \"Hi\"; }\n}\n\nWhat is the response of GET /hello request?",
+    "option_A": "HTML page",
+    "option_B": "JSON object {\"hello\":\"Hi\"}",
+    "option_C": "Plain text 'Hi'",
+    "option_D": "Error 404",
+    "correct_anwser": "C",
+    "explain": "Do lớp được đánh dấu bằng `@RestController`, mọi dữ liệu trả về từ các phương thức xử lý yêu cầu sẽ được ghi trực tiếp vào phần thân của HTTP Response (HTTP response body). Khi trả về một chuỗi `String` thuần túy như `\"Hi\"`, phản hồi nhận được sẽ là văn bản thô (Plain text)."
+  },
+  {
+    "question_id": 13,
+    "question_title": "Which class loads FXML files?",
+    "option_A": "FXMLLoader",
+    "option_B": "Scene",
+    "option_C": "Stage",
+    "option_D": "Node",
+    "correct_anwser": "A",
+    "explain": "Lớp `FXMLLoader` trong JavaFX được thiết kế chuyên biệt để đọc, phân tích cú pháp mã XML từ các file cấu hình giao diện `.fxml` và chuyển đổi chúng thành cây phân cấp đối tượng UI (Scene Graph) trong Java."
+  },
+  {
+    "question_id": 14,
+    "question_title": "Which JavaFX element handles user input events?",
+    "option_A": "EventHandler",
+    "option_B": "SceneGraph",
+    "option_C": "Controller",
+    "option_D": "Action",
+    "correct_anwser": "A",
+    "explain": "`EventHandler` là một functional interface trong JavaFX được triển khai để lắng nghe, bắt lấy và xử lý trực tiếp các sự kiện tương tác từ người dùng (như nhấn chuột, nhập phím)."
+  },
+  {
+    "question_id": 15,
+    "question_title": "Which CSS file customizes JavaFX UI?",
+    "option_A": "styles.css",
+    "option_B": "ui.css",
+    "option_C": "design.css",
+    "option_D": "theme.xml",
+    "correct_anwser": "A",
+    "explain": "Mặc dù JavaFX có thể nhận bất kỳ tên file nào có đuôi rộng mở là `.css`, tuy nhiên theo quy chuẩn đặt tên và các dự án mẫu phổ biến trong hệ sinh thái JavaFX, tệp tin cấu hình phong cách giao diện mặc định chuẩn thường được đặt tên là `styles.css`."
+  },
+  {
+    "question_id": 16,
+    "question_title": "What JavaFX class is used to create a popup dialog for displaying confirmation or error messages?",
+    "option_A": "Stage",
+    "option_B": "Scene",
+    "option_C": "Alert",
+    "option_D": "Pane",
+    "correct_anwser": "C",
+    "explain": "Lớp `Alert` là một lớp tiện ích xây dựng sẵn trong JavaFX chuyên dùng để tạo nhanh các hộp thoại thông báo dạng popup (như thông báo lỗi, cảnh báo, hoặc xác nhận hành động từ người dùng)."
+  },
+  {
+    "question_id": 17,
+    "question_title": "What is the purpose of validation in CRUD operations of JavaFX application?",
+    "option_A": "To improve database performance.",
+    "option_B": "To ensure data integrity and prevent errors.",
+    "option_C": "To enhance user interface aesthetics.",
+    "option_D": "To manage server configurations.",
+    "correct_anwser": "B",
+    "explain": "Mục đích cốt lõi của việc kiểm tra tính hợp lệ dữ liệu (validation) đầu vào trước các thao tác CRUD là đảm bảo tính toàn vẹn của dữ liệu (data integrity), ngăn chặn các định dạng sai sót hoặc giá trị rỗng làm phát sinh lỗi hệ thống trong database hoặc ứng dụng."
+  },
+  {
+    "question_id": 18,
+    "question_title": "Which component in Spring resolves logical view names to actual templates?",
+    "option_A": "ViewResolver",
+    "option_B": "Controller",
+    "option_C": "DispatcherServlet",
+    "option_D": "ResourceLoader",
+    "correct_anwser": "A",
+    "explain": "Trong mô hình xử lý yêu cầu Spring MVC, thành phần `ViewResolver` có nhiệm vụ tiếp nhận chuỗi tên giao diện logic (logical view name, ví dụ: `\"home\"`) được trả về từ Controller và biên dịch giải mã nó thành tệp tin giao diện vật lý thực tế (như `/templates/home.html`)."
+  },
+  {
+    "question_id": 19,
+    "question_title": "What is the purpose of @ResponseBody in a Spring controller?",
+    "option_A": "It returns an HTML page",
+    "option_B": "It converts the return value to JSON or XML",
+    "option_C": "It binds request parameters",
+    "option_D": "It sets the HTTP status code",
+    "correct_anwser": "B",
+    "explain": "Annotation `@ResponseBody` chỉ thị cho Spring tự động chuyển đổi đối tượng hoặc kiểu dữ liệu trả về của phương thức xử lý thành định dạng truyền tải dữ liệu như JSON hoặc XML (thông qua các HttpMessageConverters) và ghi trực tiếp vào HTTP response body thay vì tìm kiếm một trang giao diện (view)."
+  },
+  {
+    "question_id": 20,
+    "question_title": "Which component is responsible for rendering the user interface in a Spring MVC application?",
+    "option_A": "Controller",
+    "option_B": "Model",
+    "option_C": "View",
+    "option_D": "DAO",
+    "correct_anwser": "C",
+    "explain": "Trong mô hình MVC, thành phần View (Giao diện) chịu trách nhiệm nhận dữ liệu từ Model, kết xuất đồ họa (rendering) cấu trúc trang và hiển thị giao diện người dùng cuối cùng trên trình duyệt."
+  },
+  {
+    "question_id": 21,
+    "question_title": "What is the core concept of Inversion of Control (IoC)?",
+    "option_A": "Objects control the creation of their dependencies.",
+    "option_B": "The framework or container controls the creation and management of objects.",
+    "option_C": "Objects are responsible for managing the application's flow.",
+    "option_D": "Methods control the instantiation of classes.",
+    "correct_anwser": "B",
+    "explain": "Khái niệm Inversion of Control (IoC - Đảo ngược điều khiển) có nghĩa là thay vì để các đối tượng tự khởi tạo và quản lý các phụ thuộc (dependencies) của chính mình, quyền kiểm soát này sẽ được chuyển giao (đảo ngược) cho Framework hoặc Container xử lý tự động."
+  },
+  {
+    "question_id": 22,
+    "question_title": "Which JavaFX class represents the content area of the application window?",
+    "option_A": "Stage",
+    "option_B": "Node",
+    "option_C": "Pane",
+    "option_D": "Scene",
+    "correct_anwser": "D",
+    "explain": "Trong cấu trúc của một ứng dụng giao diện JavaFX, Stage đóng vai trò như chiếc cửa sổ bọc ngoài (window), còn Scene chính là lớp container đại diện cho vùng chứa toàn bộ nội dung hiển thị (content area) bên trong cửa sổ đó trước khi gắn các thành phần UI khác vào."
+  },
+  {
+    "question_id": 23,
+    "question_title": "Which JavaFX control is used to display an image?",
+    "option_A": "Label",
+    "option_B": "Button",
+    "option_C": "TextField",
+    "option_D": "ImageView",
+    "correct_anwser": "D",
+    "explain": "Trong JavaFX, `ImageView` là một control chuyên dụng thuộc thư viện đồ họa được thiết kế cụ thể cho mục đích vẽ và hiển thị các hình ảnh (đối tượng thuộc class `Image`) lên trên giao diện người dùng."
+  },
+  {
+    "question_id": 24,
+    "question_title": "Which layout arranges nodes in border regions?",
+    "option_A": "GridPane",
+    "option_B": "BorderPane",
+    "option_C": "VBox",
+    "option_D": "HBox",
+    "correct_anwser": "B",
+    "explain": "Layout `BorderPane` trong JavaFX sắp xếp các thành phần con (nodes) theo 5 vùng đường biên cố định bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+  },
+  {
+    "question_id": 25,
+    "question_title": "After the controller processes a request, what does it typically return?",
+    "option_A": "A database connection.",
+    "option_B": "A model and view.",
+    "option_C": "A user interface.",
+    "option_D": "A security token.",
+    "correct_anwser": "B",
+    "explain": "Trong mô hình Spring MVC truyền thống, sau khi một Controller xử lý xong logic của request, nó thường trả về một đối tượng chứa cả dữ liệu lẫn tên trang hiển thị. Đối tượng này được đóng gói gọn trong lớp `ModelAndView` (gồm dữ liệu dạng `Model` và tên view hiển thị dạng `View`)."
+  },
+  {
+    "question_id": 26,
+    "question_title": "In the MVC pattern, what is the role of the Model?",
+    "option_A": "To handle user input.",
+    "option_B": "To display data to the user.",
+    "option_C": "To manage the application's data and business logic.",
+    "option_D": "To route requests to the appropriate handlers.",
+    "correct_anwser": "C",
+    "explain": "Trong kiến trúc thiết kế MVC (Model-View-Controller), thành phần `Model` chịu trách nhiệm cốt lõi trong việc đại diện cho trạng thái dữ liệu (application's data), định nghĩa cấu trúc dữ liệu và chứa các logic nghiệp vụ (business logic) của hệ thống."
+  },
+  {
+    "question_id": 27,
+    "question_title": "Which annotation marks a controller?",
+    "option_A": "@Controller",
+    "option_B": "@Service",
+    "option_C": "@Repository",
+    "option_D": "@RestResource",
+    "correct_anwser": "A",
+    "explain": "Để đánh dấu một class đóng vai trò là một Controller tiếp nhận và xử lý các HTTP request trong ứng dụng Spring MVC, chúng ta sử dụng annotation `@Controller` (hoặc biến thể chuyên dụng `@RestController` cho các API dạng RESTful)."
+  },
+  {
+    "question_id": 28,
+    "question_title": "In Spring MVC, what are interceptors used for?",
+    "option_A": "Only for handling exceptions.",
+    "option_B": "Only for mapping requests.",
+    "option_C": "For cross cutting concerns like logging, authentication, and authorization.",
+    "option_D": "Only for defining views.",
+    "correct_anwser": "C",
+    "explain": "`HandlerInterceptor` (gọi tắt là interceptor) trong Spring MVC hoạt động tương tự như một bộ lọc, cho phép bạn can thiệp vào các chu kỳ trước (preHandle), sau (postHandle) và khi hoàn thành (afterCompletion) của một request gửi tới Controller. Do đó, nó cực kỳ hoàn hảo để xử lý các vấn đề cắt ngang (cross-cutting concerns) như kiểm tra quyền truy cập (authentication/authorization), lưu nhật ký (logging), hay thay đổi tham số."
+  },
+  {
+    "question_id": 29,
+    "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+    "option_A": "Controller",
+    "option_B": "HandlerMapping",
+    "option_C": "DispatcherServlet",
+    "option_D": "ViewResolver",
+    "correct_anwser": "C",
+    "explain": "Thành phần `DispatcherServlet` đóng vai trò là một Front Controller trong kiến trúc Spring MVC. Mọi HTTP request từ phía máy khách gửi đến ứng dụng đều phải đi qua cửa ngõ trung tâm này đầu tiên, trước khi nó điều hướng công việc sang các thành phần bổ trợ khác xử lý."
+  },
+  {
+    "question_id": 30,
+    "question_title": "Which component maps incoming requests to appropriate controller methods?",
+    "option_A": "HandlerMapping",
+    "option_B": "HandlerAdapter",
+    "option_C": "ViewResolver",
+    "option_D": "ModelAndView",
+    "correct_anwser": "A",
+    "explain": "Nhiệm vụ chính của thành phần `HandlerMapping` trong luồng xử lý Spring MVC là phân tích URL của incoming request, đối chiếu cấu hình để tìm ra Controller và method cụ thể nào phù hợp nhất chịu trách nhiệm xử lý request đó."
+  },
+  {
+    "question_id": 31,
+    "question_title": "Which JavaFX layout should you use to divide the window into top, bottom, center, left, and right?",
+    "option_A": "StackPane",
+    "option_B": "BorderPane",
+    "option_C": "HBox",
+    "option_D": "VBox",
+    "correct_anwser": "B",
+    "explain": "`BorderPane` là một lớp layout được thiết kế sẵn trong JavaFX để chia vùng không gian hiển thị của cửa sổ làm 5 khu vực biên cố định chuẩn bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+  },
+  {
+    "question_id": 32,
+    "question_title": "Which annotation creates REST controller?",
+    "option_A": "@RestController",
+    "option_B": "@Service",
+    "option_C": "@Entity",
+    "option_D": "@Bean",
+    "correct_anwser": "A",
+    "explain": "Annotation `@RestController` được sử dụng để định nghĩa một Controller theo kiến trúc RESTful Web Services. Nó là một annotation kết hợp (convenience annotation) bao gồm cả `@Controller` và `@ResponseBody`, giúp tự động chuyển đổi dữ liệu trả về từ các method trực tiếp thành định dạng JSON hoặc XML thay vì tìm kiếm một trang View để hiển thị."
+  },
+  {
+    "question_id": 33,
+    "question_title": "Thymeleaf integrates well with:",
+    "option_A": "React.js",
+    "option_B": "Angular.js",
+    "option_C": "Spring MVC.",
+    "option_D": "Node.js",
+    "correct_anwser": "C",
+    "explain": "Thymeleaf là một công cụ template engine phía Server (server-side template engine) hiện đại, nó được thiết kế để tích hợp cực kỳ chặt chẽ và tự nhiên với Spring MVC để thay thế cho công nghệ JSP truyền thống nhằm xử lý giao diện cho các ứng dụng web."
+  },
+  {
+    "question_id": 34,
+    "question_title": "Which of the following is a popular ORM framework for Java?",
+    "option_A": "Spring MVC",
+    "option_B": "Hibernate",
+    "option_C": "JavaFX",
+    "option_D": "Swing",
+    "correct_anwser": "B",
+    "explain": "Hibernate là một framework ORM (Object-Relational Mapping) cực kỳ nổi tiếng và được sử dụng rộng rãi nhất trong thế giới Java. Nó giúp ánh xạ trực tiếp các class đối tượng Java sang các bảng dữ liệu quan hệ trong cơ sở dữ liệu và là core chính triển khai đặc tả JPA."
+  },
+  {
+    "question_id": 35,
+    "question_title": "Which code snippet demonstrates updating an entity using JPA in JavaFX application? (Assume EntityManager em and Entity entity are available)",
+    "option_A": "em.persist(entity);",
+    "option_B": "em.remove(entity);",
+    "option_C": "em.find(Entity.class, id);",
+    "option_D": "em.merge(entity);",
+    "correct_anwser": "D",
+    "explain": "Để cập nhật (update) trạng thái dữ liệu của một thực thể đã bị tách rời (detached) quay trở lại persistence context trong JPA, phương thức `merge(entity)` của `EntityManager` được sử dụng nhằm sao chép trạng thái hiện tại vào một thực thể được quản lý tương ứng."
+  },
+  {
+    "question_id": 36,
+    "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+    "option_A": "In the View layer.",
+    "option_B": "In the Controller or Service layer.",
+    "option_C": "Directly in the Entity class.",
+    "option_D": "Inside the JavaFX Application class.",
+    "correct_anwser": "B",
+    "explain": "Để đảm bảo nguyên tắc phân tách kiến trúc phần mềm (Separation of Concerns), việc tương tác với tầng dữ liệu thông qua `EntityManager` phải được xử lý ở tầng logic nghiệp vụ như Service layer hoặc tầng điều hướng trung gian là Controller layer, hoàn toàn tránh can thiệp trực tiếp vào tầng hiển thị UI (View)."
+  },
+  {
+    "question_id": 37,
+    "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+    "option_A": "HBox/VBox",
+    "option_B": "BorderPane",
+    "option_C": "GridPane",
+    "option_D": "StackPane",
+    "correct_anwser": "C",
+    "explain": "`GridPane` sắp xếp các thành phần UI theo một lưới các ô bao gồm hàng (rows) và cột (columns). Cấu trúc này vô cùng lý tưởng để thiết kế các form nhập liệu (CRUD form), nơi các nhãn (Labels) cần được căn thẳng hàng một cách gọn gàng với các ô nhập liệu (TextFields)."
+  },
+  {
+    "question_id": 38,
+    "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+    "option_A": "Label",
+    "option_B": "TextField",
+    "option_C": "TableView",
+    "option_D": "Button",
+    "correct_anwser": "C",
+    "explain": "Trong JavaFX, thành phần UI được thiết kế riêng biệt để hiển thị danh sách dữ liệu có cấu trúc dưới dạng bảng gồm các hàng và các cột có tiêu đề chính là `TableView`."
+  },
+  {
+    "question_id": 39,
+    "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+    "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+    "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+    "option_C": "Controller -> View -> Model -> DispatcherServlet",
+    "option_D": "Handler -> Controller -> DispatcherServlet",
+    "correct_anwser": "A",
+    "explain": "Vòng đời xử lý một request chuẩn trong kiến trúc Spring MVC diễn ra như sau: Request đầu tiên đến Front Controller là `DispatcherServlet` -> Nó hỏi `HandlerMapping` để tìm Controller phù hợp -> Dùng `HandlerAdapter` để thực thi method của `Controller` -> Controller xử lý xong trả về tên View -> `DispatcherServlet` nhờ `ViewResolver` dịch tên đó thành trang giao diện thực tế."
+  },
+  {
+    "question_id": 40,
+    "question_title": "What will be rendered in browser from this Spring MVC controller method?\n@GetMapping(\"/hello\")\n@ResponseBody\npublic String sayHello() {\n    return \"Hello, Spring!\";\n}",
+    "option_A": "A view named \"Hello, Spring!\"",
+    "option_B": "A JSON response",
+    "option_C": "A plain text response: Hello, Spring!",
+    "option_D": "An HTML file from the templates directory",
+    "correct_anwser": "C",
+    "explain": "Sự xuất hiện của annotation `@ResponseBody` sẽ hướng dẫn Spring MVC bỏ qua luồng phân giải giao diện (ViewResolver). Thay vào đó, giá trị String trả về từ method (`\"Hello, Spring!\"`) sẽ được ghi trực tiếp vào thân của HTTP response và gửi thẳng tới trình duyệt dưới dạng một plain text response."
+  },
+  {
+    "question_id": 41,
+    "question_title": "Which annotation is used to define an AOP aspect in Spring?",
+    "option_A": "@Aspect",
+    "option_B": "@Controller",
+    "option_C": "@Repository",
+    "option_D": "@Configuration",
+    "correct_anwser": "A",
+    "explain": "Để định nghĩa một aspect trong Spring AOP (Aspect-Oriented Programming), chúng ta sử dụng annotation @Aspect của AspectJ trên class đó để chỉ định nó chứa các cấu hình AOP."
+  },
+  {
+    "question_id": 42,
+    "question_title": "Which JavaFX control is used to display text?",
+    "option_A": "Label",
+    "option_B": "Button",
+    "option_C": "TextField",
+    "option_D": "ImageView",
+    "correct_anwser": "A",
+    "explain": "Trong JavaFX, Label là control tiêu chuẩn được sử dụng để hiển thị các đoạn text (văn bản) tĩnh trên giao diện. TextField thường dùng cho việc người dùng nhập liệu, trong khi Button là nút bấm."
+  },
+  {
+    "question_id": 43,
+    "question_title": "What is the purpose of event handling in JavaFX?",
+    "option_A": "To manage database connections.",
+    "option_B": "To respond to user interactions.",
+    "option_C": "To handle network requests.",
+    "option_D": "To manage application configurations.",
+    "correct_anwser": "B",
+    "explain": "Mục đích chính của event handling (xử lý sự kiện) trong JavaFX cũng như các framework UI là để lắng nghe và phản hồi lại các tương tác của người dùng (user interactions), chẳng hạn như thao tác click chuột, gõ bàn phím, hay di chuyển chuột."
+  },
+  {
+    "question_id": 44,
+    "question_title": "In a typical Spring MVC + Hibernate application, where should the database operations be placed?",
+    "option_A": "Controller class",
+    "option_B": "HTML page",
+    "option_C": "Repository/DAO class",
+    "option_D": "JSP scriptlet",
+    "correct_anwser": "C",
+    "explain": "Theo kiến trúc phân tầng chuẩn của ứng dụng, toàn bộ các thao tác tương tác trực tiếp với cơ sở dữ liệu (database operations) phải được cô lập và đặt trong tầng Data Access Object (DAO) hoặc class Repository. Controller chỉ chịu trách nhiệm nhận/trả request và điều hướng."
+  },
+  {
+    "question_id": 45,
+    "question_title": "Which JavaFX class represents the content area of the application window?",
+    "option_A": "Stage",
+    "option_B": "Node",
+    "option_C": "Pane",
+    "option_D": "Scene",
+    "correct_anwser": "D",
+    "explain": "Trong kiến trúc tổng thể của JavaFX, Stage đại diện cho phần khung ngoài cùng (cửa sổ ứng dụng), trong khi Scene đóng vai trò là vùng nội dung (content area) chứa toàn bộ biểu đồ các thành phần giao diện (Node/Pane) để hiển thị bên trong cửa sổ đó."
+  },
+  {
+    "question_id": 46,
+    "question_title": "In JavaFX, what is a Property?",
+    "option_A": "A static variable.",
+    "option_B": "A dynamic, observable value.",
+    "option_C": "A database field.",
+    "option_D": "A network address.",
+    "correct_anwser": "B",
+    "explain": "Trong JavaFX, Property là một wrapper chứa dữ liệu có khả năng quan sát (observable value). Nghĩa là khi giá trị của Property thay đổi, nó có thể tự động thông báo cho các UI component (giao diện) đang binding với nó để cập nhật tương ứng."
+  },
+  {
+    "question_id": 47,
+    "question_title": "Spring MVC is based on which design pattern?",
+    "option_A": "Observer",
+    "option_B": "Model-View-Controller",
+    "option_C": "Decorator",
+    "option_D": "Command",
+    "correct_anwser": "B",
+    "explain": "Đúng như tên gọi của nó, Spring MVC được xây dựng dựa trên design pattern Model-View-Controller (MVC). Pattern này giúp tách biệt dữ liệu (Model), giao diện hiển thị (View) và phần điều hướng logic (Controller)."
+  },
+  {
+    "question_id": 48,
+    "question_title": "How is the DispatcherServlet typically configured in web.xml?",
+    "option_A": "As a listener.",
+    "option_B": "As a filter.",
+    "option_C": "As a servlet.",
+    "option_D": "As a resource.",
+    "correct_anwser": "C",
+    "explain": "Trong cách cấu hình truyền thống của ứng dụng web Java, DispatcherServlet đóng vai trò là Front Controller và được cấu hình như một servlet trong file web.xml để nó có thể chặn (intercept) và xử lý các HTTP requests."
+  },
+  {
+    "question_id": 49,
+    "question_title": "After the DispatcherServlet receives a request, which component is used to determine the appropriate controller?",
+    "option_A": "ViewResolver",
+    "option_B": "HandlerMapping",
+    "option_C": "Controller",
+    "option_D": "Model",
+    "correct_anwser": "B",
+    "explain": "Khi DispatcherServlet nhận được một HTTP request, nó sẽ tham chiếu tới HandlerMapping để tìm ra Controller (hoặc handler method) nào được map với URL của request đó."
+  },
+  {
+    "question_id": 50,
+    "question_title": "In the MVC pattern, what is the role of the Model?",
+    "option_A": "To handle user input.",
+    "option_B": "To display data to the user.",
+    "option_C": "To manage the application's data and business logic.",
+    "option_D": "To route requests to the appropriate handlers.",
+    "correct_anwser": "C",
+    "explain": "Trong kiến trúc MVC, thành phần Model chịu trách nhiệm cốt lõi là quản lý dữ liệu (data) và thực thi các quy tắc nghiệp vụ (business logic) của ứng dụng. Việc nhận request là của Controller và hiển thị là của View."
+  },
+  {
+    "question_id": 51,
+    "question_title": "Which statement correctly describes @ExceptionHandler and @ControllerAdvice?",
+    "option_A": "@ExceptionHandler methods handle exceptions across all controllers by default; @ControllerAdvice limits them to one controller",
+    "option_B": "@ExceptionHandler only works with REST controllers; @ControllerAdvice only with MVC controllers",
+    "option_C": "@ExceptionHandler in a controller handles exceptions for that controller; @ControllerAdvice can apply such handlers globally",
+    "option_D": "Both are deprecated in favor of filters",
+    "correct_anwser": "C",
+    "explain": "Annotation @ExceptionHandler khi định nghĩa bên trong một Controller thì chỉ bắt lỗi cho Controller đó (cục bộ). Tuy nhiên, khi định nghĩa bên trong một class có chứa @ControllerAdvice, thì các phương thức bắt lỗi đó sẽ được áp dụng globally (toàn cục) cho toàn bộ ứng dụng."
+  },
+  {
+    "question_id": 52,
+    "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
+    "option_A": "URL expressions.",
+    "option_B": "Message expressions.",
+    "option_C": "Variable expressions.",
+    "option_D": "Fragment expressions.",
+    "correct_anwser": "C",
+    "explain": "Cú pháp ${...} trong Thymeleaf đại diện cho Variable expressions. Nó được sử dụng để truy xuất các giá trị của các biến (variables) từ context/model mà Controller đã truyền sang cho View."
+  },
+  {
+    "question_id": 53,
+    "question_title": "Which annotation creates REST controller?",
+    "option_A": "@RestController",
+    "option_B": "@Service",
+    "option_C": "@Entity",
+    "option_D": "@Bean",
+    "correct_anwser": "A",
+    "explain": "Annotation @RestController được sử dụng để đánh dấu một class là RESTful web controller. Nó là sự kết hợp tiện lợi của @Controller và @ResponseBody, giúp dữ liệu trả về từ các method sẽ tự động được parse thành format như JSON/XML thay vì render ra giao diện HTML."
+  },
+  {
+    "question_id": 54,
+    "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+    "option_A": "Label or Alert",
+    "option_B": "Button",
+    "option_C": "TableView",
+    "option_D": "TextField",
+    "correct_anwser": "A",
+    "explain": "Để hiển thị các message lỗi xác thực (validation error), ta thường dùng control Label để hiển thị text lỗi ngay bên cạnh trường nhập liệu trên giao diện (inline), hoặc dùng Alert để bật lên một hộp thoại popup (dialog) thông báo cho người dùng."
+  },
+  {
+    "question_id": 55,
+    "question_title": "In JavaFX, consider:\nButton btn = new Button(\"Click\");\nbtn.setOnAction(e -> System.out.println(\"Pressed\"));\nWhat happens when user clicks the button?",
+    "option_A": "Nothing",
+    "option_B": "Compilation error",
+    "option_C": "Text 'Pressed' is printed in console",
+    "option_D": "Button disappears",
+    "correct_anwser": "C",
+    "explain": "Đoạn code trên sử dụng lambda expression để gán một event handler cho sự kiện click button. Khi người dùng click vào button, logic bên trong lambda sẽ được thực thi, lệnh System.out.println sẽ in chuỗi 'Pressed' ra màn hình console."
+  },
+  {
+    "question_id": 56,
+    "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+    "option_A": "Label",
+    "option_B": "TextField",
+    "option_C": "TableView",
+    "option_D": "Button",
+    "correct_anwser": "C",
+    "explain": "Trong JavaFX, TableView là component được thiết kế chuyên dụng để hiển thị dữ liệu dạng danh sách dưới định dạng bảng (table format), bao gồm cấu trúc chia theo các cột (columns) và hàng (rows)."
+  },
+  {
+    "question_id": 57,
+    "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+    "option_A": "In the View layer.",
+    "option_B": "In the Controller or Service layer.",
+    "option_C": "Directly in the Entity class.",
+    "option_D": "Inside the JavaFX Application class.",
+    "correct_anwser": "B",
+    "explain": "Theo các pattern kiến trúc phần mềm tiêu chuẩn (như MVC, Layered Architecture), các thao tác xử lý business logic và tương tác với database (thông qua EntityManager) cần được tách biệt khỏi giao diện (View layer) hay dữ liệu (Entity class), và thường được đặt/quản lý tại tầng Service hoặc tầng Controller."
+  },
+  {
+    "question_id": 58,
+    "question_title": "What is the purpose of the Model in a Spring application?",
+    "option_A": "To define user interfaces.",
+    "option_B": "To represent domain objects and data.",
+    "option_C": "To manage HTTP requests.",
+    "option_D": "To handle application deployment.",
+    "correct_anwser": "B",
+    "explain": "Trong mô hình MVC của Spring, thành phần Model đóng vai trò đại diện cho các đối tượng nghiệp vụ (domain objects) và lưu giữ data để chuyển giao/hiển thị thông tin giữa Controller và View."
+  },
+  {
+    "question_id": 59,
+    "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+    "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+    "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+    "option_C": "Controller -> View -> Model -> DispatcherServlet",
+    "option_D": "Handler -> Controller -> DispatcherServlet",
+    "correct_anwser": "A",
+    "explain": "Vòng đời chuẩn của một HTTP request trong Spring MVC là: Request đi vào DispatcherServlet (Front Controller) -> Nó hỏi HandlerMapping để tìm ra Controller nào xử lý -> Nó dùng HandlerAdapter để gọi/thực thi Controller đó -> Sau khi có kết quả (Model and View name), nó dùng ViewResolver để tìm ra file View thực tế để render kết quả trả về cho user."
+  },
+  {
+    "question_id": 60,
+    "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+    "option_A": "Handling UI rendering on the client",
+    "option_B": "Acting as the front controller to dispatch requests to appropriate handlers",
+    "option_C": "Encrypting HTTP requests",
+    "option_D": "Managing database transactions",
+    "correct_anwser": "B",
+    "explain": "Trong kiến trúc Spring MVC, DispatcherServlet đóng vai trò là một front controller trung tâm. Nhiệm vụ của nó là tiếp nhận toàn bộ các HTTP requests từ client và điều phối (dispatch) chúng đến các Controller (handlers) phù hợp để xử lý dựa trên cấu hình URL."
+  },
+  {
+    "question_id": 61,
+    "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+    "option_A": "To manage database connections.",
+    "option_B": "To handle HTTP requests and return a model and view.",
+    "option_C": "To define user interfaces.",
+    "option_D": "To configure application security.",
+    "correct_anwser": "B",
+    "explain": "Chức năng chính của Controller trong mô hình Spring MVC là lắng nghe và xử lý các HTTP requests từ người dùng. Sau khi thực thi logic nghiệp vụ xong, nó sẽ trả về dữ liệu (Model) cùng với tên của giao diện (View name) để hệ thống tiến hành render kết quả cuối cùng."
+  },
+  {
+    "question_id": 62,
+    "question_title": "You have a controller:\n@RestController\nclass TestController {\n  @GetMapping(\"/hello\")\n  public String hello() { return \"Hi\"; }\n}\nWhat is the response of GET /hello request?",
+    "option_A": "HTML page",
+    "option_B": "JSON object {\"hello\":\"Hi\"}",
+    "option_C": "Plain text 'Hi'",
+    "option_D": "Error 404",
+    "correct_anwser": "C",
+    "explain": "Annotation @RestController mặc định đã chứa @ResponseBody, nghĩa là giá trị return của method sẽ được viết trực tiếp vào phần body của HTTP response. Vì phương thức hello() trả về một đối tượng kiểu chuỗi String đơn giản, framework sẽ không convert nó sang cấu trúc JSON mà trả về thẳng định dạng plain text là 'Hi'."
+  },
+  {
+    "question_id": 63,
+    "question_title": "Which code snippet shows how to set the size of a scene?",
+    "option_A": "Scene scene = new Scene(new Pane(), 400, 300);",
+    "option_B": "Stage stage = new Stage(new Pane(), 400, 300);",
+    "option_C": "Node node = new Node(new Pane(), 400, 300);",
+    "option_D": "Button button = new Button(new Pane(), 400, 300);",
+    "correct_anwser": "A",
+    "explain": "Trong JavaFX, kích thước rộng (width) và cao (height) của vùng hiển thị được định nghĩa trực tiếp bằng cách truyền các tham số số thực vào hàm khởi tạo của lớp `javafx.scene.Scene` (ví dụ ở đây là `400` và `300`)."
+  },
+  {
+    "question_id": 64,
+    "question_title": "Which code snippet shows how to set the title of a stage?",
+    "option_A": "Scene scene = new Scene(); scene.setTitle(\"My App\");",
+    "option_B": "Stage stage = new Stage(); stage.setTitle(\"My App\");",
+    "option_C": "Node node = new Node(); node.setTitle(\"My App\");",
+    "option_D": "Button button = new Button(); button.setTitle(\"My App\");",
+    "correct_anwser": "B",
+    "explain": "Lớp `Stage` đại diện cho cửa sổ ứng dụng cấp cao nhất (Top-level container) trong JavaFX. Phương thức `.setTitle(String title)` là phương thức chuẩn thuộc lớp này dùng để gán tiêu đề hiển thị trên thanh tiêu đề của cửa sổ."
+  },
+  {
+    "question_id": 65,
+    "question_title": "What is the base class for all visual components in JavaFX?",
+    "option_A": "Stage",
+    "option_B": "Scene",
+    "option_C": "Node",
+    "option_D": "Pane",
+    "correct_anwser": "C",
+    "explain": "Lớp trừu tượng `javafx.scene.Node` là lớp cha cơ sở (base class) cao nhất cho tất cả các thành phần giao diện hiển thị hình ảnh nằm trong cây đồ họa (Scene Graph) của JavaFX, bao gồm cả các control (Button, TextField...) và các layout pane (HBox, VBox...)."
+  },
+  {
+    "question_id": 66,
+    "question_title": "In JavaFX, what is a Property?",
+    "option_A": "A static variable.",
+    "option_B": "A dynamic, observable value.",
+    "option_C": "A database field.",
+    "option_D": "A network address.",
+    "correct_anwser": "B",
+    "explain": "Trong JavaFX, một `Property` (Thuộc tính) là một đối tượng chứa dữ liệu động và có khả năng quan sát (observable). Nó cho phép các thành phần UI lắng nghe sự thay đổi giá trị và hỗ trợ tính năng liên kết dữ liệu mạnh mẽ (data binding)."
+  },
+  {
+    "question_id": 67,
+    "question_title": "What does the method show() do in the Stage class?",
+    "option_A": "Sets the title of the stage.",
+    "option_B": "Sets the scene of the stage.",
+    "option_C": "Displays the stage to the user.",
+    "option_D": "Closes the stage.",
+    "correct_anwser": "C",
+    "explain": "Phương thức `show()` trong lớp `Stage` của JavaFX được sử dụng để hiển thị cửa sổ giao diện đồ họa lên cho người dùng nhìn thấy và tương tác."
+  },
+  {
+    "question_id": 68,
+    "question_title": "What is the container that holds all the visual content in a JavaFX application?",
+    "option_A": "Stage",
+    "option_B": "Scene",
+    "option_C": "Node",
+    "option_D": "Pane",
+    "correct_anwser": "B",
+    "explain": "Lớp `Scene` (Cảnh nền) đóng vai trò là container chứa toàn bộ nội dung hiển thị (visual content) của một đồ thị giao diện (Scene Graph) trong JavaFX. Một `Scene` sau đó sẽ được đặt vào bên trong một `Stage` để hiển thị ra cửa sổ."
+  },
+  {
+    "question_id": 69,
+    "question_title": "What is JavaFX?",
+    "option_A": "A server-side Java framework.",
+    "option_B": "A library for building rich client applications.",
+    "option_C": "A database management system.",
+    "option_D": "A web development framework.",
+    "correct_anwser": "B",
+    "explain": "JavaFX là một bộ công cụ phần mềm, một thư viện nền tảng của Java dùng để thiết kế và xây dựng các ứng dụng desktop client phong phú (Rich Client Applications) với giao diện người dùng (UI) hiện đại, hỗ trợ đồ họa và media."
+  },
+  {
+    "question_id": 70,
+    "question_title": "What is the purpose of Spring Interceptors?",
+    "option_A": "To manage database connections.",
+    "option_B": "To intercept and process HTTP requests before or after they are handled by a controller.",
+    "option_C": "To define user interfaces.",
+    "option_D": "To configure application security.",
+    "correct_anwser": "B",
+    "explain": "Spring Interceptor (HandlerInterceptor) được sử dụng để can thiệp vào vòng đời xử lý yêu cầu HTTP. Nó cho phép thực hiện các đoạn mã tiền xử lý (pre-handle) hoặc hậu xử lý (post-handle) xung quanh các Controller (ví dụ như kiểm tra quyền truy cập, ghi log, đo thời gian phản hồi)."
+  },
+  {
+    "question_id": 71,
+    "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+    "option_A": "Controller",
+    "option_B": "HandlerMapping",
+    "option_C": "DispatcherServlet",
+    "option_D": "ViewResolver",
+    "correct_anwser": "C",
+    "explain": "Trong vòng đời của Spring MVC, `DispatcherServlet` đóng vai trò là một Front Controller. Nó là thành phần trung tâm đầu tiên trực tiếp đón nhận tất cả các yêu cầu HTTP gửi đến, trước khi điều phối chúng tới các HandlerMapping và Controller phù hợp."
+  },
+  {
+    "question_id": 72,
+    "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+    "option_A": "To manage database connections.",
+    "option_B": "To handle all incoming HTTP requests.",
+    "option_C": "To define user interfaces.",
+    "option_D": "To configure application security.",
+    "correct_anwser": "B",
+    "explain": "`DispatcherServlet` hoạt động như mẫu thiết kế Front Controller trong Spring MVC, chịu trách nhiệm chính trong việc tiếp nhận và điều phối mọi yêu cầu HTTP đi vào đến các thành phần xử lý tương ứng trong hệ thống."
+  },
+  {
+    "question_id": 73,
+    "question_title": "Thymeleaf integrates well with:",
+    "option_A": "React.js",
+    "option_B": "Angular.js",
+    "option_C": "Spring MVC.",
+    "option_D": "Node.js",
+    "correct_anwser": "C",
+    "explain": "Thymeleaf được thiết kế từ gốc để tương thích và tích hợp cực kỳ chặt chẽ với framework Spring MVC, hỗ trợ hoàn hảo việc xử lý dữ liệu từ đối tượng Spring Model và các tính năng kiểm lỗi form."
+  },
+  {
+    "question_id": 74,
+    "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+    "option_A": "In the View layer.",
+    "option_B": "In the Controller or Service layer.",
+    "option_C": "Directly in the Entity class.",
+    "option_D": "Inside the JavaFX Application class.",
+    "correct_anwser": "B",
+    "explain": "Để đảm bảo nguyên lý phân lớp trong kiến trúc phần mềm, `EntityManager` (hoặc các lớp Repository/Service bao bọc nó) thường được khởi tạo, quản lý và gọi trong tầng Controller hoặc tầng Service nhằm tách biệt hoàn toàn logic xử lý dữ liệu khỏi tầng hiển thị (View)."
+  },
+  {
+    "question_id": 75,
+    "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+    "option_A": "Label or Alert",
+    "option_B": "Button",
+    "option_C": "TableView",
+    "option_D": "TextField",
+    "correct_anwser": "A",
+    "explain": "Để hiển thị thông báo lỗi khi kiểm tra dữ liệu đầu vào (validation errors), cấu phần `Label` thường được dùng để hiển thị dòng chữ đỏ ngay cạnh trường nhập liệu, hoặc hộp thoại `Alert` được dùng để bật lên thông báo popup cảnh báo trực quan cho người dùng."
+  },
+  {
+    "question_id": 76,
+    "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+    "option_A": "HBox/VBox",
+    "option_B": "BorderPane",
+    "option_C": "GridPane",
+    "option_D": "StackPane",
+    "correct_anwser": "C",
+    "explain": "`GridPane` sắp xếp các thành phần con theo dạng lưới gồm các hàng và các cột linh hoạt, rất lý tưởng để thiết kế form nhập liệu (CRUD) chứa các cặp thành phần như nhãn bên trái thẳng hàng với trường nhập liệu tương ứng bên phải."
+  },
+  {
+    "question_id": 77,
+    "question_title": "What is the purpose of the Model in a Spring application?",
+    "option_A": "To define user interfaces.",
+    "option_B": "To represent domain objects and data.",
+    "option_C": "To manage HTTP requests.",
+    "option_D": "To handle application deployment.",
+    "correct_anwser": "B",
+    "explain": "Trong mô hình MVC (Model-View-Controller) của Spring, thành phần `Model` chịu trách nhiệm biểu diễn dữ liệu của ứng dụng, các đối tượng domain (domain objects) và trạng thái của nghiệp vụ nhằm chuẩn bị chuyển giao cho View hiển thị."
+  },
+  {
+    "question_id": 78,
+    "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+    "option_A": "To manage database connections.",
+    "option_B": "To handle HTTP requests and return a model and view.",
+    "option_C": "To define user interfaces.",
+    "option_D": "To configure application security.",
+    "correct_anwser": "B",
+    "explain": "Controller trong Spring MVC đóng vai trò là điểm tiếp nhận và xử lý trực tiếp các yêu cầu HTTP gửi đến từ phía người dùng, thực hiện điều phối luồng xử lý và trả về đối tượng dữ liệu (Model) cùng trang giao diện (View) tương ứng."
+  },
+  {
+    "question_id": 79,
+    "question_title": "When using Spring ORM with Hibernate, what annotation is commonly used to map a Java class to a database table?",
+    "option_A": "@Component",
+    "option_B": "@Service",
+    "option_C": "@Entity",
+    "option_D": "@Controller",
+    "correct_anwser": "C",
+    "explain": "Annotation `@Entity` (được định nghĩa trong đặc tả JPA chuẩn được Spring ORM/Hibernate hỗ trợ) là cấu phần bắt buộc dùng để đánh dấu và ánh xạ một lớp Java thành một thực thể bền vững tương ứng với một bảng trong cơ sở dữ liệu."
+  }
+]

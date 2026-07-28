@@ -7,9 +7,9 @@ import { Sparkles, Code2, FileSpreadsheet, ChevronRight, ShieldCheck, HelpCircle
 const QuizCatalog: React.FC = () => {
   const { t } = useTranslation();
 
-  // Count total questions per subject (merged from all quiz sets)
-  const hsfQuestions = QUIZZES.filter(q => q.title.toUpperCase().includes('HSF302')).reduce((sum, q) => sum + q.questions.length, 0);
-  const swrQuestions = QUIZZES.filter(q => q.title.toUpperCase().includes('SWR302')).reduce((sum, q) => sum + q.questions.length, 0);
+  // Count total questions per subject (merged from all quiz modules)
+  const hsfQuestions = QUIZZES.filter(q => q.id.includes('hsf302-module')).reduce((sum, q) => sum + q.questions.length, 0);
+  const swrQuestions = QUIZZES.filter(q => q.id.includes('swr302-module')).reduce((sum, q) => sum + q.questions.length, 0);
   const swtQuestions = QUIZZES.filter(q => q.title.toUpperCase().includes('SWT301')).reduce((sum, q) => sum + q.questions.length, 0);
 
   return (

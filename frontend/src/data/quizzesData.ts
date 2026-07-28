@@ -22,1530 +22,6 @@ export interface QuizSet {
 
 export const QUIZZES: QuizSet[] = [
   {
-    "id": "hsf302-sp26-fe",
-    "title": "HSF302 - SP26 - FE",
-    "description": "Working with Spring Framework Final Exam Quiz",
-    "questionsCount": 50,
-    "questions": [
-      {
-        "question_id": 1,
-        "question_title": "If you have a Student entity and a Course entity with a Many-to-Many relationship, and you want to fetch all students enrolled in a specific course, how would you typically structure the query in JPA?",
-        "option_A": "By querying the Student entity with a join on the Course entity.",
-        "option_B": "By querying the join table directly.",
-        "option_C": "By querying the Course entity and accessing its students collection.",
-        "option_D": "By querying the Student entity and filtering based on the course ID in the Student table.",
-        "correct_anwser": "C",
-        "explain": "Trong JPA, cách tự nhiên và hướng đối tượng nhất để lấy các thực thể liên quan trong mối quan hệ Nhiều-Nhiều (Many-to-Many) là truy vấn thực thể cha mục tiêu (Course), sau đó truy cập vào thuộc tính tập hợp được ánh xạ của nó (students). JPA sẽ tự động xử lý bảng trung gian (join table) cho bạn."
-      },
-      {
-        "question_id": 2,
-        "question_title": "Spring Beans are managed by which container?",
-        "option_A": "Java VM",
-        "option_B": "Spring IoC Container",
-        "option_C": "JDBC Driver",
-        "option_D": "REST Controller",
-        "correct_anwser": "B",
-        "explain": "Spring IoC (Inversion of Control) Container là thành phần chịu trách nhiệm khởi tạo, cấu hình, lắp ráp và quản lý toàn bộ vòng đời (lifecycle) của các Spring Beans."
-      },
-      {
-        "question_id": 3,
-        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
-        "option_A": "Aspect-Oriented Programming (AOP)",
-        "option_B": "Dependency Injection (DI)",
-        "option_C": "Resource Management",
-        "option_D": "Event Handling",
-        "correct_anwser": "B",
-        "explain": "Đoạn mã trên minh họa cho tính năng Tiêm phụ thuộc - Dependency Injection (cụ thể là Setter Injection). Trong đó, đối tượng phụ thuộc (dependency) được cung cấp vào class từ bên ngoài thông qua một hàm setter công khai, thay vì được khởi tạo trực tiếp bằng từ khóa 'new' bên trong class."
-      },
-      {
-        "question_id": 4,
-        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
-        "option_A": "Setter Injection",
-        "option_B": "Field Injection",
-        "option_C": "Constructor Injection",
-        "option_D": "Method Injection",
-        "correct_anwser": "C",
-        "explain": "Constructor Injection (Tiêm qua hàm khởi tạo) là một mô hình thiết kế mà ở đó các phụ thuộc bắt buộc được truyền vào làm tham số thông qua hàm khởi tạo của class khi đối tượng được khởi tạo."
-      },
-      {
-        "question_id": 5,
-        "question_title": "Which annotation is used to define a JPA Many-to-Many relationship?",
-        "option_A": "@OneToOne",
-        "option_B": "@ManyToOne",
-        "option_C": "@OneToMany",
-        "option_D": "@ManyToMany",
-        "correct_anwser": "D",
-        "explain": "Annotation `@ManyToMany` được định nghĩa trong đặc tả Jakarta Persistence (JPA) để thiết lập và đánh dấu mối quan hệ nhiều-nhiều giữa hai thực thể dữ liệu."
-      },
-      {
-        "question_id": 6,
-        "question_title": "Which AOP advice type executes before a join point?",
-        "option_A": "After",
-        "option_B": "AfterReturning",
-        "option_C": "Before",
-        "option_D": "Around",
-        "correct_anwser": "C",
-        "explain": "Advice loại 'Before' được thiết kế để thực thi các logic can thiệp (intercepting logic) ngay trước khi phương thức nghiệp vụ mục tiêu (join point) thực sự được chạy."
-      },
-      {
-        "question_id": 7,
-        "question_title": "Which JavaFX control is used for text input?",
-        "option_A": "Label",
-        "option_B": "Button",
-        "option_C": "TextField",
-        "option_D": "ImageView",
-        "correct_anwser": "C",
-        "explain": "`TextField` là một control giao diện chuẩn trong JavaFX cho phép người dùng nhập và chỉnh sửa một dòng văn bản thuần túy."
-      },
-      {
-        "question_id": 8,
-        "question_title": "Which code snippet shows how to add a button to a scene?",
-        "option_A": "Scene scene = new Scene(new Button(\"Click Me\"));",
-        "option_B": "Stage stage = new Stage(new Button(\"Click Me\"));",
-        "option_C": "Button button = new Button(\"Click Me\");",
-        "option_D": "Node node = new Node(new Button(\"Click Me\"));",
-        "correct_anwser": "A",
-        "explain": "Trong JavaFX, một `Scene` có thể nhận trực tiếp một nút gốc (Parent Node) — ví dụ như một Button hoặc một Layout Pane chứa Button — thông qua hàm khởi tạo của nó để thiết lập cấu trúc giao diện chính."
-      },
-      {
-        "question_id": 9,
-        "question_title": "In FXML, how do you connect a controller to the FXML file?",
-        "option_A": "<fxml controller=\"MyController\" />",
-        "option_B": "<fx:controller type=\"MyController\" />",
-        "option_C": "<fx:controller fx:id=\"controller\" value=\"MyController\" />",
-        "option_D": "<fx:controller value=\"MyController\" />",
-        "correct_anwser": "D",
-        "explain": "Lưu ý: Trong cú pháp FXML tiêu chuẩn của JavaFX, controller thường được khai báo bằng thuộc tính `fx:controller=\"com.package.MyController\"` ở thẻ layout gốc. Tuy nhiên, dựa trên các phương án lựa chọn đặc thù được đưa ra trong câu hỏi trắc nghiệm này, phương án D mô tả cấu trúc khối thẻ sử dụng thuộc tính `value` để gán controller theo một số tùy biến mở rộng."
-      },
-      {
-        "question_id": 10,
-        "question_title": "What is the purpose of the start(Stage primaryStage) method in a JavaFX application?",
-        "option_A": "To define database connections.",
-        "option_B": "To initialize and show the application window.",
-        "option_C": "To handle network requests.",
-        "option_D": "To manage application configurations.",
-        "correct_anwser": "B",
-        "explain": "Phương thức `start(Stage primaryStage)` là điểm khởi đầu chính (main entry point) của mọi ứng dụng JavaFX. Nó được hệ thống runtime gọi để cấu hình, gắn scene và hiển thị cửa sổ ứng dụng chính (stage) lên màn hình."
-      },
-      {
-        "question_id": 11,
-        "question_title": "Which method launches a JavaFX app?",
-        "option_A": "main()",
-        "option_B": "start()",
-        "option_C": "launch()",
-        "option_D": "run()",
-        "correct_anwser": "C",
-        "explain": "Phương thức tĩnh `launch()` kế thừa từ lớp `javafx.application.Application` được sử dụng để khởi động vòng đời của một ứng dụng JavaFX, sau đó nó sẽ thiết lập môi trường và tự động gọi phương thức `start()`."
-      },
-      {
-        "question_id": 12,
-        "question_title": "What is the role of the Controller in Spring MVC?",
-        "option_A": "To manage database connections.",
-        "option_B": "To process user requests and return a model and view.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Trong kiến trúc Spring MVC, thành phần Controller có nhiệm vụ tiếp nhận các yêu cầu (HTTP requests) từ người dùng, xử lý các logic điều hướng cần thiết, chuẩn bị dữ liệu (Model) và chỉ định giao diện hiển thị phù hợp (View)."
-      },
-      {
-        "question_id": 13,
-        "question_title": "Which of the following is TRUE about Dependency Injection (DI) in Spring?",
-        "option_A": "It tightly couples the components",
-        "option_B": "It reduces testability of code",
-        "option_C": "It promotes loose coupling between components",
-        "option_D": "It is required only for web apps",
-        "correct_anwser": "C",
-        "explain": "Dependency Injection giúp tách biệt việc khởi tạo đối tượng khỏi logic sử dụng của lớp, từ đó giúp giảm thiểu sự phụ thuộc trực tiếp (loose coupling - liên kết lỏng lẻo) giữa các thành phần phần mềm, tăng tính linh hoạt và dễ dàng viết Unit Test."
-      },
-      {
-        "question_id": 14,
-        "question_title": "Which statement correctly differentiates @PathVariable and @RequestParam?",
-        "option_A": "@PathVariable binds a query parameter; @RequestParam binds a URI template variable",
-        "option_B": "@PathVariable binds a URI template variable; @RequestParam binds a query parameter or form field",
-        "option_C": "Both only bind data from HTTP headers",
-        "option_D": "Both require a ModelAndView return type",
-        "correct_anwser": "B",
-        "explain": "`@PathVariable` được sử dụng để trích xuất và liên kết dữ liệu từ các biến nằm trực tiếp trên đường dẫn URL (URI template variable, ví dụ: `/users/{id}`). Trong khi đó, `@RequestParam` dùng để lấy dữ liệu từ tham số truy vấn (Query Parameter, ví dụ: `?name=abc`) hoặc từ dữ liệu form gửi lên."
-      },
-      {
-        "question_id": 15,
-        "question_title": "Which annotation is used to define a Spring Boot main class?\n@SpringBootApplication\npublic class AppStarter {\n    public static void main(String[] args) {\n        SpringApplication.run(AppStarter.class, args);\n    }\n}",
-        "option_A": "@SpringBoot",
-        "option_B": "@App",
-        "option_C": "@SpringApplication",
-        "option_D": "@SpringBootApplication",
-        "correct_anwser": "D",
-        "explain": "Annotation `@SpringBootApplication` là một annotation tổng hợp (gồm `@Configuration`, `@EnableAutoConfiguration`, và `@ComponentScan`), được đặt ngay trên đầu lớp chứa phương thức `main` để khai báo đây là lớp cấu hình chính khởi chạy ứng dụng Spring Boot."
-      },
-      {
-        "question_id": 16,
-        "question_title": "Which object holds model data?",
-        "option_A": "Model",
-        "option_B": "Entity",
-        "option_C": "View",
-        "option_D": "Context",
-        "correct_anwser": "A",
-        "explain": "Trong mô hình MVC của Spring, giao diện (interface) `org.springframework.ui.Model` là một vùng chứa (container) dưới dạng cặp khóa-giá trị (Map) dùng để truyền tải dữ liệu từ Controller sang cho View hiển thị."
-      },
-      {
-        "question_id": 17,
-        "question_title": "Which layer in Spring architecture is responsible for business logic?",
-        "option_A": "Repository layer",
-        "option_B": "Service layer",
-        "option_C": "Controller layer",
-        "option_D": "View layer",
-        "correct_anwser": "B",
-        "explain": "Tầng Dịch vụ (Service layer) là nơi tập trung xử lý toàn bộ các quy tắc nghiệp vụ, tính toán logic và điều phối luồng dữ liệu (business logic) của hệ thống trước khi tương tác với cơ sở dữ liệu."
-      },
-      {
-        "question_id": 18,
-        "question_title": "Which component provides automatic restart and LiveReload to speed up development?",
-        "option_A": "Spring Boot DevTools",
-        "option_B": "Spring Boot Actuator",
-        "option_C": "SpringApplication",
-        "option_D": "Spring Boot Test",
-        "correct_anwser": "A",
-        "explain": "Mô-đun `Spring Boot DevTools` cung cấp các tính năng tiện ích hỗ trợ quá trình phát triển (development), bao gồm cơ chế tự động khởi chạy lại ứng dụng (automatic restart) khi mã nguồn thay đổi và tính năng LiveReload để tự động làm mới trình duyệt."
-      },
-      {
-        "question_id": 19,
-        "question_title": "What is the benefit of Spring Boot's embedded servers?",
-        "option_A": "They require separate installation and configuration.",
-        "option_B": "They simplify deployment and reduce the need for external application servers.",
-        "option_C": "They offer limited performance compared to external servers.",
-        "option_D": "They are only compatible with specific operating systems.",
-        "correct_anwser": "B",
-        "explain": "Các máy chủ được nhúng sẵn (như Tomcat, Jetty) giúp ứng dụng Spring Boot có thể chạy độc lập như một file JAR thông thường (`java -jar`), đơn giản hóa tối đa quy trình triển khai phần mềm và loại bỏ việc phải cài đặt/cấu hình các máy chủ ứng dụng bên ngoài phức tạp."
-      },
-      {
-        "question_id": 20,
-        "question_title": "What does externalized configuration in Spring Boot enable?",
-        "option_A": "Hard-coding all configuration inside Java classes",
-        "option_B": "Packing configuration into compiled bytecode for security",
-        "option_C": "Supplying settings (e.g., database details) via properties/YAML and environment so the same build can run in different environments",
-        "option_D": "Requiring a separate XML file for every bean definition",
-        "correct_anwser": "C",
-        "explain": "Cấu hình tách biệt ra ngoài (Externalized Configuration) cho phép lập trình viên định nghĩa các tham số hệ thống thông qua các file như `.properties`, `.yml`, hoặc biến môi trường. Nhờ đó, một gói build ứng dụng duy nhất có thể tái sử dụng và chạy linh hoạt trên nhiều môi trường khác nhau (như Dev, Staging, Production) mà không cần sửa đổi mã nguồn."
-      },
-      {
-        "question_id": 21,
-        "question_title": "In JavaFX, which layout arranges child nodes in a horizontal row?",
-        "option_A": "VBox",
-        "option_B": "FlowPane",
-        "option_C": "BorderPane",
-        "option_D": "HBox",
-        "correct_anwser": "D",
-        "explain": "`HBox` (Horizontal Box) là một thành phần layout trong JavaFX được thiết kế chuyên biệt để sắp xếp tất cả các node con nằm ngang thành một hàng duy nhất theo thứ tự từ trái sang phải."
-      },
-      {
-        "question_id": 22,
-        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
-        "option_A": "Enhancing security for the web application.",
-        "option_B": "Providing a way to create reusable template layouts.",
-        "option_C": "Managing database connections.",
-        "option_D": "Optimizing JavaScript performance.",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf Layout Dialect cung cấp một giải pháp phân cấp giao diện mạnh mẽ, cho phép lập trình viên tạo dựng một layout khung (template layout) dùng chung (chứa header, footer, sidebar...) và tái sử dụng nó trên nhiều trang con khác nhau."
-      },
-      {
-        "question_id": 23,
-        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
-        "option_A": "Database drivers.",
-        "option_B": "HTML attributes and elements.",
-        "option_C": "Security protocols.",
-        "option_D": "Network configurations.",
-        "correct_anwser": "B",
-        "explain": "Standard Dialect (Phương ngữ tiêu chuẩn) của Thymeleaf cung cấp một hệ thống các thuộc tính HTML tùy biến xử lý động dữ liệu (như `th:text`, `th:each`, `th:if`) chạy trực tiếp trên cấu trúc thẻ HTML chuẩn."
-      },
-      {
-        "question_id": 24,
-        "question_title": "Thymeleaf is primarily used for:",
-        "option_A": "Handling database transactions.",
-        "option_B": "Generating dynamic HTML content.",
-        "option_C": "Managing application security.",
-        "option_D": "Building REST APIs.",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf là một Java template engine mã nguồn mở hoạt động ở phía Server, mục đích chính của nó là kết hợp mã giao diện HTML tĩnh với dữ liệu động từ backend để biên dịch và tạo ra các trang HTML động gửi về cho trình duyệt."
-      },
-      {
-        "question_id": 25,
-        "question_title": "Which data format is default in REST responses?",
-        "option_A": "XML",
-        "option_B": "JSON",
-        "option_C": "HTML",
-        "option_D": "CSV",
-        "correct_anwser": "B",
-        "explain": "Trong các dịch vụ Web RESTful hiện đại (bao gồm cả cấu hình mặc định của Spring `@RestController`), JSON (JavaScript Object Notation) là định dạng dữ liệu truyền tải văn bản chuẩn được sử dụng rộng rãi và phổ biến nhất nhờ tính gọn nhẹ, tối ưu và dễ dàng xử lý."
-      },
-      {
-        "question_id": 26,
-        "question_title": "What is the result of this Thymeleaf fragment?\n<span th:if=\"${user.loggedIn}\">Welcome!",
-        "option_A": "Renders always",
-        "option_B": "Displays if user.loggedIn is false",
-        "option_C": "Displays nothing by default",
-        "option_D": "Displays \"Welcome!\" only if user is logged in",
-        "correct_anwser": "D",
-        "explain": "Thuộc tính `th:if` hoạt động như một biểu thức điều kiện logic. Thẻ `<span>` chứa dòng chữ \"Welcome!\" sẽ chỉ được biên dịch và hiển thị ra giao diện khi và chỉ khi biến trạng thái `${user.loggedIn}` trả về giá trị logic là `true`."
-      },
-      {
-        "question_id": 27,
-        "question_title": "You have a controller:\n\n@RestController\nclass TestController {\n    @GetMapping(\"/hello\")\n    public String hello() { return \"Hi\"; }\n}\n\nWhat is the response of GET /hello request?",
-        "option_A": "HTML page",
-        "option_B": "JSON object {\"hello\":\"Hi\"}",
-        "option_C": "Plain text 'Hi'",
-        "option_D": "Error 404",
-        "correct_anwser": "C",
-        "explain": "Do lớp được đánh dấu bằng `@RestController`, mọi dữ liệu trả về từ các phương thức xử lý yêu cầu sẽ được ghi trực tiếp vào phần thân của HTTP Response (HTTP response body). Khi trả về một chuỗi `String` thuần túy như `\"Hi\"`, phản hồi nhận được sẽ là văn bản thô (Plain text)."
-      },
-      {
-        "question_id": 28,
-        "question_title": "What is the purpose of the @Column annotation in JPA?",
-        "option_A": "It specifies the primary key field of an entity",
-        "option_B": "It maps an entity field to a table column and allows setting column attributes",
-        "option_C": "It marks a field that should not be persisted",
-        "option_D": "It defines a many-to-many relationship",
-        "correct_anwser": "B",
-        "explain": "Annotation `@Column` trong JPA được sử dụng để liên kết cấu hình rõ ràng một thuộc tính của thực thể Java với một cột dữ liệu tương ứng trong bảng cơ sở dữ liệu quan hệ, cho phép tùy chỉnh các thuộc tính của cột như tên cột (`name`), độ dài (`length`), tính duy nhất (`unique`), hoặc có được phép null hay không (`nullable`)."
-      },
-      {
-        "question_id": 29,
-        "question_title": "Which annotation is used to mark a Java class as a JPA entity?",
-        "option_A": "@Table",
-        "option_B": "@Entity",
-        "option_C": "@Column",
-        "option_D": "@Id",
-        "correct_anwser": "B",
-        "explain": "Để khai báo một lớp Java thông thường thành một mô hình đối tượng persistent đại diện cho một bảng dữ liệu quan hệ trong cơ chế ORM của JPA, lớp đó bắt buộc phải sử dụng annotation mức class là `@Entity`."
-      },
-      {
-        "question_id": 30,
-        "question_title": "Which JPA feature allows relationships between tables?",
-        "option_A": "Dependency Injection",
-        "option_B": "Annotations",
-        "option_C": "Entity Relationships",
-        "option_D": "Transactions",
-        "correct_anwser": "C",
-        "explain": "Mối quan hệ giữa các thực thể (Entity Relationships) là tính năng cốt lõi của JPA cho phép định nghĩa liên kết dữ liệu giữa các bảng trong cơ sở dữ liệu thông qua các mối quan hệ hướng đối tượng như `@OneToOne`, `@OneToMany`, `@ManyToOne`, và `@ManyToMany`."
-      },
-      {
-        "question_id": 31,
-        "question_title": "What best describes the Java Persistence API (JPA)?",
-        "option_A": "A low-level JDBC driver for vendor-specific SQL",
-        "option_B": "A specification for managing relational data in Java applications using object-relational mapping",
-        "option_C": "A GUI tool for database administration in IntelliJ IDEA",
-        "option_D": "A NoSQL database used by Java applications",
-        "correct_anwser": "B",
-        "explain": "JPA (Java Persistence API) không phải là một cơ sở dữ liệu hay một driver cụ thể, mà là một đặc tả (specification) tiêu chuẩn của Java đưa ra các quy tắc để quản lý dữ liệu quan hệ thông qua kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM)."
-      },
-      {
-        "question_id": 32,
-        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
-        "option_A": "Servlet",
-        "option_B": "EntityManager",
-        "option_C": "JSP",
-        "option_D": "JDBC Driver",
-        "correct_anwser": "B",
-        "explain": "Trong kiến trúc JPA, `EntityManager` là thành phần trung tâm chịu trách nhiệm quản lý vòng đời của các thực thể (entities), thực hiện các thao tác CRUD cơ bản (thêm, sửa, xóa, đọc) và đồng bộ dữ liệu xuống database."
-      },
-      {
-        "question_id": 33,
-        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
-        "option_A": "@Column",
-        "option_B": "@Entity",
-        "option_C": "@OneToMany",
-        "option_D": "@Transient",
-        "correct_anwser": "C",
-        "explain": "`@OneToMany` (Một-Nhiều) là một annotation quan hệ điển hình dùng để khai báo mối liên kết dữ liệu giữa hai thực thể khác nhau trong JPA. Các tùy chọn khác như `@Column` dùng cho cột dữ liệu, `@Entity` dùng khai báo thực thể, và `@Transient` dùng để bỏ qua không lưu trữ thuộc tính."
-      },
-      {
-        "question_id": 34,
-        "question_title": "Which class loads FXML files?",
-        "option_A": "FXMLLoader",
-        "option_B": "Scene",
-        "option_C": "Stage",
-        "option_D": "Node",
-        "correct_anwser": "A",
-        "explain": "Lớp `FXMLLoader` trong JavaFX được thiết kế chuyên biệt để đọc, phân tích cú pháp mã XML từ các file cấu hình giao diện `.fxml` và chuyển đổi chúng thành cây phân cấp đối tượng UI (Scene Graph) trong Java."
-      },
-      {
-        "question_id": 35,
-        "question_title": "Which JavaFX element handles user input events?",
-        "option_A": "EventHandler",
-        "option_B": "SceneGraph",
-        "option_C": "Controller",
-        "option_D": "Action",
-        "correct_anwser": "A",
-        "explain": "`EventHandler` là một functional interface trong JavaFX được triển khai để lắng nghe, bắt lấy và xử lý trực tiếp các sự kiện tương tác từ người dùng (như nhấn chuột, nhập phím)."
-      },
-      {
-        "question_id": 36,
-        "question_title": "Which CSS file customizes JavaFX UI?",
-        "option_A": "styles.css",
-        "option_B": "ui.css",
-        "option_C": "design.css",
-        "option_D": "theme.xml",
-        "correct_anwser": "A",
-        "explain": "Mặc dù JavaFX có thể nhận bất kỳ tên file nào có đuôi rộng mở là `.css`, tuy nhiên theo quy chuẩn đặt tên và các dự án mẫu phổ biến trong hệ sinh thái JavaFX, tệp tin cấu hình phong cách giao diện mặc định chuẩn thường được đặt tên là `styles.css`."
-      },
-      {
-        "question_id": 37,
-        "question_title": "What JavaFX class is used to create a popup dialog for displaying confirmation or error messages?",
-        "option_A": "Stage",
-        "option_B": "Scene",
-        "option_C": "Alert",
-        "option_D": "Pane",
-        "correct_anwser": "C",
-        "explain": "Lớp `Alert` là một lớp tiện ích xây dựng sẵn trong JavaFX chuyên dùng để tạo nhanh các hộp thoại thông báo dạng popup (như thông báo lỗi, cảnh báo, hoặc xác nhận hành động từ người dùng)."
-      },
-      {
-        "question_id": 38,
-        "question_title": "What is the purpose of validation in CRUD operations of JavaFX application?",
-        "option_A": "To improve database performance.",
-        "option_B": "To ensure data integrity and prevent errors.",
-        "option_C": "To enhance user interface aesthetics.",
-        "option_D": "To manage server configurations.",
-        "correct_anwser": "B",
-        "explain": "Mục đích cốt lõi của việc kiểm tra tính hợp lệ dữ liệu (validation) đầu vào trước các thao tác CRUD là đảm bảo tính toàn vẹn của dữ liệu (data integrity), ngăn chặn các định dạng sai sót hoặc giá trị rỗng làm phát sinh lỗi hệ thống trong database hoặc ứng dụng."
-      },
-      {
-        "question_id": 39,
-        "question_title": "What is the role of a Data Access Object (DAO) in Spring application?",
-        "option_A": "To define business logic.",
-        "option_B": "To manage user sessions.",
-        "option_C": "To provide an abstraction layer for database interactions.",
-        "option_D": "To handle application security.",
-        "correct_anwser": "C",
-        "explain": "Pattern DAO (Data Access Object) đóng vai trò cung cấp một lớp trừu tượng bao bọc xung quanh các tác vụ truy vấn cơ sở dữ liệu, giúp tách biệt hoàn toàn logic truy cập dữ liệu (SQL/HQL) ra khỏi tầng xử lý nghiệp vụ (Service)."
-      },
-      {
-        "question_id": 40,
-        "question_title": "Which component in Spring resolves logical view names to actual templates?",
-        "option_A": "ViewResolver",
-        "option_B": "Controller",
-        "option_C": "DispatcherServlet",
-        "option_D": "ResourceLoader",
-        "correct_anwser": "A",
-        "explain": "Trong mô hình xử lý yêu cầu Spring MVC, thành phần `ViewResolver` có nhiệm vụ tiếp nhận chuỗi tên giao diện logic (logical view name, ví dụ: `\"home\"`) được trả về từ Controller và biên dịch giải mã nó thành tệp tin giao diện vật lý thực tế (như `/templates/home.html`)."
-      },
-      {
-        "question_id": 41,
-        "question_title": "Which class simplifies JDBC in Spring?",
-        "option_A": "JdbcTemplate",
-        "option_B": "JdbcManager",
-        "option_C": "EntityManager",
-        "option_D": "SqlHelper",
-        "correct_anwser": "A",
-        "explain": "`JdbcTemplate` là lớp cốt lõi trong mô-đun Spring JDBC giúp đơn giản hóa việc sử dụng JDBC bằng cách loại bỏ các đoạn mã lặp đi lặp lại (boilerplate code) như mở/đóng kết nối, xử lý ngoại lệ SQL, và quản lý các tài nguyên."
-      },
-      {
-        "question_id": 42,
-        "question_title": "ORM frameworks supported by Spring include:",
-        "option_A": "Hibernate",
-        "option_B": "EclipseLink",
-        "option_C": "MyBatis",
-        "option_D": "All of the above",
-        "correct_anwser": "D",
-        "explain": "Spring cung cấp khả năng tích hợp rất mạnh mẽ với hầu hết các framework ORM (Object-Relational Mapping) và data mapper phổ biến trong hệ sinh thái Java bao gồm Hibernate, EclipseLink, và cả MyBatis."
-      },
-      {
-        "question_id": 43,
-        "question_title": "What is the purpose of @ResponseBody in a Spring controller?",
-        "option_A": "It returns an HTML page",
-        "option_B": "It converts the return value to JSON or XML",
-        "option_C": "It binds request parameters",
-        "option_D": "It sets the HTTP status code",
-        "correct_anwser": "B",
-        "explain": "Annotation `@ResponseBody` chỉ thị cho Spring tự động chuyển đổi đối tượng hoặc kiểu dữ liệu trả về của phương thức xử lý thành định dạng truyền tải dữ liệu như JSON hoặc XML (thông qua các HttpMessageConverters) và ghi trực tiếp vào HTTP response body thay vì tìm kiếm một trang giao diện (view)."
-      },
-      {
-        "question_id": 44,
-        "question_title": "Which component is responsible for rendering the user interface in a Spring MVC application?",
-        "option_A": "Controller",
-        "option_B": "Model",
-        "option_C": "View",
-        "option_D": "DAO",
-        "correct_anwser": "C",
-        "explain": "Trong mô hình MVC, thành phần View (Giao diện) chịu trách nhiệm nhận dữ liệu từ Model, kết xuất đồ họa (rendering) cấu trúc trang và hiển thị giao diện người dùng cuối cùng trên trình duyệt."
-      },
-      {
-        "question_id": 45,
-        "question_title": "What is the purpose of the @JoinTable annotation in a ManyToMany relationship?",
-        "option_A": "To define the primary key of the entities.",
-        "option_B": "To specify the join table and its columns.",
-        "option_C": "To define the entity relationships.",
-        "option_D": "To create a new database.",
-        "correct_anwser": "B",
-        "explain": "Annotation `@JoinTable` được sử dụng trong mối quan hệ Nhiều-Nhiều để cấu hình chi tiết tên của bảng trung gian (join table) cũng như các cột khóa ngoại (`joinColumns` và `inverseJoinColumns`) kết nối hai bảng dữ liệu chính với nhau."
-      },
-      {
-        "question_id": 46,
-        "question_title": "Which method name follows Spring Data JPA query derivation conventions for case-insensitive containment by email?",
-        "option_A": "lookupByEmailLikeIgnoreCase(String email)",
-        "option_B": "findByEmailContainingIgnoreCase(String email)",
-        "option_C": "queryWhereEmailContainsCaseInsensitive(String email)",
-        "option_D": "selectEmailContainsIgnoreCase(String email)",
-        "correct_anwser": "B",
-        "explain": "Theo quy chuẩn phân tích cú pháp tên hàm tự sinh (Query Derivation) của Spring Data JPA: Hàm phải bắt đầu bằng `findBy`, theo sau là thuộc tính `Email`, từ khóa kiểm tra chuỗi con chứa bên trong là `Containing`, và từ khóa bỏ qua chữ hoa chữ thường là `IgnoreCase`. Do đó, `findByEmailContainingIgnoreCase` là cú pháp chuẩn xác nhất."
-      },
-      {
-        "question_id": 47,
-        "question_title": "Which annotation is used to map a one-to-many relationship?",
-        "option_A": "@OneToOne",
-        "option_B": "@ManyToOne",
-        "option_C": "@OneToMany",
-        "option_D": "@ManyToMany",
-        "correct_anwser": "C",
-        "explain": "Annotation `@OneToMany` được cung cấp bởi JPA nhằm khai báo mối quan hệ Một-Nhiều giữa một thực thể gốc với một tập hợp danh sách các thực thể liên quan."
-      },
-      {
-        "question_id": 48,
-        "question_title": "Spring Data JPA is built on top of:",
-        "option_A": "Spring MVC",
-        "option_B": "Spring Core",
-        "option_C": "JPA",
-        "option_D": "Servlets",
-        "correct_anwser": "C",
-        "explain": "Spring Data JPA là một tầng trừu tượng cao cấp (high-level abstraction) được xây dựng đè lên trên nền tảng của đặc tả JPA (Java Persistence API) tiêu chuẩn nhằm giúp đơn giản hóa tối đa việc triển khai các lớp kho dữ liệu (Repository)."
-      },
-      {
-        "question_id": 49,
-        "question_title": "Which interface provides CRUD operations?",
-        "option_A": "JpaRepository",
-        "option_B": "CrudService",
-        "option_C": "EntityManager",
-        "option_D": "JdbcTemplate",
-        "correct_anwser": "A",
-        "explain": "Trong các lựa chọn được đưa ra, `JpaRepository` (kế thừa từ `ListCrudRepository` và `PagingAndSortingRepository`) là một interface chuẩn của Spring Data cung cấp sẵn toàn bộ tập hợp các phương thức thao tác CRUD cơ bản và nâng cao đối với dữ liệu."
-      },
-      {
-        "question_id": 50,
-        "question_title": "Which keyword is used in a repository method to find entities by a specific property?",
-        "option_A": "searchBy",
-        "option_B": "findBy",
-        "option_C": "getWhere",
-        "option_D": "queryFor",
-        "correct_anwser": "B",
-        "explain": "Từ khóa tiền tố phổ biến và chuẩn mực nhất được sử dụng trong cơ chế Query Method của Spring Data JPA để bắt đầu một truy vấn tìm kiếm dữ liệu dựa trên thuộc tính là `findBy` (hoặc các biến thể tương đương như `readBy`, `getBy`, `queryBy`)."
-      }
-    ]
-  },
-  {
-    "id": "hsf302-sp26-re1",
-    "title": "HSF302 - SP26 - RE1",
-    "description": "Requirements Engineering Quiz",
-    "questionsCount": 50,
-    "questions": [
-      {
-        "question_id": 1,
-        "question_title": "Which responsibility belongs to the Spring IoC container?",
-        "option_A": "Rendering HTML views from Thymeleaf templates",
-        "option_B": "Creating, wiring, configuring beans and managing their lifecycle",
-        "option_C": "Executing SQL statements without any JDBC driver",
-        "option_D": "Compiling Java sources at runtime",
-        "correct_anwser": "B",
-        "explain": "Nhiệm vụ cốt lõi của Spring IoC container là quản lý các Bean (đối tượng của ứng dụng). Quá trình này bao gồm việc khởi tạo (creating), liên kết phụ thuộc (wiring), cấu hình (configuring) và quản lý toàn bộ vòng đời (lifecycle) của chúng từ khi sinh ra cho đến khi bị hủy."
-      },
-      {
-        "question_id": 2,
-        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
-        "option_A": "Defining user interfaces.",
-        "option_B": "Implementing cross-cutting concerns like logging and security.",
-        "option_C": "Managing database transactions.",
-        "option_D": "Creating web service clients.",
-        "correct_anwser": "B, C",
-        "explain": "Lập trình hướng khía cạnh (AOP) trong Spring được thiết kế để giải quyết các cross-cutting concerns (vấn đề cắt ngang hệ thống) như logging, security, auditing (Lựa chọn B). Ngoài ra, tính năng quản lý transaction tự động của Spring (Declarative Transaction Management) cũng được xây dựng dựa trên nền tảng của Spring AOP (Lựa chọn C). Cả hai đều là những ứng dụng thực tế phổ biến nhất của AOP."
-      },
-      {
-        "question_id": 3,
-        "question_title": "Which of the following components is responsible for managing the lifecycle of beans in the Spring Core Container?",
-        "option_A": "DispatcherServlet",
-        "option_B": "BeanFactory or ApplicationContext",
-        "option_C": "ViewResolver",
-        "option_D": "HandlerMapping",
-        "correct_anwser": "B",
-        "explain": "Trong mô hình kiến trúc Spring Core, BeanFactory và ApplicationContext (một phiên bản nâng cao kế thừa từ BeanFactory) chính là các interface đại diện trực tiếp cho Spring Container, chịu trách nhiệm quản lý cấu hình và lifecycle của các bean."
-      },
-      {
-        "question_id": 4,
-        "question_title": "Which AOP concept defines a point in the execution of the application where an advice can be applied?",
-        "option_A": "Aspect",
-        "option_B": "Advice",
-        "option_C": "Join Point",
-        "option_D": "Pointcut",
-        "correct_anwser": "C",
-        "explain": "Trong thuật ngữ Spring AOP, một Join Point đại diện cho một điểm cụ thể trong quá trình thực thi ứng dụng (chẳng hạn như khi một method được gọi hoặc một ngoại lệ được ném ra) mà tại đó một Advice (hành động/mã xử lý) có thể được chèn vào để thực thi."
-      },
-      {
-        "question_id": 5,
-        "question_title": "In a JPA Many-to-Many relationship, how is the relationship typically represented in the database?",
-        "option_A": "By adding a foreign key column to one of the entities.",
-        "option_B": "By adding a foreign key column to both entities.",
-        "option_C": "By using a join table that contains foreign keys referencing both entities.",
-        "option_D": "By storing the related entities in a serialized format within a single column.",
-        "correct_anwser": "C",
-        "explain": "Để biểu diễn một mối quan hệ nhiều-nhiều (Many-to-Many relationship) trong cơ sở dữ liệu quan hệ, cách tiếp cận chuẩn hóa luôn là tạo ra một bảng trung gian gọi là join table (hoặc junction table). Bảng này sẽ chứa các cột foreign key liên kết trỏ về khóa chính của cả hai thực thể tham gia vào mối quan hệ."
-      },
-      {
-        "question_id": 6,
-        "question_title": "What is the core concept of Inversion of Control (IoC)?",
-        "option_A": "Objects control the creation of their dependencies.",
-        "option_B": "The framework or container controls the creation and management of objects.",
-        "option_C": "Objects are responsible for managing the application's flow.",
-        "option_D": "Methods control the instantiation of classes.",
-        "correct_anwser": "B",
-        "explain": "Khái niệm Inversion of Control (IoC - Đảo ngược điều khiển) có nghĩa là thay vì để các đối tượng tự khởi tạo và quản lý các phụ thuộc (dependencies) của chính mình, quyền kiểm soát này sẽ được chuyển giao (đảo ngược) cho Framework hoặc Container xử lý tự động."
-      },
-      {
-        "question_id": 7,
-        "question_title": "Which JavaFX class represents the content area of the application window?",
-        "option_A": "Stage",
-        "option_B": "Node",
-        "option_C": "Pane",
-        "option_D": "Scene",
-        "correct_anwser": "D",
-        "explain": "Trong cấu trúc của một ứng dụng giao diện JavaFX, Stage đóng vai trò như chiếc cửa sổ bọc ngoài (window), còn Scene chính là lớp container đại diện cho vùng chứa toàn bộ nội dung hiển thị (content area) bên trong cửa sổ đó trước khi gắn các thành phần UI khác vào."
-      },
-      {
-        "question_id": 8,
-        "question_title": "Which method in JpaRepository is used to save or update an entity?",
-        "option_A": "persist()",
-        "option_B": "insert()",
-        "option_C": "save()",
-        "option_D": "update()",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc Spring Data JPA, `JpaRepository` cung cấp sẵn phương thức `save()`. Phương thức này cực kỳ linh hoạt vì nó tự động nhận diện trạng thái của thực thể: nếu thực thể chưa tồn tại, nó sẽ thực hiện lệnh lưu mới (save/persist), ngược lại nếu thực thể đã tồn tại, nó sẽ thực hiện cập nhật dữ liệu (update/merge)."
-      },
-      {
-        "question_id": 9,
-        "question_title": "Which JavaFX control is used to display an image?",
-        "option_A": "Label",
-        "option_B": "Button",
-        "option_C": "TextField",
-        "option_D": "ImageView",
-        "correct_anwser": "D",
-        "explain": "Trong JavaFX, `ImageView` là một control chuyên dụng thuộc thư viện đồ họa được thiết kế cụ thể cho mục đích vẽ và hiển thị các hình ảnh (đối tượng thuộc class `Image`) lên trên giao diện người dùng."
-      },
-      {
-        "question_id": 10,
-        "question_title": "Which layout arranges nodes in border regions?",
-        "option_A": "GridPane",
-        "option_B": "BorderPane",
-        "option_C": "VBox",
-        "option_D": "HBox",
-        "correct_anwser": "B",
-        "explain": "Layout `BorderPane` trong JavaFX sắp xếp các thành phần con (nodes) theo 5 vùng đường biên cố định bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
-      },
-      {
-        "question_id": 11,
-        "question_title": "What is the use of PlatformTransactionManager in Spring?",
-        "option_A": "Encrypt API data",
-        "option_B": "Render views",
-        "option_C": "Manage database transactions programmatically",
-        "option_D": "Build Spring Boot jars",
-        "correct_anwser": "C",
-        "explain": "`PlatformTransactionManager` là một interface trung tâm trong cấu trúc quản lý giao dịch (Transaction Management) của Spring Framework. Nó cung cấp các phương thức cốt lõi như `getTransaction`, `commit`, và `rollback` giúp nhà phát triển quản lý và điều khiển các database transaction một cách tường minh bằng mã nguồn (programmatically) hoặc làm nền tảng cho cấu hình khai báo (declarative)."
-      },
-      {
-        "question_id": 12,
-        "question_title": "After the controller processes a request, what does it typically return?",
-        "option_A": "A database connection.",
-        "option_B": "A model and view.",
-        "option_C": "A user interface.",
-        "option_D": "A security token.",
-        "correct_anwser": "B",
-        "explain": "Trong mô hình Spring MVC truyền thống, sau khi một Controller xử lý xong logic của request, nó thường trả về một đối tượng chứa cả dữ liệu lẫn tên trang hiển thị. Đối tượng này được đóng gói gọn trong lớp `ModelAndView` (gồm dữ liệu dạng `Model` và tên view hiển thị dạng `View`)."
-      },
-      {
-        "question_id": 13,
-        "question_title": "In the MVC pattern, what is the role of the Model?",
-        "option_A": "To handle user input.",
-        "option_B": "To display data to the user.",
-        "option_C": "To manage the application's data and business logic.",
-        "option_D": "To route requests to the appropriate handlers.",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc thiết kế MVC (Model-View-Controller), thành phần `Model` chịu trách nhiệm cốt lõi trong việc đại diện cho trạng thái dữ liệu (application's data), định nghĩa cấu trúc dữ liệu và chứa các logic nghiệp vụ (business logic) của hệ thống."
-      },
-      {
-        "question_id": 14,
-        "question_title": "Which annotation marks a controller?",
-        "option_A": "@Controller",
-        "option_B": "@Service",
-        "option_C": "@Repository",
-        "option_D": "@RestResource",
-        "correct_anwser": "A",
-        "explain": "Để đánh dấu một class đóng vai trò là một Controller tiếp nhận và xử lý các HTTP request trong ứng dụng Spring MVC, chúng ta sử dụng annotation `@Controller` (hoặc biến thể chuyên dụng `@RestController` cho các API dạng RESTful)."
-      },
-      {
-        "question_id": 15,
-        "question_title": "In Spring MVC, what are interceptors used for?",
-        "option_A": "Only for handling exceptions.",
-        "option_B": "Only for mapping requests.",
-        "option_C": "For cross cutting concerns like logging, authentication, and authorization.",
-        "option_D": "Only for defining views.",
-        "correct_anwser": "C",
-        "explain": "`HandlerInterceptor` (gọi tắt là interceptor) trong Spring MVC hoạt động tương tự như một bộ lọc, cho phép bạn can thiệp vào các chu kỳ trước (preHandle), sau (postHandle) và khi hoàn thành (afterCompletion) của một request gửi tới Controller. Do đó, nó cực kỳ hoàn hảo để xử lý các vấn đề cắt ngang (cross-cutting concerns) như kiểm tra quyền truy cập (authentication/authorization), lưu nhật ký (logging), hay thay đổi tham số."
-      },
-      {
-        "question_id": 16,
-        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
-        "option_A": "Controller",
-        "option_B": "HandlerMapping",
-        "option_C": "DispatcherServlet",
-        "option_D": "ViewResolver",
-        "correct_anwser": "C",
-        "explain": "Thành phần `DispatcherServlet` đóng vai trò là một Front Controller trong kiến trúc Spring MVC. Mọi HTTP request từ phía máy khách gửi đến ứng dụng đều phải đi qua cửa ngõ trung tâm này đầu tiên, trước khi nó điều hướng công việc sang các thành phần bổ trợ khác xử lý."
-      },
-      {
-        "question_id": 17,
-        "question_title": "Which component maps incoming requests to appropriate controller methods?",
-        "option_A": "HandlerMapping",
-        "option_B": "HandlerAdapter",
-        "option_C": "ViewResolver",
-        "option_D": "ModelAndView",
-        "correct_anwser": "A",
-        "explain": "Nhiệm vụ chính của thành phần `HandlerMapping` trong luồng xử lý Spring MVC là phân tích URL của incoming request, đối chiếu cấu hình để tìm ra Controller và method cụ thể nào phù hợp nhất chịu trách nhiệm xử lý request đó."
-      },
-      {
-        "question_id": 18,
-        "question_title": "Which JavaFX layout should you use to divide the window into top, bottom, center, left, and right?",
-        "option_A": "StackPane",
-        "option_B": "BorderPane",
-        "option_C": "HBox",
-        "option_D": "VBox",
-        "correct_anwser": "B",
-        "explain": "`BorderPane` là một lớp layout được thiết kế sẵn trong JavaFX để chia vùng không gian hiển thị của cửa sổ làm 5 khu vực biên cố định chuẩn bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
-      },
-      {
-        "question_id": 19,
-        "question_title": "Spring Boot embedded servers include:",
-        "option_A": "Apache Tomcat",
-        "option_B": "Jetty",
-        "option_C": "Undertow",
-        "option_D": "All of the above",
-        "correct_anwser": "D",
-        "explain": "Mặc định khi khởi tạo một ứng dụng web, Spring Boot tích hợp sẵn embedded server là Apache Tomcat (Lựa chọn A). Tuy nhiên, framework này cũng hỗ trợ cấu hình chuyển đổi rất linh hoạt sang các embedded container gọn nhẹ hoặc hiệu năng cao khác bao gồm cả Jetty (Lựa chọn B) và Undertow (Lựa chọn C) tùy thuộc vào nhu cầu."
-      },
-      {
-        "question_id": 20,
-        "question_title": "Which type of dependency is represented by spring-boot-starter-web?",
-        "option_A": "Database connectivity.",
-        "option_B": "Web application development.",
-        "option_C": "Security configuration.",
-        "option_D": "Messaging.",
-        "correct_anwser": "B",
-        "explain": "Mô-đun `spring-boot-starter-web` là một starter dependency đóng vai trò nền tảng dùng để xây dựng các ứng dụng web (Web application development), bao gồm cả các ứng dụng RESTful API sử dụng kiến trúc Spring MVC và mặc định nhúng sẵn máy chủ Apache Tomcat."
-      },
-      {
-        "question_id": 21,
-        "question_title": "Which tool creates Spring Boot project quickly?",
-        "option_A": "Spring Initializr",
-        "option_B": "Maven Archetype",
-        "option_C": "Gradle Plugin",
-        "option_D": "JDK installer",
-        "correct_anwser": "A",
-        "explain": "Spring Initializr (thông qua trang web start.spring.io hoặc được tích hợp trực tiếp vào các IDE) là công cụ chính thức và nhanh nhất do Pivotal/Spring cung cấp để khởi tạo cấu trúc một project Spring Boot với đầy đủ các dependency cần thiết chỉ bằng vài cú click chuột."
-      },
-      {
-        "question_id": 22,
-        "question_title": "Which annotation creates REST controller?",
-        "option_A": "@RestController",
-        "option_B": "@Service",
-        "option_C": "@Entity",
-        "option_D": "@Bean",
-        "correct_anwser": "A",
-        "explain": "Annotation `@RestController` được sử dụng để định nghĩa một Controller theo kiến trúc RESTful Web Services. Nó là một annotation kết hợp (convenience annotation) bao gồm cả `@Controller` và `@ResponseBody`, giúp tự động chuyển đổi dữ liệu trả về từ các method trực tiếp thành định dạng JSON hoặc XML thay vì tìm kiếm một trang View để hiển thị."
-      },
-      {
-        "question_id": 23,
-        "question_title": "Which attribute is used to iterate over a collection in Thymeleaf?",
-        "option_A": "th:if",
-        "option_B": "th:each",
-        "option_C": "th:text",
-        "option_D": "th:href",
-        "correct_anwser": "B",
-        "explain": "Trong công cụ Thymeleaf template engine, thuộc tính `th:each` được sử dụng làm vòng lặp (tương tự như vòng lặp for-each trong Java) để duyệt qua các phần tử của một danh sách (Collection hoặc List) và hiển thị chúng ra giao diện HTML."
-      },
-      {
-        "question_id": 24,
-        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
-        "option_A": "XML templates",
-        "option_B": "Text templates",
-        "option_C": "JSON templates",
-        "option_D": "Binary templates",
-        "correct_anwser": "A, B, C",
-        "explain": "Câu hỏi này yêu cầu chọn 2 đáp án đúng, tuy nhiên trên thực tế Thymeleaf hỗ trợ xử lý rất nhiều template mode khác nhau bao gồm: HTML, XML (Lựa chọn A), TEXT (Lựa chọn B), và cả JSON (Lựa chọn C) hay CSS. Ngoại trừ Binary templates (Lựa chọn D) là hoàn toàn không được hỗ trợ, ba đáp án còn lại đều đúng, nhưng phổ biến nhất đi cặp với nhau cho các dữ liệu phi HTML thường là XML và TEXT."
-      },
-      {
-        "question_id": 25,
-        "question_title": "In Thymeleaf, which expression is used to create a link? <a th:href=\"______\">Home</a>",
-        "option_A": "${/home}",
-        "option_B": "#{/home}",
-        "option_C": "@{/home}",
-        "option_D": "~{/home}",
-        "correct_anwser": "C",
-        "explain": "Thymeleaf sử dụng cú pháp ký tự `@` kết hợp cặp ngoặc nhọn `@{...}` để định nghĩa Link Expressions (biểu thức đường dẫn). Nó hỗ trợ xử lý và tự động thêm ngữ cảnh ứng dụng (context path) cho các đường dẫn URL tuyệt đối hoặc tương đối trong hệ thống."
-      },
-      {
-        "question_id": 26,
-        "question_title": "Thymeleaf integrates well with:",
-        "option_A": "React.js",
-        "option_B": "Angular.js",
-        "option_C": "Spring MVC.",
-        "option_D": "Node.js",
-        "correct_anwser": "C",
-        "explain": "Thymeleaf là một công cụ template engine phía Server (server-side template engine) hiện đại, nó được thiết kế để tích hợp cực kỳ chặt chẽ và tự nhiên với Spring MVC để thay thế cho công nghệ JSP truyền thống nhằm xử lý giao diện cho các ứng dụng web."
-      },
-      {
-        "question_id": 27,
-        "question_title": "Thymeleaf can be used to process:",
-        "option_A": "Only HTML files.",
-        "option_B": "HTML, XML, JavaScript, CSS, and plain text.",
-        "option_C": "Only server-side Java code.",
-        "option_D": "Only database queries.",
-        "correct_anwser": "B",
-        "explain": "Mặc dù giao diện web HTML là ứng dụng phổ biến nhất, Thymeleaf thực tế là một template engine rất mạnh mẽ, có khả năng biên dịch và xử lý nhiều loại định dạng tệp tin văn bản khác bao gồm cả HTML, XML, JavaScript, CSS và văn bản thuần túy (plain text)."
-      },
-      {
-        "question_id": 28,
-        "question_title": "Which annotation would you use to define a one-to-many relationship between two entities?",
-        "option_A": "@ManyToOne",
-        "option_B": "@OneToOne",
-        "option_C": "@OneToMany",
-        "option_D": "@ManyToMany",
-        "correct_anwser": "C",
-        "explain": "Để thiết lập một mối quan hệ một-nhiều (One-to-Many relationship) giữa hai thực thể dữ liệu trong JPA (ví dụ: Một lớp học `Class` có nhiều học sinh `Student`), chúng ta sử dụng annotation `@OneToMany` đặt phía trên thuộc tính danh sách phần tử con."
-      },
-      {
-        "question_id": 29,
-        "question_title": "Which of the following is a popular ORM framework for Java?",
-        "option_A": "Spring MVC",
-        "option_B": "Hibernate",
-        "option_C": "JavaFX",
-        "option_D": "Swing",
-        "correct_anwser": "B",
-        "explain": "Hibernate là một framework ORM (Object-Relational Mapping) cực kỳ nổi tiếng và được sử dụng rộng rãi nhất trong thế giới Java. Nó giúp ánh xạ trực tiếp các class đối tượng Java sang các bảng dữ liệu quan hệ trong cơ sở dữ liệu và là core chính triển khai đặc tả JPA."
-      },
-      {
-        "question_id": 30,
-        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
-        "option_A": "@OneToMany",
-        "option_B": "@ManyToOne",
-        "option_C": "@OneToOne",
-        "option_D": "@Autowired",
-        "correct_anwser": "D",
-        "explain": "Các annotation như `@OneToMany`, `@ManyToOne`, `@OneToOne` (và cả `@ManyToMany`) đều là các annotation tiêu chuẩn của đặc tả JPA dùng để cấu hình quan hệ giữa các bảng. Trong khi đó, `@Autowired` là một annotation thuộc Spring Framework dùng cho mục đích thực hiện Dependency Injection (nhúng tự động phụ thuộc), hoàn toàn không liên quan đến quan hệ cơ sở dữ liệu của JPA."
-      },
-      {
-        "question_id": 31,
-        "question_title": "What is the purpose of the @NamedQueries annotation in JPA?",
-        "option_A": "To define a single named query",
-        "option_B": "To define multiple named queries",
-        "option_C": "To define a primary key",
-        "option_D": "To define a foreign key",
-        "correct_anwser": "B",
-        "explain": "Annotation `@NamedQueries` (số nhiều) đóng vai trò là một container annotation trong JPA. Nó được sử dụng để nhóm và định nghĩa nhiều câu truy vấn tĩnh (`@NamedQuery`) lại với nhau trên cùng một Entity class."
-      },
-      {
-        "question_id": 32,
-        "question_title": "What is the purpose of the following annotation in JPA?\n@Id\n@GeneratedValue(strategy = GenerationType.IDENTITY)\nprivate Long id;",
-        "option_A": "It creates a foreign key for the entity",
-        "option_B": "It marks the field as a version column",
-        "option_C": "It marks the field as the primary key with auto-increment strategy",
-        "option_D": "It disables the persistence of the field",
-        "correct_anwser": "C",
-        "explain": "Trong JPA, `@Id` dùng để chỉ định thuộc tính đó làm khóa chính (primary key) của thực thể. Đi kèm với đó, cấu hình `@GeneratedValue(strategy = GenerationType.IDENTITY)` ra lệnh cho cơ sở dữ liệu (ví dụ như MySQL) tự động tăng giá trị của cột này (auto-increment) mỗi khi có một bản ghi mới được chèn vào."
-      },
-      {
-        "question_id": 33,
-        "question_title": "Which method is used to persist an entity in JPA EntityManager?",
-        "option_A": "save()",
-        "option_B": "insert()",
-        "option_C": "persist()",
-        "option_D": "store()",
-        "correct_anwser": "C",
-        "explain": "Trong đặc tả tiêu chuẩn của JPA, giao diện `EntityManager` cung cấp chính xác phương thức `persist(Object entity)` để chuyển trạng thái của một thực thể từ mới khởi tạo (transient) sang trạng thái được quản lý (managed) và lưu nó xuống database."
-      },
-      {
-        "question_id": 34,
-        "question_title": "Which code snippet demonstrates updating an entity using JPA in JavaFX application? (Assume EntityManager em and Entity entity are available)",
-        "option_A": "em.persist(entity);",
-        "option_B": "em.remove(entity);",
-        "option_C": "em.find(Entity.class, id);",
-        "option_D": "em.merge(entity);",
-        "correct_anwser": "D",
-        "explain": "Để cập nhật (update) trạng thái dữ liệu của một thực thể đã bị tách rời (detached) quay trở lại persistence context trong JPA, phương thức `merge(entity)` của `EntityManager` được sử dụng nhằm sao chép trạng thái hiện tại vào một thực thể được quản lý tương ứng."
-      },
-      {
-        "question_id": 35,
-        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
-        "option_A": "em.persist(entity);",
-        "option_B": "em.remove(entity);",
-        "option_C": "em.find(Entity.class, id);",
-        "option_D": "em.merge(entity);",
-        "correct_anwser": "C",
-        "explain": "Để đọc hoặc tìm kiếm dữ liệu (read/find) một bản ghi cụ thể theo khóa chính (primary key) từ cơ sở dữ liệu bằng JPA, ta sử dụng phương thức `em.find()`. Phương thức này yêu cầu truyền vào kiểu dữ liệu class của thực thể và giá trị id cần tìm."
-      },
-      {
-        "question_id": 36,
-        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
-        "option_A": "In the View layer.",
-        "option_B": "In the Controller or Service layer.",
-        "option_C": "Directly in the Entity class.",
-        "option_D": "Inside the JavaFX Application class.",
-        "correct_anwser": "B",
-        "explain": "Để đảm bảo nguyên tắc phân tách kiến trúc phần mềm (Separation of Concerns), việc tương tác với tầng dữ liệu thông qua `EntityManager` phải được xử lý ở tầng logic nghiệp vụ như Service layer hoặc tầng điều hướng trung gian là Controller layer, hoàn toàn tránh can thiệp trực tiếp vào tầng hiển thị UI (View)."
-      },
-      {
-        "question_id": 37,
-        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
-        "option_A": "HBox/VBox",
-        "option_B": "BorderPane",
-        "option_C": "GridPane",
-        "option_D": "StackPane",
-        "correct_anwser": "C",
-        "explain": "`GridPane` sắp xếp các thành phần UI theo một lưới các ô bao gồm hàng (rows) và cột (columns). Cấu trúc này vô cùng lý tưởng để thiết kế các form nhập liệu (CRUD form), nơi các nhãn (Labels) cần được căn thẳng hàng một cách gọn gàng với các ô nhập liệu (TextFields)."
-      },
-      {
-        "question_id": 38,
-        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
-        "option_A": "Label",
-        "option_B": "TextField",
-        "option_C": "TableView",
-        "option_D": "Button",
-        "correct_anwser": "C",
-        "explain": "Trong JavaFX, thành phần UI được thiết kế riêng biệt để hiển thị danh sách dữ liệu có cấu trúc dưới dạng bảng gồm các hàng và các cột có tiêu đề chính là `TableView`."
-      },
-      {
-        "question_id": 39,
-        "question_title": "When using Spring JDBC, what class is typically used to execute SQL queries?",
-        "option_A": "EntityManager",
-        "option_B": "JdbcTemplate",
-        "option_C": "SessionFactory",
-        "option_D": "Repository",
-        "correct_anwser": "B",
-        "explain": "Lớp `JdbcTemplate` là lớp trung tâm cốt lõi của gói thư viện Spring JDBC. Nó giúp loại bỏ các đoạn mã lặp lại dài dòng (boilerplate code) của JDBC thuần (như mở/đóng kết nối, xử lý exception) và cung cấp các phương thức đơn giản để thực thi các câu lệnh SQL."
-      },
-      {
-        "question_id": 40,
-        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
-        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
-        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
-        "option_C": "Controller -> View -> Model -> DispatcherServlet",
-        "option_D": "Handler -> Controller -> DispatcherServlet",
-        "correct_anwser": "A",
-        "explain": "Vòng đời xử lý một request chuẩn trong kiến trúc Spring MVC diễn ra như sau: Request đầu tiên đến Front Controller là `DispatcherServlet` -> Nó hỏi `HandlerMapping` để tìm Controller phù hợp -> Dùng `HandlerAdapter` để thực thi method của `Controller` -> Controller xử lý xong trả về tên View -> `DispatcherServlet` nhờ `ViewResolver` dịch tên đó thành trang giao diện thực tế."
-      },
-      {
-        "question_id": 41,
-        "question_title": "In a Spring MVC application, which file is typically used to configure the DispatcherServlet?",
-        "option_A": "application.properties",
-        "option_B": "dispatcher-servlet.xml",
-        "option_C": "web.xml",
-        "option_D": "config.xml",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc Java Web và Spring MVC cấu hình bằng XML truyền thống, `web.xml` đóng vai trò là tệp mô tả triển khai (deployment descriptor). Đây là nơi đầu tiên bạn phải khai báo và đăng ký sự hiện diện của `DispatcherServlet` với máy chủ ứng dụng (Servlet Container) như Tomcat."
-      },
-      {
-        "question_id": 42,
-        "question_title": "Which Spring annotation manages transactions?",
-        "option_A": "@Autowired",
-        "option_B": "@Transactional",
-        "option_C": "@Service",
-        "option_D": "@Entity",
-        "correct_anwser": "B",
-        "explain": "Annotation `@Transactional` được Spring cung cấp để thực hiện quản lý giao dịch khai báo (declarative transaction management). Khi đính kèm annotation này vào một class hoặc một method, Spring sẽ tự động mở, commit hoặc rollback transaction một cách an toàn mà bạn không cần viết mã thủ công."
-      },
-      {
-        "question_id": 43,
-        "question_title": "What will be rendered in browser from this Spring MVC controller method?\n@GetMapping(\"/hello\")\n@ResponseBody\npublic String sayHello() {\n    return \"Hello, Spring!\";\n}",
-        "option_A": "A view named \"Hello, Spring!\"",
-        "option_B": "A JSON response",
-        "option_C": "A plain text response: Hello, Spring!",
-        "option_D": "An HTML file from the templates directory",
-        "correct_anwser": "C",
-        "explain": "Sự xuất hiện của annotation `@ResponseBody` sẽ hướng dẫn Spring MVC bỏ qua luồng phân giải giao diện (ViewResolver). Thay vào đó, giá trị String trả về từ method (`\"Hello, Spring!\"`) sẽ được ghi trực tiếp vào thân của HTTP response và gửi thẳng tới trình duyệt dưới dạng một plain text response."
-      },
-      {
-        "question_id": 44,
-        "question_title": "What is the purpose of writing unit tests for a Spring application?",
-        "option_A": "To manage database connections.",
-        "option_B": "To ensure the correctness of individual components.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Mục tiêu cốt lõi và duy nhất của kiểm thử đơn vị (unit test) là cô lập và kiểm tra các thành phần nhỏ nhất của mã nguồn (như từng method, từng class bean biệt lập) nhằm đảm bảo chúng hoạt động hoàn toàn chính xác theo đúng logic thiết kế."
-      },
-      {
-        "question_id": 45,
-        "question_title": "Which of the following is a key feature of Spring Data JPA?",
-        "option_A": "Automatic repository implementation generation.",
-        "option_B": "Support for JavaScript front-end development.",
-        "option_C": "Built-in load balancing.",
-        "option_D": "Real-time video streaming.",
-        "correct_anwser": "A",
-        "explain": "Tính năng mang tính cách mạng của Spring Data JPA là khả năng tự động sinh ra mã thực thi (automatic implementation) cho các lớp Repository tại thời điểm chạy (runtime). Nhà phát triển chỉ cần khai báo một interface kế thừa từ `JpaRepository` mà không cần viết bất kỳ dòng mã triển khai cụ thể nào."
-      },
-      {
-        "question_id": 46,
-        "question_title": "What is the purpose of the EntityManager in JPA?",
-        "option_A": "To manage application configurations.",
-        "option_B": "To manage persistent entities.",
-        "option_C": "To handle user authentication.",
-        "option_D": "To create user interfaces.",
-        "correct_anwser": "B",
-        "explain": "Trong đặc tả JPA, `EntityManager` là một interface trung tâm chịu trách nhiệm quản lý vòng đời của cácpersistent entities (thực thể bền vững). Nó cung cấp các API tiêu chuẩn để thực hiện các thao tác CRUD dữ liệu với cơ sở dữ liệu thông qua persistence context."
-      },
-      {
-        "question_id": 47,
-        "question_title": "What is a primary benefit of using Spring Data JPA?",
-        "option_A": "Reduced boilerplate code for data access.",
-        "option_B": "Enhanced security for front-end applications.",
-        "option_C": "Simplified network configuration.",
-        "option_D": "Improved performance for video encoding.",
-        "correct_anwser": "A",
-        "explain": "Lợi ích hàng đầu của Spring Data JPA là loại bỏ phần lớn boilerplate code (mã mẫu lặp đi lặp lại) ở tầng truy cập dữ liệu (data access layer). Bạn không cần phải viết mã mở/đóng kết nối, quản lý try-catch hay viết các câu lệnh SQL cơ bản."
-      },
-      {
-        "question_id": 48,
-        "question_title": "In Spring Data JPA, which of the following derived method names is valid and sorts results by lastName ascending?",
-        "option_A": "findAllSortByLastNameAsc()",
-        "option_B": "findByOrderLastNameAsc()",
-        "option_C": "findByAgeGreaterThanOrderByLastNameAsc(int age)",
-        "option_D": "orderByLastNameAscFindAll()",
-        "correct_anwser": "C",
-        "explain": "Để Spring Data JPA biên dịch tự động tên phương thức (query method) thành câu lệnh SQL hợp lệ, bạn phải tuân thủ đúng cú pháp quy định. `findByAgeGreaterThanOrderByLastNameAsc` là phương thức hợp lệ vì nó chứa tiền tố hành động (`findBy`), thuộc tính điều kiện tìm kiếm (`Age` với từ khóa `GreaterThan`), và mệnh đề sắp xếp chuẩn chỉnh (`OrderByLastNameAsc`)."
-      },
-      {
-        "question_id": 49,
-        "question_title": "Which annotation marks repository class?",
-        "option_A": "@Repository",
-        "option_B": "@Entity",
-        "option_C": "@Service",
-        "option_D": "@Bean",
-        "correct_anwser": "A",
-        "explain": "Annotation `@Repository` thuộc tầng truy cập dữ liệu của Spring (Data Access Layer). Nó dùng để đánh dấu một class đóng vai trò là một Repository (hoặc DAO), đồng thời cho phép Spring tự động quét (component scanning) để đăng ký nó thành một bean và kích hoạt cơ chế dịch dịch lỗi cơ sở dữ liệu (exception translation)."
-      },
-      {
-        "question_id": 50,
-        "question_title": "In Spring Data JPA, what does the method signature List<Entity> findByPropertyOrderByPropertyAsc(String property); do?",
-        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
-        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
-        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
-        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
-        "correct_anwser": "B",
-        "explain": "Theo quy tắc đặt tên query method của Spring Data JPA, phần `findByProperty` mặc định hiểu là tìm kiếm theo điều kiện bằng (`equals`), tức là lọc ra các bản ghi có giá trị thuộc tính bằng với tham số truyền vào. Phần vế sau `OrderByPropertyAsc` thực hiện nhiệm vụ sắp xếp tập kết quả đó theo thứ tự tăng dần (`ascending`)."
-      }
-    ]
-  },
-  {
-    "id": "hsf302-sp26-re2",
-    "title": "HSF302 - SP26 - RE2",
-    "description": "Requirements Engineering Quiz",
-    "questionsCount": 50,
-    "questions": [
-      {
-        "question_id": 1,
-        "question_title": "In a JPA One-to-Many relationship, which annotation is typically used on the \"one\" side to manage the collection of \"many\" entities?",
-        "option_A": "@OneToOne",
-        "option_B": "@ManyToOne",
-        "option_C": "@OneToMany",
-        "option_D": "@ManyToMany",
-        "correct_anwser": "C",
-        "explain": "Trong JPA, khi thiết lập mối quan hệ One-to-Many (Một-Nhiều), phía \"one\" sẽ chứa một collection (danh sách) các đối tượng của phía \"many\". Để đánh dấu mapping này, ta sử dụng annotation @OneToMany."
-      },
-      {
-        "question_id": 2,
-        "question_title": "Which annotation is used to define an AOP aspect in Spring?",
-        "option_A": "@Aspect",
-        "option_B": "@Controller",
-        "option_C": "@Repository",
-        "option_D": "@Configuration",
-        "correct_anwser": "A",
-        "explain": "Để định nghĩa một aspect trong Spring AOP (Aspect-Oriented Programming), chúng ta sử dụng annotation @Aspect của AspectJ trên class đó để chỉ định nó chứa các cấu hình AOP."
-      },
-      {
-        "question_id": 3,
-        "question_title": "Which benefit does Spring's modular architecture provide?",
-        "option_A": "Increased coupling between application layers.",
-        "option_B": "Ability to use only the modules needed, reducing application size.",
-        "option_C": "Limited support for different persistence technologies.",
-        "option_D": "Decreased flexibility in choosing application components.",
-        "correct_anwser": "B",
-        "explain": "Spring Framework có kiến trúc modular (được chia thành nhiều module độc lập). Lợi ích lớn nhất của kiến trúc này là bạn có thể linh hoạt chỉ sử dụng những module mà dự án thực sự cần (ví dụ chỉ tải module spring-web hay spring-data-jpa), giúp giảm thiểu kích thước và tối ưu ứng dụng."
-      },
-      {
-        "question_id": 4,
-        "question_title": "Which of the following is NOT a general advantage of Spring Framework?",
-        "option_A": "Robust transaction management.",
-        "option_B": "Comprehensive web development support through Spring MVC.",
-        "option_C": "Automatic generation of user interfaces.",
-        "option_D": "Strong community support and extensive documentation.",
-        "correct_anwser": "C",
-        "explain": "Spring Framework hỗ trợ quản lý transaction mạnh mẽ, hỗ trợ phát triển web với Spring MVC, và có documentation rất chi tiết. Tuy nhiên, Spring không có tính năng tự động sinh ra giao diện người dùng (Automatic generation of user interfaces). Giao diện UI (như HTML, CSS, JS) vẫn cần developer tự xây dựng."
-      },
-      {
-        "question_id": 5,
-        "question_title": "What is an \"advice\" in Spring AOP?",
-        "option_A": "A point in the execution of a program.",
-        "option_B": "An object being proxied.",
-        "option_C": "The action taken at a particular join point.",
-        "option_D": "A collection of join points.",
-        "correct_anwser": "C",
-        "explain": "Trong thuật ngữ của Spring AOP, \"advice\" chính là hành động (action) hoặc đoạn code logic thực tế sẽ được thực thi tại một điểm kết nối cụ thể (join point). Ví dụ: một đoạn code thực hiện ghi log trước khi một method chạy được gọi là một advice."
-      },
-      {
-        "question_id": 6,
-        "question_title": "In a JPA One-to-Many relationship, what does the mappedBy attribute of the @OneToMany annotation specify?",
-        "option_A": "The database table name.",
-        "option_B": "The primary key of the \"many\" side entity.",
-        "option_C": "The field in the \"many\" side entity that maps back to the \"one\" side entity.",
-        "option_D": "The join table name.",
-        "correct_anwser": "C",
-        "explain": "Thuộc tính mappedBy trong annotation @OneToMany được dùng để thiết lập quan hệ hai chiều (bidirectional). Nó được sử dụng ở phía \"one\" để chỉ định chính xác tên field nằm ở phía \"many\" mà đang làm nhiệm vụ map ngược lại entity ở phía \"one\" (hay còn gọi là owning side của mối quan hệ)."
-      },
-      {
-        "question_id": 7,
-        "question_title": "Which JavaFX control is used to display text?",
-        "option_A": "Label",
-        "option_B": "Button",
-        "option_C": "TextField",
-        "option_D": "ImageView",
-        "correct_anwser": "A",
-        "explain": "Trong JavaFX, Label là control tiêu chuẩn được sử dụng để hiển thị các đoạn text (văn bản) tĩnh trên giao diện. TextField thường dùng cho việc người dùng nhập liệu, trong khi Button là nút bấm."
-      },
-      {
-        "question_id": 8,
-        "question_title": "What is the purpose of event handling in JavaFX?",
-        "option_A": "To manage database connections.",
-        "option_B": "To respond to user interactions.",
-        "option_C": "To handle network requests.",
-        "option_D": "To manage application configurations.",
-        "correct_anwser": "B",
-        "explain": "Mục đích chính của event handling (xử lý sự kiện) trong JavaFX cũng như các framework UI là để lắng nghe và phản hồi lại các tương tác của người dùng (user interactions), chẳng hạn như thao tác click chuột, gõ bàn phím, hay di chuyển chuột."
-      },
-      {
-        "question_id": 9,
-        "question_title": "In a typical Spring MVC + Hibernate application, where should the database operations be placed?",
-        "option_A": "Controller class",
-        "option_B": "HTML page",
-        "option_C": "Repository/DAO class",
-        "option_D": "JSP scriptlet",
-        "correct_anwser": "C",
-        "explain": "Theo kiến trúc phân tầng chuẩn của ứng dụng, toàn bộ các thao tác tương tác trực tiếp với cơ sở dữ liệu (database operations) phải được cô lập và đặt trong tầng Data Access Object (DAO) hoặc class Repository. Controller chỉ chịu trách nhiệm nhận/trả request và điều hướng."
-      },
-      {
-        "question_id": 10,
-        "question_title": "Which JavaFX class represents the content area of the application window?",
-        "option_A": "Stage",
-        "option_B": "Node",
-        "option_C": "Pane",
-        "option_D": "Scene",
-        "correct_anwser": "D",
-        "explain": "Trong kiến trúc tổng thể của JavaFX, Stage đại diện cho phần khung ngoài cùng (cửa sổ ứng dụng), trong khi Scene đóng vai trò là vùng nội dung (content area) chứa toàn bộ biểu đồ các thành phần giao diện (Node/Pane) để hiển thị bên trong cửa sổ đó."
-      },
-      {
-        "question_id": 11,
-        "question_title": "In JavaFX, what is a Property?",
-        "option_A": "A static variable.",
-        "option_B": "A dynamic, observable value.",
-        "option_C": "A database field.",
-        "option_D": "A network address.",
-        "correct_anwser": "B",
-        "explain": "Trong JavaFX, Property là một wrapper chứa dữ liệu có khả năng quan sát (observable value). Nghĩa là khi giá trị của Property thay đổi, nó có thể tự động thông báo cho các UI component (giao diện) đang binding với nó để cập nhật tương ứng."
-      },
-      {
-        "question_id": 12,
-        "question_title": "Spring MVC is based on which design pattern?",
-        "option_A": "Observer",
-        "option_B": "Model-View-Controller",
-        "option_C": "Decorator",
-        "option_D": "Command",
-        "correct_anwser": "B",
-        "explain": "Đúng như tên gọi của nó, Spring MVC được xây dựng dựa trên design pattern Model-View-Controller (MVC). Pattern này giúp tách biệt dữ liệu (Model), giao diện hiển thị (View) và phần điều hướng logic (Controller)."
-      },
-      {
-        "question_id": 13,
-        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
-        "option_A": "As a listener.",
-        "option_B": "As a filter.",
-        "option_C": "As a servlet.",
-        "option_D": "As a resource.",
-        "correct_anwser": "C",
-        "explain": "Trong cách cấu hình truyền thống của ứng dụng web Java, DispatcherServlet đóng vai trò là Front Controller và được cấu hình như một servlet trong file web.xml để nó có thể chặn (intercept) và xử lý các HTTP requests."
-      },
-      {
-        "question_id": 14,
-        "question_title": "After the DispatcherServlet receives a request, which component is used to determine the appropriate controller?",
-        "option_A": "ViewResolver",
-        "option_B": "HandlerMapping",
-        "option_C": "Controller",
-        "option_D": "Model",
-        "correct_anwser": "B",
-        "explain": "Khi DispatcherServlet nhận được một HTTP request, nó sẽ tham chiếu tới HandlerMapping để tìm ra Controller (hoặc handler method) nào được map với URL của request đó."
-      },
-      {
-        "question_id": 15,
-        "question_title": "Which statement best describes Spring's form tag library?",
-        "option_A": "Unrelated to Spring MVC and cannot bind to model attributes",
-        "option_B": "Binding-aware JSP tags that integrate with Spring MVC to bind form fields to model properties",
-        "option_C": "A replacement for HTML input elements and attributes",
-        "option_D": "Only supports GET forms and not POST",
-        "correct_anwser": "B",
-        "explain": "Spring form tag library cung cấp các JSP tags đặc biệt có khả năng binding (binding-aware). Nó tích hợp sâu với Spring MVC để tự động liên kết các trường nhập liệu (form fields) trên giao diện với các thuộc tính của đối tượng Model (model properties) ở backend."
-      },
-      {
-        "question_id": 16,
-        "question_title": "In the MVC pattern, what is the role of the Model?",
-        "option_A": "To handle user input.",
-        "option_B": "To display data to the user.",
-        "option_C": "To manage the application's data and business logic.",
-        "option_D": "To route requests to the appropriate handlers.",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc MVC, thành phần Model chịu trách nhiệm cốt lõi là quản lý dữ liệu (data) và thực thi các quy tắc nghiệp vụ (business logic) của ứng dụng. Việc nhận request là của Controller và hiển thị là của View."
-      },
-      {
-        "question_id": 17,
-        "question_title": "Which statement correctly describes @ExceptionHandler and @ControllerAdvice?",
-        "option_A": "@ExceptionHandler methods handle exceptions across all controllers by default; @ControllerAdvice limits them to one controller",
-        "option_B": "@ExceptionHandler only works with REST controllers; @ControllerAdvice only with MVC controllers",
-        "option_C": "@ExceptionHandler in a controller handles exceptions for that controller; @ControllerAdvice can apply such handlers globally",
-        "option_D": "Both are deprecated in favor of filters",
-        "correct_anwser": "C",
-        "explain": "Annotation @ExceptionHandler khi định nghĩa bên trong một Controller thì chỉ bắt lỗi cho Controller đó (cục bộ). Tuy nhiên, khi định nghĩa bên trong một class có chứa @ControllerAdvice, thì các phương thức bắt lỗi đó sẽ được áp dụng globally (toàn cục) cho toàn bộ ứng dụng."
-      },
-      {
-        "question_id": 18,
-        "question_title": "Which file defines Spring Boot dependencies?",
-        "option_A": "application.yml",
-        "option_B": "pom.xml / build.gradle",
-        "option_C": "beans.xml",
-        "option_D": "settings.json",
-        "correct_anwser": "B",
-        "explain": "Trong môi trường Spring Boot (và Java nói chung), các thư viện phụ thuộc (dependencies) được khai báo và quản lý bởi công cụ build tool. Ta dùng pom.xml nếu dự án dùng Maven, hoặc build.gradle nếu dự án dùng Gradle."
-      },
-      {
-        "question_id": 19,
-        "question_title": "What is the main class of a Spring Boot application typically annotated with?",
-        "option_A": "@Component",
-        "option_B": "@Service",
-        "option_C": "@SpringBootApplication",
-        "option_D": "@Repository",
-        "correct_anwser": "C",
-        "explain": "Class chính chứa hàm main() để khởi chạy một ứng dụng Spring Boot luôn được đánh dấu bằng annotation @SpringBootApplication. Annotation này là sự kết hợp của 3 annotation khác: @Configuration, @EnableAutoConfiguration và @ComponentScan."
-      },
-      {
-        "question_id": 20,
-        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
-        "option_A": "Spring MVC",
-        "option_B": "Spring Data JPA",
-        "option_C": "Starter dependencies",
-        "option_D": "Spring Security",
-        "correct_anwser": "C",
-        "explain": "Tính năng Starter dependencies cung cấp các tập hợp thư viện (dependency descriptors) đã được đóng gói sẵn cho một mục đích (ví dụ: spring-boot-starter-web). Nó sẽ tự động kéo theo các thư viện cần thiết và phối hợp với cơ chế auto-configuration để giảm thiểu việc phải setup thủ công."
-      },
-      {
-        "question_id": 21,
-        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
-        "option_A": "To define a database entity.",
-        "option_B": "To enable Spring MVC functionality.",
-        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
-        "option_D": "To define a RESTful endpoint.",
-        "correct_anwser": "C",
-        "explain": "Annotation @SpringBootApplication là một tiện ích (convenience annotation) mặc định của Spring Boot. Nó bao gồm và thực thi cùng lúc 3 annotation cốt lõi: @Configuration (đánh dấu class cấu hình), @EnableAutoConfiguration (kích hoạt cơ chế tự động cấu hình) và @ComponentScan (quét các components trong package)."
-      },
-      {
-        "question_id": 22,
-        "question_title": "In Thymeleaf, which expression is used to create a link?\n<a th:href=\"________\">Home</a>",
-        "option_A": "${/home}",
-        "option_B": "#{/home}",
-        "option_C": "@{/home}",
-        "option_D": "~{/home}",
-        "correct_anwser": "C",
-        "explain": "Trong Thymeleaf, để định nghĩa các đường dẫn URL (Link URL Expressions), chúng ta phải sử dụng cú pháp @{...}. Điều này giúp tự động xử lý context path của ứng dụng một cách linh hoạt."
-      },
-      {
-        "question_id": 23,
-        "question_title": "Which attribute is used to conditionally include or exclude an element in Thymeleaf?",
-        "option_A": "th:if",
-        "option_B": "th:each",
-        "option_C": "th:text",
-        "option_D": "th:href",
-        "correct_anwser": "A",
-        "explain": "Thuộc tính th:if được dùng để kiểm tra điều kiện logic (conditional evaluation). Nếu điều kiện trả về true, element HTML đó sẽ được render (include). Nếu false, toàn bộ element sẽ bị loại bỏ khỏi DOM (exclude)."
-      },
-      {
-        "question_id": 24,
-        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
-        "option_A": "URL expressions.",
-        "option_B": "Message expressions.",
-        "option_C": "Variable expressions.",
-        "option_D": "Fragment expressions.",
-        "correct_anwser": "C",
-        "explain": "Cú pháp ${...} trong Thymeleaf đại diện cho Variable expressions. Nó được sử dụng để truy xuất các giá trị của các biến (variables) từ context/model mà Controller đã truyền sang cho View."
-      },
-      {
-        "question_id": 25,
-        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
-        "option_A": "XML templates",
-        "option_B": "Text templates",
-        "option_C": "JSON templates",
-        "option_D": "Binary templates",
-        "correct_anwser": "A, B",
-        "explain": "Thymeleaf hỗ trợ nhiều loại template mode để xử lý dữ liệu đầu ra. Các template modes hợp lệ bao gồm: HTML, XML, TEXT, JAVASCRIPT, CSS và RAW. Vì vậy, XML templates và Text templates là 2 đáp án chính xác."
-      },
-      {
-        "question_id": 26,
-        "question_title": "Which annotation creates REST controller?",
-        "option_A": "@RestController",
-        "option_B": "@Service",
-        "option_C": "@Entity",
-        "option_D": "@Bean",
-        "correct_anwser": "A",
-        "explain": "Annotation @RestController được sử dụng để đánh dấu một class là RESTful web controller. Nó là sự kết hợp tiện lợi của @Controller và @ResponseBody, giúp dữ liệu trả về từ các method sẽ tự động được parse thành format như JSON/XML thay vì render ra giao diện HTML."
-      },
-      {
-        "question_id": 27,
-        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
-        "option_A": "To define a standard for web application development",
-        "option_B": "To define a standard for object-relational mapping in Java",
-        "option_C": "To manage user interfaces",
-        "option_D": "To handle network communication",
-        "correct_anwser": "B",
-        "explain": "Mục đích chính của JPA là cung cấp một bộ đặc tả tiêu chuẩn (standard specification) cho kỹ thuật Object-Relational Mapping (ORM) trong ngôn ngữ Java, giúp mapping các Java objects với các relational database tables."
-      },
-      {
-        "question_id": 28,
-        "question_title": "Which JPA annotation maps a primary key?",
-        "option_A": "@Entity",
-        "option_B": "@Table",
-        "option_C": "@Id",
-        "option_D": "@JoinColumn",
-        "correct_anwser": "C",
-        "explain": "Trong JPA, annotation @Id được đặt trên một field (hoặc property) để chỉ định rằng trường đó đóng vai trò là khóa chính (primary key) của entity ánh xạ xuống database."
-      },
-      {
-        "question_id": 29,
-        "question_title": "What does ORM stand for in JPA?",
-        "option_A": "Object Relational Mapping",
-        "option_B": "Open Resource Management",
-        "option_C": "Optimized Runtime Module",
-        "option_D": "Operational Reference Model",
-        "correct_anwser": "A",
-        "explain": "ORM là viết tắt của Object Relational Mapping. Đây là một kỹ thuật lập trình giúp tự động chuyển đổi dữ liệu giữa hệ thống hướng đối tượng (Object trong OOP) và cơ sở dữ liệu quan hệ (Relational database)."
-      },
-      {
-        "question_id": 30,
-        "question_title": "What is the purpose of transaction management in JPA?",
-        "option_A": "To handle user authentication",
-        "option_B": "To ensure data integrity and consistency",
-        "option_C": "To manage network traffic",
-        "option_D": "To optimize web page loading",
-        "correct_anwser": "B",
-        "explain": "Mục đích của việc quản lý giao dịch (transaction management) là để đảm bảo tính toàn vẹn và nhất quán của dữ liệu (data integrity and consistency). Nó tuân thủ nguyên tắc ACID, đảm bảo rằng một nhóm các thao tác database sẽ được thực hiện thành công trọn vẹn (commit) hoặc bị hủy bỏ toàn bộ (rollback) nếu có lỗi xảy ra."
-      },
-      {
-        "question_id": 31,
-        "question_title": "What is the primary role of JPA in Java applications?",
-        "option_A": "Managing user interfaces",
-        "option_B": "Providing RESTful API support",
-        "option_C": "Managing relational data through ORM",
-        "option_D": "Running multithreaded processes",
-        "correct_anwser": "C",
-        "explain": "Vai trò chính của JPA (Java Persistence API) trong các ứng dụng Java là quản lý dữ liệu quan hệ thông qua kỹ thuật ORM (Object-Relational Mapping), giúp ánh xạ các Java objects xuống các bảng trong database một cách dễ dàng."
-      },
-      {
-        "question_id": 32,
-        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
-        "option_A": "@OneToMany",
-        "option_B": "@ManyToOne",
-        "option_C": "@OneToOne",
-        "option_D": "@Autowired",
-        "correct_anwser": "D",
-        "explain": "Các annotation @OneToMany, @ManyToOne và @OneToOne là các annotation tiêu chuẩn của JPA để map các relationship giữa các entity. Còn @Autowired là annotation riêng của Spring Framework dùng để thực hiện cơ chế Dependency Injection."
-      },
-      {
-        "question_id": 33,
-        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
-        "option_A": "Label or Alert",
-        "option_B": "Button",
-        "option_C": "TableView",
-        "option_D": "TextField",
-        "correct_anwser": "A",
-        "explain": "Để hiển thị các message lỗi xác thực (validation error), ta thường dùng control Label để hiển thị text lỗi ngay bên cạnh trường nhập liệu trên giao diện (inline), hoặc dùng Alert để bật lên một hộp thoại popup (dialog) thông báo cho người dùng."
-      },
-      {
-        "question_id": 34,
-        "question_title": "In JavaFX, consider:\nButton btn = new Button(\"Click\");\nbtn.setOnAction(e -> System.out.println(\"Pressed\"));\nWhat happens when user clicks the button?",
-        "option_A": "Nothing",
-        "option_B": "Compilation error",
-        "option_C": "Text 'Pressed' is printed in console",
-        "option_D": "Button disappears",
-        "correct_anwser": "C",
-        "explain": "Đoạn code trên sử dụng lambda expression để gán một event handler cho sự kiện click button. Khi người dùng click vào button, logic bên trong lambda sẽ được thực thi, lệnh System.out.println sẽ in chuỗi 'Pressed' ra màn hình console."
-      },
-      {
-        "question_id": 35,
-        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
-        "option_A": "Label",
-        "option_B": "TextField",
-        "option_C": "TableView",
-        "option_D": "Button",
-        "correct_anwser": "C",
-        "explain": "Trong JavaFX, TableView là component được thiết kế chuyên dụng để hiển thị dữ liệu dạng danh sách dưới định dạng bảng (table format), bao gồm cấu trúc chia theo các cột (columns) và hàng (rows)."
-      },
-      {
-        "question_id": 36,
-        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
-        "option_A": "em.persist(entity);",
-        "option_B": "em.remove(entity);",
-        "option_C": "em.find(Entity.class, id);",
-        "option_D": "em.merge(entity);",
-        "correct_anwser": "C",
-        "explain": "Để đọc/tìm kiếm (reading) một entity từ cơ sở dữ liệu thông qua JPA dựa vào khóa chính (primary key), ta sử dụng method em.find(). Các method còn lại có chức năng khác: persist (thêm mới), remove (xóa), merge (cập nhật)."
-      },
-      {
-        "question_id": 37,
-        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
-        "option_A": "In the View layer.",
-        "option_B": "In the Controller or Service layer.",
-        "option_C": "Directly in the Entity class.",
-        "option_D": "Inside the JavaFX Application class.",
-        "correct_anwser": "B",
-        "explain": "Theo các pattern kiến trúc phần mềm tiêu chuẩn (như MVC, Layered Architecture), các thao tác xử lý business logic và tương tác với database (thông qua EntityManager) cần được tách biệt khỏi giao diện (View layer) hay dữ liệu (Entity class), và thường được đặt/quản lý tại tầng Service hoặc tầng Controller."
-      },
-      {
-        "question_id": 38,
-        "question_title": "What is the purpose of the Model in a Spring application?",
-        "option_A": "To define user interfaces.",
-        "option_B": "To represent domain objects and data.",
-        "option_C": "To manage HTTP requests.",
-        "option_D": "To handle application deployment.",
-        "correct_anwser": "B",
-        "explain": "Trong mô hình MVC của Spring, thành phần Model đóng vai trò đại diện cho các đối tượng nghiệp vụ (domain objects) và lưu giữ data để chuyển giao/hiển thị thông tin giữa Controller và View."
-      },
-      {
-        "question_id": 39,
-        "question_title": "Which benefit does JdbcTemplate provide?",
-        "option_A": "Simplifies error handling",
-        "option_B": "Automatic query optimization",
-        "option_C": "UI rendering",
-        "option_D": "Thread pool creation",
-        "correct_anwser": "A",
-        "explain": "JdbcTemplate là một core class trong Spring giúp đơn giản hóa việc thao tác với JDBC API. Một trong những lợi ích quan trọng nhất của nó là tự động xử lý đóng/mở connection và mapping các SQLException rườm rà thành một hệ thống hierarchy DataAccessException nhất quán, qua đó đơn giản hóa việc xử lý lỗi (Simplifies error handling)."
-      },
-      {
-        "question_id": 40,
-        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
-        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
-        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
-        "option_C": "Controller -> View -> Model -> DispatcherServlet",
-        "option_D": "Handler -> Controller -> DispatcherServlet",
-        "correct_anwser": "A",
-        "explain": "Vòng đời chuẩn của một HTTP request trong Spring MVC là: Request đi vào DispatcherServlet (Front Controller) -> Nó hỏi HandlerMapping để tìm ra Controller nào xử lý -> Nó dùng HandlerAdapter để gọi/thực thi Controller đó -> Sau khi có kết quả (Model and View name), nó dùng ViewResolver để tìm ra file View thực tế để render kết quả trả về cho user."
-      },
-      {
-        "question_id": 41,
-        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
-        "option_A": "Handling UI rendering on the client",
-        "option_B": "Acting as the front controller to dispatch requests to appropriate handlers",
-        "option_C": "Encrypting HTTP requests",
-        "option_D": "Managing database transactions",
-        "correct_anwser": "B",
-        "explain": "Trong kiến trúc Spring MVC, DispatcherServlet đóng vai trò là một front controller trung tâm. Nhiệm vụ của nó là tiếp nhận toàn bộ các HTTP requests từ client và điều phối (dispatch) chúng đến các Controller (handlers) phù hợp để xử lý dựa trên cấu hình URL."
-      },
-      {
-        "question_id": 42,
-        "question_title": "Which Spring annotation manages transactions?",
-        "option_A": "@Autowired",
-        "option_B": "@Transactional",
-        "option_C": "@Service",
-        "option_D": "@Entity",
-        "correct_anwser": "B",
-        "explain": "Trong Spring Framework, annotation @Transactional được sử dụng để quản lý các transactions (giao dịch) của cơ sở dữ liệu một cách tự động (declarative transaction management), đảm bảo tính ACID (toàn vẹn dữ liệu) mà không cần code các lệnh commit hay rollback thủ công."
-      },
-      {
-        "question_id": 43,
-        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
-        "option_A": "To manage database connections.",
-        "option_B": "To handle HTTP requests and return a model and view.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Chức năng chính của Controller trong mô hình Spring MVC là lắng nghe và xử lý các HTTP requests từ người dùng. Sau khi thực thi logic nghiệp vụ xong, nó sẽ trả về dữ liệu (Model) cùng với tên của giao diện (View name) để hệ thống tiến hành render kết quả cuối cùng."
-      },
-      {
-        "question_id": 44,
-        "question_title": "Which annotation is used to mark an entity in Spring Data JPA?",
-        "option_A": "@Component",
-        "option_B": "@Service",
-        "option_C": "@Entity",
-        "option_D": "@Repository",
-        "correct_anwser": "C",
-        "explain": "Khi làm việc với JPA hoặc Spring Data JPA, để đánh dấu một Java class là một Entity (thực thể) chịu trách nhiệm ánh xạ xuống một table trong cơ sở dữ liệu quan hệ, ta bắt buộc phải sử dụng annotation @Entity."
-      },
-      {
-        "question_id": 45,
-        "question_title": "Which annotation is used to define a named query?",
-        "option_A": "@Query",
-        "option_B": "@NamedQuery",
-        "option_C": "@StoredProcedure",
-        "option_D": "@NativeQuery",
-        "correct_anwser": "B",
-        "explain": "Trong chuẩn JPA, annotation @NamedQuery được sử dụng trực tiếp trên các Entity class để định nghĩa trước một câu truy vấn tĩnh (static query) với một cái tên cụ thể. Bằng cách gọi tên này, bạn có thể tái sử dụng câu query đó ở nhiều nơi trong code."
-      },
-      {
-        "question_id": 46,
-        "question_title": "What best describes Spring Data in the context of data access?",
-        "option_A": "A single monolithic library that replaces JPA",
-        "option_B": "An umbrella project containing multiple modules for different data stores and data-access styles",
-        "option_C": "A JDBC driver for all relational databases",
-        "option_D": "A GUI client for managing databases",
-        "correct_anwser": "B",
-        "explain": "Spring Data thực chất là một umbrella project (dự án mẹ/dự án tổng thể) chứa nhiều modules con (ví dụ: Spring Data JPA, Spring Data MongoDB, Spring Data Redis...). Mục đích của nó là cung cấp một mô hình lập trình nhất quán để truy xuất dữ liệu cho cả relational databases và các hệ thống NoSQL."
-      },
-      {
-        "question_id": 47,
-        "question_title": "What best describes Spring Data JPA?",
-        "option_A": "A NoSQL database engine",
-        "option_B": "A higher-level abstraction on top of JPA that simplifies repository-based data access",
-        "option_C": "A replacement for the Spring Framework core container",
-        "option_D": "A message broker for JMS-based applications",
-        "correct_anwser": "B",
-        "explain": "Spring Data JPA là một higher-level abstraction (tầng trừu tượng cao hơn) được xây dựng dựa trên JPA API. Nó giúp lập trình viên đơn giản hóa tối đa việc tương tác với database bằng cách tự động sinh ra các đoạn code (boilerplate code) thông qua các Repository interfaces."
-      },
-      {
-        "question_id": 48,
-        "question_title": "In Spring Data JPA, by default, the @Query annotation uses which query language?",
-        "option_A": "JPQL",
-        "option_B": "SQL-92 only",
-        "option_C": "HQL only",
-        "option_D": "Native database-specific SQL",
-        "correct_anwser": "A",
-        "explain": "Mặc định, annotation @Query trong Spring Data JPA sẽ biên dịch và thực thi câu lệnh bằng ngôn ngữ JPQL (Java Persistence Query Language). JPQL truy vấn dựa trên các Entity objects và thuộc tính của chúng thay vì truy vấn trực tiếp trên các tables trong database. Nếu muốn dùng SQL thuần túy, bạn phải set cờ nativeQuery = true."
-      },
-      {
-        "question_id": 49,
-        "question_title": "What is the purpose of @Transactional in Spring Data JPA?",
-        "option_A": "To manage user sessions.",
-        "option_B": "To ensure data consistency by grouping database operations into a single unit.",
-        "option_C": "To handle file uploads.",
-        "option_D": "To create REST endpoints.",
-        "correct_anwser": "B",
-        "explain": "Mục đích của @Transactional là gom nhóm nhiều thao tác đọc/ghi với database thành một unit of work (đơn vị công việc) duy nhất. Điều này bảo vệ data consistency (tính nhất quán của dữ liệu): nếu mọi thứ suôn sẻ thì dữ liệu được lưu, còn nếu có exception xảy ra giữa chừng, toàn bộ các thao tác trước đó sẽ bị rollback."
-      },
-      {
-        "question_id": 50,
-        "question_title": "You have a controller:\n@RestController\nclass TestController {\n  @GetMapping(\"/hello\")\n  public String hello() { return \"Hi\"; }\n}\nWhat is the response of GET /hello request?",
-        "option_A": "HTML page",
-        "option_B": "JSON object {\"hello\":\"Hi\"}",
-        "option_C": "Plain text 'Hi'",
-        "option_D": "Error 404",
-        "correct_anwser": "C",
-        "explain": "Annotation @RestController mặc định đã chứa @ResponseBody, nghĩa là giá trị return của method sẽ được viết trực tiếp vào phần body của HTTP response. Vì phương thức hello() trả về một đối tượng kiểu chuỗi String đơn giản, framework sẽ không convert nó sang cấu trúc JSON mà trả về thẳng định dạng plain text là 'Hi'."
-      }
-    ]
-  },
-  {
     "id": "swt301-sp26-fe",
     "title": "SWT301 - SP26 - FE",
     "description": "Software Testing Final Exam Quiz",
@@ -3375,514 +1851,6 @@ export const QUIZZES: QuizSet[] = [
         "option_D": "System testing",
         "correct_anwser": "B",
         "explain": "Kiểm thử thực địa (Field testing) hoặc kiểm thử Beta (Beta testing) là hoạt động kiểm thử được thực hiện bởi người dùng cuối hoặc khách hàng trực tiếp tại chính môi trường và địa điểm vận hành thực tế của họ (client own locations), giúp phát hiện các lỗi phát sinh do điều kiện môi trường thực tế gây ra."
-      }
-    ]
-  },
-  {
-    "id": "hsf302-su25-fe",
-    "title": "HSF302 - SU25 - FE",
-    "description": "Working with Spring Framework Final Exam Quiz",
-    "questionsCount": 50,
-    "questions": [
-      {
-        "question_id": 1,
-        "question_title": "Which component in Spring is responsible for implementing the IoC container?",
-        "option_A": "DispatcherServlet",
-        "option_B": "BeanFactory or ApplicationContext",
-        "option_C": "ViewResolver",
-        "option_D": "HandlerMapping",
-        "correct_anwser": "B",
-        "explain": "`BeanFactory` cung cấp cấu hình cơ bản để quản lý các bean, còn `ApplicationContext` là một giao diện con nâng cao bổ sung thêm các tính năng dành cho doanh nghiệp. Cả hai đều là những thành phần giao diện cốt lõi đóng vai trò triển khai và đại diện cho Spring IoC container."
-      },
-      {
-        "question_id": 2,
-        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
-        "option_A": "Defining user interfaces.",
-        "option_B": "Implementing cross-cutting concerns like logging and security.",
-        "option_C": "Managing database connections.",
-        "option_D": "Creating web service clients.",
-        "correct_anwser": "B",
-        "explain": "Lập trình hướng khía cạnh (AOP) cho phép phân tách các chức năng mang tính hệ thống, cắt ngang qua nhiều mô-đun ứng dụng độc lập (cross-cutting concerns) như ghi log (logging), bảo mật (security), giám sát hiệu năng hoặc quản lý giao dịch dữ liệu mà không làm ảnh hưởng trực tiếp đến mã logic nghiệp vụ chính."
-      },
-      {
-        "question_id": 3,
-        "question_title": "Which of the following is a significant advantage of using the Spring Framework?",
-        "option_A": "Tight coupling between components.",
-        "option_B": "Simplified testing due to Dependency Injection.",
-        "option_C": "Limited support for enterprise-level features.",
-        "option_D": "Reduced modularity and code reusability.",
-        "correct_anwser": "B",
-        "explain": "Nhờ cơ chế Tiêm phụ thuộc (Dependency Injection), các thành phần phần mềm được liên kết lỏng lẻo với nhau (loose coupling). Điều này giúp lập trình viên cực kỳ dễ dàng thay thế các dependency thực tế bằng các đối tượng giả lập (Mock objects), đơn giản hóa quá trình viết mã Unit Test."
-      },
-      {
-        "question_id": 4,
-        "question_title": "Which DI type is generally considered the most recommended due to its immutability and testability benefits?",
-        "option_A": "Setter Injection",
-        "option_B": "Field Injection",
-        "option_C": "Constructor Injection",
-        "option_D": "Method Injection",
-        "correct_anwser": "C",
-        "explain": "Constructor Injection được khuyến nghị hàng đầu trong Spring vì nó đảm bảo tính bất biến (immutability) của đối tượng bằng cách cho phép định nghĩa các thuộc tính phụ thuộc là `final`, đồng thời buộc tất cả các phụ thuộc bắt buộc phải được truyền vào ngay khi khởi tạo đối tượng, giúp tránh lỗi `NullPointerException`."
-      },
-      {
-        "question_id": 5,
-        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
-        "option_A": "Setter Injection",
-        "option_B": "Field Injection",
-        "option_C": "Constructor Injection",
-        "option_D": "Method Injection",
-        "correct_anwser": "C",
-        "explain": "Theo đúng định nghĩa cốt lõi, Constructor Injection là hình thức mà các đối tượng phụ thuộc được truyền trực tiếp vào lớp thông qua các tham số của hàm khởi tạo (constructor)."
-      },
-      {
-        "question_id": 6,
-        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
-        "option_A": "Aspect-Oriented Programming (AOP)",
-        "option_B": "Dependency Injection (DI)",
-        "option_C": "Resource Management",
-        "option_D": "Event Handling",
-        "correct_anwser": "B",
-        "explain": "Đoạn mã trên thể hiện tính năng Dependency Injection (cụ thể là mô hình Setter Injection), nơi biến `dependency` được gán giá trị thông qua hàm `setDependency` từ bên ngoài thay vì tự khởi tạo bằng từ khóa `new` bên trong lớp."
-      },
-      {
-        "question_id": 7,
-        "question_title": "Which benefit does Spring's modular architecture provide?",
-        "option_A": "Increased coupling between application layers.",
-        "option_B": "Ability to use only the modules needed, reducing application size.",
-        "option_C": "Limited support for different persistence technologies.",
-        "option_D": "Decreased flexibility in choosing application components.",
-        "correct_anwser": "B",
-        "explain": "Kiến trúc mô-đun hóa của Spring cho phép các ứng dụng hoạt động theo cơ chế linh hoạt linh kiện (non-monolithic): lập trình viên có thể tùy ý lựa chọn tích hợp và sử dụng các thư viện mô-đun cần thiết (ví dụ: chỉ lấy spring-web hoặc spring-data-jpa) mà không bắt buộc phải tải toàn bộ framework, tối ưu dung lượng của ứng dụng."
-      },
-      {
-        "question_id": 8,
-        "question_title": "Which code snippet shows how to set the size of a scene?",
-        "option_A": "Scene scene = new Scene(new Pane(), 400, 300);",
-        "option_B": "Stage stage = new Stage(new Pane(), 400, 300);",
-        "option_C": "Node node = new Node(new Pane(), 400, 300);",
-        "option_D": "Button button = new Button(new Pane(), 400, 300);",
-        "correct_anwser": "A",
-        "explain": "Trong JavaFX, kích thước rộng (width) và cao (height) của vùng hiển thị được định nghĩa trực tiếp bằng cách truyền các tham số số thực vào hàm khởi tạo của lớp `javafx.scene.Scene` (ví dụ ở đây là `400` và `300`)."
-      },
-      {
-        "question_id": 9,
-        "question_title": "Which code snippet shows how to set the title of a stage?",
-        "option_A": "Scene scene = new Scene(); scene.setTitle(\"My App\");",
-        "option_B": "Stage stage = new Stage(); stage.setTitle(\"My App\");",
-        "option_C": "Node node = new Node(); node.setTitle(\"My App\");",
-        "option_D": "Button button = new Button(); button.setTitle(\"My App\");",
-        "correct_anwser": "B",
-        "explain": "Lớp `Stage` đại diện cho cửa sổ ứng dụng cấp cao nhất (Top-level container) trong JavaFX. Phương thức `.setTitle(String title)` là phương thức chuẩn thuộc lớp này dùng để gán tiêu đề hiển thị trên thanh tiêu đề của cửa sổ."
-      },
-      {
-        "question_id": 10,
-        "question_title": "What is the base class for all visual components in JavaFX?",
-        "option_A": "Stage",
-        "option_B": "Scene",
-        "option_C": "Node",
-        "option_D": "Pane",
-        "correct_anwser": "C",
-        "explain": "Lớp trừu tượng `javafx.scene.Node` là lớp cha cơ sở (base class) cao nhất cho tất cả các thành phần giao diện hiển thị hình ảnh nằm trong cây đồ họa (Scene Graph) của JavaFX, bao gồm cả các control (Button, TextField...) và các layout pane (HBox, VBox...)."
-      },
-      {
-        "question_id": 11,
-        "question_title": "In JavaFX, what is a Property?",
-        "option_A": "A static variable.",
-        "option_B": "A dynamic, observable value.",
-        "option_C": "A database field.",
-        "option_D": "A network address.",
-        "correct_anwser": "B",
-        "explain": "Trong JavaFX, một `Property` (Thuộc tính) là một đối tượng chứa dữ liệu động và có khả năng quan sát (observable). Nó cho phép các thành phần UI lắng nghe sự thay đổi giá trị và hỗ trợ tính năng liên kết dữ liệu mạnh mẽ (data binding)."
-      },
-      {
-        "question_id": 12,
-        "question_title": "What does the method show() do in the Stage class?",
-        "option_A": "Sets the title of the stage.",
-        "option_B": "Sets the scene of the stage.",
-        "option_C": "Displays the stage to the user.",
-        "option_D": "Closes the stage.",
-        "correct_anwser": "C",
-        "explain": "Phương thức `show()` trong lớp `Stage` của JavaFX được sử dụng để hiển thị cửa sổ giao diện đồ họa lên cho người dùng nhìn thấy và tương tác."
-      },
-      {
-        "question_id": 13,
-        "question_title": "What is the container that holds all the visual content in a JavaFX application?",
-        "option_A": "Stage",
-        "option_B": "Scene",
-        "option_C": "Node",
-        "option_D": "Pane",
-        "correct_anwser": "B",
-        "explain": "Lớp `Scene` (Cảnh nền) đóng vai trò là container chứa toàn bộ nội dung hiển thị (visual content) của một đồ thị giao diện (Scene Graph) trong JavaFX. Một `Scene` sau đó sẽ được đặt vào bên trong một `Stage` để hiển thị ra cửa sổ."
-      },
-      {
-        "question_id": 14,
-        "question_title": "What is JavaFX?",
-        "option_A": "A server-side Java framework.",
-        "option_B": "A library for building rich client applications.",
-        "option_C": "A database management system.",
-        "option_D": "A web development framework.",
-        "correct_anwser": "B",
-        "explain": "JavaFX là một bộ công cụ phần mềm, một thư viện nền tảng của Java dùng để thiết kế và xây dựng các ứng dụng desktop client phong phú (Rich Client Applications) với giao diện người dùng (UI) hiện đại, hỗ trợ đồ họa và media."
-      },
-      {
-        "question_id": 15,
-        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
-        "option_A": "As a listener.",
-        "option_B": "As a filter.",
-        "option_C": "As a servlet.",
-        "option_D": "As a resource.",
-        "correct_anwser": "C",
-        "explain": "Trong cấu hình ứng dụng web dựa trên file cấu hình XML truyền thống (`web.xml`), `DispatcherServlet` cốt lõi của Spring MVC được khai báo và cấu hình dưới dạng một lớp Servlet tiêu chuẩn thông qua thẻ `<servlet>` và `<servlet-mapping>`."
-      },
-      {
-        "question_id": 16,
-        "question_title": "What is the purpose of Spring Interceptors?",
-        "option_A": "To manage database connections.",
-        "option_B": "To intercept and process HTTP requests before or after they are handled by a controller.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Spring Interceptor (HandlerInterceptor) được sử dụng để can thiệp vào vòng đời xử lý yêu cầu HTTP. Nó cho phép thực hiện các đoạn mã tiền xử lý (pre-handle) hoặc hậu xử lý (post-handle) xung quanh các Controller (ví dụ như kiểm tra quyền truy cập, ghi log, đo thời gian phản hồi)."
-      },
-      {
-        "question_id": 17,
-        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
-        "option_A": "Controller",
-        "option_B": "HandlerMapping",
-        "option_C": "DispatcherServlet",
-        "option_D": "ViewResolver",
-        "correct_anwser": "C",
-        "explain": "Trong vòng đời của Spring MVC, `DispatcherServlet` đóng vai trò là một Front Controller. Nó là thành phần trung tâm đầu tiên trực tiếp đón nhận tất cả các yêu cầu HTTP gửi đến, trước khi điều phối chúng tới các HandlerMapping và Controller phù hợp."
-      },
-      {
-        "question_id": 18,
-        "question_title": "Which of the following is a common view technology used with Spring MVC?",
-        "option_A": "React",
-        "option_B": "Vue.js",
-        "option_C": "Thymeleaf",
-        "option_D": "Angular",
-        "correct_anwser": "C",
-        "explain": "Trong số các lựa chọn, Thymeleaf là một công nghệ mã giao diện server-side template engine hiện đại, tích hợp chặt chẽ và cực kỳ phổ biến với Spring MVC để kết xuất giao diện trực tiếp tại server. React, Vue.js và Angular là các framework/thư viện render phía Client."
-      },
-      {
-        "question_id": 19,
-        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
-        "option_A": "To manage database connections.",
-        "option_B": "To handle all incoming HTTP requests.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "`DispatcherServlet` hoạt động như mẫu thiết kế Front Controller trong Spring MVC, chịu trách nhiệm chính trong việc tiếp nhận và điều phối mọi yêu cầu HTTP đi vào đến các thành phần xử lý tương ứng trong hệ thống."
-      },
-      {
-        "question_id": 20,
-        "question_title": "What is the benefit of Spring Boot's embedded servers?",
-        "option_A": "They require separate installation and configuration.",
-        "option_B": "They simplify deployment and reduce the need for external application servers.",
-        "option_C": "They offer limited performance compared to external servers.",
-        "option_D": "They are only compatible with specific operating systems.",
-        "correct_anwser": "B",
-        "explain": "Sự hiện diện của máy chủ nhúng sẵn (embedded servers như Tomcat hoặc Jetty) giúp ứng dụng Spring Boot đóng gói gọn gàng thành một file `.jar` có thể chạy độc lập, loại bỏ hoàn toàn sự phức tạp của việc cài đặt và triển khai ứng dụng lên các máy chủ web ngoại vi."
-      },
-      {
-        "question_id": 21,
-        "question_title": "What is the purpose of Spring Boot's externalized configuration?",
-        "option_A": "To embed all configurations within the application code.",
-        "option_B": "To allow configuration from external files like application.properties or application.yml.",
-        "option_C": "To remove configuration options entirely.",
-        "option_D": "To require database configuration only.",
-        "correct_anwser": "B",
-        "explain": "Tính năng cấu hình tách biệt ra ngoài (Externalized Configuration) của Spring Boot cho phép lập trình viên quản lý các thiết lập môi trường bằng các tệp tin bên ngoài mã nguồn như `application.properties` hoặc `application.yml`, giúp chạy cùng một mã build trên nhiều môi trường khác nhau một cách linh hoạt."
-      },
-      {
-        "question_id": 22,
-        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
-        "option_A": "To define a database entity.",
-        "option_B": "To enable Spring MVC functionality.",
-        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
-        "option_D": "To define a RESTful endpoint.",
-        "correct_anwser": "C",
-        "explain": "Annotation `@SpringBootApplication` là một tiện ích tổng hợp, đảm nhận vai trò kết hợp đồng thời ba tính năng cốt lõi bao gồm cấu hình dựa trên Java (`@Configuration`), tự động cấu hình các bean phù hợp (`@EnableAutoConfiguration`), và tự động quét các thành phần phần mềm trong package (`@ComponentScan`)."
-      },
-      {
-        "question_id": 23,
-        "question_title": "Which tool is commonly used to create and manage Spring Boot projects?",
-        "option_A": "Apache Ant",
-        "option_B": "Maven or Gradle",
-        "option_C": "Notepad++",
-        "option_D": "Microsoft Word",
-        "correct_anwser": "B",
-        "explain": "Maven và Gradle là hai công cụ quản lý dự án và tự động hóa build (build automation tools) tiêu chuẩn, phổ biến nhất trong hệ sinh thái Java để quản lý các thư viện phụ thuộc (dependencies) và quy trình vòng đời của dự án Spring Boot."
-      },
-      {
-        "question_id": 24,
-        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
-        "option_A": "Spring MVC",
-        "option_B": "Spring Data JPA",
-        "option_C": "Starter dependencies",
-        "option_D": "Spring Security",
-        "correct_anwser": "C",
-        "explain": "Các gói phụ thuộc khởi đầu (Starter dependencies, ví dụ: `spring-boot-starter-web`) cung cấp sẵn một tập hợp các thư viện được cấu hình sẵn cho từng mục đích nghiệp vụ cụ thể, kết hợp với cơ chế auto-configuration để giúp dự án khởi chạy ngay lập tức mà không cần cấu hình thủ công phức tạp."
-      },
-      {
-        "question_id": 25,
-        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
-        "option_A": "URL expressions.",
-        "option_B": "Message expressions.",
-        "option_C": "Variable expressions.",
-        "option_D": "Fragment expressions.",
-        "correct_anwser": "C",
-        "explain": "Cú pháp `${...}` trong Thymeleaf biểu diễn các biểu thức biến (Variable Expressions). Nó được sử dụng để lấy giá trị của các thuộc tính hoặc đối tượng chứa trong tầng dữ liệu Spring MVC Model (Context) chuyển giao xuống giao diện."
-      },
-      {
-        "question_id": 26,
-        "question_title": "Which of the following is a kind of template in Thymeleaf?",
-        "option_A": "XML templates",
-        "option_B": "Text templates",
-        "option_C": "JSON templates",
-        "option_D": "Binary templates",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf hỗ trợ nhiều chế độ xử lý mẫu giao diện (template modes) khác nhau bao gồm HTML, XML, TEXT, JAVASCRIPT, và CSS. Trong số các lựa chọn đã cho, 'Text templates' (chế độ văn bản thô) là một định dạng mẫu hợp lệ được hỗ trợ trực tiếp."
-      },
-      {
-        "question_id": 27,
-        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
-        "option_A": "Database drivers.",
-        "option_B": "HTML attributes and elements.",
-        "option_C": "Security protocols.",
-        "option_D": "Network configurations.",
-        "correct_anwser": "B",
-        "explain": "Standard Dialect cung cấp tập hợp các thẻ tùy biến và các thuộc tính HTML động (như `th:text`, `th:value`, `th:each`) giúp Thymeleaf can thiệp trực tiếp vào cấu trúc HTML để hiển thị dữ liệu từ phía máy chủ."
-      },
-      {
-        "question_id": 28,
-        "question_title": "What is Thymeleaf?",
-        "option_A": "A JavaScript framework.",
-        "option_B": "A server-side Java template engine.",
-        "option_C": "A database management system.",
-        "option_D": "A CSS preprocessor.",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf là một công cụ xử lý mẫu giao diện chạy ở phía máy chủ (Server-side Java template engine), thường được kết hợp với Spring MVC để tạo ra mã HTML động gửi về trình duyệt cho người dùng cuối."
-      },
-      {
-        "question_id": 29,
-        "question_title": "Thymeleaf integrates well with:",
-        "option_A": "React.js",
-        "option_B": "Angular.js",
-        "option_C": "Spring MVC.",
-        "option_D": "Node.js",
-        "correct_anwser": "C",
-        "explain": "Thymeleaf được thiết kế từ gốc để tương thích và tích hợp cực kỳ chặt chẽ với framework Spring MVC, hỗ trợ hoàn hảo việc xử lý dữ liệu từ đối tượng Spring Model và các tính năng kiểm lỗi form."
-      },
-      {
-        "question_id": 30,
-        "question_title": "Thymeleaf supports internationalization (i18n) through:",
-        "option_A": "CSS stylesheets.",
-        "option_B": "Message resolvers.",
-        "option_C": "Database triggers.",
-        "option_D": "JavaScript libraries.",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf hỗ trợ đa ngôn ngữ (Internationalization - i18n) bằng việc tích hợp hệ thống Message Resolvers (Bộ phân giải thông điệp) của Spring, cho phép trích xuất các chuỗi ký tự động tương ứng theo ngôn ngữ locale người dùng từ các file cấu hình ứng dụng dạng `.properties` thông qua cú pháp `#{...}`."
-      },
-      {
-        "question_id": 31,
-        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
-        "option_A": "Enhancing security for the web application.",
-        "option_B": "Providing a way to create reusable template layouts.",
-        "option_C": "Managing database connections.",
-        "option_D": "Optimizing JavaScript performance.",
-        "correct_anwser": "B",
-        "explain": "Thymeleaf Layout Dialect cung cấp cơ chế phân bố giao diện theo phân cấp bố cục, cho phép tạo các tệp giao diện mẫu (template layouts) dùng chung (như bố cục header, footer) và tái sử dụng chúng trên nhiều trang nội dung khác nhau để tránh trùng lặp mã."
-      },
-      {
-        "question_id": 32,
-        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
-        "option_A": "@Column",
-        "option_B": "@Entity",
-        "option_C": "@OneToMany",
-        "option_D": "@Transient",
-        "correct_anwser": "C",
-        "explain": "Annotation `@OneToMany` là một annotation chỉ định mối quan hệ (relationship) dùng để ánh xạ mối liên kết Một-Nhiều giữa hai thực thể trong JPA. Các phương án còn lại dùng để định nghĩa cột (`@Column`), định nghĩa thực thể (`@Entity`) hoặc bỏ qua trường không lưu trữ (`@Transient`)."
-      },
-      {
-        "question_id": 33,
-        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
-        "option_A": "To define a standard for web application development",
-        "option_B": "To define a standard for object-relational mapping in Java",
-        "option_C": "To manage user interfaces",
-        "option_D": "To handle network communication",
-        "correct_anwser": "B",
-        "explain": "Mục đích chính của JPA (Java Persistence API) là đưa ra một bộ đặc tả tiêu chuẩn cho kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM) trong ngôn ngữ lập trình Java, giúp đơn giản hóa việc tương tác với cơ sở dữ liệu quan hệ theo phong cách hướng đối tượng."
-      },
-      {
-        "question_id": 34,
-        "question_title": "What does the EntityManager manage in a JPA application?",
-        "option_A": "User sessions",
-        "option_B": "Entity lifecycle and persistence",
-        "option_C": "Network connections",
-        "option_D": "Web page rendering",
-        "correct_anwser": "B",
-        "explain": "Trong JPA, `EntityManager` là thành phần chịu trách nhiệm quản lý vòng đời (lifecycle) của các đối tượng thực thể (Entity) từ trạng thái mới tạo, được lưu trữ bền vững (persistence), tách rời (detached) cho đến khi bị xóa khỏi cơ sở dữ liệu."
-      },
-      {
-        "question_id": 35,
-        "question_title": "Which of the following is a primary benefit of using ORM?",
-        "option_A": "Increased database complexity",
-        "option_B": "Reduced code redundancy and improved maintainability",
-        "option_C": "Direct SQL query writing for all operations",
-        "option_D": "Limited support for object-oriented principles",
-        "correct_anwser": "B",
-        "explain": "Lợi ích hàng đầu của việc áp dụng ORM (Object-Relational Mapping) là tự động hóa việc chuyển đổi dữ liệu và sinh mã SQL, giúp giảm thiểu tối đa lượng mã lặp đi lặp lại (reduced code redundancy), từ đó nâng cao khả năng bảo trì và phát triển mã nguồn (improved maintainability)."
-      },
-      {
-        "question_id": 36,
-        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
-        "option_A": "Servlet",
-        "option_B": "EntityManager",
-        "option_C": "JSP",
-        "option_D": "JDBC Driver",
-        "correct_anwser": "B",
-        "explain": "`EntityManager` là thành phần giao diện cốt lõi trong JPA đảm nhận chức năng quản lý toàn bộ các thao tác lưu trữ, cập nhật, truy vấn dữ liệu bền vững của các thực thể."
-      },
-      {
-        "question_id": 37,
-        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
-        "option_A": "In the View layer.",
-        "option_B": "In the Controller or Service layer.",
-        "option_C": "Directly in the Entity class.",
-        "option_D": "Inside the JavaFX Application class.",
-        "correct_anwser": "B",
-        "explain": "Để đảm bảo nguyên lý phân lớp trong kiến trúc phần mềm, `EntityManager` (hoặc các lớp Repository/Service bao bọc nó) thường được khởi tạo, quản lý và gọi trong tầng Controller hoặc tầng Service nhằm tách biệt hoàn toàn logic xử lý dữ liệu khỏi tầng hiển thị (View)."
-      },
-      {
-        "question_id": 38,
-        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
-        "option_A": "Label or Alert",
-        "option_B": "Button",
-        "option_C": "TableView",
-        "option_D": "TextField",
-        "correct_anwser": "A",
-        "explain": "Để hiển thị thông báo lỗi khi kiểm tra dữ liệu đầu vào (validation errors), cấu phần `Label` thường được dùng để hiển thị dòng chữ đỏ ngay cạnh trường nhập liệu, hoặc hộp thoại `Alert` được dùng để bật lên thông báo popup cảnh báo trực quan cho người dùng."
-      },
-      {
-        "question_id": 39,
-        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
-        "option_A": "HBox/VBox",
-        "option_B": "BorderPane",
-        "option_C": "GridPane",
-        "option_D": "StackPane",
-        "correct_anwser": "C",
-        "explain": "`GridPane` sắp xếp các thành phần con theo dạng lưới gồm các hàng và các cột linh hoạt, rất lý tưởng để thiết kế form nhập liệu (CRUD) chứa các cặp thành phần như nhãn bên trái thẳng hàng với trường nhập liệu tương ứng bên phải."
-      },
-      {
-        "question_id": 40,
-        "question_title": "What is the purpose of writing unit tests for a Spring application?",
-        "option_A": "To manage database connections.",
-        "option_B": "To ensure the correctness of individual components.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Mục đích cốt lõi của việc viết Unit Test (Kiểm thử đơn vị) là cô lập và kiểm tra tính hoạt động chính xác của từng thành phần nhỏ, độc lập trong mã nguồn (như một hàm, một lớp hay một bean cụ thể) để phát hiện sớm các lỗi logic."
-      },
-      {
-        "question_id": 41,
-        "question_title": "What is the purpose of the Model in a Spring application?",
-        "option_A": "To define user interfaces.",
-        "option_B": "To represent domain objects and data.",
-        "option_C": "To manage HTTP requests.",
-        "option_D": "To handle application deployment.",
-        "correct_anwser": "B",
-        "explain": "Trong mô hình MVC (Model-View-Controller) của Spring, thành phần `Model` chịu trách nhiệm biểu diễn dữ liệu của ứng dụng, các đối tượng domain (domain objects) và trạng thái của nghiệp vụ nhằm chuẩn bị chuyển giao cho View hiển thị."
-      },
-      {
-        "question_id": 42,
-        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
-        "option_A": "To manage database connections.",
-        "option_B": "To handle HTTP requests and return a model and view.",
-        "option_C": "To define user interfaces.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "B",
-        "explain": "Controller trong Spring MVC đóng vai trò là điểm tiếp nhận và xử lý trực tiếp các yêu cầu HTTP gửi đến từ phía người dùng, thực hiện điều phối luồng xử lý và trả về đối tượng dữ liệu (Model) cùng trang giao diện (View) tương ứng."
-      },
-      {
-        "question_id": 43,
-        "question_title": "When using Spring ORM with Hibernate, what annotation is commonly used to map a Java class to a database table?",
-        "option_A": "@Component",
-        "option_B": "@Service",
-        "option_C": "@Entity",
-        "option_D": "@Controller",
-        "correct_anwser": "C",
-        "explain": "Annotation `@Entity` (được định nghĩa trong đặc tả JPA chuẩn được Spring ORM/Hibernate hỗ trợ) là cấu phần bắt buộc dùng để đánh dấu và ánh xạ một lớp Java thành một thực thể bền vững tương ứng với một bảng trong cơ sở dữ liệu."
-      },
-      {
-        "question_id": 44,
-        "question_title": "Which annotation is used to define a named query?",
-        "option_A": "@Query",
-        "option_B": "@NamedQuery",
-        "option_C": "@StoredProcedure",
-        "option_D": "@NativeQuery",
-        "correct_anwser": "B",
-        "explain": "Annotation `@NamedQuery` được sử dụng trong JPA để khai báo và đặt tên trước cho các câu truy vấn tĩnh (static queries) trực tiếp ngay trên thực thể, giúp tái sử dụng câu lệnh truy vấn một cách tối ưu và gọn gàng."
-      },
-      {
-        "question_id": 45,
-        "question_title": "Which of the following is NOT a main module of Spring Data?",
-        "option_A": "Spring Data JPA",
-        "option_B": "Spring Data MongoDB",
-        "option_C": "Spring Data REST",
-        "option_D": "Spring Data UI",
-        "correct_anwser": "D",
-        "explain": "Hệ sinh thái Spring Data bao gồm các mô-đun chính phục vụ truy cập dữ liệu như Spring Data JPA, Spring Data MongoDB, Spring Data Neo4j, và Spring Data REST. Không hề tồn tại mô-đun nào tên là `Spring Data UI` vì Spring Data hoàn toàn không quản lý phần giao diện."
-      },
-      {
-        "question_id": 46,
-        "question_title": "What is the role of a Repository interface in Spring Data JPA?",
-        "option_A": "To define business logic.",
-        "option_B": "To manage user interfaces.",
-        "option_C": "To provide data access methods.",
-        "option_D": "To configure application security.",
-        "correct_anwser": "C",
-        "explain": "Interface `Repository` trong Spring Data JPA đóng vai trò trung tâm cung cấp sẵn các phương thức trừu tượng hỗ trợ thao tác và truy cập dữ liệu (CRUD, tìm kiếm, phân trang) mà không yêu cầu lập trình viên phải viết mã thực thi chi tiết thủ công."
-      },
-      {
-        "question_id": 47,
-        "question_title": "In a ManyToMany relationship, which table is used to store the relationship between the two entities?",
-        "option_A": "The table of the first entity.",
-        "option_B": "The table of the second entity.",
-        "option_C": "A join table.",
-        "option_D": "A temporary table.",
-        "correct_anwser": "C",
-        "explain": "Trong cơ sở dữ liệu quan hệ, mối quan hệ Nhiều-Nhiều (ManyToMany) bắt buộc phải được chuẩn hóa thông qua một bảng trung gian, thường được gọi là bảng liên kết hoặc bảng nối (`join table`), để lưu trữ các cặp khóa ngoại liên kết giữa hai thực thể chính."
-      },
-      {
-        "question_id": 48,
-        "question_title": "Spring Data JPA simplifies working with:",
-        "option_A": "NoSQL databases.",
-        "option_B": "Relational databases using the Java Persistence API (JPA).",
-        "option_C": "Message queues.",
-        "option_D": "Cloud storage.",
-        "correct_anwser": "B",
-        "explain": "Mục đích chuyên biệt của Spring Data JPA là tối ưu và đơn giản hóa việc tương tác với các hệ quản trị cơ sở dữ liệu quan hệ (Relational databases) bằng cách cung cấp các lớp trừu tượng đè lên tầng đặc tả JPA tiêu chuẩn."
-      },
-      {
-        "question_id": 49,
-        "question_title": "In Spring Data JPA, what does the method signature List findByPropertyOrderByPropertyAsc(String property); do?",
-        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
-        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
-        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
-        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
-        "correct_anwser": "B",
-        "explain": "Theo quy tắc tự dịch từ khóa truy vấn (Query Derivation) của Spring Data JPA, cụm từ `findByProperty` thực hiện phép so sánh bằng (`=`), và mệnh đề `OrderByPropertyAsc` sẽ tự động thêm chỉ thị sắp xếp theo thứ tự tăng dần (`ASC`) đối với thuộc tính đó."
-      },
-      {
-        "question_id": 50,
-        "question_title": "Which annotation is used to specify the table name for an entity?",
-        "option_A": "@Column",
-        "option_B": "@Id",
-        "option_C": "@GeneratedValue",
-        "option_D": "@Table",
-        "correct_anwser": "D",
-        "explain": "Annotation `@Table` được đặt ở mức lớp (class level) của một thực thể JPA để chỉ định rõ ràng tên của bảng dữ liệu quan hệ trong database (`@Table(name = \"tên_bảng\")`) mà thực thể đó ánh xạ vào."
       }
     ]
   },
@@ -6329,6 +4297,2014 @@ export const QUIZZES: QuizSet[] = [
         "option_D": "Discuss, make decisions, solve technical problems",
         "correct_anwser": "B",
         "explain": "Mục đích chính của đánh giá không chính thức (Informal review) là tìm lỗi (find defects) một cách nhanh chóng và ít tốn kém. Tuy các đáp án khác cũng có thể đúng nhưng 'tìm lỗi' là mục tiêu cốt lõi."
+      }
+    ]
+  },
+  {
+    "id": "hsf302-all-unique",
+    "title": "Full Question List (All 200 Unique Questions)",
+    "description": "Working with Spring Framework Full Questions Set",
+    "questionsCount": 200,
+    "questions": [
+      {
+        "question_id": 1,
+        "question_title": "If you have a Student entity and a Course entity with a Many-to-Many relationship, and you want to fetch all students enrolled in a specific course, how would you typically structure the query in JPA?",
+        "option_A": "By querying the Student entity with a join on the Course entity.",
+        "option_B": "By querying the join table directly.",
+        "option_C": "By querying the Course entity and accessing its students collection.",
+        "option_D": "By querying the Student entity and filtering based on the course ID in the Student table.",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, cách tự nhiên và hướng đối tượng nhất để lấy các thực thể liên quan trong mối quan hệ Nhiều-Nhiều (Many-to-Many) là truy vấn thực thể cha mục tiêu (Course), sau đó truy cập vào thuộc tính tập hợp được ánh xạ của nó (students). JPA sẽ tự động xử lý bảng trung gian (join table) cho bạn."
+      },
+      {
+        "question_id": 2,
+        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
+        "option_A": "Aspect-Oriented Programming (AOP)",
+        "option_B": "Dependency Injection (DI)",
+        "option_C": "Resource Management",
+        "option_D": "Event Handling",
+        "correct_anwser": "B",
+        "explain": "Đoạn mã trên minh họa cho tính năng Tiêm phụ thuộc - Dependency Injection (cụ thể là Setter Injection). Trong đó, đối tượng phụ thuộc (dependency) được cung cấp vào class từ bên ngoài thông qua một hàm setter công khai, thay vì được khởi tạo trực tiếp bằng từ khóa 'new' bên trong class."
+      },
+      {
+        "question_id": 3,
+        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Constructor Injection (Tiêm qua hàm khởi tạo) là một mô hình thiết kế mà ở đó các phụ thuộc bắt buộc được truyền vào làm tham số thông qua hàm khởi tạo của class khi đối tượng được khởi tạo."
+      },
+      {
+        "question_id": 4,
+        "question_title": "Which annotation is used to define a JPA Many-to-Many relationship?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "D",
+        "explain": "Annotation `@ManyToMany` được định nghĩa trong đặc tả Jakarta Persistence (JPA) để thiết lập và đánh dấu mối quan hệ nhiều-nhiều giữa hai thực thể dữ liệu."
+      },
+      {
+        "question_id": 5,
+        "question_title": "Which AOP advice type executes before a join point?",
+        "option_A": "After",
+        "option_B": "AfterReturning",
+        "option_C": "Before",
+        "option_D": "Around",
+        "correct_anwser": "C",
+        "explain": "Advice loại 'Before' được thiết kế để thực thi các logic can thiệp (intercepting logic) ngay trước khi phương thức nghiệp vụ mục tiêu (join point) thực sự được chạy."
+      },
+      {
+        "question_id": 6,
+        "question_title": "Which of the following is TRUE about Dependency Injection (DI) in Spring?",
+        "option_A": "It tightly couples the components",
+        "option_B": "It reduces testability of code",
+        "option_C": "It promotes loose coupling between components",
+        "option_D": "It is required only for web apps",
+        "correct_anwser": "C",
+        "explain": "Dependency Injection giúp tách biệt việc khởi tạo đối tượng khỏi logic sử dụng của lớp, từ đó giúp giảm thiểu sự phụ thuộc trực tiếp (loose coupling - liên kết lỏng lẻo) giữa các thành phần phần mềm, tăng tính linh hoạt và dễ dàng viết Unit Test."
+      },
+      {
+        "question_id": 7,
+        "question_title": "Which annotation is used to define a Spring Boot main class?\n@SpringBootApplication\npublic class AppStarter {\n    public static void main(String[] args) {\n        SpringApplication.run(AppStarter.class, args);\n    }\n}",
+        "option_A": "@SpringBoot",
+        "option_B": "@App",
+        "option_C": "@SpringApplication",
+        "option_D": "@SpringBootApplication",
+        "correct_anwser": "D",
+        "explain": "Annotation `@SpringBootApplication` là một annotation tổng hợp (gồm `@Configuration`, `@EnableAutoConfiguration`, và `@ComponentScan`), được đặt ngay trên đầu lớp chứa phương thức `main` để khai báo đây là lớp cấu hình chính khởi chạy ứng dụng Spring Boot."
+      },
+      {
+        "question_id": 8,
+        "question_title": "Which component provides automatic restart and LiveReload to speed up development?",
+        "option_A": "Spring Boot DevTools",
+        "option_B": "Spring Boot Actuator",
+        "option_C": "SpringApplication",
+        "option_D": "Spring Boot Test",
+        "correct_anwser": "A",
+        "explain": "Mô-đun `Spring Boot DevTools` cung cấp các tính năng tiện ích hỗ trợ quá trình phát triển (development), bao gồm cơ chế tự động khởi chạy lại ứng dụng (automatic restart) khi mã nguồn thay đổi và tính năng LiveReload để tự động làm mới trình duyệt."
+      },
+      {
+        "question_id": 9,
+        "question_title": "What is the benefit of Spring Boot's embedded servers?",
+        "option_A": "They require separate installation and configuration.",
+        "option_B": "They simplify deployment and reduce the need for external application servers.",
+        "option_C": "They offer limited performance compared to external servers.",
+        "option_D": "They are only compatible with specific operating systems.",
+        "correct_anwser": "B",
+        "explain": "Các máy chủ được nhúng sẵn (như Tomcat, Jetty) giúp ứng dụng Spring Boot có thể chạy độc lập như một file JAR thông thường (`java -jar`), đơn giản hóa tối đa quy trình triển khai phần mềm và loại bỏ việc phải cài đặt/cấu hình các máy chủ ứng dụng bên ngoài phức tạp."
+      },
+      {
+        "question_id": 10,
+        "question_title": "What does externalized configuration in Spring Boot enable?",
+        "option_A": "Hard-coding all configuration inside Java classes",
+        "option_B": "Packing configuration into compiled bytecode for security",
+        "option_C": "Supplying settings (e.g., database details) via properties/YAML and environment so the same build can run in different environments",
+        "option_D": "Requiring a separate XML file for every bean definition",
+        "correct_anwser": "C",
+        "explain": "Cấu hình tách biệt ra ngoài (Externalized Configuration) cho phép lập trình viên định nghĩa các tham số hệ thống thông qua các file như `.properties`, `.yml`, hoặc biến môi trường. Nhờ đó, một gói build ứng dụng duy nhất có thể tái sử dụng và chạy linh hoạt trên nhiều môi trường khác nhau (như Dev, Staging, Production) mà không cần sửa đổi mã nguồn."
+      },
+      {
+        "question_id": 11,
+        "question_title": "What is the purpose of the @Column annotation in JPA?",
+        "option_A": "It specifies the primary key field of an entity",
+        "option_B": "It maps an entity field to a table column and allows setting column attributes",
+        "option_C": "It marks a field that should not be persisted",
+        "option_D": "It defines a many-to-many relationship",
+        "correct_anwser": "B",
+        "explain": "Annotation `@Column` trong JPA được sử dụng để liên kết cấu hình rõ ràng một thuộc tính của thực thể Java với một cột dữ liệu tương ứng trong bảng cơ sở dữ liệu quan hệ, cho phép tùy chỉnh các thuộc tính của cột như tên cột (`name`), độ dài (`length`), tính duy nhất (`unique`), hoặc có được phép null hay không (`nullable`)."
+      },
+      {
+        "question_id": 12,
+        "question_title": "Which annotation is used to mark a Java class as a JPA entity?",
+        "option_A": "@Table",
+        "option_B": "@Entity",
+        "option_C": "@Column",
+        "option_D": "@Id",
+        "correct_anwser": "B",
+        "explain": "Để khai báo một lớp Java thông thường thành một mô hình đối tượng persistent đại diện cho một bảng dữ liệu quan hệ trong cơ chế ORM của JPA, lớp đó bắt buộc phải sử dụng annotation mức class là `@Entity`."
+      },
+      {
+        "question_id": 13,
+        "question_title": "Which JPA feature allows relationships between tables?",
+        "option_A": "Dependency Injection",
+        "option_B": "Annotations",
+        "option_C": "Entity Relationships",
+        "option_D": "Transactions",
+        "correct_anwser": "C",
+        "explain": "Mối quan hệ giữa các thực thể (Entity Relationships) là tính năng cốt lõi của JPA cho phép định nghĩa liên kết dữ liệu giữa các bảng trong cơ sở dữ liệu thông qua các mối quan hệ hướng đối tượng như `@OneToOne`, `@OneToMany`, `@ManyToOne`, và `@ManyToMany`."
+      },
+      {
+        "question_id": 14,
+        "question_title": "What best describes the Java Persistence API (JPA)?",
+        "option_A": "A low-level JDBC driver for vendor-specific SQL",
+        "option_B": "A specification for managing relational data in Java applications using object-relational mapping",
+        "option_C": "A GUI tool for database administration in IntelliJ IDEA",
+        "option_D": "A NoSQL database used by Java applications",
+        "correct_anwser": "B",
+        "explain": "JPA (Java Persistence API) không phải là một cơ sở dữ liệu hay một driver cụ thể, mà là một đặc tả (specification) tiêu chuẩn của Java đưa ra các quy tắc để quản lý dữ liệu quan hệ thông qua kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM)."
+      },
+      {
+        "question_id": 15,
+        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
+        "option_A": "Servlet",
+        "option_B": "EntityManager",
+        "option_C": "JSP",
+        "option_D": "JDBC Driver",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc JPA, `EntityManager` là thành phần trung tâm chịu trách nhiệm quản lý vòng đời của các thực thể (entities), thực hiện các thao tác CRUD cơ bản (thêm, sửa, xóa, đọc) và đồng bộ dữ liệu xuống database."
+      },
+      {
+        "question_id": 16,
+        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
+        "option_A": "@Column",
+        "option_B": "@Entity",
+        "option_C": "@OneToMany",
+        "option_D": "@Transient",
+        "correct_anwser": "C",
+        "explain": "`@OneToMany` (Một-Nhiều) là một annotation quan hệ điển hình dùng để khai báo mối liên kết dữ liệu giữa hai thực thể khác nhau trong JPA. Các tùy chọn khác như `@Column` dùng cho cột dữ liệu, `@Entity` dùng khai báo thực thể, và `@Transient` dùng để bỏ qua không lưu trữ thuộc tính."
+      },
+      {
+        "question_id": 17,
+        "question_title": "What is the role of a Data Access Object (DAO) in Spring application?",
+        "option_A": "To define business logic.",
+        "option_B": "To manage user sessions.",
+        "option_C": "To provide an abstraction layer for database interactions.",
+        "option_D": "To handle application security.",
+        "correct_anwser": "C",
+        "explain": "Pattern DAO (Data Access Object) đóng vai trò cung cấp một lớp trừu tượng bao bọc xung quanh các tác vụ truy vấn cơ sở dữ liệu, giúp tách biệt hoàn toàn logic truy cập dữ liệu (SQL/HQL) ra khỏi tầng xử lý nghiệp vụ (Service)."
+      },
+      {
+        "question_id": 18,
+        "question_title": "ORM frameworks supported by Spring include:",
+        "option_A": "Hibernate",
+        "option_B": "EclipseLink",
+        "option_C": "MyBatis",
+        "option_D": "All of the above",
+        "correct_anwser": "D",
+        "explain": "Spring cung cấp khả năng tích hợp rất mạnh mẽ với hầu hết các framework ORM (Object-Relational Mapping) và data mapper phổ biến trong hệ sinh thái Java bao gồm Hibernate, EclipseLink, và cả MyBatis."
+      },
+      {
+        "question_id": 19,
+        "question_title": "What is the purpose of the @JoinTable annotation in a ManyToMany relationship?",
+        "option_A": "To define the primary key of the entities.",
+        "option_B": "To specify the join table and its columns.",
+        "option_C": "To define the entity relationships.",
+        "option_D": "To create a new database.",
+        "correct_anwser": "B",
+        "explain": "Annotation `@JoinTable` được sử dụng trong mối quan hệ Nhiều-Nhiều để cấu hình chi tiết tên của bảng trung gian (join table) cũng như các cột khóa ngoại (`joinColumns` và `inverseJoinColumns`) kết nối hai bảng dữ liệu chính với nhau."
+      },
+      {
+        "question_id": 20,
+        "question_title": "Which method name follows Spring Data JPA query derivation conventions for case-insensitive containment by email?",
+        "option_A": "lookupByEmailLikeIgnoreCase(String email)",
+        "option_B": "findByEmailContainingIgnoreCase(String email)",
+        "option_C": "queryWhereEmailContainsCaseInsensitive(String email)",
+        "option_D": "selectEmailContainsIgnoreCase(String email)",
+        "correct_anwser": "B",
+        "explain": "Theo quy chuẩn phân tích cú pháp tên hàm tự sinh (Query Derivation) của Spring Data JPA: Hàm phải bắt đầu bằng `findBy`, theo sau là thuộc tính `Email`, từ khóa kiểm tra chuỗi con chứa bên trong là `Containing`, và từ khóa bỏ qua chữ hoa chữ thường là `IgnoreCase`. Do đó, `findByEmailContainingIgnoreCase` là cú pháp chuẩn xác nhất."
+      },
+      {
+        "question_id": 21,
+        "question_title": "Which annotation is used to map a one-to-many relationship?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Annotation `@OneToMany` được cung cấp bởi JPA nhằm khai báo mối quan hệ Một-Nhiều giữa một thực thể gốc với một tập hợp danh sách các thực thể liên quan."
+      },
+      {
+        "question_id": 22,
+        "question_title": "Spring Data JPA is built on top of:",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Core",
+        "option_C": "JPA",
+        "option_D": "Servlets",
+        "correct_anwser": "C",
+        "explain": "Spring Data JPA là một tầng trừu tượng cao cấp (high-level abstraction) được xây dựng đè lên trên nền tảng của đặc tả JPA (Java Persistence API) tiêu chuẩn nhằm giúp đơn giản hóa tối đa việc triển khai các lớp kho dữ liệu (Repository)."
+      },
+      {
+        "question_id": 23,
+        "question_title": "Which keyword is used in a repository method to find entities by a specific property?",
+        "option_A": "searchBy",
+        "option_B": "findBy",
+        "option_C": "getWhere",
+        "option_D": "queryFor",
+        "correct_anwser": "B",
+        "explain": "Từ khóa tiền tố phổ biến và chuẩn mực nhất được sử dụng trong cơ chế Query Method của Spring Data JPA để bắt đầu một truy vấn tìm kiếm dữ liệu dựa trên thuộc tính là `findBy` (hoặc các biến thể tương đương như `readBy`, `getBy`, `queryBy`)."
+      },
+      {
+        "question_id": 24,
+        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
+        "option_A": "Defining user interfaces.",
+        "option_B": "Implementing cross-cutting concerns like logging and security.",
+        "option_C": "Managing database transactions.",
+        "option_D": "Creating web service clients.",
+        "correct_anwser": "B, C",
+        "explain": "Lập trình hướng khía cạnh (AOP) trong Spring được thiết kế để giải quyết các cross-cutting concerns (vấn đề cắt ngang hệ thống) như logging, security, auditing (Lựa chọn B). Ngoài ra, tính năng quản lý transaction tự động của Spring (Declarative Transaction Management) cũng được xây dựng dựa trên nền tảng của Spring AOP (Lựa chọn C). Cả hai đều là những ứng dụng thực tế phổ biến nhất của AOP."
+      },
+      {
+        "question_id": 25,
+        "question_title": "Which of the following components is responsible for managing the lifecycle of beans in the Spring Core Container?",
+        "option_A": "DispatcherServlet",
+        "option_B": "BeanFactory or ApplicationContext",
+        "option_C": "ViewResolver",
+        "option_D": "HandlerMapping",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình kiến trúc Spring Core, BeanFactory và ApplicationContext (một phiên bản nâng cao kế thừa từ BeanFactory) chính là các interface đại diện trực tiếp cho Spring Container, chịu trách nhiệm quản lý cấu hình và lifecycle của các bean."
+      },
+      {
+        "question_id": 26,
+        "question_title": "Which AOP concept defines a point in the execution of the application where an advice can be applied?",
+        "option_A": "Aspect",
+        "option_B": "Advice",
+        "option_C": "Join Point",
+        "option_D": "Pointcut",
+        "correct_anwser": "C",
+        "explain": "Trong thuật ngữ Spring AOP, một Join Point đại diện cho một điểm cụ thể trong quá trình thực thi ứng dụng (chẳng hạn như khi một method được gọi hoặc một ngoại lệ được ném ra) mà tại đó một Advice (hành động/mã xử lý) có thể được chèn vào để thực thi."
+      },
+      {
+        "question_id": 27,
+        "question_title": "In a JPA Many-to-Many relationship, how is the relationship typically represented in the database?",
+        "option_A": "By adding a foreign key column to one of the entities.",
+        "option_B": "By adding a foreign key column to both entities.",
+        "option_C": "By using a join table that contains foreign keys referencing both entities.",
+        "option_D": "By storing the related entities in a serialized format within a single column.",
+        "correct_anwser": "C",
+        "explain": "Để biểu diễn một mối quan hệ nhiều-nhiều (Many-to-Many relationship) trong cơ sở dữ liệu quan hệ, cách tiếp cận chuẩn hóa luôn là tạo ra một bảng trung gian gọi là join table (hoặc junction table). Bảng này sẽ chứa các cột foreign key liên kết trỏ về khóa chính của cả hai thực thể tham gia vào mối quan hệ."
+      },
+      {
+        "question_id": 28,
+        "question_title": "Which method in JpaRepository is used to save or update an entity?",
+        "option_A": "persist()",
+        "option_B": "insert()",
+        "option_C": "save()",
+        "option_D": "update()",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc Spring Data JPA, `JpaRepository` cung cấp sẵn phương thức `save()`. Phương thức này cực kỳ linh hoạt vì nó tự động nhận diện trạng thái của thực thể: nếu thực thể chưa tồn tại, nó sẽ thực hiện lệnh lưu mới (save/persist), ngược lại nếu thực thể đã tồn tại, nó sẽ thực hiện cập nhật dữ liệu (update/merge)."
+      },
+      {
+        "question_id": 29,
+        "question_title": "What is the use of PlatformTransactionManager in Spring?",
+        "option_A": "Encrypt API data",
+        "option_B": "Render views",
+        "option_C": "Manage database transactions programmatically",
+        "option_D": "Build Spring Boot jars",
+        "correct_anwser": "C",
+        "explain": "`PlatformTransactionManager` là một interface trung tâm trong cấu trúc quản lý giao dịch (Transaction Management) của Spring Framework. Nó cung cấp các phương thức cốt lõi như `getTransaction`, `commit`, và `rollback` giúp nhà phát triển quản lý và điều khiển các database transaction một cách tường minh bằng mã nguồn (programmatically) hoặc làm nền tảng cho cấu hình khai báo (declarative)."
+      },
+      {
+        "question_id": 30,
+        "question_title": "Spring Boot embedded servers include:",
+        "option_A": "Apache Tomcat",
+        "option_B": "Jetty",
+        "option_C": "Undertow",
+        "option_D": "All of the above",
+        "correct_anwser": "D",
+        "explain": "Mặc định khi khởi tạo một ứng dụng web, Spring Boot tích hợp sẵn embedded server là Apache Tomcat (Lựa chọn A). Tuy nhiên, framework này cũng hỗ trợ cấu hình chuyển đổi rất linh hoạt sang các embedded container gọn nhẹ hoặc hiệu năng cao khác bao gồm cả Jetty (Lựa chọn B) và Undertow (Lựa chọn C) tùy thuộc vào nhu cầu."
+      },
+      {
+        "question_id": 31,
+        "question_title": "Which type of dependency is represented by spring-boot-starter-web?",
+        "option_A": "Database connectivity.",
+        "option_B": "Web application development.",
+        "option_C": "Security configuration.",
+        "option_D": "Messaging.",
+        "correct_anwser": "B",
+        "explain": "Mô-đun `spring-boot-starter-web` là một starter dependency đóng vai trò nền tảng dùng để xây dựng các ứng dụng web (Web application development), bao gồm cả các ứng dụng RESTful API sử dụng kiến trúc Spring MVC và mặc định nhúng sẵn máy chủ Apache Tomcat."
+      },
+      {
+        "question_id": 32,
+        "question_title": "Which tool creates Spring Boot project quickly?",
+        "option_A": "Spring Initializr",
+        "option_B": "Maven Archetype",
+        "option_C": "Gradle Plugin",
+        "option_D": "JDK installer",
+        "correct_anwser": "A",
+        "explain": "Spring Initializr (thông qua trang web start.spring.io hoặc được tích hợp trực tiếp vào các IDE) là công cụ chính thức và nhanh nhất do Pivotal/Spring cung cấp để khởi tạo cấu trúc một project Spring Boot với đầy đủ các dependency cần thiết chỉ bằng vài cú click chuột."
+      },
+      {
+        "question_id": 33,
+        "question_title": "Which annotation would you use to define a one-to-many relationship between two entities?",
+        "option_A": "@ManyToOne",
+        "option_B": "@OneToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Để thiết lập một mối quan hệ một-nhiều (One-to-Many relationship) giữa hai thực thể dữ liệu trong JPA (ví dụ: Một lớp học `Class` có nhiều học sinh `Student`), chúng ta sử dụng annotation `@OneToMany` đặt phía trên thuộc tính danh sách phần tử con."
+      },
+      {
+        "question_id": 34,
+        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
+        "option_A": "@OneToMany",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToOne",
+        "option_D": "@Autowired",
+        "correct_anwser": "D",
+        "explain": "Các annotation như `@OneToMany`, `@ManyToOne`, `@OneToOne` (và cả `@ManyToMany`) đều là các annotation tiêu chuẩn của đặc tả JPA dùng để cấu hình quan hệ giữa các bảng. Trong khi đó, `@Autowired` là một annotation thuộc Spring Framework dùng cho mục đích thực hiện Dependency Injection (nhúng tự động phụ thuộc), hoàn toàn không liên quan đến quan hệ cơ sở dữ liệu của JPA."
+      },
+      {
+        "question_id": 35,
+        "question_title": "What is the purpose of the @NamedQueries annotation in JPA?",
+        "option_A": "To define a single named query",
+        "option_B": "To define multiple named queries",
+        "option_C": "To define a primary key",
+        "option_D": "To define a foreign key",
+        "correct_anwser": "B",
+        "explain": "Annotation `@NamedQueries` (số nhiều) đóng vai trò là một container annotation trong JPA. Nó được sử dụng để nhóm và định nghĩa nhiều câu truy vấn tĩnh (`@NamedQuery`) lại với nhau trên cùng một Entity class."
+      },
+      {
+        "question_id": 36,
+        "question_title": "What is the purpose of the following annotation in JPA?\n@Id\n@GeneratedValue(strategy = GenerationType.IDENTITY)\nprivate Long id;",
+        "option_A": "It creates a foreign key for the entity",
+        "option_B": "It marks the field as a version column",
+        "option_C": "It marks the field as the primary key with auto-increment strategy",
+        "option_D": "It disables the persistence of the field",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, `@Id` dùng để chỉ định thuộc tính đó làm khóa chính (primary key) của thực thể. Đi kèm với đó, cấu hình `@GeneratedValue(strategy = GenerationType.IDENTITY)` ra lệnh cho cơ sở dữ liệu (ví dụ như MySQL) tự động tăng giá trị của cột này (auto-increment) mỗi khi có một bản ghi mới được chèn vào."
+      },
+      {
+        "question_id": 37,
+        "question_title": "Which method is used to persist an entity in JPA EntityManager?",
+        "option_A": "save()",
+        "option_B": "insert()",
+        "option_C": "persist()",
+        "option_D": "store()",
+        "correct_anwser": "C",
+        "explain": "Trong đặc tả tiêu chuẩn của JPA, giao diện `EntityManager` cung cấp chính xác phương thức `persist(Object entity)` để chuyển trạng thái của một thực thể từ mới khởi tạo (transient) sang trạng thái được quản lý (managed) và lưu nó xuống database."
+      },
+      {
+        "question_id": 38,
+        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "C",
+        "explain": "Để đọc hoặc tìm kiếm dữ liệu (read/find) một bản ghi cụ thể theo khóa chính (primary key) từ cơ sở dữ liệu bằng JPA, ta sử dụng phương thức `em.find()`. Phương thức này yêu cầu truyền vào kiểu dữ liệu class của thực thể và giá trị id cần tìm."
+      },
+      {
+        "question_id": 39,
+        "question_title": "In a Spring MVC application, which file is typically used to configure the DispatcherServlet?",
+        "option_A": "application.properties",
+        "option_B": "dispatcher-servlet.xml",
+        "option_C": "web.xml",
+        "option_D": "config.xml",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc Java Web và Spring MVC cấu hình bằng XML truyền thống, `web.xml` đóng vai trò là tệp mô tả triển khai (deployment descriptor). Đây là nơi đầu tiên bạn phải khai báo và đăng ký sự hiện diện của `DispatcherServlet` với máy chủ ứng dụng (Servlet Container) như Tomcat."
+      },
+      {
+        "question_id": 40,
+        "question_title": "Which Spring annotation manages transactions?",
+        "option_A": "@Autowired",
+        "option_B": "@Transactional",
+        "option_C": "@Service",
+        "option_D": "@Entity",
+        "correct_anwser": "B",
+        "explain": "Annotation `@Transactional` được Spring cung cấp để thực hiện quản lý giao dịch khai báo (declarative transaction management). Khi đính kèm annotation này vào một class hoặc một method, Spring sẽ tự động mở, commit hoặc rollback transaction một cách an toàn mà bạn không cần viết mã thủ công."
+      },
+      {
+        "question_id": 41,
+        "question_title": "What is the purpose of writing unit tests for a Spring application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To ensure the correctness of individual components.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Mục tiêu cốt lõi và duy nhất của kiểm thử đơn vị (unit test) là cô lập và kiểm tra các thành phần nhỏ nhất của mã nguồn (như từng method, từng class bean biệt lập) nhằm đảm bảo chúng hoạt động hoàn toàn chính xác theo đúng logic thiết kế."
+      },
+      {
+        "question_id": 42,
+        "question_title": "Which of the following is a key feature of Spring Data JPA?",
+        "option_A": "Automatic repository implementation generation.",
+        "option_B": "Support for JavaScript front-end development.",
+        "option_C": "Built-in load balancing.",
+        "option_D": "Real-time video streaming.",
+        "correct_anwser": "A",
+        "explain": "Tính năng mang tính cách mạng của Spring Data JPA là khả năng tự động sinh ra mã thực thi (automatic implementation) cho các lớp Repository tại thời điểm chạy (runtime). Nhà phát triển chỉ cần khai báo một interface kế thừa từ `JpaRepository` mà không cần viết bất kỳ dòng mã triển khai cụ thể nào."
+      },
+      {
+        "question_id": 43,
+        "question_title": "What is the purpose of the EntityManager in JPA?",
+        "option_A": "To manage application configurations.",
+        "option_B": "To manage persistent entities.",
+        "option_C": "To handle user authentication.",
+        "option_D": "To create user interfaces.",
+        "correct_anwser": "B",
+        "explain": "Trong đặc tả JPA, `EntityManager` là một interface trung tâm chịu trách nhiệm quản lý vòng đời của cácpersistent entities (thực thể bền vững). Nó cung cấp các API tiêu chuẩn để thực hiện các thao tác CRUD dữ liệu với cơ sở dữ liệu thông qua persistence context."
+      },
+      {
+        "question_id": 44,
+        "question_title": "What is a primary benefit of using Spring Data JPA?",
+        "option_A": "Reduced boilerplate code for data access.",
+        "option_B": "Enhanced security for front-end applications.",
+        "option_C": "Simplified network configuration.",
+        "option_D": "Improved performance for video encoding.",
+        "correct_anwser": "A",
+        "explain": "Lợi ích hàng đầu của Spring Data JPA là loại bỏ phần lớn boilerplate code (mã mẫu lặp đi lặp lại) ở tầng truy cập dữ liệu (data access layer). Bạn không cần phải viết mã mở/đóng kết nối, quản lý try-catch hay viết các câu lệnh SQL cơ bản."
+      },
+      {
+        "question_id": 45,
+        "question_title": "In Spring Data JPA, which of the following derived method names is valid and sorts results by lastName ascending?",
+        "option_A": "findAllSortByLastNameAsc()",
+        "option_B": "findByOrderLastNameAsc()",
+        "option_C": "findByAgeGreaterThanOrderByLastNameAsc(int age)",
+        "option_D": "orderByLastNameAscFindAll()",
+        "correct_anwser": "C",
+        "explain": "Để Spring Data JPA biên dịch tự động tên phương thức (query method) thành câu lệnh SQL hợp lệ, bạn phải tuân thủ đúng cú pháp quy định. `findByAgeGreaterThanOrderByLastNameAsc` là phương thức hợp lệ vì nó chứa tiền tố hành động (`findBy`), thuộc tính điều kiện tìm kiếm (`Age` với từ khóa `GreaterThan`), và mệnh đề sắp xếp chuẩn chỉnh (`OrderByLastNameAsc`)."
+      },
+      {
+        "question_id": 46,
+        "question_title": "Which annotation marks repository class?",
+        "option_A": "@Repository",
+        "option_B": "@Entity",
+        "option_C": "@Service",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation `@Repository` thuộc tầng truy cập dữ liệu của Spring (Data Access Layer). Nó dùng để đánh dấu một class đóng vai trò là một Repository (hoặc DAO), đồng thời cho phép Spring tự động quét (component scanning) để đăng ký nó thành một bean và kích hoạt cơ chế dịch dịch lỗi cơ sở dữ liệu (exception translation)."
+      },
+      {
+        "question_id": 47,
+        "question_title": "In Spring Data JPA, what does the method signature List<Entity> findByPropertyOrderByPropertyAsc(String property); do?",
+        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
+        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
+        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
+        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
+        "correct_anwser": "B",
+        "explain": "Theo quy tắc đặt tên query method của Spring Data JPA, phần `findByProperty` mặc định hiểu là tìm kiếm theo điều kiện bằng (`equals`), tức là lọc ra các bản ghi có giá trị thuộc tính bằng với tham số truyền vào. Phần vế sau `OrderByPropertyAsc` thực hiện nhiệm vụ sắp xếp tập kết quả đó theo thứ tự tăng dần (`ascending`)."
+      },
+      {
+        "question_id": 48,
+        "question_title": "In a JPA One-to-Many relationship, which annotation is typically used on the \"one\" side to manage the collection of \"many\" entities?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, khi thiết lập mối quan hệ One-to-Many (Một-Nhiều), phía \"one\" sẽ chứa một collection (danh sách) các đối tượng của phía \"many\". Để đánh dấu mapping này, ta sử dụng annotation @OneToMany."
+      },
+      {
+        "question_id": 49,
+        "question_title": "Which benefit does Spring's modular architecture provide?",
+        "option_A": "Increased coupling between application layers.",
+        "option_B": "Ability to use only the modules needed, reducing application size.",
+        "option_C": "Limited support for different persistence technologies.",
+        "option_D": "Decreased flexibility in choosing application components.",
+        "correct_anwser": "B",
+        "explain": "Spring Framework có kiến trúc modular (được chia thành nhiều module độc lập). Lợi ích lớn nhất của kiến trúc này là bạn có thể linh hoạt chỉ sử dụng những module mà dự án thực sự cần (ví dụ chỉ tải module spring-web hay spring-data-jpa), giúp giảm thiểu kích thước và tối ưu ứng dụng."
+      },
+      {
+        "question_id": 50,
+        "question_title": "Which of the following is NOT a general advantage of Spring Framework?",
+        "option_A": "Robust transaction management.",
+        "option_B": "Comprehensive web development support through Spring MVC.",
+        "option_C": "Automatic generation of user interfaces.",
+        "option_D": "Strong community support and extensive documentation.",
+        "correct_anwser": "C",
+        "explain": "Spring Framework hỗ trợ quản lý transaction mạnh mẽ, hỗ trợ phát triển web với Spring MVC, và có documentation rất chi tiết. Tuy nhiên, Spring không có tính năng tự động sinh ra giao diện người dùng (Automatic generation of user interfaces). Giao diện UI (như HTML, CSS, JS) vẫn cần developer tự xây dựng."
+      },
+      {
+        "question_id": 51,
+        "question_title": "What is an \"advice\" in Spring AOP?",
+        "option_A": "A point in the execution of a program.",
+        "option_B": "An object being proxied.",
+        "option_C": "The action taken at a particular join point.",
+        "option_D": "A collection of join points.",
+        "correct_anwser": "C",
+        "explain": "Trong thuật ngữ của Spring AOP, \"advice\" chính là hành động (action) hoặc đoạn code logic thực tế sẽ được thực thi tại một điểm kết nối cụ thể (join point). Ví dụ: một đoạn code thực hiện ghi log trước khi một method chạy được gọi là một advice."
+      },
+      {
+        "question_id": 52,
+        "question_title": "In a JPA One-to-Many relationship, what does the mappedBy attribute of the @OneToMany annotation specify?",
+        "option_A": "The database table name.",
+        "option_B": "The primary key of the \"many\" side entity.",
+        "option_C": "The field in the \"many\" side entity that maps back to the \"one\" side entity.",
+        "option_D": "The join table name.",
+        "correct_anwser": "C",
+        "explain": "Thuộc tính mappedBy trong annotation @OneToMany được dùng để thiết lập quan hệ hai chiều (bidirectional). Nó được sử dụng ở phía \"one\" để chỉ định chính xác tên field nằm ở phía \"many\" mà đang làm nhiệm vụ map ngược lại entity ở phía \"one\" (hay còn gọi là owning side của mối quan hệ)."
+      },
+      {
+        "question_id": 53,
+        "question_title": "Which statement best describes Spring's form tag library?",
+        "option_A": "Unrelated to Spring MVC and cannot bind to model attributes",
+        "option_B": "Binding-aware JSP tags that integrate with Spring MVC to bind form fields to model properties",
+        "option_C": "A replacement for HTML input elements and attributes",
+        "option_D": "Only supports GET forms and not POST",
+        "correct_anwser": "B",
+        "explain": "Spring form tag library cung cấp các JSP tags đặc biệt có khả năng binding (binding-aware). Nó tích hợp sâu với Spring MVC để tự động liên kết các trường nhập liệu (form fields) trên giao diện với các thuộc tính của đối tượng Model (model properties) ở backend."
+      },
+      {
+        "question_id": 54,
+        "question_title": "Which file defines Spring Boot dependencies?",
+        "option_A": "application.yml",
+        "option_B": "pom.xml / build.gradle",
+        "option_C": "beans.xml",
+        "option_D": "settings.json",
+        "correct_anwser": "B",
+        "explain": "Trong môi trường Spring Boot (và Java nói chung), các thư viện phụ thuộc (dependencies) được khai báo và quản lý bởi công cụ build tool. Ta dùng pom.xml nếu dự án dùng Maven, hoặc build.gradle nếu dự án dùng Gradle."
+      },
+      {
+        "question_id": 55,
+        "question_title": "What is the main class of a Spring Boot application typically annotated with?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@SpringBootApplication",
+        "option_D": "@Repository",
+        "correct_anwser": "C",
+        "explain": "Class chính chứa hàm main() để khởi chạy một ứng dụng Spring Boot luôn được đánh dấu bằng annotation @SpringBootApplication. Annotation này là sự kết hợp của 3 annotation khác: @Configuration, @EnableAutoConfiguration và @ComponentScan."
+      },
+      {
+        "question_id": 56,
+        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Data JPA",
+        "option_C": "Starter dependencies",
+        "option_D": "Spring Security",
+        "correct_anwser": "C",
+        "explain": "Tính năng Starter dependencies cung cấp các tập hợp thư viện (dependency descriptors) đã được đóng gói sẵn cho một mục đích (ví dụ: spring-boot-starter-web). Nó sẽ tự động kéo theo các thư viện cần thiết và phối hợp với cơ chế auto-configuration để giảm thiểu việc phải setup thủ công."
+      },
+      {
+        "question_id": 57,
+        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
+        "option_A": "To define a database entity.",
+        "option_B": "To enable Spring MVC functionality.",
+        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
+        "option_D": "To define a RESTful endpoint.",
+        "correct_anwser": "C",
+        "explain": "Annotation @SpringBootApplication là một tiện ích (convenience annotation) mặc định của Spring Boot. Nó bao gồm và thực thi cùng lúc 3 annotation cốt lõi: @Configuration (đánh dấu class cấu hình), @EnableAutoConfiguration (kích hoạt cơ chế tự động cấu hình) và @ComponentScan (quét các components trong package)."
+      },
+      {
+        "question_id": 58,
+        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
+        "option_A": "To define a standard for web application development",
+        "option_B": "To define a standard for object-relational mapping in Java",
+        "option_C": "To manage user interfaces",
+        "option_D": "To handle network communication",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của JPA là cung cấp một bộ đặc tả tiêu chuẩn (standard specification) cho kỹ thuật Object-Relational Mapping (ORM) trong ngôn ngữ Java, giúp mapping các Java objects với các relational database tables."
+      },
+      {
+        "question_id": 59,
+        "question_title": "Which JPA annotation maps a primary key?",
+        "option_A": "@Entity",
+        "option_B": "@Table",
+        "option_C": "@Id",
+        "option_D": "@JoinColumn",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, annotation @Id được đặt trên một field (hoặc property) để chỉ định rằng trường đó đóng vai trò là khóa chính (primary key) của entity ánh xạ xuống database."
+      },
+      {
+        "question_id": 60,
+        "question_title": "What does ORM stand for in JPA?",
+        "option_A": "Object Relational Mapping",
+        "option_B": "Open Resource Management",
+        "option_C": "Optimized Runtime Module",
+        "option_D": "Operational Reference Model",
+        "correct_anwser": "A",
+        "explain": "ORM là viết tắt của Object Relational Mapping. Đây là một kỹ thuật lập trình giúp tự động chuyển đổi dữ liệu giữa hệ thống hướng đối tượng (Object trong OOP) và cơ sở dữ liệu quan hệ (Relational database)."
+      },
+      {
+        "question_id": 61,
+        "question_title": "What is the purpose of transaction management in JPA?",
+        "option_A": "To handle user authentication",
+        "option_B": "To ensure data integrity and consistency",
+        "option_C": "To manage network traffic",
+        "option_D": "To optimize web page loading",
+        "correct_anwser": "B",
+        "explain": "Mục đích của việc quản lý giao dịch (transaction management) là để đảm bảo tính toàn vẹn và nhất quán của dữ liệu (data integrity and consistency). Nó tuân thủ nguyên tắc ACID, đảm bảo rằng một nhóm các thao tác database sẽ được thực hiện thành công trọn vẹn (commit) hoặc bị hủy bỏ toàn bộ (rollback) nếu có lỗi xảy ra."
+      },
+      {
+        "question_id": 62,
+        "question_title": "What is the primary role of JPA in Java applications?",
+        "option_A": "Managing user interfaces",
+        "option_B": "Providing RESTful API support",
+        "option_C": "Managing relational data through ORM",
+        "option_D": "Running multithreaded processes",
+        "correct_anwser": "C",
+        "explain": "Vai trò chính của JPA (Java Persistence API) trong các ứng dụng Java là quản lý dữ liệu quan hệ thông qua kỹ thuật ORM (Object-Relational Mapping), giúp ánh xạ các Java objects xuống các bảng trong database một cách dễ dàng."
+      },
+      {
+        "question_id": 63,
+        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
+        "option_A": "@OneToMany",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToOne",
+        "option_D": "@Autowired",
+        "correct_anwser": "D",
+        "explain": "Các annotation @OneToMany, @ManyToOne và @OneToOne là các annotation tiêu chuẩn của JPA để map các relationship giữa các entity. Còn @Autowired là annotation riêng của Spring Framework dùng để thực hiện cơ chế Dependency Injection."
+      },
+      {
+        "question_id": 64,
+        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "C",
+        "explain": "Để đọc/tìm kiếm (reading) một entity từ cơ sở dữ liệu thông qua JPA dựa vào khóa chính (primary key), ta sử dụng method em.find(). Các method còn lại có chức năng khác: persist (thêm mới), remove (xóa), merge (cập nhật)."
+      },
+      {
+        "question_id": 65,
+        "question_title": "Which Spring annotation manages transactions?",
+        "option_A": "@Autowired",
+        "option_B": "@Transactional",
+        "option_C": "@Service",
+        "option_D": "@Entity",
+        "correct_anwser": "B",
+        "explain": "Trong Spring Framework, annotation @Transactional được sử dụng để quản lý các transactions (giao dịch) của cơ sở dữ liệu một cách tự động (declarative transaction management), đảm bảo tính ACID (toàn vẹn dữ liệu) mà không cần code các lệnh commit hay rollback thủ công."
+      },
+      {
+        "question_id": 66,
+        "question_title": "Which annotation is used to mark an entity in Spring Data JPA?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Repository",
+        "correct_anwser": "C",
+        "explain": "Khi làm việc với JPA hoặc Spring Data JPA, để đánh dấu một Java class là một Entity (thực thể) chịu trách nhiệm ánh xạ xuống một table trong cơ sở dữ liệu quan hệ, ta bắt buộc phải sử dụng annotation @Entity."
+      },
+      {
+        "question_id": 67,
+        "question_title": "Which annotation is used to define a named query?",
+        "option_A": "@Query",
+        "option_B": "@NamedQuery",
+        "option_C": "@StoredProcedure",
+        "option_D": "@NativeQuery",
+        "correct_anwser": "B",
+        "explain": "Trong chuẩn JPA, annotation @NamedQuery được sử dụng trực tiếp trên các Entity class để định nghĩa trước một câu truy vấn tĩnh (static query) với một cái tên cụ thể. Bằng cách gọi tên này, bạn có thể tái sử dụng câu query đó ở nhiều nơi trong code."
+      },
+      {
+        "question_id": 68,
+        "question_title": "What best describes Spring Data in the context of data access?",
+        "option_A": "A single monolithic library that replaces JPA",
+        "option_B": "An umbrella project containing multiple modules for different data stores and data-access styles",
+        "option_C": "A JDBC driver for all relational databases",
+        "option_D": "A GUI client for managing databases",
+        "correct_anwser": "B",
+        "explain": "Spring Data thực chất là một umbrella project (dự án mẹ/dự án tổng thể) chứa nhiều modules con (ví dụ: Spring Data JPA, Spring Data MongoDB, Spring Data Redis...). Mục đích của nó là cung cấp một mô hình lập trình nhất quán để truy xuất dữ liệu cho cả relational databases và các hệ thống NoSQL."
+      },
+      {
+        "question_id": 69,
+        "question_title": "What best describes Spring Data JPA?",
+        "option_A": "A NoSQL database engine",
+        "option_B": "A higher-level abstraction on top of JPA that simplifies repository-based data access",
+        "option_C": "A replacement for the Spring Framework core container",
+        "option_D": "A message broker for JMS-based applications",
+        "correct_anwser": "B",
+        "explain": "Spring Data JPA là một higher-level abstraction (tầng trừu tượng cao hơn) được xây dựng dựa trên JPA API. Nó giúp lập trình viên đơn giản hóa tối đa việc tương tác với database bằng cách tự động sinh ra các đoạn code (boilerplate code) thông qua các Repository interfaces."
+      },
+      {
+        "question_id": 70,
+        "question_title": "In Spring Data JPA, by default, the @Query annotation uses which query language?",
+        "option_A": "JPQL",
+        "option_B": "SQL-92 only",
+        "option_C": "HQL only",
+        "option_D": "Native database-specific SQL",
+        "correct_anwser": "A",
+        "explain": "Mặc định, annotation @Query trong Spring Data JPA sẽ biên dịch và thực thi câu lệnh bằng ngôn ngữ JPQL (Java Persistence Query Language). JPQL truy vấn dựa trên các Entity objects và thuộc tính của chúng thay vì truy vấn trực tiếp trên các tables trong database. Nếu muốn dùng SQL thuần túy, bạn phải set cờ nativeQuery = true."
+      },
+      {
+        "question_id": 71,
+        "question_title": "What is the purpose of @Transactional in Spring Data JPA?",
+        "option_A": "To manage user sessions.",
+        "option_B": "To ensure data consistency by grouping database operations into a single unit.",
+        "option_C": "To handle file uploads.",
+        "option_D": "To create REST endpoints.",
+        "correct_anwser": "B",
+        "explain": "Mục đích của @Transactional là gom nhóm nhiều thao tác đọc/ghi với database thành một unit of work (đơn vị công việc) duy nhất. Điều này bảo vệ data consistency (tính nhất quán của dữ liệu): nếu mọi thứ suôn sẻ thì dữ liệu được lưu, còn nếu có exception xảy ra giữa chừng, toàn bộ các thao tác trước đó sẽ bị rollback."
+      },
+      {
+        "question_id": 72,
+        "question_title": "Which component in Spring is responsible for implementing the IoC container?",
+        "option_A": "DispatcherServlet",
+        "option_B": "BeanFactory or ApplicationContext",
+        "option_C": "ViewResolver",
+        "option_D": "HandlerMapping",
+        "correct_anwser": "B",
+        "explain": "`BeanFactory` cung cấp cấu hình cơ bản để quản lý các bean, còn `ApplicationContext` là một giao diện con nâng cao bổ sung thêm các tính năng dành cho doanh nghiệp. Cả hai đều là những thành phần giao diện cốt lõi đóng vai trò triển khai và đại diện cho Spring IoC container."
+      },
+      {
+        "question_id": 73,
+        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
+        "option_A": "Defining user interfaces.",
+        "option_B": "Implementing cross-cutting concerns like logging and security.",
+        "option_C": "Managing database connections.",
+        "option_D": "Creating web service clients.",
+        "correct_anwser": "B",
+        "explain": "Lập trình hướng khía cạnh (AOP) cho phép phân tách các chức năng mang tính hệ thống, cắt ngang qua nhiều mô-đun ứng dụng độc lập (cross-cutting concerns) như ghi log (logging), bảo mật (security), giám sát hiệu năng hoặc quản lý giao dịch dữ liệu mà không làm ảnh hưởng trực tiếp đến mã logic nghiệp vụ chính."
+      },
+      {
+        "question_id": 74,
+        "question_title": "Which of the following is a significant advantage of using the Spring Framework?",
+        "option_A": "Tight coupling between components.",
+        "option_B": "Simplified testing due to Dependency Injection.",
+        "option_C": "Limited support for enterprise-level features.",
+        "option_D": "Reduced modularity and code reusability.",
+        "correct_anwser": "B",
+        "explain": "Nhờ cơ chế Tiêm phụ thuộc (Dependency Injection), các thành phần phần mềm được liên kết lỏng lẻo với nhau (loose coupling). Điều này giúp lập trình viên cực kỳ dễ dàng thay thế các dependency thực tế bằng các đối tượng giả lập (Mock objects), đơn giản hóa quá trình viết mã Unit Test."
+      },
+      {
+        "question_id": 75,
+        "question_title": "Which DI type is generally considered the most recommended due to its immutability and testability benefits?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Constructor Injection được khuyến nghị hàng đầu trong Spring vì nó đảm bảo tính bất biến (immutability) của đối tượng bằng cách cho phép định nghĩa các thuộc tính phụ thuộc là `final`, đồng thời buộc tất cả các phụ thuộc bắt buộc phải được truyền vào ngay khi khởi tạo đối tượng, giúp tránh lỗi `NullPointerException`."
+      },
+      {
+        "question_id": 76,
+        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Theo đúng định nghĩa cốt lõi, Constructor Injection là hình thức mà các đối tượng phụ thuộc được truyền trực tiếp vào lớp thông qua các tham số của hàm khởi tạo (constructor)."
+      },
+      {
+        "question_id": 77,
+        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
+        "option_A": "Aspect-Oriented Programming (AOP)",
+        "option_B": "Dependency Injection (DI)",
+        "option_C": "Resource Management",
+        "option_D": "Event Handling",
+        "correct_anwser": "B",
+        "explain": "Đoạn mã trên thể hiện tính năng Dependency Injection (cụ thể là mô hình Setter Injection), nơi biến `dependency` được gán giá trị thông qua hàm `setDependency` từ bên ngoài thay vì tự khởi tạo bằng từ khóa `new` bên trong lớp."
+      },
+      {
+        "question_id": 78,
+        "question_title": "Which benefit does Spring's modular architecture provide?",
+        "option_A": "Increased coupling between application layers.",
+        "option_B": "Ability to use only the modules needed, reducing application size.",
+        "option_C": "Limited support for different persistence technologies.",
+        "option_D": "Decreased flexibility in choosing application components.",
+        "correct_anwser": "B",
+        "explain": "Kiến trúc mô-đun hóa của Spring cho phép các ứng dụng hoạt động theo cơ chế linh hoạt linh kiện (non-monolithic): lập trình viên có thể tùy ý lựa chọn tích hợp và sử dụng các thư viện mô-đun cần thiết (ví dụ: chỉ lấy spring-web hoặc spring-data-jpa) mà không bắt buộc phải tải toàn bộ framework, tối ưu dung lượng của ứng dụng."
+      },
+      {
+        "question_id": 79,
+        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
+        "option_A": "As a listener.",
+        "option_B": "As a filter.",
+        "option_C": "As a servlet.",
+        "option_D": "As a resource.",
+        "correct_anwser": "C",
+        "explain": "Trong cấu hình ứng dụng web dựa trên file cấu hình XML truyền thống (`web.xml`), `DispatcherServlet` cốt lõi của Spring MVC được khai báo và cấu hình dưới dạng một lớp Servlet tiêu chuẩn thông qua thẻ `<servlet>` và `<servlet-mapping>`."
+      },
+      {
+        "question_id": 80,
+        "question_title": "What is the benefit of Spring Boot's embedded servers?",
+        "option_A": "They require separate installation and configuration.",
+        "option_B": "They simplify deployment and reduce the need for external application servers.",
+        "option_C": "They offer limited performance compared to external servers.",
+        "option_D": "They are only compatible with specific operating systems.",
+        "correct_anwser": "B",
+        "explain": "Sự hiện diện của máy chủ nhúng sẵn (embedded servers như Tomcat hoặc Jetty) giúp ứng dụng Spring Boot đóng gói gọn gàng thành một file `.jar` có thể chạy độc lập, loại bỏ hoàn toàn sự phức tạp của việc cài đặt và triển khai ứng dụng lên các máy chủ web ngoại vi."
+      },
+      {
+        "question_id": 81,
+        "question_title": "What is the purpose of Spring Boot's externalized configuration?",
+        "option_A": "To embed all configurations within the application code.",
+        "option_B": "To allow configuration from external files like application.properties or application.yml.",
+        "option_C": "To remove configuration options entirely.",
+        "option_D": "To require database configuration only.",
+        "correct_anwser": "B",
+        "explain": "Tính năng cấu hình tách biệt ra ngoài (Externalized Configuration) của Spring Boot cho phép lập trình viên quản lý các thiết lập môi trường bằng các tệp tin bên ngoài mã nguồn như `application.properties` hoặc `application.yml`, giúp chạy cùng một mã build trên nhiều môi trường khác nhau một cách linh hoạt."
+      },
+      {
+        "question_id": 82,
+        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
+        "option_A": "To define a database entity.",
+        "option_B": "To enable Spring MVC functionality.",
+        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
+        "option_D": "To define a RESTful endpoint.",
+        "correct_anwser": "C",
+        "explain": "Annotation `@SpringBootApplication` là một tiện ích tổng hợp, đảm nhận vai trò kết hợp đồng thời ba tính năng cốt lõi bao gồm cấu hình dựa trên Java (`@Configuration`), tự động cấu hình các bean phù hợp (`@EnableAutoConfiguration`), và tự động quét các thành phần phần mềm trong package (`@ComponentScan`)."
+      },
+      {
+        "question_id": 83,
+        "question_title": "Which tool is commonly used to create and manage Spring Boot projects?",
+        "option_A": "Apache Ant",
+        "option_B": "Maven or Gradle",
+        "option_C": "Notepad++",
+        "option_D": "Microsoft Word",
+        "correct_anwser": "B",
+        "explain": "Maven và Gradle là hai công cụ quản lý dự án và tự động hóa build (build automation tools) tiêu chuẩn, phổ biến nhất trong hệ sinh thái Java để quản lý các thư viện phụ thuộc (dependencies) và quy trình vòng đời của dự án Spring Boot."
+      },
+      {
+        "question_id": 84,
+        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Data JPA",
+        "option_C": "Starter dependencies",
+        "option_D": "Spring Security",
+        "correct_anwser": "C",
+        "explain": "Các gói phụ thuộc khởi đầu (Starter dependencies, ví dụ: `spring-boot-starter-web`) cung cấp sẵn một tập hợp các thư viện được cấu hình sẵn cho từng mục đích nghiệp vụ cụ thể, kết hợp với cơ chế auto-configuration để giúp dự án khởi chạy ngay lập tức mà không cần cấu hình thủ công phức tạp."
+      },
+      {
+        "question_id": 85,
+        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
+        "option_A": "@Column",
+        "option_B": "@Entity",
+        "option_C": "@OneToMany",
+        "option_D": "@Transient",
+        "correct_anwser": "C",
+        "explain": "Annotation `@OneToMany` là một annotation chỉ định mối quan hệ (relationship) dùng để ánh xạ mối liên kết Một-Nhiều giữa hai thực thể trong JPA. Các phương án còn lại dùng để định nghĩa cột (`@Column`), định nghĩa thực thể (`@Entity`) hoặc bỏ qua trường không lưu trữ (`@Transient`)."
+      },
+      {
+        "question_id": 86,
+        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
+        "option_A": "To define a standard for web application development",
+        "option_B": "To define a standard for object-relational mapping in Java",
+        "option_C": "To manage user interfaces",
+        "option_D": "To handle network communication",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của JPA (Java Persistence API) là đưa ra một bộ đặc tả tiêu chuẩn cho kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM) trong ngôn ngữ lập trình Java, giúp đơn giản hóa việc tương tác với cơ sở dữ liệu quan hệ theo phong cách hướng đối tượng."
+      },
+      {
+        "question_id": 87,
+        "question_title": "What does the EntityManager manage in a JPA application?",
+        "option_A": "User sessions",
+        "option_B": "Entity lifecycle and persistence",
+        "option_C": "Network connections",
+        "option_D": "Web page rendering",
+        "correct_anwser": "B",
+        "explain": "Trong JPA, `EntityManager` là thành phần chịu trách nhiệm quản lý vòng đời (lifecycle) của các đối tượng thực thể (Entity) từ trạng thái mới tạo, được lưu trữ bền vững (persistence), tách rời (detached) cho đến khi bị xóa khỏi cơ sở dữ liệu."
+      },
+      {
+        "question_id": 88,
+        "question_title": "Which of the following is a primary benefit of using ORM?",
+        "option_A": "Increased database complexity",
+        "option_B": "Reduced code redundancy and improved maintainability",
+        "option_C": "Direct SQL query writing for all operations",
+        "option_D": "Limited support for object-oriented principles",
+        "correct_anwser": "B",
+        "explain": "Lợi ích hàng đầu của việc áp dụng ORM (Object-Relational Mapping) là tự động hóa việc chuyển đổi dữ liệu và sinh mã SQL, giúp giảm thiểu tối đa lượng mã lặp đi lặp lại (reduced code redundancy), từ đó nâng cao khả năng bảo trì và phát triển mã nguồn (improved maintainability)."
+      },
+      {
+        "question_id": 89,
+        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
+        "option_A": "Servlet",
+        "option_B": "EntityManager",
+        "option_C": "JSP",
+        "option_D": "JDBC Driver",
+        "correct_anwser": "B",
+        "explain": "`EntityManager` là thành phần giao diện cốt lõi trong JPA đảm nhận chức năng quản lý toàn bộ các thao tác lưu trữ, cập nhật, truy vấn dữ liệu bền vững của các thực thể."
+      },
+      {
+        "question_id": 90,
+        "question_title": "What is the purpose of writing unit tests for a Spring application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To ensure the correctness of individual components.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Mục đích cốt lõi của việc viết Unit Test (Kiểm thử đơn vị) là cô lập và kiểm tra tính hoạt động chính xác của từng thành phần nhỏ, độc lập trong mã nguồn (như một hàm, một lớp hay một bean cụ thể) để phát hiện sớm các lỗi logic."
+      },
+      {
+        "question_id": 91,
+        "question_title": "Which annotation is used to define a named query?",
+        "option_A": "@Query",
+        "option_B": "@NamedQuery",
+        "option_C": "@StoredProcedure",
+        "option_D": "@NativeQuery",
+        "correct_anwser": "B",
+        "explain": "Annotation `@NamedQuery` được sử dụng trong JPA để khai báo và đặt tên trước cho các câu truy vấn tĩnh (static queries) trực tiếp ngay trên thực thể, giúp tái sử dụng câu lệnh truy vấn một cách tối ưu và gọn gàng."
+      },
+      {
+        "question_id": 92,
+        "question_title": "Which of the following is NOT a main module of Spring Data?",
+        "option_A": "Spring Data JPA",
+        "option_B": "Spring Data MongoDB",
+        "option_C": "Spring Data REST",
+        "option_D": "Spring Data UI",
+        "correct_anwser": "D",
+        "explain": "Hệ sinh thái Spring Data bao gồm các mô-đun chính phục vụ truy cập dữ liệu như Spring Data JPA, Spring Data MongoDB, Spring Data Neo4j, và Spring Data REST. Không hề tồn tại mô-đun nào tên là `Spring Data UI` vì Spring Data hoàn toàn không quản lý phần giao diện."
+      },
+      {
+        "question_id": 93,
+        "question_title": "What is the role of a Repository interface in Spring Data JPA?",
+        "option_A": "To define business logic.",
+        "option_B": "To manage user interfaces.",
+        "option_C": "To provide data access methods.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "C",
+        "explain": "Interface `Repository` trong Spring Data JPA đóng vai trò trung tâm cung cấp sẵn các phương thức trừu tượng hỗ trợ thao tác và truy cập dữ liệu (CRUD, tìm kiếm, phân trang) mà không yêu cầu lập trình viên phải viết mã thực thi chi tiết thủ công."
+      },
+      {
+        "question_id": 94,
+        "question_title": "In a ManyToMany relationship, which table is used to store the relationship between the two entities?",
+        "option_A": "The table of the first entity.",
+        "option_B": "The table of the second entity.",
+        "option_C": "A join table.",
+        "option_D": "A temporary table.",
+        "correct_anwser": "C",
+        "explain": "Trong cơ sở dữ liệu quan hệ, mối quan hệ Nhiều-Nhiều (ManyToMany) bắt buộc phải được chuẩn hóa thông qua một bảng trung gian, thường được gọi là bảng liên kết hoặc bảng nối (`join table`), để lưu trữ các cặp khóa ngoại liên kết giữa hai thực thể chính."
+      },
+      {
+        "question_id": 95,
+        "question_title": "In Spring Data JPA, what does the method signature List findByPropertyOrderByPropertyAsc(String property); do?",
+        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
+        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
+        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
+        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
+        "correct_anwser": "B",
+        "explain": "Theo quy tắc tự dịch từ khóa truy vấn (Query Derivation) của Spring Data JPA, cụm từ `findByProperty` thực hiện phép so sánh bằng (`=`), và mệnh đề `OrderByPropertyAsc` sẽ tự động thêm chỉ thị sắp xếp theo thứ tự tăng dần (`ASC`) đối với thuộc tính đó."
+      },
+      {
+        "question_id": 96,
+        "question_title": "Which annotation is used to specify the table name for an entity?",
+        "option_A": "@Column",
+        "option_B": "@Id",
+        "option_C": "@GeneratedValue",
+        "option_D": "@Table",
+        "correct_anwser": "D",
+        "explain": "Annotation `@Table` được đặt ở mức lớp (class level) của một thực thể JPA để chỉ định rõ ràng tên của bảng dữ liệu quan hệ trong database (`@Table(name = \"tên_bảng\")`) mà thực thể đó ánh xạ vào."
+      },
+      {
+        "question_id": 97,
+        "question_title": "Which statement correctly differentiates @PathVariable and @RequestParam?",
+        "option_A": "@PathVariable binds a query parameter; @RequestParam binds a URI template variable",
+        "option_B": "@PathVariable binds a URI template variable; @RequestParam binds a query parameter or form field",
+        "option_C": "Both only bind data from HTTP headers",
+        "option_D": "Both require a ModelAndView return type",
+        "correct_anwser": "B",
+        "explain": "`@PathVariable` được sử dụng để trích xuất và liên kết dữ liệu từ các biến nằm trực tiếp trên đường dẫn URL (URI template variable, ví dụ: `/users/{id}`). Trong khi đó, `@RequestParam` dùng để lấy dữ liệu từ tham số truy vấn (Query Parameter, ví dụ: `?name=abc`) hoặc từ dữ liệu form gửi lên."
+      },
+      {
+        "question_id": 98,
+        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
+        "option_A": "Enhancing security for the web application.",
+        "option_B": "Providing a way to create reusable template layouts.",
+        "option_C": "Managing database connections.",
+        "option_D": "Optimizing JavaScript performance.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf Layout Dialect cung cấp một giải pháp phân cấp giao diện mạnh mẽ, cho phép lập trình viên tạo dựng một layout khung (template layout) dùng chung (chứa header, footer, sidebar...) và tái sử dụng nó trên nhiều trang con khác nhau."
+      },
+      {
+        "question_id": 99,
+        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
+        "option_A": "Database drivers.",
+        "option_B": "HTML attributes and elements.",
+        "option_C": "Security protocols.",
+        "option_D": "Network configurations.",
+        "correct_anwser": "B",
+        "explain": "Standard Dialect (Phương ngữ tiêu chuẩn) của Thymeleaf cung cấp một hệ thống các thuộc tính HTML tùy biến xử lý động dữ liệu (như `th:text`, `th:each`, `th:if`) chạy trực tiếp trên cấu trúc thẻ HTML chuẩn."
+      },
+      {
+        "question_id": 100,
+        "question_title": "Thymeleaf is primarily used for:",
+        "option_A": "Handling database transactions.",
+        "option_B": "Generating dynamic HTML content.",
+        "option_C": "Managing application security.",
+        "option_D": "Building REST APIs.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf là một Java template engine mã nguồn mở hoạt động ở phía Server, mục đích chính của nó là kết hợp mã giao diện HTML tĩnh với dữ liệu động từ backend để biên dịch và tạo ra các trang HTML động gửi về cho trình duyệt."
+      },
+      {
+        "question_id": 101,
+        "question_title": "What is the result of this Thymeleaf fragment?\n<span th:if=\"${user.loggedIn}\">Welcome!",
+        "option_A": "Renders always",
+        "option_B": "Displays if user.loggedIn is false",
+        "option_C": "Displays nothing by default",
+        "option_D": "Displays \"Welcome!\" only if user is logged in",
+        "correct_anwser": "D",
+        "explain": "Thuộc tính `th:if` hoạt động như một biểu thức điều kiện logic. Thẻ `<span>` chứa dòng chữ \"Welcome!\" sẽ chỉ được biên dịch và hiển thị ra giao diện khi và chỉ khi biến trạng thái `${user.loggedIn}` trả về giá trị logic là `true`."
+      },
+      {
+        "question_id": 102,
+        "question_title": "Which class simplifies JDBC in Spring?",
+        "option_A": "JdbcTemplate",
+        "option_B": "JdbcManager",
+        "option_C": "EntityManager",
+        "option_D": "SqlHelper",
+        "correct_anwser": "A",
+        "explain": "`JdbcTemplate` là lớp cốt lõi trong mô-đun Spring JDBC giúp đơn giản hóa việc sử dụng JDBC bằng cách loại bỏ các đoạn mã lặp đi lặp lại (boilerplate code) như mở/đóng kết nối, xử lý ngoại lệ SQL, và quản lý các tài nguyên."
+      },
+      {
+        "question_id": 103,
+        "question_title": "Which interface provides CRUD operations?",
+        "option_A": "JpaRepository",
+        "option_B": "CrudService",
+        "option_C": "EntityManager",
+        "option_D": "JdbcTemplate",
+        "correct_anwser": "A",
+        "explain": "Trong các lựa chọn được đưa ra, `JpaRepository` (kế thừa từ `ListCrudRepository` và `PagingAndSortingRepository`) là một interface chuẩn của Spring Data cung cấp sẵn toàn bộ tập hợp các phương thức thao tác CRUD cơ bản và nâng cao đối với dữ liệu."
+      },
+      {
+        "question_id": 104,
+        "question_title": "Which responsibility belongs to the Spring IoC container?",
+        "option_A": "Rendering HTML views from Thymeleaf templates",
+        "option_B": "Creating, wiring, configuring beans and managing their lifecycle",
+        "option_C": "Executing SQL statements without any JDBC driver",
+        "option_D": "Compiling Java sources at runtime",
+        "correct_anwser": "B",
+        "explain": "Nhiệm vụ cốt lõi của Spring IoC container là quản lý các Bean (đối tượng của ứng dụng). Quá trình này bao gồm việc khởi tạo (creating), liên kết phụ thuộc (wiring), cấu hình (configuring) và quản lý toàn bộ vòng đời (lifecycle) của chúng từ khi sinh ra cho đến khi bị hủy."
+      },
+      {
+        "question_id": 105,
+        "question_title": "Which attribute is used to iterate over a collection in Thymeleaf?",
+        "option_A": "th:if",
+        "option_B": "th:each",
+        "option_C": "th:text",
+        "option_D": "th:href",
+        "correct_anwser": "B",
+        "explain": "Trong công cụ Thymeleaf template engine, thuộc tính `th:each` được sử dụng làm vòng lặp (tương tự như vòng lặp for-each trong Java) để duyệt qua các phần tử của một danh sách (Collection hoặc List) và hiển thị chúng ra giao diện HTML."
+      },
+      {
+        "question_id": 106,
+        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "A, B, C",
+        "explain": "Câu hỏi này yêu cầu chọn 2 đáp án đúng, tuy nhiên trên thực tế Thymeleaf hỗ trợ xử lý rất nhiều template mode khác nhau bao gồm: HTML, XML (Lựa chọn A), TEXT (Lựa chọn B), và cả JSON (Lựa chọn C) hay CSS. Ngoại trừ Binary templates (Lựa chọn D) là hoàn toàn không được hỗ trợ, ba đáp án còn lại đều đúng, nhưng phổ biến nhất đi cặp với nhau cho các dữ liệu phi HTML thường là XML và TEXT."
+      },
+      {
+        "question_id": 107,
+        "question_title": "In Thymeleaf, which expression is used to create a link? <a th:href=\"______\">Home</a>",
+        "option_A": "${/home}",
+        "option_B": "#{/home}",
+        "option_C": "@{/home}",
+        "option_D": "~{/home}",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf sử dụng cú pháp ký tự `@` kết hợp cặp ngoặc nhọn `@{...}` để định nghĩa Link Expressions (biểu thức đường dẫn). Nó hỗ trợ xử lý và tự động thêm ngữ cảnh ứng dụng (context path) cho các đường dẫn URL tuyệt đối hoặc tương đối trong hệ thống."
+      },
+      {
+        "question_id": 108,
+        "question_title": "Thymeleaf can be used to process:",
+        "option_A": "Only HTML files.",
+        "option_B": "HTML, XML, JavaScript, CSS, and plain text.",
+        "option_C": "Only server-side Java code.",
+        "option_D": "Only database queries.",
+        "correct_anwser": "B",
+        "explain": "Mặc dù giao diện web HTML là ứng dụng phổ biến nhất, Thymeleaf thực tế là một template engine rất mạnh mẽ, có khả năng biên dịch và xử lý nhiều loại định dạng tệp tin văn bản khác bao gồm cả HTML, XML, JavaScript, CSS và văn bản thuần túy (plain text)."
+      },
+      {
+        "question_id": 109,
+        "question_title": "When using Spring JDBC, what class is typically used to execute SQL queries?",
+        "option_A": "EntityManager",
+        "option_B": "JdbcTemplate",
+        "option_C": "SessionFactory",
+        "option_D": "Repository",
+        "correct_anwser": "B",
+        "explain": "Lớp `JdbcTemplate` là lớp trung tâm cốt lõi của gói thư viện Spring JDBC. Nó giúp loại bỏ các đoạn mã lặp lại dài dòng (boilerplate code) của JDBC thuần (như mở/đóng kết nối, xử lý exception) và cung cấp các phương thức đơn giản để thực thi các câu lệnh SQL."
+      },
+      {
+        "question_id": 110,
+        "question_title": "In Thymeleaf, which expression is used to create a link?\n<a th:href=\"________\">Home</a>",
+        "option_A": "${/home}",
+        "option_B": "#{/home}",
+        "option_C": "@{/home}",
+        "option_D": "~{/home}",
+        "correct_anwser": "C",
+        "explain": "Trong Thymeleaf, để định nghĩa các đường dẫn URL (Link URL Expressions), chúng ta phải sử dụng cú pháp @{...}. Điều này giúp tự động xử lý context path của ứng dụng một cách linh hoạt."
+      },
+      {
+        "question_id": 111,
+        "question_title": "Which attribute is used to conditionally include or exclude an element in Thymeleaf?",
+        "option_A": "th:if",
+        "option_B": "th:each",
+        "option_C": "th:text",
+        "option_D": "th:href",
+        "correct_anwser": "A",
+        "explain": "Thuộc tính th:if được dùng để kiểm tra điều kiện logic (conditional evaluation). Nếu điều kiện trả về true, element HTML đó sẽ được render (include). Nếu false, toàn bộ element sẽ bị loại bỏ khỏi DOM (exclude)."
+      },
+      {
+        "question_id": 112,
+        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "A, B",
+        "explain": "Thymeleaf hỗ trợ nhiều loại template mode để xử lý dữ liệu đầu ra. Các template modes hợp lệ bao gồm: HTML, XML, TEXT, JAVASCRIPT, CSS và RAW. Vì vậy, XML templates và Text templates là 2 đáp án chính xác."
+      },
+      {
+        "question_id": 113,
+        "question_title": "Which benefit does JdbcTemplate provide?",
+        "option_A": "Simplifies error handling",
+        "option_B": "Automatic query optimization",
+        "option_C": "UI rendering",
+        "option_D": "Thread pool creation",
+        "correct_anwser": "A",
+        "explain": "JdbcTemplate là một core class trong Spring giúp đơn giản hóa việc thao tác với JDBC API. Một trong những lợi ích quan trọng nhất của nó là tự động xử lý đóng/mở connection và mapping các SQLException rườm rà thành một hệ thống hierarchy DataAccessException nhất quán, qua đó đơn giản hóa việc xử lý lỗi (Simplifies error handling)."
+      },
+      {
+        "question_id": 114,
+        "question_title": "Which of the following is a common view technology used with Spring MVC?",
+        "option_A": "React",
+        "option_B": "Vue.js",
+        "option_C": "Thymeleaf",
+        "option_D": "Angular",
+        "correct_anwser": "C",
+        "explain": "Trong số các lựa chọn, Thymeleaf là một công nghệ mã giao diện server-side template engine hiện đại, tích hợp chặt chẽ và cực kỳ phổ biến với Spring MVC để kết xuất giao diện trực tiếp tại server. React, Vue.js và Angular là các framework/thư viện render phía Client."
+      },
+      {
+        "question_id": 115,
+        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
+        "option_A": "URL expressions.",
+        "option_B": "Message expressions.",
+        "option_C": "Variable expressions.",
+        "option_D": "Fragment expressions.",
+        "correct_anwser": "C",
+        "explain": "Cú pháp `${...}` trong Thymeleaf biểu diễn các biểu thức biến (Variable Expressions). Nó được sử dụng để lấy giá trị của các thuộc tính hoặc đối tượng chứa trong tầng dữ liệu Spring MVC Model (Context) chuyển giao xuống giao diện."
+      },
+      {
+        "question_id": 116,
+        "question_title": "Which of the following is a kind of template in Thymeleaf?",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf hỗ trợ nhiều chế độ xử lý mẫu giao diện (template modes) khác nhau bao gồm HTML, XML, TEXT, JAVASCRIPT, và CSS. Trong số các lựa chọn đã cho, 'Text templates' (chế độ văn bản thô) là một định dạng mẫu hợp lệ được hỗ trợ trực tiếp."
+      },
+      {
+        "question_id": 117,
+        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
+        "option_A": "Database drivers.",
+        "option_B": "HTML attributes and elements.",
+        "option_C": "Security protocols.",
+        "option_D": "Network configurations.",
+        "correct_anwser": "B",
+        "explain": "Standard Dialect cung cấp tập hợp các thẻ tùy biến và các thuộc tính HTML động (như `th:text`, `th:value`, `th:each`) giúp Thymeleaf can thiệp trực tiếp vào cấu trúc HTML để hiển thị dữ liệu từ phía máy chủ."
+      },
+      {
+        "question_id": 118,
+        "question_title": "What is Thymeleaf?",
+        "option_A": "A JavaScript framework.",
+        "option_B": "A server-side Java template engine.",
+        "option_C": "A database management system.",
+        "option_D": "A CSS preprocessor.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf là một công cụ xử lý mẫu giao diện chạy ở phía máy chủ (Server-side Java template engine), thường được kết hợp với Spring MVC để tạo ra mã HTML động gửi về trình duyệt cho người dùng cuối."
+      },
+      {
+        "question_id": 119,
+        "question_title": "Thymeleaf supports internationalization (i18n) through:",
+        "option_A": "CSS stylesheets.",
+        "option_B": "Message resolvers.",
+        "option_C": "Database triggers.",
+        "option_D": "JavaScript libraries.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf hỗ trợ đa ngôn ngữ (Internationalization - i18n) bằng việc tích hợp hệ thống Message Resolvers (Bộ phân giải thông điệp) của Spring, cho phép trích xuất các chuỗi ký tự động tương ứng theo ngôn ngữ locale người dùng từ các file cấu hình ứng dụng dạng `.properties` thông qua cú pháp `#{...}`."
+      },
+      {
+        "question_id": 120,
+        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
+        "option_A": "Enhancing security for the web application.",
+        "option_B": "Providing a way to create reusable template layouts.",
+        "option_C": "Managing database connections.",
+        "option_D": "Optimizing JavaScript performance.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf Layout Dialect cung cấp cơ chế phân bố giao diện theo phân cấp bố cục, cho phép tạo các tệp giao diện mẫu (template layouts) dùng chung (như bố cục header, footer) và tái sử dụng chúng trên nhiều trang nội dung khác nhau để tránh trùng lặp mã."
+      },
+      {
+        "question_id": 121,
+        "question_title": "Spring Data JPA simplifies working with:",
+        "option_A": "NoSQL databases.",
+        "option_B": "Relational databases using the Java Persistence API (JPA).",
+        "option_C": "Message queues.",
+        "option_D": "Cloud storage.",
+        "correct_anwser": "B",
+        "explain": "Mục đích chuyên biệt của Spring Data JPA là tối ưu và đơn giản hóa việc tương tác với các hệ quản trị cơ sở dữ liệu quan hệ (Relational databases) bằng cách cung cấp các lớp trừu tượng đè lên tầng đặc tả JPA tiêu chuẩn."
+      },
+      {
+        "question_id": 122,
+        "question_title": "Spring Beans are managed by which container?",
+        "option_A": "Java VM",
+        "option_B": "Spring IoC Container",
+        "option_C": "JDBC Driver",
+        "option_D": "REST Controller",
+        "correct_anwser": "B",
+        "explain": "Spring IoC (Inversion of Control) Container là thành phần chịu trách nhiệm khởi tạo, cấu hình, lắp ráp và quản lý toàn bộ vòng đời (lifecycle) của các Spring Beans."
+      },
+      {
+        "question_id": 123,
+        "question_title": "Which JavaFX control is used for text input?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "C",
+        "explain": "`TextField` là một control giao diện chuẩn trong JavaFX cho phép người dùng nhập và chỉnh sửa một dòng văn bản thuần túy."
+      },
+      {
+        "question_id": 124,
+        "question_title": "Which code snippet shows how to add a button to a scene?",
+        "option_A": "Scene scene = new Scene(new Button(\"Click Me\"));",
+        "option_B": "Stage stage = new Stage(new Button(\"Click Me\"));",
+        "option_C": "Button button = new Button(\"Click Me\");",
+        "option_D": "Node node = new Node(new Button(\"Click Me\"));",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, một `Scene` có thể nhận trực tiếp một nút gốc (Parent Node) — ví dụ như một Button hoặc một Layout Pane chứa Button — thông qua hàm khởi tạo của nó để thiết lập cấu trúc giao diện chính."
+      },
+      {
+        "question_id": 125,
+        "question_title": "In FXML, how do you connect a controller to the FXML file?",
+        "option_A": "<fxml controller=\"MyController\" />",
+        "option_B": "<fx:controller type=\"MyController\" />",
+        "option_C": "<fx:controller fx:id=\"controller\" value=\"MyController\" />",
+        "option_D": "<fx:controller value=\"MyController\" />",
+        "correct_anwser": "D",
+        "explain": "Lưu ý: Trong cú pháp FXML tiêu chuẩn của JavaFX, controller thường được khai báo bằng thuộc tính `fx:controller=\"com.package.MyController\"` ở thẻ layout gốc. Tuy nhiên, dựa trên các phương án lựa chọn đặc thù được đưa ra trong câu hỏi trắc nghiệm này, phương án D mô tả cấu trúc khối thẻ sử dụng thuộc tính `value` để gán controller theo một số tùy biến mở rộng."
+      },
+      {
+        "question_id": 126,
+        "question_title": "What is the purpose of the start(Stage primaryStage) method in a JavaFX application?",
+        "option_A": "To define database connections.",
+        "option_B": "To initialize and show the application window.",
+        "option_C": "To handle network requests.",
+        "option_D": "To manage application configurations.",
+        "correct_anwser": "B",
+        "explain": "Phương thức `start(Stage primaryStage)` là điểm khởi đầu chính (main entry point) của mọi ứng dụng JavaFX. Nó được hệ thống runtime gọi để cấu hình, gắn scene và hiển thị cửa sổ ứng dụng chính (stage) lên màn hình."
+      },
+      {
+        "question_id": 127,
+        "question_title": "Which method launches a JavaFX app?",
+        "option_A": "main()",
+        "option_B": "start()",
+        "option_C": "launch()",
+        "option_D": "run()",
+        "correct_anwser": "C",
+        "explain": "Phương thức tĩnh `launch()` kế thừa từ lớp `javafx.application.Application` được sử dụng để khởi động vòng đời của một ứng dụng JavaFX, sau đó nó sẽ thiết lập môi trường và tự động gọi phương thức `start()`."
+      },
+      {
+        "question_id": 128,
+        "question_title": "What is the role of the Controller in Spring MVC?",
+        "option_A": "To manage database connections.",
+        "option_B": "To process user requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc Spring MVC, thành phần Controller có nhiệm vụ tiếp nhận các yêu cầu (HTTP requests) từ người dùng, xử lý các logic điều hướng cần thiết, chuẩn bị dữ liệu (Model) và chỉ định giao diện hiển thị phù hợp (View)."
+      },
+      {
+        "question_id": 129,
+        "question_title": "Which object holds model data?",
+        "option_A": "Model",
+        "option_B": "Entity",
+        "option_C": "View",
+        "option_D": "Context",
+        "correct_anwser": "A",
+        "explain": "Trong mô hình MVC của Spring, giao diện (interface) `org.springframework.ui.Model` là một vùng chứa (container) dưới dạng cặp khóa-giá trị (Map) dùng để truyền tải dữ liệu từ Controller sang cho View hiển thị."
+      },
+      {
+        "question_id": 130,
+        "question_title": "Which layer in Spring architecture is responsible for business logic?",
+        "option_A": "Repository layer",
+        "option_B": "Service layer",
+        "option_C": "Controller layer",
+        "option_D": "View layer",
+        "correct_anwser": "B",
+        "explain": "Tầng Dịch vụ (Service layer) là nơi tập trung xử lý toàn bộ các quy tắc nghiệp vụ, tính toán logic và điều phối luồng dữ liệu (business logic) của hệ thống trước khi tương tác với cơ sở dữ liệu."
+      },
+      {
+        "question_id": 131,
+        "question_title": "In JavaFX, which layout arranges child nodes in a horizontal row?",
+        "option_A": "VBox",
+        "option_B": "FlowPane",
+        "option_C": "BorderPane",
+        "option_D": "HBox",
+        "correct_anwser": "D",
+        "explain": "`HBox` (Horizontal Box) là một thành phần layout trong JavaFX được thiết kế chuyên biệt để sắp xếp tất cả các node con nằm ngang thành một hàng duy nhất theo thứ tự từ trái sang phải."
+      },
+      {
+        "question_id": 132,
+        "question_title": "Which data format is default in REST responses?",
+        "option_A": "XML",
+        "option_B": "JSON",
+        "option_C": "HTML",
+        "option_D": "CSV",
+        "correct_anwser": "B",
+        "explain": "Trong các dịch vụ Web RESTful hiện đại (bao gồm cả cấu hình mặc định của Spring `@RestController`), JSON (JavaScript Object Notation) là định dạng dữ liệu truyền tải văn bản chuẩn được sử dụng rộng rãi và phổ biến nhất nhờ tính gọn nhẹ, tối ưu và dễ dàng xử lý."
+      },
+      {
+        "question_id": 133,
+        "question_title": "You have a controller:\n\n@RestController\nclass TestController {\n    @GetMapping(\"/hello\")\n    public String hello() { return \"Hi\"; }\n}\n\nWhat is the response of GET /hello request?",
+        "option_A": "HTML page",
+        "option_B": "JSON object {\"hello\":\"Hi\"}",
+        "option_C": "Plain text 'Hi'",
+        "option_D": "Error 404",
+        "correct_anwser": "C",
+        "explain": "Do lớp được đánh dấu bằng `@RestController`, mọi dữ liệu trả về từ các phương thức xử lý yêu cầu sẽ được ghi trực tiếp vào phần thân của HTTP Response (HTTP response body). Khi trả về một chuỗi `String` thuần túy như `\"Hi\"`, phản hồi nhận được sẽ là văn bản thô (Plain text)."
+      },
+      {
+        "question_id": 134,
+        "question_title": "Which class loads FXML files?",
+        "option_A": "FXMLLoader",
+        "option_B": "Scene",
+        "option_C": "Stage",
+        "option_D": "Node",
+        "correct_anwser": "A",
+        "explain": "Lớp `FXMLLoader` trong JavaFX được thiết kế chuyên biệt để đọc, phân tích cú pháp mã XML từ các file cấu hình giao diện `.fxml` và chuyển đổi chúng thành cây phân cấp đối tượng UI (Scene Graph) trong Java."
+      },
+      {
+        "question_id": 135,
+        "question_title": "Which JavaFX element handles user input events?",
+        "option_A": "EventHandler",
+        "option_B": "SceneGraph",
+        "option_C": "Controller",
+        "option_D": "Action",
+        "correct_anwser": "A",
+        "explain": "`EventHandler` là một functional interface trong JavaFX được triển khai để lắng nghe, bắt lấy và xử lý trực tiếp các sự kiện tương tác từ người dùng (như nhấn chuột, nhập phím)."
+      },
+      {
+        "question_id": 136,
+        "question_title": "Which CSS file customizes JavaFX UI?",
+        "option_A": "styles.css",
+        "option_B": "ui.css",
+        "option_C": "design.css",
+        "option_D": "theme.xml",
+        "correct_anwser": "A",
+        "explain": "Mặc dù JavaFX có thể nhận bất kỳ tên file nào có đuôi rộng mở là `.css`, tuy nhiên theo quy chuẩn đặt tên và các dự án mẫu phổ biến trong hệ sinh thái JavaFX, tệp tin cấu hình phong cách giao diện mặc định chuẩn thường được đặt tên là `styles.css`."
+      },
+      {
+        "question_id": 137,
+        "question_title": "What JavaFX class is used to create a popup dialog for displaying confirmation or error messages?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Alert",
+        "option_D": "Pane",
+        "correct_anwser": "C",
+        "explain": "Lớp `Alert` là một lớp tiện ích xây dựng sẵn trong JavaFX chuyên dùng để tạo nhanh các hộp thoại thông báo dạng popup (như thông báo lỗi, cảnh báo, hoặc xác nhận hành động từ người dùng)."
+      },
+      {
+        "question_id": 138,
+        "question_title": "What is the purpose of validation in CRUD operations of JavaFX application?",
+        "option_A": "To improve database performance.",
+        "option_B": "To ensure data integrity and prevent errors.",
+        "option_C": "To enhance user interface aesthetics.",
+        "option_D": "To manage server configurations.",
+        "correct_anwser": "B",
+        "explain": "Mục đích cốt lõi của việc kiểm tra tính hợp lệ dữ liệu (validation) đầu vào trước các thao tác CRUD là đảm bảo tính toàn vẹn của dữ liệu (data integrity), ngăn chặn các định dạng sai sót hoặc giá trị rỗng làm phát sinh lỗi hệ thống trong database hoặc ứng dụng."
+      },
+      {
+        "question_id": 139,
+        "question_title": "Which component in Spring resolves logical view names to actual templates?",
+        "option_A": "ViewResolver",
+        "option_B": "Controller",
+        "option_C": "DispatcherServlet",
+        "option_D": "ResourceLoader",
+        "correct_anwser": "A",
+        "explain": "Trong mô hình xử lý yêu cầu Spring MVC, thành phần `ViewResolver` có nhiệm vụ tiếp nhận chuỗi tên giao diện logic (logical view name, ví dụ: `\"home\"`) được trả về từ Controller và biên dịch giải mã nó thành tệp tin giao diện vật lý thực tế (như `/templates/home.html`)."
+      },
+      {
+        "question_id": 140,
+        "question_title": "What is the purpose of @ResponseBody in a Spring controller?",
+        "option_A": "It returns an HTML page",
+        "option_B": "It converts the return value to JSON or XML",
+        "option_C": "It binds request parameters",
+        "option_D": "It sets the HTTP status code",
+        "correct_anwser": "B",
+        "explain": "Annotation `@ResponseBody` chỉ thị cho Spring tự động chuyển đổi đối tượng hoặc kiểu dữ liệu trả về của phương thức xử lý thành định dạng truyền tải dữ liệu như JSON hoặc XML (thông qua các HttpMessageConverters) và ghi trực tiếp vào HTTP response body thay vì tìm kiếm một trang giao diện (view)."
+      },
+      {
+        "question_id": 141,
+        "question_title": "Which component is responsible for rendering the user interface in a Spring MVC application?",
+        "option_A": "Controller",
+        "option_B": "Model",
+        "option_C": "View",
+        "option_D": "DAO",
+        "correct_anwser": "C",
+        "explain": "Trong mô hình MVC, thành phần View (Giao diện) chịu trách nhiệm nhận dữ liệu từ Model, kết xuất đồ họa (rendering) cấu trúc trang và hiển thị giao diện người dùng cuối cùng trên trình duyệt."
+      },
+      {
+        "question_id": 142,
+        "question_title": "What is the core concept of Inversion of Control (IoC)?",
+        "option_A": "Objects control the creation of their dependencies.",
+        "option_B": "The framework or container controls the creation and management of objects.",
+        "option_C": "Objects are responsible for managing the application's flow.",
+        "option_D": "Methods control the instantiation of classes.",
+        "correct_anwser": "B",
+        "explain": "Khái niệm Inversion of Control (IoC - Đảo ngược điều khiển) có nghĩa là thay vì để các đối tượng tự khởi tạo và quản lý các phụ thuộc (dependencies) của chính mình, quyền kiểm soát này sẽ được chuyển giao (đảo ngược) cho Framework hoặc Container xử lý tự động."
+      },
+      {
+        "question_id": 143,
+        "question_title": "Which JavaFX class represents the content area of the application window?",
+        "option_A": "Stage",
+        "option_B": "Node",
+        "option_C": "Pane",
+        "option_D": "Scene",
+        "correct_anwser": "D",
+        "explain": "Trong cấu trúc của một ứng dụng giao diện JavaFX, Stage đóng vai trò như chiếc cửa sổ bọc ngoài (window), còn Scene chính là lớp container đại diện cho vùng chứa toàn bộ nội dung hiển thị (content area) bên trong cửa sổ đó trước khi gắn các thành phần UI khác vào."
+      },
+      {
+        "question_id": 144,
+        "question_title": "Which JavaFX control is used to display an image?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "D",
+        "explain": "Trong JavaFX, `ImageView` là một control chuyên dụng thuộc thư viện đồ họa được thiết kế cụ thể cho mục đích vẽ và hiển thị các hình ảnh (đối tượng thuộc class `Image`) lên trên giao diện người dùng."
+      },
+      {
+        "question_id": 145,
+        "question_title": "Which layout arranges nodes in border regions?",
+        "option_A": "GridPane",
+        "option_B": "BorderPane",
+        "option_C": "VBox",
+        "option_D": "HBox",
+        "correct_anwser": "B",
+        "explain": "Layout `BorderPane` trong JavaFX sắp xếp các thành phần con (nodes) theo 5 vùng đường biên cố định bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+      },
+      {
+        "question_id": 146,
+        "question_title": "After the controller processes a request, what does it typically return?",
+        "option_A": "A database connection.",
+        "option_B": "A model and view.",
+        "option_C": "A user interface.",
+        "option_D": "A security token.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình Spring MVC truyền thống, sau khi một Controller xử lý xong logic của request, nó thường trả về một đối tượng chứa cả dữ liệu lẫn tên trang hiển thị. Đối tượng này được đóng gói gọn trong lớp `ModelAndView` (gồm dữ liệu dạng `Model` và tên view hiển thị dạng `View`)."
+      },
+      {
+        "question_id": 147,
+        "question_title": "In the MVC pattern, what is the role of the Model?",
+        "option_A": "To handle user input.",
+        "option_B": "To display data to the user.",
+        "option_C": "To manage the application's data and business logic.",
+        "option_D": "To route requests to the appropriate handlers.",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc thiết kế MVC (Model-View-Controller), thành phần `Model` chịu trách nhiệm cốt lõi trong việc đại diện cho trạng thái dữ liệu (application's data), định nghĩa cấu trúc dữ liệu và chứa các logic nghiệp vụ (business logic) của hệ thống."
+      },
+      {
+        "question_id": 148,
+        "question_title": "Which annotation marks a controller?",
+        "option_A": "@Controller",
+        "option_B": "@Service",
+        "option_C": "@Repository",
+        "option_D": "@RestResource",
+        "correct_anwser": "A",
+        "explain": "Để đánh dấu một class đóng vai trò là một Controller tiếp nhận và xử lý các HTTP request trong ứng dụng Spring MVC, chúng ta sử dụng annotation `@Controller` (hoặc biến thể chuyên dụng `@RestController` cho các API dạng RESTful)."
+      },
+      {
+        "question_id": 149,
+        "question_title": "In Spring MVC, what are interceptors used for?",
+        "option_A": "Only for handling exceptions.",
+        "option_B": "Only for mapping requests.",
+        "option_C": "For cross cutting concerns like logging, authentication, and authorization.",
+        "option_D": "Only for defining views.",
+        "correct_anwser": "C",
+        "explain": "`HandlerInterceptor` (gọi tắt là interceptor) trong Spring MVC hoạt động tương tự như một bộ lọc, cho phép bạn can thiệp vào các chu kỳ trước (preHandle), sau (postHandle) và khi hoàn thành (afterCompletion) của một request gửi tới Controller. Do đó, nó cực kỳ hoàn hảo để xử lý các vấn đề cắt ngang (cross-cutting concerns) như kiểm tra quyền truy cập (authentication/authorization), lưu nhật ký (logging), hay thay đổi tham số."
+      },
+      {
+        "question_id": 150,
+        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+        "option_A": "Controller",
+        "option_B": "HandlerMapping",
+        "option_C": "DispatcherServlet",
+        "option_D": "ViewResolver",
+        "correct_anwser": "C",
+        "explain": "Thành phần `DispatcherServlet` đóng vai trò là một Front Controller trong kiến trúc Spring MVC. Mọi HTTP request từ phía máy khách gửi đến ứng dụng đều phải đi qua cửa ngõ trung tâm này đầu tiên, trước khi nó điều hướng công việc sang các thành phần bổ trợ khác xử lý."
+      },
+      {
+        "question_id": 151,
+        "question_title": "Which component maps incoming requests to appropriate controller methods?",
+        "option_A": "HandlerMapping",
+        "option_B": "HandlerAdapter",
+        "option_C": "ViewResolver",
+        "option_D": "ModelAndView",
+        "correct_anwser": "A",
+        "explain": "Nhiệm vụ chính của thành phần `HandlerMapping` trong luồng xử lý Spring MVC là phân tích URL của incoming request, đối chiếu cấu hình để tìm ra Controller và method cụ thể nào phù hợp nhất chịu trách nhiệm xử lý request đó."
+      },
+      {
+        "question_id": 152,
+        "question_title": "Which JavaFX layout should you use to divide the window into top, bottom, center, left, and right?",
+        "option_A": "StackPane",
+        "option_B": "BorderPane",
+        "option_C": "HBox",
+        "option_D": "VBox",
+        "correct_anwser": "B",
+        "explain": "`BorderPane` là một lớp layout được thiết kế sẵn trong JavaFX để chia vùng không gian hiển thị của cửa sổ làm 5 khu vực biên cố định chuẩn bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+      },
+      {
+        "question_id": 153,
+        "question_title": "Which annotation creates REST controller?",
+        "option_A": "@RestController",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation `@RestController` được sử dụng để định nghĩa một Controller theo kiến trúc RESTful Web Services. Nó là một annotation kết hợp (convenience annotation) bao gồm cả `@Controller` và `@ResponseBody`, giúp tự động chuyển đổi dữ liệu trả về từ các method trực tiếp thành định dạng JSON hoặc XML thay vì tìm kiếm một trang View để hiển thị."
+      },
+      {
+        "question_id": 154,
+        "question_title": "Thymeleaf integrates well with:",
+        "option_A": "React.js",
+        "option_B": "Angular.js",
+        "option_C": "Spring MVC.",
+        "option_D": "Node.js",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf là một công cụ template engine phía Server (server-side template engine) hiện đại, nó được thiết kế để tích hợp cực kỳ chặt chẽ và tự nhiên với Spring MVC để thay thế cho công nghệ JSP truyền thống nhằm xử lý giao diện cho các ứng dụng web."
+      },
+      {
+        "question_id": 155,
+        "question_title": "Which of the following is a popular ORM framework for Java?",
+        "option_A": "Spring MVC",
+        "option_B": "Hibernate",
+        "option_C": "JavaFX",
+        "option_D": "Swing",
+        "correct_anwser": "B",
+        "explain": "Hibernate là một framework ORM (Object-Relational Mapping) cực kỳ nổi tiếng và được sử dụng rộng rãi nhất trong thế giới Java. Nó giúp ánh xạ trực tiếp các class đối tượng Java sang các bảng dữ liệu quan hệ trong cơ sở dữ liệu và là core chính triển khai đặc tả JPA."
+      },
+      {
+        "question_id": 156,
+        "question_title": "Which code snippet demonstrates updating an entity using JPA in JavaFX application? (Assume EntityManager em and Entity entity are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "D",
+        "explain": "Để cập nhật (update) trạng thái dữ liệu của một thực thể đã bị tách rời (detached) quay trở lại persistence context trong JPA, phương thức `merge(entity)` của `EntityManager` được sử dụng nhằm sao chép trạng thái hiện tại vào một thực thể được quản lý tương ứng."
+      },
+      {
+        "question_id": 157,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Để đảm bảo nguyên tắc phân tách kiến trúc phần mềm (Separation of Concerns), việc tương tác với tầng dữ liệu thông qua `EntityManager` phải được xử lý ở tầng logic nghiệp vụ như Service layer hoặc tầng điều hướng trung gian là Controller layer, hoàn toàn tránh can thiệp trực tiếp vào tầng hiển thị UI (View)."
+      },
+      {
+        "question_id": 158,
+        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+        "option_A": "HBox/VBox",
+        "option_B": "BorderPane",
+        "option_C": "GridPane",
+        "option_D": "StackPane",
+        "correct_anwser": "C",
+        "explain": "`GridPane` sắp xếp các thành phần UI theo một lưới các ô bao gồm hàng (rows) và cột (columns). Cấu trúc này vô cùng lý tưởng để thiết kế các form nhập liệu (CRUD form), nơi các nhãn (Labels) cần được căn thẳng hàng một cách gọn gàng với các ô nhập liệu (TextFields)."
+      },
+      {
+        "question_id": 159,
+        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+        "option_A": "Label",
+        "option_B": "TextField",
+        "option_C": "TableView",
+        "option_D": "Button",
+        "correct_anwser": "C",
+        "explain": "Trong JavaFX, thành phần UI được thiết kế riêng biệt để hiển thị danh sách dữ liệu có cấu trúc dưới dạng bảng gồm các hàng và các cột có tiêu đề chính là `TableView`."
+      },
+      {
+        "question_id": 160,
+        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+        "option_C": "Controller -> View -> Model -> DispatcherServlet",
+        "option_D": "Handler -> Controller -> DispatcherServlet",
+        "correct_anwser": "A",
+        "explain": "Vòng đời xử lý một request chuẩn trong kiến trúc Spring MVC diễn ra như sau: Request đầu tiên đến Front Controller là `DispatcherServlet` -> Nó hỏi `HandlerMapping` để tìm Controller phù hợp -> Dùng `HandlerAdapter` để thực thi method của `Controller` -> Controller xử lý xong trả về tên View -> `DispatcherServlet` nhờ `ViewResolver` dịch tên đó thành trang giao diện thực tế."
+      },
+      {
+        "question_id": 161,
+        "question_title": "What will be rendered in browser from this Spring MVC controller method?\n@GetMapping(\"/hello\")\n@ResponseBody\npublic String sayHello() {\n    return \"Hello, Spring!\";\n}",
+        "option_A": "A view named \"Hello, Spring!\"",
+        "option_B": "A JSON response",
+        "option_C": "A plain text response: Hello, Spring!",
+        "option_D": "An HTML file from the templates directory",
+        "correct_anwser": "C",
+        "explain": "Sự xuất hiện của annotation `@ResponseBody` sẽ hướng dẫn Spring MVC bỏ qua luồng phân giải giao diện (ViewResolver). Thay vào đó, giá trị String trả về từ method (`\"Hello, Spring!\"`) sẽ được ghi trực tiếp vào thân của HTTP response và gửi thẳng tới trình duyệt dưới dạng một plain text response."
+      },
+      {
+        "question_id": 162,
+        "question_title": "Which annotation is used to define an AOP aspect in Spring?",
+        "option_A": "@Aspect",
+        "option_B": "@Controller",
+        "option_C": "@Repository",
+        "option_D": "@Configuration",
+        "correct_anwser": "A",
+        "explain": "Để định nghĩa một aspect trong Spring AOP (Aspect-Oriented Programming), chúng ta sử dụng annotation @Aspect của AspectJ trên class đó để chỉ định nó chứa các cấu hình AOP."
+      },
+      {
+        "question_id": 163,
+        "question_title": "Which JavaFX control is used to display text?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, Label là control tiêu chuẩn được sử dụng để hiển thị các đoạn text (văn bản) tĩnh trên giao diện. TextField thường dùng cho việc người dùng nhập liệu, trong khi Button là nút bấm."
+      },
+      {
+        "question_id": 164,
+        "question_title": "What is the purpose of event handling in JavaFX?",
+        "option_A": "To manage database connections.",
+        "option_B": "To respond to user interactions.",
+        "option_C": "To handle network requests.",
+        "option_D": "To manage application configurations.",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của event handling (xử lý sự kiện) trong JavaFX cũng như các framework UI là để lắng nghe và phản hồi lại các tương tác của người dùng (user interactions), chẳng hạn như thao tác click chuột, gõ bàn phím, hay di chuyển chuột."
+      },
+      {
+        "question_id": 165,
+        "question_title": "In a typical Spring MVC + Hibernate application, where should the database operations be placed?",
+        "option_A": "Controller class",
+        "option_B": "HTML page",
+        "option_C": "Repository/DAO class",
+        "option_D": "JSP scriptlet",
+        "correct_anwser": "C",
+        "explain": "Theo kiến trúc phân tầng chuẩn của ứng dụng, toàn bộ các thao tác tương tác trực tiếp với cơ sở dữ liệu (database operations) phải được cô lập và đặt trong tầng Data Access Object (DAO) hoặc class Repository. Controller chỉ chịu trách nhiệm nhận/trả request và điều hướng."
+      },
+      {
+        "question_id": 166,
+        "question_title": "Which JavaFX class represents the content area of the application window?",
+        "option_A": "Stage",
+        "option_B": "Node",
+        "option_C": "Pane",
+        "option_D": "Scene",
+        "correct_anwser": "D",
+        "explain": "Trong kiến trúc tổng thể của JavaFX, Stage đại diện cho phần khung ngoài cùng (cửa sổ ứng dụng), trong khi Scene đóng vai trò là vùng nội dung (content area) chứa toàn bộ biểu đồ các thành phần giao diện (Node/Pane) để hiển thị bên trong cửa sổ đó."
+      },
+      {
+        "question_id": 167,
+        "question_title": "In JavaFX, what is a Property?",
+        "option_A": "A static variable.",
+        "option_B": "A dynamic, observable value.",
+        "option_C": "A database field.",
+        "option_D": "A network address.",
+        "correct_anwser": "B",
+        "explain": "Trong JavaFX, Property là một wrapper chứa dữ liệu có khả năng quan sát (observable value). Nghĩa là khi giá trị của Property thay đổi, nó có thể tự động thông báo cho các UI component (giao diện) đang binding với nó để cập nhật tương ứng."
+      },
+      {
+        "question_id": 168,
+        "question_title": "Spring MVC is based on which design pattern?",
+        "option_A": "Observer",
+        "option_B": "Model-View-Controller",
+        "option_C": "Decorator",
+        "option_D": "Command",
+        "correct_anwser": "B",
+        "explain": "Đúng như tên gọi của nó, Spring MVC được xây dựng dựa trên design pattern Model-View-Controller (MVC). Pattern này giúp tách biệt dữ liệu (Model), giao diện hiển thị (View) và phần điều hướng logic (Controller)."
+      },
+      {
+        "question_id": 169,
+        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
+        "option_A": "As a listener.",
+        "option_B": "As a filter.",
+        "option_C": "As a servlet.",
+        "option_D": "As a resource.",
+        "correct_anwser": "C",
+        "explain": "Trong cách cấu hình truyền thống của ứng dụng web Java, DispatcherServlet đóng vai trò là Front Controller và được cấu hình như một servlet trong file web.xml để nó có thể chặn (intercept) và xử lý các HTTP requests."
+      },
+      {
+        "question_id": 170,
+        "question_title": "After the DispatcherServlet receives a request, which component is used to determine the appropriate controller?",
+        "option_A": "ViewResolver",
+        "option_B": "HandlerMapping",
+        "option_C": "Controller",
+        "option_D": "Model",
+        "correct_anwser": "B",
+        "explain": "Khi DispatcherServlet nhận được một HTTP request, nó sẽ tham chiếu tới HandlerMapping để tìm ra Controller (hoặc handler method) nào được map với URL của request đó."
+      },
+      {
+        "question_id": 171,
+        "question_title": "In the MVC pattern, what is the role of the Model?",
+        "option_A": "To handle user input.",
+        "option_B": "To display data to the user.",
+        "option_C": "To manage the application's data and business logic.",
+        "option_D": "To route requests to the appropriate handlers.",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc MVC, thành phần Model chịu trách nhiệm cốt lõi là quản lý dữ liệu (data) và thực thi các quy tắc nghiệp vụ (business logic) của ứng dụng. Việc nhận request là của Controller và hiển thị là của View."
+      },
+      {
+        "question_id": 172,
+        "question_title": "Which statement correctly describes @ExceptionHandler and @ControllerAdvice?",
+        "option_A": "@ExceptionHandler methods handle exceptions across all controllers by default; @ControllerAdvice limits them to one controller",
+        "option_B": "@ExceptionHandler only works with REST controllers; @ControllerAdvice only with MVC controllers",
+        "option_C": "@ExceptionHandler in a controller handles exceptions for that controller; @ControllerAdvice can apply such handlers globally",
+        "option_D": "Both are deprecated in favor of filters",
+        "correct_anwser": "C",
+        "explain": "Annotation @ExceptionHandler khi định nghĩa bên trong một Controller thì chỉ bắt lỗi cho Controller đó (cục bộ). Tuy nhiên, khi định nghĩa bên trong một class có chứa @ControllerAdvice, thì các phương thức bắt lỗi đó sẽ được áp dụng globally (toàn cục) cho toàn bộ ứng dụng."
+      },
+      {
+        "question_id": 173,
+        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
+        "option_A": "URL expressions.",
+        "option_B": "Message expressions.",
+        "option_C": "Variable expressions.",
+        "option_D": "Fragment expressions.",
+        "correct_anwser": "C",
+        "explain": "Cú pháp ${...} trong Thymeleaf đại diện cho Variable expressions. Nó được sử dụng để truy xuất các giá trị của các biến (variables) từ context/model mà Controller đã truyền sang cho View."
+      },
+      {
+        "question_id": 174,
+        "question_title": "Which annotation creates REST controller?",
+        "option_A": "@RestController",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation @RestController được sử dụng để đánh dấu một class là RESTful web controller. Nó là sự kết hợp tiện lợi của @Controller và @ResponseBody, giúp dữ liệu trả về từ các method sẽ tự động được parse thành format như JSON/XML thay vì render ra giao diện HTML."
+      },
+      {
+        "question_id": 175,
+        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+        "option_A": "Label or Alert",
+        "option_B": "Button",
+        "option_C": "TableView",
+        "option_D": "TextField",
+        "correct_anwser": "A",
+        "explain": "Để hiển thị các message lỗi xác thực (validation error), ta thường dùng control Label để hiển thị text lỗi ngay bên cạnh trường nhập liệu trên giao diện (inline), hoặc dùng Alert để bật lên một hộp thoại popup (dialog) thông báo cho người dùng."
+      },
+      {
+        "question_id": 176,
+        "question_title": "In JavaFX, consider:\nButton btn = new Button(\"Click\");\nbtn.setOnAction(e -> System.out.println(\"Pressed\"));\nWhat happens when user clicks the button?",
+        "option_A": "Nothing",
+        "option_B": "Compilation error",
+        "option_C": "Text 'Pressed' is printed in console",
+        "option_D": "Button disappears",
+        "correct_anwser": "C",
+        "explain": "Đoạn code trên sử dụng lambda expression để gán một event handler cho sự kiện click button. Khi người dùng click vào button, logic bên trong lambda sẽ được thực thi, lệnh System.out.println sẽ in chuỗi 'Pressed' ra màn hình console."
+      },
+      {
+        "question_id": 177,
+        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+        "option_A": "Label",
+        "option_B": "TextField",
+        "option_C": "TableView",
+        "option_D": "Button",
+        "correct_anwser": "C",
+        "explain": "Trong JavaFX, TableView là component được thiết kế chuyên dụng để hiển thị dữ liệu dạng danh sách dưới định dạng bảng (table format), bao gồm cấu trúc chia theo các cột (columns) và hàng (rows)."
+      },
+      {
+        "question_id": 178,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Theo các pattern kiến trúc phần mềm tiêu chuẩn (như MVC, Layered Architecture), các thao tác xử lý business logic và tương tác với database (thông qua EntityManager) cần được tách biệt khỏi giao diện (View layer) hay dữ liệu (Entity class), và thường được đặt/quản lý tại tầng Service hoặc tầng Controller."
+      },
+      {
+        "question_id": 179,
+        "question_title": "What is the purpose of the Model in a Spring application?",
+        "option_A": "To define user interfaces.",
+        "option_B": "To represent domain objects and data.",
+        "option_C": "To manage HTTP requests.",
+        "option_D": "To handle application deployment.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình MVC của Spring, thành phần Model đóng vai trò đại diện cho các đối tượng nghiệp vụ (domain objects) và lưu giữ data để chuyển giao/hiển thị thông tin giữa Controller và View."
+      },
+      {
+        "question_id": 180,
+        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+        "option_C": "Controller -> View -> Model -> DispatcherServlet",
+        "option_D": "Handler -> Controller -> DispatcherServlet",
+        "correct_anwser": "A",
+        "explain": "Vòng đời chuẩn của một HTTP request trong Spring MVC là: Request đi vào DispatcherServlet (Front Controller) -> Nó hỏi HandlerMapping để tìm ra Controller nào xử lý -> Nó dùng HandlerAdapter để gọi/thực thi Controller đó -> Sau khi có kết quả (Model and View name), nó dùng ViewResolver để tìm ra file View thực tế để render kết quả trả về cho user."
+      },
+      {
+        "question_id": 181,
+        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+        "option_A": "Handling UI rendering on the client",
+        "option_B": "Acting as the front controller to dispatch requests to appropriate handlers",
+        "option_C": "Encrypting HTTP requests",
+        "option_D": "Managing database transactions",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc Spring MVC, DispatcherServlet đóng vai trò là một front controller trung tâm. Nhiệm vụ của nó là tiếp nhận toàn bộ các HTTP requests từ client và điều phối (dispatch) chúng đến các Controller (handlers) phù hợp để xử lý dựa trên cấu hình URL."
+      },
+      {
+        "question_id": 182,
+        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle HTTP requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Chức năng chính của Controller trong mô hình Spring MVC là lắng nghe và xử lý các HTTP requests từ người dùng. Sau khi thực thi logic nghiệp vụ xong, nó sẽ trả về dữ liệu (Model) cùng với tên của giao diện (View name) để hệ thống tiến hành render kết quả cuối cùng."
+      },
+      {
+        "question_id": 183,
+        "question_title": "You have a controller:\n@RestController\nclass TestController {\n  @GetMapping(\"/hello\")\n  public String hello() { return \"Hi\"; }\n}\nWhat is the response of GET /hello request?",
+        "option_A": "HTML page",
+        "option_B": "JSON object {\"hello\":\"Hi\"}",
+        "option_C": "Plain text 'Hi'",
+        "option_D": "Error 404",
+        "correct_anwser": "C",
+        "explain": "Annotation @RestController mặc định đã chứa @ResponseBody, nghĩa là giá trị return của method sẽ được viết trực tiếp vào phần body của HTTP response. Vì phương thức hello() trả về một đối tượng kiểu chuỗi String đơn giản, framework sẽ không convert nó sang cấu trúc JSON mà trả về thẳng định dạng plain text là 'Hi'."
+      },
+      {
+        "question_id": 184,
+        "question_title": "Which code snippet shows how to set the size of a scene?",
+        "option_A": "Scene scene = new Scene(new Pane(), 400, 300);",
+        "option_B": "Stage stage = new Stage(new Pane(), 400, 300);",
+        "option_C": "Node node = new Node(new Pane(), 400, 300);",
+        "option_D": "Button button = new Button(new Pane(), 400, 300);",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, kích thước rộng (width) và cao (height) của vùng hiển thị được định nghĩa trực tiếp bằng cách truyền các tham số số thực vào hàm khởi tạo của lớp `javafx.scene.Scene` (ví dụ ở đây là `400` và `300`)."
+      },
+      {
+        "question_id": 185,
+        "question_title": "Which code snippet shows how to set the title of a stage?",
+        "option_A": "Scene scene = new Scene(); scene.setTitle(\"My App\");",
+        "option_B": "Stage stage = new Stage(); stage.setTitle(\"My App\");",
+        "option_C": "Node node = new Node(); node.setTitle(\"My App\");",
+        "option_D": "Button button = new Button(); button.setTitle(\"My App\");",
+        "correct_anwser": "B",
+        "explain": "Lớp `Stage` đại diện cho cửa sổ ứng dụng cấp cao nhất (Top-level container) trong JavaFX. Phương thức `.setTitle(String title)` là phương thức chuẩn thuộc lớp này dùng để gán tiêu đề hiển thị trên thanh tiêu đề của cửa sổ."
+      },
+      {
+        "question_id": 186,
+        "question_title": "What is the base class for all visual components in JavaFX?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Node",
+        "option_D": "Pane",
+        "correct_anwser": "C",
+        "explain": "Lớp trừu tượng `javafx.scene.Node` là lớp cha cơ sở (base class) cao nhất cho tất cả các thành phần giao diện hiển thị hình ảnh nằm trong cây đồ họa (Scene Graph) của JavaFX, bao gồm cả các control (Button, TextField...) và các layout pane (HBox, VBox...)."
+      },
+      {
+        "question_id": 187,
+        "question_title": "In JavaFX, what is a Property?",
+        "option_A": "A static variable.",
+        "option_B": "A dynamic, observable value.",
+        "option_C": "A database field.",
+        "option_D": "A network address.",
+        "correct_anwser": "B",
+        "explain": "Trong JavaFX, một `Property` (Thuộc tính) là một đối tượng chứa dữ liệu động và có khả năng quan sát (observable). Nó cho phép các thành phần UI lắng nghe sự thay đổi giá trị và hỗ trợ tính năng liên kết dữ liệu mạnh mẽ (data binding)."
+      },
+      {
+        "question_id": 188,
+        "question_title": "What does the method show() do in the Stage class?",
+        "option_A": "Sets the title of the stage.",
+        "option_B": "Sets the scene of the stage.",
+        "option_C": "Displays the stage to the user.",
+        "option_D": "Closes the stage.",
+        "correct_anwser": "C",
+        "explain": "Phương thức `show()` trong lớp `Stage` của JavaFX được sử dụng để hiển thị cửa sổ giao diện đồ họa lên cho người dùng nhìn thấy và tương tác."
+      },
+      {
+        "question_id": 189,
+        "question_title": "What is the container that holds all the visual content in a JavaFX application?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Node",
+        "option_D": "Pane",
+        "correct_anwser": "B",
+        "explain": "Lớp `Scene` (Cảnh nền) đóng vai trò là container chứa toàn bộ nội dung hiển thị (visual content) của một đồ thị giao diện (Scene Graph) trong JavaFX. Một `Scene` sau đó sẽ được đặt vào bên trong một `Stage` để hiển thị ra cửa sổ."
+      },
+      {
+        "question_id": 190,
+        "question_title": "What is JavaFX?",
+        "option_A": "A server-side Java framework.",
+        "option_B": "A library for building rich client applications.",
+        "option_C": "A database management system.",
+        "option_D": "A web development framework.",
+        "correct_anwser": "B",
+        "explain": "JavaFX là một bộ công cụ phần mềm, một thư viện nền tảng của Java dùng để thiết kế và xây dựng các ứng dụng desktop client phong phú (Rich Client Applications) với giao diện người dùng (UI) hiện đại, hỗ trợ đồ họa và media."
+      },
+      {
+        "question_id": 191,
+        "question_title": "What is the purpose of Spring Interceptors?",
+        "option_A": "To manage database connections.",
+        "option_B": "To intercept and process HTTP requests before or after they are handled by a controller.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Spring Interceptor (HandlerInterceptor) được sử dụng để can thiệp vào vòng đời xử lý yêu cầu HTTP. Nó cho phép thực hiện các đoạn mã tiền xử lý (pre-handle) hoặc hậu xử lý (post-handle) xung quanh các Controller (ví dụ như kiểm tra quyền truy cập, ghi log, đo thời gian phản hồi)."
+      },
+      {
+        "question_id": 192,
+        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+        "option_A": "Controller",
+        "option_B": "HandlerMapping",
+        "option_C": "DispatcherServlet",
+        "option_D": "ViewResolver",
+        "correct_anwser": "C",
+        "explain": "Trong vòng đời của Spring MVC, `DispatcherServlet` đóng vai trò là một Front Controller. Nó là thành phần trung tâm đầu tiên trực tiếp đón nhận tất cả các yêu cầu HTTP gửi đến, trước khi điều phối chúng tới các HandlerMapping và Controller phù hợp."
+      },
+      {
+        "question_id": 193,
+        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle all incoming HTTP requests.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "`DispatcherServlet` hoạt động như mẫu thiết kế Front Controller trong Spring MVC, chịu trách nhiệm chính trong việc tiếp nhận và điều phối mọi yêu cầu HTTP đi vào đến các thành phần xử lý tương ứng trong hệ thống."
+      },
+      {
+        "question_id": 194,
+        "question_title": "Thymeleaf integrates well with:",
+        "option_A": "React.js",
+        "option_B": "Angular.js",
+        "option_C": "Spring MVC.",
+        "option_D": "Node.js",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf được thiết kế từ gốc để tương thích và tích hợp cực kỳ chặt chẽ với framework Spring MVC, hỗ trợ hoàn hảo việc xử lý dữ liệu từ đối tượng Spring Model và các tính năng kiểm lỗi form."
+      },
+      {
+        "question_id": 195,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Để đảm bảo nguyên lý phân lớp trong kiến trúc phần mềm, `EntityManager` (hoặc các lớp Repository/Service bao bọc nó) thường được khởi tạo, quản lý và gọi trong tầng Controller hoặc tầng Service nhằm tách biệt hoàn toàn logic xử lý dữ liệu khỏi tầng hiển thị (View)."
+      },
+      {
+        "question_id": 196,
+        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+        "option_A": "Label or Alert",
+        "option_B": "Button",
+        "option_C": "TableView",
+        "option_D": "TextField",
+        "correct_anwser": "A",
+        "explain": "Để hiển thị thông báo lỗi khi kiểm tra dữ liệu đầu vào (validation errors), cấu phần `Label` thường được dùng để hiển thị dòng chữ đỏ ngay cạnh trường nhập liệu, hoặc hộp thoại `Alert` được dùng để bật lên thông báo popup cảnh báo trực quan cho người dùng."
+      },
+      {
+        "question_id": 197,
+        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+        "option_A": "HBox/VBox",
+        "option_B": "BorderPane",
+        "option_C": "GridPane",
+        "option_D": "StackPane",
+        "correct_anwser": "C",
+        "explain": "`GridPane` sắp xếp các thành phần con theo dạng lưới gồm các hàng và các cột linh hoạt, rất lý tưởng để thiết kế form nhập liệu (CRUD) chứa các cặp thành phần như nhãn bên trái thẳng hàng với trường nhập liệu tương ứng bên phải."
+      },
+      {
+        "question_id": 198,
+        "question_title": "What is the purpose of the Model in a Spring application?",
+        "option_A": "To define user interfaces.",
+        "option_B": "To represent domain objects and data.",
+        "option_C": "To manage HTTP requests.",
+        "option_D": "To handle application deployment.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình MVC (Model-View-Controller) của Spring, thành phần `Model` chịu trách nhiệm biểu diễn dữ liệu của ứng dụng, các đối tượng domain (domain objects) và trạng thái của nghiệp vụ nhằm chuẩn bị chuyển giao cho View hiển thị."
+      },
+      {
+        "question_id": 199,
+        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle HTTP requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Controller trong Spring MVC đóng vai trò là điểm tiếp nhận và xử lý trực tiếp các yêu cầu HTTP gửi đến từ phía người dùng, thực hiện điều phối luồng xử lý và trả về đối tượng dữ liệu (Model) cùng trang giao diện (View) tương ứng."
+      },
+      {
+        "question_id": 200,
+        "question_title": "When using Spring ORM with Hibernate, what annotation is commonly used to map a Java class to a database table?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Controller",
+        "correct_anwser": "C",
+        "explain": "Annotation `@Entity` (được định nghĩa trong đặc tả JPA chuẩn được Spring ORM/Hibernate hỗ trợ) là cấu phần bắt buộc dùng để đánh dấu và ánh xạ một lớp Java thành một thực thể bền vững tương ứng với một bảng trong cơ sở dữ liệu."
       }
     ]
   },
@@ -9666,6 +9642,2030 @@ export const QUIZZES: QuizSet[] = [
         "option_D": "Process improvement should be evolutionary and continuous",
         "correct_anwser": "B",
         "explain": "Cải tiến quy trình phần mềm (SPI) luôn nhấn mạnh vào sự đồng lòng, tối ưu hóa quy trình làm việc chung và tinh thần đồng đội (teamwork) chứ không bao giờ đặt sự đóng góp mang tính cá nhân biệt lập lên trên (B)."
+      }
+    ]
+  },
+  {
+    "id": "hsf302-module-1-java-spring-boot",
+    "title": "HSF302 - Module 1 - Java Spring Boot",
+    "description": "Working with Spring Framework Quiz",
+    "questionsCount": 96,
+    "questions": [
+      {
+        "question_id": 1,
+        "question_title": "If you have a Student entity and a Course entity with a Many-to-Many relationship, and you want to fetch all students enrolled in a specific course, how would you typically structure the query in JPA?",
+        "option_A": "By querying the Student entity with a join on the Course entity.",
+        "option_B": "By querying the join table directly.",
+        "option_C": "By querying the Course entity and accessing its students collection.",
+        "option_D": "By querying the Student entity and filtering based on the course ID in the Student table.",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, cách tự nhiên và hướng đối tượng nhất để lấy các thực thể liên quan trong mối quan hệ Nhiều-Nhiều (Many-to-Many) là truy vấn thực thể cha mục tiêu (Course), sau đó truy cập vào thuộc tính tập hợp được ánh xạ của nó (students). JPA sẽ tự động xử lý bảng trung gian (join table) cho bạn."
+      },
+      {
+        "question_id": 2,
+        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
+        "option_A": "Aspect-Oriented Programming (AOP)",
+        "option_B": "Dependency Injection (DI)",
+        "option_C": "Resource Management",
+        "option_D": "Event Handling",
+        "correct_anwser": "B",
+        "explain": "Đoạn mã trên minh họa cho tính năng Tiêm phụ thuộc - Dependency Injection (cụ thể là Setter Injection). Trong đó, đối tượng phụ thuộc (dependency) được cung cấp vào class từ bên ngoài thông qua một hàm setter công khai, thay vì được khởi tạo trực tiếp bằng từ khóa 'new' bên trong class."
+      },
+      {
+        "question_id": 3,
+        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Constructor Injection (Tiêm qua hàm khởi tạo) là một mô hình thiết kế mà ở đó các phụ thuộc bắt buộc được truyền vào làm tham số thông qua hàm khởi tạo của class khi đối tượng được khởi tạo."
+      },
+      {
+        "question_id": 4,
+        "question_title": "Which annotation is used to define a JPA Many-to-Many relationship?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "D",
+        "explain": "Annotation `@ManyToMany` được định nghĩa trong đặc tả Jakarta Persistence (JPA) để thiết lập và đánh dấu mối quan hệ nhiều-nhiều giữa hai thực thể dữ liệu."
+      },
+      {
+        "question_id": 5,
+        "question_title": "Which AOP advice type executes before a join point?",
+        "option_A": "After",
+        "option_B": "AfterReturning",
+        "option_C": "Before",
+        "option_D": "Around",
+        "correct_anwser": "C",
+        "explain": "Advice loại 'Before' được thiết kế để thực thi các logic can thiệp (intercepting logic) ngay trước khi phương thức nghiệp vụ mục tiêu (join point) thực sự được chạy."
+      },
+      {
+        "question_id": 6,
+        "question_title": "Which of the following is TRUE about Dependency Injection (DI) in Spring?",
+        "option_A": "It tightly couples the components",
+        "option_B": "It reduces testability of code",
+        "option_C": "It promotes loose coupling between components",
+        "option_D": "It is required only for web apps",
+        "correct_anwser": "C",
+        "explain": "Dependency Injection giúp tách biệt việc khởi tạo đối tượng khỏi logic sử dụng của lớp, từ đó giúp giảm thiểu sự phụ thuộc trực tiếp (loose coupling - liên kết lỏng lẻo) giữa các thành phần phần mềm, tăng tính linh hoạt và dễ dàng viết Unit Test."
+      },
+      {
+        "question_id": 7,
+        "question_title": "Which annotation is used to define a Spring Boot main class?\n@SpringBootApplication\npublic class AppStarter {\n    public static void main(String[] args) {\n        SpringApplication.run(AppStarter.class, args);\n    }\n}",
+        "option_A": "@SpringBoot",
+        "option_B": "@App",
+        "option_C": "@SpringApplication",
+        "option_D": "@SpringBootApplication",
+        "correct_anwser": "D",
+        "explain": "Annotation `@SpringBootApplication` là một annotation tổng hợp (gồm `@Configuration`, `@EnableAutoConfiguration`, và `@ComponentScan`), được đặt ngay trên đầu lớp chứa phương thức `main` để khai báo đây là lớp cấu hình chính khởi chạy ứng dụng Spring Boot."
+      },
+      {
+        "question_id": 8,
+        "question_title": "Which component provides automatic restart and LiveReload to speed up development?",
+        "option_A": "Spring Boot DevTools",
+        "option_B": "Spring Boot Actuator",
+        "option_C": "SpringApplication",
+        "option_D": "Spring Boot Test",
+        "correct_anwser": "A",
+        "explain": "Mô-đun `Spring Boot DevTools` cung cấp các tính năng tiện ích hỗ trợ quá trình phát triển (development), bao gồm cơ chế tự động khởi chạy lại ứng dụng (automatic restart) khi mã nguồn thay đổi và tính năng LiveReload để tự động làm mới trình duyệt."
+      },
+      {
+        "question_id": 9,
+        "question_title": "What is the benefit of Spring Boot's embedded servers?",
+        "option_A": "They require separate installation and configuration.",
+        "option_B": "They simplify deployment and reduce the need for external application servers.",
+        "option_C": "They offer limited performance compared to external servers.",
+        "option_D": "They are only compatible with specific operating systems.",
+        "correct_anwser": "B",
+        "explain": "Các máy chủ được nhúng sẵn (như Tomcat, Jetty) giúp ứng dụng Spring Boot có thể chạy độc lập như một file JAR thông thường (`java -jar`), đơn giản hóa tối đa quy trình triển khai phần mềm và loại bỏ việc phải cài đặt/cấu hình các máy chủ ứng dụng bên ngoài phức tạp."
+      },
+      {
+        "question_id": 10,
+        "question_title": "What does externalized configuration in Spring Boot enable?",
+        "option_A": "Hard-coding all configuration inside Java classes",
+        "option_B": "Packing configuration into compiled bytecode for security",
+        "option_C": "Supplying settings (e.g., database details) via properties/YAML and environment so the same build can run in different environments",
+        "option_D": "Requiring a separate XML file for every bean definition",
+        "correct_anwser": "C",
+        "explain": "Cấu hình tách biệt ra ngoài (Externalized Configuration) cho phép lập trình viên định nghĩa các tham số hệ thống thông qua các file như `.properties`, `.yml`, hoặc biến môi trường. Nhờ đó, một gói build ứng dụng duy nhất có thể tái sử dụng và chạy linh hoạt trên nhiều môi trường khác nhau (như Dev, Staging, Production) mà không cần sửa đổi mã nguồn."
+      },
+      {
+        "question_id": 11,
+        "question_title": "What is the purpose of the @Column annotation in JPA?",
+        "option_A": "It specifies the primary key field of an entity",
+        "option_B": "It maps an entity field to a table column and allows setting column attributes",
+        "option_C": "It marks a field that should not be persisted",
+        "option_D": "It defines a many-to-many relationship",
+        "correct_anwser": "B",
+        "explain": "Annotation `@Column` trong JPA được sử dụng để liên kết cấu hình rõ ràng một thuộc tính của thực thể Java với một cột dữ liệu tương ứng trong bảng cơ sở dữ liệu quan hệ, cho phép tùy chỉnh các thuộc tính của cột như tên cột (`name`), độ dài (`length`), tính duy nhất (`unique`), hoặc có được phép null hay không (`nullable`)."
+      },
+      {
+        "question_id": 12,
+        "question_title": "Which annotation is used to mark a Java class as a JPA entity?",
+        "option_A": "@Table",
+        "option_B": "@Entity",
+        "option_C": "@Column",
+        "option_D": "@Id",
+        "correct_anwser": "B",
+        "explain": "Để khai báo một lớp Java thông thường thành một mô hình đối tượng persistent đại diện cho một bảng dữ liệu quan hệ trong cơ chế ORM của JPA, lớp đó bắt buộc phải sử dụng annotation mức class là `@Entity`."
+      },
+      {
+        "question_id": 13,
+        "question_title": "Which JPA feature allows relationships between tables?",
+        "option_A": "Dependency Injection",
+        "option_B": "Annotations",
+        "option_C": "Entity Relationships",
+        "option_D": "Transactions",
+        "correct_anwser": "C",
+        "explain": "Mối quan hệ giữa các thực thể (Entity Relationships) là tính năng cốt lõi của JPA cho phép định nghĩa liên kết dữ liệu giữa các bảng trong cơ sở dữ liệu thông qua các mối quan hệ hướng đối tượng như `@OneToOne`, `@OneToMany`, `@ManyToOne`, và `@ManyToMany`."
+      },
+      {
+        "question_id": 14,
+        "question_title": "What best describes the Java Persistence API (JPA)?",
+        "option_A": "A low-level JDBC driver for vendor-specific SQL",
+        "option_B": "A specification for managing relational data in Java applications using object-relational mapping",
+        "option_C": "A GUI tool for database administration in IntelliJ IDEA",
+        "option_D": "A NoSQL database used by Java applications",
+        "correct_anwser": "B",
+        "explain": "JPA (Java Persistence API) không phải là một cơ sở dữ liệu hay một driver cụ thể, mà là một đặc tả (specification) tiêu chuẩn của Java đưa ra các quy tắc để quản lý dữ liệu quan hệ thông qua kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM)."
+      },
+      {
+        "question_id": 15,
+        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
+        "option_A": "Servlet",
+        "option_B": "EntityManager",
+        "option_C": "JSP",
+        "option_D": "JDBC Driver",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc JPA, `EntityManager` là thành phần trung tâm chịu trách nhiệm quản lý vòng đời của các thực thể (entities), thực hiện các thao tác CRUD cơ bản (thêm, sửa, xóa, đọc) và đồng bộ dữ liệu xuống database."
+      },
+      {
+        "question_id": 16,
+        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
+        "option_A": "@Column",
+        "option_B": "@Entity",
+        "option_C": "@OneToMany",
+        "option_D": "@Transient",
+        "correct_anwser": "C",
+        "explain": "`@OneToMany` (Một-Nhiều) là một annotation quan hệ điển hình dùng để khai báo mối liên kết dữ liệu giữa hai thực thể khác nhau trong JPA. Các tùy chọn khác như `@Column` dùng cho cột dữ liệu, `@Entity` dùng khai báo thực thể, và `@Transient` dùng để bỏ qua không lưu trữ thuộc tính."
+      },
+      {
+        "question_id": 17,
+        "question_title": "What is the role of a Data Access Object (DAO) in Spring application?",
+        "option_A": "To define business logic.",
+        "option_B": "To manage user sessions.",
+        "option_C": "To provide an abstraction layer for database interactions.",
+        "option_D": "To handle application security.",
+        "correct_anwser": "C",
+        "explain": "Pattern DAO (Data Access Object) đóng vai trò cung cấp một lớp trừu tượng bao bọc xung quanh các tác vụ truy vấn cơ sở dữ liệu, giúp tách biệt hoàn toàn logic truy cập dữ liệu (SQL/HQL) ra khỏi tầng xử lý nghiệp vụ (Service)."
+      },
+      {
+        "question_id": 18,
+        "question_title": "ORM frameworks supported by Spring include:",
+        "option_A": "Hibernate",
+        "option_B": "EclipseLink",
+        "option_C": "MyBatis",
+        "option_D": "All of the above",
+        "correct_anwser": "D",
+        "explain": "Spring cung cấp khả năng tích hợp rất mạnh mẽ với hầu hết các framework ORM (Object-Relational Mapping) và data mapper phổ biến trong hệ sinh thái Java bao gồm Hibernate, EclipseLink, và cả MyBatis."
+      },
+      {
+        "question_id": 19,
+        "question_title": "What is the purpose of the @JoinTable annotation in a ManyToMany relationship?",
+        "option_A": "To define the primary key of the entities.",
+        "option_B": "To specify the join table and its columns.",
+        "option_C": "To define the entity relationships.",
+        "option_D": "To create a new database.",
+        "correct_anwser": "B",
+        "explain": "Annotation `@JoinTable` được sử dụng trong mối quan hệ Nhiều-Nhiều để cấu hình chi tiết tên của bảng trung gian (join table) cũng như các cột khóa ngoại (`joinColumns` và `inverseJoinColumns`) kết nối hai bảng dữ liệu chính với nhau."
+      },
+      {
+        "question_id": 20,
+        "question_title": "Which method name follows Spring Data JPA query derivation conventions for case-insensitive containment by email?",
+        "option_A": "lookupByEmailLikeIgnoreCase(String email)",
+        "option_B": "findByEmailContainingIgnoreCase(String email)",
+        "option_C": "queryWhereEmailContainsCaseInsensitive(String email)",
+        "option_D": "selectEmailContainsIgnoreCase(String email)",
+        "correct_anwser": "B",
+        "explain": "Theo quy chuẩn phân tích cú pháp tên hàm tự sinh (Query Derivation) của Spring Data JPA: Hàm phải bắt đầu bằng `findBy`, theo sau là thuộc tính `Email`, từ khóa kiểm tra chuỗi con chứa bên trong là `Containing`, và từ khóa bỏ qua chữ hoa chữ thường là `IgnoreCase`. Do đó, `findByEmailContainingIgnoreCase` là cú pháp chuẩn xác nhất."
+      },
+      {
+        "question_id": 21,
+        "question_title": "Which annotation is used to map a one-to-many relationship?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Annotation `@OneToMany` được cung cấp bởi JPA nhằm khai báo mối quan hệ Một-Nhiều giữa một thực thể gốc với một tập hợp danh sách các thực thể liên quan."
+      },
+      {
+        "question_id": 22,
+        "question_title": "Spring Data JPA is built on top of:",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Core",
+        "option_C": "JPA",
+        "option_D": "Servlets",
+        "correct_anwser": "C",
+        "explain": "Spring Data JPA là một tầng trừu tượng cao cấp (high-level abstraction) được xây dựng đè lên trên nền tảng của đặc tả JPA (Java Persistence API) tiêu chuẩn nhằm giúp đơn giản hóa tối đa việc triển khai các lớp kho dữ liệu (Repository)."
+      },
+      {
+        "question_id": 23,
+        "question_title": "Which keyword is used in a repository method to find entities by a specific property?",
+        "option_A": "searchBy",
+        "option_B": "findBy",
+        "option_C": "getWhere",
+        "option_D": "queryFor",
+        "correct_anwser": "B",
+        "explain": "Từ khóa tiền tố phổ biến và chuẩn mực nhất được sử dụng trong cơ chế Query Method của Spring Data JPA để bắt đầu một truy vấn tìm kiếm dữ liệu dựa trên thuộc tính là `findBy` (hoặc các biến thể tương đương như `readBy`, `getBy`, `queryBy`)."
+      },
+      {
+        "question_id": 24,
+        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
+        "option_A": "Defining user interfaces.",
+        "option_B": "Implementing cross-cutting concerns like logging and security.",
+        "option_C": "Managing database transactions.",
+        "option_D": "Creating web service clients.",
+        "correct_anwser": "B, C",
+        "explain": "Lập trình hướng khía cạnh (AOP) trong Spring được thiết kế để giải quyết các cross-cutting concerns (vấn đề cắt ngang hệ thống) như logging, security, auditing (Lựa chọn B). Ngoài ra, tính năng quản lý transaction tự động của Spring (Declarative Transaction Management) cũng được xây dựng dựa trên nền tảng của Spring AOP (Lựa chọn C). Cả hai đều là những ứng dụng thực tế phổ biến nhất của AOP."
+      },
+      {
+        "question_id": 25,
+        "question_title": "Which of the following components is responsible for managing the lifecycle of beans in the Spring Core Container?",
+        "option_A": "DispatcherServlet",
+        "option_B": "BeanFactory or ApplicationContext",
+        "option_C": "ViewResolver",
+        "option_D": "HandlerMapping",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình kiến trúc Spring Core, BeanFactory và ApplicationContext (một phiên bản nâng cao kế thừa từ BeanFactory) chính là các interface đại diện trực tiếp cho Spring Container, chịu trách nhiệm quản lý cấu hình và lifecycle của các bean."
+      },
+      {
+        "question_id": 26,
+        "question_title": "Which AOP concept defines a point in the execution of the application where an advice can be applied?",
+        "option_A": "Aspect",
+        "option_B": "Advice",
+        "option_C": "Join Point",
+        "option_D": "Pointcut",
+        "correct_anwser": "C",
+        "explain": "Trong thuật ngữ Spring AOP, một Join Point đại diện cho một điểm cụ thể trong quá trình thực thi ứng dụng (chẳng hạn như khi một method được gọi hoặc một ngoại lệ được ném ra) mà tại đó một Advice (hành động/mã xử lý) có thể được chèn vào để thực thi."
+      },
+      {
+        "question_id": 27,
+        "question_title": "In a JPA Many-to-Many relationship, how is the relationship typically represented in the database?",
+        "option_A": "By adding a foreign key column to one of the entities.",
+        "option_B": "By adding a foreign key column to both entities.",
+        "option_C": "By using a join table that contains foreign keys referencing both entities.",
+        "option_D": "By storing the related entities in a serialized format within a single column.",
+        "correct_anwser": "C",
+        "explain": "Để biểu diễn một mối quan hệ nhiều-nhiều (Many-to-Many relationship) trong cơ sở dữ liệu quan hệ, cách tiếp cận chuẩn hóa luôn là tạo ra một bảng trung gian gọi là join table (hoặc junction table). Bảng này sẽ chứa các cột foreign key liên kết trỏ về khóa chính của cả hai thực thể tham gia vào mối quan hệ."
+      },
+      {
+        "question_id": 28,
+        "question_title": "Which method in JpaRepository is used to save or update an entity?",
+        "option_A": "persist()",
+        "option_B": "insert()",
+        "option_C": "save()",
+        "option_D": "update()",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc Spring Data JPA, `JpaRepository` cung cấp sẵn phương thức `save()`. Phương thức này cực kỳ linh hoạt vì nó tự động nhận diện trạng thái của thực thể: nếu thực thể chưa tồn tại, nó sẽ thực hiện lệnh lưu mới (save/persist), ngược lại nếu thực thể đã tồn tại, nó sẽ thực hiện cập nhật dữ liệu (update/merge)."
+      },
+      {
+        "question_id": 29,
+        "question_title": "What is the use of PlatformTransactionManager in Spring?",
+        "option_A": "Encrypt API data",
+        "option_B": "Render views",
+        "option_C": "Manage database transactions programmatically",
+        "option_D": "Build Spring Boot jars",
+        "correct_anwser": "C",
+        "explain": "`PlatformTransactionManager` là một interface trung tâm trong cấu trúc quản lý giao dịch (Transaction Management) của Spring Framework. Nó cung cấp các phương thức cốt lõi như `getTransaction`, `commit`, và `rollback` giúp nhà phát triển quản lý và điều khiển các database transaction một cách tường minh bằng mã nguồn (programmatically) hoặc làm nền tảng cho cấu hình khai báo (declarative)."
+      },
+      {
+        "question_id": 30,
+        "question_title": "Spring Boot embedded servers include:",
+        "option_A": "Apache Tomcat",
+        "option_B": "Jetty",
+        "option_C": "Undertow",
+        "option_D": "All of the above",
+        "correct_anwser": "D",
+        "explain": "Mặc định khi khởi tạo một ứng dụng web, Spring Boot tích hợp sẵn embedded server là Apache Tomcat (Lựa chọn A). Tuy nhiên, framework này cũng hỗ trợ cấu hình chuyển đổi rất linh hoạt sang các embedded container gọn nhẹ hoặc hiệu năng cao khác bao gồm cả Jetty (Lựa chọn B) và Undertow (Lựa chọn C) tùy thuộc vào nhu cầu."
+      },
+      {
+        "question_id": 31,
+        "question_title": "Which type of dependency is represented by spring-boot-starter-web?",
+        "option_A": "Database connectivity.",
+        "option_B": "Web application development.",
+        "option_C": "Security configuration.",
+        "option_D": "Messaging.",
+        "correct_anwser": "B",
+        "explain": "Mô-đun `spring-boot-starter-web` là một starter dependency đóng vai trò nền tảng dùng để xây dựng các ứng dụng web (Web application development), bao gồm cả các ứng dụng RESTful API sử dụng kiến trúc Spring MVC và mặc định nhúng sẵn máy chủ Apache Tomcat."
+      },
+      {
+        "question_id": 32,
+        "question_title": "Which tool creates Spring Boot project quickly?",
+        "option_A": "Spring Initializr",
+        "option_B": "Maven Archetype",
+        "option_C": "Gradle Plugin",
+        "option_D": "JDK installer",
+        "correct_anwser": "A",
+        "explain": "Spring Initializr (thông qua trang web start.spring.io hoặc được tích hợp trực tiếp vào các IDE) là công cụ chính thức và nhanh nhất do Pivotal/Spring cung cấp để khởi tạo cấu trúc một project Spring Boot với đầy đủ các dependency cần thiết chỉ bằng vài cú click chuột."
+      },
+      {
+        "question_id": 33,
+        "question_title": "Which annotation would you use to define a one-to-many relationship between two entities?",
+        "option_A": "@ManyToOne",
+        "option_B": "@OneToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Để thiết lập một mối quan hệ một-nhiều (One-to-Many relationship) giữa hai thực thể dữ liệu trong JPA (ví dụ: Một lớp học `Class` có nhiều học sinh `Student`), chúng ta sử dụng annotation `@OneToMany` đặt phía trên thuộc tính danh sách phần tử con."
+      },
+      {
+        "question_id": 34,
+        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
+        "option_A": "@OneToMany",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToOne",
+        "option_D": "@Autowired",
+        "correct_anwser": "D",
+        "explain": "Các annotation như `@OneToMany`, `@ManyToOne`, `@OneToOne` (và cả `@ManyToMany`) đều là các annotation tiêu chuẩn của đặc tả JPA dùng để cấu hình quan hệ giữa các bảng. Trong khi đó, `@Autowired` là một annotation thuộc Spring Framework dùng cho mục đích thực hiện Dependency Injection (nhúng tự động phụ thuộc), hoàn toàn không liên quan đến quan hệ cơ sở dữ liệu của JPA."
+      },
+      {
+        "question_id": 35,
+        "question_title": "What is the purpose of the @NamedQueries annotation in JPA?",
+        "option_A": "To define a single named query",
+        "option_B": "To define multiple named queries",
+        "option_C": "To define a primary key",
+        "option_D": "To define a foreign key",
+        "correct_anwser": "B",
+        "explain": "Annotation `@NamedQueries` (số nhiều) đóng vai trò là một container annotation trong JPA. Nó được sử dụng để nhóm và định nghĩa nhiều câu truy vấn tĩnh (`@NamedQuery`) lại với nhau trên cùng một Entity class."
+      },
+      {
+        "question_id": 36,
+        "question_title": "What is the purpose of the following annotation in JPA?\n@Id\n@GeneratedValue(strategy = GenerationType.IDENTITY)\nprivate Long id;",
+        "option_A": "It creates a foreign key for the entity",
+        "option_B": "It marks the field as a version column",
+        "option_C": "It marks the field as the primary key with auto-increment strategy",
+        "option_D": "It disables the persistence of the field",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, `@Id` dùng để chỉ định thuộc tính đó làm khóa chính (primary key) của thực thể. Đi kèm với đó, cấu hình `@GeneratedValue(strategy = GenerationType.IDENTITY)` ra lệnh cho cơ sở dữ liệu (ví dụ như MySQL) tự động tăng giá trị của cột này (auto-increment) mỗi khi có một bản ghi mới được chèn vào."
+      },
+      {
+        "question_id": 37,
+        "question_title": "Which method is used to persist an entity in JPA EntityManager?",
+        "option_A": "save()",
+        "option_B": "insert()",
+        "option_C": "persist()",
+        "option_D": "store()",
+        "correct_anwser": "C",
+        "explain": "Trong đặc tả tiêu chuẩn của JPA, giao diện `EntityManager` cung cấp chính xác phương thức `persist(Object entity)` để chuyển trạng thái của một thực thể từ mới khởi tạo (transient) sang trạng thái được quản lý (managed) và lưu nó xuống database."
+      },
+      {
+        "question_id": 38,
+        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "C",
+        "explain": "Để đọc hoặc tìm kiếm dữ liệu (read/find) một bản ghi cụ thể theo khóa chính (primary key) từ cơ sở dữ liệu bằng JPA, ta sử dụng phương thức `em.find()`. Phương thức này yêu cầu truyền vào kiểu dữ liệu class của thực thể và giá trị id cần tìm."
+      },
+      {
+        "question_id": 39,
+        "question_title": "In a Spring MVC application, which file is typically used to configure the DispatcherServlet?",
+        "option_A": "application.properties",
+        "option_B": "dispatcher-servlet.xml",
+        "option_C": "web.xml",
+        "option_D": "config.xml",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc Java Web và Spring MVC cấu hình bằng XML truyền thống, `web.xml` đóng vai trò là tệp mô tả triển khai (deployment descriptor). Đây là nơi đầu tiên bạn phải khai báo và đăng ký sự hiện diện của `DispatcherServlet` với máy chủ ứng dụng (Servlet Container) như Tomcat."
+      },
+      {
+        "question_id": 40,
+        "question_title": "Which Spring annotation manages transactions?",
+        "option_A": "@Autowired",
+        "option_B": "@Transactional",
+        "option_C": "@Service",
+        "option_D": "@Entity",
+        "correct_anwser": "B",
+        "explain": "Annotation `@Transactional` được Spring cung cấp để thực hiện quản lý giao dịch khai báo (declarative transaction management). Khi đính kèm annotation này vào một class hoặc một method, Spring sẽ tự động mở, commit hoặc rollback transaction một cách an toàn mà bạn không cần viết mã thủ công."
+      },
+      {
+        "question_id": 41,
+        "question_title": "What is the purpose of writing unit tests for a Spring application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To ensure the correctness of individual components.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Mục tiêu cốt lõi và duy nhất của kiểm thử đơn vị (unit test) là cô lập và kiểm tra các thành phần nhỏ nhất của mã nguồn (như từng method, từng class bean biệt lập) nhằm đảm bảo chúng hoạt động hoàn toàn chính xác theo đúng logic thiết kế."
+      },
+      {
+        "question_id": 42,
+        "question_title": "Which of the following is a key feature of Spring Data JPA?",
+        "option_A": "Automatic repository implementation generation.",
+        "option_B": "Support for JavaScript front-end development.",
+        "option_C": "Built-in load balancing.",
+        "option_D": "Real-time video streaming.",
+        "correct_anwser": "A",
+        "explain": "Tính năng mang tính cách mạng của Spring Data JPA là khả năng tự động sinh ra mã thực thi (automatic implementation) cho các lớp Repository tại thời điểm chạy (runtime). Nhà phát triển chỉ cần khai báo một interface kế thừa từ `JpaRepository` mà không cần viết bất kỳ dòng mã triển khai cụ thể nào."
+      },
+      {
+        "question_id": 43,
+        "question_title": "What is the purpose of the EntityManager in JPA?",
+        "option_A": "To manage application configurations.",
+        "option_B": "To manage persistent entities.",
+        "option_C": "To handle user authentication.",
+        "option_D": "To create user interfaces.",
+        "correct_anwser": "B",
+        "explain": "Trong đặc tả JPA, `EntityManager` là một interface trung tâm chịu trách nhiệm quản lý vòng đời của cácpersistent entities (thực thể bền vững). Nó cung cấp các API tiêu chuẩn để thực hiện các thao tác CRUD dữ liệu với cơ sở dữ liệu thông qua persistence context."
+      },
+      {
+        "question_id": 44,
+        "question_title": "What is a primary benefit of using Spring Data JPA?",
+        "option_A": "Reduced boilerplate code for data access.",
+        "option_B": "Enhanced security for front-end applications.",
+        "option_C": "Simplified network configuration.",
+        "option_D": "Improved performance for video encoding.",
+        "correct_anwser": "A",
+        "explain": "Lợi ích hàng đầu của Spring Data JPA là loại bỏ phần lớn boilerplate code (mã mẫu lặp đi lặp lại) ở tầng truy cập dữ liệu (data access layer). Bạn không cần phải viết mã mở/đóng kết nối, quản lý try-catch hay viết các câu lệnh SQL cơ bản."
+      },
+      {
+        "question_id": 45,
+        "question_title": "In Spring Data JPA, which of the following derived method names is valid and sorts results by lastName ascending?",
+        "option_A": "findAllSortByLastNameAsc()",
+        "option_B": "findByOrderLastNameAsc()",
+        "option_C": "findByAgeGreaterThanOrderByLastNameAsc(int age)",
+        "option_D": "orderByLastNameAscFindAll()",
+        "correct_anwser": "C",
+        "explain": "Để Spring Data JPA biên dịch tự động tên phương thức (query method) thành câu lệnh SQL hợp lệ, bạn phải tuân thủ đúng cú pháp quy định. `findByAgeGreaterThanOrderByLastNameAsc` là phương thức hợp lệ vì nó chứa tiền tố hành động (`findBy`), thuộc tính điều kiện tìm kiếm (`Age` với từ khóa `GreaterThan`), và mệnh đề sắp xếp chuẩn chỉnh (`OrderByLastNameAsc`)."
+      },
+      {
+        "question_id": 46,
+        "question_title": "Which annotation marks repository class?",
+        "option_A": "@Repository",
+        "option_B": "@Entity",
+        "option_C": "@Service",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation `@Repository` thuộc tầng truy cập dữ liệu của Spring (Data Access Layer). Nó dùng để đánh dấu một class đóng vai trò là một Repository (hoặc DAO), đồng thời cho phép Spring tự động quét (component scanning) để đăng ký nó thành một bean và kích hoạt cơ chế dịch dịch lỗi cơ sở dữ liệu (exception translation)."
+      },
+      {
+        "question_id": 47,
+        "question_title": "In Spring Data JPA, what does the method signature List<Entity> findByPropertyOrderByPropertyAsc(String property); do?",
+        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
+        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
+        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
+        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
+        "correct_anwser": "B",
+        "explain": "Theo quy tắc đặt tên query method của Spring Data JPA, phần `findByProperty` mặc định hiểu là tìm kiếm theo điều kiện bằng (`equals`), tức là lọc ra các bản ghi có giá trị thuộc tính bằng với tham số truyền vào. Phần vế sau `OrderByPropertyAsc` thực hiện nhiệm vụ sắp xếp tập kết quả đó theo thứ tự tăng dần (`ascending`)."
+      },
+      {
+        "question_id": 48,
+        "question_title": "In a JPA One-to-Many relationship, which annotation is typically used on the \"one\" side to manage the collection of \"many\" entities?",
+        "option_A": "@OneToOne",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToMany",
+        "option_D": "@ManyToMany",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, khi thiết lập mối quan hệ One-to-Many (Một-Nhiều), phía \"one\" sẽ chứa một collection (danh sách) các đối tượng của phía \"many\". Để đánh dấu mapping này, ta sử dụng annotation @OneToMany."
+      },
+      {
+        "question_id": 49,
+        "question_title": "Which benefit does Spring's modular architecture provide?",
+        "option_A": "Increased coupling between application layers.",
+        "option_B": "Ability to use only the modules needed, reducing application size.",
+        "option_C": "Limited support for different persistence technologies.",
+        "option_D": "Decreased flexibility in choosing application components.",
+        "correct_anwser": "B",
+        "explain": "Spring Framework có kiến trúc modular (được chia thành nhiều module độc lập). Lợi ích lớn nhất của kiến trúc này là bạn có thể linh hoạt chỉ sử dụng những module mà dự án thực sự cần (ví dụ chỉ tải module spring-web hay spring-data-jpa), giúp giảm thiểu kích thước và tối ưu ứng dụng."
+      },
+      {
+        "question_id": 50,
+        "question_title": "Which of the following is NOT a general advantage of Spring Framework?",
+        "option_A": "Robust transaction management.",
+        "option_B": "Comprehensive web development support through Spring MVC.",
+        "option_C": "Automatic generation of user interfaces.",
+        "option_D": "Strong community support and extensive documentation.",
+        "correct_anwser": "C",
+        "explain": "Spring Framework hỗ trợ quản lý transaction mạnh mẽ, hỗ trợ phát triển web với Spring MVC, và có documentation rất chi tiết. Tuy nhiên, Spring không có tính năng tự động sinh ra giao diện người dùng (Automatic generation of user interfaces). Giao diện UI (như HTML, CSS, JS) vẫn cần developer tự xây dựng."
+      },
+      {
+        "question_id": 51,
+        "question_title": "What is an \"advice\" in Spring AOP?",
+        "option_A": "A point in the execution of a program.",
+        "option_B": "An object being proxied.",
+        "option_C": "The action taken at a particular join point.",
+        "option_D": "A collection of join points.",
+        "correct_anwser": "C",
+        "explain": "Trong thuật ngữ của Spring AOP, \"advice\" chính là hành động (action) hoặc đoạn code logic thực tế sẽ được thực thi tại một điểm kết nối cụ thể (join point). Ví dụ: một đoạn code thực hiện ghi log trước khi một method chạy được gọi là một advice."
+      },
+      {
+        "question_id": 52,
+        "question_title": "In a JPA One-to-Many relationship, what does the mappedBy attribute of the @OneToMany annotation specify?",
+        "option_A": "The database table name.",
+        "option_B": "The primary key of the \"many\" side entity.",
+        "option_C": "The field in the \"many\" side entity that maps back to the \"one\" side entity.",
+        "option_D": "The join table name.",
+        "correct_anwser": "C",
+        "explain": "Thuộc tính mappedBy trong annotation @OneToMany được dùng để thiết lập quan hệ hai chiều (bidirectional). Nó được sử dụng ở phía \"one\" để chỉ định chính xác tên field nằm ở phía \"many\" mà đang làm nhiệm vụ map ngược lại entity ở phía \"one\" (hay còn gọi là owning side của mối quan hệ)."
+      },
+      {
+        "question_id": 53,
+        "question_title": "Which statement best describes Spring's form tag library?",
+        "option_A": "Unrelated to Spring MVC and cannot bind to model attributes",
+        "option_B": "Binding-aware JSP tags that integrate with Spring MVC to bind form fields to model properties",
+        "option_C": "A replacement for HTML input elements and attributes",
+        "option_D": "Only supports GET forms and not POST",
+        "correct_anwser": "B",
+        "explain": "Spring form tag library cung cấp các JSP tags đặc biệt có khả năng binding (binding-aware). Nó tích hợp sâu với Spring MVC để tự động liên kết các trường nhập liệu (form fields) trên giao diện với các thuộc tính của đối tượng Model (model properties) ở backend."
+      },
+      {
+        "question_id": 54,
+        "question_title": "Which file defines Spring Boot dependencies?",
+        "option_A": "application.yml",
+        "option_B": "pom.xml / build.gradle",
+        "option_C": "beans.xml",
+        "option_D": "settings.json",
+        "correct_anwser": "B",
+        "explain": "Trong môi trường Spring Boot (và Java nói chung), các thư viện phụ thuộc (dependencies) được khai báo và quản lý bởi công cụ build tool. Ta dùng pom.xml nếu dự án dùng Maven, hoặc build.gradle nếu dự án dùng Gradle."
+      },
+      {
+        "question_id": 55,
+        "question_title": "What is the main class of a Spring Boot application typically annotated with?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@SpringBootApplication",
+        "option_D": "@Repository",
+        "correct_anwser": "C",
+        "explain": "Class chính chứa hàm main() để khởi chạy một ứng dụng Spring Boot luôn được đánh dấu bằng annotation @SpringBootApplication. Annotation này là sự kết hợp của 3 annotation khác: @Configuration, @EnableAutoConfiguration và @ComponentScan."
+      },
+      {
+        "question_id": 56,
+        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Data JPA",
+        "option_C": "Starter dependencies",
+        "option_D": "Spring Security",
+        "correct_anwser": "C",
+        "explain": "Tính năng Starter dependencies cung cấp các tập hợp thư viện (dependency descriptors) đã được đóng gói sẵn cho một mục đích (ví dụ: spring-boot-starter-web). Nó sẽ tự động kéo theo các thư viện cần thiết và phối hợp với cơ chế auto-configuration để giảm thiểu việc phải setup thủ công."
+      },
+      {
+        "question_id": 57,
+        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
+        "option_A": "To define a database entity.",
+        "option_B": "To enable Spring MVC functionality.",
+        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
+        "option_D": "To define a RESTful endpoint.",
+        "correct_anwser": "C",
+        "explain": "Annotation @SpringBootApplication là một tiện ích (convenience annotation) mặc định của Spring Boot. Nó bao gồm và thực thi cùng lúc 3 annotation cốt lõi: @Configuration (đánh dấu class cấu hình), @EnableAutoConfiguration (kích hoạt cơ chế tự động cấu hình) và @ComponentScan (quét các components trong package)."
+      },
+      {
+        "question_id": 58,
+        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
+        "option_A": "To define a standard for web application development",
+        "option_B": "To define a standard for object-relational mapping in Java",
+        "option_C": "To manage user interfaces",
+        "option_D": "To handle network communication",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của JPA là cung cấp một bộ đặc tả tiêu chuẩn (standard specification) cho kỹ thuật Object-Relational Mapping (ORM) trong ngôn ngữ Java, giúp mapping các Java objects với các relational database tables."
+      },
+      {
+        "question_id": 59,
+        "question_title": "Which JPA annotation maps a primary key?",
+        "option_A": "@Entity",
+        "option_B": "@Table",
+        "option_C": "@Id",
+        "option_D": "@JoinColumn",
+        "correct_anwser": "C",
+        "explain": "Trong JPA, annotation @Id được đặt trên một field (hoặc property) để chỉ định rằng trường đó đóng vai trò là khóa chính (primary key) của entity ánh xạ xuống database."
+      },
+      {
+        "question_id": 60,
+        "question_title": "What does ORM stand for in JPA?",
+        "option_A": "Object Relational Mapping",
+        "option_B": "Open Resource Management",
+        "option_C": "Optimized Runtime Module",
+        "option_D": "Operational Reference Model",
+        "correct_anwser": "A",
+        "explain": "ORM là viết tắt của Object Relational Mapping. Đây là một kỹ thuật lập trình giúp tự động chuyển đổi dữ liệu giữa hệ thống hướng đối tượng (Object trong OOP) và cơ sở dữ liệu quan hệ (Relational database)."
+      },
+      {
+        "question_id": 61,
+        "question_title": "What is the purpose of transaction management in JPA?",
+        "option_A": "To handle user authentication",
+        "option_B": "To ensure data integrity and consistency",
+        "option_C": "To manage network traffic",
+        "option_D": "To optimize web page loading",
+        "correct_anwser": "B",
+        "explain": "Mục đích của việc quản lý giao dịch (transaction management) là để đảm bảo tính toàn vẹn và nhất quán của dữ liệu (data integrity and consistency). Nó tuân thủ nguyên tắc ACID, đảm bảo rằng một nhóm các thao tác database sẽ được thực hiện thành công trọn vẹn (commit) hoặc bị hủy bỏ toàn bộ (rollback) nếu có lỗi xảy ra."
+      },
+      {
+        "question_id": 62,
+        "question_title": "What is the primary role of JPA in Java applications?",
+        "option_A": "Managing user interfaces",
+        "option_B": "Providing RESTful API support",
+        "option_C": "Managing relational data through ORM",
+        "option_D": "Running multithreaded processes",
+        "correct_anwser": "C",
+        "explain": "Vai trò chính của JPA (Java Persistence API) trong các ứng dụng Java là quản lý dữ liệu quan hệ thông qua kỹ thuật ORM (Object-Relational Mapping), giúp ánh xạ các Java objects xuống các bảng trong database một cách dễ dàng."
+      },
+      {
+        "question_id": 63,
+        "question_title": "Which of the following is NOT a standard JPA relationship annotation?",
+        "option_A": "@OneToMany",
+        "option_B": "@ManyToOne",
+        "option_C": "@OneToOne",
+        "option_D": "@Autowired",
+        "correct_anwser": "D",
+        "explain": "Các annotation @OneToMany, @ManyToOne và @OneToOne là các annotation tiêu chuẩn của JPA để map các relationship giữa các entity. Còn @Autowired là annotation riêng của Spring Framework dùng để thực hiện cơ chế Dependency Injection."
+      },
+      {
+        "question_id": 64,
+        "question_title": "Which code snippet demonstrates reading an entity using JPA? (Assume EntityManager em and Long id are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "C",
+        "explain": "Để đọc/tìm kiếm (reading) một entity từ cơ sở dữ liệu thông qua JPA dựa vào khóa chính (primary key), ta sử dụng method em.find(). Các method còn lại có chức năng khác: persist (thêm mới), remove (xóa), merge (cập nhật)."
+      },
+      {
+        "question_id": 65,
+        "question_title": "Which Spring annotation manages transactions?",
+        "option_A": "@Autowired",
+        "option_B": "@Transactional",
+        "option_C": "@Service",
+        "option_D": "@Entity",
+        "correct_anwser": "B",
+        "explain": "Trong Spring Framework, annotation @Transactional được sử dụng để quản lý các transactions (giao dịch) của cơ sở dữ liệu một cách tự động (declarative transaction management), đảm bảo tính ACID (toàn vẹn dữ liệu) mà không cần code các lệnh commit hay rollback thủ công."
+      },
+      {
+        "question_id": 66,
+        "question_title": "Which annotation is used to mark an entity in Spring Data JPA?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Repository",
+        "correct_anwser": "C",
+        "explain": "Khi làm việc với JPA hoặc Spring Data JPA, để đánh dấu một Java class là một Entity (thực thể) chịu trách nhiệm ánh xạ xuống một table trong cơ sở dữ liệu quan hệ, ta bắt buộc phải sử dụng annotation @Entity."
+      },
+      {
+        "question_id": 67,
+        "question_title": "Which annotation is used to define a named query?",
+        "option_A": "@Query",
+        "option_B": "@NamedQuery",
+        "option_C": "@StoredProcedure",
+        "option_D": "@NativeQuery",
+        "correct_anwser": "B",
+        "explain": "Trong chuẩn JPA, annotation @NamedQuery được sử dụng trực tiếp trên các Entity class để định nghĩa trước một câu truy vấn tĩnh (static query) với một cái tên cụ thể. Bằng cách gọi tên này, bạn có thể tái sử dụng câu query đó ở nhiều nơi trong code."
+      },
+      {
+        "question_id": 68,
+        "question_title": "What best describes Spring Data in the context of data access?",
+        "option_A": "A single monolithic library that replaces JPA",
+        "option_B": "An umbrella project containing multiple modules for different data stores and data-access styles",
+        "option_C": "A JDBC driver for all relational databases",
+        "option_D": "A GUI client for managing databases",
+        "correct_anwser": "B",
+        "explain": "Spring Data thực chất là một umbrella project (dự án mẹ/dự án tổng thể) chứa nhiều modules con (ví dụ: Spring Data JPA, Spring Data MongoDB, Spring Data Redis...). Mục đích của nó là cung cấp một mô hình lập trình nhất quán để truy xuất dữ liệu cho cả relational databases và các hệ thống NoSQL."
+      },
+      {
+        "question_id": 69,
+        "question_title": "What best describes Spring Data JPA?",
+        "option_A": "A NoSQL database engine",
+        "option_B": "A higher-level abstraction on top of JPA that simplifies repository-based data access",
+        "option_C": "A replacement for the Spring Framework core container",
+        "option_D": "A message broker for JMS-based applications",
+        "correct_anwser": "B",
+        "explain": "Spring Data JPA là một higher-level abstraction (tầng trừu tượng cao hơn) được xây dựng dựa trên JPA API. Nó giúp lập trình viên đơn giản hóa tối đa việc tương tác với database bằng cách tự động sinh ra các đoạn code (boilerplate code) thông qua các Repository interfaces."
+      },
+      {
+        "question_id": 70,
+        "question_title": "In Spring Data JPA, by default, the @Query annotation uses which query language?",
+        "option_A": "JPQL",
+        "option_B": "SQL-92 only",
+        "option_C": "HQL only",
+        "option_D": "Native database-specific SQL",
+        "correct_anwser": "A",
+        "explain": "Mặc định, annotation @Query trong Spring Data JPA sẽ biên dịch và thực thi câu lệnh bằng ngôn ngữ JPQL (Java Persistence Query Language). JPQL truy vấn dựa trên các Entity objects và thuộc tính của chúng thay vì truy vấn trực tiếp trên các tables trong database. Nếu muốn dùng SQL thuần túy, bạn phải set cờ nativeQuery = true."
+      },
+      {
+        "question_id": 71,
+        "question_title": "What is the purpose of @Transactional in Spring Data JPA?",
+        "option_A": "To manage user sessions.",
+        "option_B": "To ensure data consistency by grouping database operations into a single unit.",
+        "option_C": "To handle file uploads.",
+        "option_D": "To create REST endpoints.",
+        "correct_anwser": "B",
+        "explain": "Mục đích của @Transactional là gom nhóm nhiều thao tác đọc/ghi với database thành một unit of work (đơn vị công việc) duy nhất. Điều này bảo vệ data consistency (tính nhất quán của dữ liệu): nếu mọi thứ suôn sẻ thì dữ liệu được lưu, còn nếu có exception xảy ra giữa chừng, toàn bộ các thao tác trước đó sẽ bị rollback."
+      },
+      {
+        "question_id": 72,
+        "question_title": "Which component in Spring is responsible for implementing the IoC container?",
+        "option_A": "DispatcherServlet",
+        "option_B": "BeanFactory or ApplicationContext",
+        "option_C": "ViewResolver",
+        "option_D": "HandlerMapping",
+        "correct_anwser": "B",
+        "explain": "`BeanFactory` cung cấp cấu hình cơ bản để quản lý các bean, còn `ApplicationContext` là một giao diện con nâng cao bổ sung thêm các tính năng dành cho doanh nghiệp. Cả hai đều là những thành phần giao diện cốt lõi đóng vai trò triển khai và đại diện cho Spring IoC container."
+      },
+      {
+        "question_id": 73,
+        "question_title": "What is Aspect-Oriented Programming (AOP) in Spring used for?",
+        "option_A": "Defining user interfaces.",
+        "option_B": "Implementing cross-cutting concerns like logging and security.",
+        "option_C": "Managing database connections.",
+        "option_D": "Creating web service clients.",
+        "correct_anwser": "B",
+        "explain": "Lập trình hướng khía cạnh (AOP) cho phép phân tách các chức năng mang tính hệ thống, cắt ngang qua nhiều mô-đun ứng dụng độc lập (cross-cutting concerns) như ghi log (logging), bảo mật (security), giám sát hiệu năng hoặc quản lý giao dịch dữ liệu mà không làm ảnh hưởng trực tiếp đến mã logic nghiệp vụ chính."
+      },
+      {
+        "question_id": 74,
+        "question_title": "Which of the following is a significant advantage of using the Spring Framework?",
+        "option_A": "Tight coupling between components.",
+        "option_B": "Simplified testing due to Dependency Injection.",
+        "option_C": "Limited support for enterprise-level features.",
+        "option_D": "Reduced modularity and code reusability.",
+        "correct_anwser": "B",
+        "explain": "Nhờ cơ chế Tiêm phụ thuộc (Dependency Injection), các thành phần phần mềm được liên kết lỏng lẻo với nhau (loose coupling). Điều này giúp lập trình viên cực kỳ dễ dàng thay thế các dependency thực tế bằng các đối tượng giả lập (Mock objects), đơn giản hóa quá trình viết mã Unit Test."
+      },
+      {
+        "question_id": 75,
+        "question_title": "Which DI type is generally considered the most recommended due to its immutability and testability benefits?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Constructor Injection được khuyến nghị hàng đầu trong Spring vì nó đảm bảo tính bất biến (immutability) của đối tượng bằng cách cho phép định nghĩa các thuộc tính phụ thuộc là `final`, đồng thời buộc tất cả các phụ thuộc bắt buộc phải được truyền vào ngay khi khởi tạo đối tượng, giúp tránh lỗi `NullPointerException`."
+      },
+      {
+        "question_id": 76,
+        "question_title": "Which type of Dependency Injection involves passing dependencies to a class through its constructor?",
+        "option_A": "Setter Injection",
+        "option_B": "Field Injection",
+        "option_C": "Constructor Injection",
+        "option_D": "Method Injection",
+        "correct_anwser": "C",
+        "explain": "Theo đúng định nghĩa cốt lõi, Constructor Injection là hình thức mà các đối tượng phụ thuộc được truyền trực tiếp vào lớp thông qua các tham số của hàm khởi tạo (constructor)."
+      },
+      {
+        "question_id": 77,
+        "question_title": "Consider the following Java code snippet:\n\npublic class MyService {\n    private MyDependency dependency;\n\n    public void setDependency(MyDependency dependency) {\n        this.dependency = dependency;\n    }\n\n    public void performAction() {\n        dependency.doSomething();\n    }\n}\n\nWhich Spring Core Container feature is being demonstrated in this code?",
+        "option_A": "Aspect-Oriented Programming (AOP)",
+        "option_B": "Dependency Injection (DI)",
+        "option_C": "Resource Management",
+        "option_D": "Event Handling",
+        "correct_anwser": "B",
+        "explain": "Đoạn mã trên thể hiện tính năng Dependency Injection (cụ thể là mô hình Setter Injection), nơi biến `dependency` được gán giá trị thông qua hàm `setDependency` từ bên ngoài thay vì tự khởi tạo bằng từ khóa `new` bên trong lớp."
+      },
+      {
+        "question_id": 78,
+        "question_title": "Which benefit does Spring's modular architecture provide?",
+        "option_A": "Increased coupling between application layers.",
+        "option_B": "Ability to use only the modules needed, reducing application size.",
+        "option_C": "Limited support for different persistence technologies.",
+        "option_D": "Decreased flexibility in choosing application components.",
+        "correct_anwser": "B",
+        "explain": "Kiến trúc mô-đun hóa của Spring cho phép các ứng dụng hoạt động theo cơ chế linh hoạt linh kiện (non-monolithic): lập trình viên có thể tùy ý lựa chọn tích hợp và sử dụng các thư viện mô-đun cần thiết (ví dụ: chỉ lấy spring-web hoặc spring-data-jpa) mà không bắt buộc phải tải toàn bộ framework, tối ưu dung lượng của ứng dụng."
+      },
+      {
+        "question_id": 79,
+        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
+        "option_A": "As a listener.",
+        "option_B": "As a filter.",
+        "option_C": "As a servlet.",
+        "option_D": "As a resource.",
+        "correct_anwser": "C",
+        "explain": "Trong cấu hình ứng dụng web dựa trên file cấu hình XML truyền thống (`web.xml`), `DispatcherServlet` cốt lõi của Spring MVC được khai báo và cấu hình dưới dạng một lớp Servlet tiêu chuẩn thông qua thẻ `<servlet>` và `<servlet-mapping>`."
+      },
+      {
+        "question_id": 80,
+        "question_title": "What is the benefit of Spring Boot's embedded servers?",
+        "option_A": "They require separate installation and configuration.",
+        "option_B": "They simplify deployment and reduce the need for external application servers.",
+        "option_C": "They offer limited performance compared to external servers.",
+        "option_D": "They are only compatible with specific operating systems.",
+        "correct_anwser": "B",
+        "explain": "Sự hiện diện của máy chủ nhúng sẵn (embedded servers như Tomcat hoặc Jetty) giúp ứng dụng Spring Boot đóng gói gọn gàng thành một file `.jar` có thể chạy độc lập, loại bỏ hoàn toàn sự phức tạp của việc cài đặt và triển khai ứng dụng lên các máy chủ web ngoại vi."
+      },
+      {
+        "question_id": 81,
+        "question_title": "What is the purpose of Spring Boot's externalized configuration?",
+        "option_A": "To embed all configurations within the application code.",
+        "option_B": "To allow configuration from external files like application.properties or application.yml.",
+        "option_C": "To remove configuration options entirely.",
+        "option_D": "To require database configuration only.",
+        "correct_anwser": "B",
+        "explain": "Tính năng cấu hình tách biệt ra ngoài (Externalized Configuration) của Spring Boot cho phép lập trình viên quản lý các thiết lập môi trường bằng các tệp tin bên ngoài mã nguồn như `application.properties` hoặc `application.yml`, giúp chạy cùng một mã build trên nhiều môi trường khác nhau một cách linh hoạt."
+      },
+      {
+        "question_id": 82,
+        "question_title": "What is the purpose of the @SpringBootApplication annotation?",
+        "option_A": "To define a database entity.",
+        "option_B": "To enable Spring MVC functionality.",
+        "option_C": "To combine @Configuration, @EnableAutoConfiguration, and @ComponentScan.",
+        "option_D": "To define a RESTful endpoint.",
+        "correct_anwser": "C",
+        "explain": "Annotation `@SpringBootApplication` là một tiện ích tổng hợp, đảm nhận vai trò kết hợp đồng thời ba tính năng cốt lõi bao gồm cấu hình dựa trên Java (`@Configuration`), tự động cấu hình các bean phù hợp (`@EnableAutoConfiguration`), và tự động quét các thành phần phần mềm trong package (`@ComponentScan`)."
+      },
+      {
+        "question_id": 83,
+        "question_title": "Which tool is commonly used to create and manage Spring Boot projects?",
+        "option_A": "Apache Ant",
+        "option_B": "Maven or Gradle",
+        "option_C": "Notepad++",
+        "option_D": "Microsoft Word",
+        "correct_anwser": "B",
+        "explain": "Maven và Gradle là hai công cụ quản lý dự án và tự động hóa build (build automation tools) tiêu chuẩn, phổ biến nhất trong hệ sinh thái Java để quản lý các thư viện phụ thuộc (dependencies) và quy trình vòng đời của dự án Spring Boot."
+      },
+      {
+        "question_id": 84,
+        "question_title": "Which feature of Spring Boot provides pre-configured dependencies and auto-configuration?",
+        "option_A": "Spring MVC",
+        "option_B": "Spring Data JPA",
+        "option_C": "Starter dependencies",
+        "option_D": "Spring Security",
+        "correct_anwser": "C",
+        "explain": "Các gói phụ thuộc khởi đầu (Starter dependencies, ví dụ: `spring-boot-starter-web`) cung cấp sẵn một tập hợp các thư viện được cấu hình sẵn cho từng mục đích nghiệp vụ cụ thể, kết hợp với cơ chế auto-configuration để giúp dự án khởi chạy ngay lập tức mà không cần cấu hình thủ công phức tạp."
+      },
+      {
+        "question_id": 85,
+        "question_title": "Which of the following is an example of a relationship annotation in JPA?",
+        "option_A": "@Column",
+        "option_B": "@Entity",
+        "option_C": "@OneToMany",
+        "option_D": "@Transient",
+        "correct_anwser": "C",
+        "explain": "Annotation `@OneToMany` là một annotation chỉ định mối quan hệ (relationship) dùng để ánh xạ mối liên kết Một-Nhiều giữa hai thực thể trong JPA. Các phương án còn lại dùng để định nghĩa cột (`@Column`), định nghĩa thực thể (`@Entity`) hoặc bỏ qua trường không lưu trữ (`@Transient`)."
+      },
+      {
+        "question_id": 86,
+        "question_title": "What is the primary purpose of JPA (Java Persistence API)?",
+        "option_A": "To define a standard for web application development",
+        "option_B": "To define a standard for object-relational mapping in Java",
+        "option_C": "To manage user interfaces",
+        "option_D": "To handle network communication",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của JPA (Java Persistence API) là đưa ra một bộ đặc tả tiêu chuẩn cho kỹ thuật ánh xạ đối tượng - quan hệ (Object-Relational Mapping - ORM) trong ngôn ngữ lập trình Java, giúp đơn giản hóa việc tương tác với cơ sở dữ liệu quan hệ theo phong cách hướng đối tượng."
+      },
+      {
+        "question_id": 87,
+        "question_title": "What does the EntityManager manage in a JPA application?",
+        "option_A": "User sessions",
+        "option_B": "Entity lifecycle and persistence",
+        "option_C": "Network connections",
+        "option_D": "Web page rendering",
+        "correct_anwser": "B",
+        "explain": "Trong JPA, `EntityManager` là thành phần chịu trách nhiệm quản lý vòng đời (lifecycle) của các đối tượng thực thể (Entity) từ trạng thái mới tạo, được lưu trữ bền vững (persistence), tách rời (detached) cho đến khi bị xóa khỏi cơ sở dữ liệu."
+      },
+      {
+        "question_id": 88,
+        "question_title": "Which of the following is a primary benefit of using ORM?",
+        "option_A": "Increased database complexity",
+        "option_B": "Reduced code redundancy and improved maintainability",
+        "option_C": "Direct SQL query writing for all operations",
+        "option_D": "Limited support for object-oriented principles",
+        "correct_anwser": "B",
+        "explain": "Lợi ích hàng đầu của việc áp dụng ORM (Object-Relational Mapping) là tự động hóa việc chuyển đổi dữ liệu và sinh mã SQL, giúp giảm thiểu tối đa lượng mã lặp đi lặp lại (reduced code redundancy), từ đó nâng cao khả năng bảo trì và phát triển mã nguồn (improved maintainability)."
+      },
+      {
+        "question_id": 89,
+        "question_title": "Which JPA component is responsible for managing the persistence of entities?",
+        "option_A": "Servlet",
+        "option_B": "EntityManager",
+        "option_C": "JSP",
+        "option_D": "JDBC Driver",
+        "correct_anwser": "B",
+        "explain": "`EntityManager` là thành phần giao diện cốt lõi trong JPA đảm nhận chức năng quản lý toàn bộ các thao tác lưu trữ, cập nhật, truy vấn dữ liệu bền vững của các thực thể."
+      },
+      {
+        "question_id": 90,
+        "question_title": "What is the purpose of writing unit tests for a Spring application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To ensure the correctness of individual components.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Mục đích cốt lõi của việc viết Unit Test (Kiểm thử đơn vị) là cô lập và kiểm tra tính hoạt động chính xác của từng thành phần nhỏ, độc lập trong mã nguồn (như một hàm, một lớp hay một bean cụ thể) để phát hiện sớm các lỗi logic."
+      },
+      {
+        "question_id": 91,
+        "question_title": "Which annotation is used to define a named query?",
+        "option_A": "@Query",
+        "option_B": "@NamedQuery",
+        "option_C": "@StoredProcedure",
+        "option_D": "@NativeQuery",
+        "correct_anwser": "B",
+        "explain": "Annotation `@NamedQuery` được sử dụng trong JPA để khai báo và đặt tên trước cho các câu truy vấn tĩnh (static queries) trực tiếp ngay trên thực thể, giúp tái sử dụng câu lệnh truy vấn một cách tối ưu và gọn gàng."
+      },
+      {
+        "question_id": 92,
+        "question_title": "Which of the following is NOT a main module of Spring Data?",
+        "option_A": "Spring Data JPA",
+        "option_B": "Spring Data MongoDB",
+        "option_C": "Spring Data REST",
+        "option_D": "Spring Data UI",
+        "correct_anwser": "D",
+        "explain": "Hệ sinh thái Spring Data bao gồm các mô-đun chính phục vụ truy cập dữ liệu như Spring Data JPA, Spring Data MongoDB, Spring Data Neo4j, và Spring Data REST. Không hề tồn tại mô-đun nào tên là `Spring Data UI` vì Spring Data hoàn toàn không quản lý phần giao diện."
+      },
+      {
+        "question_id": 93,
+        "question_title": "What is the role of a Repository interface in Spring Data JPA?",
+        "option_A": "To define business logic.",
+        "option_B": "To manage user interfaces.",
+        "option_C": "To provide data access methods.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "C",
+        "explain": "Interface `Repository` trong Spring Data JPA đóng vai trò trung tâm cung cấp sẵn các phương thức trừu tượng hỗ trợ thao tác và truy cập dữ liệu (CRUD, tìm kiếm, phân trang) mà không yêu cầu lập trình viên phải viết mã thực thi chi tiết thủ công."
+      },
+      {
+        "question_id": 94,
+        "question_title": "In a ManyToMany relationship, which table is used to store the relationship between the two entities?",
+        "option_A": "The table of the first entity.",
+        "option_B": "The table of the second entity.",
+        "option_C": "A join table.",
+        "option_D": "A temporary table.",
+        "correct_anwser": "C",
+        "explain": "Trong cơ sở dữ liệu quan hệ, mối quan hệ Nhiều-Nhiều (ManyToMany) bắt buộc phải được chuẩn hóa thông qua một bảng trung gian, thường được gọi là bảng liên kết hoặc bảng nối (`join table`), để lưu trữ các cặp khóa ngoại liên kết giữa hai thực thể chính."
+      },
+      {
+        "question_id": 95,
+        "question_title": "In Spring Data JPA, what does the method signature List findByPropertyOrderByPropertyAsc(String property); do?",
+        "option_A": "Finds entities where property is equal to String property, ordered by property descending.",
+        "option_B": "Finds entities where property is equal to String property, ordered by property ascending.",
+        "option_C": "Finds entities where property contains String property, ordered by property ascending.",
+        "option_D": "Finds entities where property is less than String property, ordered by property ascending.",
+        "correct_anwser": "B",
+        "explain": "Theo quy tắc tự dịch từ khóa truy vấn (Query Derivation) của Spring Data JPA, cụm từ `findByProperty` thực hiện phép so sánh bằng (`=`), và mệnh đề `OrderByPropertyAsc` sẽ tự động thêm chỉ thị sắp xếp theo thứ tự tăng dần (`ASC`) đối với thuộc tính đó."
+      },
+      {
+        "question_id": 96,
+        "question_title": "Which annotation is used to specify the table name for an entity?",
+        "option_A": "@Column",
+        "option_B": "@Id",
+        "option_C": "@GeneratedValue",
+        "option_D": "@Table",
+        "correct_anwser": "D",
+        "explain": "Annotation `@Table` được đặt ở mức lớp (class level) của một thực thể JPA để chỉ định rõ ràng tên của bảng dữ liệu quan hệ trong database (`@Table(name = \"tên_bảng\")`) mà thực thể đó ánh xạ vào."
+      }
+    ]
+  },
+  {
+    "id": "hsf302-module-2-thymeleaf",
+    "title": "HSF302 - Module 2 - Thymeleaf",
+    "description": "Working with Spring Framework Quiz",
+    "questionsCount": 25,
+    "questions": [
+      {
+        "question_id": 1,
+        "question_title": "Which statement correctly differentiates @PathVariable and @RequestParam?",
+        "option_A": "@PathVariable binds a query parameter; @RequestParam binds a URI template variable",
+        "option_B": "@PathVariable binds a URI template variable; @RequestParam binds a query parameter or form field",
+        "option_C": "Both only bind data from HTTP headers",
+        "option_D": "Both require a ModelAndView return type",
+        "correct_anwser": "B",
+        "explain": "`@PathVariable` được sử dụng để trích xuất và liên kết dữ liệu từ các biến nằm trực tiếp trên đường dẫn URL (URI template variable, ví dụ: `/users/{id}`). Trong khi đó, `@RequestParam` dùng để lấy dữ liệu từ tham số truy vấn (Query Parameter, ví dụ: `?name=abc`) hoặc từ dữ liệu form gửi lên."
+      },
+      {
+        "question_id": 2,
+        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
+        "option_A": "Enhancing security for the web application.",
+        "option_B": "Providing a way to create reusable template layouts.",
+        "option_C": "Managing database connections.",
+        "option_D": "Optimizing JavaScript performance.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf Layout Dialect cung cấp một giải pháp phân cấp giao diện mạnh mẽ, cho phép lập trình viên tạo dựng một layout khung (template layout) dùng chung (chứa header, footer, sidebar...) và tái sử dụng nó trên nhiều trang con khác nhau."
+      },
+      {
+        "question_id": 3,
+        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
+        "option_A": "Database drivers.",
+        "option_B": "HTML attributes and elements.",
+        "option_C": "Security protocols.",
+        "option_D": "Network configurations.",
+        "correct_anwser": "B",
+        "explain": "Standard Dialect (Phương ngữ tiêu chuẩn) của Thymeleaf cung cấp một hệ thống các thuộc tính HTML tùy biến xử lý động dữ liệu (như `th:text`, `th:each`, `th:if`) chạy trực tiếp trên cấu trúc thẻ HTML chuẩn."
+      },
+      {
+        "question_id": 4,
+        "question_title": "Thymeleaf is primarily used for:",
+        "option_A": "Handling database transactions.",
+        "option_B": "Generating dynamic HTML content.",
+        "option_C": "Managing application security.",
+        "option_D": "Building REST APIs.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf là một Java template engine mã nguồn mở hoạt động ở phía Server, mục đích chính của nó là kết hợp mã giao diện HTML tĩnh với dữ liệu động từ backend để biên dịch và tạo ra các trang HTML động gửi về cho trình duyệt."
+      },
+      {
+        "question_id": 5,
+        "question_title": "What is the result of this Thymeleaf fragment?\n<span th:if=\"${user.loggedIn}\">Welcome!",
+        "option_A": "Renders always",
+        "option_B": "Displays if user.loggedIn is false",
+        "option_C": "Displays nothing by default",
+        "option_D": "Displays \"Welcome!\" only if user is logged in",
+        "correct_anwser": "D",
+        "explain": "Thuộc tính `th:if` hoạt động như một biểu thức điều kiện logic. Thẻ `<span>` chứa dòng chữ \"Welcome!\" sẽ chỉ được biên dịch và hiển thị ra giao diện khi và chỉ khi biến trạng thái `${user.loggedIn}` trả về giá trị logic là `true`."
+      },
+      {
+        "question_id": 6,
+        "question_title": "Which class simplifies JDBC in Spring?",
+        "option_A": "JdbcTemplate",
+        "option_B": "JdbcManager",
+        "option_C": "EntityManager",
+        "option_D": "SqlHelper",
+        "correct_anwser": "A",
+        "explain": "`JdbcTemplate` là lớp cốt lõi trong mô-đun Spring JDBC giúp đơn giản hóa việc sử dụng JDBC bằng cách loại bỏ các đoạn mã lặp đi lặp lại (boilerplate code) như mở/đóng kết nối, xử lý ngoại lệ SQL, và quản lý các tài nguyên."
+      },
+      {
+        "question_id": 7,
+        "question_title": "Which interface provides CRUD operations?",
+        "option_A": "JpaRepository",
+        "option_B": "CrudService",
+        "option_C": "EntityManager",
+        "option_D": "JdbcTemplate",
+        "correct_anwser": "A",
+        "explain": "Trong các lựa chọn được đưa ra, `JpaRepository` (kế thừa từ `ListCrudRepository` và `PagingAndSortingRepository`) là một interface chuẩn của Spring Data cung cấp sẵn toàn bộ tập hợp các phương thức thao tác CRUD cơ bản và nâng cao đối với dữ liệu."
+      },
+      {
+        "question_id": 8,
+        "question_title": "Which responsibility belongs to the Spring IoC container?",
+        "option_A": "Rendering HTML views from Thymeleaf templates",
+        "option_B": "Creating, wiring, configuring beans and managing their lifecycle",
+        "option_C": "Executing SQL statements without any JDBC driver",
+        "option_D": "Compiling Java sources at runtime",
+        "correct_anwser": "B",
+        "explain": "Nhiệm vụ cốt lõi của Spring IoC container là quản lý các Bean (đối tượng của ứng dụng). Quá trình này bao gồm việc khởi tạo (creating), liên kết phụ thuộc (wiring), cấu hình (configuring) và quản lý toàn bộ vòng đời (lifecycle) của chúng từ khi sinh ra cho đến khi bị hủy."
+      },
+      {
+        "question_id": 9,
+        "question_title": "Which attribute is used to iterate over a collection in Thymeleaf?",
+        "option_A": "th:if",
+        "option_B": "th:each",
+        "option_C": "th:text",
+        "option_D": "th:href",
+        "correct_anwser": "B",
+        "explain": "Trong công cụ Thymeleaf template engine, thuộc tính `th:each` được sử dụng làm vòng lặp (tương tự như vòng lặp for-each trong Java) để duyệt qua các phần tử của một danh sách (Collection hoặc List) và hiển thị chúng ra giao diện HTML."
+      },
+      {
+        "question_id": 10,
+        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "A, B, C",
+        "explain": "Câu hỏi này yêu cầu chọn 2 đáp án đúng, tuy nhiên trên thực tế Thymeleaf hỗ trợ xử lý rất nhiều template mode khác nhau bao gồm: HTML, XML (Lựa chọn A), TEXT (Lựa chọn B), và cả JSON (Lựa chọn C) hay CSS. Ngoại trừ Binary templates (Lựa chọn D) là hoàn toàn không được hỗ trợ, ba đáp án còn lại đều đúng, nhưng phổ biến nhất đi cặp với nhau cho các dữ liệu phi HTML thường là XML và TEXT."
+      },
+      {
+        "question_id": 11,
+        "question_title": "In Thymeleaf, which expression is used to create a link? <a th:href=\"______\">Home</a>",
+        "option_A": "${/home}",
+        "option_B": "#{/home}",
+        "option_C": "@{/home}",
+        "option_D": "~{/home}",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf sử dụng cú pháp ký tự `@` kết hợp cặp ngoặc nhọn `@{...}` để định nghĩa Link Expressions (biểu thức đường dẫn). Nó hỗ trợ xử lý và tự động thêm ngữ cảnh ứng dụng (context path) cho các đường dẫn URL tuyệt đối hoặc tương đối trong hệ thống."
+      },
+      {
+        "question_id": 12,
+        "question_title": "Thymeleaf can be used to process:",
+        "option_A": "Only HTML files.",
+        "option_B": "HTML, XML, JavaScript, CSS, and plain text.",
+        "option_C": "Only server-side Java code.",
+        "option_D": "Only database queries.",
+        "correct_anwser": "B",
+        "explain": "Mặc dù giao diện web HTML là ứng dụng phổ biến nhất, Thymeleaf thực tế là một template engine rất mạnh mẽ, có khả năng biên dịch và xử lý nhiều loại định dạng tệp tin văn bản khác bao gồm cả HTML, XML, JavaScript, CSS và văn bản thuần túy (plain text)."
+      },
+      {
+        "question_id": 13,
+        "question_title": "When using Spring JDBC, what class is typically used to execute SQL queries?",
+        "option_A": "EntityManager",
+        "option_B": "JdbcTemplate",
+        "option_C": "SessionFactory",
+        "option_D": "Repository",
+        "correct_anwser": "B",
+        "explain": "Lớp `JdbcTemplate` là lớp trung tâm cốt lõi của gói thư viện Spring JDBC. Nó giúp loại bỏ các đoạn mã lặp lại dài dòng (boilerplate code) của JDBC thuần (như mở/đóng kết nối, xử lý exception) và cung cấp các phương thức đơn giản để thực thi các câu lệnh SQL."
+      },
+      {
+        "question_id": 14,
+        "question_title": "In Thymeleaf, which expression is used to create a link?\n<a th:href=\"________\">Home</a>",
+        "option_A": "${/home}",
+        "option_B": "#{/home}",
+        "option_C": "@{/home}",
+        "option_D": "~{/home}",
+        "correct_anwser": "C",
+        "explain": "Trong Thymeleaf, để định nghĩa các đường dẫn URL (Link URL Expressions), chúng ta phải sử dụng cú pháp @{...}. Điều này giúp tự động xử lý context path của ứng dụng một cách linh hoạt."
+      },
+      {
+        "question_id": 15,
+        "question_title": "Which attribute is used to conditionally include or exclude an element in Thymeleaf?",
+        "option_A": "th:if",
+        "option_B": "th:each",
+        "option_C": "th:text",
+        "option_D": "th:href",
+        "correct_anwser": "A",
+        "explain": "Thuộc tính th:if được dùng để kiểm tra điều kiện logic (conditional evaluation). Nếu điều kiện trả về true, element HTML đó sẽ được render (include). Nếu false, toàn bộ element sẽ bị loại bỏ khỏi DOM (exclude)."
+      },
+      {
+        "question_id": 16,
+        "question_title": "Which of the following is a kind of template in Thymeleaf? (Choose 2 answer)",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "A, B",
+        "explain": "Thymeleaf hỗ trợ nhiều loại template mode để xử lý dữ liệu đầu ra. Các template modes hợp lệ bao gồm: HTML, XML, TEXT, JAVASCRIPT, CSS và RAW. Vì vậy, XML templates và Text templates là 2 đáp án chính xác."
+      },
+      {
+        "question_id": 17,
+        "question_title": "Which benefit does JdbcTemplate provide?",
+        "option_A": "Simplifies error handling",
+        "option_B": "Automatic query optimization",
+        "option_C": "UI rendering",
+        "option_D": "Thread pool creation",
+        "correct_anwser": "A",
+        "explain": "JdbcTemplate là một core class trong Spring giúp đơn giản hóa việc thao tác với JDBC API. Một trong những lợi ích quan trọng nhất của nó là tự động xử lý đóng/mở connection và mapping các SQLException rườm rà thành một hệ thống hierarchy DataAccessException nhất quán, qua đó đơn giản hóa việc xử lý lỗi (Simplifies error handling)."
+      },
+      {
+        "question_id": 18,
+        "question_title": "Which of the following is a common view technology used with Spring MVC?",
+        "option_A": "React",
+        "option_B": "Vue.js",
+        "option_C": "Thymeleaf",
+        "option_D": "Angular",
+        "correct_anwser": "C",
+        "explain": "Trong số các lựa chọn, Thymeleaf là một công nghệ mã giao diện server-side template engine hiện đại, tích hợp chặt chẽ và cực kỳ phổ biến với Spring MVC để kết xuất giao diện trực tiếp tại server. React, Vue.js và Angular là các framework/thư viện render phía Client."
+      },
+      {
+        "question_id": 19,
+        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
+        "option_A": "URL expressions.",
+        "option_B": "Message expressions.",
+        "option_C": "Variable expressions.",
+        "option_D": "Fragment expressions.",
+        "correct_anwser": "C",
+        "explain": "Cú pháp `${...}` trong Thymeleaf biểu diễn các biểu thức biến (Variable Expressions). Nó được sử dụng để lấy giá trị của các thuộc tính hoặc đối tượng chứa trong tầng dữ liệu Spring MVC Model (Context) chuyển giao xuống giao diện."
+      },
+      {
+        "question_id": 20,
+        "question_title": "Which of the following is a kind of template in Thymeleaf?",
+        "option_A": "XML templates",
+        "option_B": "Text templates",
+        "option_C": "JSON templates",
+        "option_D": "Binary templates",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf hỗ trợ nhiều chế độ xử lý mẫu giao diện (template modes) khác nhau bao gồm HTML, XML, TEXT, JAVASCRIPT, và CSS. Trong số các lựa chọn đã cho, 'Text templates' (chế độ văn bản thô) là một định dạng mẫu hợp lệ được hỗ trợ trực tiếp."
+      },
+      {
+        "question_id": 21,
+        "question_title": "The Standard Dialect in Thymeleaf provides a set of:",
+        "option_A": "Database drivers.",
+        "option_B": "HTML attributes and elements.",
+        "option_C": "Security protocols.",
+        "option_D": "Network configurations.",
+        "correct_anwser": "B",
+        "explain": "Standard Dialect cung cấp tập hợp các thẻ tùy biến và các thuộc tính HTML động (như `th:text`, `th:value`, `th:each`) giúp Thymeleaf can thiệp trực tiếp vào cấu trúc HTML để hiển thị dữ liệu từ phía máy chủ."
+      },
+      {
+        "question_id": 22,
+        "question_title": "What is Thymeleaf?",
+        "option_A": "A JavaScript framework.",
+        "option_B": "A server-side Java template engine.",
+        "option_C": "A database management system.",
+        "option_D": "A CSS preprocessor.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf là một công cụ xử lý mẫu giao diện chạy ở phía máy chủ (Server-side Java template engine), thường được kết hợp với Spring MVC để tạo ra mã HTML động gửi về trình duyệt cho người dùng cuối."
+      },
+      {
+        "question_id": 23,
+        "question_title": "Thymeleaf supports internationalization (i18n) through:",
+        "option_A": "CSS stylesheets.",
+        "option_B": "Message resolvers.",
+        "option_C": "Database triggers.",
+        "option_D": "JavaScript libraries.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf hỗ trợ đa ngôn ngữ (Internationalization - i18n) bằng việc tích hợp hệ thống Message Resolvers (Bộ phân giải thông điệp) của Spring, cho phép trích xuất các chuỗi ký tự động tương ứng theo ngôn ngữ locale người dùng từ các file cấu hình ứng dụng dạng `.properties` thông qua cú pháp `#{...}`."
+      },
+      {
+        "question_id": 24,
+        "question_title": "What is the purpose of Thymeleaf Layout Dialect?",
+        "option_A": "Enhancing security for the web application.",
+        "option_B": "Providing a way to create reusable template layouts.",
+        "option_C": "Managing database connections.",
+        "option_D": "Optimizing JavaScript performance.",
+        "correct_anwser": "B",
+        "explain": "Thymeleaf Layout Dialect cung cấp cơ chế phân bố giao diện theo phân cấp bố cục, cho phép tạo các tệp giao diện mẫu (template layouts) dùng chung (như bố cục header, footer) và tái sử dụng chúng trên nhiều trang nội dung khác nhau để tránh trùng lặp mã."
+      },
+      {
+        "question_id": 25,
+        "question_title": "Spring Data JPA simplifies working with:",
+        "option_A": "NoSQL databases.",
+        "option_B": "Relational databases using the Java Persistence API (JPA).",
+        "option_C": "Message queues.",
+        "option_D": "Cloud storage.",
+        "correct_anwser": "B",
+        "explain": "Mục đích chuyên biệt của Spring Data JPA là tối ưu và đơn giản hóa việc tương tác với các hệ quản trị cơ sở dữ liệu quan hệ (Relational databases) bằng cách cung cấp các lớp trừu tượng đè lên tầng đặc tả JPA tiêu chuẩn."
+      }
+    ]
+  },
+  {
+    "id": "hsf302-module-3-javafx",
+    "title": "HSF302 - Module 3 - JavaFX",
+    "description": "Working with Spring Framework Quiz",
+    "questionsCount": 79,
+    "questions": [
+      {
+        "question_id": 1,
+        "question_title": "Spring Beans are managed by which container?",
+        "option_A": "Java VM",
+        "option_B": "Spring IoC Container",
+        "option_C": "JDBC Driver",
+        "option_D": "REST Controller",
+        "correct_anwser": "B",
+        "explain": "Spring IoC (Inversion of Control) Container là thành phần chịu trách nhiệm khởi tạo, cấu hình, lắp ráp và quản lý toàn bộ vòng đời (lifecycle) của các Spring Beans."
+      },
+      {
+        "question_id": 2,
+        "question_title": "Which JavaFX control is used for text input?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "C",
+        "explain": "`TextField` là một control giao diện chuẩn trong JavaFX cho phép người dùng nhập và chỉnh sửa một dòng văn bản thuần túy."
+      },
+      {
+        "question_id": 3,
+        "question_title": "Which code snippet shows how to add a button to a scene?",
+        "option_A": "Scene scene = new Scene(new Button(\"Click Me\"));",
+        "option_B": "Stage stage = new Stage(new Button(\"Click Me\"));",
+        "option_C": "Button button = new Button(\"Click Me\");",
+        "option_D": "Node node = new Node(new Button(\"Click Me\"));",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, một `Scene` có thể nhận trực tiếp một nút gốc (Parent Node) — ví dụ như một Button hoặc một Layout Pane chứa Button — thông qua hàm khởi tạo của nó để thiết lập cấu trúc giao diện chính."
+      },
+      {
+        "question_id": 4,
+        "question_title": "In FXML, how do you connect a controller to the FXML file?",
+        "option_A": "<fxml controller=\"MyController\" />",
+        "option_B": "<fx:controller type=\"MyController\" />",
+        "option_C": "<fx:controller fx:id=\"controller\" value=\"MyController\" />",
+        "option_D": "<fx:controller value=\"MyController\" />",
+        "correct_anwser": "D",
+        "explain": "Lưu ý: Trong cú pháp FXML tiêu chuẩn của JavaFX, controller thường được khai báo bằng thuộc tính `fx:controller=\"com.package.MyController\"` ở thẻ layout gốc. Tuy nhiên, dựa trên các phương án lựa chọn đặc thù được đưa ra trong câu hỏi trắc nghiệm này, phương án D mô tả cấu trúc khối thẻ sử dụng thuộc tính `value` để gán controller theo một số tùy biến mở rộng."
+      },
+      {
+        "question_id": 5,
+        "question_title": "What is the purpose of the start(Stage primaryStage) method in a JavaFX application?",
+        "option_A": "To define database connections.",
+        "option_B": "To initialize and show the application window.",
+        "option_C": "To handle network requests.",
+        "option_D": "To manage application configurations.",
+        "correct_anwser": "B",
+        "explain": "Phương thức `start(Stage primaryStage)` là điểm khởi đầu chính (main entry point) của mọi ứng dụng JavaFX. Nó được hệ thống runtime gọi để cấu hình, gắn scene và hiển thị cửa sổ ứng dụng chính (stage) lên màn hình."
+      },
+      {
+        "question_id": 6,
+        "question_title": "Which method launches a JavaFX app?",
+        "option_A": "main()",
+        "option_B": "start()",
+        "option_C": "launch()",
+        "option_D": "run()",
+        "correct_anwser": "C",
+        "explain": "Phương thức tĩnh `launch()` kế thừa từ lớp `javafx.application.Application` được sử dụng để khởi động vòng đời của một ứng dụng JavaFX, sau đó nó sẽ thiết lập môi trường và tự động gọi phương thức `start()`."
+      },
+      {
+        "question_id": 7,
+        "question_title": "What is the role of the Controller in Spring MVC?",
+        "option_A": "To manage database connections.",
+        "option_B": "To process user requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc Spring MVC, thành phần Controller có nhiệm vụ tiếp nhận các yêu cầu (HTTP requests) từ người dùng, xử lý các logic điều hướng cần thiết, chuẩn bị dữ liệu (Model) và chỉ định giao diện hiển thị phù hợp (View)."
+      },
+      {
+        "question_id": 8,
+        "question_title": "Which object holds model data?",
+        "option_A": "Model",
+        "option_B": "Entity",
+        "option_C": "View",
+        "option_D": "Context",
+        "correct_anwser": "A",
+        "explain": "Trong mô hình MVC của Spring, giao diện (interface) `org.springframework.ui.Model` là một vùng chứa (container) dưới dạng cặp khóa-giá trị (Map) dùng để truyền tải dữ liệu từ Controller sang cho View hiển thị."
+      },
+      {
+        "question_id": 9,
+        "question_title": "Which layer in Spring architecture is responsible for business logic?",
+        "option_A": "Repository layer",
+        "option_B": "Service layer",
+        "option_C": "Controller layer",
+        "option_D": "View layer",
+        "correct_anwser": "B",
+        "explain": "Tầng Dịch vụ (Service layer) là nơi tập trung xử lý toàn bộ các quy tắc nghiệp vụ, tính toán logic và điều phối luồng dữ liệu (business logic) của hệ thống trước khi tương tác với cơ sở dữ liệu."
+      },
+      {
+        "question_id": 10,
+        "question_title": "In JavaFX, which layout arranges child nodes in a horizontal row?",
+        "option_A": "VBox",
+        "option_B": "FlowPane",
+        "option_C": "BorderPane",
+        "option_D": "HBox",
+        "correct_anwser": "D",
+        "explain": "`HBox` (Horizontal Box) là một thành phần layout trong JavaFX được thiết kế chuyên biệt để sắp xếp tất cả các node con nằm ngang thành một hàng duy nhất theo thứ tự từ trái sang phải."
+      },
+      {
+        "question_id": 11,
+        "question_title": "Which data format is default in REST responses?",
+        "option_A": "XML",
+        "option_B": "JSON",
+        "option_C": "HTML",
+        "option_D": "CSV",
+        "correct_anwser": "B",
+        "explain": "Trong các dịch vụ Web RESTful hiện đại (bao gồm cả cấu hình mặc định của Spring `@RestController`), JSON (JavaScript Object Notation) là định dạng dữ liệu truyền tải văn bản chuẩn được sử dụng rộng rãi và phổ biến nhất nhờ tính gọn nhẹ, tối ưu và dễ dàng xử lý."
+      },
+      {
+        "question_id": 12,
+        "question_title": "You have a controller:\n\n@RestController\nclass TestController {\n    @GetMapping(\"/hello\")\n    public String hello() { return \"Hi\"; }\n}\n\nWhat is the response of GET /hello request?",
+        "option_A": "HTML page",
+        "option_B": "JSON object {\"hello\":\"Hi\"}",
+        "option_C": "Plain text 'Hi'",
+        "option_D": "Error 404",
+        "correct_anwser": "C",
+        "explain": "Do lớp được đánh dấu bằng `@RestController`, mọi dữ liệu trả về từ các phương thức xử lý yêu cầu sẽ được ghi trực tiếp vào phần thân của HTTP Response (HTTP response body). Khi trả về một chuỗi `String` thuần túy như `\"Hi\"`, phản hồi nhận được sẽ là văn bản thô (Plain text)."
+      },
+      {
+        "question_id": 13,
+        "question_title": "Which class loads FXML files?",
+        "option_A": "FXMLLoader",
+        "option_B": "Scene",
+        "option_C": "Stage",
+        "option_D": "Node",
+        "correct_anwser": "A",
+        "explain": "Lớp `FXMLLoader` trong JavaFX được thiết kế chuyên biệt để đọc, phân tích cú pháp mã XML từ các file cấu hình giao diện `.fxml` và chuyển đổi chúng thành cây phân cấp đối tượng UI (Scene Graph) trong Java."
+      },
+      {
+        "question_id": 14,
+        "question_title": "Which JavaFX element handles user input events?",
+        "option_A": "EventHandler",
+        "option_B": "SceneGraph",
+        "option_C": "Controller",
+        "option_D": "Action",
+        "correct_anwser": "A",
+        "explain": "`EventHandler` là một functional interface trong JavaFX được triển khai để lắng nghe, bắt lấy và xử lý trực tiếp các sự kiện tương tác từ người dùng (như nhấn chuột, nhập phím)."
+      },
+      {
+        "question_id": 15,
+        "question_title": "Which CSS file customizes JavaFX UI?",
+        "option_A": "styles.css",
+        "option_B": "ui.css",
+        "option_C": "design.css",
+        "option_D": "theme.xml",
+        "correct_anwser": "A",
+        "explain": "Mặc dù JavaFX có thể nhận bất kỳ tên file nào có đuôi rộng mở là `.css`, tuy nhiên theo quy chuẩn đặt tên và các dự án mẫu phổ biến trong hệ sinh thái JavaFX, tệp tin cấu hình phong cách giao diện mặc định chuẩn thường được đặt tên là `styles.css`."
+      },
+      {
+        "question_id": 16,
+        "question_title": "What JavaFX class is used to create a popup dialog for displaying confirmation or error messages?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Alert",
+        "option_D": "Pane",
+        "correct_anwser": "C",
+        "explain": "Lớp `Alert` là một lớp tiện ích xây dựng sẵn trong JavaFX chuyên dùng để tạo nhanh các hộp thoại thông báo dạng popup (như thông báo lỗi, cảnh báo, hoặc xác nhận hành động từ người dùng)."
+      },
+      {
+        "question_id": 17,
+        "question_title": "What is the purpose of validation in CRUD operations of JavaFX application?",
+        "option_A": "To improve database performance.",
+        "option_B": "To ensure data integrity and prevent errors.",
+        "option_C": "To enhance user interface aesthetics.",
+        "option_D": "To manage server configurations.",
+        "correct_anwser": "B",
+        "explain": "Mục đích cốt lõi của việc kiểm tra tính hợp lệ dữ liệu (validation) đầu vào trước các thao tác CRUD là đảm bảo tính toàn vẹn của dữ liệu (data integrity), ngăn chặn các định dạng sai sót hoặc giá trị rỗng làm phát sinh lỗi hệ thống trong database hoặc ứng dụng."
+      },
+      {
+        "question_id": 18,
+        "question_title": "Which component in Spring resolves logical view names to actual templates?",
+        "option_A": "ViewResolver",
+        "option_B": "Controller",
+        "option_C": "DispatcherServlet",
+        "option_D": "ResourceLoader",
+        "correct_anwser": "A",
+        "explain": "Trong mô hình xử lý yêu cầu Spring MVC, thành phần `ViewResolver` có nhiệm vụ tiếp nhận chuỗi tên giao diện logic (logical view name, ví dụ: `\"home\"`) được trả về từ Controller và biên dịch giải mã nó thành tệp tin giao diện vật lý thực tế (như `/templates/home.html`)."
+      },
+      {
+        "question_id": 19,
+        "question_title": "What is the purpose of @ResponseBody in a Spring controller?",
+        "option_A": "It returns an HTML page",
+        "option_B": "It converts the return value to JSON or XML",
+        "option_C": "It binds request parameters",
+        "option_D": "It sets the HTTP status code",
+        "correct_anwser": "B",
+        "explain": "Annotation `@ResponseBody` chỉ thị cho Spring tự động chuyển đổi đối tượng hoặc kiểu dữ liệu trả về của phương thức xử lý thành định dạng truyền tải dữ liệu như JSON hoặc XML (thông qua các HttpMessageConverters) và ghi trực tiếp vào HTTP response body thay vì tìm kiếm một trang giao diện (view)."
+      },
+      {
+        "question_id": 20,
+        "question_title": "Which component is responsible for rendering the user interface in a Spring MVC application?",
+        "option_A": "Controller",
+        "option_B": "Model",
+        "option_C": "View",
+        "option_D": "DAO",
+        "correct_anwser": "C",
+        "explain": "Trong mô hình MVC, thành phần View (Giao diện) chịu trách nhiệm nhận dữ liệu từ Model, kết xuất đồ họa (rendering) cấu trúc trang và hiển thị giao diện người dùng cuối cùng trên trình duyệt."
+      },
+      {
+        "question_id": 21,
+        "question_title": "What is the core concept of Inversion of Control (IoC)?",
+        "option_A": "Objects control the creation of their dependencies.",
+        "option_B": "The framework or container controls the creation and management of objects.",
+        "option_C": "Objects are responsible for managing the application's flow.",
+        "option_D": "Methods control the instantiation of classes.",
+        "correct_anwser": "B",
+        "explain": "Khái niệm Inversion of Control (IoC - Đảo ngược điều khiển) có nghĩa là thay vì để các đối tượng tự khởi tạo và quản lý các phụ thuộc (dependencies) của chính mình, quyền kiểm soát này sẽ được chuyển giao (đảo ngược) cho Framework hoặc Container xử lý tự động."
+      },
+      {
+        "question_id": 22,
+        "question_title": "Which JavaFX class represents the content area of the application window?",
+        "option_A": "Stage",
+        "option_B": "Node",
+        "option_C": "Pane",
+        "option_D": "Scene",
+        "correct_anwser": "D",
+        "explain": "Trong cấu trúc của một ứng dụng giao diện JavaFX, Stage đóng vai trò như chiếc cửa sổ bọc ngoài (window), còn Scene chính là lớp container đại diện cho vùng chứa toàn bộ nội dung hiển thị (content area) bên trong cửa sổ đó trước khi gắn các thành phần UI khác vào."
+      },
+      {
+        "question_id": 23,
+        "question_title": "Which JavaFX control is used to display an image?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "D",
+        "explain": "Trong JavaFX, `ImageView` là một control chuyên dụng thuộc thư viện đồ họa được thiết kế cụ thể cho mục đích vẽ và hiển thị các hình ảnh (đối tượng thuộc class `Image`) lên trên giao diện người dùng."
+      },
+      {
+        "question_id": 24,
+        "question_title": "Which layout arranges nodes in border regions?",
+        "option_A": "GridPane",
+        "option_B": "BorderPane",
+        "option_C": "VBox",
+        "option_D": "HBox",
+        "correct_anwser": "B",
+        "explain": "Layout `BorderPane` trong JavaFX sắp xếp các thành phần con (nodes) theo 5 vùng đường biên cố định bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+      },
+      {
+        "question_id": 25,
+        "question_title": "After the controller processes a request, what does it typically return?",
+        "option_A": "A database connection.",
+        "option_B": "A model and view.",
+        "option_C": "A user interface.",
+        "option_D": "A security token.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình Spring MVC truyền thống, sau khi một Controller xử lý xong logic của request, nó thường trả về một đối tượng chứa cả dữ liệu lẫn tên trang hiển thị. Đối tượng này được đóng gói gọn trong lớp `ModelAndView` (gồm dữ liệu dạng `Model` và tên view hiển thị dạng `View`)."
+      },
+      {
+        "question_id": 26,
+        "question_title": "In the MVC pattern, what is the role of the Model?",
+        "option_A": "To handle user input.",
+        "option_B": "To display data to the user.",
+        "option_C": "To manage the application's data and business logic.",
+        "option_D": "To route requests to the appropriate handlers.",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc thiết kế MVC (Model-View-Controller), thành phần `Model` chịu trách nhiệm cốt lõi trong việc đại diện cho trạng thái dữ liệu (application's data), định nghĩa cấu trúc dữ liệu và chứa các logic nghiệp vụ (business logic) của hệ thống."
+      },
+      {
+        "question_id": 27,
+        "question_title": "Which annotation marks a controller?",
+        "option_A": "@Controller",
+        "option_B": "@Service",
+        "option_C": "@Repository",
+        "option_D": "@RestResource",
+        "correct_anwser": "A",
+        "explain": "Để đánh dấu một class đóng vai trò là một Controller tiếp nhận và xử lý các HTTP request trong ứng dụng Spring MVC, chúng ta sử dụng annotation `@Controller` (hoặc biến thể chuyên dụng `@RestController` cho các API dạng RESTful)."
+      },
+      {
+        "question_id": 28,
+        "question_title": "In Spring MVC, what are interceptors used for?",
+        "option_A": "Only for handling exceptions.",
+        "option_B": "Only for mapping requests.",
+        "option_C": "For cross cutting concerns like logging, authentication, and authorization.",
+        "option_D": "Only for defining views.",
+        "correct_anwser": "C",
+        "explain": "`HandlerInterceptor` (gọi tắt là interceptor) trong Spring MVC hoạt động tương tự như một bộ lọc, cho phép bạn can thiệp vào các chu kỳ trước (preHandle), sau (postHandle) và khi hoàn thành (afterCompletion) của một request gửi tới Controller. Do đó, nó cực kỳ hoàn hảo để xử lý các vấn đề cắt ngang (cross-cutting concerns) như kiểm tra quyền truy cập (authentication/authorization), lưu nhật ký (logging), hay thay đổi tham số."
+      },
+      {
+        "question_id": 29,
+        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+        "option_A": "Controller",
+        "option_B": "HandlerMapping",
+        "option_C": "DispatcherServlet",
+        "option_D": "ViewResolver",
+        "correct_anwser": "C",
+        "explain": "Thành phần `DispatcherServlet` đóng vai trò là một Front Controller trong kiến trúc Spring MVC. Mọi HTTP request từ phía máy khách gửi đến ứng dụng đều phải đi qua cửa ngõ trung tâm này đầu tiên, trước khi nó điều hướng công việc sang các thành phần bổ trợ khác xử lý."
+      },
+      {
+        "question_id": 30,
+        "question_title": "Which component maps incoming requests to appropriate controller methods?",
+        "option_A": "HandlerMapping",
+        "option_B": "HandlerAdapter",
+        "option_C": "ViewResolver",
+        "option_D": "ModelAndView",
+        "correct_anwser": "A",
+        "explain": "Nhiệm vụ chính của thành phần `HandlerMapping` trong luồng xử lý Spring MVC là phân tích URL của incoming request, đối chiếu cấu hình để tìm ra Controller và method cụ thể nào phù hợp nhất chịu trách nhiệm xử lý request đó."
+      },
+      {
+        "question_id": 31,
+        "question_title": "Which JavaFX layout should you use to divide the window into top, bottom, center, left, and right?",
+        "option_A": "StackPane",
+        "option_B": "BorderPane",
+        "option_C": "HBox",
+        "option_D": "VBox",
+        "correct_anwser": "B",
+        "explain": "`BorderPane` là một lớp layout được thiết kế sẵn trong JavaFX để chia vùng không gian hiển thị của cửa sổ làm 5 khu vực biên cố định chuẩn bao gồm: Top (trên), Bottom (dưới), Left (trái), Right (phải) và Center (trung tâm)."
+      },
+      {
+        "question_id": 32,
+        "question_title": "Which annotation creates REST controller?",
+        "option_A": "@RestController",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation `@RestController` được sử dụng để định nghĩa một Controller theo kiến trúc RESTful Web Services. Nó là một annotation kết hợp (convenience annotation) bao gồm cả `@Controller` và `@ResponseBody`, giúp tự động chuyển đổi dữ liệu trả về từ các method trực tiếp thành định dạng JSON hoặc XML thay vì tìm kiếm một trang View để hiển thị."
+      },
+      {
+        "question_id": 33,
+        "question_title": "Thymeleaf integrates well with:",
+        "option_A": "React.js",
+        "option_B": "Angular.js",
+        "option_C": "Spring MVC.",
+        "option_D": "Node.js",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf là một công cụ template engine phía Server (server-side template engine) hiện đại, nó được thiết kế để tích hợp cực kỳ chặt chẽ và tự nhiên với Spring MVC để thay thế cho công nghệ JSP truyền thống nhằm xử lý giao diện cho các ứng dụng web."
+      },
+      {
+        "question_id": 34,
+        "question_title": "Which of the following is a popular ORM framework for Java?",
+        "option_A": "Spring MVC",
+        "option_B": "Hibernate",
+        "option_C": "JavaFX",
+        "option_D": "Swing",
+        "correct_anwser": "B",
+        "explain": "Hibernate là một framework ORM (Object-Relational Mapping) cực kỳ nổi tiếng và được sử dụng rộng rãi nhất trong thế giới Java. Nó giúp ánh xạ trực tiếp các class đối tượng Java sang các bảng dữ liệu quan hệ trong cơ sở dữ liệu và là core chính triển khai đặc tả JPA."
+      },
+      {
+        "question_id": 35,
+        "question_title": "Which code snippet demonstrates updating an entity using JPA in JavaFX application? (Assume EntityManager em and Entity entity are available)",
+        "option_A": "em.persist(entity);",
+        "option_B": "em.remove(entity);",
+        "option_C": "em.find(Entity.class, id);",
+        "option_D": "em.merge(entity);",
+        "correct_anwser": "D",
+        "explain": "Để cập nhật (update) trạng thái dữ liệu của một thực thể đã bị tách rời (detached) quay trở lại persistence context trong JPA, phương thức `merge(entity)` của `EntityManager` được sử dụng nhằm sao chép trạng thái hiện tại vào một thực thể được quản lý tương ứng."
+      },
+      {
+        "question_id": 36,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Để đảm bảo nguyên tắc phân tách kiến trúc phần mềm (Separation of Concerns), việc tương tác với tầng dữ liệu thông qua `EntityManager` phải được xử lý ở tầng logic nghiệp vụ như Service layer hoặc tầng điều hướng trung gian là Controller layer, hoàn toàn tránh can thiệp trực tiếp vào tầng hiển thị UI (View)."
+      },
+      {
+        "question_id": 37,
+        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+        "option_A": "HBox/VBox",
+        "option_B": "BorderPane",
+        "option_C": "GridPane",
+        "option_D": "StackPane",
+        "correct_anwser": "C",
+        "explain": "`GridPane` sắp xếp các thành phần UI theo một lưới các ô bao gồm hàng (rows) và cột (columns). Cấu trúc này vô cùng lý tưởng để thiết kế các form nhập liệu (CRUD form), nơi các nhãn (Labels) cần được căn thẳng hàng một cách gọn gàng với các ô nhập liệu (TextFields)."
+      },
+      {
+        "question_id": 38,
+        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+        "option_A": "Label",
+        "option_B": "TextField",
+        "option_C": "TableView",
+        "option_D": "Button",
+        "correct_anwser": "C",
+        "explain": "Trong JavaFX, thành phần UI được thiết kế riêng biệt để hiển thị danh sách dữ liệu có cấu trúc dưới dạng bảng gồm các hàng và các cột có tiêu đề chính là `TableView`."
+      },
+      {
+        "question_id": 39,
+        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+        "option_C": "Controller -> View -> Model -> DispatcherServlet",
+        "option_D": "Handler -> Controller -> DispatcherServlet",
+        "correct_anwser": "A",
+        "explain": "Vòng đời xử lý một request chuẩn trong kiến trúc Spring MVC diễn ra như sau: Request đầu tiên đến Front Controller là `DispatcherServlet` -> Nó hỏi `HandlerMapping` để tìm Controller phù hợp -> Dùng `HandlerAdapter` để thực thi method của `Controller` -> Controller xử lý xong trả về tên View -> `DispatcherServlet` nhờ `ViewResolver` dịch tên đó thành trang giao diện thực tế."
+      },
+      {
+        "question_id": 40,
+        "question_title": "What will be rendered in browser from this Spring MVC controller method?\n@GetMapping(\"/hello\")\n@ResponseBody\npublic String sayHello() {\n    return \"Hello, Spring!\";\n}",
+        "option_A": "A view named \"Hello, Spring!\"",
+        "option_B": "A JSON response",
+        "option_C": "A plain text response: Hello, Spring!",
+        "option_D": "An HTML file from the templates directory",
+        "correct_anwser": "C",
+        "explain": "Sự xuất hiện của annotation `@ResponseBody` sẽ hướng dẫn Spring MVC bỏ qua luồng phân giải giao diện (ViewResolver). Thay vào đó, giá trị String trả về từ method (`\"Hello, Spring!\"`) sẽ được ghi trực tiếp vào thân của HTTP response và gửi thẳng tới trình duyệt dưới dạng một plain text response."
+      },
+      {
+        "question_id": 41,
+        "question_title": "Which annotation is used to define an AOP aspect in Spring?",
+        "option_A": "@Aspect",
+        "option_B": "@Controller",
+        "option_C": "@Repository",
+        "option_D": "@Configuration",
+        "correct_anwser": "A",
+        "explain": "Để định nghĩa một aspect trong Spring AOP (Aspect-Oriented Programming), chúng ta sử dụng annotation @Aspect của AspectJ trên class đó để chỉ định nó chứa các cấu hình AOP."
+      },
+      {
+        "question_id": 42,
+        "question_title": "Which JavaFX control is used to display text?",
+        "option_A": "Label",
+        "option_B": "Button",
+        "option_C": "TextField",
+        "option_D": "ImageView",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, Label là control tiêu chuẩn được sử dụng để hiển thị các đoạn text (văn bản) tĩnh trên giao diện. TextField thường dùng cho việc người dùng nhập liệu, trong khi Button là nút bấm."
+      },
+      {
+        "question_id": 43,
+        "question_title": "What is the purpose of event handling in JavaFX?",
+        "option_A": "To manage database connections.",
+        "option_B": "To respond to user interactions.",
+        "option_C": "To handle network requests.",
+        "option_D": "To manage application configurations.",
+        "correct_anwser": "B",
+        "explain": "Mục đích chính của event handling (xử lý sự kiện) trong JavaFX cũng như các framework UI là để lắng nghe và phản hồi lại các tương tác của người dùng (user interactions), chẳng hạn như thao tác click chuột, gõ bàn phím, hay di chuyển chuột."
+      },
+      {
+        "question_id": 44,
+        "question_title": "In a typical Spring MVC + Hibernate application, where should the database operations be placed?",
+        "option_A": "Controller class",
+        "option_B": "HTML page",
+        "option_C": "Repository/DAO class",
+        "option_D": "JSP scriptlet",
+        "correct_anwser": "C",
+        "explain": "Theo kiến trúc phân tầng chuẩn của ứng dụng, toàn bộ các thao tác tương tác trực tiếp với cơ sở dữ liệu (database operations) phải được cô lập và đặt trong tầng Data Access Object (DAO) hoặc class Repository. Controller chỉ chịu trách nhiệm nhận/trả request và điều hướng."
+      },
+      {
+        "question_id": 45,
+        "question_title": "Which JavaFX class represents the content area of the application window?",
+        "option_A": "Stage",
+        "option_B": "Node",
+        "option_C": "Pane",
+        "option_D": "Scene",
+        "correct_anwser": "D",
+        "explain": "Trong kiến trúc tổng thể của JavaFX, Stage đại diện cho phần khung ngoài cùng (cửa sổ ứng dụng), trong khi Scene đóng vai trò là vùng nội dung (content area) chứa toàn bộ biểu đồ các thành phần giao diện (Node/Pane) để hiển thị bên trong cửa sổ đó."
+      },
+      {
+        "question_id": 46,
+        "question_title": "In JavaFX, what is a Property?",
+        "option_A": "A static variable.",
+        "option_B": "A dynamic, observable value.",
+        "option_C": "A database field.",
+        "option_D": "A network address.",
+        "correct_anwser": "B",
+        "explain": "Trong JavaFX, Property là một wrapper chứa dữ liệu có khả năng quan sát (observable value). Nghĩa là khi giá trị của Property thay đổi, nó có thể tự động thông báo cho các UI component (giao diện) đang binding với nó để cập nhật tương ứng."
+      },
+      {
+        "question_id": 47,
+        "question_title": "Spring MVC is based on which design pattern?",
+        "option_A": "Observer",
+        "option_B": "Model-View-Controller",
+        "option_C": "Decorator",
+        "option_D": "Command",
+        "correct_anwser": "B",
+        "explain": "Đúng như tên gọi của nó, Spring MVC được xây dựng dựa trên design pattern Model-View-Controller (MVC). Pattern này giúp tách biệt dữ liệu (Model), giao diện hiển thị (View) và phần điều hướng logic (Controller)."
+      },
+      {
+        "question_id": 48,
+        "question_title": "How is the DispatcherServlet typically configured in web.xml?",
+        "option_A": "As a listener.",
+        "option_B": "As a filter.",
+        "option_C": "As a servlet.",
+        "option_D": "As a resource.",
+        "correct_anwser": "C",
+        "explain": "Trong cách cấu hình truyền thống của ứng dụng web Java, DispatcherServlet đóng vai trò là Front Controller và được cấu hình như một servlet trong file web.xml để nó có thể chặn (intercept) và xử lý các HTTP requests."
+      },
+      {
+        "question_id": 49,
+        "question_title": "After the DispatcherServlet receives a request, which component is used to determine the appropriate controller?",
+        "option_A": "ViewResolver",
+        "option_B": "HandlerMapping",
+        "option_C": "Controller",
+        "option_D": "Model",
+        "correct_anwser": "B",
+        "explain": "Khi DispatcherServlet nhận được một HTTP request, nó sẽ tham chiếu tới HandlerMapping để tìm ra Controller (hoặc handler method) nào được map với URL của request đó."
+      },
+      {
+        "question_id": 50,
+        "question_title": "In the MVC pattern, what is the role of the Model?",
+        "option_A": "To handle user input.",
+        "option_B": "To display data to the user.",
+        "option_C": "To manage the application's data and business logic.",
+        "option_D": "To route requests to the appropriate handlers.",
+        "correct_anwser": "C",
+        "explain": "Trong kiến trúc MVC, thành phần Model chịu trách nhiệm cốt lõi là quản lý dữ liệu (data) và thực thi các quy tắc nghiệp vụ (business logic) của ứng dụng. Việc nhận request là của Controller và hiển thị là của View."
+      },
+      {
+        "question_id": 51,
+        "question_title": "Which statement correctly describes @ExceptionHandler and @ControllerAdvice?",
+        "option_A": "@ExceptionHandler methods handle exceptions across all controllers by default; @ControllerAdvice limits them to one controller",
+        "option_B": "@ExceptionHandler only works with REST controllers; @ControllerAdvice only with MVC controllers",
+        "option_C": "@ExceptionHandler in a controller handles exceptions for that controller; @ControllerAdvice can apply such handlers globally",
+        "option_D": "Both are deprecated in favor of filters",
+        "correct_anwser": "C",
+        "explain": "Annotation @ExceptionHandler khi định nghĩa bên trong một Controller thì chỉ bắt lỗi cho Controller đó (cục bộ). Tuy nhiên, khi định nghĩa bên trong một class có chứa @ControllerAdvice, thì các phương thức bắt lỗi đó sẽ được áp dụng globally (toàn cục) cho toàn bộ ứng dụng."
+      },
+      {
+        "question_id": 52,
+        "question_title": "In Thymeleaf's Standard Expression Syntax, what does ${...} represent?",
+        "option_A": "URL expressions.",
+        "option_B": "Message expressions.",
+        "option_C": "Variable expressions.",
+        "option_D": "Fragment expressions.",
+        "correct_anwser": "C",
+        "explain": "Cú pháp ${...} trong Thymeleaf đại diện cho Variable expressions. Nó được sử dụng để truy xuất các giá trị của các biến (variables) từ context/model mà Controller đã truyền sang cho View."
+      },
+      {
+        "question_id": 53,
+        "question_title": "Which annotation creates REST controller?",
+        "option_A": "@RestController",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Bean",
+        "correct_anwser": "A",
+        "explain": "Annotation @RestController được sử dụng để đánh dấu một class là RESTful web controller. Nó là sự kết hợp tiện lợi của @Controller và @ResponseBody, giúp dữ liệu trả về từ các method sẽ tự động được parse thành format như JSON/XML thay vì render ra giao diện HTML."
+      },
+      {
+        "question_id": 54,
+        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+        "option_A": "Label or Alert",
+        "option_B": "Button",
+        "option_C": "TableView",
+        "option_D": "TextField",
+        "correct_anwser": "A",
+        "explain": "Để hiển thị các message lỗi xác thực (validation error), ta thường dùng control Label để hiển thị text lỗi ngay bên cạnh trường nhập liệu trên giao diện (inline), hoặc dùng Alert để bật lên một hộp thoại popup (dialog) thông báo cho người dùng."
+      },
+      {
+        "question_id": 55,
+        "question_title": "In JavaFX, consider:\nButton btn = new Button(\"Click\");\nbtn.setOnAction(e -> System.out.println(\"Pressed\"));\nWhat happens when user clicks the button?",
+        "option_A": "Nothing",
+        "option_B": "Compilation error",
+        "option_C": "Text 'Pressed' is printed in console",
+        "option_D": "Button disappears",
+        "correct_anwser": "C",
+        "explain": "Đoạn code trên sử dụng lambda expression để gán một event handler cho sự kiện click button. Khi người dùng click vào button, logic bên trong lambda sẽ được thực thi, lệnh System.out.println sẽ in chuỗi 'Pressed' ra màn hình console."
+      },
+      {
+        "question_id": 56,
+        "question_title": "Which JavaFX component is commonly used to display data in a table format?",
+        "option_A": "Label",
+        "option_B": "TextField",
+        "option_C": "TableView",
+        "option_D": "Button",
+        "correct_anwser": "C",
+        "explain": "Trong JavaFX, TableView là component được thiết kế chuyên dụng để hiển thị dữ liệu dạng danh sách dưới định dạng bảng (table format), bao gồm cấu trúc chia theo các cột (columns) và hàng (rows)."
+      },
+      {
+        "question_id": 57,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Theo các pattern kiến trúc phần mềm tiêu chuẩn (như MVC, Layered Architecture), các thao tác xử lý business logic và tương tác với database (thông qua EntityManager) cần được tách biệt khỏi giao diện (View layer) hay dữ liệu (Entity class), và thường được đặt/quản lý tại tầng Service hoặc tầng Controller."
+      },
+      {
+        "question_id": 58,
+        "question_title": "What is the purpose of the Model in a Spring application?",
+        "option_A": "To define user interfaces.",
+        "option_B": "To represent domain objects and data.",
+        "option_C": "To manage HTTP requests.",
+        "option_D": "To handle application deployment.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình MVC của Spring, thành phần Model đóng vai trò đại diện cho các đối tượng nghiệp vụ (domain objects) và lưu giữ data để chuyển giao/hiển thị thông tin giữa Controller và View."
+      },
+      {
+        "question_id": 59,
+        "question_title": "What is the correct order of the Spring MVC request lifecycle?",
+        "option_A": "DispatcherServlet -> HandlerMapping -> HandlerAdapter -> Controller -> ViewResolver",
+        "option_B": "ViewResolver -> Controller -> DispatcherServlet",
+        "option_C": "Controller -> View -> Model -> DispatcherServlet",
+        "option_D": "Handler -> Controller -> DispatcherServlet",
+        "correct_anwser": "A",
+        "explain": "Vòng đời chuẩn của một HTTP request trong Spring MVC là: Request đi vào DispatcherServlet (Front Controller) -> Nó hỏi HandlerMapping để tìm ra Controller nào xử lý -> Nó dùng HandlerAdapter để gọi/thực thi Controller đó -> Sau khi có kết quả (Model and View name), nó dùng ViewResolver để tìm ra file View thực tế để render kết quả trả về cho user."
+      },
+      {
+        "question_id": 60,
+        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+        "option_A": "Handling UI rendering on the client",
+        "option_B": "Acting as the front controller to dispatch requests to appropriate handlers",
+        "option_C": "Encrypting HTTP requests",
+        "option_D": "Managing database transactions",
+        "correct_anwser": "B",
+        "explain": "Trong kiến trúc Spring MVC, DispatcherServlet đóng vai trò là một front controller trung tâm. Nhiệm vụ của nó là tiếp nhận toàn bộ các HTTP requests từ client và điều phối (dispatch) chúng đến các Controller (handlers) phù hợp để xử lý dựa trên cấu hình URL."
+      },
+      {
+        "question_id": 61,
+        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle HTTP requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Chức năng chính của Controller trong mô hình Spring MVC là lắng nghe và xử lý các HTTP requests từ người dùng. Sau khi thực thi logic nghiệp vụ xong, nó sẽ trả về dữ liệu (Model) cùng với tên của giao diện (View name) để hệ thống tiến hành render kết quả cuối cùng."
+      },
+      {
+        "question_id": 62,
+        "question_title": "You have a controller:\n@RestController\nclass TestController {\n  @GetMapping(\"/hello\")\n  public String hello() { return \"Hi\"; }\n}\nWhat is the response of GET /hello request?",
+        "option_A": "HTML page",
+        "option_B": "JSON object {\"hello\":\"Hi\"}",
+        "option_C": "Plain text 'Hi'",
+        "option_D": "Error 404",
+        "correct_anwser": "C",
+        "explain": "Annotation @RestController mặc định đã chứa @ResponseBody, nghĩa là giá trị return của method sẽ được viết trực tiếp vào phần body của HTTP response. Vì phương thức hello() trả về một đối tượng kiểu chuỗi String đơn giản, framework sẽ không convert nó sang cấu trúc JSON mà trả về thẳng định dạng plain text là 'Hi'."
+      },
+      {
+        "question_id": 63,
+        "question_title": "Which code snippet shows how to set the size of a scene?",
+        "option_A": "Scene scene = new Scene(new Pane(), 400, 300);",
+        "option_B": "Stage stage = new Stage(new Pane(), 400, 300);",
+        "option_C": "Node node = new Node(new Pane(), 400, 300);",
+        "option_D": "Button button = new Button(new Pane(), 400, 300);",
+        "correct_anwser": "A",
+        "explain": "Trong JavaFX, kích thước rộng (width) và cao (height) của vùng hiển thị được định nghĩa trực tiếp bằng cách truyền các tham số số thực vào hàm khởi tạo của lớp `javafx.scene.Scene` (ví dụ ở đây là `400` và `300`)."
+      },
+      {
+        "question_id": 64,
+        "question_title": "Which code snippet shows how to set the title of a stage?",
+        "option_A": "Scene scene = new Scene(); scene.setTitle(\"My App\");",
+        "option_B": "Stage stage = new Stage(); stage.setTitle(\"My App\");",
+        "option_C": "Node node = new Node(); node.setTitle(\"My App\");",
+        "option_D": "Button button = new Button(); button.setTitle(\"My App\");",
+        "correct_anwser": "B",
+        "explain": "Lớp `Stage` đại diện cho cửa sổ ứng dụng cấp cao nhất (Top-level container) trong JavaFX. Phương thức `.setTitle(String title)` là phương thức chuẩn thuộc lớp này dùng để gán tiêu đề hiển thị trên thanh tiêu đề của cửa sổ."
+      },
+      {
+        "question_id": 65,
+        "question_title": "What is the base class for all visual components in JavaFX?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Node",
+        "option_D": "Pane",
+        "correct_anwser": "C",
+        "explain": "Lớp trừu tượng `javafx.scene.Node` là lớp cha cơ sở (base class) cao nhất cho tất cả các thành phần giao diện hiển thị hình ảnh nằm trong cây đồ họa (Scene Graph) của JavaFX, bao gồm cả các control (Button, TextField...) và các layout pane (HBox, VBox...)."
+      },
+      {
+        "question_id": 66,
+        "question_title": "In JavaFX, what is a Property?",
+        "option_A": "A static variable.",
+        "option_B": "A dynamic, observable value.",
+        "option_C": "A database field.",
+        "option_D": "A network address.",
+        "correct_anwser": "B",
+        "explain": "Trong JavaFX, một `Property` (Thuộc tính) là một đối tượng chứa dữ liệu động và có khả năng quan sát (observable). Nó cho phép các thành phần UI lắng nghe sự thay đổi giá trị và hỗ trợ tính năng liên kết dữ liệu mạnh mẽ (data binding)."
+      },
+      {
+        "question_id": 67,
+        "question_title": "What does the method show() do in the Stage class?",
+        "option_A": "Sets the title of the stage.",
+        "option_B": "Sets the scene of the stage.",
+        "option_C": "Displays the stage to the user.",
+        "option_D": "Closes the stage.",
+        "correct_anwser": "C",
+        "explain": "Phương thức `show()` trong lớp `Stage` của JavaFX được sử dụng để hiển thị cửa sổ giao diện đồ họa lên cho người dùng nhìn thấy và tương tác."
+      },
+      {
+        "question_id": 68,
+        "question_title": "What is the container that holds all the visual content in a JavaFX application?",
+        "option_A": "Stage",
+        "option_B": "Scene",
+        "option_C": "Node",
+        "option_D": "Pane",
+        "correct_anwser": "B",
+        "explain": "Lớp `Scene` (Cảnh nền) đóng vai trò là container chứa toàn bộ nội dung hiển thị (visual content) của một đồ thị giao diện (Scene Graph) trong JavaFX. Một `Scene` sau đó sẽ được đặt vào bên trong một `Stage` để hiển thị ra cửa sổ."
+      },
+      {
+        "question_id": 69,
+        "question_title": "What is JavaFX?",
+        "option_A": "A server-side Java framework.",
+        "option_B": "A library for building rich client applications.",
+        "option_C": "A database management system.",
+        "option_D": "A web development framework.",
+        "correct_anwser": "B",
+        "explain": "JavaFX là một bộ công cụ phần mềm, một thư viện nền tảng của Java dùng để thiết kế và xây dựng các ứng dụng desktop client phong phú (Rich Client Applications) với giao diện người dùng (UI) hiện đại, hỗ trợ đồ họa và media."
+      },
+      {
+        "question_id": 70,
+        "question_title": "What is the purpose of Spring Interceptors?",
+        "option_A": "To manage database connections.",
+        "option_B": "To intercept and process HTTP requests before or after they are handled by a controller.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Spring Interceptor (HandlerInterceptor) được sử dụng để can thiệp vào vòng đời xử lý yêu cầu HTTP. Nó cho phép thực hiện các đoạn mã tiền xử lý (pre-handle) hoặc hậu xử lý (post-handle) xung quanh các Controller (ví dụ như kiểm tra quyền truy cập, ghi log, đo thời gian phản hồi)."
+      },
+      {
+        "question_id": 71,
+        "question_title": "In the Spring MVC request lifecycle, which component is the first to receive an incoming request?",
+        "option_A": "Controller",
+        "option_B": "HandlerMapping",
+        "option_C": "DispatcherServlet",
+        "option_D": "ViewResolver",
+        "correct_anwser": "C",
+        "explain": "Trong vòng đời của Spring MVC, `DispatcherServlet` đóng vai trò là một Front Controller. Nó là thành phần trung tâm đầu tiên trực tiếp đón nhận tất cả các yêu cầu HTTP gửi đến, trước khi điều phối chúng tới các HandlerMapping và Controller phù hợp."
+      },
+      {
+        "question_id": 72,
+        "question_title": "What is the role of the DispatcherServlet in Spring MVC?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle all incoming HTTP requests.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "`DispatcherServlet` hoạt động như mẫu thiết kế Front Controller trong Spring MVC, chịu trách nhiệm chính trong việc tiếp nhận và điều phối mọi yêu cầu HTTP đi vào đến các thành phần xử lý tương ứng trong hệ thống."
+      },
+      {
+        "question_id": 73,
+        "question_title": "Thymeleaf integrates well with:",
+        "option_A": "React.js",
+        "option_B": "Angular.js",
+        "option_C": "Spring MVC.",
+        "option_D": "Node.js",
+        "correct_anwser": "C",
+        "explain": "Thymeleaf được thiết kế từ gốc để tương thích và tích hợp cực kỳ chặt chẽ với framework Spring MVC, hỗ trợ hoàn hảo việc xử lý dữ liệu từ đối tượng Spring Model và các tính năng kiểm lỗi form."
+      },
+      {
+        "question_id": 74,
+        "question_title": "In a JavaFX application with JPA, where is the EntityManager typically created and managed?",
+        "option_A": "In the View layer.",
+        "option_B": "In the Controller or Service layer.",
+        "option_C": "Directly in the Entity class.",
+        "option_D": "Inside the JavaFX Application class.",
+        "correct_anwser": "B",
+        "explain": "Để đảm bảo nguyên lý phân lớp trong kiến trúc phần mềm, `EntityManager` (hoặc các lớp Repository/Service bao bọc nó) thường được khởi tạo, quản lý và gọi trong tầng Controller hoặc tầng Service nhằm tách biệt hoàn toàn logic xử lý dữ liệu khỏi tầng hiển thị (View)."
+      },
+      {
+        "question_id": 75,
+        "question_title": "Which JavaFX component is suitable for displaying validation error messages?",
+        "option_A": "Label or Alert",
+        "option_B": "Button",
+        "option_C": "TableView",
+        "option_D": "TextField",
+        "correct_anwser": "A",
+        "explain": "Để hiển thị thông báo lỗi khi kiểm tra dữ liệu đầu vào (validation errors), cấu phần `Label` thường được dùng để hiển thị dòng chữ đỏ ngay cạnh trường nhập liệu, hoặc hộp thoại `Alert` được dùng để bật lên thông báo popup cảnh báo trực quan cho người dùng."
+      },
+      {
+        "question_id": 76,
+        "question_title": "Which JavaFX layout component is often used to arrange input fields and buttons in a CRUD form?",
+        "option_A": "HBox/VBox",
+        "option_B": "BorderPane",
+        "option_C": "GridPane",
+        "option_D": "StackPane",
+        "correct_anwser": "C",
+        "explain": "`GridPane` sắp xếp các thành phần con theo dạng lưới gồm các hàng và các cột linh hoạt, rất lý tưởng để thiết kế form nhập liệu (CRUD) chứa các cặp thành phần như nhãn bên trái thẳng hàng với trường nhập liệu tương ứng bên phải."
+      },
+      {
+        "question_id": 77,
+        "question_title": "What is the purpose of the Model in a Spring application?",
+        "option_A": "To define user interfaces.",
+        "option_B": "To represent domain objects and data.",
+        "option_C": "To manage HTTP requests.",
+        "option_D": "To handle application deployment.",
+        "correct_anwser": "B",
+        "explain": "Trong mô hình MVC (Model-View-Controller) của Spring, thành phần `Model` chịu trách nhiệm biểu diễn dữ liệu của ứng dụng, các đối tượng domain (domain objects) và trạng thái của nghiệp vụ nhằm chuẩn bị chuyển giao cho View hiển thị."
+      },
+      {
+        "question_id": 78,
+        "question_title": "What is the primary function of a Controller in a Spring MVC application?",
+        "option_A": "To manage database connections.",
+        "option_B": "To handle HTTP requests and return a model and view.",
+        "option_C": "To define user interfaces.",
+        "option_D": "To configure application security.",
+        "correct_anwser": "B",
+        "explain": "Controller trong Spring MVC đóng vai trò là điểm tiếp nhận và xử lý trực tiếp các yêu cầu HTTP gửi đến từ phía người dùng, thực hiện điều phối luồng xử lý và trả về đối tượng dữ liệu (Model) cùng trang giao diện (View) tương ứng."
+      },
+      {
+        "question_id": 79,
+        "question_title": "When using Spring ORM with Hibernate, what annotation is commonly used to map a Java class to a database table?",
+        "option_A": "@Component",
+        "option_B": "@Service",
+        "option_C": "@Entity",
+        "option_D": "@Controller",
+        "correct_anwser": "C",
+        "explain": "Annotation `@Entity` (được định nghĩa trong đặc tả JPA chuẩn được Spring ORM/Hibernate hỗ trợ) là cấu phần bắt buộc dùng để đánh dấu và ánh xạ một lớp Java thành một thực thể bền vững tương ứng với một bảng trong cơ sở dữ liệu."
       }
     ]
   },

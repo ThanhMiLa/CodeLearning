@@ -165,6 +165,39 @@ try {
     console.log(`Generated swr302-all-unique master set with ${allSwr302Questions.length} questions`);
   }
 
+  // Auto-generate hsf302-all-unique set by combining all HSF302 module questions
+  const hsf302Modules = quizzes.filter(q => q.id.includes('hsf302-module'));
+  if (hsf302Modules.length > 0) {
+    hsf302Modules.sort((a, b) => {
+      const matchA = (a.id + ' ' + a.title).match(/module[^\d]*(\d+)/i);
+      const matchB = (b.id + ' ' + b.title).match(/module[^\d]*(\d+)/i);
+      const numA = matchA ? parseInt(matchA[1], 10) : 99;
+      const numB = matchB ? parseInt(matchB[1], 10) : 99;
+      return numA - numB;
+    });
+
+    const allHsf302Questions = [];
+    let qCounter = 1;
+    for (const mod of hsf302Modules) {
+      for (const q of mod.questions) {
+        allHsf302Questions.push({
+          ...q,
+          question_id: qCounter++
+        });
+      }
+    }
+
+    quizzes.push({
+      id: 'hsf302-all-unique',
+      title: `Full Question List (All ${allHsf302Questions.length} Unique Questions)`,
+      description: 'Working with Spring Framework Full Questions Set',
+      questionsCount: allHsf302Questions.length,
+      questions: allHsf302Questions
+    });
+    console.log(`Generated hsf302-all-unique master set with ${allHsf302Questions.length} questions`);
+  }
+
+
   // Sort quizzes: year descending (26 > 25), then semester descending (FA > SU > SP)
   function getSortKey(title) {
     const match = title.match(/(FA|SU|SP)(\d{2})/i);
