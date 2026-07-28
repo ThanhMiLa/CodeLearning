@@ -79,19 +79,19 @@ public class AuthenticationService {
     long REFRESHABLE_DURATION;
 
     @Transactional(readOnly = true)
-    public AuthenticationResponse login(AuthenticationRequest request){
+    public AuthenticationResponse login(AuthenticationRequest request) {
         UserEntity userEntity = userRepository.findByUsernameWithWallet(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD));
 
         boolean authenticated = passwordEncoder.matches(request.getPassword(), userEntity.getPasswordHash());
 
-        if(!authenticated){
+        if (!authenticated) {
             throw new AppException(ErrorCode.INVALID_USERNAME_OR_PASSWORD);
         }
 
-        if(userEntity.getStatus().equals(UserStatus.LOCKED)){
+        if (userEntity.getStatus().equals(UserStatus.LOCKED)) {
             throw new AppException(ErrorCode.ACCOUNT_LOCKED);
-        }else if(userEntity.getStatus().equals(UserStatus.DISABLED)){
+        } else if (userEntity.getStatus().equals(UserStatus.DISABLED)) {
             throw new AppException(ErrorCode.ACCOUNT_DISABLED);
         }
 
@@ -104,16 +104,16 @@ public class AuthenticationService {
     }
 
     @Transactional
-    public AuthenticationResponse register(RegisterRequest registerRequest){
-        if(userRepository.existsByUsername(registerRequest.getUsername())){
+    public AuthenticationResponse register(RegisterRequest registerRequest) {
+        if (userRepository.existsByUsername(registerRequest.getUsername())) {
             throw new AppException(ErrorCode.USERNAME_ALREADY_EXISTS);
         }
 
-        if(!Objects.equals(registerRequest.getPassword(), registerRequest.getConfirmPassword())){
+        if (!Objects.equals(registerRequest.getPassword(), registerRequest.getConfirmPassword())) {
             throw new AppException(ErrorCode.PASSWORD_NOT_MATCH);
         }
 
-        if(userRepository.existsByEmail(registerRequest.getEmail())){
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
             throw new AppException(ErrorCode.EMAIL_ALREADY_EXISTS);
         }
 
@@ -154,7 +154,8 @@ public class AuthenticationService {
                 String name = (String) payload.get("name");
                 String pictureUrl = (String) payload.get("picture");
 
-                Optional<UserOauthAccountEntity> oauthAccountOpt = userOauthAccountRepository.findByProviderAndProviderAccountId("GOOGLE", userId);
+                Optional<UserOauthAccountEntity> oauthAccountOpt = userOauthAccountRepository
+                        .findByProviderAndProviderAccountId("GOOGLE", userId);
 
                 UserEntity userEntity;
                 if (oauthAccountOpt.isPresent()) {
@@ -174,7 +175,8 @@ public class AuthenticationService {
                         userEntity.setStatus(UserStatus.ACTIVE);
                         userEntity = userRepository.save(userEntity);
 
-                        applicationEventPublisher.publishEvent(UserRegisteredEvent.builder().userEntity(userEntity).build());
+                        applicationEventPublisher
+                                .publishEvent(UserRegisteredEvent.builder().userEntity(userEntity).build());
                     }
 
                     UserOauthAccountEntity newOauthAccount = UserOauthAccountEntity.builder()
@@ -202,12 +204,12 @@ public class AuthenticationService {
     }
 
     @Transactional
-    public void logout(String accessToken, String refreshToken){
-        if(accessToken != null && !accessToken.isBlank()){
+    public void logout(String accessToken, String refreshToken) {
+        if (accessToken != null && !accessToken.isBlank()) {
             processTokenInvalidation(accessToken, "ACCESS");
         }
 
-        if(refreshToken != null && !refreshToken.isBlank()){
+        if (refreshToken != null && !refreshToken.isBlank()) {
             processTokenInvalidation(refreshToken, "REFRESH");
         }
     }
@@ -244,13 +246,13 @@ public class AuthenticationService {
     }
 
     @Transactional(readOnly = true)
-    public IntrospectResponse introspect(IntrospectRequest request)  {
+    public IntrospectResponse introspect(IntrospectRequest request) {
         String token = request.getToken();
         boolean isValid = true;
 
-        try{
+        try {
             SignedJWT signedJWT = verifyToken(token, false);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             isValid = false;
         }
 
@@ -258,7 +260,7 @@ public class AuthenticationService {
     }
 
     private SignedJWT verifyToken(String token, boolean isRefresh) throws JOSEException, ParseException {
-        if(Objects.isNull(token) || token.isBlank()){
+        if (Objects.isNull(token) || token.isBlank()) {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
 
@@ -269,16 +271,18 @@ public class AuthenticationService {
         Date expiryTime = signedJWT.getJWTClaimsSet().getExpirationTime();
         boolean verified = signedJWT.verify(jwsVerifier);
 
-        if(!verified) throw new AppException(ErrorCode.UNAUTHENTICATED);
-        else if (expiryTime.before(new Date())) throw new AppException(ErrorCode.EXPIRED_TOKEN);
+        if (!verified)
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        else if (expiryTime.before(new Date()))
+            throw new AppException(ErrorCode.EXPIRED_TOKEN);
 
-        if(invalidatedTokenRepository.existsByTokenJti(signedJWT.getJWTClaimsSet().getJWTID())){
+        if (invalidatedTokenRepository.existsByTokenJti(signedJWT.getJWTClaimsSet().getJWTID())) {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
 
         String expectedType = isRefresh ? "REFRESH" : "ACCESS";
         Object type = signedJWT.getJWTClaimsSet().getClaim("type");
-        if(Objects.isNull(type) || !expectedType.equals(type)){
+        if (Objects.isNull(type) || !expectedType.equals(type)) {
             throw new AppException(ErrorCode.INVALID_TOKEN);
         }
 
@@ -286,8 +290,8 @@ public class AuthenticationService {
 
     }
 
-    private void processTokenInvalidation(String token, String type){
-        try{
+    private void processTokenInvalidation(String token, String type) {
+        try {
             SignedJWT signedJWT = SignedJWT.parse(token);
 
             String jti = signedJWT.getJWTClaimsSet().getJWTID();
@@ -304,7 +308,7 @@ public class AuthenticationService {
 
             invalidatedTokenRepository.save(invalidatedTokenEntity);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             log.warn("Invalid {} format, skipping blacklist: {}", type, e.getMessage());
         }
     }
@@ -317,7 +321,8 @@ public class AuthenticationService {
                 .issuer("codelearning.thanhmila.com")
                 .issueTime(new Date())
                 .expirationTime(new Date(
-                        Instant.now().plus(isRefresh ? REFRESHABLE_DURATION : VALID_DURATION, ChronoUnit.SECONDS).toEpochMilli()))
+                        Instant.now().plus(isRefresh ? REFRESHABLE_DURATION : VALID_DURATION, ChronoUnit.SECONDS)
+                                .toEpochMilli()))
                 .jwtID(UUID.randomUUID().toString())
                 .claim("scope", buildScope(userEntity))
                 .claim("type", isRefresh ? "REFRESH" : "ACCESS")

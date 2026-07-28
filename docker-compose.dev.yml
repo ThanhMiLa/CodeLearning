@@ -22,7 +22,7 @@ services:
       - postgres_data_dev:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -36,7 +36,7 @@ services:
     volumes:
       - redis_data_dev:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -142,13 +142,10 @@ services:
   judge0-redis:
     image: redis:7.2.4
     container_name: judge0-codelearning-redis-dev
-    command: [
-      "bash", "-c",
-      'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"'
-    ]
+    command: [ "bash", "-c", 'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"' ]
     env_file: judge0.conf
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD}\" ping"]
+      test: [ "CMD-SHELL", "redis-cli -a \"$${REDIS_PASSWORD}\" ping" ]
       interval: 5s
       timeout: 5s
       retries: 5
