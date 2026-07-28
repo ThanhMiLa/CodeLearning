@@ -51,22 +51,8 @@ const App: React.FC = () => {
               <Route path="/" element={<MainLayout />}>
                 {/* Public Routes */}
                 <Route index element={<Home />} />
-                <Route 
-                  path="courses" 
-                  element={
-                    <RoleRoute allowedRoles={['ADMIN']}>
-                      <CourseCatalog />
-                    </RoleRoute>
-                  } 
-                />
-                <Route 
-                  path="courses/:courseId" 
-                  element={
-                    <RoleRoute allowedRoles={['ADMIN']}>
-                      <CourseDetail />
-                    </RoleRoute>
-                  } 
-                />
+                <Route path="courses" element={<CourseCatalog />} />
+                <Route path="courses/:courseId" element={<CourseDetail />} />
                 <Route path="oj/practice" element={<PracticeCatalog />} />
                 <Route path="contests" element={<ContestList />} />
                 <Route path="quiz" element={<QuizCatalog />} />
@@ -108,9 +94,9 @@ const App: React.FC = () => {
                 <Route 
                   path="my-learning" 
                   element={
-                    <RoleRoute allowedRoles={['ADMIN']}>
+                    <ProtectedRoute>
                       <MyLearning />
-                    </RoleRoute>
+                    </ProtectedRoute>
                   } 
                 />
                 <Route 

@@ -9,18 +9,17 @@ x-logging: &default-logging
       max-file: "5"
 
 services:
-  # --- MODULE 1: HẠ TẦNG CỐT LÕI CỦA ỨNG DỤNG CHÍNH (CODELEARNING WEB APP) ---
-  # Module này sẽ CHẠY MẶC ĐỊNH
+  # --- MODULE 1: HẠ TẦNG CỐT LÕI CỦA ỨNG DỤNG CHÍNH (CODELEARNING WEB APP - DEV) ---
   db:
     image: postgres:15-alpine
-    container_name: codelearning-db
+    container_name: codelearning-db-dev
     restart: always
     ports:
-      - "5433:5432"
+      - "5432:5432"
     env_file:
       - ./backend/.env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_dev:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -30,12 +29,12 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: codelearning-redis
+    container_name: codelearning-redis-dev
     restart: always
     ports:
-      - "6380:6379"
+      - "6379:6379"
     volumes:
-      - redis_data:/data
+      - redis_data_dev:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -46,11 +45,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.rabbitmq
-    container_name: codelearning-rabbitmq
+    container_name: codelearning-rabbitmq-dev
     restart: always
     ports:
-      - "5673:5672"
-      - "15673:15672"
+      - "5672:5672"
+      - "15672:15672"
     healthcheck:
       test: [ "CMD", "rabbitmq-diagnostics", "-q", "check_running" ]
       interval: 10s
@@ -61,10 +60,10 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: codelearning-app
+    container_name: codelearning-app-dev
     restart: always
     ports:
-      - "8081:8081"
+      - "8080:8080"
     env_file:
       - ./backend/.env
     depends_on:
@@ -82,25 +81,24 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: codelearning-frontend
+    container_name: codelearning-frontend-dev
     restart: always
     ports:
-      - "3001:80"
+      - "3000:80"
     depends_on:
       - backend
     <<: *default-logging
 
-  # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX) ---
-  # Đã gắn profile "judge0". Sẽ KHÔNG chạy mặc định.
+  # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX - DEV) ---
   judge0-server:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
-    container_name: judge0-codelearning-server
+    container_name: judge0-codelearning-server-dev
     env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
     ports:
-      - "2359:2358"
+      - "2358:2358"
     privileged: true
     <<: *default-logging
     restart: always
@@ -113,7 +111,7 @@ services:
   judge0-workers:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
-    container_name: judge0-codelearning-workers
+    container_name: judge0-codelearning-workers-dev
     command: [ "./scripts/workers" ]
     env_file: judge0.conf
     volumes:
@@ -129,10 +127,10 @@ services:
 
   judge0-db:
     image: postgres:16.2
-    container_name: judge0-codelearning-db
+    container_name: judge0-codelearning-db-dev
     env_file: judge0.conf
     volumes:
-      - judge0_postgres_data:/var/lib/postgresql/data/
+      - judge0_postgres_data_dev:/var/lib/postgresql/data/
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U judge0 -d judge0" ]
       interval: 5s
@@ -143,7 +141,7 @@ services:
 
   judge0-redis:
     image: redis:7.2.4
-    container_name: judge0-codelearning-redis
+    container_name: judge0-codelearning-redis-dev
     command: [
       "bash", "-c",
       'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"'
@@ -158,6 +156,6 @@ services:
     restart: always
 
 volumes:
-  postgres_data:
-  redis_data:
-  judge0_postgres_data:
+  postgres_data_dev:
+  redis_data_dev:
+  judge0_postgres_data_dev:

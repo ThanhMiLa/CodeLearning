@@ -71,7 +71,6 @@ const MainLayout: React.FC = () => {
   };
 
   const showDashboardLink = user?.roles?.includes('ADMIN') || user?.roles?.includes('TEACHER');
-  const isAdmin = user?.roles?.includes('ADMIN');
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
@@ -100,17 +99,15 @@ const MainLayout: React.FC = () => {
                   <span>{t('navbar.dashboard')}</span>
                 </Link>
               )}
-              {isAdmin && (
-                <Link 
-                  to="/courses" 
-                  className={`flex items-center space-x-1 text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${
-                    location.pathname.startsWith('/courses') ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  <GraduationCap className="h-4 w-4" />
-                  <span>{t('navbar.courses')}</span>
-                </Link>
-              )}
+              <Link 
+                to="/courses" 
+                className={`flex items-center space-x-1 text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${
+                  location.pathname.startsWith('/courses') ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                <GraduationCap className="h-4 w-4" />
+                <span>{t('navbar.courses')}</span>
+              </Link>
               <Link 
                 to="/oj/practice" 
                 className={`flex items-center space-x-1 text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${
@@ -129,7 +126,7 @@ const MainLayout: React.FC = () => {
                 <Trophy className="h-4 w-4" />
                 <span>{t('navbar.contests')}</span>
               </Link>
-              {isAdmin && (
+              {isAuthenticated && (
                 <Link 
                   to="/my-learning" 
                   className={`flex items-center space-x-1 text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${
@@ -315,16 +312,14 @@ const MainLayout: React.FC = () => {
                 <span className="text-sm font-medium">{t('navbar.dashboard')}</span>
               </Link>
             )}
-            {isAdmin && (
-              <Link 
-                to="/courses" 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center space-x-2 py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
-              >
-                <GraduationCap className="h-5 w-5 text-indigo-500" />
-                <span className="text-sm font-medium">{t('navbar.courses')}</span>
-              </Link>
-            )}
+            <Link 
+              to="/courses" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center space-x-2 py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+            >
+              <GraduationCap className="h-5 w-5 text-indigo-500" />
+              <span className="text-sm font-medium">{t('navbar.courses')}</span>
+            </Link>
             <Link 
               to="/oj/practice" 
               onClick={() => setIsMobileMenuOpen(false)}
@@ -341,7 +336,7 @@ const MainLayout: React.FC = () => {
               <Trophy className="h-5 w-5 text-indigo-500" />
               <span className="text-sm font-medium">{t('navbar.contests')}</span>
             </Link>
-            {isAdmin && (
+            {isAuthenticated && (
               <Link 
                 to="/my-learning" 
                 onClick={() => setIsMobileMenuOpen(false)}

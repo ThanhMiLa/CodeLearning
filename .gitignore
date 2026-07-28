@@ -7,6 +7,7 @@
 .vscode/
 *.log
 .DS_Store
+docker-compose.prod.yml
 
 # Backend (Spring Boot / Maven) ignores
 backend/target/
