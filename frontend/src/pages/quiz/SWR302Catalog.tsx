@@ -121,7 +121,7 @@ const SWR302Catalog: React.FC = () => {
     });
 
     // 3. Modules 1 to 7
-    const modules = QUIZZES.filter(q => q.id.includes('module'));
+    const modules = QUIZZES.filter(q => q.id.includes('swr302-module'));
     modules.sort((a, b) => {
       const matchA = (a.id + ' ' + a.title).match(/module[^\d]*(\d+)/i);
       const matchB = (b.id + ' ' + b.title).match(/module[^\d]*(\d+)/i);
