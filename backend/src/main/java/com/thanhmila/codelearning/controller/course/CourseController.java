@@ -41,7 +41,7 @@ public class CourseController {
 
         Pageable pageable = courseSearchRequest.getPageable();
 
-        var result = courseService.
+        PageResponse<CourseListItemResponse> result = courseService.
                 getCourseList(userId, courseSearchRequest, pageable);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<CourseListItemResponse>>builder()
@@ -57,11 +57,11 @@ public class CourseController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ApiResponse<PageResponse<EnrolledCourseResponse>>> getEnrolledCourses(
             @AuthenticationPrincipal Jwt jwt,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size) {
 
         Long userId = jwt.getClaim("userId");
-        var result = courseService.getEnrolledCourses(userId, page, size);
+        PageResponse<EnrolledCourseResponse> result = courseService.getEnrolledCourses(userId, page, size);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<EnrolledCourseResponse>>builder()
                 .status(200)
@@ -82,7 +82,7 @@ public class CourseController {
             userId = jwt.getClaim("userId");
         }
 
-        var result = courseService.
+        CourseDetailResponse result = courseService.
                 getCourseDetail(courseId, userId);
 
         return ResponseEntity.ok(ApiResponse.<CourseDetailResponse>builder()
@@ -104,7 +104,7 @@ public class CourseController {
             userId = jwt.getClaim("userId");
         }
 
-        var result = courseService.
+        List<ChapterResponse> result = courseService.
                 getCourseCurriculum(courseId, userId);
 
         return ResponseEntity.ok(ApiResponse.<List<ChapterResponse>>builder()
@@ -118,7 +118,7 @@ public class CourseController {
 
     @GetMapping("/categories")
     public ResponseEntity<ApiResponse<List<CategoryResponse>>> getCategories() {
-        var result = courseService.getAllCategories();
+        List<CategoryResponse> result = courseService.getAllCategories();
 
         return ResponseEntity.ok(ApiResponse.<List<CategoryResponse>>builder()
                 .status(200)
@@ -134,7 +134,7 @@ public class CourseController {
     public ResponseEntity<ApiResponse<CourseDetailResponse>> createCourse(
             @ModelAttribute @Valid CourseCreationRequest request) {
 
-        var result = courseService.createCourse(request);
+        CourseDetailResponse result = courseService.createCourse(request);
 
         return ResponseEntity.ok(ApiResponse.<CourseDetailResponse>builder()
                 .status(200)

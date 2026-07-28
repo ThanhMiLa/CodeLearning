@@ -42,8 +42,8 @@ public class ContestController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ContestListResponse>>> getContests(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
             @AuthenticationPrincipal Jwt jwt) {
 
         Long userId = jwt != null ? jwt.getClaim("userId") : null;

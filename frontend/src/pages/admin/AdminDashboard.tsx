@@ -139,6 +139,7 @@ const AdminDashboard: React.FC = () => {
   const [probExampleOutput, setProbExampleOutput] = useState('');
   const [probHint, setProbHint] = useState('');
   const [probDifficulty, setProbDifficulty] = useState('EASY');
+  const [probScope, setProbScope] = useState('CONTEST');
   const [probTimeLimit, setProbTimeLimit] = useState('1000');
   const [probMemoryLimit, setProbMemoryLimit] = useState('262144');
   const [probScore] = useState('10');
@@ -692,7 +693,7 @@ const AdminDashboard: React.FC = () => {
         exampleInput: probExampleInput,
         exampleOutput: probExampleOutput,
         hint: probHint,
-        problemScope: 'PRACTICE',
+        problemScope: probScope,
         difficulty: probDifficulty,
         timeLimitMs: Number(probTimeLimit),
         memoryLimitKb: Number(probMemoryLimit),
@@ -727,6 +728,18 @@ const AdminDashboard: React.FC = () => {
       case 'MEDIUM': return 'text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/30';
       case 'HARD': return 'text-rose-600 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/30';
       default: return '';
+    }
+  };
+
+  const getScopeBadgeColor = (scope: string) => {
+    switch (scope) {
+      case 'CONTEST':
+        return 'text-amber-600 bg-amber-50/80 border-amber-200/70 dark:text-amber-400 dark:bg-amber-950/40 dark:border-amber-900/40';
+      case 'LESSON':
+        return 'text-purple-600 bg-purple-50/80 border-purple-200/70 dark:text-purple-400 dark:bg-purple-950/40 dark:border-purple-900/40';
+      case 'PRACTICE':
+      default:
+        return 'text-blue-600 bg-blue-50/80 border-blue-200/70 dark:text-blue-400 dark:bg-blue-950/40 dark:border-blue-900/40';
     }
   };
 
@@ -1056,6 +1069,7 @@ const AdminDashboard: React.FC = () => {
                   <thead>
                     <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/20 text-slate-400 dark:text-slate-400 font-bold uppercase tracking-wider text-[10px]">
                       <th className="px-6 py-4">Problem Name</th>
+                      <th className="px-6 py-4 w-32">Scope</th>
                       <th className="px-6 py-4 w-32">Difficulty</th>
                       <th className="px-6 py-4 w-36 text-center">Visibility</th>
                       <th className="px-6 py-4 w-40 text-center">Submissions</th>
@@ -1067,6 +1081,11 @@ const AdminDashboard: React.FC = () => {
                       <tr key={prob.id} className="hover:bg-slate-50/40 dark:hover:bg-slate-800/10 transition-colors">
                         <td className="px-6 py-4 font-bold text-slate-800 dark:text-white">
                           {prob.title}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase border ${getScopeBadgeColor(prob.scope)}`}>
+                            {prob.scope || 'PRACTICE'}
+                          </span>
                         </td>
                         <td className="px-6 py-4">
                           <span className={`inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold border ${getDifficultyColor(prob.difficulty)}`}>
@@ -2066,11 +2085,25 @@ const AdminDashboard: React.FC = () => {
                     onChange={(e) => setProbDifficulty(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/20 text-xs focus:outline-none"
                   >
-                    <option value="EASY">Easy (Easy)</option>
-                    <option value="MEDIUM">Medium (Medium)</option>
-                    <option value="HARD">Hard (Hard)</option>
+                    <option value="EASY">Easy</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HARD">Hard</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Problem Scope */}
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Problem Scope:</label>
+                <select
+                  value={probScope}
+                  onChange={(e) => setProbScope(e.target.value)}
+                  className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-950/20 text-xs font-bold text-indigo-600 dark:text-indigo-400 focus:outline-none"
+                >
+                  <option value="CONTEST">CONTEST</option>
+                  <option value="PRACTICE">PRACTICE</option>
+                  <option value="LESSON">LESSON</option>
+                </select>
               </div>
 
               {/* Description */}

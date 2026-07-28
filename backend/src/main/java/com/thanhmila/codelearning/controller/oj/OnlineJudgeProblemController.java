@@ -214,12 +214,13 @@ public class OnlineJudgeProblemController {
     @GetMapping("/admin/problems")
     @PreAuthorize("hasAuthority('OJ_PROBLEM_ADMIN')")
     public ResponseEntity<ApiResponse<PageResponse<OjAdminProblemResponse>>> getAdminProblems(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(required = false) ProblemScope scope,
-            @RequestParam(required = false) Boolean isPublic,
-            @RequestParam(required = false) ProblemDifficulty difficulty) {
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size,
+            @RequestParam(name = "scope", required = false) ProblemScope scope,
+            @RequestParam(name = "isPublic", required = false) Boolean isPublic,
+            @RequestParam(name = "difficulty", required = false) ProblemDifficulty difficulty) {
         
-        var result = onlineJudgeProblemService.getAdminProblems(page, scope, isPublic, difficulty);
+        var result = onlineJudgeProblemService.getAdminProblems(page, size, scope, isPublic, difficulty);
 
         return ResponseEntity.ok(ApiResponse.<PageResponse<OjAdminProblemResponse>>builder()
                 .status(200)
