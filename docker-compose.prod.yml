@@ -93,6 +93,12 @@ services:
     image: judge0/judge0:1.13.1
     platform: linux/amd64
     container_name: judge0-codelearning-server-prod
+    networks:
+      default:
+        aliases:
+          - judge0-server
+          - judge0-codelearning-server
+          - judge0-codelearning-server-prod
     env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
