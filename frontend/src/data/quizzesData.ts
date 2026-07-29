@@ -6310,9 +6310,9 @@ export const QUIZZES: QuizSet[] = [
   },
   {
     "id": "swr302-all-unique",
-    "title": "Full Question List (All 330 Unique Questions)",
+    "title": "Full Question List (All 345 Unique Questions)",
     "description": "Software Requirement Full Questions Set",
-    "questionsCount": 330,
+    "questionsCount": 345,
     "questions": [
       {
         "question_id": 1,
@@ -9642,6 +9642,158 @@ export const QUIZZES: QuizSet[] = [
         "option_D": "Process improvement should be evolutionary and continuous",
         "correct_anwser": "B",
         "explain": "Cải tiến quy trình phần mềm (SPI) luôn nhấn mạnh vào sự đồng lòng, tối ưu hóa quy trình làm việc chung và tinh thần đồng đội (teamwork) chứ không bao giờ đặt sự đóng góp mang tính cá nhân biệt lập lên trên (B)."
+      },
+      {
+        "question_id": 331,
+        "question_title": "Which of the following roles is considered a \"customer\" for a software product?",
+        "option_A": "Legal staff",
+        "option_B": "Compliance auditors",
+        "option_C": "Executive sponsor",
+        "option_D": "Contractors",
+        "option_E": "Venture capitalists",
+        "correct_anwser": "C",
+        "explain": "Trong Kỹ thuật Yêu cầu Phần mềm (Software Requirements), 'Customer' (Khách hàng) bao gồm các cá nhân hoặc nhóm thu được lợi ích trực tiếp/gián tiếp từ sản phẩm, người yêu cầu, tài trợ kinh phí hoặc phê duyệt sản phẩm. Nhà tài trợ dự án (Executive sponsor) thuộc nhóm vai trò khách hàng."
+      },
+      {
+        "question_id": 332,
+        "question_title": "Which diagram provides a high-level view of system processes and external entities?",
+        "option_A": "Context diagram",
+        "option_B": "Data flow diagram",
+        "option_C": "Entity-relationship diagram",
+        "option_D": "Use case diagram",
+        "correct_anwser": "A",
+        "explain": "Sơ đồ ngữ cảnh (Context diagram - DFD Level 0) cung cấp cái nhìn tổng quan nhất (high-level view), trong đó toàn bộ hệ thống được mô tả như một tiến trình duy nhất kết nối với các thực thể bên ngoài (external entities)."
+      },
+      {
+        "question_id": 333,
+        "question_title": "When resolving conflicts between \"Development and customers,\" how to resolve?",
+        "option_A": "Development always gets preference due to technical expertise.",
+        "option_B": "Customers always get preference to ensure satisfaction.",
+        "option_C": "Customers get preference, but in alignment with business objectives",
+        "option_D": "The project manager makes the final decision without external input.",
+        "correct_anwser": "C",
+        "explain": "Khi giải quyết xung đột giữa nhóm phát triển và khách hàng, ưu tiên được dành cho khách hàng nhưng phải phù hợp và định hướng theo các mục tiêu kinh doanh (business objectives) của dự án."
+      },
+      {
+        "question_id": 334,
+        "question_title": "Which category refers to the characteristics and structure of data the system will handle?",
+        "option_A": "Process Descriptions (PD)",
+        "option_B": "Data Definitions (DD)",
+        "option_C": "Business Rules (BR)",
+        "option_D": "Quality Attributes (QA)",
+        "correct_anwser": "B",
+        "explain": "Định nghĩa Dữ liệu (Data Definitions - DD) quy định đặc tính, cấu trúc, kiểu dữ liệu, định dạng và các phạm vi giá trị của dữ liệu mà hệ thống sẽ xử lý và quản lý."
+      },
+      {
+        "question_id": 335,
+        "question_title": "Which of the following is NOT one of the types of business rules?",
+        "option_A": "Inferences",
+        "option_B": "Facts",
+        "option_C": "Constraints",
+        "option_D": "Workflows",
+        "correct_anwser": "D",
+        "explain": "Theo phân loại Quy tắc Nghiệp vụ (Business Rules) trong SWR302 (Karl Wiegers), Business Rules bao gồm: Facts, Constraints, Action Enablers, Inferences, và Computations. 'Workflows' (Quy trình làm việc) là mô hình tiến trình nghiệp vụ, không phải là một loại Business Rule."
+      },
+      {
+        "question_id": 336,
+        "question_title": "Which of the following would be an appropriate analysis model component for a 'verb' in customer language?",
+        "option_A": "External entities in a Data Flow Diagram (DFD)",
+        "option_B": "Relationships in an Entity Relationship Diagram (ERD)",
+        "option_C": "Processes in a Data Flow Diagram (DFD)",
+        "option_D": "Objects with states in a State Transition Diagram (STD)",
+        "correct_anwser": "C",
+        "explain": "Trong phân tích và mô hình hóa yêu cầu (Requirements Modeling), các động từ (verbs - mô tả hành động, xử lý) trong ngôn ngữ của khách hàng được ánh xạ thành các Tiến trình (Processes) trong Sơ đồ Luồng Dữ liệu (DFD)."
+      },
+      {
+        "question_id": 337,
+        "question_title": "Which reporting element provides the criteria for including data?",
+        "option_A": "Header format",
+        "option_B": "Footer text",
+        "option_C": "Selection filter",
+        "option_D": "Refresh rate",
+        "correct_anwser": "C",
+        "explain": "Bộ lọc lựa chọn (Selection filter) quy định các tiêu chí/điều kiện lọc dữ liệu được lấy ra và đưa vào báo cáo."
+      },
+      {
+        "question_id": 338,
+        "question_title": "When specifying well-structured quality requirements, what does the \"SMART\" mnemonic stand for?",
+        "option_A": "Simple, Meaningful, Achievable, Realistic, Testable",
+        "option_B": "Specific, Measurable, Attainable, Relevant, Time-sensitive",
+        "option_C": "Scalable, Maintainable, Accessible, Reliable, Timely",
+        "option_D": "Strategic, Marketable, Agile, Responsible, Traceable",
+        "correct_anwser": "B",
+        "explain": "Viết tắt SMART trong quy chuẩn đặt mục tiêu và yêu cầu chất lượng đại diện cho: Specific (Cụ thể), Measurable (Đo lường được), Attainable (Khả thi/Có thể đạt được), Relevant (Liên quan/Phù hợp), Time-sensitive (Giới hạn thời gian)."
+      },
+      {
+        "question_id": 339,
+        "question_title": "Which of the following is a recommended way to reduce the pressure to deliver a throwaway prototype as a production product?",
+        "option_A": "Use paper prototypes or tools unrelated to actual development.",
+        "option_B": "Make the prototype appear as polished as possible.",
+        "option_C": "Provide detailed documentation for each prototype iteration.",
+        "option_D": "Use functional prototypes that are nearly production-ready.",
+        "correct_anwser": "A",
+        "explain": "Để tránh việc khách hàng hoặc ban quản lý đòi đưa bản prototype bỏ đi (throwaway prototype) trực tiếp vào sản xuất, phương pháp hiệu quả nhất là sử dụng prototype trên giấy (paper prototypes) hoặc các công cụ phác thảo giao diện độc lập với mã nguồn thật."
+      },
+      {
+        "question_id": 340,
+        "question_title": "In the context of selecting packaged (COTS) software solutions, which of the following is a key characteristic that distinguishes COTS solutions from custom development in terms of flexibility?",
+        "option_A": "COTS solutions can be easily and fully customized to every specific organizational requirement.",
+        "option_B": "COTS solutions are always cheaper than custom development, regardless of requirement complexity.",
+        "option_C": "COTS solutions do not require any requirements definition activities.",
+        "option_D": "COTS solutions offer less flexibility in meeting requirements compared to custom development.",
+        "correct_anwser": "D",
+        "explain": "Các giải pháp phần mềm thương mại có sẵn (COTS) có tính linh hoạt thấp hơn (less flexibility) so với phần mềm tự phát triển (custom development), vì doanh nghiệp thường phải điều chỉnh quy trình của mình theo phần mềm thay vì tùy biến 100% phần mềm COTS."
+      },
+      {
+        "question_id": 341,
+        "question_title": "Outsourced teams in other countries are typically referred to as being ___________.",
+        "option_A": "offshore",
+        "option_B": "offline",
+        "option_C": "on-site",
+        "option_D": "off-site",
+        "correct_anwser": "A",
+        "explain": "Đội ngũ phát triển phần mềm được thuê ngoài (outsourced) hoạt động tại các quốc gia khác được gọi là đội ngũ offshore (offshore teams)."
+      },
+      {
+        "question_id": 342,
+        "question_title": "What is the first step to controlling scope creep in a project?",
+        "option_A": "Implementing a rigid change freeze policy.",
+        "option_B": "Defining the project's scope.",
+        "option_C": "Only accepting new features from senior management.",
+        "option_D": "Expanding the project budget.",
+        "correct_anwser": "B",
+        "explain": "Bước đầu tiên và quan trọng nhất để kiểm soát phình phạm vi (scope creep) là phải xác định và thống nhất rõ ràng phạm vi ban đầu của dự án (Defining the project's scope) để làm cơ sở đối chiếu cho mọi thay đổi về sau."
+      },
+      {
+        "question_id": 343,
+        "question_title": "What is NOT Requirements development tools?",
+        "option_A": "Elicitation tools.",
+        "option_B": "Prototyping tools.",
+        "option_C": "Modeling tools.",
+        "option_D": "Specific tools.",
+        "correct_anwser": "D",
+        "explain": "Các công cụ phát triển yêu cầu (Requirements development tools) theo phân loại chuẩn bao gồm: công cụ thu thập (Elicitation tools), công cụ phác thảo (Prototyping tools), công cụ mô hình hóa (Modeling tools), và công cụ đặc tả/quản lý. 'Specific tools' không nằm trong phân loại này."
+      },
+      {
+        "question_id": 344,
+        "question_title": "Software requirements serve as input to .............",
+        "option_A": "Project Planning Process",
+        "option_B": "Project Tracking and Control Process",
+        "option_C": "Change Control Process",
+        "option_D": "Acceptance & System Testing Process",
+        "option_E": "Construction Process",
+        "correct_anwser": "A",
+        "explain": "Tài liệu yêu cầu phần mềm (SRS) đóng vai trò là đầu vào (input) trực tiếp và cốt lõi nhất cho Quy trình Lập kế hoạch dự án (Project Planning Process) để ước tính chi phí, thời gian và phạm vi trước khi triển khai phát triển và kiểm thử."
+      },
+      {
+        "question_id": 345,
+        "question_title": "Which of the following is not a benefit of having a clear set of expectations for product champions?",
+        "option_A": "Encouraging accountability and clarity of role",
+        "option_B": "Helping champions align with project goals",
+        "option_C": "Guaranteeing the project will stay on budget",
+        "option_D": "Facilitating negotiation of the champion's responsibilities",
+        "correct_anwser": "C",
+        "explain": "Việc đặt ra kỳ vọng rõ ràng cho đại diện người dùng (Product Champion) giúp làm rõ vai trò, tăng trách nhiệm và căn chỉnh theo mục tiêu dự án. Tuy nhiên, điều này KHÔNG THỂ đảm bảo chắc chắn dự án sẽ nằm trong ngân sách (Guaranteeing the project will stay on budget)."
       }
     ]
   },
