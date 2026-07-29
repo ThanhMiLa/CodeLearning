@@ -7,6 +7,8 @@
 .vscode/
 *.log
 .DS_Store
+judge0.conf
+!.example
 
 # Backend (Spring Boot / Maven) ignores
 backend/target/
@@ -41,3 +43,4 @@ frontend/yarn-debug.log*
 frontend/yarn-error.log*
 frontend/pnpm-debug.log*
 frontend/.eslintcache
+frontend/scratch/

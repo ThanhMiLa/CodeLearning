@@ -195,8 +195,7 @@ REDIS_PORT=6379
 
 # Specify Redis password. Cannot be blank.
 # Default: NO DEFAULT! MUST BE SET!
-REDIS_PASSWORD=2jHGs6maZSJxUA2n8s7g43xSswDknBDT
-
+REDIS_PASSWORD=YOUR_REDIS_PASSWORD
 
 ################################################################################
 # PostgreSQL Configuration
@@ -218,7 +217,7 @@ POSTGRES_USER=judge0
 
 # Password of the user. Cannot be blank. Used only in production.
 # Default: NO DEFAULT, YOU MUST SET YOUR PASSWORD
-POSTGRES_PASSWORD=Vc9H9P7Wh4LuXjfE2qsM7zprwwHDxnqh
+POSTGRES_PASSWORD=YOUR_POSTGRES_PASSWORD
 
 
 ################################################################################
