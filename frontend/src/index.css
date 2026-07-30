@@ -70,3 +70,18 @@
 .animate-pulse-indigo {
   animation: pulse-indigo 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Side to side horizontal animation */
+@keyframes move-side {
+  0%, 100% {
+    transform: translateX(-25px);
+  }
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+.animate-move-side {
+  animation: move-side 3s ease-in-out infinite;
+}
+

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QUIZZES } from '../../data/quizzesData';
-import { Sparkles, Code2, FileSpreadsheet, ChevronRight, ShieldCheck, HelpCircle } from 'lucide-react';
+import { Sparkles, Code2, FileSpreadsheet, ChevronRight, ShieldCheck, HelpCircle, ExternalLink } from 'lucide-react';
 
 const QuizCatalog: React.FC = () => {
   const { t } = useTranslation();
@@ -131,8 +131,27 @@ const QuizCatalog: React.FC = () => {
             </div>
           </Link>
         </div>
+
+        {/* Moving red banner note */}
+        <div className="mt-14 text-center overflow-hidden py-4">
+          <div className="inline-block animate-move-side">
+            <p className="text-rose-500 dark:text-rose-400 font-bold text-base sm:text-lg flex items-center justify-center gap-2 drop-shadow-sm">
+              <span>Source PE HSF302:</span>
+              <a 
+                href="https://github.com/ThanhMiLa/source-hsf-pe" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="underline hover:text-rose-600 dark:hover:text-rose-300 transition-colors inline-flex items-center gap-1"
+              >
+                https://github.com/ThanhMiLa/source-hsf-pe
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
 export default QuizCatalog;
