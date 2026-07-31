@@ -4693,8 +4693,8 @@ export const QUIZZES: QuizSet[] = [
         "option_B": "dispatcher-servlet.xml",
         "option_C": "web.xml",
         "option_D": "config.xml",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc Java Web và Spring MVC cấu hình bằng XML truyền thống, `web.xml` đóng vai trò là tệp mô tả triển khai (deployment descriptor). Đây là nơi đầu tiên bạn phải khai báo và đăng ký sự hiện diện của `DispatcherServlet` với máy chủ ứng dụng (Servlet Container) như Tomcat."
+        "correct_anwser": "B",
+        "explain": "Trong Spring MVC cấu hình XML truyền thống, `web.xml` chỉ dùng để khai báo/đăng ký servlet với Servlet Container. Còn tệp cấu hình riêng để chứa các bean của ứng dụng (như ViewResolver, HandlerMapping, Component Scan...) cho DispatcherServlet chính là `[servlet-name]-servlet.xml` (mặc định là `dispatcher-servlet.xml`)."
       },
       {
         "question_id": 40,
@@ -10190,8 +10190,8 @@ export const QUIZZES: QuizSet[] = [
         "option_B": "dispatcher-servlet.xml",
         "option_C": "web.xml",
         "option_D": "config.xml",
-        "correct_anwser": "C",
-        "explain": "Trong kiến trúc Java Web và Spring MVC cấu hình bằng XML truyền thống, `web.xml` đóng vai trò là tệp mô tả triển khai (deployment descriptor). Đây là nơi đầu tiên bạn phải khai báo và đăng ký sự hiện diện của `DispatcherServlet` với máy chủ ứng dụng (Servlet Container) như Tomcat."
+        "correct_anwser": "B",
+        "explain": "Trong Spring MVC cấu hình XML truyền thống, `web.xml` chỉ dùng để khai báo/đăng ký servlet với Servlet Container. Còn tệp cấu hình riêng để chứa các bean của ứng dụng (như ViewResolver, HandlerMapping, Component Scan...) cho DispatcherServlet chính là `[servlet-name]-servlet.xml` (mặc định là `dispatcher-servlet.xml`)."
       },
       {
         "question_id": 40,
