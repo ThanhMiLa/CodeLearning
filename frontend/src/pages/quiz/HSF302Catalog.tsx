@@ -31,7 +31,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
   'hsf302-leak-de': {
     moduleNum: 0,
     badgeLabel: 'LEAK PE',
-    title: 'Leak Đề PE (Bộ 85 câu đặc biệt)',
+    title: 'Leak Đề FE (Bộ 85 câu đặc biệt)',
     gradient: 'from-amber-500 to-rose-600',
     iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
   },
