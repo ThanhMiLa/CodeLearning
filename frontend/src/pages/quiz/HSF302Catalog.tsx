@@ -28,6 +28,13 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     gradient: 'from-indigo-500 to-purple-500',
     iconBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
   },
+  'hsf302-leak-de': {
+    moduleNum: 0,
+    badgeLabel: 'LEAK PE',
+    title: 'Leak Đề PE (Bộ 85 câu đặc biệt)',
+    gradient: 'from-amber-500 to-rose-600',
+    iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+  },
   'hsf302-random-exam': {
     moduleNum: 0,
     badgeLabel: 'MOCK EXAM',
@@ -60,6 +67,7 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
 
 const getModuleMeta = (id: string, title: string): Partial<ModuleInfo> => {
   if (id === 'hsf302-all-unique') return MODULE_METADATA['hsf302-all-unique'];
+  if (id === 'hsf302-leak-de') return MODULE_METADATA['hsf302-leak-de'];
   if (id === 'hsf302-random-exam') return MODULE_METADATA['hsf302-random-exam'];
 
   // Match module number 1 to 3
@@ -75,24 +83,30 @@ const getModuleMeta = (id: string, title: string): Partial<ModuleInfo> => {
 };
 
 const HSF302Catalog: React.FC = () => {
-  // Fetch HSF302 Module quiz sets sorted: Full List, Random Exam, then Modules 1-3
+  // Fetch HSF302 Module quiz sets sorted: Full List, Leak Đề, Random Exam, then Modules 1-3
   const allCards = useMemo(() => {
     const list: any[] = [];
 
-    // 1. Full list card
+    // 1. Leak Đề card
+    const leakDe = QUIZZES.find(q => q.id === 'hsf302-leak-de');
+    if (leakDe) {
+      list.push(leakDe);
+    }
+
+    // 2. Full list card
     const master = QUIZZES.find(q => q.id === 'hsf302-all-unique');
     if (master) {
       list.push(master);
     }
 
-    // 2. Random 50 mock exam card
+    // 3. Random 50 mock exam card
     list.push({
       id: 'hsf302-random-exam',
       title: 'Random 50-Question Mock Exam',
       questions: { length: 50 }
     });
 
-    // 3. Modules 1 to 3
+    // 4. Modules 1 to 3
     const modules = QUIZZES.filter(q => q.id.includes('hsf302-module'));
     modules.sort((a, b) => {
       const matchA = (a.id + ' ' + a.title).match(/module[^\d]*(\d+)/i);
