@@ -57,6 +57,8 @@ services:
       retries: 5
 
   backend:
+    profiles:
+      - backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -91,6 +93,8 @@ services:
 
   # --- MODULE 2: HẠ TẦNG CHẤM BÀI CHUYÊN BIỆT (JUDGE0 SANDBOX - DEV) ---
   judge0-server:
+    profiles:
+      - judge0
     image: judge0/judge0:1.13.1
     platform: linux/amd64
     container_name: judge0-codelearning-server-dev
@@ -109,6 +113,8 @@ services:
         condition: service_healthy
 
   judge0-workers:
+    profiles:
+      - judge0
     image: judge0/judge0:1.13.1
     platform: linux/amd64
     container_name: judge0-codelearning-workers-dev
@@ -126,6 +132,8 @@ services:
         condition: service_healthy
 
   judge0-db:
+    profiles:
+      - judge0
     image: postgres:16.2
     container_name: judge0-codelearning-db-dev
     env_file: judge0.conf
@@ -140,6 +148,8 @@ services:
     restart: always
 
   judge0-redis:
+    profiles:
+      - judge0
     image: redis:7.2.4
     container_name: judge0-codelearning-redis-dev
     command: [ "bash", "-c", 'docker-entrypoint.sh --appendonly no --requirepass "$$REDIS_PASSWORD"' ]

@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import java.time.Instant;
 import java.util.List;
@@ -33,6 +34,8 @@ import com.thanhmila.codelearning.dto.request.CreateOjProblemRequest;
 import com.thanhmila.codelearning.dto.response.OjSubmissionHistoryResponse;
 import com.thanhmila.codelearning.entity.enums.ProblemScope;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -46,6 +49,10 @@ public class OnlineJudgeProblemController {
     OnlineJudgeProblemService onlineJudgeProblemService;
     OjSubmissionService ojSubmissionService;
     OjTestcaseGenerationService ojTestcaseGenerationService;
+
+    @NonFinal
+    @Value("${app.webhook-secret}")
+    String webhookSecret;
 
     @GetMapping("/problems/practice")
     public ResponseEntity<ApiResponse<PageResponse<OjPracticeProblemResponse>>> getPracticeProblems(
@@ -126,10 +133,23 @@ public class OnlineJudgeProblemController {
     }
 
     @PutMapping("/submissions")
-    public ResponseEntity<ApiResponse<Void>> processJudge0Callback(@RequestBody Judge0CallbackPayload payload) {
+    public ResponseEntity<ApiResponse<Void>> processJudge0Callback(@RequestParam(value = "secret",required = false) String secret, @RequestBody Judge0CallbackPayload payload) {
+        
+
         log.info("➔ Nhận Webhook từ Judge0 cho token: {}, Trạng thái: {}",
                 payload.getToken(),
                 payload.getStatus() != null ? payload.getStatus().getDescription() : "UNKNOWN");
+        
+        if (secret == null || !secret.equals(webhookSecret)) {
+            log.warn("🚨 CẢNH BÁO BẢO MẬT: Có người cố tình giả mạo Webhook không có Secret hợp lệ!");
+            return ResponseEntity.status(401).body(ApiResponse.<Void>builder()
+                    .status(401)
+                    .code(1000)
+                    .message("Invalid webhook secret")
+                    .result(null)
+                    .timestamp(Instant.now().toString())
+                    .build());
+        }
 
         ojSubmissionService.processJudge0Callback(payload);
 
@@ -159,17 +179,59 @@ public class OnlineJudgeProblemController {
     }
 
     @PutMapping("/webhooks/generate-inputs")
-    public ResponseEntity<Void> processInputWebhook(@RequestBody Judge0CallbackPayload payload) {
+    public ResponseEntity<ApiResponse<Void>> processInputWebhook(
+            @RequestParam(value = "secret", required = false) String secret,
+            @RequestBody Judge0CallbackPayload payload) {
+
+        if (secret == null || !webhookSecret.equals(secret)) {
+            log.warn("🚨 CẢNH BÁO BẢO MẬT: Webhook generate-inputs không có Secret hợp lệ!");
+            return ResponseEntity.status(401).body(ApiResponse.<Void>builder()
+                    .status(401)
+                    .code(1000)
+                    .message("Invalid webhook secret")
+                    .result(null)
+                    .timestamp(Instant.now().toString())
+                    .build());
+        }
+
         log.info("➔ Nhận Input Webhook từ Judge0 cho token: {}", payload.getToken());
         ojTestcaseGenerationService.processInputWebhook(payload);
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(1000)
+                .message("Process input webhook successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
     }
 
     @PutMapping("/webhooks/generate-outputs")
-    public ResponseEntity<Void> processOutputWebhook(@RequestBody Judge0CallbackPayload payload) {
+    public ResponseEntity<ApiResponse<Void>> processOutputWebhook(
+            @RequestParam(value = "secret", required = false) String secret,
+            @RequestBody Judge0CallbackPayload payload) {
+
+        if (secret == null || !webhookSecret.equals(secret)) {
+            log.warn("🚨 CẢNH BÁO BẢO MẬT: Webhook generate-outputs không có Secret hợp lệ!");
+            return ResponseEntity.status(401).body(ApiResponse.<Void>builder()
+                    .status(401)
+                    .code(1000)
+                    .message("Invalid webhook secret")
+                    .result(null)
+                    .timestamp(Instant.now().toString())
+                    .build());
+        }
+
         log.info("➔ Nhận Output Webhook từ Judge0 cho token: {}", payload.getToken());
         ojTestcaseGenerationService.processOutputWebhook(payload);
-        return ResponseEntity.ok().build();
+
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(1000)
+                .message("Process output webhook successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
     }
 
     @PostMapping("/admin/problems")

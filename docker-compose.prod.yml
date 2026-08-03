@@ -15,7 +15,7 @@ services:
     container_name: codelearning-db-prod
     restart: always
     ports:
-      - "5433:5432"
+      - "127.0.0.1:5433:5432"
     env_file:
       - ./backend/.env
     volumes:
@@ -30,8 +30,6 @@ services:
     image: redis:7-alpine
     container_name: codelearning-redis-prod
     restart: always
-    ports:
-      - "6380:6379"
     volumes:
       - redis_data_prod:/data
     healthcheck:
@@ -46,9 +44,6 @@ services:
       dockerfile: Dockerfile.rabbitmq
     container_name: codelearning-rabbitmq-prod
     restart: always
-    ports:
-      - "5673:5672"
-      - "15673:15672"
     healthcheck:
       test: [ "CMD", "rabbitmq-diagnostics", "-q", "check_running" ]
       interval: 10s
@@ -102,8 +97,6 @@ services:
     env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
-    ports:
-      - "2359:2358"
     privileged: true
     <<: *default-logging
     restart: always

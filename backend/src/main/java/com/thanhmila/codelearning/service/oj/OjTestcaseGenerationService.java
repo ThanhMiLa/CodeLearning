@@ -43,6 +43,10 @@ public class OjTestcaseGenerationService {
     @Value("${app.webhook-base-url}")
     String webhookBaseUrl;
 
+    @NonFinal
+    @Value("${app.webhook-secret}")
+    String webhookSecret;
+
     final int PYTHON_LANGUAGE_ID = 71;
     final int C_PLUS_PLUS_LANGUAGE_ID = 76;
 
@@ -67,7 +71,7 @@ public class OjTestcaseGenerationService {
 
         List<ProblemTestcaseEntity> newTestcases = new ArrayList<>();
         List<Judge0SubmissionItem> items = new ArrayList<>();
-        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-inputs?base64_encoded=true";
+        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-inputs?base64_encoded=true&secret=" + webhookSecret;
 
         int total = request.getTotalTestcasesToGenerate();
         for (int i = 1; i <= total; i++) {
@@ -151,7 +155,7 @@ public class OjTestcaseGenerationService {
 
         List<ProblemTestcaseEntity> testcases = problemTestcaseRepository.findByProblemIdOrderByOrderIndex(problemId);
         List<Judge0SubmissionItem> items = new ArrayList<>();
-        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-outputs?base64_encoded=true";
+        String callbackUrl = webhookBaseUrl + "/online-judge/webhooks/generate-outputs?base64_encoded=true&secret=" + webhookSecret;
 
         for (ProblemTestcaseEntity testcase : testcases) {
             items.add(Judge0SubmissionItem.builder()

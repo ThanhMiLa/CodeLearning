@@ -14,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.experimental.NonFinal;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 
 import java.time.Instant;
 
@@ -25,6 +28,10 @@ import java.time.Instant;
 public class PaymentController {
 
     PaymentService paymentService;
+
+    @NonFinal
+    @Value("${app.webhook-secret}")
+    String webhookSecret;
 
     @PostMapping("/payment/deposit")
     public ResponseEntity<ApiResponse<PaymentDepositResponse>> createDeposit(
@@ -44,8 +51,22 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/webhook")
-    public ResponseEntity<ObjectNode> handleWebhook(@RequestBody ObjectNode payload) {
+    public ResponseEntity<ApiResponse<Void>> handleWebhook(
+            @RequestParam(value = "secret", required = false) String secret,
+            @RequestBody ObjectNode payload) {
         log.info("Received PayOS Webhook");
+
+        if (secret == null || !secret.equals(webhookSecret)) {
+            log.warn("🚨 CẢNH BÁO BẢO MẬT: Webhook PayOS không có Secret hợp lệ!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ApiResponse.<Void>builder()
+                    .status(401)
+                    .code(1000)
+                    .message("Invalid webhook secret")
+                    .result(null)
+                    .timestamp(Instant.now().toString())
+                    .build());
+        }
+
         try {
             paymentService.handlePayOSWebhook(payload);
         } catch (Exception e) {
@@ -53,10 +74,12 @@ public class PaymentController {
         }
         
         // Return 200 OK to PayOS even if something failed inside, or PayOS will keep retrying
-        // PayOS requires returning a JSON object
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode response = mapper.createObjectNode();
-        response.put("success", true);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .status(200)
+                .code(1000)
+                .message("PayOS webhook processed successfully")
+                .result(null)
+                .timestamp(Instant.now().toString())
+                .build());
     }
 }

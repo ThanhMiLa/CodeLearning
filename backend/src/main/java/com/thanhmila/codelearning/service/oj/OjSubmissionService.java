@@ -70,6 +70,11 @@ public class OjSubmissionService {
     String webhookBaseUrl;
 
 
+    @NonFinal
+    @Value("${app.webhook-secret}")
+    String webhookSecret;
+
+
     public OjSubmissionInitialResponse submitCode(OjSubmissionRequest request, Long userId) {
         // Check user status
         UserEntity user = userRepository.findById(userId)
@@ -116,7 +121,7 @@ public class OjSubmissionService {
 
         // Đóng gói dữ liệu (Code + Testcases) để gửi sang Judge0
         List<Judge0SubmissionItem> judge0SubmissionItemList = new ArrayList<>();
-        String callbackUrl = webhookBaseUrl + "/online-judge/submissions";
+        String callbackUrl = webhookBaseUrl + "/online-judge/submissions?secret=" + webhookSecret;
 
         // Tính limit dựa trên ngôn ngữ (Gợi ý dùng hệ số nhân)
         double timeLimitSeconds = calculateTimeLimitForLanguage(ojProblem.getTimeLimitMs(), request.getLanguageId());
