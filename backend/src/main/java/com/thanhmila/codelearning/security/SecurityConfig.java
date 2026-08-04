@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.oauth2.server.resource.web.BearerTokenResolver;
 import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -37,6 +38,7 @@ public class SecurityConfig {
     final CustomJwtDecoder customJwtDecoder;
     final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    final IpRateLimitFilter ipRateLimitFilter;
 
     @Value("${app.cors.allowed-origins:http://localhost:5173,http://localhost:3000}")
     List<String> allowedOrigins;
@@ -46,6 +48,7 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
+                .addFilterBefore(ipRateLimitFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         // 1. Pre-flight request (CORS)
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
