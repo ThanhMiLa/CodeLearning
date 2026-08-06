@@ -58,10 +58,38 @@ const App: React.FC = () => {
                 <Route path="courses/:courseId" element={<CourseDetail />} />
                 <Route path="oj/practice" element={<PracticeCatalog />} />
                 <Route path="contests" element={<ContestList />} />
-                <Route path="quiz" element={<QuizCatalog />} />
-                <Route path="quiz/swr302" element={<SWR302Catalog />} />
-                <Route path="quiz/hsf302" element={<HSF302Catalog />} />
-                <Route path="quiz/:quizId" element={<QuizWorkspace />} />
+                <Route 
+                  path="quiz" 
+                  element={
+                    <ProtectedRoute>
+                      <QuizCatalog />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="quiz/swr302" 
+                  element={
+                    <ProtectedRoute>
+                      <SWR302Catalog />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="quiz/hsf302" 
+                  element={
+                    <ProtectedRoute>
+                      <HSF302Catalog />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="quiz/:quizId" 
+                  element={
+                    <ProtectedRoute>
+                      <QuizWorkspace />
+                    </ProtectedRoute>
+                  } 
+                />
 
                 {/* Guest-only Routes */}
                 <Route 
