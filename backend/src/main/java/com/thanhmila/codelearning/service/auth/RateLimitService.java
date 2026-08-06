@@ -24,9 +24,9 @@ public class RateLimitService {
                 .addLimit(limit -> limit.capacity(100).refillGreedy(100, Duration.ofMinutes(1)))
                 .build();
 
-        // User limit: 5 requests per 1 second
+        // User limit: 10 requests per 1 second
         userConfiguration = BucketConfiguration.builder()
-                .addLimit(limit -> limit.capacity(5).refillGreedy(5, Duration.ofSeconds(1)))
+                .addLimit(limit -> limit.capacity(10).refillGreedy(10, Duration.ofSeconds(1)))
                 .build();
     }
 

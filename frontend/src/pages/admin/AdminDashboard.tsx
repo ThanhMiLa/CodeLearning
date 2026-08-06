@@ -21,7 +21,8 @@ import {
   GripVertical,
   Users,
   CreditCard,
-  Search
+  Search,
+  ChevronDown
 } from 'lucide-react';
 import { Reorder } from 'framer-motion';
 import api from '../../api/axios';
@@ -36,10 +37,77 @@ import type {
   ContestListResponse,
   ContestResponse,
   AdminUserResponse,
-  AdminPaymentTransactionResponse
+  AdminPaymentTransactionResponse,
+  OjAdminSubmissionSearchRequest,
+  OjAdminSubmissionResponse
 } from '../../types';
 
-type DashboardTab = 'courses' | 'problems' | 'contests' | 'users' | 'payments';
+type DashboardTab = 'courses' | 'problems' | 'contests' | 'users' | 'payments' | 'submissions';
+
+interface MultiSelectDropdownProps {
+  options: { value: string | number; label: string }[];
+  selectedValues: any[];
+  onChange: (values: any[]) => void;
+  placeholder: string;
+}
+
+const MultiSelectDropdown: React.FC<MultiSelectDropdownProps> = ({ options, selectedValues, onChange, placeholder }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleOption = (value: string | number) => {
+    if (selectedValues.includes(value)) {
+      onChange(selectedValues.filter((v: any) => v !== value));
+    } else {
+      onChange([...selectedValues, value]);
+    }
+  };
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="px-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none flex justify-between items-center gap-2 min-w-[150px] w-full"
+      >
+        <span className="truncate max-w-[120px] text-slate-700 dark:text-slate-300">
+          {selectedValues.length === 0 ? placeholder : `${selectedValues.length} selected`}
+        </span>
+        <ChevronDown className="h-4 w-4 text-slate-400" />
+      </button>
+
+      {isOpen && (
+        <div className="absolute z-10 mt-1 w-full min-w-[200px] max-h-60 overflow-y-auto bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg p-1">
+          {options.map((opt) => (
+            <div
+              key={opt.value}
+              onClick={() => toggleOption(opt.value)}
+              className="px-3 py-2 flex items-center space-x-2 hover:bg-slate-100 dark:hover:bg-slate-700/50 rounded-lg cursor-pointer transition-colors"
+            >
+              <input
+                type="checkbox"
+                checked={selectedValues.includes(opt.value)}
+                readOnly
+                className="h-3.5 w-3.5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 bg-slate-100 dark:bg-slate-900 pointer-events-none"
+              />
+              <span className="text-xs text-slate-700 dark:text-slate-300 select-none whitespace-nowrap">{opt.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<DashboardTab>('courses');
@@ -82,6 +150,20 @@ const AdminDashboard: React.FC = () => {
   const [paymentSearchKeyword, setPaymentSearchKeyword] = useState('');
   const [paymentStatusFilter, setPaymentStatusFilter] = useState<string>('');
   const [paymentTypeFilter, setPaymentTypeFilter] = useState<string>('');
+
+  // Submissions states
+  const [submissions, setSubmissions] = useState<OjAdminSubmissionResponse[]>([]);
+  const [loadingSubmissions, setLoadingSubmissions] = useState(false);
+  const [submissionsPage, setSubmissionsPage] = useState(0);
+  const [submissionsTotalPages, setSubmissionsTotalPages] = useState(0);
+  const [submissionsTotalElements, setSubmissionsTotalElements] = useState(0);
+  
+  const [submissionSearch, setSubmissionSearch] = useState<OjAdminSubmissionSearchRequest>({
+    problemTitle: '',
+    userDisplayName: '',
+    verdict: [],
+    languageId: []
+  });
 
   // Contest CRUD Modals
   const [showContestModal, setShowContestModal] = useState(false);
@@ -218,6 +300,37 @@ const AdminDashboard: React.FC = () => {
       fetchPayments(paymentsPage);
     }
   }, [activeTab, paymentsPage]);
+
+  const fetchSubmissions = async (page: number = 0, filters = submissionSearch) => {
+    setLoadingSubmissions(true);
+    try {
+      const res = await api.get<ApiResponse<PageResponse<OjAdminSubmissionResponse>>>('/online-judge/admin/submissions', {
+        params: {
+          page,
+          size: 20,
+          problemTitle: filters.problemTitle || undefined,
+          userDisplayName: filters.userDisplayName || undefined,
+          verdict: filters.verdict && filters.verdict.length > 0 ? filters.verdict.join(',') : undefined,
+          languageId: filters.languageId && filters.languageId.length > 0 ? filters.languageId.join(',') : undefined
+        }
+      });
+      const data = res.data.result;
+      setSubmissions(data.content || []);
+      setSubmissionsPage(data.page || 0);
+      setSubmissionsTotalPages(data.totalPages || 0);
+      setSubmissionsTotalElements(data.totalElements || 0);
+    } catch (error) {
+      console.error('Failed to fetch admin submissions:', getErrorMessage(error));
+    } finally {
+      setLoadingSubmissions(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'submissions') {
+      fetchSubmissions(submissionsPage);
+    }
+  }, [activeTab, submissionsPage]);
 
   // Date converters with browser local timezone support
   const convertToIsoWithOffset = (datetimeLocalStr: string) => {
@@ -834,6 +947,17 @@ const AdminDashboard: React.FC = () => {
         >
           <CreditCard className="h-4 w-4" />
           <span>Payment Transaction</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('submissions')}
+          className={`py-3.5 px-6 text-xs font-extrabold tracking-wider uppercase border-b-2 transition-all whitespace-nowrap flex items-center space-x-2 ${
+            activeTab === 'submissions'
+              ? 'border-indigo-600 text-indigo-600 dark:text-indigo-400 dark:border-indigo-400 font-black'
+              : 'border-transparent text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+          }`}
+        >
+          <Code className="h-4 w-4" />
+          <span>Global Submissions</span>
         </button>
       </div>
 
@@ -1692,6 +1816,181 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
       )}
+      {/* 6. SUBMISSIONS TAB CONTENT */}
+      {activeTab === 'submissions' && (
+        <div className="space-y-6">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-base font-black text-slate-950 dark:text-white flex items-center space-x-2">
+                <Code className="h-5 w-5 text-indigo-500" />
+                <span>Global Submissions</span>
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Total submissions: <span className="font-bold text-slate-800 dark:text-slate-200">{submissionsTotalElements}</span>
+              </p>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSubmissionsPage(0);
+                fetchSubmissions(0);
+              }}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search problem..."
+                  className="pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none w-48"
+                  value={submissionSearch.problemTitle || ''}
+                  onChange={(e) => setSubmissionSearch({ ...submissionSearch, problemTitle: e.target.value })}
+                />
+                <Search className="h-4 w-4 text-slate-400 absolute left-3 top-2.5" />
+              </div>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search user..."
+                  className="pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none w-40"
+                  value={submissionSearch.userDisplayName || ''}
+                  onChange={(e) => setSubmissionSearch({ ...submissionSearch, userDisplayName: e.target.value })}
+                />
+                <Users className="h-4 w-4 text-slate-400 absolute left-3 top-2.5" />
+              </div>
+              <MultiSelectDropdown
+                options={[
+                  { value: "PENDING", label: "Pending" },
+                  { value: "PROCESSING", label: "Processing" },
+                  { value: "ACCEPTED", label: "Accepted" },
+                  { value: "WRONG_ANSWER", label: "Wrong Answer" },
+                  { value: "TIME_LIMIT_EXCEEDED", label: "Time Limit Exceeded" },
+                  { value: "MEMORY_LIMIT_EXCEEDED", label: "Memory Limit Exceeded" },
+                  { value: "RUNTIME_ERROR", label: "Runtime Error" },
+                  { value: "COMPILATION_ERROR", label: "Compile Error" },
+                  { value: "INTERNAL_ERROR", label: "System Error" },
+                ]}
+                selectedValues={submissionSearch.verdict || []}
+                onChange={(values) => setSubmissionSearch({ ...submissionSearch, verdict: values })}
+                placeholder="All Verdicts"
+              />
+              <MultiSelectDropdown
+                options={[
+                  { value: 50, label: "C (GCC 9.2.0)" },
+                  { value: 54, label: "C++ (GCC 9.2.0)" },
+                  { value: 62, label: "Java (OpenJDK 13)" },
+                  { value: 71, label: "Python (3.8.1)" },
+                  { value: 60, label: "Go (1.13.5)" },
+                  { value: 51, label: "C# (Mono 6.6.0)" },
+                  { value: 63, label: "JavaScript (Node.js 12.14)" },
+                  { value: 74, label: "TypeScript (3.7.4)" },
+                ]}
+                selectedValues={submissionSearch.languageId || []}
+                onChange={(values) => setSubmissionSearch({ ...submissionSearch, languageId: values })}
+                placeholder="All Languages"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-colors shadow-sm"
+              >
+                Filter
+              </button>
+            </form>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            {loadingSubmissions ? (
+              <div className="p-12 text-center text-slate-500">
+                <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-indigo-500" />
+                <p className="text-sm">Loading submissions...</p>
+              </div>
+            ) : submissions.length === 0 ? (
+              <div className="p-12 text-center text-slate-500">
+                <Code className="h-10 w-10 mx-auto opacity-30 mb-2" />
+                <p>No submissions found.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-extrabold uppercase tracking-wider text-[11px]">
+                      <th className="py-4 px-6">User</th>
+                      <th className="py-4 px-6">Problem</th>
+                      <th className="py-4 px-6">Language</th>
+                      <th className="py-4 px-6">Verdict</th>
+                      <th className="py-4 px-6">Time / Memory</th>
+                      <th className="py-4 px-6">Submitted At</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                    {submissions.map((sub, idx) => {
+                      let verdictColor = 'text-slate-500 bg-slate-50 dark:text-slate-400 dark:bg-slate-900/30';
+                      if (sub.verdict === 'ACCEPTED') verdictColor = 'text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/30';
+                      else if (sub.verdict === 'WRONG_ANSWER') verdictColor = 'text-rose-600 bg-rose-50 dark:text-rose-400 dark:bg-rose-950/30';
+                      else if (sub.verdict === 'TIME_LIMIT_EXCEEDED' || sub.verdict === 'MEMORY_LIMIT_EXCEEDED') verdictColor = 'text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/30';
+                      else if (sub.verdict === 'PENDING' || sub.verdict === 'PROCESSING') verdictColor = 'text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/30';
+                      else if (sub.verdict === 'COMPILATION_ERROR' || sub.verdict === 'RUNTIME_ERROR' || sub.verdict === 'INTERNAL_ERROR') verdictColor = 'text-orange-600 bg-orange-50 dark:text-orange-400 dark:bg-orange-950/30';
+                      
+                      return (
+                        <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                          <td className="py-4 px-6 font-semibold text-slate-900 dark:text-white">
+                            {sub.userDisplayName || 'Unknown User'}
+                          </td>
+                          <td className="py-4 px-6 font-semibold text-indigo-600 dark:text-indigo-400 truncate max-w-[200px]">
+                            {sub.problemTitle}
+                          </td>
+                          <td className="py-4 px-6 text-slate-600 dark:text-slate-300">
+                            {sub.language}
+                          </td>
+                          <td className="py-4 px-6">
+                            <span className={`px-2 py-1 rounded-md text-[10px] font-bold tracking-wider ${verdictColor}`}>
+                              {sub.verdict.replace(/_/g, ' ')}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 text-slate-600 dark:text-slate-300 whitespace-nowrap">
+                            <div className="flex flex-col gap-1">
+                              <span>⏱ {sub.executionTimeMs} ms</span>
+                              <span>💾 {Math.round(sub.memoryUsedKb / 1024)} MB</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-6 text-slate-500 whitespace-nowrap">
+                            {formatDateTime(sub.submittedAt)}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {!loadingSubmissions && submissionsTotalPages > 1 && (
+              <div className="border-t border-slate-200 dark:border-slate-800 p-4 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+                <span className="text-xs font-semibold text-slate-500">
+                  Page {submissionsPage + 1} of {submissionsTotalPages}
+                </span>
+                <div className="flex items-center space-x-2">
+                  <button
+                    disabled={submissionsPage === 0 || loadingSubmissions}
+                    onClick={() => setSubmissionsPage((prev) => prev - 1)}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    disabled={submissionsPage >= submissionsTotalPages - 1 || loadingSubmissions}
+                    onClick={() => setSubmissionsPage((prev) => prev + 1)}
+                    className="p-2 border border-slate-200 dark:border-slate-700 rounded-xl disabled:opacity-40 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
 
       {/* CONTEST MODAL */}
       {showContestModal && (

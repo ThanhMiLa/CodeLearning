@@ -492,7 +492,7 @@ const ContestWorkspace: React.FC = () => {
         return 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400 dark:bg-emerald-950/30 dark:border-emerald-900/40';
       case 'WRONG_ANSWER':
         return 'bg-rose-500/10 text-rose-600 border-rose-500/20 dark:text-rose-400 dark:bg-rose-950/30 dark:border-rose-900/40';
-      case 'COMPILE_ERROR':
+      case 'COMPILATION_ERROR':
         return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400 dark:bg-purple-950/30 dark:border-purple-900/40';
       case 'PENDING':
       case 'PROCESSING':
@@ -513,11 +513,11 @@ const ContestWorkspace: React.FC = () => {
         return 'Time Limit Exceeded';
       case 'MEMORY_LIMIT_EXCEEDED':
         return 'Memory Limit Exceeded';
-      case 'COMPILE_ERROR':
+      case 'COMPILATION_ERROR':
         return 'Compilation Error';
       case 'RUNTIME_ERROR':
         return 'Runtime Error';
-      case 'SYSTEM_ERROR':
+      case 'INTERNAL_ERROR':
         return 'System Error';
       case 'PENDING':
         return 'Pending...';
@@ -961,7 +961,7 @@ const ContestWorkspace: React.FC = () => {
                               ) : verdict && verdict.overallVerdict ? (
                                 <div className={`flex items-center space-x-2 px-3 py-1.5 rounded-xl border text-xs font-black uppercase ${getVerdictBadgeClass(verdict.overallVerdict)}`}>
                                   <span>{getVerdictLabel(verdict.overallVerdict)}</span>
-                                  {verdict.overallVerdict === 'COMPILE_ERROR' && verdict.compileOutput && (
+                                  {verdict.overallVerdict === 'COMPILATION_ERROR' && verdict.compileOutput && (
                                     <button
                                       onClick={() => alert(verdict.compileOutput)}
                                       className="ml-1 text-[9px] underline lowercase text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"

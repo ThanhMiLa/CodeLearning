@@ -270,6 +270,23 @@ export interface OjLessonProblemResponse {
   isAccepted: boolean | null;
 }
 
+export interface OjAdminSubmissionSearchRequest {
+  problemTitle?: string;
+  userDisplayName?: string;
+  verdict?: OjVerdict[];
+  languageId?: number[];
+}
+
+export interface OjAdminSubmissionResponse {
+  userDisplayName: string;
+  problemTitle: string;
+  language: string;
+  verdict: OjVerdict;
+  executionTimeMs: number;
+  memoryUsedKb: number;
+  submittedAt: string;
+}
+
 export interface OjProblemDetailResponse {
   id: number;
   title: string;
@@ -393,8 +410,8 @@ export const OjVerdict = {
   TIME_LIMIT_EXCEEDED: "TIME_LIMIT_EXCEEDED",
   MEMORY_LIMIT_EXCEEDED: "MEMORY_LIMIT_EXCEEDED",
   RUNTIME_ERROR: "RUNTIME_ERROR",
-  COMPILE_ERROR: "COMPILE_ERROR",
-  SYSTEM_ERROR: "SYSTEM_ERROR",
+  COMPILATION_ERROR: "COMPILATION_ERROR",
+  INTERNAL_ERROR: "INTERNAL_ERROR",
   PENDING: "PENDING",
   PROCESSING: "PROCESSING"
 } as const;

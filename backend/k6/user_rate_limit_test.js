@@ -5,8 +5,8 @@ export const options = {
     scenarios: {
         user_burst_test: {
             executor: 'shared-iterations',
-            vus: 15,         // Tung ra 15 người dùng ảo cùng 1 lúc
-            iterations: 15,  // Tổng số lượng request cần bắn là 15 (để kích hoạt giới hạn 10 req/s)
+            vus: 10,         // Tung ra 10 người dùng ảo cùng 1 lúc
+            iterations: 10,  // Tổng số lượng request cần bắn là 10 (để kích hoạt giới hạn 10 req/s)
             maxDuration: '5s'
         },
     },

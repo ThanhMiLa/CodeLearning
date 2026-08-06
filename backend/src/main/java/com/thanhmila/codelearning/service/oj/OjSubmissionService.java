@@ -350,11 +350,14 @@ public class OjSubmissionService {
     // --- Hàm bổ trợ ---
     private OjVerdict mapJudge0StatusToOjVerdict(Integer judge0StatusId) {
         return switch (judge0StatusId) {
+            case 1 -> OjVerdict.PENDING;
+            case 2 -> OjVerdict.PROCESSING;
             case 3 -> OjVerdict.ACCEPTED;
             case 4 -> OjVerdict.WRONG_ANSWER;
             case 5 -> OjVerdict.TIME_LIMIT_EXCEEDED;
             case 6 -> OjVerdict.COMPILATION_ERROR;
-            // Map thêm các trạng thái khác (Runtime Error, Memory Limit...)
+            case 7, 8, 9, 10, 11, 12 -> OjVerdict.RUNTIME_ERROR;
+            case 13, 14 -> OjVerdict.INTERNAL_ERROR;
             default -> OjVerdict.RUNTIME_ERROR;
         };
     }
