@@ -10,10 +10,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
+@lombok.RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Value("${websocket.allowed-origins}")
     private String allowedOrigins;
+    private final WebSocketAuthInterceptor webSocketAuthInterceptor;
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -31,5 +33,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
         // Tiền tố cho các request mà Frontend gửi LÊN Server (ít dùng trong case này)
         registry.setApplicationDestinationPrefixes("/app");
+    }
+
+    @Override
+    public void configureClientInboundChannel(org.springframework.messaging.simp.config.ChannelRegistration registration) {
+        registration.interceptors(webSocketAuthInterceptor);
     }
 }

@@ -140,6 +140,7 @@ const AdminDashboard: React.FC = () => {
   const [usersTotalPages, setUsersTotalPages] = useState(0);
   const [usersTotalElements, setUsersTotalElements] = useState(0);
   const [userSearchKeyword, setUserSearchKeyword] = useState('');
+  const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   // Payments states
   const [payments, setPayments] = useState<AdminPaymentTransactionResponse[]>([]);
@@ -242,10 +243,11 @@ const AdminDashboard: React.FC = () => {
     }
   }, [activeTab, contestsPage]);
 
-  const fetchUsers = async (page: number = 0, keyword: string = userSearchKeyword) => {
+  const fetchUsers = async (page: number = 0, keyword: string = userSearchKeyword, isOnline: boolean = showOnlineOnly) => {
     setLoadingUsers(true);
     try {
-      const res = await api.get<ApiResponse<PageResponse<AdminUserResponse>>>('/admin/users', {
+      const endpoint = isOnline ? '/admin/users/online' : '/admin/users';
+      const res = await api.get<ApiResponse<PageResponse<AdminUserResponse>>>(endpoint, {
         params: { page, size: 20, keyword: keyword || undefined }
       });
       const data = res.data.result;
@@ -293,7 +295,7 @@ const AdminDashboard: React.FC = () => {
     if (activeTab === 'users') {
       fetchUsers(usersPage);
     }
-  }, [activeTab, usersPage]);
+  }, [activeTab, usersPage, showOnlineOnly]);
 
   useEffect(() => {
     if (activeTab === 'payments') {
@@ -1506,7 +1508,7 @@ const AdminDashboard: React.FC = () => {
                 <span>User Management</span>
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                Total accounts registered: <span className="font-bold text-slate-800 dark:text-slate-200">{usersTotalElements}</span>
+                {showOnlineOnly ? 'Total online users:' : 'Total accounts registered:'} <span className="font-bold text-slate-800 dark:text-slate-200">{usersTotalElements}</span>
               </p>
             </div>
 
@@ -1514,7 +1516,7 @@ const AdminDashboard: React.FC = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 setUsersPage(0);
-                fetchUsers(0, userSearchKeyword);
+                fetchUsers(0, userSearchKeyword, showOnlineOnly);
               }}
               className="flex items-center space-x-2"
             >
@@ -1533,6 +1535,23 @@ const AdminDashboard: React.FC = () => {
                 className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all"
               >
                 Search
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowOnlineOnly(!showOnlineOnly);
+                  if (usersPage !== 0) {
+                    setUsersPage(0);
+                  }
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 border ${
+                  showOnlineOnly 
+                    ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/30' 
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700/50'
+                }`}
+              >
+                <div className={`w-2 h-2 rounded-full ${showOnlineOnly ? 'bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+                <span>Online</span>
               </button>
             </form>
           </div>
