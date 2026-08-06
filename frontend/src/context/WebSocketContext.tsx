@@ -39,9 +39,18 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         client.debug = (str) => console.log('[STOMP]', str);
       }
 
-      // Set connection headers if needed (session cookie is handled automatically by credentials)
+      const getCookie = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(';').shift();
+        return null;
+      };
+
+      const token = getCookie('access_token');
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
       client.connect(
-        {},
+        headers,
         (frame) => {
           console.log('Connected to WebSocket successfully', frame);
           stompClientRef.current = client;

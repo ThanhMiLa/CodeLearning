@@ -2,8 +2,8 @@ package com.thanhmila.codelearning.service.admin.impl;
 
 import com.thanhmila.codelearning.dto.response.AdminUserResponse;
 import com.thanhmila.codelearning.dto.response.PageResponse;
-import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
+import com.thanhmila.codelearning.mapper.UserMapper;
 import com.thanhmila.codelearning.repository.user.UserRepository;
 import com.thanhmila.codelearning.service.admin.AdminUserService;
 import lombok.AccessLevel;
@@ -11,11 +11,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +25,10 @@ import java.util.stream.Collectors;
 public class AdminUserServiceImpl implements AdminUserService {
 
     UserRepository userRepository;
+    UserMapper userMapper;
+    RedisTemplate<String, Object> redisTemplate;
+    
+    static  String ONLINE_USERS_KEY = "active_users";
 
     @Override
     @Transactional(readOnly = true)
@@ -35,26 +40,41 @@ public class AdminUserServiceImpl implements AdminUserService {
             userPage = userRepository.findAllForAdmin(pageable);
         }
 
-        Page<AdminUserResponse> responsePage = userPage.map(user -> {
-            BigDecimal walletBalance = (user.getWallet() != null && user.getWallet().getBalance() != null)
-                    ? user.getWallet().getBalance()
-                    : BigDecimal.ZERO;
-
-            return AdminUserResponse.builder()
-                    .id(user.getId())
-                    .displayName(user.getDisplayName())
-                    .username(user.getUsername())
-                    .email(user.getEmail())
-                    .phoneNumber(user.getPhoneNumber())
-                    .balance(walletBalance)
-                    .status(user.getStatus() != null ? user.getStatus().name() : null)
-                    .roles(user.getRoles() != null
-                            ? user.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toSet())
-                            : Collections.emptySet())
-                    .createdAt(user.getCreatedAt())
-                    .build();
-        });
+        Page<AdminUserResponse> responsePage = userPage.map(userMapper::toAdminUserResponse);
 
         return PageResponse.from(responsePage);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PageResponse<AdminUserResponse> getOnlineUsers(Pageable pageable) {
+        Set<Object> onlineUserIdsObj = redisTemplate.opsForHash().keys(ONLINE_USERS_KEY);
+        
+        if (onlineUserIdsObj == null || onlineUserIdsObj.isEmpty()) {
+            return PageResponse.from(Page.empty(pageable));
+        }
+
+        List<Long> onlineUserIds = onlineUserIdsObj.stream()
+                .map(this::parseUserIdSafely)
+                .filter(java.util.Objects::nonNull)
+                .collect(Collectors.toList());
+
+        if (onlineUserIds.isEmpty()) {
+            return PageResponse.from(Page.empty(pageable));
+        }
+
+        Page<UserEntity> userPage = userRepository.findOnlineUsersForAdmin(onlineUserIds, pageable);
+        
+        Page<AdminUserResponse> responsePage = userPage.map(userMapper::toAdminUserResponse);
+        
+        return PageResponse.from(responsePage);
+    }
+
+    private Long parseUserIdSafely(Object idObj) {
+        try {
+            return Long.valueOf(idObj.toString());
+        } catch (NumberFormatException e) {
+            return null; // Bỏ qua các key cũ bị lưu sai định dạng
+        }
     }
 }

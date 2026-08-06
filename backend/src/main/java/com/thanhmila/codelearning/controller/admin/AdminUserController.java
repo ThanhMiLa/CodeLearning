@@ -50,4 +50,28 @@ public class AdminUserController {
                 .timestamp(Instant.now().toString())
                 .build());
     }
+
+    @GetMapping("/online")
+    @PreAuthorize("hasAuthority('USER_ADMIN_VIEW')")
+    public ResponseEntity<ApiResponse<PageResponse<AdminUserResponse>>> getOnlineUsers(
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size,
+            @RequestParam(name = "sortBy", defaultValue = "createdAt") String sortBy,
+            @RequestParam(name = "sortDir", defaultValue = "desc") String sortDir
+    ) {
+        Sort sort = sortDir.equalsIgnoreCase("asc")
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        PageResponse<AdminUserResponse> result = adminUserService.getOnlineUsers(pageable);
+
+        return ResponseEntity.ok(ApiResponse.<PageResponse<AdminUserResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get online users successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
 }

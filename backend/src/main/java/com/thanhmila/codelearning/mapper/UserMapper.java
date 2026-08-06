@@ -1,11 +1,17 @@
 package com.thanhmila.codelearning.mapper;
 
 import com.thanhmila.codelearning.dto.request.RegisterRequest;
+import com.thanhmila.codelearning.dto.response.AdminUserResponse;
 import com.thanhmila.codelearning.dto.response.AuthenticationResponse;
 import com.thanhmila.codelearning.dto.response.UserResponse;
+import com.thanhmila.codelearning.entity.auth.RoleEntity;
 import com.thanhmila.codelearning.entity.user.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
+import java.util.Collections;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -31,8 +37,13 @@ public interface UserMapper {
     @Mapping(target = "roles", expression = "java(mapRoles(userEntity.getRoles()))")
     UserResponse toUserResponse(UserEntity userEntity);
 
-    default java.util.Set<String> mapRoles(java.util.Set<com.thanhmila.codelearning.entity.auth.RoleEntity> roles) {
-        if (roles == null) return java.util.Collections.emptySet();
-        return roles.stream().map(com.thanhmila.codelearning.entity.auth.RoleEntity::getName).collect(java.util.stream.Collectors.toSet());
+    @Mapping(target = "roles", expression = "java(mapRoles(userEntity.getRoles()))")
+    @Mapping(target = "balance", expression = "java(userEntity.getWallet() != null && userEntity.getWallet().getBalance() != null ? userEntity.getWallet().getBalance() : java.math.BigDecimal.ZERO)")
+    @Mapping(target = "status", expression = "java(userEntity.getStatus() != null ? userEntity.getStatus().name() : null)")
+    AdminUserResponse toAdminUserResponse(UserEntity userEntity);
+
+    default Set<String> mapRoles(Set<RoleEntity> roles) {
+        if (roles == null) return Collections.emptySet();
+        return roles.stream().map(RoleEntity::getName).collect(Collectors.toSet());
     }
 }
