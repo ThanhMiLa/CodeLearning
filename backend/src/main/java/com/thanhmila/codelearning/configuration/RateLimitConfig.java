@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.configuration;
 
+import io.github.bucket4j.distributed.ExpirationAfterWriteStrategy;
 import io.github.bucket4j.redis.lettuce.cas.LettuceBasedProxyManager;
 import io.lettuce.core.RedisClient;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +20,7 @@ public class RateLimitConfig {
         
         return LettuceBasedProxyManager.builderFor(redisClient)
                 .withExpirationStrategy(
-                        io.github.bucket4j.distributed.ExpirationAfterWriteStrategy.basedOnTimeForRefillingBucketUpToMax(Duration.ofHours(1))
+                        ExpirationAfterWriteStrategy.basedOnTimeForRefillingBucketUpToMax(Duration.ofHours(1))
                 )
                 .build();
     }

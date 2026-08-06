@@ -17,6 +17,7 @@ public enum ErrorCode {
     ACCESS_DENIED(1004, "You do not have permission to perform this action.", HttpStatus.FORBIDDEN),
     UNAUTHENTICATED(1005, "Please log in to continue.", HttpStatus.UNAUTHORIZED),
     INVALID_REQUEST_BODY(1006, "The request body is missing or formatted incorrectly.", HttpStatus.BAD_REQUEST),
+    TOO_MANY_REQUESTS(1007, "You have exceeded the maximum number of requests allowed. Please try again later.", HttpStatus.TOO_MANY_REQUESTS),
 
     USERNAME_ALREADY_EXISTS(2000, "This username is already taken. Please choose another one.", HttpStatus.CONFLICT),
     EMAIL_ALREADY_EXISTS(2001, "This email address is already registered.", HttpStatus.CONFLICT),

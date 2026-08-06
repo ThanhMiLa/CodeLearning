@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import type { ApiResponse } from '../types';
+import toast from 'react-hot-toast';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/codelearning';
 
@@ -56,6 +57,14 @@ api.interceptors.response.use(
       if (data && typeof data === 'object' && data.message && typeof data.message === 'string') {
         error.message = data.message;
       }
+    }
+
+    // Global Toast for Rate Limit (429)
+    if (error.response?.status === 429) {
+      toast.error(error.message, {
+        duration: 4000,
+        id: 'rate-limit-error', // Prevent duplicate toasts from overlapping
+      });
     }
 
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };

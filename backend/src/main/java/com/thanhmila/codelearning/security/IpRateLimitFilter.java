@@ -1,7 +1,8 @@
 package com.thanhmila.codelearning.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thanhmila.codelearning.service.RateLimitService;
+import com.thanhmila.codelearning.dto.response.ApiResponse;
+import com.thanhmila.codelearning.service.auth.RateLimitService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Instant;
+
+import com.thanhmila.codelearning.exception.ErrorCode;
 
 @Component
 @RequiredArgsConstructor
@@ -34,10 +36,15 @@ public class IpRateLimitFilter extends OncePerRequestFilter {
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             response.setCharacterEncoding("UTF-8");
 
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("status", 429);
-            errorResponse.put("error", "Too Many Requests");
-            errorResponse.put("message", "IP của bạn đã vượt quá giới hạn truy cập. Vui lòng thử lại sau.");
+            ErrorCode errorCode = ErrorCode.TOO_MANY_REQUESTS;
+
+            ApiResponse<Object> errorResponse = ApiResponse.builder()
+                    .timestamp(Instant.now().toString())
+                    .status(errorCode.getHttpStatus().value())
+                    .message(errorCode.getMessage())
+                    .code(errorCode.getCode())
+                    .result(null)
+                    .build();
 
             response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
             return; 
