@@ -40,9 +40,12 @@ import CourseCatalog from './pages/courses/CourseCatalog';
 import CourseDetail from './pages/courses/CourseDetail';
 import MyLearning from './pages/courses/MyLearning';
 
+import { Toaster } from 'react-hot-toast';
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <Toaster position="top-right" reverseOrder={false} />
       <AuthProvider>
         <CartProvider>
           <WebSocketProvider>
