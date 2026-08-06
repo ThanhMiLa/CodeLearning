@@ -27,7 +27,7 @@ public class AdminUserController {
     AdminUserService adminUserService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('USER_ADMIN_VIEW')")
     public ResponseEntity<ApiResponse<PageResponse<AdminUserResponse>>> getUsers(
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "20") int size,

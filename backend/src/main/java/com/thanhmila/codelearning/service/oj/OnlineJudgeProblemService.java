@@ -5,20 +5,19 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.thanhmila.codelearning.dto.request.OjAdminSubmissionSearchRequest;
+import com.thanhmila.codelearning.dto.response.*;
+import com.thanhmila.codelearning.repository.specification.OjSubmissionSpecification;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import com.thanhmila.codelearning.dto.response.PageResponse;
-import com.thanhmila.codelearning.dto.response.OjPracticeProblemResponse;
-import com.thanhmila.codelearning.dto.response.OjAdminProblemResponse;
 import com.thanhmila.codelearning.entity.enums.OjVerdict;
 import com.thanhmila.codelearning.entity.enums.ProblemDifficulty;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeProblemRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import com.thanhmila.codelearning.dto.response.OjProblemDetailResponse;
-import com.thanhmila.codelearning.dto.response.OjLessonProblemResponse;
 import com.thanhmila.codelearning.exception.AppException;
 import com.thanhmila.codelearning.exception.ErrorCode;
 import com.thanhmila.codelearning.repository.projection.OjProblemDetailProjection;
@@ -31,6 +30,7 @@ import org.springframework.data.jpa.domain.Specification;
 import com.thanhmila.codelearning.dto.request.ProblemSearchRequest;
 import com.thanhmila.codelearning.repository.specification.ProblemSpecification;
 import com.thanhmila.codelearning.entity.oj.OnlineJudgeProblemEntity;
+import com.thanhmila.codelearning.entity.oj.OnlineJudgeSubmissionEntity;
 import com.thanhmila.codelearning.repository.oj.OnlineJudgeSubmissionRepository;
 import java.util.Set;
 import java.util.HashSet;
@@ -52,7 +52,7 @@ public class OnlineJudgeProblemService {
     TeacherRepository teacherRepository;
     OjProblemMapper ojProblemMapper;
     ProblemTagRepository problemTagRepository;
-
+    com.thanhmila.codelearning.mapper.OjSubmissionMapper ojSubmissionMapper;
 
     public PageResponse<OjPracticeProblemResponse> getPracticeProblems(ProblemSearchRequest request, Long userId) {
         Specification<OnlineJudgeProblemEntity> spec = Specification.allOf(
@@ -228,5 +228,16 @@ public class OnlineJudgeProblemService {
                 .orElseThrow(() -> new AppException(ErrorCode.OJ_PROBLEM_NOT_FOUND));
         problem.setIsPublic(isPublic);
         onlineJudgeProblemRepository.save(problem);
+    }
+
+    public PageResponse<OjAdminSubmissionResponse> getGlobalAdminSubmissions(
+            OjAdminSubmissionSearchRequest searchRequest, Pageable pageable) {
+        Specification<OnlineJudgeSubmissionEntity> spec = Specification.where(com.thanhmila.codelearning.repository.specification.OjSubmissionSpecification.hasProblemTitle(searchRequest.getProblemTitle()))
+                .and(com.thanhmila.codelearning.repository.specification.OjSubmissionSpecification.hasUserDisplayName(searchRequest.getUserDisplayName()))
+                .and(com.thanhmila.codelearning.repository.specification.OjSubmissionSpecification.hasVerdict(searchRequest.getVerdict()))
+                .and(com.thanhmila.codelearning.repository.specification.OjSubmissionSpecification.hasLanguageId(searchRequest.getLanguageId()));
+
+        Page<OnlineJudgeSubmissionEntity> submissionPage = onlineJudgeSubmissionRepository.findAll(spec, pageable);
+        return ojSubmissionMapper.toPageResponse(submissionPage);
     }
 }

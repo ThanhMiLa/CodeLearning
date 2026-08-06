@@ -29,7 +29,7 @@ public class AdminPaymentController {
     AdminPaymentService adminPaymentService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('PAYMENT_ADMIN_VIEW')")
     public ResponseEntity<ApiResponse<PageResponse<AdminPaymentTransactionResponse>>> getPaymentTransactions(
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "20") int size,

@@ -324,7 +324,7 @@ const ProblemWorkspace: React.FC = () => {
       case 'TIME_LIMIT_EXCEEDED':
       case 'MEMORY_LIMIT_EXCEEDED':
         return 'bg-amber-500/10 text-amber-600 border-amber-300 dark:text-amber-400 dark:bg-amber-950/30 dark:border-amber-900/40';
-      case 'COMPILE_ERROR':
+      case 'COMPILATION_ERROR':
         return 'bg-purple-500/10 text-purple-600 border-purple-500/20 dark:text-purple-400 dark:bg-purple-950/30 dark:border-purple-900/40';
       case 'PENDING':
       case 'PROCESSING':
@@ -345,11 +345,11 @@ const ProblemWorkspace: React.FC = () => {
         return 'Time Limit Exceeded';
       case 'MEMORY_LIMIT_EXCEEDED':
         return 'Memory Limit Exceeded';
-      case 'COMPILE_ERROR':
+      case 'COMPILATION_ERROR':
         return 'Compilation Error';
       case 'RUNTIME_ERROR':
         return 'Runtime Error';
-      case 'SYSTEM_ERROR':
+      case 'INTERNAL_ERROR':
         return 'System Error';
       case 'PENDING':
         return 'Pending...';
@@ -635,7 +635,7 @@ const ProblemWorkspace: React.FC = () => {
                   </div>
 
                   {/* Compilation Error logs if exists */}
-                  {verdict.overallVerdict === 'COMPILE_ERROR' && verdict.compileOutput && (
+                  {verdict.overallVerdict === 'COMPILATION_ERROR' && verdict.compileOutput && (
                     <div className="space-y-1.5 text-left font-sans">
                       <h5 className="text-[10px] font-bold text-rose-400 dark:text-rose-400 uppercase tracking-wider">Compilation Logs:</h5>
                       <pre className="p-3.5 rounded-xl bg-rose-950/20 border border-rose-900/30 text-rose-300 font-mono text-xs overflow-x-auto whitespace-pre leading-relaxed select-text">

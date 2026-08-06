@@ -29,6 +29,7 @@ backend/out/
 backend/build/
 backend/!**/src/main/**/build/
 backend/!**/src/test/**/build/
+backend/k6
 
 # Frontend (Vite / React / Node) ignores
 frontend/node_modules/
