@@ -479,7 +479,7 @@ export interface AdminPaymentTransactionResponse {
   userId: number | null;
   amount: number;
   type: 'DEPOSIT' | 'WITHDRAW';
-  status: 'PENDING' | 'SUCCESS' | 'FAILED' | 'CANCELLED';
+  status: 'PENDING' | 'SUCCESS' | 'LATE_SUCCESS' | 'FAILED' | 'CANCELLED';
   note?: string | null;
   createdAt: string;
 }

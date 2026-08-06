@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface PaymentTransactionRepository extends JpaRepository<PaymentTransactionEntity, Long> {
     Optional<PaymentTransactionEntity> findByTransactionCode(String transactionCode);
+    java.util.List<PaymentTransactionEntity> findByStatus(TransactionStatus status);
 
     @Query(value = "SELECT pt FROM PaymentTransactionEntity pt " +
                    "JOIN FETCH pt.wallet w " +

@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,6 +81,8 @@ public class PaymentService {
 
         // 4. Create link with PayOS SDK
         try {
+            long expiredAt = (System.currentTimeMillis() / 1000) + (15 * 60); // 15 phút từ bây giờ
+
             // Manual call to bypass SDK ObjectMapper bug with new fields (expiredAt)
             Map<String, Object> body = new HashMap<>();
             body.put("orderCode", orderCode);
@@ -87,8 +90,9 @@ public class PaymentService {
             body.put("description", "Thanh toan nap Xu");
             body.put("returnUrl", payosProps.getReturnUrl());
             body.put("cancelUrl", payosProps.getCancelUrl());
+            body.put("expiredAt", expiredAt);
             
-            // Create signature
+            // Create signature (PayOS v2 có thể KHÔNG nhận expiredAt vào signature đối với SDK version cũ)
             String signData = "amount=" + body.get("amount") +
                               "&cancelUrl=" + body.get("cancelUrl") +
                               "&description=" + body.get("description") +
@@ -167,7 +171,7 @@ public class PaymentService {
                     });
 
             // Idempotency check: if not PENDING, we already processed it
-            if (paymentTx.getStatus() != TransactionStatus.PENDING) {
+            if (paymentTx.getStatus() == TransactionStatus.SUCCESS || paymentTx.getStatus() == TransactionStatus.LATE_SUCCESS) {
                 log.info("Transaction {} already processed. Status: {}", transactionCode, paymentTx.getStatus());
                 return;
             }
@@ -176,23 +180,32 @@ public class PaymentService {
             WalletEntity wallet = walletRepository.findByUserIdWithLock(paymentTx.getWallet().getUser().getId())
                     .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));
 
+            TransactionStatus newStatus = TransactionStatus.SUCCESS;
+            if (paymentTx.getStatus() == TransactionStatus.CANCELLED || paymentTx.getStatus() == TransactionStatus.FAILED) {
+                newStatus = TransactionStatus.LATE_SUCCESS;
+                log.warn("LATE PAYMENT DETECTED: Nhận được tiền cho đơn hàng đã Hủy: {}", transactionCode);
+            }
+
+            BigDecimal actualAmount = new BigDecimal(data.getAmount());
+
             // Update Payment Transaction
-            paymentTx.setStatus(TransactionStatus.SUCCESS);
+            paymentTx.setStatus(newStatus);
+            paymentTx.setAmount(actualAmount);
             paymentTransactionRepository.save(paymentTx);
 
             // Create Wallet Ledger Transaction
             WalletTransactionEntity walletTx = WalletTransactionEntity.builder()
                     .wallet(wallet)
-                    .amount(paymentTx.getAmount())
+                    .amount(actualAmount)
                     .type(WalletTransactionType.DEPOSIT)
                     .status(TransactionStatus.SUCCESS)
                     .referenceId(paymentTx.getId())
-                    .note("Nạp tiền thật qua PayOS")
+                    .note("Nạp tiền thật qua PayOS (Late Payment = " + (newStatus == TransactionStatus.LATE_SUCCESS) + ")")
                     .build();
             walletTransactionRepository.save(walletTx);
 
             // Add balance
-            wallet.setBalance(wallet.getBalance().add(paymentTx.getAmount()));
+            wallet.setBalance(wallet.getBalance().add(actualAmount));
             walletRepository.save(wallet);
 
             log.info("Successfully processed deposit for transaction: {}", transactionCode);
@@ -201,6 +214,44 @@ public class PaymentService {
             log.error("Error processing PayOS Webhook", e);
             throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
         }
+    }
+
+    @Transactional
+    public void processSuccessfulPaymentFallback(String transactionCode, BigDecimal actualAmount) {
+        PaymentTransactionEntity paymentTx = paymentTransactionRepository.findByTransactionCode(transactionCode)
+                .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));
+
+        if (paymentTx.getStatus() == TransactionStatus.SUCCESS || paymentTx.getStatus() == TransactionStatus.LATE_SUCCESS) {
+            return;
+        }
+
+        WalletEntity wallet = walletRepository.findByUserIdWithLock(paymentTx.getWallet().getUser().getId())
+                .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));
+
+        TransactionStatus newStatus = TransactionStatus.SUCCESS;
+        if (paymentTx.getStatus() == TransactionStatus.CANCELLED || paymentTx.getStatus() == TransactionStatus.FAILED) {
+            newStatus = TransactionStatus.LATE_SUCCESS;
+            log.warn("LATE PAYMENT DETECTED (CronJob Fallback): Nhận được tiền cho đơn hàng đã Hủy: {}", transactionCode);
+        }
+
+        paymentTx.setStatus(newStatus);
+        paymentTx.setAmount(actualAmount);
+        paymentTransactionRepository.save(paymentTx);
+
+        WalletTransactionEntity walletTx = WalletTransactionEntity.builder()
+                .wallet(wallet)
+                .amount(actualAmount)
+                .type(WalletTransactionType.DEPOSIT)
+                .status(TransactionStatus.SUCCESS)
+                .referenceId(paymentTx.getId())
+                .note("Nạp tiền thật qua PayOS (Phục hồi từ CronJob - Late: " + (newStatus == TransactionStatus.LATE_SUCCESS) + ")")
+                .build();
+        walletTransactionRepository.save(walletTx);
+
+        wallet.setBalance(wallet.getBalance().add(actualAmount));
+        walletRepository.save(wallet);
+
+        log.info("Successfully processed deposit from CronJob Fallback for transaction: {}", transactionCode);
     }
 
     private String generateHmacSHA256(String data, String key) {

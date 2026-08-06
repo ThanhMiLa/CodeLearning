@@ -1714,6 +1714,7 @@ const AdminDashboard: React.FC = () => {
               >
                 <option value="">All Statuses</option>
                 <option value="SUCCESS">Success</option>
+                <option value="LATE_SUCCESS">Late Success</option>
                 <option value="PENDING">Pending</option>
                 <option value="FAILED">Failed</option>
                 <option value="CANCELLED">Cancelled</option>
@@ -1789,10 +1790,14 @@ const AdminDashboard: React.FC = () => {
                           <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black border ${
                             tx.status === 'SUCCESS'
                               ? 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800'
+                              : tx.status === 'LATE_SUCCESS'
+                              ? 'bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-950/40 dark:text-purple-400 dark:border-purple-800'
                               : tx.status === 'PENDING'
                               ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800'
-                              : tx.status === 'FAILED'
+                              : tx.status === 'CANCELLED'
                               ? 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-800'
+                              : tx.status === 'FAILED'
+                              ? 'bg-red-50 text-red-600 border-red-200 dark:bg-red-950/40 dark:text-red-400 dark:border-red-800'
                               : 'bg-slate-50 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'
                           }`}>
                             {tx.status}
