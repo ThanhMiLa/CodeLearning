@@ -64,6 +64,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/payment/webhook").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/online-judge/submissions").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/online-judge/webhooks/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/webhooks/sendgrid").permitAll()
 
                         // 5. API Response Error
                         .requestMatchers("/error").permitAll()
