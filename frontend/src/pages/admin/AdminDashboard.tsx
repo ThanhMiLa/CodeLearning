@@ -2217,7 +2217,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
               ) : (
                 <div className="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
-                  <div className="max-h-[400px] overflow-y-auto">
+                  <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse text-xs">
                       <thead className="sticky top-0 bg-slate-50 dark:bg-slate-800 z-10">
                         <tr className="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-extrabold uppercase tracking-wider text-[11px]">
