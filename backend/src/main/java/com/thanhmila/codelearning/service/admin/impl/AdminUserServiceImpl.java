@@ -6,6 +6,7 @@ import com.thanhmila.codelearning.entity.user.UserEntity;
 import com.thanhmila.codelearning.mapper.UserMapper;
 import com.thanhmila.codelearning.repository.user.UserRepository;
 import com.thanhmila.codelearning.service.admin.AdminUserService;
+import com.thanhmila.codelearning.dto.response.EmailTargetUserResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -68,6 +69,19 @@ public class AdminUserServiceImpl implements AdminUserService {
         Page<AdminUserResponse> responsePage = userPage.map(userMapper::toAdminUserResponse);
         
         return PageResponse.from(responsePage);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<EmailTargetUserResponse> getEmailTargets(String keyword, String role) {
+        List<UserEntity> users = userRepository.searchEmailTargets(keyword, role);
+        return users.stream().map(u -> EmailTargetUserResponse.builder()
+                .id(String.valueOf(u.getId()))
+                .displayName(u.getDisplayName() != null ? u.getDisplayName() : u.getUsername())
+                .email(u.getEmail())
+                .phone(u.getPhoneNumber())
+                .role(u.getRoles().stream().findFirst().map(r -> r.getName()).orElse("USER"))
+                .build()).collect(Collectors.toList());
     }
 
     private Long parseUserIdSafely(Object idObj) {

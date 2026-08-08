@@ -1,5 +1,6 @@
 package com.thanhmila.codelearning.controller.admin;
 
+import com.thanhmila.codelearning.dto.request.EmailCampaignRequest;
 import com.thanhmila.codelearning.dto.response.ApiResponse;
 import com.thanhmila.codelearning.service.email.EmailProducerService;
 import com.thanhmila.codelearning.service.email.SendGridApiService;
@@ -9,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import java.time.Instant;
 
 @RestController
@@ -33,16 +35,16 @@ public class AdminEmailController {
                 .build());
     }
 
-    @PostMapping("/bulk-send")
+    @PostMapping("/send")
     @PreAuthorize("hasAuthority('ADMIN_EMAIL_SEND')")
-    public ResponseEntity<ApiResponse<String>> sendBulkEmail(@RequestParam(name = "templateId") String templateId) {
-        emailProducerService.processAndSendBulkEmail(templateId);
+    public ResponseEntity<ApiResponse<String>> sendEmailCampaign(@Valid @RequestBody EmailCampaignRequest request) {
+        emailProducerService.processAndSendCampaign(request);
 
         return ResponseEntity.ok(ApiResponse.<String>builder()
                 .status(200)
                 .code(1000)
-                .message("Push bulk email request successfully")
-                .result("Đã đẩy yêu cầu gửi email hàng loạt vào hàng đợi thành công!")
+                .message("Push email campaign request successfully")
+                .result("Đã đẩy yêu cầu gửi email campaign vào hàng đợi thành công!")
                 .timestamp(Instant.now().toString())
                 .build());
     }

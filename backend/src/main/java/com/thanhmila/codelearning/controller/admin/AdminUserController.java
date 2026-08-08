@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.List;
+import com.thanhmila.codelearning.dto.response.EmailTargetUserResponse;
 
 @Slf4j
 @RestController
@@ -70,6 +72,23 @@ public class AdminUserController {
                 .status(200)
                 .code(1000)
                 .message("Get online users successfully")
+                .result(result)
+                .timestamp(Instant.now().toString())
+                .build());
+    }
+
+    @GetMapping("/email-targets")
+    @PreAuthorize("hasAuthority('USER_ADMIN_VIEW')")
+    public ResponseEntity<ApiResponse<List<EmailTargetUserResponse>>> getEmailTargets(
+            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "role", required = false) String role
+    ) {
+        List<EmailTargetUserResponse> result = adminUserService.getEmailTargets(keyword, role);
+
+        return ResponseEntity.ok(ApiResponse.<List<EmailTargetUserResponse>>builder()
+                .status(200)
+                .code(1000)
+                .message("Get email targets successfully")
                 .result(result)
                 .timestamp(Instant.now().toString())
                 .build());

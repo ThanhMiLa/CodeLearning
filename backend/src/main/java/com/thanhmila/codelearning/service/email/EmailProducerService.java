@@ -1,5 +1,7 @@
 package com.thanhmila.codelearning.service.email;
 
+import com.thanhmila.codelearning.dto.request.EmailCampaignRequest;
+
 public interface EmailProducerService {
-    void processAndSendBulkEmail(String templateId);
+    void processAndSendCampaign(EmailCampaignRequest request);
 }

@@ -39,4 +39,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @EntityGraph(attributePaths = {"roles", "wallet"})
     @Query("SELECT u FROM UserEntity u WHERE u.id IN :ids")
     Page<UserEntity> findOnlineUsersForAdmin(@Param("ids") List<Long> ids, Pageable pageable);
+
+    @Query("SELECT DISTINCT u FROM UserEntity u " +
+           "LEFT JOIN FETCH u.roles r " +
+           "WHERE u.isEmailValid = true " +
+           "AND (:keyword IS NULL OR :keyword = '' OR LOWER(u.email) LIKE LOWER(CONCAT('%', :keyword, '%')) OR LOWER(u.displayName) LIKE LOWER(CONCAT('%', :keyword, '%'))) " +
+           "AND (:role IS NULL OR :role = '' OR r.name = :role)")
+    List<UserEntity> searchEmailTargets(@Param("keyword") String keyword, @Param("role") String role);
 }
