@@ -8,4 +8,6 @@ public interface AdminUserService {
     PageResponse<AdminUserResponse> getUsersForAdmin(String keyword, Pageable pageable);
     
     PageResponse<AdminUserResponse> getOnlineUsers(Pageable pageable);
+    
+    java.util.List<com.thanhmila.codelearning.dto.response.EmailTargetUserResponse> getEmailTargets(String keyword, String role);
 }
