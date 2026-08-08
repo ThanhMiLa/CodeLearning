@@ -31,6 +31,7 @@ public interface UserMapper {
     @Mapping(target = "cart", ignore = true)
     @Mapping(target = "avatarUrl", ignore = true)
     @Mapping(target = "avatarPublicId", ignore = true)
+    @Mapping(target = "isEmailValid", ignore = true)
     UserEntity toUserEntity(RegisterRequest registerRequest);
 
     

@@ -62,13 +62,13 @@ public class UserEntity {
 
     @Column(name = "updated_at", nullable = false)
     OffsetDateTime updatedAt;
+    
+    @Column(name = "is_email_valid", nullable = false, columnDefinition = "boolean default true")
+    @Builder.Default
+    Boolean isEmailValid = true;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     @Builder.Default
     Set<RoleEntity> roles = new HashSet<>();
 
@@ -93,13 +93,16 @@ public class UserEntity {
         if (status == null) {
             status = UserStatus.ACTIVE;
         }
+
+        if (isEmailValid == null) {
+            isEmailValid = true;
+        }
     }
 
     @PreUpdate
     void preUpdate() {
         updatedAt = OffsetDateTime.now();
     }
-
 
     public void validateStatus() {
         if (this.status == UserStatus.LOCKED) {

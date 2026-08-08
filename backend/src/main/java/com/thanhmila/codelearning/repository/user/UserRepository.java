@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
+    
+    List<UserEntity> findByIsEmailValidTrue();
 
     @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.wallet WHERE u.username = :username")
     Optional<UserEntity> findByUsernameWithWallet(@Param("username") String username);
