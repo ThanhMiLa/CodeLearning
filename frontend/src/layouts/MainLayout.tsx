@@ -36,7 +36,11 @@ const MainLayout: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t, i18n } = useTranslation();
-  const isWorkspaceRoute = location.pathname.includes('/oj/problems/') || location.pathname.includes('/contests/');
+  const isWorkspaceRoute = 
+    location.pathname.includes('/oj/problems/') || 
+    location.pathname.includes('/contests/') ||
+    location.pathname.includes('dashboard') ||
+    location.pathname.includes('/admin');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isGuestSettingsOpen, setIsGuestSettingsOpen] = useState(false);
