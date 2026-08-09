@@ -35,6 +35,7 @@ import TestcaseGenerator from './pages/admin/TestcaseGenerator';
 import QuizCatalog from './pages/quiz/QuizCatalog';
 import SWR302Catalog from './pages/quiz/SWR302Catalog';
 import HSF302Catalog from './pages/quiz/HSF302Catalog';
+import WDU203cCatalog from './pages/quiz/WDU203cCatalog';
 import QuizWorkspace from './pages/quiz/QuizWorkspace';
 import CourseCatalog from './pages/courses/CourseCatalog';
 import CourseDetail from './pages/courses/CourseDetail';
@@ -79,6 +80,14 @@ const App: React.FC = () => {
                   element={
                     <ProtectedRoute>
                       <HSF302Catalog />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="quiz/wdu203c" 
+                  element={
+                    <ProtectedRoute>
+                      <WDU203cCatalog />
                     </ProtectedRoute>
                   } 
                 />

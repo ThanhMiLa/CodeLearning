@@ -11,6 +11,7 @@ const QuizCatalog: React.FC = () => {
   const hsfQuestions = QUIZZES.filter(q => q.id.includes('hsf302-module')).reduce((sum, q) => sum + q.questions.length, 0);
   const swrQuestions = QUIZZES.filter(q => q.id.includes('swr302-module')).reduce((sum, q) => sum + q.questions.length, 0);
   const swtQuestions = QUIZZES.filter(q => q.title.toUpperCase().includes('SWT301')).reduce((sum, q) => sum + q.questions.length, 0);
+  const wduQuestions = QUIZZES.filter(q => q.id.includes('wdu203c-module')).reduce((sum, q) => sum + q.questions.length, 0);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
@@ -18,7 +19,7 @@ const QuizCatalog: React.FC = () => {
       <div className="absolute top-16 left-1/4 -translate-x-1/2 w-[500px] h-[300px] bg-indigo-500/10 dark:bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-32 right-1/4 translate-x-1/2 w-[400px] h-[250px] bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="mx-auto max-w-[1200px] relative z-10">
+      <div className="mx-auto max-w-[1400px] relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider mb-4 animate-pulse">
@@ -31,7 +32,7 @@ const QuizCatalog: React.FC = () => {
         </div>
 
         {/* Subject Cards - navigate directly to merged quiz */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto pt-4">
           {/* HSF302 Subject Card */}
           <Link
             to="/quiz/hsf302"
@@ -126,6 +127,39 @@ const QuizCatalog: React.FC = () => {
               </p>
             </div>
             <div className="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-bold text-sm">
+              <span>{t('quiz.start_learning', 'Start Learning')}</span>
+              <ChevronRight className="h-4 w-4 ml-1.5 group-hover:translate-x-1 transition-transform duration-200" />
+            </div>
+          </Link>
+
+          {/* WDU203c Subject Card */}
+          <Link
+            to="/quiz/wdu203c"
+            className="group relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-md hover:shadow-xl dark:shadow-none hover:border-sky-500/30 dark:hover:border-sky-500/30 hover:-translate-y-1 transition-all duration-300 text-left overflow-hidden flex flex-col justify-between min-h-[300px]"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-sky-500 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <div className="absolute -right-16 -top-16 w-36 h-36 bg-sky-500/5 dark:bg-sky-500/[0.03] rounded-full blur-2xl group-hover:bg-sky-500/10 transition-all duration-500" />
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-sky-500/10 dark:bg-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="h-7 w-7" />
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-sky-500/10 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400">
+                  <HelpCircle className="h-3 w-3" />
+                  {wduQuestions} questions
+                </span>
+              </div>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-200">
+                WDU203c
+              </h2>
+              <p className="text-sm font-semibold text-slate-400 dark:text-slate-500 mb-4">
+                {t('quiz.subject_wdu_title', 'UI/UX Design')}
+              </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+                {t('quiz.subject_wdu_desc', 'Master User Interface & User Experience Design, prototyping, interaction design, and usability testing.')}
+              </p>
+            </div>
+            <div className="inline-flex items-center text-sky-600 dark:text-sky-400 font-bold text-sm">
               <span>{t('quiz.start_learning', 'Start Learning')}</span>
               <ChevronRight className="h-4 w-4 ml-1.5 group-hover:translate-x-1 transition-transform duration-200" />
             </div>
