@@ -1,4 +1,5 @@
-// Automatically generated from quiz source txt files
+import { WDU203C_QUIZZES } from './wdu203cData';
+
 export interface QuizQuestion {
   question_id: number;
   question_title: string;
@@ -20,7 +21,7 @@ export interface QuizSet {
   questions: QuizQuestion[];
 }
 
-export const QUIZZES: QuizSet[] = [
+const BASE_QUIZZES: QuizSet[] = [
   {
     "id": "swt301-sp26-fe",
     "title": "SWT301 - SP26 - FE",
@@ -16065,3 +16066,5 @@ export const QUIZZES: QuizSet[] = [
     ]
   }
 ];
+
+export const QUIZZES: QuizSet[] = [...BASE_QUIZZES, ...WDU203C_QUIZZES];

@@ -23,12 +23,14 @@ const SUBJECT_CODES: Record<string, string> = {
   'hsf302': 'HSF302',
   'swr302': 'SWR302',
   'swt301': 'SWT301',
+  'wdu203c': 'WDU203c',
 };
 
 const SUBJECT_TITLES: Record<string, string> = {
   'hsf302': 'HSF302 - All Questions (Shuffled)',
   'swr302': 'SWR302 - All Questions (Shuffled)',
   'swt301': 'SWT301 - All Questions (Shuffled)',
+  'wdu203c': 'WDU203c - All 450 Questions (Shuffled)',
 };
 
 const QuizWorkspaceContent: React.FC = () => {
@@ -38,11 +40,54 @@ const QuizWorkspaceContent: React.FC = () => {
 
   // Check if quizId is a subject code (merged mode) or a specific quiz set
   const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
-  const isExamMode = quizId === 'swr302-random-exam' || quizId === 'hsf302-random-exam';
+  const isExamMode = quizId === 'swr302-random-exam' || quizId === 'hsf302-random-exam' || quizId === 'wdu203c-random-exam';
 
   // Build the merged & shuffled question list (or single quiz set / random exam)
   const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
     if (!quizId) return { questions: [] as QuizQuestion[], title: '' };
+
+    if (quizId === 'wdu203c-random-exam') {
+      let examQuestions: QuizQuestion[] = [];
+      try {
+        const saved = localStorage.getItem('wdu203c_random_exam_questions');
+        if (saved) {
+          examQuestions = JSON.parse(saved);
+        }
+      } catch (e) {}
+
+      if (!examQuestions || examQuestions.length === 0) {
+        const sampled: QuizQuestion[] = [];
+
+        // Sample 40 Single Choice, 3 Multi-Choice, 7 True/False
+        const m1 = QUIZZES.find(q => q.id === 'wdu203c-module-1-single-choice');
+        if (m1 && m1.questions.length > 0) {
+          const shuffled = [...m1.questions].sort(() => 0.5 - Math.random());
+          sampled.push(...shuffled.slice(0, 40));
+        }
+
+        const m2 = QUIZZES.find(q => q.id === 'wdu203c-module-2-multi-choice');
+        if (m2 && m2.questions.length > 0) {
+          const shuffled = [...m2.questions].sort(() => 0.5 - Math.random());
+          sampled.push(...shuffled.slice(0, 3));
+        }
+
+        const m3 = QUIZZES.find(q => q.id === 'wdu203c-module-3-true-false');
+        if (m3 && m3.questions.length > 0) {
+          const shuffled = [...m3.questions].sort(() => 0.5 - Math.random());
+          sampled.push(...shuffled.slice(0, 7));
+        }
+
+        examQuestions = sampled.sort(() => 0.5 - Math.random());
+        try {
+          localStorage.setItem('wdu203c_random_exam_questions', JSON.stringify(examQuestions));
+        } catch (e) {}
+      }
+
+      return {
+        questions: examQuestions,
+        title: 'WDU203c - 50-Question Mock Exam (Real Exam Simulation)',
+      };
+    }
 
     if (quizId === 'hsf302-random-exam') {
       let examQuestions: QuizQuestion[] = [];
@@ -354,6 +399,8 @@ const QuizWorkspaceContent: React.FC = () => {
     if (window.confirm(`Generate a new random ${totalQuestions}-question mock exam? Current progress will be reset.`)) {
       if (quizId === 'hsf302-random-exam') {
         localStorage.removeItem('hsf302_random_exam_questions');
+      } else if (quizId === 'wdu203c-random-exam') {
+        localStorage.removeItem('wdu203c_random_exam_questions');
       } else {
         localStorage.removeItem('swr302_random_exam_questions');
       }
@@ -449,10 +496,13 @@ const QuizWorkspaceContent: React.FC = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => {
-                if (quizId && quizId.toLowerCase().includes('swr302')) {
+                const lowerId = quizId?.toLowerCase() || '';
+                if (lowerId.includes('swr302')) {
                   navigate('/quiz/swr302');
-                } else if (quizId && quizId.toLowerCase().includes('hsf302')) {
+                } else if (lowerId.includes('hsf302')) {
                   navigate('/quiz/hsf302');
+                } else if (lowerId.includes('wdu203') || lowerId.includes('wdu')) {
+                  navigate('/quiz/wdu203c');
                 } else {
                   navigate('/quiz');
                 }
@@ -533,7 +583,13 @@ const QuizWorkspaceContent: React.FC = () => {
 
               {/* Title */}
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug mb-8 whitespace-pre-line">
-                {currentQuestion.question_title ? currentQuestion.question_title.replace(/[ \t]+(i|ii|iii|iv|v|vi|vii|viii|ix|x|[1-9])\)/g, '\n$1)') : ''}
+                {currentQuestion.question_title 
+                  ? currentQuestion.question_title
+                      .replace(/([a-zA-Z0-9:\)\?\!\.,])\s+([I|V|X]+[\.\)])\s+/g, '$1\n$2 ')
+                      .replace(/([a-zA-Z0-9:\)\?\!\.,])\s+([i|v|x]+\))\s+/g, '$1\n$2 ')
+                      .replace(/([a-zA-Z0-9:\?\!\.,])\s+([1-9]\d?[\.\)])\s+/g, '$1\n$2 ')
+                  : ''
+                }
               </h3>
 
               {/* Option Mode Instruction Hint */}

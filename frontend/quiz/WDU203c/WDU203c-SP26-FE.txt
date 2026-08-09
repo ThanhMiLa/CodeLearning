@@ -1,0 +1,512 @@
+[
+{
+"question_id": 1,
+"question_title": "What does it mean when the design process is called "iterative"?",
+"option_A": "Designers skip testing to save time",
+"option_B": "Designers repeat and refine ideas",
+"option_C": "Designers always follow linear steps",
+"option_D": "Designers focus only on wireframes",
+"correct_anwser": "B",
+"explain": "Quy trình thiết kế lặp (iterative design process) có nghĩa là nhà thiết kế liên tục lặp lại các bước kiểm thử, thu thập phản hồi và tinh chỉnh ý tưởng để hoàn thiện sản phẩm."
+},
+{
+"question_id": 2,
+"question_title": "What are the benefits of brainstorming in group ideation?",
+"option_A": "Stimulates creativity and diverse perspectives",
+"option_B": "Ensures immediate solutions are found",
+"option_C": "Eliminates the need for further design steps",
+"option_D": "Focuses on individual expertise",
+"correct_anwser": "A",
+"explain": "Brainstorming theo nhóm giúp kích thích sự sáng tạo và mang lại nhiều góc nhìn đa dạng từ các thành viên khác nhau."
+},
+{
+"question_id": 3,
+"question_title": "Which of the following is an example of a tool commonly used for creating wireframes in UX design?",
+"option_A": "Blender",
+"option_B": "Figma",
+"option_C": "Unity",
+"option_D": "Maya",
+"correct_anwser": "B",
+"explain": "Figma là công cụ phổ biến chuyên dùng để tạo wireframe và prototype trong UX/UI design. Các công cụ còn lại như Blender, Unity, Maya dành cho đồ họa 3D và phát triển game."
+},
+{
+"question_id": 4,
+"question_title": "Which of the following best describes a low-fidelity prototype?",
+"option_A": "A fully functional product",
+"option_B": "A detailed visual representation with interactive elements",
+"option_C": "A simple, often hand-drawn, representation of a design concept",
+"option_D": "A final version ready for deployment",
+"correct_anwser": "C",
+"explain": "Low-fidelity prototype (bản mô phỏng độ phân giải thấp) là bản thể hiện đơn giản, thường vẽ bằng tay để thử nghiệm nhanh các khái niệm thiết kế."
+},
+{
+"question_id": 5,
+"question_title": "Personas represent target users and are, thus, primarily a distillation of the findings from formative work. Scenarios begin to move designers toward a design solution. How do scenarios do this?",
+"option_A": "By envisioning how a technology might address the needs identified in formative work",
+"option_B": "By enumerating features of the technology being designed",
+"option_C": "By articulating tradeoffs of different design solutions",
+"option_D": "By providing stories that can be put into the ads for the product being designed",
+"correct_anwser": "A",
+"explain": "Scenarios (kịch bản sử dụng) giúp hình dung ra cách mà giải pháp công nghệ sẽ giải quyết các nhu cầu và vấn đề của người dùng đã được xác định trong quá trình nghiên cứu."
+},
+{
+"question_id": 6,
+"question_title": "Sketching is used both for generating and for communicating ideas.",
+"option_A": "True",
+"option_B": "False",
+"correct_anwser": "A",
+"explain": "Phác thảo (sketching) vừa giúp nhà thiết kế tạo ra các ý tưởng mới nhanh chóng, vừa giúp truyền đạt ý tưởng đó cho đồng nghiệp hoặc khách hàng."
+},
+{
+"question_id": 7,
+"question_title": "Which of the following is not a question that can be answered by getting feedback on wireframes?",
+"option_A": "Do screens contain the right functional components?",
+"option_B": "Does the screen layout make sense?",
+"option_C": "Is the displayed content ordered correctly?",
+"option_D": "Do the screens provide adequate navigation?",
+"correct_anwser": "D",
+"explain": "Wireframe chủ yếu tập trung vào bố cục (layout), thành phần chức năng và thứ tự nội dung trên từng màn hình đơn lẻ. Việc đánh giá khả năng điều hướng đầy đủ giữa các màn hình (navigation) thường yêu cầu các bản prototype có tính tương tác."
+},
+{
+"question_id": 8,
+"question_title": "Affordances of user interface don't have much influence on how easily users learn to use the system.",
+"option_A": "True",
+"option_B": "False",
+"correct_anwser": "B",
+"explain": "Affordance (khả năng gợi ý hành động của giao diện) ảnh hưởng rất lớn đến việc người dùng có thể dễ dàng học và hiểu cách sử dụng hệ thống hay không. Phát biểu trên là sai."
+},
+{
+"question_id": 9,
+"question_title": "Which of the following are types of user-entered inputs?",
+"option_A": "GPS",
+"option_B": "Text fields where users enter free-form responses",
+"option_C": "Widgets like calendar pickers or on/off switches",
+"option_D": "Voice input, like dictation typing",
+"option_E": "All options on this list except GPS",
+"correct_anwser": "E",
+"explain": "User-entered inputs là các dữ liệu do người dùng chủ động nhập vào (nhập văn bản, chọn widget, đọc giọng nói). Trong khi đó, GPS là dữ liệu cảm biến thu thập tự động từ thiết bị."
+},
+{
+"question_id": 10,
+"question_title": "What is a key criterion when evaluating low-fidelity prototypes?",
+"option_A": "Ability to test core user tasks",
+"option_B": "Visual style and branding",
+"option_C": "Use of advanced interaction patterns",
+"option_D": "Detailed animations",
+"correct_anwser": "A",
+"explain": "Tiêu chí quan trọng nhất khi đánh giá low-fidelity prototype là khả năng kiểm thử các tác vụ cốt lõi của người dùng (core user tasks) thay vì tập trung vào giao diện hay hiệu ứng."
+}
+]
+
+[
+{
+"question_id": 1,
+"question_title": "What principle helps ensure that users can discover how to use a system?",
+"option_A": "Signifiers.",
+"option_B": "Constraints",
+"option_C": "Affordances",
+"option_D": "Feedback.",
+"correct_anwser": "A",
+"explain": "Theo Don Norman, Signifiers (dấu hiệu chỉ dẫn) truyền đạt rõ ràng nơi nào và hành động nào cần thực hiện, giúp người dùng khám phá ra cách sử dụng hệ thống."
+},
+{
+"question_id": 2,
+"question_title": "What is the first step in conducting a Heuristic Evaluation?",
+"option_A": "Create a prioritized list of issues",
+"option_B": "Choose specific screens or interactions to focus on",
+"option_C": "Conduct user interviews",
+"option_D": "Test the system's speed",
+"correct_anwser": "B",
+"explain": "Bước đầu tiên trong đánh giá Heuristic là xác định phạm vi đánh giá, tức chọn các màn hình hoặc luồng tương tác cụ thể cần tập trung kiểm tra."
+},
+{
+"question_id": 3,
+"question_title": "What does the Gulf of Execution refer to?",
+"option_A": "The gap when users interpret the results of their actions",
+"option_B": "The difficulty in understanding the actions required to achieve a goal",
+"option_C": "The gap when the goal is too complex to reach",
+"option_D": "The failure of actions when feedback is not provided",
+"correct_anwser": "B",
+"explain": "Gulf of Execution (Khoảng cách thực thi) mô tả sự khó khăn khi người dùng cố gắng hiểu và tìm ra các hành động cần thiết để đạt được mục tiêu của mình."
+},
+{
+"question_id": 4,
+"question_title": "What is the primary purpose of conducting user interviews in UX research?",
+"option_A": "To test the final product",
+"option_B": "To gather quantitative data",
+"option_C": "To understand user needs and behaviors",
+"option_D": "To train new designers",
+"correct_anwser": "C",
+"explain": "Mục đích chính của phỏng vấn người dùng là thu thập thông tin định tính nhằm hiểu sâu về nhu cầu, thói quen và hành vi của họ."
+},
+{
+"question_id": 5,
+"question_title": "What is the purpose of sketching in UX design?",
+"option_A": "To finalize the design",
+"option_B": "To reflect, explore, and communicate design concepts",
+"option_C": "To create perfect visuals",
+"option_D": "To avoid feedback from users",
+"correct_anwser": "B",
+"explain": "Phác thảo giúp nhà thiết kế suy ngẫm, khám phá nhiều ý tưởng khác nhau và truyền đạt các khái niệm thiết kế một cách nhanh chóng."
+},
+{
+"question_id": 6,
+"question_title": "What is the primary focus of Heuristic Evaluation?",
+"option_A": "To analyze system speed and performance",
+"option_B": "To review a UI using Nielsen's 10 heuristics",
+"option_C": "To conduct focus groups with real users",
+"option_D": "To test the visual appeal of the design",
+"correct_anwser": "B",
+"explain": "Đánh giá Heuristic tập trung vào việc chuyên gia rà soát giao diện người dùng dựa trên các nguyên tắc thiết kế chuẩn (như 10 nguyên tắc heuristic của Jakob Nielsen)."
+},
+{
+"question_id": 7,
+"question_title": "Select all the benefits of conducting usability testing early in the UX design process. (More than one answer may be correct).",
+"option_A": "Identify potential design flaws",
+"option_B": "Guarantees project success",
+"option_C": "Improves user satisfaction",
+"option_D": "Ensures compliance with industry standards",
+"correct_anwser": "A",
+"explain": "Kiểm thử độ khả dụng sớm giúp phát hiện kịp thời các lỗi thiết kế tiềm ẩn (A) và nâng cao sự hài lòng của người dùng (C). Tuy nhiên, với định dạng trắc nghiệm chọn 1 đáp án chính xác nhất, A đại diện cho lợi ích trực tiếp nhất."
+},
+{
+"question_id": 8,
+"question_title": "A feature of an environment or system that, by its shape and appearance, suggests to a person that a particular action could be taken is called:",
+"option_A": "An affordance",
+"option_B": "A signal",
+"option_C": "A constraint",
+"option_D": "A signpost",
+"correct_anwser": "A",
+"explain": "Affordance là đặc tính của đối tượng/hệ thống gợi ý cho người dùng biết họ có thể thực hiện hành động gì với nó thông qua hình dáng và vẻ ngoài."
+},
+{
+"question_id": 9,
+"question_title": "Which of the following best describes a 'persona' in UX design?",
+"option_A": "A fictional character representing a user type",
+"option_B": "A real user interviewed during research",
+"option_C": "A list of product features",
+"option_D": "A prototype of the final product",
+"correct_anwser": "A",
+"explain": "Persona là một nhân vật hư cấu đại diện cho một nhóm người dùng mục tiêu dựa trên dữ liệu nghiên cứu thực tế."
+},
+{
+"question_id": 10,
+"question_title": "A team proposes bypassing heuristic evaluation and moving directly to user testing for a website design. How would you assess this decision based on UX evaluation principles?",
+"option_A": "Support it, as user testing is always superior",
+"option_B": "Oppose it, as heuristic evaluation is faster and finds different issues",
+"option_C": "Support it, as heuristic evaluation is unnecessary",
+"option_D": "Oppose it, as user testing requires more evaluators",
+"correct_anwser": "B",
+"explain": "Nên phản đối việc bỏ qua Heuristic Evaluation vì phương pháp này nhanh hơn, tiết kiệm chi phí và phát hiện các lỗi usability phổ biến trước khi tiến hành kiểm thử phức tạp với người dùng."
+}
+]
+
+[
+{
+"question_id": 1,
+"question_title": "Which of the following is the MOST TRUE statement?",
+"option_A": "It's better to get a low response rate from a small sample than it is to get a high response rate from a big sample.",
+"option_B": "Response rates are only important for national, probability studies.",
+"option_C": "Response rates are not connected to survey quality.",
+"option_D": "It's better to get a high response rate from a small sample than a low response rate from a big sample.",
+"correct_anwser": "D",
+"explain": "Tỷ lệ phản hồi (response rate) cao trên một mẫu nhỏ giảm thiểu rủi ro chênh lệch phi phản hồi (non-response bias) và mang lại dữ liệu đại diện chất lượng hơn so với việc khảo sát một mẫu rất lớn nhưng tỷ lệ phản hồi lại thấp."
+},
+{
+"question_id": 2,
+"question_title": "What method would you develop to boost survey response rates for a mobile app?",
+"option_A": "Use complex survey jargon",
+"option_B": "Offer incentives, clear opt-outs",
+"option_C": "Require all questions be answered",
+"option_D": "Hide the survey's purpose",
+"correct_anwser": "B",
+"explain": "Việc đưa ra ưu đãi/phần thưởng (incentives) và cung cấp tùy chọn hủy/thoát rõ ràng (clear opt-outs) là chiến lược hiệu quả nhất để khuyến khích người dùng tham gia và hoàn thành khảo sát."
+},
+{
+"question_id": 3,
+"question_title": "Which of the following is NOT a reason you would want to have a high response rate?",
+"option_A": "If you want to be more confident that you've detected a difference/change.",
+"option_B": "If your population is very heterogeneous.",
+"option_C": "If you want to be able to conduct more complicated statistical analyses.",
+"option_D": "If you want to detect smaller, or more subtle differences/changes.",
+"correct_anwser": "C",
+"explain": "Tỷ lệ phản hồi cao làm tăng tính đại diện và độ chính xác của kết quả, giúp phát hiện sự thay đổi nhỏ hoặc phục vụ quần thể đa dạng. Tuy nhiên, việc thực hiện các phân tích thống kê phức tạp phụ thuộc chủ yếu vào kích thước mẫu (sample size) và loại dữ liệu thu thập chứ không phụ thuộc vào tỷ lệ phản hồi."
+},
+{
+"question_id": 4,
+"question_title": "How would you structure a preference test to compare two checkout designs?",
+"option_A": "Use only yes/no questions",
+"option_B": "Mix rating and open questions",
+"option_C": "Test one design per user group",
+"option_D": "Avoid using visual mockups",
+"correct_anwser": "B",
+"explain": "Kết hợp câu hỏi đánh giá theo thang điểm (định lượng) và câu hỏi mở (định tính) giúp vừa đo lường mức độ yêu thích vừa hiểu được lý do đằng sau sự lựa chọn của người dùng."
+},
+{
+"question_id": 5,
+"question_title": "What is a common source of error in UX surveys that can affect data quality?",
+"option_A": "High response rates",
+"option_B": "Clear and concise questions",
+"option_C": "Ambiguous or leading questions",
+"option_D": "Use of multiple-choice questions",
+"correct_anwser": "C",
+"explain": "Các câu hỏi mơ hồ (ambiguous) hoặc mang tính dẫn dắt (leading questions) là nguyên nhân hàng đầu gây ra sai số và thiên lệch dữ liệu trong khảo sát UX."
+},
+{
+"question_id": 6,
+"question_title": "Besides usability testing, what is another research method that can be conducted remotely?",
+"option_A": "Product assembly",
+"option_B": "Diary studies",
+"option_C": "Server maintenance",
+"option_D": "Eye-tracking in physical stores",
+"correct_anwser": "B",
+"explain": "Diary studies (Nghiên cứu nhật ký người dùng) là phương pháp nghiên cứu trải nghiệm theo thời gian rất phổ biến có thể dễ dàng thực hiện từ xa thông qua công cụ trực tuyến."
+},
+{
+"question_id": 7,
+"question_title": "What is a primary reason for using surveys in UX research?",
+"option_A": "To replace qualitative methods",
+"option_B": "To collect data from many users",
+"option_C": "To eliminate need for analytics",
+"option_D": "To focus on expert opinions only",
+"correct_anwser": "B",
+"explain": "Mục đích chính của khảo sát (surveys) là thu thập dữ liệu định lượng từ một lượng lớn người dùng một cách nhanh chóng và chi phí tối ưu."
+},
+{
+"question_id": 8,
+"question_title": "What is "page depth" in website analytics?",
+"option_A": "The number of pages visited during a single user session",
+"option_B": "The time spent on each page by a user",
+"option_C": "The number of visitors who return to the site regularly",
+"option_D": "The number of clicks on a page's primary button",
+"correct_anwser": "A",
+"explain": "Khái niệm Page depth (độ sâu của trang) trong phân tích web đo lường số lượng trang mà một người dùng xem trong một phiên truy cập (session)."
+},
+{
+"question_id": 9,
+"question_title": "Which sampling method should be used when aiming to minimize bias and ensure generalizability in research findings?",
+"option_A": "Convenience sampling",
+"option_B": "Probability sampling",
+"option_C": "Purposeful sampling",
+"option_D": "Non-probability sampling",
+"correct_anwser": "B",
+"explain": "Probability sampling (Chọn mẫu theo xác suất) đảm bảo mọi đối tượng trong quần thể có cơ hội được chọn như nhau, giúp tối thiểu hóa định kiến (bias) và có thể tổng quát hóa kết quả."
+},
+{
+"question_id": 10,
+"question_title": "Which of the following is an example of purposive sampling?",
+"option_A": "Asking your female friends to respond to a survey via Facebook and Twitter requests.",
+"option_B": "Asking people who use a site's shopping cart how they feel about that experience.",
+"option_C": "Emailing a random sample of employees who started at the company this year based on a list provided by HR.",
+"option_D": "Asking one group of respondents to forward the survey invite to their social networks.",
+"correct_anwser": "B",
+"explain": "Purposive sampling (Chọn mẫu có mục đích) là chọn những nhóm đối tượng có đặc điểm hoặc trải nghiệm cụ thể liên quan trực tiếp đến nghiên cứu, ví dụ như hỏi chính những người đang sử dụng giỏ hàng về trải nghiệm giỏ hàng."
+}
+]
+
+[
+{
+"question_id": 1,
+"question_title": "How should affinity clusters be labeled?",
+"option_A": "With specific, precise titles that capture the essence of the common theme",
+"option_B": "With random titles for easier identification",
+"option_C": "With labels that focus solely on the user demographics",
+"option_D": "With vague, general titles to avoid bias",
+"correct_anwser": "A",
+"explain": "Khi gắn nhãn cho các nhóm ý tưởng (affinity clusters), tiêu đề cần cụ thể và chính xác để phản ánh đúng bản chất của chủ đề chung mà nhóm đó đại diện."
+},
+{
+"question_id": 2,
+"question_title": "Which of the following best describes the correct approach to note-taking?",
+"option_A": "Writing down only the main ideas using brief phrases and key details.",
+"option_B": "Recording only the information that won't be captured by audio or video.",
+"option_C": "Accepting that there isn't a single correct method for taking notes.",
+"option_D": "Noting only the follow-up questions you plan to ask later in the conversation.",
+"correct_anwser": "C",
+"explain": "Trong nghiên cứu UX, không có một phương pháp ghi chép đơn lẻ nào là duy nhất đúng; phương pháp ghi chép có thể linh hoạt tùy thuộc vào bối cảnh và công cụ hỗ trợ."
+},
+{
+"question_id": 3,
+"question_title": "How are personas useful in user needs assessments?",
+"option_A": "They help summarize quantitative data collected through surveys",
+"option_B": "They provide archetypes that represent different subsets of users, helping design teams understand user motivations",
+"option_C": "They offer insights into market trends",
+"option_D": "They analyze the effectiveness of product features",
+"correct_anwser": "B",
+"explain": "Persona đóng vai trò là hình mẫu đại diện cho các nhóm người dùng khác nhau, giúp nhóm thiết kế thấu hiểu động lực, nhu cầu và hành vi của người dùng."
+},
+{
+"question_id": 4,
+"question_title": "In-situ observation is particularly useful for",
+"option_A": "Understanding user behavior in their natural environment",
+"option_B": "Testing the technical performance of a product",
+"option_C": "Conducting large-scale surveys",
+"option_D": "Gathering statistical data on user preferences",
+"correct_anwser": "A",
+"explain": "In-situ observation (quan sát tại chỗ) là phương pháp quan sát người dùng thực hiện công việc trực tiếp trong môi trường tự nhiên thực tế của họ."
+},
+{
+"question_id": 5,
+"question_title": "What should you do when you create clusters in an affinity wall?",
+"option_A": "Avoid mistakes, because once a cluster is formed, it cannot be undone.",
+"option_B": "Create clusters of more than seven affinity notes.",
+"option_C": "Put all notes that use the same word in a single cluster.",
+"option_D": "Be willing to move notes and re-form clusters.",
+"correct_anwser": "D",
+"explain": "Tạo sơ đồ đồng điệu (affinity wall) là quy trình lặp đi lặp lại linh hoạt; bạn cần sẵn sàng di chuyển các ghi chú và định hình lại nhóm khi xuất hiện góc nhìn mới."
+},
+{
+"question_id": 6,
+"question_title": "Which of the following methods are effective for gathering user needs? (More than one answer may be correct)",
+"option_A": "User interviews",
+"option_B": "Surveys",
+"option_C": "Ignoring negative feedback",
+"option_D": "Copying competitors' features",
+"correct_anwser": "A",
+"explain": "Phỏng vấn người dùng (A) và Khảo sát (B) đều là phương pháp hiệu quả để thu thập nhu cầu người dùng. Với định dạng trắc nghiệm 1 đáp án, Phỏng vấn người dùng (User interviews) là phương pháp định tính trực tiếp chuẩn mực nhất."
+},
+{
+"question_id": 7,
+"question_title": "What is a common challenge when conducting in-situ observations?",
+"option_A": "Participants behaving unnaturally due to being observed",
+"option_B": "Difficulty in accessing the user's environment",
+"option_C": "Collecting too much quantitative data",
+"option_D": "Lack of visual data",
+"correct_anwser": "A",
+"explain": "Thách thức phổ biến nhất khi quan sát trực tiếp (hiệu ứng Hawthorne) là đối tượng nghiên cứu có thể hành xử không tự nhiên do biết mình đang bị quan sát."
+},
+{
+"question_id": 8,
+"question_title": "Which of the following is NOT another name for the kind of qualitative research methodology you learned in this specialization?",
+"option_A": "Ethnographic research.",
+"option_B": "Contextual inquiry.",
+"option_C": "User needs assessment.",
+"option_D": "Socio-technical extraction.",
+"correct_anwser": "D",
+"explain": "Ethnographic research, Contextual inquiry và User needs assessment đều là các thuật ngữ thuộc phương pháp nghiên cứu định tính UX, trong khi Socio-technical extraction không phải thuật ngữ thuộc chuỗi khóa học này."
+},
+{
+"question_id": 9,
+"question_title": "What is the goal of labeling clusters in the affinity wall method?",
+"option_A": "To create catchy titles for each cluster",
+"option_B": "To summarize the common theme or issue represented by the notes in the cluster",
+"option_C": "To provide a detailed breakdown of each user's feedback",
+"option_D": "To list all the observations without organizing them",
+"correct_anwser": "B",
+"explain": "Mục tiêu của việc dán nhãn nhóm trong sơ đồ đồng điệu là tóm tắt chủ đề chung hoặc vấn đề cốt lõi mà các ghi chú trong nhóm đó đại diện."
+},
+{
+"question_id": 10,
+"question_title": "How does qualitative research differ from quantitative research?",
+"option_A": "Qualitative research focuses on understanding in-depth user behavior and experiences, while quantitative research focuses on numerical data",
+"option_B": "Qualitative research provides statistical data, while quantitative research focuses on user behavior",
+"option_C": "Quantitative research is more subjective than qualitative research",
+"option_D": "Qualitative research involves automated data analysis",
+"correct_anwser": "A",
+"explain": "Nghiên cứu định tính tập trung vào việc hiểu sâu về hành vi, cảm xúc và trải nghiệm người dùng, trong khi nghiên cứu định lượng tập trung vào đo lường dữ liệu bằng con số."
+}
+]
+
+[
+{
+"question_id": 1,
+"question_title": "Which of the following data types is arguably the most important to capture when conducting a formative, problem-finding user test?",
+"option_A": "Critical incidents",
+"option_B": "Perceived usability",
+"option_C": "Suggested improvements",
+"option_D": "Participant demographics",
+"correct_anwser": "A",
+"explain": "Trong formative testing nhằm tìm lỗi thiết kế, việc ghi nhận các sự cố nghiêm trọng (critical incidents) - những thời điểm người dùng gặp vướng mắc lớn hoặc thất bại khi thực hiện tác vụ - là loại dữ liệu quan trọng nhất."
+},
+{
+"question_id": 2,
+"question_title": "Which of the following is typically NOT TRUE of user testing?",
+"option_A": "You should not know who the test participants are, and they should not know who you are.",
+"option_B": "You should observe test participants using the system directly.",
+"option_C": "You should recruit test participants who are representative of your target users.",
+"option_D": "You should give test participants specific tasks to carry out using the system.",
+"correct_anwser": "A",
+"explain": "User testing thông thường không yêu cầu giấu danh tính 2 chiều hoàn toàn (double-blind) như trong một số thử nghiệm y học/khoa học. Điều quan trọng là phải quan sát người dùng thực hiện nhiệm vụ cụ thể."
+},
+{
+"question_id": 3,
+"question_title": "What type of user testing is designed to verify if the system meets performance goals like task completion time or error rate?",
+"option_A": "Formative Testing",
+"option_B": "Benchmark Testing",
+"option_C": "Problem Identification Testing",
+"option_D": "Comparative Testing",
+"correct_anwser": "B",
+"explain": "Benchmark testing được thiết kế để đo lường và xác nhận xem hệ thống có đạt các mục tiêu hiệu suất định lượng cụ thể (như thời gian hoàn thành nhiệm vụ hay tỷ lệ lỗi) hay không."
+},
+{
+"question_id": 4,
+"question_title": "Which of the following is NOT a key design skill?",
+"option_A": "To frame or reframe a design problem",
+"option_B": "To generate a large number of alternative solutions",
+"option_C": "To evaluate tradeoffs of different alternatives",
+"option_D": "To create and test with potential users a functioning prototype of a design solution",
+"option_E": "To write a business plan for selling the technology designers created",
+"correct_anwser": "E",
+"explain": "Viết kế hoạch kinh doanh bán sản phẩm là kỹ năng thuộc lĩnh vực quản trị kinh doanh/khởi nghiệp, không phải kỹ năng cốt lõi của nhà thiết kế UX."
+},
+{
+"question_id": 5,
+"question_title": "Designers often refer to the notion of the "design space." What does this term refer to?",
+"option_A": "Physical space (like a design studio) where design activities take place",
+"option_B": "Space into which the design has to fit (e.g., the size of the screen of a mobile phone)",
+"option_C": "Properties of the space (e.g., location, shape of the room) where the design will be used",
+"option_D": "The range of alternative ways that a design solution can work",
+"correct_anwser": "D",
+"explain": "Design space (không gian thiết kế) khái niệm hóa tập hợp tất cả các giải pháp và phương án khả thi mà một thiết kế có thể hướng tới."
+},
+{
+"question_id": 6,
+"question_title": "When making a recommendation for how to address a problem, you should consider all of the following EXCEPT:",
+"option_A": "Identifying best practices from competitors' products",
+"option_B": "Declining to provide a recommendation, admitting you have no good ideas",
+"option_C": "Suggesting further research to better characterize the problem",
+"option_D": "Recommending an iterative design process to find the best solution",
+"correct_anwser": "B",
+"explain": "Từ chối đưa ra khuyến nghị và thừa nhận không có ý tưởng không phải là một cách tiếp cận chuyên nghiệp khi đề xuất giải pháp UX."
+},
+{
+"question_id": 7,
+"question_title": "A test task uses the term "Shopping Cart" which appears in the UI. What should you do instead?",
+"option_A": "Leave it as is",
+"option_B": "Add more technical jargon",
+"option_C": "Reword it to avoid interface-specific terms",
+"option_D": "Ask users to guess the meaning",
+"correct_anwser": "C",
+"explain": "Khi viết kịch bản tác vụ kiểm thử, cần tránh dùng đúng các thuật ngữ hiển thị trên UI (như "Shopping Cart") để tránh việc dẫn dắt người dùng chỉ đi tìm kiếm từ khóa đó thay vì tự thao tác tự nhiên."
+},
+{
+"question_id": 8,
+"question_title": "What is the most appropriate way for a user test moderator to respond when a participant expresses confusion?",
+"option_A": "Ignore the confusion and continue with the tasks",
+"option_B": "Prompt the participant with clarifying questions to understand the issue better",
+"option_C": "Provide the participant with answers to solve the problem",
+"option_D": "Encourage the participant to skip the task",
+"correct_anwser": "B",
+"explain": "Người điều phối (moderator) nên đặt các câu hỏi làm rõ (như "Bạn đang nghĩ gì?", "Điều gì làm bạn thắc mắc?") để đào sâu nguyên nhân gây bối rối mà không can thiệp chỉ dẫn cách làm."
+},
+{
+"question_id": 9,
+"question_title": "Which type of recruiting criteria would the following question screen for?\n"In the past week, how many hours did you spend completing coursework on edX? 0, 1-2, 3-5, or more than 5"",
+"option_A": "Expertise",
+"option_B": "Behavioral",
+"option_C": "Characteristic",
+"option_D": "Attitudinal",
+"correct_anwser": "B",
+"explain": "Câu hỏi tần suất/thời gian thực hiện một hành động cụ thể trong quá khứ (số giờ học) thuộc nhóm tiêu chí lọc theo hành vi (Behavioral criteria)."
+},
+{
+"question_id": 10,
+"question_title": "What is a primary goal when analyzing data from user tests?",
+"option_A": "To confirm that the design meets business objectives",
+"option_B": "To identify areas where users encounter difficulties",
+"option_C": "To validate the technical feasibility of the design",
+"option_D": "To assess the aesthetic appeal of the interface",
+"correct_anwser": "B",
+"explain": "Mục tiêu chính khi phân tích dữ liệu kiểm thử người dùng là phát hiện những điểm/khu vực mà người dùng gặp khó khăn trong quá trình sử dụng."
+}
+]
