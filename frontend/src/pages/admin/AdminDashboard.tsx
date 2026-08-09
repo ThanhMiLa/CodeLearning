@@ -945,15 +945,6 @@ const AdminDashboard: React.FC = () => {
       
       {/* Sidebar */}
       <div className="w-64 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 overflow-hidden">
-        <div className="p-6 border-b border-slate-200 dark:border-slate-800 shrink-0">
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-all shadow-md">
-              <Code className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 tracking-tight">CodeLearning</span>
-          </Link>
-        </div>
-        
         <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
           <p className="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-2">Menu</p>
           
