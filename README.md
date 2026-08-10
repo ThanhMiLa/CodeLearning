@@ -37,21 +37,27 @@ Designed with enterprise-grade architectures (Layered Monolith, Monorepo, Event-
 
 ## 🌟 Key Features
 
-### ⚡ 1. Online Judge (Hệ thống Chấm bài Lập trình Tự động)
-* **Monaco Code Editor**: Tích hợp IDE soạn thảo code mạnh mẽ (tương tự VS Code) hỗ trợ gợi ý code, highlight cú pháp cho nhiều ngôn ngữ (C++, Java, Python, JavaScript...).
-* **Asynchronous Sandbox Evaluation (Judge0)**: Gửi code sang sandbox xử lý bất đồng bộ qua **Spring WebFlux** & Webhooks, kiểm tra chính xác từng testcase (`Accepted`, `Wrong Answer`, `TLE`, `MLE`, `Compile Error`).
-* **Real-time Status Updates (WebSocket STOMP)**: Cập nhật kết quả chấm bài tức thì từ server về client qua kết nối WebSocket mà không cần reload trang.
-* **Ngắt mạch chấm nhanh (Short-Circuit Logic)**: Tự động dừng chấm và trả về kết quả ngay khi gặp testcase thất bại đầu tiên, giúp tối ưu tài nguyên sandbox trong các kỳ thi.
+### ⚡ 1. Online Judge (Automated Code Evaluation System)
+* **Monaco Code Editor**: Integrated feature-rich code editor (VS Code-like interface) supporting code completion, syntax highlighting, and custom themes across multiple programming languages (C++, Java, Python, JavaScript, etc.).
+* **Asynchronous Sandbox Evaluation (Judge0)**: Submits source code to the evaluation sandbox asynchronously via **Spring WebFlux** & Webhooks, providing exact testcase verdicts (`Accepted`, `Wrong Answer`, `TLE`, `MLE`, `Compile Error`).
+* **Real-time Status Updates (WebSocket STOMP)**: Pushes real-time evaluation progress and final submission results directly from backend to frontend clients via WebSockets without requiring page refreshes.
+* **Short-Circuit Evaluation Logic**: Automatically halts judgment and returns immediate failure upon encountering the first failed testcase, conserving sandbox computing resources during live contests.
 
-### 💳 2. Cart & Payment Gateway (Giỏ hàng & Thanh toán PayOS)
-* **Quản lý Giỏ hàng & Đơn hàng**: Thêm nhiều khóa học vào giỏ, áp dụng mã giảm giá/voucher và tạo đơn hàng checkout nhanh chóng.
-* **Cổng thanh toán PayOS**: Tự động sinh mã QR ngân hàng động giúp người dùng chuyển khoản chính xác và tiện lợi.
-* **Xử lý Giao dịch An toàn (Idempotency & Pessimistic Locking)**: Nhận callback webhook từ PayOS, áp dụng Postgres `SELECT FOR UPDATE` (`findByUserIdWithLock`) để cộng tiền/kích hoạt khóa học an toàn, chống race-condition.
+### 💳 2. Cart & Payment Gateway (Cart & PayOS Integration)
+* **Cart & Order Management**: Allows users to add multiple courses to cart, apply promotional vouchers/discount codes, and create seamless checkout orders.
+* **PayOS Payment Gateway Integration**: Automatically generates dynamic banking QR codes for instant, hassle-free bank transfers.
+* **Transaction Safety (Idempotency & Pessimistic Locking)**: Processes PayOS webhook callbacks reliably using Postgres pessimistic locking (`SELECT FOR UPDATE` via `findByUserIdWithLock`) to credit wallets and activate courses securely, preventing race conditions.
 
-### 🛡️ 3. Authentication & Security (Bảo mật & Phân quyền)
-* **Đăng nhập Đa phương thức**: Hỗ trợ xác thực qua Email/Password và đăng nhập nhanh **Google OAuth2 Single Sign-On (SSO)**.
-* **Cơ chế Token An toàn (JWT + RTR)**: Đọc JWT token linh hoạt từ `Authorization` Header hoặc `HttpOnly SameSite Cookie` (chống tấn công XSS/CSRF). Áp dụng **Refresh Token Rotation (RTR)** cấp mới pair token và thu hồi token cũ vào blacklist (`invalidated_tokens`).
-* **Phân quyền Động (Dynamic RBAC & Contextual SpEL)**: Phân quyền theo vai trò (`STUDENT`, `INSTRUCTOR`, `ADMIN`) và kiểm soát truy cập sâu ở cấp phương thức (`@PreAuthorize`) bằng SpEL kiểm tra quyền sở hữu/đã đăng ký khóa học trước khi cho phép xem bài học.
+### 🛡️ 3. Authentication & Security (Authentication & Authorization)
+* **Multi-Factor / Multi-Provider Auth**: Supports standard Email/Password authentication as well as **Google OAuth2 Single Sign-On (SSO)**.
+* **Secure Token Management (JWT + RTR)**: Resolves JWT tokens dynamically from either standard `Authorization` headers or secure `HttpOnly`, `SameSite` cookies (mitigating XSS/CSRF attacks). Enforces **Refresh Token Rotation (RTR)** to issue fresh token pairs while blacklisting revoked tokens (`invalidated_tokens`).
+* **Dynamic Authorization (Dynamic RBAC & Contextual SpEL)**: Role-based access control (`STUDENT`, `INSTRUCTOR`, `ADMIN`) with fine-grained method-level security (`@PreAuthorize`) evaluating SpEL expressions to verify resource ownership and course enrollment before granting access.
+
+### ✉️ 4. Enterprise Async Email Pipeline (RabbitMQ & SendGrid Integration)
+* **Batch Processing & Message Queue**: Chunks recipient lists into batches (500 users/batch) and dispatches them asynchronously through **RabbitMQ** (`email.exchange` & `bulk.email.queue`).
+* **SendGrid Dynamic Templates**: Integrates SendGrid API v3 with dynamic template data binding for personalized bulk email delivery.
+* **DLQ Recovery & Webhook Telemetry**: Stores failed delivery attempts in a DLQ database table (`FailedEmailQueueEntity`) for retries, and verifies SendGrid Webhook signatures (`X-Twilio-Email-Event-Webhook-Signature`) to record real-time delivery telemetry (`delivered`, `open`, `click`, `bounce`).
+
 
 ---
 
@@ -104,26 +110,68 @@ sequenceDiagram
 
 ---
 
-### 2. Event-Driven Contest Scheduler (RabbitMQ Delayed Message Exchange)
-Instead of resource-heavy database polling (cron-jobs executing every minute), the platform utilizes **RabbitMQ with the Delayed Message Exchange plugin** to trigger precise state changes for contests (*Upcoming → Running → Ended*).
+### 2. PayOS Payment & Checkout Flow (Idempotent Webhook, Late Payment & Cron Reconciliation)
+To process financial transactions reliably without money loss, race conditions, or duplicate payments, the checkout workflow combines **PayOS Dynamic Banking QR Codes**, **HMAC-SHA256 Signature Verification**, **PostgreSQL Pessimistic Locking (`SELECT FOR UPDATE`)**, **Late Payment Handling (`LATE_SUCCESS`)**, and **Active CronJob Reconciliation**.
 
 ```mermaid
-graph TD
-    A[Admin creates/updates Contest] -->|Calculate delayStart & delayEnd| B(Spring Boot Backend)
-    B -->|Publish message with delayStart| C[Delayed Exchange: contest.exchange]
-    B -->|Publish message with delayEnd| C
-    
-    C -->|Sleep inside exchange for N milliseconds| C
-    
-    C -->|Delay expires| D[Contest Queue: contest.queue]
-    D -->|Consume message| E[ContestStatusListener]
-    
-    E -->|1. Fetch Contest from DB| F{Contest Exist?}
-    F -->|Yes| G{Idempotency Check: targetTime == dbTime?}
-    F -->|No| H[Discard Message]
-    
-    G -->|Yes: Lịch thi không thay đổi| I[Update Contest Status & Broadcast via WebSocket]
-    G -->|No: Lịch thi đã bị Admin cập nhật| J[Discard Message: Tránh ghi đè dữ liệu cũ]
+sequenceDiagram
+    autonumber
+    actor Customer as User / Student
+    participant API as Spring Boot Backend
+    participant Cron as Payment CronJob (Every 5 mins)
+    participant PayOS as PayOS Gateway API
+    participant DB as PostgreSQL DB (Pessimistic Lock)
+
+    Customer->>API: POST /payments/deposit (Create Deposit Request)
+    activate API
+    API->>DB: Save PaymentTransaction (Status: PENDING)
+    API->>PayOS: Request Payment Link (v2/payment-requests)
+    activate PayOS
+    PayOS-->>API: Return Checkout Payload (Payment Link, Dynamic QR Code)
+    deactivate PayOS
+    API-->>Customer: Return Checkout QR Code & Redirect URL
+    deactivate API
+
+    alt Path A: Standard Asynchronous Webhook Delivery
+        PayOS->>API: POST /payment/payos-webhook (Webhook Payload & Signature Header)
+        activate API
+        API->>API: Verify Webhook Signature (HMAC-SHA256 Checksum)
+        
+        alt Idempotency Guard: Already SUCCESS or LATE_SUCCESS
+            API-->>PayOS: Return HTTP 200 OK (Ignore duplicate webhook)
+        else Transaction PENDING or CANCELLED
+            API->>DB: Acquire Lock via findByUserIdWithLock (SELECT FOR UPDATE)
+            activate DB
+            alt Transaction Status was CANCELLED or EXPIRED (Late Payment)
+                API->>DB: Mark Status -> LATE_SUCCESS (Prevent Customer Money Loss)
+            else Transaction Status was PENDING
+                API->>DB: Mark Status -> SUCCESS
+            end
+            API->>DB: Credit Wallet Balance & Write Wallet Transaction Ledger
+            DB-->>API: Commit Transaction & Release Lock
+            deactivate DB
+            API-->>PayOS: Return HTTP 200 OK (Webhook Processed)
+        end
+        deactivate API
+
+    else Path B: Active CronJob Reconciliation (Missed Webhooks & Auto Expiry)
+        Cron->>DB: Scan Pending Transactions (Status == PENDING)
+        activate Cron
+        loop For each Pending Transaction (> 5 mins)
+            Cron->>PayOS: GET /v2/payment-requests/{orderCode}
+            activate PayOS
+            PayOS-->>Cron: Return Transaction Status (PAID / CANCELLED / PENDING)
+            deactivate PayOS
+            
+            alt PayOS Status == PAID (Missed Webhook Recovery)
+                Cron->>API: Trigger Fallback Processing (Lock Wallet & Credit Balance)
+                API->>DB: Mark Status -> SUCCESS / LATE_SUCCESS & Update Wallet
+            else PayOS Status == CANCELLED / EXPIRED or PENDING > 30 mins
+                Cron->>DB: Force Update Status -> CANCELLED (Release Stale Tx)
+            end
+        end
+        deactivate Cron
+    end
 ```
 
 ---
@@ -153,21 +201,53 @@ graph TD
 
 ---
 
-## ⚡ Technical Highlights & Best Practices
+### 4. Asynchronous Bulk Email Pipeline (RabbitMQ & SendGrid Integration)
+To handle mass email distribution efficiently without HTTP request timeouts or API rate-limit violations, the system utilizes **RabbitMQ Message Queues**, **SendGrid Dynamic Templates**, **Database DLQ**, and **Webhook Signature Telemetry**.
 
-### 🚀 Performance & Optimization
-* **Preventing N+1 Queries**: Utilized Spring Data JPA `@EntityGraph` (e.g., fetching categories and teacher assignments in `CourseRepository`) to load relationships in a single database query.
-* **Database-Level Existence Verification**: Replaced heavy ORM entity loading with native `EXISTS` SQL queries (e.g., checking if a user has enrolled in a course or holds permissions to view a lesson) to stop DB index scanning on the first match.
-* **Memory-Efficient Collection Mapping**: Mapped `@ManyToMany` and `@OneToMany` relationships using `Set` instead of `List` to prevent Hibernate from executing bulk delete-and-insert commands on join tables during updates.
-* **Interface-based Projections**: Used customized native query projections (`OjPracticeProblemProjection`) in paginated requests to retrieve only essential columns, bypassing the overhead of loading bulky content columns like source code.
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Admin as Admin / System Event
+    participant Producer as EmailProducerService
+    participant Rabbit as RabbitMQ (email.exchange)
+    participant Consumer as EmailConsumerService (@RabbitListener)
+    participant SendGrid as SendGrid API v3
+    participant DB as PostgreSQL DB
+    participant Webhook as SendGrid Webhook Controller
 
-### 🛡️ Security & Integrity
-* **Secure Authentication Delivery**: Configured custom `BearerTokenResolver` to read JWT tokens from both the standard `Authorization` header and secure `HttpOnly`, `SameSite` cookies (mitigating XSS attacks).
-* **Refresh Token Rotation (RTR)**: Implemented token reuse prevention. When calling `/auth/refresh`, the previous refresh token is immediately pushed into a database blacklist (`invalidated_tokens`), and a new pair is issued.
-* **Concurrency Control (Pessimistic Locking)**: Applied Postgres `SELECT FOR UPDATE` (`findByUserIdWithLock`) during wallet balance modifications (e.g., purchasing courses, webhook transaction updates) to prevent race conditions.
-* **Contextual Method Security**: Implemented Method-level security annotations (`@PreAuthorize` with SpEL) invoking custom Spring security beans (`@courseSecurity.canAccessProblem(...)`) to dynamically authorize resource access.
+    Admin->>Producer: POST /api/admin/email/send-campaign (Target & Template ID)
+    activate Producer
+    Producer->>DB: Fetch Valid Target Users (isEmailValid == true)
+    Producer->>Producer: Chunk Recipients into Batches (500 users/batch with Batch ID)
+    Producer->>Rabbit: Publish BulkEmailMessage to email.exchange (Routing: email.bulk)
+    Producer-->>Admin: Return HTTP 200 OK (Batch Dispatched Asynchronously)
+    deactivate Producer
+
+    activate Consumer
+    Rabbit->>Consumer: Consume BulkEmailMessage from bulk.email.queue
+    Consumer->>Consumer: Map Batch Data into SendGrid Personalizations
+    
+    alt Successful SendGrid API Call
+        Consumer->>SendGrid: POST /v3/mail/send (Template ID & Personalizations)
+        activate SendGrid
+        SendGrid-->>Consumer: Return HTTP 202 Accepted
+        deactivate SendGrid
+    else API Error / Delivery Failure
+        Consumer->>DB: Save Payload to FailedEmailQueueEntity (Status: PENDING_RETRY)
+    end
+    deactivate Consumer
+
+    note over SendGrid, Webhook: Asynchronous Delivery Tracking via SendGrid Webhook Callback
+    SendGrid->>Webhook: POST /api/webhooks/sendgrid (Events & Signature Header)
+    activate Webhook
+    Webhook->>Webhook: Verify Signature (X-Twilio-Email-Event-Webhook-Signature)
+    Webhook->>DB: Save Telemetry Log to EmailDeliveryLogEntity (Delivered / Open / Bounce)
+    Webhook-->>SendGrid: Return HTTP 200 OK
+    deactivate Webhook
+```
 
 ---
+
 
 ## 🛠️ Tech Stack & Dependencies
 
