@@ -1445,7 +1445,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_A": "Agent",
         "option_B": "Actions",
         "correct_anwser": "C",
-        "explain": "Các yếu tố cấu thành một kịch bản (scenario) điển hình thường gồm: tác nhân (Agent), mục tiêu (Goals), hành động (Actions), và sự kiện (Events); còn \"Location\" (vị trí) không phải là một thành phần chính thức bắt buộc trong cấu trúc scenario, nên đáp án C đúng.",
+         "explain": "Các yếu tố cấu thành một kịch bản (scenario) điển hình thường gồm: tác nhân (Agent), mục tiêu (Goals), hành động (Actions), và sự kiện (Events); còn \"Location\" (vị trí) không phải là một thành phần chính thức bắt buộc trong cấu trúc scenario, nên đáp án C đúng.",
         "option_C": "Location",
         "option_D": "Goals",
         "option_E": "Events"
@@ -2850,8 +2850,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following is NOT an element of a typical scenario?",
         "option_A": "Agent",
         "option_B": "Actions",
-        "correct_anwser": "E",
-        "explain": "Một kịch bản (scenario) điển hình thường bao gồm: nhân vật/tác nhân (agent), hành động (actions), địa điểm (location), và mục tiêu (goals). 'Events' (sự kiện) không phải là một thành phần chuẩn thường được liệt kê trong cấu trúc của một scenario.",
+        "correct_anwser": "C",
+         "explain": "Các yếu tố cấu thành một kịch bản (scenario) điển hình thường gồm: tác nhân (Agent), mục tiêu (Goals), hành động (Actions), và sự kiện (Events); còn \"Location\" (vị trí) không phải là một thành phần chính thức bắt buộc trong cấu trúc scenario, nên đáp án C đúng.",
         "option_C": "Location",
         "option_D": "Goals",
         "option_E": "Events"
