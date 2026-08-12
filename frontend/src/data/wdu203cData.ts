@@ -542,7 +542,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following best describes why you might choose to use a panel for recruiting respondents?",
         "option_A": "To make sure you get people who are experienced in answering surveys",
         "option_B": "To reduce recruitment costs",
-        "correct_anwser": "A",
+        "correct_anwser": "B",
         "explain": "Sử dụng panel (nhóm người tham gia đã được xây dựng và quản lý sẵn) giúp đảm bảo mẫu khảo sát mang tính đại diện hơn, tránh tình trạng mẫu thuận tiện (convenience sample) chỉ gồm những người dễ tiếp cận, từ đó cải thiện độ tin cậy của kết quả nghiên cứu.",
         "option_C": "To increase quality",
         "option_D": "To avoid having a convenience sample"
@@ -968,7 +968,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following best describes why you might choose to use a panel for recruiting respondents?",
         "option_A": "To make sure you get people who are experienced in answering surveys",
         "option_B": "To reduce recruitment costs",
-        "correct_anwser": "A",
+        "correct_anwser": "B",
         "explain": "Sử dụng panel (nhóm người tham gia đã đăng ký sẵn) giúp tiết kiệm đáng kể thời gian và chi phí tuyển dụng người tham gia khảo sát, vì nhà nghiên cứu không cần tìm kiếm và mời từng người mới mỗi lần thực hiện nghiên cứu.",
         "option_C": "To increase quality",
         "option_D": "To avoid having a convenience sample"
@@ -3153,7 +3153,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following best describes why you might choose to use a panel for recruiting respondents?",
         "option_A": "To make sure you get people who are experienced in answering surveys",
         "option_B": "To reduce recruitment costs",
-        "correct_anwser": "A",
+        "correct_anwser": "B",
         "explain": "Sử dụng panel (nhóm người tham gia đã đăng ký sẵn) giúp tiết kiệm đáng kể thời gian và chi phí tuyển dụng người tham gia khảo sát, vì nhà nghiên cứu không cần tìm kiếm và mời từng người mới mỗi lần thực hiện nghiên cứu.",
         "option_C": "To increase quality",
         "option_D": "To avoid having a convenience sample"
@@ -3568,7 +3568,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following best describes why you might choose to use a panel for recruiting respondents?",
         "option_A": "To make sure you get people who are experienced in answering surveys",
         "option_B": "To reduce recruitment costs",
-        "correct_anwser": "A",
+        "correct_anwser": "B",
         "explain": "Sử dụng panel (nhóm người tham gia đã đăng ký sẵn) giúp tiết kiệm đáng kể thời gian và chi phí tuyển dụng người tham gia khảo sát, vì nhà nghiên cứu không cần tìm kiếm và mời từng người mới mỗi lần thực hiện nghiên cứu.",
         "option_C": "To increase quality",
         "option_D": "To avoid having a convenience sample"
