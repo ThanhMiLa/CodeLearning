@@ -444,7 +444,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "GPS là dữ liệu cảm biến được hệ thống tự động thu thập, không phải do người dùng chủ động nhập. Trong khi đó, văn bản tự do, các widget như lịch/công tắc, và giọng nói (dictation) đều là hình thức người dùng chủ động nhập liệu, nên đáp án đúng là tất cả các lựa chọn trừ GPS.",
         "option_C": "Widgets like calendar pickers or on/off switches",
-        "option_D": "Voice input, like dictation typing"
+        "option_D": "Voice input, like dictation typing",
+        "option_E": "All options on this list except GPS"
       },
       {
         "question_id": 44,
@@ -1446,7 +1447,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "Một scenario điển hình thường bao gồm: Agent (nhân vật/người dùng), Actions (hành động), Location (địa điểm), và Goals (mục tiêu). 'Events' không phải là một thành phần chuẩn trong cấu trúc của scenario mà thường xuất hiện trong bối cảnh khác như storyboard hay use case.",
         "option_C": "Location",
-        "option_D": "Goals"
+        "option_D": "Goals",
+        "option_E": "Events"
       },
       {
         "question_id": 143,
@@ -1606,7 +1608,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "Một báo cáo lỗi (issue report) tốt cần có: mô tả rõ ràng vấn đề, bằng chứng minh họa, mức độ nghiêm trọng, và khuyến nghị khắc phục. Tuy nhiên, việc nêu tên cụ thể của người tham gia gặp phải lỗi (E) không cần thiết và vi phạm nguyên tắc bảo mật thông tin cá nhân của người tham gia nghiên cứu.",
         "option_C": "Evidence",
-        "option_D": "Clear description of the problem"
+        "option_D": "Clear description of the problem",
+        "option_E": "The names of the participants who encountered them"
       },
       {
         "question_id": 159,
@@ -2587,7 +2590,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "Nghiên cứu hình thành (formative research) có thể áp dụng nhiều phương pháp khác nhau như phỏng vấn, quan sát, hỏi ý kiến người xung quanh, hay các nhóm thiết kế có sự tham gia của người dùng (participatory design), tất cả đều là các phương pháp hợp lệ, nên đáp án đúng là E (tất cả các ý trên).",
         "option_C": "Asking friends and family members about their experiences",
-        "option_D": "Participatory design groups"
+        "option_D": "Participatory design groups",
+        "option_E": "All of the others"
       },
       {
         "question_id": 257,
@@ -3051,7 +3055,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "GPS là dữ liệu cảm biến được hệ thống tự động thu thập, không phải do người dùng chủ động nhập. Trong khi đó, văn bản tự do, các widget như lịch/công tắc, và giọng nói (dictation) đều là hình thức người dùng chủ động nhập liệu, nên đáp án đúng là tất cả các lựa chọn trừ GPS.",
         "option_C": "Widgets like calendar pickers or on/off switches",
-        "option_D": "Voice input, like dictation typing"
+        "option_D": "Voice input, like dictation typing",
+        "option_E": "All options on this list except GPS"
       },
       {
         "question_id": 303,
@@ -3465,7 +3470,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "GPS là dữ liệu được cảm biến thu thập tự động, không phải do người dùng tự nhập. Trong khi đó, text field, widget (lịch, công tắc) và voice input đều là các cách người dùng chủ động nhập dữ liệu, nên đáp án đúng là 'Tất cả trừ GPS' (E).",
         "option_C": "Widgets like calendar pickers or on/off switches",
-        "option_D": "Voice input, like dictation typing"
+        "option_D": "Voice input, like dictation typing",
+        "option_E": "All options on this list except GPS"
       },
       {
         "question_id": 344,
@@ -3775,7 +3781,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "Câu hỏi nghiên cứu tốt cần có tính rõ ràng (Clarity), khả năng trả lời được (Ability to be answered), đạo đức (Ethical excellence) và tính ý nghĩa (Significance). Tính nhất quán (Consistency) không phải là tiêu chí thường được nhắc đến, nên đáp án đúng là I, III, IV, và V (E).",
         "option_C": "IV and V",
-        "option_D": "II, IV, and V"
+        "option_D": "II, IV, and V",
+        "option_E": "I, III, IV, and V"
       },
       {
         "question_id": 375,
@@ -3805,7 +3812,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "correct_anwser": "E",
         "explain": "Quy trình thiết kế có tính lặp lại (iterative) cao, nhà thiết kế có thể quay lại bất kỳ giai đoạn nào trước đó từ bất kỳ điểm nào trong quy trình — từ ý tưởng hóa quay lại đóng khung vấn đề, từ kịch bản/storyboard quay lại ý tưởng hoặc đóng khung vấn đề, từ tạo mẫu quay lại ý tưởng hóa. Tất cả các vòng lặp trên đều có thể xảy ra, nên đáp án đúng là 'All of the others' (E).",
         "option_C": "From creation of scenarios and storyboards to problem framing",
-        "option_D": "From prototyping to ideation"
+        "option_D": "From prototyping to ideation",
+        "option_E": "All of the others"
       },
       {
         "question_id": 378,
