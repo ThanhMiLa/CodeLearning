@@ -12,7 +12,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
     "id": "wdu203c-module-1-single-choice",
     "title": "Module 1 - Single Choice",
     "description": "Tập hợp 215 câu hỏi trắc nghiệm chọn 1 đáp án đúng duy nhất (đã loại bỏ trùng lặp).",
-    "questionsCount": 215,
+    "questionsCount": 213,
     "questions": [
       {
         "question_id": 1,
@@ -1226,16 +1226,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "To test the visual appeal of the design"
       },
       {
-        "question_id": 179,
-        "question_title": "Select all the benefits of conducting usability testing early in the UX design process. (More than one answer may be correct).",
-        "option_A": "Identify potential design flaws",
-        "option_B": "Guarantees project success",
-        "correct_anwser": "A",
-        "explain": "Kiểm thử độ khả dụng sớm giúp phát hiện kịp thời các lỗi thiết kế tiềm ẩn (A) và nâng cao sự hài lòng của người dùng (C). Tuy nhiên, với định dạng trắc nghiệm chọn 1 đáp án chính xác nhất, A đại diện cho lợi ích trực tiếp nhất.",
-        "option_C": "Improves user satisfaction",
-        "option_D": "Ensures compliance with industry standards"
-      },
-      {
         "question_id": 181,
         "question_title": "Which of the following best describes a 'persona' in UX design?",
         "option_A": "A fictional character representing a user type",
@@ -1394,16 +1384,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "In-situ observation (quan sát tại chỗ) là phương pháp quan sát người dùng thực hiện công việc trực tiếp trong môi trường tự nhiên thực tế của họ.",
         "option_C": "Conducting large-scale surveys",
         "option_D": "Gathering statistical data on user preferences"
-      },
-      {
-        "question_id": 198,
-        "question_title": "Which of the following methods are effective for gathering user needs? (More than one answer may be correct)",
-        "option_A": "User interviews",
-        "option_B": "Surveys",
-        "correct_anwser": "A",
-        "explain": "Phỏng vấn người dùng (A) và Khảo sát (B) đều là phương pháp hiệu quả để thu thập nhu cầu người dùng. Với định dạng trắc nghiệm 1 đáp án, Phỏng vấn người dùng (User interviews) là phương pháp định tính trực tiếp chuẩn mực nhất.",
-        "option_C": "Ignoring negative feedback",
-        "option_D": "Copying competitors' features"
       },
       {
         "question_id": 199,
@@ -2190,7 +2170,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
     "id": "wdu203c-module-2-multi-choice",
     "title": "Module 2 - Multiple Choice",
     "description": "Tập hợp các câu hỏi chọn nhiều đáp án đúng (Pick all that apply) đã lọc câu trùng.",
-    "questionsCount": 3,
+    "questionsCount": 5,
     "questions": [
       {
         "question_id": 1,
@@ -2224,6 +2204,26 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_C": "Create and show videos of critical moments during tests",
         "option_D": "Emails that include bullet point findings",
         "option_E": "Brief executive summary"
+      },
+      {
+        "question_id": 179,
+        "question_title": "Select all the benefits of conducting usability testing early in the UX design process. (More than one answer may be correct).",
+        "option_A": "Identify potential design flaws",
+        "option_B": "Guarantees project success",
+        "correct_anwser": "A, C",
+        "explain": "Kiểm thử độ khả dụng sớm giúp phát hiện kịp thời các lỗi thiết kế tiềm ẩn (A) và nâng cao sự hài lòng của người dùng (C).",
+        "option_C": "Improves user satisfaction",
+        "option_D": "Ensures compliance with industry standards"
+      },
+      {
+        "question_id": 198,
+        "question_title": "Which of the following methods are effective for gathering user needs? (More than one answer may be correct)",
+        "option_A": "User interviews",
+        "option_B": "Surveys",
+        "correct_anwser": "A, B",
+        "explain": "Phỏng vấn người dùng (A) và Khảo sát (B) đều là những phương pháp hiệu quả để thu thập nhu cầu người dùng.",
+        "option_C": "Ignoring negative feedback",
+        "option_D": "Copying competitors' features"
       }
     ]
   },
