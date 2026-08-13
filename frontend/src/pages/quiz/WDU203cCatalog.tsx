@@ -10,9 +10,7 @@ import {
   CheckCircle2,
   CheckSquare,
   ToggleLeft,
-  Flame,
-  AlertCircle,
-  Sparkles
+  Flame
 } from 'lucide-react';
 
 interface ModuleInfo {
@@ -122,35 +120,6 @@ const WDU203cCatalog: React.FC = () => {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Quiz Catalog
           </Link>
-        </div>
-
-        {/* Notice Banner for Updated Answers */}
-        <div className="mb-6 max-w-4xl mx-auto rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-slate-900/40 p-4 dark:border-amber-500/20 dark:bg-amber-950/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-start sm:items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
-              <AlertCircle className="h-4.5 w-4.5" />
-            </div>
-            <div>
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-700 dark:text-amber-300 flex items-center gap-2">
-                <span>Thông Báo Cập Nhật Đáp Án Môn WDU203c</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-500/30 font-bold">
-                  Lưu ý
-                </span>
-              </h4>
-                <div className="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-relaxed">
-                  <p>
-                    Ở môn WDU203c, các câu hỏi <span className="font-extrabold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-1.5 py-0.5 rounded border border-amber-500/30">17, 53, 95, 142, 149, 282, 312, 353</span> đã được cập nhật lại đáp án chuẩn mới nhất.
-                  </p>
-                  <p className="mt-1 font-semibold text-amber-700 dark:text-amber-300">
-                    👉 Vui lòng <span className="underline decoration-amber-500 font-bold">Retry Question</span> để cập nhật lại đáp án mới nhất.
-                  </p>
-                </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-300 shrink-0 self-end sm:self-auto bg-amber-500/15 border border-amber-500/30 px-3 py-1.5 rounded-xl">
-            <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-            <span>8 câu đã đổi đáp án</span>
-          </div>
         </div>
 
         {/* Cards Grid - 15% smaller layout */}

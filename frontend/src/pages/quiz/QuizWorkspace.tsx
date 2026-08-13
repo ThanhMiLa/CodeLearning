@@ -33,8 +33,6 @@ const SUBJECT_TITLES: Record<string, string> = {
   'wdu203c': 'WDU203c - All 242 Unique Questions (Shuffled)',
 };
 
-const WDU203C_UPDATED_QIDS = [17, 53, 95, 142, 149, 282, 312, 353];
-
 const QuizWorkspaceContent: React.FC = () => {
   const { quizId } = useParams<{ quizId: string }>();
   const navigate = useNavigate();
@@ -43,7 +41,6 @@ const QuizWorkspaceContent: React.FC = () => {
   // Check if quizId is a subject code (merged mode) or a specific quiz set
   const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
   const isExamMode = quizId === 'swr302-random-exam' || quizId === 'hsf302-random-exam' || quizId === 'wdu203c-random-exam';
-  const isWdu203c = quizId ? quizId.toLowerCase().includes('wdu') : false;
 
   // Build the merged & shuffled question list (or single quiz set / random exam)
   const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
@@ -519,17 +516,9 @@ const QuizWorkspaceContent: React.FC = () => {
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 block mb-0.5">
                 Quiz Workspace
               </span>
-              <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                  {activeTitle}
-                </h1>
-                {isWdu203c && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-xs font-extrabold shadow-sm">
-                    <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-                    8 câu đã đổi đáp án
-                  </span>
-                )}
-              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                {activeTitle}
+              </h1>
             </div>
           </div>
 
@@ -543,37 +532,6 @@ const QuizWorkspaceContent: React.FC = () => {
             </button>
           </div>
         </div>
-
-        {/* WDU203c Updated Answers Notice Banner */}
-        {isWdu203c && (
-          <div className="mb-6 rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-slate-900/30 p-4 sm:p-4.5 dark:border-amber-500/20 dark:bg-amber-950/20 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-start sm:items-center gap-3">
-              <div className="h-9 w-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
-                <AlertCircle className="h-4.5 w-4.5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-700 dark:text-amber-300 flex items-center gap-2">
-                  <span>Thông Báo Cập Nhật Đáp Án Môn WDU203c</span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-500/30 font-bold">
-                    Lưu ý
-                  </span>
-                </h4>
-                <div className="text-xs text-slate-700 dark:text-slate-300 font-medium mt-0.5 leading-relaxed">
-                  <p>
-                    Ở môn WDU203c, các câu hỏi <span className="font-extrabold text-amber-600 dark:text-amber-400 bg-amber-500/15 px-1.5 py-0.5 rounded border border-amber-500/30">17, 53, 95, 142, 149, 282, 312, 353</span> đã được cập nhật lại đáp án chuẩn mới nhất.
-                  </p>
-                  <p className="mt-1 font-semibold text-amber-700 dark:text-amber-300">
-                    👉 Vui lòng <span className="underline decoration-amber-500 font-bold">Retry Question</span> để cập nhật lại đáp án mới nhất.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-300 shrink-0 self-end sm:self-auto bg-amber-500/15 border border-amber-500/30 px-3 py-1.5 rounded-xl">
-              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-              <span>8 câu đã đổi đáp án</span>
-            </div>
-          </div>
-        )}
 
         {/* Exam Score Banner if Exam Mode is Finished */}
         {isExamMode && isExamSubmitted && (
@@ -613,23 +571,14 @@ const QuizWorkspaceContent: React.FC = () => {
             {/* Question Card */}
             <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 sm:p-8 shadow-sm relative overflow-hidden">
               {/* Type Badge */}
-              <div className="flex flex-wrap items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-4 mb-6 gap-2">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800/80 pb-4 mb-6">
                 <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                   Question {currentQuestionIdx + 1} of {totalQuestions}
                 </span>
                 
-                <div className="flex items-center gap-2">
-                  {currentQuestion && WDU203C_UPDATED_QIDS.includes(currentQuestion.question_id) && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                      <Sparkles className="h-3 w-3 text-amber-500" />
-                      Đáp án câu này đã đổi (ID #{currentQuestion.question_id})
-                    </span>
-                  )}
-
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-                    {isMultipleChoice ? 'Multiple Choice' : 'Single Choice'}
-                  </span>
-                </div>
+                <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+                  {isMultipleChoice ? 'Multiple Choice' : 'Single Choice'}
+                </span>
               </div>
 
               {/* Title */}
