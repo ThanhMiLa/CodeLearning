@@ -30,7 +30,7 @@ const SUBJECT_TITLES: Record<string, string> = {
   'hsf302': 'HSF302 - All Questions (Shuffled)',
   'swr302': 'SWR302 - All Questions (Shuffled)',
   'swt301': 'SWT301 - All Questions (Shuffled)',
-  'wdu203c': 'WDU203c - All 450 Questions (Shuffled)',
+  'wdu203c': 'WDU203c - All 242 Unique Questions (Shuffled)',
 };
 
 const WDU203C_UPDATED_QIDS = [17, 53, 95, 142, 149, 282, 312, 353];
