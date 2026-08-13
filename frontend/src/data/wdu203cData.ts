@@ -11,8 +11,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
   {
     "id": "wdu203c-module-1-single-choice",
     "title": "Module 1 - Single Choice",
-    "description": "Tập hợp 215 câu hỏi trắc nghiệm chọn 1 đáp án đúng duy nhất (đã loại bỏ trùng lặp).",
-    "questionsCount": 213,
+    "description": "Tập hợp 254 câu hỏi trắc nghiệm chọn 1 đáp án đúng duy nhất (đã loại bỏ trùng lặp).",
+    "questionsCount": 254,
     "questions": [
       {
         "question_id": 1,
@@ -2163,14 +2163,431 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_C": "From creation of scenarios and storyboards to problem framing",
         "option_D": "From prototyping to ideation",
         "option_E": "All of the others"
+      },
+      {
+        "question_id": 379,
+        "question_title": "In a semi-structured interview, why would you want to avoid a question such as \"Was it because you didn't know about the 'undo' feature that you were unable to complete the task?\"",
+        "option_A": "I and II",
+        "option_B": "I and III",
+        "option_C": "II and III",
+        "option_D": "I, II and III",
+        "correct_anwser": "D",
+        "explain": "Câu hỏi này vi phạm cả 3 nguyên tắc: (I) Định hướng câu trả lời (leading), (II) Là câu hỏi Có/Không (closed-ended/yes-no), và (III) Áp đặt/đánh giá kiến thức người dùng (judgmental)."
+      },
+      {
+        "question_id": 380,
+        "question_title": "When choosing an environment to conduct a user test session, which of the following is NOT an important characteristic of your chosen site?",
+        "option_A": "Distraction-free",
+        "option_B": "Private",
+        "option_C": "Dedicated only for conducting user tests",
+        "option_D": "Quiet",
+        "correct_anwser": "C",
+        "explain": "Môi trường kiểm thử chỉ cần yên tĩnh, riêng tư và không bị xao nhãng; không bắt buộc phải là một không gian dành riêng duy nhất cho việc kiểm thử người dùng."
+      },
+      {
+        "question_id": 381,
+        "question_title": "Which of the following data types is typically not collected in a user test?",
+        "option_A": "Task completion",
+        "option_B": "Task timing",
+        "option_C": "Critical incidents",
+        "option_D": "Expected purchase price",
+        "correct_anwser": "D",
+        "explain": "User testing tập trung vào khả năng sử dụng (usability) như tỷ lệ hoàn thành, thời gian, sự cố; kỳ vọng giá mua (expected purchase price) là dữ liệu nghiên cứu thị trường/kinh doanh."
+      },
+      {
+        "question_id": 383,
+        "question_title": "In a semi-structured interview, why would you want to avoid a question such as \"Was it because you didn't know about the 'undo' feature that you were unable to complete the task?\"\nI. It is leading -- you are feeding a possible answer to the participant.\nII. It is closed-ended -- this is a yes-or-no question.\nIII. It is judgmental -- you are suggesting that the participant's lack of knowledge was a problem.",
+        "option_A": "I and II",
+        "option_B": "I and III",
+        "option_C": "II and III",
+        "option_D": "I, II and III",
+        "correct_anwser": "D",
+        "explain": "Câu hỏi này mắc cùng lúc 3 lỗi: nó gợi ý sẵn câu trả lời (leading), chỉ có thể trả lời có/không (closed-ended), và ngầm phán xét rằng người dùng thiếu hiểu biết (judgmental). Vì vậy cả I, II và III đều là lý do nên tránh câu hỏi kiểu này."
+      },
+      {
+        "question_id": 384,
+        "question_title": "Which of the following topics are NOT a common part of the introduction to an interview?",
+        "option_A": "How confidentiality will be handled",
+        "option_B": "Expected duration of the interview",
+        "option_C": "How many other interview participants there are",
+        "option_D": "Overall goals of the interview",
+        "correct_anwser": "C",
+        "explain": "Phần mở đầu phỏng vấn thường gồm giải thích cách bảo mật, thời lượng dự kiến và mục tiêu chung của buổi phỏng vấn. Việc tiết lộ có bao nhiêu người tham gia khác không phải là nội dung thường có, vì nó có thể ảnh hưởng đến tính bảo mật và tính khách quan của nghiên cứu."
+      },
+      {
+        "question_id": 385,
+        "question_title": "What consideration is not important when deciding what platform or technology solution you will use for testing?\nI. Metrics that may be collected\nII. Panel access\nIII. Network speed requirements\nIV. Screen, Audio, or other data collection, as appropriate for test\nV. None of the above",
+        "option_A": "I, II, III",
+        "option_B": "I, II",
+        "option_C": "II, IV",
+        "option_D": "I, III, IV",
+        "correct_anwser": "E",
+        "explain": "Tất cả các yếu tố được liệt kê (chỉ số thu thập được, khả năng tiếp cận panel, yêu cầu tốc độ mạng, khả năng thu thập màn hình/âm thanh/dữ liệu khác) đều là những cân nhắc quan trọng khi lựa chọn nền tảng/công nghệ kiểm thử. Do đó đáp án đúng là 'None of the above' (V), tức không có yếu tố nào trong số này là không quan trọng."
+      },
+      {
+        "question_id": 386,
+        "question_title": "Which of the following are the hallmarks of good research questions?\nI. Clarity\nII. Consistency\nIII. Ability to be answered\nIV. Ethical excellence\nV. Significance",
+        "option_A": "I, II, and III",
+        "option_B": "I, II, and V",
+        "option_C": "IV and V",
+        "option_D": "II, IV, and V",
+        "correct_anwser": "E",
+        "explain": "Đáp án E (I, III, IV, và V) gồm: Rõ ràng (Clarity), Có thể trả lời được (Ability to be answered), Đạo đức tốt (Ethical excellence), và Có ý nghĩa (Significance) - đây là các đặc điểm chuẩn của một câu hỏi nghiên cứu tốt. 'Consistency' (tính nhất quán) không phải là tiêu chí điển hình để đánh giá chất lượng câu hỏi nghiên cứu."
+      },
+      {
+        "question_id": 388,
+        "question_title": "Which new technological trend is not requiring designers to change how they prototype and test their systems?",
+        "option_A": "Proliferation of screens (smart watches, embedded displays, etc.) for which designers need to design user experiences",
+        "option_B": "Instrumented environments",
+        "option_C": "Artificial Intelligence-based systems",
+        "option_D": "Virtual and augmented reality",
+        "correct_anwser": "E",
+        "explain": "Tất cả các xu hướng công nghệ được liệt kê (màn hình đa dạng, môi trường được trang bị cảm biến, hệ thống AI, thực tế ảo/tăng cường) đều đòi hỏi nhà thiết kế phải thay đổi cách họ tạo mẫu và kiểm thử. Do đó đáp án đúng là 'None of the others' (E) - không có xu hướng nào trong số này KHÔNG yêu cầu thay đổi."
+      },
+      {
+        "question_id": 391,
+        "question_title": "Nielsen provides several recommendations for help and documentation. Which of the following is NOT one of his recommendations?",
+        "option_A": "Help should be focused on users' tasks",
+        "option_B": "Help should be small and searchable",
+        "option_C": "Help should include step-by-step instructions",
+        "option_D": "Help should be written from the system developers' point of view",
+        "correct_anwser": "D",
+        "explain": "Nielsen khuyến nghị tài liệu trợ giúp nên tập trung vào tác vụ của người dùng (A), dễ tìm kiếm/nhỏ gọn (B), có hướng dẫn từng bước cụ thể (C). Ông không khuyến nghị viết tài liệu trợ giúp theo góc nhìn của nhà phát triển hệ thống (D) - trái lại, nó nên được viết từ góc nhìn và ngôn ngữ của người dùng."
+      },
+      {
+        "question_id": 392,
+        "question_title": "__________ means \"to make an idea real or concrete.\"",
+        "option_A": "Assessment",
+        "option_B": "Communication",
+        "option_C": "Reification",
+        "option_D": "Reflection",
+        "correct_anwser": "C",
+        "explain": "'Reification' (cụ thể hóa/hiện thực hóa) có nghĩa là biến một ý tưởng trừu tượng thành thứ gì đó thực tế, cụ thể hơn - chẳng hạn như việc chuyển ý tưởng thiết kế thành bản phác thảo hoặc nguyên mẫu."
+      },
+      {
+        "question_id": 393,
+        "question_title": "For a system's response to user input to be perceived as \"instantaneous\" by the user, what is the maximum time that can elapse between the user's action and the system response?",
+        "option_A": "10 milliseconds",
+        "option_B": "100 milliseconds",
+        "option_C": "1 second",
+        "option_D": "1 minute",
+        "correct_anwser": "B",
+        "explain": "Theo các nguyên tắc thiết kế tương tác cổ điển (Nielsen, Miller), thời gian phản hồi tối đa để hệ thống được coi là 'tức thời' đối với người dùng là khoảng 100 mili giây (0.1 giây); nếu lâu hơn, người dùng sẽ nhận ra có độ trễ."
+      },
+      {
+        "question_id": 394,
+        "question_title": "Which of the following are among key tasks that were identified? (dựa trên bảng Key tasks trong wireframe)",
+        "option_A": "Customize automatic functions, Help, Log Out",
+        "option_B": "Check map, Create a post, Log Out",
+        "option_C": "Change security code, Create a post, Check recent events",
+        "option_D": "Check map, Help, Activate function \"Robbery\"",
+        "correct_anwser": "D",
+        "explain": "Theo bảng 'Key tasks' trong tài liệu wireframe, các nhiệm vụ 'Check map' (mục 4), 'Help' (mục 8), và 'Activate function Robbery' (mục 11) đều là các nhiệm vụ chính được liệt kê. Các phương án khác chứa những nhiệm vụ không có trong bảng như 'Create a post' hoặc 'Log Out'."
+      },
+      {
+        "question_id": 395,
+        "question_title": "This example (hình ảnh Questbook với nhiều màn hình chi tiết, có màu sắc, nội dung đầy đủ) would most likely be an example of (choose the BEST response):",
+        "option_A": "Wireframes",
+        "option_B": "Lo-Fi Prototype",
+        "option_C": "Hi-Fi Prototype",
+        "option_D": "Yes, wireframes need to look like a completely finished product",
+        "correct_anwser": "C",
+        "explain": "Hình ảnh minh họa cho thấy các màn hình có chi tiết cao, đầy đủ màu sắc, hình ảnh nền, văn bản cụ thể, và trông giống sản phẩm hoàn thiện - đây là đặc điểm của một Hi-Fi Prototype (nguyên mẫu độ trung thực cao), khác với wireframe (thường đơn giản, không màu) hay Lo-Fi Prototype (thô sơ hơn)."
+      },
+      {
+        "question_id": 396,
+        "question_title": "Which of the following is NOT important to consider when defining your population?",
+        "option_A": "Number of questions you want to ask",
+        "option_B": "Characteristics of the people you're interested in",
+        "option_C": "Survey mode",
+        "option_D": "Relationship to the product",
+        "correct_anwser": "A",
+        "explain": "Khi xác định đối tượng quần thể (population), bạn cần quan tâm đến đặc điểm người dùng, mối quan hệ với sản phẩm và phương thức khảo sát. Số lượng câu hỏi (Number of questions) thuộc về khâu thiết kế bảng hỏi (survey design), không ảnh hưởng đến việc định nghĩa quần thể."
+      },
+      {
+        "question_id": 397,
+        "question_title": "All of the following are important to do when observing a user testing session, EXCEPT for:",
+        "option_A": "Capture recordings of the user's screen",
+        "option_B": "Capture audio recordings of the user thinking aloud",
+        "option_C": "Notify participants as soon as they have met each task's success criteria",
+        "option_D": "Use a logging sheet to capture when critical incidents occur",
+        "correct_anwser": "C",
+        "explain": "Trong buổi user testing, quan sát viên cần giữ thái độ trung lập và KHÔNG thông báo cho người dùng biết họ đã hoàn thành nhiệm vụ thành công hay chưa, vì điều này sẽ can thiệp vào hành vi tự nhiên và tâm lý của người tham gia."
+      },
+      {
+        "question_id": 398,
+        "question_title": "Why would a designer create storyboards as opposed to write scenarios?",
+        "option_A": "To better represent physical environment in which the technology would be used",
+        "option_B": "To better represent relationships among multiple people",
+        "option_C": "To better envision size or other physical constraints of the technology and its use",
+        "option_D": "All of the others",
+        "correct_anwser": "D",
+        "explain": "Visual hóa bằng Storyboard đem lại lợi thế vượt trội so with kịch bản văn bản (scenario) trong việc thể hiện trực quan bối cảnh môi trường xung quanh, mối quan hệ giữa các nhân vật và các giới hạn kích thước vật lý của thiết bị."
+      },
+      {
+        "question_id": 399,
+        "question_title": "This example would most likely be an example of (choose the BEST response):",
+        "option_A": "Hi-Fi Prototype",
+        "option_B": "Wireframes",
+        "option_C": "Lo-Fi Prototype",
+        "option_D": "Yes, wireframes need to look like a completely finished product",
+        "correct_anwser": "A",
+        "explain": "Hình ảnh minh họa có đầy đủ màu sắc, đồ họa chi tiết, hình ảnh nền và UI chỉn chu tiệm cận sản phẩm thật, đây chính là bản mẫu độ phân giải cao (Hi-Fi Prototype)."
+      },
+      {
+        "question_id": 400,
+        "question_title": "Finding 1. No Option to delete or modify Time Sheet entries.\nSeverity: 4\nHeuristic(s) Violated: Navigation\nWhile the existing prototype shows the list of time entries on the Time Sheet tab, it does not provide an option to Modify or Delete time entries. It is crucial when allowing users to DO something to allow them a way to UNDO or correct something done in error.\nWhat heuristic does this violate?",
+        "option_A": "Visibility of system status",
+        "option_B": "User control and freedom",
+        "option_C": "Recognition vs recall",
+        "option_D": "Error prevention",
+        "correct_anwser": "B",
+        "explain": "Việc không cho phép người dùng chỉnh sửa, xóa hoặc hoàn tác (undo) các dữ liệu đã nhập vi phạm nghiêm trọng nguyên tắc 'User control and freedom' (Khai thác quyền kiểm soát và sự tự do của người dùng)."
+      },
+      {
+        "question_id": 401,
+        "question_title": "Bill Buxton claims that ________ is not just a byproduct of design, but is central to design thinking and learning.",
+        "option_A": "Sketching",
+        "option_B": "Beauty",
+        "option_C": "Functionality",
+        "option_D": "User Testing",
+        "correct_anwser": "A",
+        "explain": "Bill Buxton (tác giả cuốn 'Sketching User Experiences') khẳng định phác thảo (Sketching) không chỉ là phụ phẩm của thiết kế, mà là công cụ cốt lõi trong tư duy thiết kế và quá trình học hỏi/khám phá giải pháp."
+      },
+      {
+        "question_id": 402,
+        "question_title": "A basic ethical principle of research involving human subjects that states that researchers need to confirm that participants in a study know the purpose of the study, what they will be asked to do, their right to withdraw or refuse to comply with aspects of the study, and what will be done with the data is ________.",
+        "option_A": "Usability",
+        "option_B": "Perceived usefulness",
+        "option_C": "Acquiescence",
+        "option_D": "Informed Consent",
+        "correct_anwser": "D",
+        "explain": "Informed Consent (Sự chấp thuận dựa trên thông tin đầy đủ) là nguyên tắc đạo đức cốt lõi trong nghiên cứu với con người, đảm bảo người tham gia hiểu rõ mục đích, quyền dừng tham gia và cách xử lý dữ liệu."
+      },
+      {
+        "question_id": 403,
+        "question_title": "Why is it important to ask participants to announce when they believe they are done with a task?",
+        "option_A": "Otherwise there is no way to know if they've finished",
+        "option_B": "Allowing the moderator to declare a task “done” could give the participant more information than they would have if conducting the task outside the test environment",
+        "option_C": "Saying “I'm done” gives the participant a sense of accomplishment",
+        "option_D": "It allows the moderator to pay less attention to the current task and start to prepare for the next one",
+        "correct_anwser": "B",
+        "explain": "Nếu người điều phối (moderator) tự tuyên bố nhiệm vụ đã 'hoàn thành', họ có thể vô tình tiết lộ cho người dùng biết họ đã làm đúng/sai - điều không xảy ra trong môi trường thực tế. Việc để người tham gia tự xác nhận giúp đánh giá chính xác nhận thức của họ về kết quả công việc."
+      },
+      {
+        "question_id": 404,
+        "question_title": "Which of the following is the most accurate statement?",
+        "option_A": "Error can be reduced by designing surveys as well as well as possible within resource constraints.",
+        "option_B": "Error should be reduced to zero before launching a survey.",
+        "option_C": "It's impossible to affect error one way or another.",
+        "option_D": "Surveys should never be trusted because of how much error they involve.",
+        "correct_anwser": "A",
+        "explain": "Trong nghiên cứu khảo sát, sai số (error) không thể triệt tiêu hoàn toàn về 0, nhưng có thể giảm thiểu tối đa bằng cách thiết kế bảng hỏi chỉn chu nhất trong phạm vi nguồn lực cho phép."
+      },
+      {
+        "question_id": 406,
+        "question_title": "This is the error that is introduced because some portion of the population is refusing to answer your questions.",
+        "option_A": "Coverage error",
+        "option_B": "Nonresponse error",
+        "option_C": "Sampling error",
+        "option_D": "Measurement error",
+        "correct_anwser": "B",
+        "explain": "Nonresponse error (Sai số do không phản hồi) xảy ra khi một nhóm đối tượng được chọn trong mẫu từ chối hoặc không thể tham gia trả lời câu hỏi khảo sát."
+      },
+      {
+        "question_id": 407,
+        "question_title": "When is it most appropriate to conduct remote moderated testing?\nI. Redirection and discussion are required\nII. Users can complete tasks without instruction\nIII. Finding participants local to your lab is challenging\nIV. You want to see and explore user's digital contexts\nV. All of the above",
+        "option_A": "I, II, III",
+        "option_B": "I, IV",
+        "option_C": "I, III",
+        "option_D": "I, III, IV",
+        "option_E": "V",
+        "correct_anwser": "D",
+        "explain": "Kiểm thử từ xa có người điều phối (Remote moderated testing) thích hợp nhất khi: cần thảo luận/điều hướng (I), khó tìm đối tượng tại địa phương (III), và muốn quan sát bối cảnh thiết bị số thực tế của người dùng (IV). Điều II áp dụng cho kiểm thử không có người điều phối (unmoderated)."
+      },
+      {
+        "question_id": 408,
+        "question_title": "Neilsen's set of 10 heuristics was designed to meet all of the following criteria EXCEPT:",
+        "option_A": "The heuristics are exhaustive and detailed enough to tell a designer exactly what elements to include in every possible part of every possible user interface",
+        "option_B": "The heuristics are applicable to a wide range of different platforms and interaction modalities (e.g., mouse-and-keyboard, touch-based mobile, speech)",
+        "option_C": "The heuristics are compact enough to be taught to a non-expert within a few hours",
+        "option_D": "The heuristics are backed up by systematic research showing that the set of heuristics could explain a range of usability problems observed across numerous usability tests with multiple systems",
+        "correct_anwser": "A",
+        "explain": "10 nguyên tắc Heuristics của Jakob Nielsen là các hướng dẫn rộng (broad rules of thumb) chứ không phải là một danh sách kiệt cùng và chi tiết (exhaustive) bắt buộc chính xác từng UI element cho mọi trường hợp."
+      },
+      {
+        "question_id": 410,
+        "question_title": "Which of the following can prototypes help designers test?",
+        "option_A": "The overall design concept",
+        "option_B": "Functionality of different components of the system",
+        "option_C": "Screen layouts",
+        "option_D": "User interactions",
+        "option_E": "All of the others",
+        "correct_anwser": "E",
+        "explain": "Bản mẫu (Prototype) hỗ trợ nhà thiết kế kiểm thử toàn bộ các yếu tố từ ý tưởng tổng thể (concept), chức năng của các thành phần, bố cục màn hình (layout) cho tới các tương tác người dùng (user interactions)."
+      },
+      {
+        "question_id": 411,
+        "question_title": "What types of research activities are typically engaged in by 2-3 people design teams?",
+        "option_A": "I",
+        "option_B": "II",
+        "option_C": "III",
+        "option_D": "IV",
+        "option_E": "II and IV",
+        "correct_anwser": "B",
+        "explain": "Với nhóm thiết kế nhỏ (2-3 người), nguồn lực hạn chế nên hoạt động nghiên cứu phổ biến và phù hợp nhất là Feature-driven usability testing (kiểm thử khả năng sử dụng dựa trên tính năng). Các phương pháp như A/B testing hay phân tích quy mô lớn thường đòi hỏi hạ tầng và đội ngũ nhân sự chuyên biệt hơn."
+      },
+      {
+        "question_id": 412,
+        "question_title": "What preparations should you make ahead of both remote moderated as well as unmoderated testing?",
+        "option_A": "I, II, III",
+        "option_B": "I, III, IV, V",
+        "option_C": "II, IV, V",
+        "option_D": "I, IV",
+        "option_E": "VI",
+        "correct_anwser": "B",
+        "explain": "Trước khi tiến hành kiểm thử từ xa (cho cả có và không có người điều phối), các bước chuẩn bị cần thiết bao gồm: Xem xét các đường đi/luồng thay thế (I), Xác định chỉ số cần thu thập (III), Lấy sự chấp thuận Informed Consent (IV), và Tuyển dư người tham gia/Overrecruit để phòng rủi ro hủy lịch (V). Việc 'online trước 10-15 phút' (II) không áp dụng cho unmoderated testing."
+      },
+      {
+        "question_id": 414,
+        "question_title": "What types of research activities are typically engaged in by 2-3 people design teams?\nI. A/B Testing\nII. Feature driven usability testing\nIII. Competitive testing\nIV. Attitudinal analytics (surveys)",
+        "option_A": "I",
+        "option_B": "II",
+        "option_C": "III",
+        "option_D": "IV",
+        "correct_anwser": "B",
+        "explain": "Các nhóm thiết kế nhỏ (2-3 người) thường tập trung vào các hoạt động nghiên cứu nhanh, gắn liền trực tiếp với tính năng đang phát triển như kiểm thử khả dụng theo tính năng (feature driven usability testing), vì họ có nguồn lực hạn chế và cần phản hồi nhanh cho từng tính năng cụ thể, khác với các hoạt động cần quy mô lớn hơn như A/B testing hay khảo sát thái độ."
+      },
+      {
+        "question_id": 415,
+        "question_title": "Gulf of execution refers to which of the following?",
+        "option_A": "The time it takes an application to execute some computationally-intensive task, such as running a statistical model.",
+        "option_B": "The difference between the output the system provided and the output the user wanted.",
+        "option_C": "The discrepancy between what the user is trying to do and what he/she is able to do using the system's interface.",
+        "option_D": "The time between when the user gives the system a command and when the system executes that command (e.g., the delay in responding to a button press)",
+        "correct_anwser": "C",
+        "explain": "'Gulf of execution' (khoảng cách thực thi) là khái niệm của Donald Norman, chỉ sự chênh lệch giữa những gì người dùng muốn làm và những gì họ có thể thực hiện được thông qua giao diện của hệ thống, tức là khó khăn trong việc biết cách thao tác để đạt được mục tiêu."
+      },
+      {
+        "question_id": 416,
+        "question_title": "In user testing, we generally ask test participants to verbalize what they are thinking as they perform tasks. What is not correct answer?",
+        "option_A": "Debriefing",
+        "option_B": "The Think-Aloud Protocol",
+        "option_C": "What You See Is What You Get",
+        "option_D": "Screening",
+        "correct_anwser": "C",
+        "explain": "Kỹ thuật yêu cầu người tham gia nói to suy nghĩ khi thực hiện nhiệm vụ được gọi là 'The Think-Aloud Protocol' (giao thức nói to suy nghĩ). 'What You See Is What You Get' (WYSIWYG) là một khái niệm hoàn toàn khác, liên quan đến giao diện hiển thị đúng như những gì sẽ được xuất ra, không liên quan gì đến kỹ thuật kiểm thử người dùng này."
+      },
+      {
+        "question_id": 417,
+        "question_title": "Which of the following can prototypes help designers test?",
+        "option_A": "The overall design concept",
+        "option_B": "Functionality of different components of the system",
+        "option_C": "Screen layouts",
+        "option_D": "User interactions",
+        "correct_anwser": "E",
+        "explain": "Nguyên mẫu (prototypes) có thể được sử dụng để kiểm thử nhiều khía cạnh khác nhau của thiết kế, bao gồm: khái niệm thiết kế tổng thể, chức năng của các thành phần hệ thống, bố cục màn hình, và các tương tác của người dùng. Vì vậy đáp án đúng là 'All of the others' (E) - tất cả các lựa chọn trên đều đúng."
+      },
+      {
+        "question_id": 420,
+        "question_title": "Which new technological trend is not requiring designers to change how they prototype and test their systems?",
+        "option_A": "Proliferation of screens (smart watches, embedded displays, etc.) for which designers need to design user experiences",
+        "option_B": "Instrumented environments",
+        "option_C": "Artificial Intelligence-based systems",
+        "option_D": "Virtual and augmented reality",
+        "option_E": "None of the others",
+        "correct_anwser": "E",
+        "explain": "Tất cả các xu hướng công nghệ được liệt kê (màn hình đa dạng, môi trường được trang bị cảm biến, hệ thống AI, thực tế ảo/tăng cường) đều đòi hỏi nhà thiết kế phải thay đổi cách họ tạo mẫu và kiểm thử. Do đó đáp án đúng là 'None of the others' (E) - không có xu hướng nào trong số này KHÔNG yêu cầu thay đổi."
+      },
+      {
+        "question_id": 421,
+        "question_title": "Is this a good scope for a user test? Scope of the evaluation includes: Report an event when someone else is being a victim of robbery; Check the map to see if a place is dangerous; Protect themselves in case they are the victim of smartphone robbery.",
+        "option_A": "No, a user test needs to include testing every single task in the application to deliver valuable data",
+        "option_B": "No, a user test must focus on only one task",
+        "option_C": "No, a user test needs to compare...",
+        "option_D": "Yes, this is a reasonable scope focused on frequently used functions",
+        "correct_anwser": "D",
+        "explain": "Phạm vi kiểm thử này tập trung vào các chức năng được sử dụng thường xuyên nhất của ứng dụng (báo cáo sự cố, kiểm tra bản đồ, bảo vệ bản thân) - đây là cách tiếp cận hợp lý vì một bài kiểm thử người dùng không cần và không nên bao gồm TẤT CẢ mọi tính năng, mà nên tập trung vào các luồng công việc quan trọng nhất."
+      },
+      {
+        "question_id": 423,
+        "question_title": "Which of the following is not a characteristic of sketches done for the purposes of ideation?",
+        "option_A": "Quick",
+        "option_B": "Disposable",
+        "option_C": "Evocative",
+        "option_D": "Refined",
+        "option_E": "Ambiguous",
+        "correct_anwser": "D",
+        "explain": "Sketch dùng cho mục đích ideation (lên ý tưởng) thường nhanh, có thể bỏ đi, gợi mở và mơ hồ để khuyến khích tư duy sáng tạo, không cần chi tiết hay hoàn thiện (refined) vì mục tiêu là khám phá nhiều ý tưởng chứ không phải hoàn thiện thiết kế cuối cùng."
+      },
+      {
+        "question_id": 424,
+        "question_title": "How many personas should designers create for a design project?",
+        "option_A": "Often one or two personas are all that's needed",
+        "option_B": "As many personas as it takes to represent everything designers have learned in the formative work",
+        "option_C": "The number of personas should match the number of classes of target users that the designers have identified in the formative work",
+        "option_D": "The more personas, the better",
+        "option_E": "Three to four personas are usually a sweet spot",
+        "correct_anwser": "C",
+        "explain": "Số lượng persona nên tương ứng với số nhóm (classes) người dùng mục tiêu khác nhau mà nhóm thiết kế đã xác định được qua nghiên cứu nền tảng (formative research), chứ không phải một con số cố định nào đó."
+      },
+      {
+        "question_id": 425,
+        "question_title": "If a user of a system is unable to determine whether an action they took helped move them closer to achieving their goal, we would say that the system fails to bridge:",
+        "option_A": "The Gulf of Inspection",
+        "option_B": "The Gulf of Expectation",
+        "option_C": "The Gulf of Execution",
+        "option_D": "The Gulf of Evaluation",
+        "correct_anwser": "D",
+        "explain": "Theo lý thuyết của Donald Norman, Gulf of Evaluation (khoảng cách đánh giá) là khoảng cách giữa việc người dùng nhận biết và diễn giải trạng thái hệ thống để xác định xem hành động của họ có giúp đạt được mục tiêu hay không. Khi người dùng không biết hành động có hiệu quả hay không, hệ thống đã thất bại trong việc thu hẹp khoảng cách này."
+      },
+      {
+        "question_id": 426,
+        "question_title": "By helping users form effective _____, we can help users to predict the results of actions they haven't yet performed using a system.",
+        "option_A": "System images",
+        "option_B": "Assumptions",
+        "option_C": "Feedback",
+        "option_D": "Conceptual models",
+        "correct_anwser": "D",
+        "explain": "Conceptual model (mô hình khái niệm) là sự hiểu biết của người dùng về cách hệ thống hoạt động. Khi mô hình này chính xác, người dùng có thể dự đoán kết quả của các hành động mà họ chưa từng thực hiện trước đó."
+      },
+      {
+        "question_id": 427,
+        "question_title": "What should you do during the think-aloud protocol?",
+        "option_A": "Let the participant hear what you're thinking while you observe them.",
+        "option_B": "Prompt the user to convey their thinking out loud with short questions.",
+        "option_C": "Respond to the participant by telling whether what they're saying is correct or not.",
+        "option_D": "Sit quietly and observe, even if the participant says nothing.",
+        "correct_anwser": "B",
+        "explain": "Trong think-aloud protocol, nhà nghiên cứu nên nhắc nhở người tham gia tiếp tục nói ra suy nghĩ của họ bằng những câu hỏi ngắn (như 'Bạn đang nghĩ gì?') khi họ im lặng, để duy trì dòng chảy thông tin về suy nghĩ của người dùng."
+      },
+      {
+        "question_id": 428,
+        "question_title": "Which of the following steps will you be learning about in this user needs assessment course? I. Preparing for and conducting interviews. II. Observing users using a product or service. III. Analyzing qualitative data to arrive at insights.",
+        "option_A": "I and II",
+        "option_B": "I and III",
+        "option_C": "II and III",
+        "option_D": "I, II, and III",
+        "correct_anwser": "D",
+        "explain": "Khóa học về đánh giá nhu cầu người dùng (user needs assessment) thường bao gồm đầy đủ các bước: chuẩn bị và tiến hành phỏng vấn, quan sát người dùng sử dụng sản phẩm/dịch vụ, và phân tích dữ liệu định tính để rút ra insight, nên đáp án đúng là cả ba (I, II, và III)."
+      },
+      {
+        "question_id": 429,
+        "question_title": "Designers often refer to the notion of the “design space.” What does this term refer to?",
+        "option_A": "Physical space (like a design studio) where design activities take place",
+        "option_B": "Space into which the design has to fit (e.g., the size of the screen of a mobile phone)",
+        "option_C": "Properties of the space (e.g., location, shape of the room) where the design will be used",
+        "option_D": "The range of alternative ways that a design solution can work",
+        "correct_anwser": "D",
+        "explain": "Trong thiết kế, \"Design space\" (không gian thiết kế) là thuật ngữ chỉ toàn bộ tập hợp các phương án, ý tưởng và giải pháp thiết kế khả thi mà nhà thiết kế có thể khám phá."
       }
     ]
   },
   {
     "id": "wdu203c-module-2-multi-choice",
     "title": "Module 2 - Multiple Choice",
-    "description": "Tập hợp các câu hỏi chọn nhiều đáp án đúng (Pick all that apply) đã lọc câu trùng.",
-    "questionsCount": 5,
+    "description": "Tập hợp 8 câu hỏi trắc nghiệm chọn nhiều đáp án đúng (Multiple Choice).",
+    "questionsCount": 8,
     "questions": [
       {
         "question_id": 1,
@@ -2224,14 +2641,44 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Phỏng vấn người dùng (A) và Khảo sát (B) đều là những phương pháp hiệu quả để thu thập nhu cầu người dùng.",
         "option_C": "Ignoring negative feedback",
         "option_D": "Copying competitors' features"
+      },
+      {
+        "question_id": 387,
+        "question_title": "What elements should a script include for a remote moderated test? (Choose 5 answers)",
+        "option_A": "Obtain Consent",
+        "option_B": "Make introductions",
+        "option_C": "Build rapport",
+        "option_D": "Exact instructions for how to complete tasks",
+        "correct_anwser": "A, B, C, E, F",
+        "explain": "Một kịch bản (script) cho bài kiểm tra từ xa có điều phối viên nên bao gồm: xin sự đồng ý (A), giới thiệu (B), xây dựng sự tin tưởng (C), thiết lập kỳ vọng về thời lượng/nội dung (E), và vai trò của điều phối viên/quan sát viên (F). Không nên đưa ra 'hướng dẫn chính xác cách hoàn thành nhiệm vụ' (D) vì điều này sẽ dẫn dắt người dùng, làm sai lệch kết quả kiểm thử usability tự nhiên."
+      },
+      {
+        "question_id": 409,
+        "question_title": "Why are these good research questions for a needs-finding study?",
+        "option_A": "They will help the researcher learn how users currently complete the activity that their design will try to improve",
+        "option_B": "They are questions that can be answered by interviewing the target user population",
+        "option_C": "They're open ended, not leading",
+        "option_D": "They seek to learn about what problems there are with existing solutions",
+        "correct_anwser": "A, B, C, D",
+        "explain": "Các câu hỏi trong kế hoạch tìm kiếm nhu cầu (Needs Finding Plan) là những câu hỏi nghiên cứu tốt vì đáp ứng đầy đủ cả 4 tiêu chí: giúp hiểu quy trình hiện tại, trả lời được qua phỏng vấn đối tượng mục tiêu, mang tính mở/không dẫn dắt và hướng tới tìm hiểu hạn chế của giải pháp hiện tại."
+      },
+      {
+        "question_id": 430,
+        "question_title": "Imagine a new shopping website named Nomaza.com. Nomaza.com offers a wide range of products. Which of the following might be a reasonable goal for a Nomaza.com user test? (choose all that apply)",
+        "option_A": "Can experienced online shoppers use Nomaza.com to find and purchase household items?",
+        "option_B": "How likely are first-time users of Nomaza.com to return for a second visit?",
+        "option_C": "Are novice Internet shoppers able to complete the checkout process on Nomaza.com?",
+        "option_D": "Can people find stuff they want on Nomaza.com?",
+        "correct_anwser": "A, C",
+        "explain": "Mục tiêu kiểm thử người dùng (user test goal) phải tập trung vào khả năng thực hiện nhiệm vụ của các nhóm người dùng cụ thể. Option A và C đặt ra câu hỏi kiểm thử rõ ràng về khả năng mua sắm và thanh toán. Option B thuộc về nghiên cứu hành vi dài hạn, Option D quá chung chung."
       }
     ]
   },
   {
     "id": "wdu203c-module-3-true-false",
     "title": "Module 3 - True / False",
-    "description": "Tập hợp 24 câu hỏi Đúng/Sai (True/False) đã được lọc sạch câu trùng.",
-    "questionsCount": 24,
+    "description": "Tập hợp 35 câu hỏi Đúng / Sai (True / False).",
+    "questionsCount": 35,
     "questions": [
       {
         "question_id": 1,
@@ -2424,6 +2871,94 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "False",
         "correct_anwser": "A",
         "explain": "Đầu ra dạng 'pull' (người dùng chủ động yêu cầu/lấy thông tin) cho phép người dùng kiểm soát cao khi nào và thông tin gì họ muốn truy cập, khác với 'push' (hệ thống tự động đẩy thông tin đến người dùng)."
+      },
+      {
+        "question_id": 378,
+        "question_title": "In the \"generation\" phase, your goal should be to sketch many different design ideas rather than to perfect a single idea.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Giai đoạn tạo ý tưởng (generation phase) áp dụng tư duy phân kỳ (divergent thinking), mục tiêu cốt lõi là tạo ra số lượng lớn các ý tưởng đa dạng thay vì đi sâu vào hoàn thiện một ý tưởng duy nhất ngay từ đầu."
+      },
+      {
+        "question_id": 382,
+        "question_title": "True or False: Baseline statistics such as task completion rate, time spent on task, and/or error rates should be included in user test reports.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Báo cáo kiểm thử người dùng chuẩn cần chứa các chỉ số nền tảng (baseline statistics) như tỷ lệ hoàn thành, thời gian thực hiện và tỷ lệ lỗi để đo lường định lượng mức độ hiệu quả."
+      },
+      {
+        "question_id": 389,
+        "question_title": "Personas are purely fictional characters.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Personas không hoàn toàn là nhân vật hư cấu; chúng được xây dựng dựa trên dữ liệu và insight thực tế thu thập được từ nghiên cứu người dùng (formative research), đại diện cho các nhóm người dùng mục tiêu thực sự, dù được trình bày dưới dạng một 'nhân vật' tổng hợp."
+      },
+      {
+        "question_id": 390,
+        "question_title": "Wizard of Oz prototypes are most useful for prototyping screen-based applications",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Wizard of Oz prototype là kỹ thuật trong đó một người vận hành ẩn danh mô phỏng hành vi của hệ thống (thường là các hệ thống thông minh, tương tác thoại, hoặc chưa có công nghệ hoàn chỉnh) để tạo cảm giác hệ thống đang hoạt động tự động. Kỹ thuật này hữu ích hơn cho các trải nghiệm phức tạp, không chỉ giới hạn ở ứng dụng dựa trên màn hình, nên phát biểu này là sai."
+      },
+      {
+        "question_id": 405,
+        "question_title": "“Push” output can time information delivery for maximum effectiveness.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Mô hình \"Push\" (hệ thống chủ động đẩy thông tin) có thể chủ động lựa chọn thời điểm gửi thông tin (ví dụ: nhắc lịch đúng lúc) để đạt hiệu quả tối đa cho người dùng."
+      },
+      {
+        "question_id": 413,
+        "question_title": "Ideation mostly happens at the start of the design process when the designer is first coming up with possible solutions to the design problem.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Giai đoạn Tạo ý tưởng (Ideation) chủ yếu diễn ra ở đầu quy trình thiết kế, ngay sau khi vấn đề đã được định hình rõ ràng, nhằm tìm kiếm càng nhiều phương án và giải pháp khả thi càng tốt."
+      },
+      {
+        "question_id": 418,
+        "question_title": "It is important not to criticize ideas during brainstorming.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Đây là một trong những nguyên tắc cơ bản của brainstorming: không chỉ trích ý tưởng ngay khi chúng được đưa ra, vì điều này sẽ kìm hãm sự sáng tạo và khiến người tham gia ngại chia sẻ ý tưởng táo bạo. Việc đánh giá, chọn lọc ý tưởng nên diễn ra ở giai đoạn sau."
+      },
+      {
+        "question_id": 419,
+        "question_title": "Designers should aim to generate about half a dozen solutions when they ideate.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trong giai đoạn ideate (lên ý tưởng), các nhà thiết kế nên cố gắng tạo ra CÀNG NHIỀU ý tưởng càng tốt (thường là hàng chục ý tưởng), không nên giới hạn ở khoảng nửa tá (6 ý tưởng), vì mục tiêu của ideation là khám phá không gian giải pháp rộng nhất có thể trước khi thu hẹp lại."
+      },
+      {
+        "question_id": 422,
+        "question_title": "It doesn't matter whether you initially create a low- or high-fidelity prototype. You can get the same kind of feedback on either.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Prototype độ trung thực thấp (low-fidelity) thường dùng để thu thập phản hồi về ý tưởng, luồng chức năng tổng thể, trong khi prototype độ trung thực cao (high-fidelity) cho phản hồi chi tiết hơn về giao diện, thẩm mỹ và tương tác cụ thể. Vì vậy loại phản hồi thu được là khác nhau."
+      },
+      {
+        "question_id": 431,
+        "question_title": "Is the following statement true or false?\nYou should always include a pre-test questionnaire in any user test you conduct.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Bảng hỏi trước kiểm thử (pre-test questionnaire) không bắt buộc trong mọi buổi user test. Tùy thuộc vào mục tiêu nghiên cứu và thông tin đã thu thập trước đó (ví dụ từ bước tuyển mộ), nhà nghiên cứu có thể bỏ qua bước này để tiết kiệm thời gian."
+      },
+      {
+        "question_id": 432,
+        "question_title": "“Push” output can be time information delivery for maximum effectiveness.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Mô hình \"Push\" (đẩy thông tin chủ động từ hệ thống) cho phép căn chỉnh thời điểm gửi thông tin (ví dụ: thông báo đúng thời điểm người dùng cần) để đạt được hiệu quả trải nghiệm cao nhất."
       }
     ]
   }

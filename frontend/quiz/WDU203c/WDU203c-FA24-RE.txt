@@ -1,0 +1,467 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "What is an affinity note?",
+    "option_A": "A sticky note on which you write relevant bits from your interview notes/recording and which is probably relevant for the user needs assessment.",
+    "option_B": "A comment you write during an interview that indicates a common, recurring theme.",
+    "option_C": "A short summary that includes your analysis of a single interview.",
+    "option_D": "A follow-up message from an interview participant that contains additional information.",
+    "correct_anwser": "A",
+    "explain": "Affinity note là những ghi chú nhỏ (thường viết trên sticky note) ghi lại các chi tiết quan trọng rút ra từ ghi chú/bản ghi âm phỏng vấn, dùng để phục vụ cho việc đánh giá nhu cầu người dùng (affinity diagramming). Đây là bước cơ bản trong quy trình phân tích dữ liệu định tính."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following questions is best answered by a qualitative research methodology?",
+    "option_A": "What proportion of Gadget X users love Feature Y?",
+    "option_B": "What are the different ways in which Gadget X frustrates its users?",
+    "option_C": "How will total revenue change if Gadget X's price is reduced by 10%?",
+    "option_D": "Does Gadget X tend to increase traffic accidents among its users?",
+    "correct_anwser": "B",
+    "explain": "Nghiên cứu định tính phù hợp để khám phá các dạng, nguyên nhân, trải nghiệm đa chiều (ví dụ 'các cách khác nhau mà sản phẩm gây khó chịu cho người dùng'), trong khi các câu hỏi về tỷ lệ, doanh thu hay mối quan hệ nhân quả định lượng (A, C, D) phù hợp hơn với nghiên cứu định lượng."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which of the following should you NOT do when trying to establish rapport with an interview participant?",
+    "option_A": "Talk about what other participants have been saying.",
+    "option_B": "Make small talk at first.",
+    "option_C": "Listen and observe how they respond.",
+    "option_D": "Adopt a learning mindset.",
+    "correct_anwser": "A",
+    "explain": "Không nên tiết lộ những gì người tham gia khác đã nói vì điều này vi phạm tính bảo mật, có thể tạo thiên kiến (bias) cho câu trả lời của người được phỏng vấn hiện tại. Các hành động còn lại (B, C, D) đều là cách xây dựng sự tin tưởng/rapport tốt."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What kinds of information might be part of qualitative data analysis?\nI. Quotations from interviews.\nII. Observed actions or events.\nIII. Inferred facts from interviews.",
+    "option_A": "I only",
+    "option_B": "I and II only",
+    "option_C": "II only",
+    "option_D": "I, II and III",
+    "correct_anwser": "D",
+    "explain": "Phân tích dữ liệu định tính bao gồm cả trích dẫn trực tiếp từ phỏng vấn, các hành động/sự kiện quan sát được, và cả những suy luận rút ra từ lời kể của người tham gia. Do đó cả ba loại thông tin (I, II, III) đều có thể là một phần của dữ liệu định tính."
+  },
+  {
+    "question_id": 5,
+    "question_title": "In a semi-structured interview, why would you want to avoid a question such as \"Was it because you didn't know about the 'undo' feature that you were unable to complete the task?\"\nI. It is leading -- you are feeding a possible answer to the participant.\nII. It is closed-ended -- this is a yes-or-no question.\nIII. It is judgmental -- you are suggesting that the participant's lack of knowledge was a problem.",
+    "option_A": "I and II",
+    "option_B": "I and III",
+    "option_C": "II and III",
+    "option_D": "I, II and III",
+    "correct_anwser": "D",
+    "explain": "Câu hỏi này mắc cùng lúc 3 lỗi: nó gợi ý sẵn câu trả lời (leading), chỉ có thể trả lời có/không (closed-ended), và ngầm phán xét rằng người dùng thiếu hiểu biết (judgmental). Vì vậy cả I, II và III đều là lý do nên tránh câu hỏi kiểu này."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Which of the following topics are NOT a common part of the introduction to an interview?",
+    "option_A": "How confidentiality will be handled",
+    "option_B": "Expected duration of the interview",
+    "option_C": "How many other interview participants there are",
+    "option_D": "Overall goals of the interview",
+    "correct_anwser": "C",
+    "explain": "Phần mở đầu phỏng vấn thường gồm giải thích cách bảo mật, thời lượng dự kiến và mục tiêu chung của buổi phỏng vấn. Việc tiết lộ có bao nhiêu người tham gia khác không phải là nội dung thường có, vì nó có thể ảnh hưởng đến tính bảo mật và tính khách quan của nghiên cứu."
+  },
+  {
+    "question_id": 7,
+    "question_title": "What consideration is not important when deciding what platform or technology solution you will use for testing?\nI. Metrics that may be collected\nII. Panel access\nIII. Network speed requirements\nIV. Screen, Audio, or other data collection, as appropriate for test\nV. None of the above",
+    "option_A": "I, II, III",
+    "option_B": "I, II",
+    "option_C": "II, IV",
+    "option_D": "I, III, IV",
+    "correct_anwser": "E",
+    "explain": "Tất cả các yếu tố được liệt kê (chỉ số thu thập được, khả năng tiếp cận panel, yêu cầu tốc độ mạng, khả năng thu thập màn hình/âm thanh/dữ liệu khác) đều là những cân nhắc quan trọng khi lựa chọn nền tảng/công nghệ kiểm thử. Do đó đáp án đúng là 'None of the above' (V), tức không có yếu tố nào trong số này là không quan trọng."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following best describes the question stem?",
+    "option_A": "It's the optional instructions for how to answer a question.",
+    "option_B": "It's the set of responses that a respondent can give.",
+    "option_C": "It's the query that operationalizes the concept of interest and prompts a response.",
+    "option_D": "It's a series of questions that are used together to form a scale.",
+    "correct_anwser": "C",
+    "explain": "'Question stem' là phần câu hỏi chính - nội dung cụ thể hóa (operationalize) khái niệm mà nhà nghiên cứu muốn đo lường và yêu cầu người trả lời phản hồi. Nó khác với phần lựa chọn trả lời (response options) hay hướng dẫn trả lời."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following are the hallmarks of good research questions?\nI. Clarity\nII. Consistency\nIII. Ability to be answered\nIV. Ethical excellence\nV. Significance",
+    "option_A": "I, II, and III",
+    "option_B": "I, II, and V",
+    "option_C": "IV and V",
+    "option_D": "II, IV, and V",
+    "correct_anwser": "E",
+    "explain": "Đáp án E (I, III, IV, và V) gồm: Rõ ràng (Clarity), Có thể trả lời được (Ability to be answered), Đạo đức tốt (Ethical excellence), và Có ý nghĩa (Significance) - đây là các đặc điểm chuẩn của một câu hỏi nghiên cứu tốt. 'Consistency' (tính nhất quán) không phải là tiêu chí điển hình để đánh giá chất lượng câu hỏi nghiên cứu."
+  },
+  {
+    "question_id": 2,
+    "question_title": "What elements should a script include for a remote moderated test? (Choose 5 answers)",
+    "option_A": "Obtain Consent",
+    "option_B": "Make introductions",
+    "option_C": "Build rapport",
+    "option_D": "Exact instructions for how to complete tasks",
+    "correct_anwser": "A, B, C, E, F",
+    "explain": "Một kịch bản (script) cho bài kiểm tra từ xa có điều phối viên nên bao gồm: xin sự đồng ý (A), giới thiệu (B), xây dựng sự tin tưởng (C), thiết lập kỳ vọng về thời lượng/nội dung (E), và vai trò của điều phối viên/quan sát viên (F). Không nên đưa ra 'hướng dẫn chính xác cách hoàn thành nhiệm vụ' (D) vì điều này sẽ dẫn dắt người dùng, làm sai lệch kết quả kiểm thử usability tự nhiên."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which new technological trend is not requiring designers to change how they prototype and test their systems?",
+    "option_A": "Proliferation of screens (smart watches, embedded displays, etc.) for which designers need to design user experiences",
+    "option_B": "Instrumented environments",
+    "option_C": "Artificial Intelligence-based systems",
+    "option_D": "Virtual and augmented reality",
+    "correct_anwser": "E",
+    "explain": "Tất cả các xu hướng công nghệ được liệt kê (màn hình đa dạng, môi trường được trang bị cảm biến, hệ thống AI, thực tế ảo/tăng cường) đều đòi hỏi nhà thiết kế phải thay đổi cách họ tạo mẫu và kiểm thử. Do đó đáp án đúng là 'None of the others' (E) - không có xu hướng nào trong số này KHÔNG yêu cầu thay đổi."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Under what circumstances is remote testing appropriate?\nI. It is difficult to access the product/experience.\nII. Participants from a variety of geographic locations are needed.\nIII. Time is limited.\nIV. There is a lot of Personally Identifiable Information required.\nV. All of the above",
+    "option_A": "I, II, III",
+    "option_B": "I, IV",
+    "option_C": "I, III, IV",
+    "option_D": "II, III",
+    "correct_anwser": "A",
+    "explain": "Kiểm thử từ xa (remote testing) phù hợp khi khó tiếp cận sản phẩm/trải nghiệm trực tiếp (I), cần người tham gia từ nhiều vị trí địa lý khác nhau (II), và khi thời gian có hạn (III). Việc yêu cầu nhiều thông tin cá nhân nhạy cảm (IV) lại là yếu tố khiến kiểm thử từ xa trở nên khó khăn hơn (do vấn đề bảo mật), nên không thuộc nhóm điều kiện phù hợp."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What technique can you use to learn about how large numbers of users navigate through an experience during the Optimization phase?",
+    "option_A": "Benchmarking",
+    "option_B": "Analytics Review",
+    "option_C": "A/B testing",
+    "option_D": "Remote usability testing",
+    "correct_anwser": "B",
+    "explain": "Phân tích dữ liệu Analytics (Analytics Review) cho phép nhà nghiên cứu xem cách một số lượng lớn người dùng thực tế điều hướng qua trải nghiệm sản phẩm, dựa trên dữ liệu hành vi thực tế được thu thập tự động, phù hợp với giai đoạn Tối ưu hóa (Optimization) khi sản phẩm đã ra mắt và có lượng người dùng lớn."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Which of the following is the MOST TRUE statement about how people remember things?",
+    "option_A": "People remember their past behavior well enough to give accurate survey responses.",
+    "option_B": "Memory can be guided back to accuracy through careful prompts.",
+    "option_C": "Memory fades over time, but people are good at remembering routine actions.",
+    "option_D": "Memory fades over time, and often doesn't capture routine actions.",
+    "correct_anwser": "D",
+    "explain": "Trí nhớ con người phai nhạt theo thời gian và đặc biệt kém trong việc ghi nhớ các hành động thường nhật, lặp đi lặp lại (vì chúng ít gây ấn tượng đặc biệt). Đây là lý do vì sao các nhà nghiên cứu thường ưu tiên quan sát hành vi thực tế hơn là chỉ dựa vào lời kể lại của người dùng."
+  },
+  {
+    "question_id": 7,
+    "question_title": "What does the System Usability Scale measure?",
+    "option_A": "Perceived usability",
+    "option_B": "Number of tasks successfully completed",
+    "option_C": "Frequency of errors",
+    "option_D": "Number of usability principles violated",
+    "correct_anwser": "A",
+    "explain": "System Usability Scale (SUS) là một bảng khảo sát chuẩn hóa đo lường cảm nhận chủ quan của người dùng về tính khả dụng (perceived usability) của một hệ thống, thông qua các câu hỏi tự đánh giá, chứ không đo trực tiếp số liệu hành vi như số tác vụ hoàn thành hay tần suất lỗi."
+  },
+  {
+    "question_id": 8,
+    "question_title": "What can UX researchers do to minimize the impact of confirmation bias?",
+    "option_A": "Wherever possible, have user tests conducted by neutral third parties who have no investment in the outcome of the test",
+    "option_B": "Recruit only family and friends as participants, since they will be more honest about their feelings",
+    "option_C": "Researchers should trust their intuition when analyzing test results, rather than seeking to be systematic and impartial",
+    "option_D": "Ask participants the same questions at least 3 times, in order to confirm that the answers accurately reflect their feelings",
+    "correct_anwser": "A",
+    "explain": "Để giảm thiểu thiên kiến xác nhận (confirmation bias), nên để các bên trung lập không có lợi ích liên quan đến kết quả tiến hành kiểm thử, giúp đảm bảo tính khách quan. Các phương án còn lại đều làm tăng bias: dùng bạn bè/gia đình (thiếu đại diện, thiên vị), tin vào trực giác thay vì hệ thống hóa, hoặc hỏi lặp lại nhiều lần không giải quyết được vấn đề thiên kiến."
+  },
+  {
+    "question_id": 9,
+    "question_title": "You are testing the Nomaza.com website. All of your test participants will be using the same computer, which is located in your user testing lab. Which of the following is not something you ought to worry about when preparing for each test session?",
+    "option_A": "making sure the browser cache is cleared so that later users don't see which links have been visited",
+    "option_B": "clearing out data that was created by earlier users so that all participants see the same starting conditions",
+    "option_C": "testing participants' laptops to make sure their default browser is capable of displaying Nomaza.com",
+    "option_D": "giving all participants the same account capabilities and payment method in order to ensure consistency",
+    "correct_anwser": "C",
+    "explain": "Vì tất cả người tham gia đều sử dụng CÙNG MỘT máy tính trong phòng lab (không phải laptop cá nhân của họ), nên không cần lo lắng về việc kiểm tra trình duyệt mặc định trên laptop của từng người tham gia (C). Các việc còn lại (xóa cache, xóa dữ liệu cũ, đảm bảo tài khoản/quyền hạn giống nhau) đều cần thiết để đảm bảo mỗi phiên kiểm thử bắt đầu từ điều kiện giống nhau."
+  },
+  {
+    "question_id": 10,
+    "question_title": "True or False: Baseline statistics such as task completion rate, time spent on task, and/or error rates should be included in user test reports.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Các số liệu cơ bản (baseline) như tỷ lệ hoàn thành nhiệm vụ, thời gian thực hiện, và tần suất lỗi là những chỉ số định lượng quan trọng, thường được đưa vào báo cáo kiểm thử người dùng để cung cấp bằng chứng khách quan về hiệu suất sử dụng, hỗ trợ cho các phát hiện định tính."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "True or False: If you take good notes, there is no reason to capture a screen recording of user test sessions for later review.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Ghi hình màn hình vẫn rất cần thiết dù đã ghi chú tốt, vì video cho phép xem lại chi tiết chính xác các thao tác, biểu cảm và tương tác mà ghi chú có thể bỏ sót hoặc ghi không đầy đủ, đồng thời hỗ trợ chia sẻ bằng chứng khách quan với các bên liên quan."
+  },
+  {
+    "question_id": 2,
+    "question_title": "About how many \"key findings\" should be included in a typical user test report?",
+    "option_A": "1",
+    "option_B": "2-3",
+    "option_C": "5-10",
+    "option_D": "20-50",
+    "correct_anwser": "C",
+    "explain": "Một báo cáo kiểm thử người dùng điển hình thường nêu khoảng 5-10 phát hiện chính (key findings) - đủ để bao quát các vấn đề quan trọng nhất mà không làm loãng trọng tâm hay khiến báo cáo quá dài dòng, khó hành động."
+  },
+  {
+    "question_id": 3,
+    "question_title": "When making a recommendation for how to address a problem, you should consider all of the following EXCEPT:",
+    "option_A": "Identifying best practices from competitors' products",
+    "option_B": "Declining to provide a recommendation, admitting you have no good ideas",
+    "option_C": "Suggesting further research to better characterize the problem",
+    "option_D": "Recommending an iterative design process to find the best solution",
+    "correct_anwser": "B",
+    "explain": "Nhà nghiên cứu UX nên luôn cố gắng đưa ra đề xuất hữu ích (dựa trên best practices, nghiên cứu thêm, hoặc quy trình thiết kế lặp) chứ không nên từ chối đưa ra khuyến nghị và thừa nhận không có ý tưởng nào tốt - điều này không mang lại giá trị cho khách hàng/đội ngũ thiết kế."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Which of the following is NOT a way to increase the perceived benefit of participating in a survey?",
+    "option_A": "Specify how the survey results will be used",
+    "option_B": "Identify the trustworthiness of the sponsoring organization",
+    "option_C": "Make the survey as short as possible",
+    "option_D": "Stress that opportunities to respond are limited",
+    "correct_anwser": "C",
+    "explain": "Việc rút ngắn khảo sát giúp giảm CHI PHÍ (thời gian, công sức) khi tham gia, chứ không làm tăng LỢI ÍCH cảm nhận được. Các yếu tố còn lại (nêu rõ mục đích sử dụng kết quả, uy tín của tổ chức tài trợ, nhấn mạnh cơ hội tham gia có hạn) đều trực tiếp làm tăng cảm nhận về lợi ích khi tham gia khảo sát."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Personas represent target users and are, thus, primarily a distillation of the findings from formative work. Scenarios begin to move designers toward a design solution. How do scenarios do this?",
+    "option_A": "By envisioning how a technology might address the needs identified in formative work",
+    "option_B": "By enumerating features of the technology being designed",
+    "option_C": "By articulating tradeoffs of different design solutions",
+    "option_D": "By providing stories that can be put into the ads for the product being designed",
+    "correct_anwser": "A",
+    "explain": "Kịch bản (scenarios) giúp các nhà thiết kế bắt đầu hướng tới giải pháp thiết kế bằng cách hình dung cách một công nghệ cụ thể có thể đáp ứng những nhu cầu đã được xác định trong quá trình nghiên cứu ban đầu (formative work), tạo cầu nối giữa insight người dùng và ý tưởng thiết kế cụ thể."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Affordances of user interface don't have much influence on how easily users learn to use the system.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Affordance (tính năng gợi ý sử dụng) của giao diện có ảnh hưởng RẤT LỚN đến việc người dùng học cách sử dụng hệ thống dễ dàng như thế nào, vì chúng cho biết trực quan cách một đối tượng có thể được tương tác (ví dụ nút bấm trông giống có thể nhấn được)."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Personas are purely fictional characters.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Personas không hoàn toàn là nhân vật hư cấu; chúng được xây dựng dựa trên dữ liệu và insight thực tế thu thập được từ nghiên cứu người dùng (formative research), đại diện cho các nhóm người dùng mục tiêu thực sự, dù được trình bày dưới dạng một 'nhân vật' tổng hợp."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Personas include different types of information, from demographics to motivations and sociocultural context. How should designers decide what information to include?",
+    "option_A": "They should focus on making the information as complete as possible",
+    "option_B": "They should focus on idiosyncratic characteristics of people they encountered in the formative research that will make personas as vivid as possible",
+    "option_C": "They should focus mostly on demographic information; other types of information are secondary",
+    "option_D": "They should focus on information that contributes to the distinct needs and potential barriers to and motivations for use that each class of target users has in relation to the technology being developed",
+    "correct_anwser": "D",
+    "explain": "Persona nên tập trung vào các thông tin liên quan trực tiếp đến nhu cầu đặc thù, rào cản tiềm ẩn và động lực sử dụng của từng nhóm người dùng mục tiêu đối với công nghệ đang phát triển, chứ không phải cố gắng đưa vào càng nhiều thông tin càng tốt hay chỉ tập trung vào yếu tố nhân khẩu học hay chi tiết cá nhân sinh động không liên quan."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Sketching is used both for generating and for communicating ideas.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Phác thảo (sketching) vừa là công cụ để tạo ra và khám phá ý tưởng mới (generating ideas) trong quá trình tư duy thiết kế, vừa là phương tiện để truyền đạt (communicate) ý tưởng đó cho người khác một cách trực quan, nhanh chóng."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Sketching is used both for generating and for communicating ideas.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Phác thảo (sketching) vừa là công cụ để tạo ra và khám phá ý tưởng mới (generating ideas) trong quá trình tư duy thiết kế, vừa là phương tiện để truyền đạt (communicate) ý tưởng đó cho người khác một cách trực quan, nhanh chóng."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Wizard of Oz prototypes are most useful for prototyping screen-based applications",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Wizard of Oz prototype là kỹ thuật trong đó một người vận hành ẩn danh mô phỏng hành vi của hệ thống (thường là các hệ thống thông minh, tương tác thoại, hoặc chưa có công nghệ hoàn chỉnh) để tạo cảm giác hệ thống đang hoạt động tự động. Kỹ thuật này hữu ích hơn cho các trải nghiệm phức tạp, không chỉ giới hạn ở ứng dụng dựa trên màn hình, nên phát biểu này là sai."
+  },
+  {
+    "question_id": 3,
+    "question_title": "According to Wikipedia, a \"direct manipulation interface\" is one that features \"continuous representation of objects of interest and rapid, reversible, and incremental actions and feedback.\" The \"continuous representation of objects of interest\" is best aligned with which principle of good UI design?",
+    "option_A": "Prevent errors before they happen",
+    "option_B": "Support recognition over recall",
+    "option_C": "Employ aesthetic and minimalist design",
+    "option_D": "Support user control and freedom",
+    "correct_anwser": "B",
+    "explain": "Việc luôn hiển thị liên tục các đối tượng quan tâm giúp người dùng nhìn thấy và nhận diện trực tiếp các đối tượng thay vì phải nhớ lại chúng, điều này gắn liền với nguyên tắc 'hỗ trợ nhận diện thay vì ghi nhớ' (recognition rather than recall) trong thiết kế UI tốt."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Nielsen provides several recommendations for help and documentation. Which of the following is NOT one of his recommendations?",
+    "option_A": "Help should be focused on users' tasks",
+    "option_B": "Help should be small and searchable",
+    "option_C": "Help should include step-by-step instructions",
+    "option_D": "Help should be written from the system developers' point of view",
+    "correct_anwser": "D",
+    "explain": "Nielsen khuyến nghị tài liệu trợ giúp nên tập trung vào tác vụ của người dùng (A), dễ tìm kiếm/nhỏ gọn (B), có hướng dẫn từng bước cụ thể (C). Ông không khuyến nghị viết tài liệu trợ giúp theo góc nhìn của nhà phát triển hệ thống (D) - trái lại, nó nên được viết từ góc nhìn và ngôn ngữ của người dùng."
+  },
+  {
+    "question_id": 5,
+    "question_title": "__________ means \"to make an idea real or concrete.\"",
+    "option_A": "Assessment",
+    "option_B": "Communication",
+    "option_C": "Reification",
+    "option_D": "Reflection",
+    "correct_anwser": "C",
+    "explain": "'Reification' (cụ thể hóa/hiện thực hóa) có nghĩa là biến một ý tưởng trừu tượng thành thứ gì đó thực tế, cụ thể hơn - chẳng hạn như việc chuyển ý tưởng thiết kế thành bản phác thảo hoặc nguyên mẫu."
+  },
+  {
+    "question_id": 6,
+    "question_title": "In UX, \"Design\" is concerned only with the aesthetic (or beauty-related) aspects of products.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Trong UX, 'Thiết kế' không chỉ liên quan đến khía cạnh thẩm mỹ mà còn bao gồm chức năng, khả năng sử dụng, và trải nghiệm tổng thể của sản phẩm - phát biểu này giới hạn thiết kế chỉ ở yếu tố thẩm mỹ là sai."
+  },
+  {
+    "question_id": 7,
+    "question_title": "A feature of an environment or system that communicates through verbiage or imagery what will happen if an action is taken is called:",
+    "option_A": "A signifier",
+    "option_B": "A signal",
+    "option_C": "Feedback",
+    "option_D": "An icon",
+    "correct_anwser": "A",
+    "explain": "'Signifier' (tín hiệu chỉ dẫn) là đặc điểm của môi trường/hệ thống truyền đạt thông qua lời văn hoặc hình ảnh về những gì sẽ xảy ra nếu một hành động được thực hiện, giúp người dùng hiểu cách tương tác với đối tượng trước khi họ thực hiện hành động đó."
+  },
+  {
+    "question_id": 8,
+    "question_title": "For a system's response to user input to be perceived as \"instantaneous\" by the user, what is the maximum time that can elapse between the user's action and the system response?",
+    "option_A": "10 milliseconds",
+    "option_B": "100 milliseconds",
+    "option_C": "1 second",
+    "option_D": "1 minute",
+    "correct_anwser": "B",
+    "explain": "Theo các nguyên tắc thiết kế tương tác cổ điển (Nielsen, Miller), thời gian phản hồi tối đa để hệ thống được coi là 'tức thời' đối với người dùng là khoảng 100 mili giây (0.1 giây); nếu lâu hơn, người dùng sẽ nhận ra có độ trễ."
+  },
+  {
+    "question_id": 9,
+    "question_title": "When sketching to come up with different design solutions, you should stop the first time you run out of ideas.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Khi phác thảo để tìm ra các giải pháp thiết kế khác nhau, không nên dừng lại ngay khi hết ý tưởng đầu tiên - nên tiếp tục cố gắng vượt qua điểm 'bí ý tưởng' này vì thường những ý tưởng sáng tạo và đột phá nhất xuất hiện sau khi vượt qua các ý tưởng hiển nhiên ban đầu."
+  },
+  {
+    "question_id": 10,
+    "question_title": "Which of the following is NOT a way of reducing the burden for a respondent to participate in your survey?",
+    "option_A": "Asking people who use a site's shopping cart how they feel about that experience.",
+    "option_B": "Keep the survey as short as you can without compromising quality.",
+    "option_C": "Reduce the complexity of questions by making them easy to understand.",
+    "option_D": "Asking one group of respondents to forward the survey invite to their social networks.",
+    "correct_anwser": "A",
+    "explain": "Việc hỏi người dùng ngay khi họ đang sử dụng giỏ hàng của một trang web về cảm nhận của họ liên quan đến việc lựa chọn THỜI ĐIỂM/đối tượng khảo sát phù hợp (targeting), không phải là cách để GIẢM GÁNH NẶNG khi tham gia khảo sát. Các phương án B, C, D đều trực tiếp làm giảm gánh nặng: rút ngắn khảo sát, đơn giản hóa câu hỏi, và không tăng thêm gánh nặng khi nhờ người khác chuyển tiếp khảo sát."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is NOT a dimension of survey modes?",
+    "option_A": "Cost",
+    "option_B": "Respondent burden",
+    "option_C": "Sampling frame",
+    "option_D": "Flexibility",
+    "correct_anwser": "C",
+    "explain": "Các phương thức khảo sát (survey modes) thường được so sánh dựa trên các yếu tố như chi phí (cost), gánh nặng đối với người trả lời (respondent burden), và tính linh hoạt (flexibility). 'Sampling frame' (khung mẫu) là khái niệm liên quan đến việc xác định tổng thể để lấy mẫu, không phải là một khía cạnh dùng để so sánh các phương thức khảo sát."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following are among key tasks that were identified? (dựa trên bảng Key tasks trong wireframe)",
+    "option_A": "Customize automatic functions, Help, Log Out",
+    "option_B": "Check map, Create a post, Log Out",
+    "option_C": "Change security code, Create a post, Check recent events",
+    "option_D": "Check map, Help, Activate function \"Robbery\"",
+    "correct_anwser": "D",
+    "explain": "Theo bảng 'Key tasks' trong tài liệu wireframe, các nhiệm vụ 'Check map' (mục 4), 'Help' (mục 8), và 'Activate function Robbery' (mục 11) đều là các nhiệm vụ chính được liệt kê. Các phương án khác chứa những nhiệm vụ không có trong bảng như 'Create a post' hoặc 'Log Out'."
+  },
+  {
+    "question_id": 3,
+    "question_title": "This is error that is introduced when your questions somehow don't actually get to the concept you're interested in.",
+    "option_A": "Coverage Error",
+    "option_B": "Sampling Error",
+    "option_C": "Measurement error",
+    "option_D": "Nonresponse Error",
+    "correct_anwser": "C",
+    "explain": "'Measurement error' (sai số đo lường) xảy ra khi các câu hỏi khảo sát không thực sự đo lường được đúng khái niệm mà nhà nghiên cứu quan tâm - tức là công cụ đo (câu hỏi) không phản ánh chính xác khái niệm cần khảo sát."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What term is used to describe the actual questions you ask people?",
+    "option_A": "Respondent",
+    "option_B": "Instrument",
+    "option_C": "Frame",
+    "option_D": "Population",
+    "correct_anwser": "B",
+    "explain": "'Instrument' (công cụ khảo sát) là thuật ngữ dùng để chỉ tập hợp các câu hỏi thực tế được đưa ra cho người tham gia trong một cuộc khảo sát, phân biệt với 'Respondent' (người trả lời), 'Frame' (khung mẫu), và 'Population' (tổng thể nghiên cứu)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "This example (hình ảnh Questbook với nhiều màn hình chi tiết, có màu sắc, nội dung đầy đủ) would most likely be an example of (choose the BEST response):",
+    "option_A": "Wireframes",
+    "option_B": "Lo-Fi Prototype",
+    "option_C": "Hi-Fi Prototype",
+    "option_D": "Yes, wireframes need to look like a completely finished product",
+    "correct_anwser": "C",
+    "explain": "Hình ảnh minh họa cho thấy các màn hình có chi tiết cao, đầy đủ màu sắc, hình ảnh nền, văn bản cụ thể, và trông giống sản phẩm hoàn thiện - đây là đặc điểm của một Hi-Fi Prototype (nguyên mẫu độ trung thực cao), khác với wireframe (thường đơn giản, không màu) hay Lo-Fi Prototype (thô sơ hơn)."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Which of the following is NOT something to think about if you are going to use Amazon's Mechanical Turk to recruit respondents?",
+    "option_A": "How to pay a fair wage to Turkers",
+    "option_B": "The shakiness of the demographic data about Turkers",
+    "option_C": "How to check for the validity of responses",
+    "option_D": "Response rates for Turkers",
+    "correct_anwser": "D",
+    "explain": "Khi sử dụng Amazon Mechanical Turk để tuyển người tham gia khảo sát, các mối quan tâm quan trọng bao gồm: trả lương công bằng (A), độ tin cậy của dữ liệu nhân khẩu học (B), và cách kiểm tra tính hợp lệ của câu trả lời (C). 'Tỷ lệ phản hồi' (response rate) không phải là mối quan tâm đặc thù khi dùng MTurk, vì nền tảng này cho phép chọn người tham gia sẵn có ngay lập tức, khác với khảo sát gửi email/mời tham gia truyền thống."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following are good guidelines for using an interview protocol?\nI. Memorize the protocol, so that you don't have to refer to it that much during the interview itself.\nII. Avoid asking any questions that are not open-ended.\nIII. Ask the questions exactly as they are written and in the order they are written.",
+    "option_A": "I only",
+    "option_B": "II only",
+    "option_C": "III only",
+    "option_D": "I and III",
+    "correct_anwser": "A",
+    "explain": "Việc ghi nhớ kịch bản phỏng vấn (I) để không phải liên tục nhìn vào tài liệu trong khi phỏng vấn là một hướng dẫn tốt, giúp cuộc phỏng vấn tự nhiên hơn. Tuy nhiên, không nhất thiết phải tránh hoàn toàn câu hỏi đóng (II) hay luôn hỏi đúng thứ tự/nguyên văn (III) - trong phỏng vấn bán cấu trúc, người phỏng vấn thường linh hoạt điều chỉnh theo ngữ cảnh."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following statement about open-ended questions is most FALSE?",
+    "option_A": "They are the easiest type of question to analyze.",
+    "option_B": "They allow respondents to answer without limiting the range of responses.",
+    "option_C": "They are more frequently skipped than other types of questions.",
+    "option_D": "They are often used when we haven't pre-defined response categories.",
+    "correct_anwser": "A",
+    "explain": "Câu hỏi mở (open-ended questions) thực chất là loại câu hỏi KHÓ phân tích nhất (vì cần mã hóa, phân loại thủ công các câu trả lời dạng văn bản tự do), chứ không phải dễ nhất. Đây là phát biểu SAI nhất trong số các lựa chọn, vì các đặc điểm còn lại (không giới hạn phạm vi trả lời, dễ bị bỏ qua hơn, dùng khi chưa có danh mục trả lời định sẵn) đều đúng với câu hỏi mở."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which of the following is not part of a typical UX design process?",
+    "option_A": "Understanding the problem",
+    "option_B": "Generating possible solutions",
+    "option_C": "Establishing the sale price for a product",
+    "option_D": "Assessing prototypes and finding new problems",
+    "correct_anwser": "C",
+    "explain": "Quy trình thiết kế UX điển hình bao gồm: hiểu vấn đề, tạo ra các giải pháp khả thi, và đánh giá nguyên mẫu để tìm ra vấn đề mới - đây là chu trình lặp (iterative) của thiết kế. Việc xác định giá bán sản phẩm (C) thuộc về lĩnh vực kinh doanh/marketing, không phải là một phần của quy trình thiết kế UX."
+  },
+  {
+    "question_id": 10,
+    "question_title": "Which of the following best describes why you might choose to use a panel for recruiting respondents?",
+    "option_A": "To reduce recruitment costs",
+    "option_B": "To make sure you get people who are experienced in answering surveys",
+    "option_C": "To increase quality",
+    "option_D": "To avoid having a convenience sample",
+    "correct_anwser": "A",
+    "explain": "Sử dụng panel (nhóm người tham gia đã đăng ký sẵn) chủ yếu giúp giảm chi phí và thời gian tuyển dụng người tham gia khảo sát, vì đã có sẵn cơ sở dữ liệu người dùng đủ điều kiện, sẵn sàng tham gia thay vì phải tuyển mới từ đầu mỗi lần."
+  }
+]
+

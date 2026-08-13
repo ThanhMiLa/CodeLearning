@@ -1,0 +1,500 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is NOT a reason you would want to have a high response rate?",
+    "option_A": "If you want to be more confident that you've detected a difference/change.",
+    "option_B": "If your population is very heterogeneous.",
+    "option_C": "If you want to be able to conduct more complicated statistical analyses.",
+    "option_D": "If you want to detect smaller, or more subtle differences/changes.",
+    "correct_anwser": "C",
+    "explain": "Tỷ lệ phản hồi cao giúp tăng độ tin cậy, xử lý quần thể không đồng nhất và phát hiện sự khác biệt nhỏ. Việc thực hiện các phân tích thống kê phức tạp phụ thuộc vào kích thước mẫu (sample size) và bản chất dữ liệu chứ không phải tỷ lệ phản hồi (response rate)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following tasks is most representative of the kind of work involved in qualitative research?",
+    "option_A": "Conducting interviews about how people use Excel spreadsheets",
+    "option_B": "Analyzing statistical data about visits to Amazon",
+    "option_C": "Writing software to classify user posts on Facebook",
+    "option_D": "Running an experimental trial to see if users like Google with banner ads",
+    "correct_anwser": "A",
+    "explain": "Nghiên cứu định tính (Qualitative research) tập trung vào việc hiểu sâu về hành vi, cảm xúc và lý do của người dùng. Phỏng vấn (Interviews) là phương pháp điển hình nhất của nghiên cứu định tính."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Among responses by interview participants that are relevant to your overarching question, what should you be paying particular attention to?",
+    "option_A": "Answers that confirm what you know.",
+    "option_B": "Answers that are surprising or unexpected.",
+    "option_C": "Answers delivered without emotion.",
+    "option_D": "Answers that show off the participant's cleverness.",
+    "correct_anwser": "B",
+    "explain": "Trong phỏng vấn UX, những câu trả lời bất ngờ hoặc ngoài dự đoán (surprising or unexpected) mang lại những insight mới mẻ và giá trị nhất, giúp phát hiện các góc khuất mà nhà thiết kế chưa lường trước."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Which of the following is worth noticing in an observation?\nI. The physical context where the user is.\nII. Pauses or missteps the user makes.\nIII. Comments the user makes during a task.",
+    "option_A": "II only",
+    "option_B": "III only",
+    "option_C": "II and III",
+    "option_D": "I, II and III",
+    "correct_anwser": "D",
+    "explain": "Khi quan sát người dùng, nghiên cứu viên cần chú ý đến cả bối cảnh môi trường xung quanh (I), hành vi/sự ngập ngừng/lỗi thao tác (II) và các bình luận/nhận xét của họ (III)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Sketching is used both for generating and for communicating ideas.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Phác thảo (Sketching) phục vụ hai mục đích chính trong UX: khám phá/tạo ra các ý tưởng mới (generating) và truyền đạt ý tưởng đó đến đồng nghiệp/khách hàng (communicating)."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Which of the following is NOT important to consider when defining your population?",
+    "option_A": "Number of questions you want to ask",
+    "option_B": "Characteristics of the people you're interested in",
+    "option_C": "Survey mode",
+    "option_D": "Relationship to the product",
+    "correct_anwser": "A",
+    "explain": "Khi xác định đối tượng quần thể (population), bạn cần quan tâm đến đặc điểm người dùng, mối quan hệ với sản phẩm và phương thức khảo sát. Số lượng câu hỏi (Number of questions) thuộc về khâu thiết kế bảng hỏi (survey design), không ảnh hưởng đến việc định nghĩa quần thể."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following is the LEAST true statement about open-ended questions?",
+    "option_A": "Responses require effort for coding and analysis.",
+    "option_B": "Respondents are more likely to skip open-ended questions.",
+    "option_C": "They can require more data cleaning.",
+    "option_D": "They provide bad data because responses are not standardized.",
+    "correct_anwser": "D",
+    "explain": "Câu hỏi mở (open-ended) cung cấp dữ liệu định tính phong phú và sâu sắc. Việc dữ liệu không chuẩn hóa không khiến nó trở thành 'dữ liệu tồi' (bad data)."
+  },
+  {
+    "question_id": 8,
+    "question_title": "The person who greets participants and communicates with them throughout a user test session is called the:",
+    "option_A": "Logger",
+    "option_B": "Moderator",
+    "option_C": "Interviewer",
+    "option_D": "Technician",
+    "correct_anwser": "B",
+    "explain": "Người chào hỏi, hướng dẫn và giao tiếp với người tham gia trong suốt buổi kiểm thử người dùng được gọi là Moderator (Người điều phối)."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Nielsen provides several recommendations for help and documentation. Which of the following is NOT one of his recommendations?",
+    "option_A": "Help should be focused on users' tasks",
+    "option_B": "Help should be small and searchable",
+    "option_C": "Help should include step-by-step instructions",
+    "option_D": "Help should be written from the system developers' point of view",
+    "correct_anwser": "D",
+    "explain": "Theo nguyên tắc Heuristics của Jakob Nielsen, tài liệu trợ giúp phải được viết theo ngôn ngữ và góc nhìn của người dùng (user's point of view), chứ không phải góc nhìn của lập trình viên hệ thống (developers' point of view)."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Nielsen provides several recommendations for help and documentation. Which of the following is NOT one of his recommendations?",
+    "option_A": "Help should be focused on users' tasks",
+    "option_B": "Help should be small and searchable",
+    "option_C": "Help should include step-by-step instructions",
+    "option_D": "Help should be written from the system developers' point of view",
+    "correct_anwser": "D",
+    "explain": "Theo nguyên tắc thiết kế Heuristics của Jakob Nielsen, phần trợ giúp (Help & Documentation) phải được viết theo ngôn ngữ và góc nhìn của người dùng, không được viết theo góc nhìn của lập trình viên hay nhà phát triển hệ thống."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following are techniques that might be used in qualitative data analysis?\nI. Clustering\nII. Running a statistical regression\nIII. Finding patterns",
+    "option_A": "I only",
+    "option_B": "III only",
+    "option_C": "I and III",
+    "option_D": "I, II and III",
+    "correct_anwser": "C",
+    "explain": "Phân tích dữ liệu định tính sử dụng các kỹ thuật như phân nhóm dữ liệu đồng loại (Clustering) và tìm kiếm các khuôn mẫu/xu hướng (Finding patterns). Kỹ thuật hồi quy thống kê (Statistical regression) là phương pháp phân tích định lượng."
+  },
+  {
+    "question_id": 3,
+    "question_title": "________ means \"to make an idea real or concrete.\"",
+    "option_A": "Assessment",
+    "option_B": "Communication",
+    "option_C": "Reification",
+    "option_D": "Reflection",
+    "correct_anwser": "C",
+    "explain": "Reification (Cụ thể hóa) là khái niệm chỉ việc chuyển đổi một tư tưởng, ý tưởng trừu tượng thành hình thái cụ thể, thực tế (chẳng hạn như việc tạo ra prototype từ khái niệm thiết kế)."
+  },
+  {
+    "question_id": 4,
+    "question_title": "All of the following are important to do when observing a user testing session, EXCEPT for:",
+    "option_A": "Capture recordings of the user's screen",
+    "option_B": "Capture audio recordings of the user thinking aloud",
+    "option_C": "Notify participants as soon as they have met each task's success criteria",
+    "option_D": "Use a logging sheet to capture when critical incidents occur",
+    "correct_anwser": "C",
+    "explain": "Trong buổi user testing, quan sát viên cần giữ thái độ trung lập và KHÔNG thông báo cho người dùng biết họ đã hoàn thành nhiệm vụ thành công hay chưa, vì điều này sẽ can thiệp vào hành vi tự nhiên và tâm lý của người tham gia."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Which of the following is NOT a way to match your UX goals to survey methods?",
+    "option_A": "Launch an exploratory survey to determine UX goals.",
+    "option_B": "Ask why you want to have the data.",
+    "option_C": "Have a story for why surveys are the best way to meet this UX goal.",
+    "option_D": "Define goals before choosing metrics.",
+    "correct_anwser": "A",
+    "explain": "Mục tiêu UX (UX goals) phải được xác định rõ ràng trước khi thiết kế và triển khai khảo sát. Triển khai một khảo sát thăm dò chỉ để đi 'tìm' mục tiêu UX là cách làm ngược quy trình nghiên cứu."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Why would a designer create storyboards as opposed to write scenarios?",
+    "option_A": "To better represent physical environment in which the technology would be used",
+    "option_B": "To better represent relationships among multiple people",
+    "option_C": "To better envision size or other physical constraints of the technology and its use",
+    "option_D": "All of the others",
+    "correct_anwser": "D",
+    "explain": "Visual hóa bằng Storyboard đem lại lợi thế vượt trội so with kịch bản văn bản (scenario) trong việc thể hiện trực quan bối cảnh môi trường xung quanh, mối quan hệ giữa các nhân vật và các giới hạn kích thước vật lý của thiết bị."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following is an example of a good use of a post-test questionnaire?",
+    "option_A": "Asking open-ended questions where participants can give any answer that comes to mind",
+    "option_B": "Asking follow-up questions to understand why participants gave answers that they did",
+    "option_C": "Obtaining quantified measures of participants subjective reactions to using a system",
+    "option_D": "Measuring the time it takes participants to complete a task",
+    "correct_anwser": "C",
+    "explain": "Bảng hỏi sau kiểm thử (Post-test questionnaire, như SUS hay SUPR-Q) được thiết kế tối ưu nhất cho việc đo lường định lượng phản ứng/đánh giá chủ quan của người dùng sau khi trải nghiệm hệ thống."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is not a question that can be answered by getting feedback on wireframes?",
+    "option_A": "Do screens contain the right functional components?",
+    "option_B": "Does the screen layout make sense?",
+    "option_C": "Is the displayed content ordered correctly?",
+    "option_D": "Do the screens provide adequate navigation?",
+    "correct_anwser": "D",
+    "explain": "Wireframe là thiết kế tĩnh thể hiện bố cục, thành phần chức năng và thứ tự nội dung trên từng màn hình đơn lẻ. Việc đánh giá tính đầy đủ và mượt mà của luồng điều hướng (navigation) giữa các màn hình đòi hỏi bản mẫu tương tác (interactive prototype) hoặc sơ đồ luồng (user flow)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "What technique can you use to learn about how large numbers of users navigate through an experience during the Optimization phase?",
+    "option_A": "Benchmarking",
+    "option_B": "Analytics Review",
+    "option_C": "A/B testing",
+    "option_D": "Remote usability testing",
+    "correct_anwser": "B",
+    "explain": "Trong giai đoạn Tối ưu hóa (Optimization phase), Phân tích số liệu (Analytics Review) là kỹ thuật định lượng tốt nhất để theo dõi luồng di chuyển và hành vi điều hướng của hàng triệu người dùng thực tế trên sản phẩm."
+  },
+  {
+    "question_id": 3,
+    "question_title": "About how many \"key findings\" should be included in a typical user test report?",
+    "option_A": "1",
+    "option_B": "2-3",
+    "option_C": "5-10",
+    "option_D": "20-50",
+    "correct_anwser": "C",
+    "explain": "Một báo cáo kiểm thử người dùng tiêu chuẩn nên tập trung vào khoảng 5 đến 10 phát hiện quan trọng nhất (key findings). Số lượng này đủ để truyền tải đầy đủ các vấn đề lớn mà không làm các stakeholder bị quá tải thông tin."
+  },
+  {
+    "question_id": 4,
+    "question_title": "What is the main problem with the \"Agree/Disagree\" response scale?",
+    "option_A": "Overly familiar to respondents, leading to satisficing",
+    "option_B": "Leads to acquiescence bias",
+    "option_C": "Cognitively burdensome",
+    "option_D": "Not understood by most respondents",
+    "correct_anwser": "B",
+    "explain": "Thang đo Đồng ý/Không đồng ý (Agree/Disagree) rất dễ gây ra Thiên vị đồng thuận (Acquiescence bias), nơi người tham gia có xu hướng chọn 'Đồng ý' theo bản năng để tỏ ra lịch sự hoặc hoàn thành nhanh khảo sát."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What alternative approaches can you use to engage people in research results? (pick all that apply)",
+    "option_A": "Extensive report",
+    "option_B": "Have stakeholders attend study sessions and participate in analyzing and interpreting data.",
+    "option_C": "Create and show videos of critical moments during tests",
+    "option_D": "Emails that include bullet point findings",
+    "option_E": "Brief executive summary",
+    "correct_anwser": "B, C",
+    "explain": "Để thu hút và lôi cuốn các bên liên quan (stakeholders) vào kết quả nghiên cứu một cách trực quan, việc mời họ tham dự/phân tích trực tiếp các buổi test (B) và cho họ xem video ghi lại các khoảnh khắc sự cố quan trọng của người dùng (C) là hai phương pháp tương tác hiệu quả nhất."
+  },
+  {
+    "question_id": 6,
+    "question_title": "This example would most likely be an example of (choose the BEST response):",
+    "option_A": "Hi-Fi Prototype",
+    "option_B": "Wireframes",
+    "option_C": "Lo-Fi Prototype",
+    "option_D": "Yes, wireframes need to look like a completely finished product",
+    "correct_anwser": "A",
+    "explain": "Hình ảnh minh họa có đầy đủ màu sắc, đồ họa chi tiết, hình ảnh nền và UI chỉn chu tiệm cận sản phẩm thật, đây chính là bản mẫu độ phân giải cao (Hi-Fi Prototype)."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following is NOT an element of a typical scenario?",
+    "option_A": "Agent",
+    "option_B": "Actions",
+    "option_C": "Location",
+    "option_D": "Goals",
+    "option_E": "Events",
+    "correct_anwser": "C",
+    "explain": "Một kịch bản UX (Scenario) tiêu chuẩn bao gồm: Đối tượng (Agent), Mục tiêu (Goals), Các hành động (Actions) và Các sự kiện/bối cảnh diễn ra (Events). Địa điểm vật lý (Location) không phải là thành phần cấu trúc bắt buộc của kịch bản."
+  },
+  {
+    "question_id": 8,
+    "question_title": "In UX, \"Design\" is concerned only with the aesthetic (or beauty-related) aspects of products.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Trong UX, thiết kế (Design) bao hàm cả tính năng, luồng tương tác, kiến trúc thông tin và khả năng sử dụng (usability), chứ không chỉ đơn thuần là khía cạnh thẩm mỹ hay vẻ bề ngoài của sản phẩm."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Finding 1. No Option to delete or modify Time Sheet entries.\nSeverity: 4\nHeuristic(s) Violated: Navigation\nWhile the existing prototype shows the list of time entries on the Time Sheet tab, it does not provide an option to Modify or Delete time entries. It is crucial when allowing users to DO something to allow them a way to UNDO or correct something done in error.\nWhat heuristic does this violate?",
+    "option_A": "Visibility of system status",
+    "option_B": "User control and freedom",
+    "option_C": "Recognition vs recall",
+    "option_D": "Error prevention",
+    "correct_anwser": "B",
+    "explain": "Việc không cho phép người dùng chỉnh sửa, xóa hoặc hoàn tác (undo) các dữ liệu đã nhập vi phạm nghiêm trọng nguyên tắc 'User control and freedom' (Khai thác quyền kiểm soát và sự tự do của người dùng)."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Brainstorming, morphological analysis, and “the worst idea” are examples of what kind of technique?",
+    "option_A": "Ideation",
+    "option_B": "Lo-fi prototyping",
+    "option_C": "Convergence",
+    "option_D": "Poor",
+    "correct_anwser": "A",
+    "explain": "Brainstorming ( động não), phân tích hình thái (morphological analysis) và 'ý tưởng tồi nhất' (the worst idea) là các kỹ thuật điển hình thuộc giai đoạn Tạo ý tưởng (Ideation) trong quy trình thiết kế UX."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is NOT a way to increase the perceived benefit of participating in a survey?",
+    "option_A": "Specify how the survey results will be used",
+    "option_B": "Identify the trustworthiness of the sponsoring organization",
+    "option_C": "Make the survey as short as possible",
+    "option_D": "Stress that opportunities to respond are limited",
+    "correct_anwser": "C",
+    "explain": "Rút ngắn độ dài khảo sát giúp giảm thiểu gánh nặng/chi phí thời gian cho người tham gia (reducing cost/burden), chứ không phải là phương pháp giúp gia tăng lợi ích cảm nhận (perceived benefit)."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Bill Buxton claims that ________ is not just a byproduct of design, but is central to design thinking and learning.",
+    "option_A": "Sketching",
+    "option_B": "Beauty",
+    "option_C": "Functionality",
+    "option_D": "User Testing",
+    "correct_anwser": "A",
+    "explain": "Bill Buxton (tác giả cuốn 'Sketching User Experiences') khẳng định phác thảo (Sketching) không chỉ là phụ phẩm của thiết kế, mà là công cụ cốt lõi trong tư duy thiết kế và quá trình học hỏi/khám phá giải pháp."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Some web forms give instantaneous feedback about the validity of data entered into a form field every time a user types a character. This type of “in-process feedback” helps usability because:",
+    "option_A": "It can be used to manipulate users into providing data they didn't intend to provide",
+    "option_B": "It encourages users to look up help and documentation to understand how the system works",
+    "option_C": "It helps prevent errors before they happen",
+    "option_D": "It keeps users focused on the current task rather than getting distracted",
+    "correct_anwser": "C",
+    "explain": "Phản hồi tức thì ngay trong lúc nhập liệu (in-process feedback/inline validation) hỗ trợ người dùng nhận biết và sửa lỗi ngay lập tức, từ đó ngăn ngừa các lỗi nghiêm trọng xảy ra trước khi bấm gửi form (Error prevention)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Which of the following topics are NOT a common part of the introduction to an interview?",
+    "option_A": "How confidentiality will be handled",
+    "option_B": "Expected duration of the interview",
+    "option_C": "How many other interview participants there are",
+    "option_D": "Overall goals of the interview",
+    "correct_anwser": "C",
+    "explain": "Phần mở đầu cuộc phỏng vấn thường tập trung vào mục đích, bảo mật thông tin và thời lượng dự kiến. Số lượng các ứng viên/người tham gia khác (Option C) không phải là thông tin cần thiết hay phổ biến cần thông báo cho ứng viên."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Affordances of user interface don't have much influence on how easily users learn to use the system.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Tính gợi ích (Affordance) của giao diện (ví dụ: nút trông có thể bấm được) ảnh hưởng rất lớn đến khả năng học hỏi và mức độ dễ sử dụng của hệ thống đối với người dùng."
+  },
+  {
+    "question_id": 7,
+    "question_title": "UX research at scale can be conducted by teams at these levels of maturity:\nI. UX team of one (Awareness)\nII. Mobilization\nIII. Collaboration\nIV. Executive Buy-In\nV. UX Obsessed",
+    "option_A": "I, II, III",
+    "option_B": "III, IV, V",
+    "option_C": "IV, V",
+    "option_D": "All",
+    "correct_anwser": "D",
+    "explain": "Nghiên cứu UX trên quy mô lớn (UX research at scale) có thể được triển khai ở tất cả các cấp độ trưởng thành (UX maturity levels) của tổ chức, từ nhóm UX chỉ có 1 người cho đến tổ chức hoàn toàn 'UX Obsessed'."
+  },
+  {
+    "question_id": 8,
+    "question_title": "A basic ethical principle of research involving human subjects that states that researchers need to confirm that participants in a study know the purpose of the study, what they will be asked to do, their right to withdraw or refuse to comply with aspects of the study, and what will be done with the data is ________.",
+    "option_A": "Usability",
+    "option_B": "Perceived usefulness",
+    "option_C": "Acquiescence",
+    "option_D": "Informed Consent",
+    "correct_anwser": "D",
+    "explain": "Informed Consent (Sự chấp thuận dựa trên thông tin đầy đủ) là nguyên tắc đạo đức cốt lõi trong nghiên cứu với con người, đảm bảo người tham gia hiểu rõ mục đích, quyền dừng tham gia và cách xử lý dữ liệu."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Why is it important to ask participants to announce when they believe they are done with a task?",
+    "option_A": "Otherwise there is no way to know if they've finished",
+    "option_B": "Allowing the moderator to declare a task “done” could give the participant more information than they would have if conducting the task outside the test environment",
+    "option_C": "Saying “I'm done” gives the participant a sense of accomplishment",
+    "option_D": "It allows the moderator to pay less attention to the current task and start to prepare for the next one",
+    "correct_anwser": "B",
+    "explain": "Nếu người điều phối (moderator) tự tuyên bố nhiệm vụ đã 'hoàn thành', họ có thể vô tình tiết lộ cho người dùng biết họ đã làm đúng/sai - điều không xảy ra trong môi trường thực tế. Việc để người tham gia tự xác nhận giúp đánh giá chính xác nhận thức của họ về kết quả công việc."
+  },
+  {
+    "question_id": 10,
+    "question_title": "Research at scale can be carried out during the following product development lifecycles:",
+    "option_A": "Discovery",
+    "option_B": "Design/Development",
+    "option_C": "Optimization",
+    "option_D": "All of the others",
+    "correct_anwser": "D",
+    "explain": "Nghiên cứu UX ở quy mô lớn (Research at scale) có thể thực hiện ở mọi giai đoạn trong vòng đời sản phẩm: Khám phá (Discovery), Thiết kế/Phát triển (Design/Development), và Tối ưu hóa (Optimization)."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is NOT a type of passive input?",
+    "option_A": "Application data like contacts, calendar events, or user's health information (e.g., steps)",
+    "option_B": "Weather data",
+    "option_C": "Picture taken by the user using the phone camera",
+    "option_D": "User's current location",
+    "correct_anwser": "C",
+    "explain": "Passive input là dữ liệu hệ thống tự động thu thập mà không cần sự can thiệp chủ động của người dùng. Việc chụp ảnh bằng máy ảnh là một hành động tương tác chủ động (active input)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is NOT a method one would use to understand why people are using a product at certain times?",
+    "option_A": "Surveys",
+    "option_B": "Clickstream analytics",
+    "option_C": "Concept Testing",
+    "option_D": "Interviews",
+    "option_E": "Remote testing",
+    "correct_anwser": "B",
+    "explain": "Phân tích Clickstream cung cấp dữ liệu định lượng về hành vi (người dùng bấm vào đâu, khi nào - WHAT), nhưng không giải thích được lý do hay động cơ bên trong (WHY)."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which of the following is the most accurate statement?",
+    "option_A": "Error can be reduced by designing surveys as well as well as possible within resource constraints.",
+    "option_B": "Error should be reduced to zero before launching a survey.",
+    "option_C": "It's impossible to affect error one way or another.",
+    "option_D": "Surveys should never be trusted because of how much error they involve.",
+    "correct_anwser": "A",
+    "explain": "Trong nghiên cứu khảo sát, sai số (error) không thể triệt tiêu hoàn toàn về 0, nhưng có thể giảm thiểu tối đa bằng cách thiết kế bảng hỏi chỉn chu nhất trong phạm vi nguồn lực cho phép."
+  },
+  {
+    "question_id": 4,
+    "question_title": "“Push” output can time information delivery for maximum effectiveness.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Mô hình \"Push\" (hệ thống chủ động đẩy thông tin) có thể chủ động lựa chọn thời điểm gửi thông tin (ví dụ: nhắc lịch đúng lúc) để đạt hiệu quả tối đa cho người dùng."
+  },
+  {
+    "question_id": 5,
+    "question_title": "In a semi-structured interview, why would you want to avoid a question such as \"Was it because you didn't know about the 'undo' feature that you were unable to complete the task?\"\nI. It is leading -- you are feeding a possible answer to the participant.\nII. It is closed-ended -- this is a yes-or-no question.\nIII. It is judgmental -- you are suggesting that the participant's lack of knowledge was a problem.",
+    "option_A": "I and II",
+    "option_B": "I and III",
+    "option_C": "II and III",
+    "option_D": "I, II and III",
+    "correct_anwser": "D",
+    "explain": "Câu hỏi này vi phạm cả 3 nguyên tắc phỏng vấn: (I) Mang tính dẫn dắt đáp án, (II) Là câu hỏi đóng Yes/No làm hạn chế thông tin, và (III) Phán xét/đánh giá kiến thức người dùng."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Effective ways of delivering findings to stakeholders include:\nI. Anecdotes of critical moments\nII. Retelling what happened during each session of a usability test\nIII. Having stakeholders attend study sessions and participating in analysing or interpreting data\nIV. Quotes or videos of critical moments",
+    "option_A": "I",
+    "option_B": "II",
+    "option_C": "II, IV",
+    "option_D": "I, III, IV",
+    "correct_anwser": "D",
+    "explain": "Cách truyền tải kết quả hiệu quả nhất là dùng mẩu chuyện ngắn (I), cho stakeholders tham gia quan sát/phân tích trực tiếp (III), và trích dẫn/video sự cố thực tế (IV). Kể lại chi tiết từng buổi test (II) gây tốn thời gian và lan man."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which of the following is NOT important for every survey question?",
+    "option_A": "Writing a question that every respondent will interpret in the way the researcher intends.",
+    "option_B": "Writing a question that every respondent will answer in the same way.",
+    "option_C": "Writing a question that every respondent will respond to accurately.",
+    "option_D": "Writing a question that every respondent is willing to answer.",
+    "correct_anwser": "B",
+    "explain": "Mục đích của khảo sát là tìm kiếm sự đa dạng trong quan điểm của các đối tượng khác nhau. Ép buộc mọi người trả lời theo 'cùng một cách' (in the same way) là không hợp lý và sai mục đích khảo sát."
+  },
+  {
+    "question_id": 8,
+    "question_title": "True or False: Baseline statistics such as task completion rate, time spent on task, and/or error rates should be included in user test reports.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "A",
+    "explain": "Báo cáo kiểm thử người dùng cần bao gồm các chỉ số thống kê nền tảng (baseline statistics) như tỷ lệ hoàn thành, thời gian thực hiện và tỷ lệ lỗi để cung cấp bằng chứng định lượng rõ ràng."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which of the following is most accurate?",
+    "option_A": "Surveys are good at broad descriptions of groups, but not at precise measurements.",
+    "option_B": "Surveys have largely been abandoned in modern research because they are so inaccurate.",
+    "option_C": "Surveys should never be combined with other types of methods.",
+    "option_D": "Surveys are good at measuring behavioral outcomes.",
+    "correct_anwser": "A",
+    "explain": "Khảo sát (Surveys) rất mạnh trong việc mô tả tổng quan xu hướng của một nhóm quần thể lớn, nhưng không thích hợp để đo lường chính xác các thông số chuyên sâu hay hành vi thực tế."
+  },
+  {
+    "question_id": 10,
+    "question_title": "A recommended technique for supporting \"flexibility and efficiency of use\" is:",
+    "option_A": "The use of keyboard \"accelerator\" shortcuts",
+    "option_B": "Make sure all commands are represented graphically on the screen",
+    "option_C": "Streamline the design to minimize page load times",
+    "option_D": "Eliminate as many commands as possible to prevent possible errors",
+    "correct_anwser": "A",
+    "explain": "Theo Nielsen's Heuristics, phím tắt (accelerator/shortcuts) giúp người dùng thành thạo thao tác nhanh hơn, hỗ trợ tối đa cho nguyên tắc 'Flexibility and efficiency of use'."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "This is the error that is introduced because some portion of the population is refusing to answer your questions.",
+    "option_A": "Coverage error",
+    "option_B": "Nonresponse error",
+    "option_C": "Sampling error",
+    "option_D": "Measurement error",
+    "correct_anwser": "B",
+    "explain": "Nonresponse error (Sai số do không phản hồi) xảy ra khi một nhóm đối tượng được chọn trong mẫu từ chối hoặc không thể tham gia trả lời câu hỏi khảo sát."
+  },
+  {
+    "question_id": 2,
+    "question_title": "According to Wikipedia, a “direct manipulation interface” is one that features “continuous representation of objects of interest and rapid, reversible, and incremental actions and feedback.” The “continuous representation of objects of interest” is best aligned with which principle of good UI design?",
+    "option_A": "Prevent errors before they happen",
+    "option_B": "Support recognition over recall",
+    "option_C": "Employ aesthetic and minimalist design",
+    "option_D": "Support user control and freedom",
+    "correct_anwser": "B",
+    "explain": "Việc hiển thị liên tục các đối tượng quan tâm (continuous representation) giúp người dùng dễ dàng nhận biết trực quan các thành phần UI thay vì phải ghi nhớ tên hay lệnh trong đầu, bám sát nguyên tắc 'Support recognition over recall'."
+  },
+  {
+    "question_id": 3,
+    "question_title": "What is the value of having an overarching question in an interview protocol?",
+    "option_A": "It provides a focus for the interview that the interviewer keeps in mind throughout the interview.",
+    "option_B": "It serves as a catch-all question to ask at the end of an interview.",
+    "option_C": "It is a good opening question to ask during the interview.",
+    "option_D": "It is a good way to elicit a summary of the interview participant's thoughts.",
+    "correct_anwser": "A",
+    "explain": "Overarching question (câu hỏi bao quát/cốt lõi) đóng vai trò định hướng chính, giúp người phỏng vấn luôn khắc ghi mục tiêu nghiên cứu xuyên suốt buổi trò chuyện để điều phối câu hỏi phù hợp."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Personas include different types of information, from demographics to motivations and sociocultural context. How should designers decide what information to include?",
+    "option_A": "They should focus on making the information as complete as possible",
+    "option_B": "They should focus on idiosyncratic characteristics of people they encountered in the formative research that will make personas as vivid as possible",
+    "option_C": "They should focus mostly on demographic information; other types of information are secondary",
+    "option_D": "They should focus on information that contributes to the distinct needs and potential barriers to and motivations for use that each class of target users has in relation to the technology being developed",
+    "correct_anwser": "D",
+    "explain": "Khi xây dựng Persona, nhà thiết kế cần chắt lọc những thông tin trực tiếp gắn liền với nhu cầu, rào cản và động lực sử dụng công nghệ của từng nhóm người dùng mục tiêu, thay vì liệt kê dàn trải các chi tiết không liên quan."
+  }
+]
