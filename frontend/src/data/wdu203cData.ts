@@ -2575,16 +2575,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "Copying competitors' features"
       },
       {
-        "question_id": 387,
-        "question_title": "What elements should a script include for a remote moderated test? (Choose 5 answers)",
-        "option_A": "Obtain Consent",
-        "option_B": "Make introductions",
-        "option_C": "Build rapport",
-        "option_D": "Exact instructions for how to complete tasks",
-        "correct_anwser": "A, B, C, E, F",
-        "explain": "Một kịch bản (script) cho bài kiểm tra từ xa có điều phối viên nên bao gồm: xin sự đồng ý (A), giới thiệu (B), xây dựng sự tin tưởng (C), thiết lập kỳ vọng về thời lượng/nội dung (E), và vai trò của điều phối viên/quan sát viên (F). Không nên đưa ra 'hướng dẫn chính xác cách hoàn thành nhiệm vụ' (D) vì điều này sẽ dẫn dắt người dùng, làm sai lệch kết quả kiểm thử usability tự nhiên."
-      },
-      {
         "question_id": 409,
         "question_title": "Why are these good research questions for a needs-finding study?",
         "option_A": "They will help the researcher learn how users currently complete the activity that their design will try to improve",
@@ -2613,156 +2603,12 @@ export const WDU203C_QUIZZES: QuizSet[] = [
     "questionsCount": 34,
     "questions": [
       {
-        "question_id": 1,
-        "question_title": "Technical determinists believe that sometimes the properties of technologies almost necessitate certain kinds of consequences.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Đây chính là định nghĩa cốt lõi của thuyết quyết định luận công nghệ (technical determinism) — cho rằng bản thân đặc tính của công nghệ gần như tất yếu dẫn đến những hệ quả xã hội nhất định, nên đáp án A (True) đúng."
-      },
-      {
-        "question_id": 2,
-        "question_title": "Granularity of the needed information is an important consideration when designing system inputs.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Mức độ chi tiết (granularity) của thông tin cần thu thập là yếu tố quan trọng khi thiết kế input hệ thống, vì thu thập quá thô hoặc quá chi tiết đều ảnh hưởng đến trải nghiệm và hiệu quả sử dụng, nên đáp án A (True) đúng."
-      },
-      {
-        "question_id": 3,
-        "question_title": "It's possible to create a useful, functional interactive prototype with very simple tools, such as paper, post-it notes, and scotch tape.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Prototype giấy (paper prototyping) sử dụng các công cụ đơn giản như giấy, post-it, băng keo vẫn có thể tạo ra một prototype tương tác hữu ích để thử nghiệm ý tưởng thiết kế, nên đáp án A (True) đúng."
-      },
-      {
-        "question_id": 4,
-        "question_title": "Creation of many alternative solutions increases the quality of the final design.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Việc tạo ra nhiều giải pháp thay thế (parallel prototyping) giúp nhà thiết kế khám phá nhiều hướng đi khác nhau, so sánh và chọn lọc ý tưởng tốt nhất, từ đó nâng cao chất lượng thiết kế cuối cùng, nên đáp án A (True) đúng."
-      },
-      {
-        "question_id": 5,
-        "question_title": "Sketching is used both for generating and for communicating ideas.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Vẽ phác thảo (sketching) vừa giúp nhà thiết kế tự khám phá và phát triển ý tưởng (generating), vừa là công cụ để truyền đạt ý tưởng đó cho người khác (communicating), nên đáp án A (True) đúng."
-      },
-      {
         "question_id": 6,
         "question_title": "A single designer can usually conduct a test of a lo-fi prototype by him/herself.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "B",
         "explain": "Việc kiểm thử prototype độ trung thực thấp (lo-fi, ví dụ paper prototype) thường cần ít nhất vài người (người điều phối, người đóng vai \"máy tính\" lật các mảnh giấy, người ghi chú) nên một nhà thiết kế thường khó tự mình thực hiện đầy đủ, nên đáp án B (False) đúng."
-      },
-      {
-        "question_id": 7,
-        "question_title": "It is important to be good at drawing to use sketching in UX Design",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Vẽ phác thảo (sketching) trong UX Design không yêu cầu kỹ năng vẽ đẹp hay chuyên nghiệp; mục đích chính là để nhanh chóng thể hiện và truyền đạt ý tưởng, nên không cần phải giỏi vẽ, đáp án B (False) đúng."
-      },
-      {
-        "question_id": 8,
-        "question_title": "True or False: It is not the role of the UX researcher to assign severity to problems found in user testing--this should be left up to the product owner.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Nhận định này sai vì việc đánh giá mức độ nghiêm trọng của các vấn đề usability được phát hiện chính là một phần công việc của nhà nghiên cứu UX, dựa trên chuyên môn và dữ liệu thu thập được, nên đáp án B đúng."
-      },
-      {
-        "question_id": 9,
-        "question_title": "Affordances of user interface don't have much influence on how easily users learn to use the system.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Affordance là đặc tính của giao diện cho biết một đối tượng có thể được sử dụng như thế nào (ví dụ nút bấm trông giống có thể nhấn được). Đây là yếu tố then chốt giúp người dùng nhận biết cách tương tác mà không cần hướng dẫn, do đó affordance có ảnh hưởng rất lớn đến khả năng học sử dụng hệ thống, không phải là ít ảnh hưởng."
-      },
-      {
-        "question_id": 10,
-        "question_title": "In order to have a mental model of a system that enable them to use that system effectively, users need to understand the technical underpinnings of that system.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Mô hình tinh thần (mental model) của người dùng chỉ cần phản ánh cách họ nghĩ hệ thống hoạt động dựa trên trải nghiệm và tương tác, không cần hiểu cơ chế kỹ thuật bên trong. Người dùng vẫn có thể sử dụng hiệu quả mà không biết chi tiết công nghệ nền tảng."
-      },
-      {
-        "question_id": 11,
-        "question_title": "Excellent drawing skills are needed to create effective storyboards.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Storyboard trong UX chủ yếu dùng để truyền đạt ý tưởng, ngữ cảnh sử dụng và luồng tương tác, không đòi hỏi kỹ năng vẽ đẹp. Hình vẽ đơn giản, kể cả que diêm (stick figures) vẫn có thể truyền tải hiệu quả thông điệp thiết kế."
-      },
-      {
-        "question_id": 12,
-        "question_title": "It's typically obvious which design solution, among alternatives they generated, designers should pursue.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Trong thực tế thiết kế, việc lựa chọn giải pháp tốt nhất giữa nhiều phương án thường không rõ ràng ngay lập tức; đó là lý do cần đánh giá, kiểm thử với người dùng và thu thập dữ liệu để đưa ra quyết định sáng suốt."
-      },
-      {
-        "question_id": 13,
-        "question_title": "While designers have to set defaults for many design elements, these default values rarely matter since users can just change them at any time.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Giá trị mặc định rất quan trọng vì phần lớn người dùng không thay đổi cài đặt mặc định. Do đó, thiết kế mặc định hợp lý ảnh hưởng lớn đến trải nghiệm và hành vi sử dụng của đa số người dùng."
-      },
-      {
-        "question_id": 14,
-        "question_title": "When sketching to come up with different design solutions, you should stop the first time you run out of ideas.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Trong quá trình phác thảo ý tưởng thiết kế, việc dừng lại ngay khi 'hết ý tưởng' thường bỏ lỡ các giải pháp sáng tạo hơn. Nên tiếp tục cố gắng vượt qua điểm bí ý tưởng ban đầu để khám phá thêm nhiều phương án khác nhau."
-      },
-      {
-        "question_id": 15,
-        "question_title": "In UX, \"Design\" is concerned only with the aesthetic (or beauty-related) aspects of products.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Trong UX, 'Design' không chỉ liên quan đến tính thẩm mỹ mà còn bao gồm chức năng, khả năng sử dụng, cấu trúc thông tin và trải nghiệm tổng thể của người dùng với sản phẩm."
-      },
-      {
-        "question_id": 16,
-        "question_title": "The primary concern of design is to create artifacts and systems that are aesthetically pleasing.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Mối quan tâm chính của thiết kế không chỉ là tính thẩm mỹ mà quan trọng hơn là tạo ra các sản phẩm/hệ thống đáp ứng đúng nhu cầu, dễ sử dụng và mang lại giá trị thực sự cho người dùng, tính thẩm mỹ chỉ là một trong nhiều yếu tố cần cân nhắc."
-      },
-      {
-        "question_id": 17,
-        "question_title": "Scenarios help designers reflect on user needs, how technology might address those needs, and potential issues that might arise with the use of the envisioned technology.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Scenario (kịch bản) là công cụ giúp nhà thiết kế suy ngẫm về nhu cầu người dùng, cách công nghệ có thể đáp ứng nhu cầu đó, và các vấn đề tiềm ẩn có thể phát sinh khi sử dụng công nghệ được hình dung, đây là định nghĩa đúng về mục đích của scenario trong thiết kế."
-      },
-      {
-        "question_id": 18,
-        "question_title": "Formal research methods are always preferable to informal methods for doing formative research.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Phương pháp nghiên cứu chính thức không phải lúc nào cũng tốt hơn phương pháp phi chính thức; việc lựa chọn phương pháp phù hợp phụ thuộc vào mục tiêu, nguồn lực và ngữ cảnh cụ thể của dự án nghiên cứu hình thành (formative research)."
-      },
-      {
-        "question_id": 19,
-        "question_title": "Although there are different types of input, UX designers only need to focus on designing the information that users will explicitly enter into the system.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Nhận định này sai vì ngoài input chủ động (explicit) do người dùng nhập, còn có input thụ động (passive input) như vị trí, dữ liệu cảm biến... mà nhà thiết kế UX cũng cần quan tâm khi thiết kế hệ thống."
       },
       {
         "question_id": 20,
@@ -2781,28 +2627,12 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Xác định phạm vi vấn đề (problem scoping) là bước nền tảng, giúp nhà thiết kế hiểu rõ ranh giới và bản chất của vấn đề cần giải quyết trước khi tiến hành các bước thiết kế tiếp theo, nên đáp án A (True) đúng."
       },
       {
-        "question_id": 22,
-        "question_title": "Bill Buxton states that all design is \"compromise.\" By this he means that fundamentally no design is particularly good.",
+        "question_id": 13,
+        "question_title": "While designers have to set defaults for many design elements, these default values rarely matter since users can just change them at any time.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "B",
-        "explain": "Ý của Bill Buxton là mọi thiết kế đều phải cân bằng, đánh đổi giữa nhiều yếu tố và ràng buộc khác nhau (compromise), chứ không có nghĩa là thiết kế không thể tốt. Một thiết kế tốt vẫn có thể đạt được dù phải thỏa hiệp giữa các yếu tố."
-      },
-      {
-        "question_id": 23,
-        "question_title": "Designers conduct formative research using a single, unified set of methods.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "B",
-        "explain": "Nghiên cứu hình thành (formative research) sử dụng nhiều phương pháp khác nhau (đa dạng) tùy vào câu hỏi nghiên cứu và ngữ cảnh, chứ không phải chỉ dùng một bộ phương pháp thống nhất duy nhất."
-      },
-      {
-        "question_id": 24,
-        "question_title": "\"Pull\" output gives user high level of control of information access.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Đầu ra dạng 'pull' (người dùng chủ động yêu cầu/lấy thông tin) cho phép người dùng kiểm soát cao khi nào và thông tin gì họ muốn truy cập, khác với 'push' (hệ thống tự động đẩy thông tin đến người dùng)."
+        "explain": "Giá trị mặc định rất quan trọng vì phần lớn người dùng không thay đổi cài đặt mặc định. Do đó, thiết kế mặc định hợp lý ảnh hưởng lớn đến trải nghiệm và hành vi sử dụng của đa số người dùng."
       },
       {
         "question_id": 378,
@@ -2813,12 +2643,44 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Giai đoạn tạo ý tưởng (generation phase) áp dụng tư duy phân kỳ (divergent thinking), mục tiêu cốt lõi là tạo ra số lượng lớn các ý tưởng đa dạng thay vì đi sâu vào hoàn thiện một ý tưởng duy nhất ngay từ đầu."
       },
       {
-        "question_id": 382,
-        "question_title": "True or False: Baseline statistics such as task completion rate, time spent on task, and/or error rates should be included in user test reports.",
+        "question_id": 405,
+        "question_title": "“Push” output can time information delivery for maximum effectiveness.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "A",
-        "explain": "Báo cáo kiểm thử người dùng chuẩn cần chứa các chỉ số nền tảng (baseline statistics) như tỷ lệ hoàn thành, thời gian thực hiện và tỷ lệ lỗi để đo lường định lượng mức độ hiệu quả."
+        "explain": "Mô hình \"Push\" (hệ thống chủ động đẩy thông tin) có thể chủ động lựa chọn thời điểm gửi thông tin (ví dụ: nhắc lịch đúng lúc) để đạt hiệu quả tối đa cho người dùng."
+      },
+      {
+        "question_id": 16,
+        "question_title": "The primary concern of design is to create artifacts and systems that are aesthetically pleasing.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Mối quan tâm chính của thiết kế không chỉ là tính thẩm mỹ mà quan trọng hơn là tạo ra các sản phẩm/hệ thống đáp ứng đúng nhu cầu, dễ sử dụng và mang lại giá trị thực sự cho người dùng, tính thẩm mỹ chỉ là một trong nhiều yếu tố cần cân nhắc."
+      },
+      {
+        "question_id": 11,
+        "question_title": "Excellent drawing skills are needed to create effective storyboards.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Storyboard trong UX chủ yếu dùng để truyền đạt ý tưởng, ngữ cảnh sử dụng và luồng tương tác, không đòi hỏi kỹ năng vẽ đẹp. Hình vẽ đơn giản, kể cả que diêm (stick figures) vẫn có thể truyền tải hiệu quả thông điệp thiết kế."
+      },
+      {
+        "question_id": 17,
+        "question_title": "Scenarios help designers reflect on user needs, how technology might address those needs, and potential issues that might arise with the use of the envisioned technology.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Scenario (kịch bản) là công cụ giúp nhà thiết kế suy ngẫm về nhu cầu người dùng, cách công nghệ có thể đáp ứng nhu cầu đó, và các vấn đề tiềm ẩn có thể phát sinh khi sử dụng công nghệ được hình dung, đây là định nghĩa đúng về mục đích của scenario trong thiết kế."
+      },
+      {
+        "question_id": 12,
+        "question_title": "It's typically obvious which design solution, among alternatives they generated, designers should pursue.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trong thực tế thiết kế, việc lựa chọn giải pháp tốt nhất giữa nhiều phương án thường không rõ ràng ngay lập tức; đó là lý do cần đánh giá, kiểm thử với người dùng và thu thập dữ liệu để đưa ra quyết định sáng suốt."
       },
       {
         "question_id": 389,
@@ -2829,20 +2691,36 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Personas không hoàn toàn là nhân vật hư cấu; chúng được xây dựng dựa trên dữ liệu và insight thực tế thu thập được từ nghiên cứu người dùng (formative research), đại diện cho các nhóm người dùng mục tiêu thực sự, dù được trình bày dưới dạng một 'nhân vật' tổng hợp."
       },
       {
-        "question_id": 390,
-        "question_title": "Wizard of Oz prototypes are most useful for prototyping screen-based applications",
+        "question_id": 15,
+        "question_title": "In UX, \"Design\" is concerned only with the aesthetic (or beauty-related) aspects of products.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "B",
-        "explain": "Wizard of Oz prototype là kỹ thuật trong đó một người vận hành ẩn danh mô phỏng hành vi của hệ thống (thường là các hệ thống thông minh, tương tác thoại, hoặc chưa có công nghệ hoàn chỉnh) để tạo cảm giác hệ thống đang hoạt động tự động. Kỹ thuật này hữu ích hơn cho các trải nghiệm phức tạp, không chỉ giới hạn ở ứng dụng dựa trên màn hình, nên phát biểu này là sai."
+        "explain": "Trong UX, 'Design' không chỉ liên quan đến tính thẩm mỹ mà còn bao gồm chức năng, khả năng sử dụng, cấu trúc thông tin và trải nghiệm tổng thể của người dùng với sản phẩm."
       },
       {
-        "question_id": 405,
-        "question_title": "“Push” output can time information delivery for maximum effectiveness.",
+        "question_id": 382,
+        "question_title": "True or False: Baseline statistics such as task completion rate, time spent on task, and/or error rates should be included in user test reports.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "A",
-        "explain": "Mô hình \"Push\" (hệ thống chủ động đẩy thông tin) có thể chủ động lựa chọn thời điểm gửi thông tin (ví dụ: nhắc lịch đúng lúc) để đạt hiệu quả tối đa cho người dùng."
+        "explain": "Báo cáo kiểm thử người dùng chuẩn cần chứa các chỉ số nền tảng (baseline statistics) như tỷ lệ hoàn thành, thời gian thực hiện và tỷ lệ lỗi để đo lường định lượng mức độ hiệu quả."
+      },
+      {
+        "question_id": 10,
+        "question_title": "In order to have a mental model of a system that enable them to use that system effectively, users need to understand the technical underpinnings of that system.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Mô hình tinh thần (mental model) của người dùng chỉ cần phản ánh cách họ nghĩ hệ thống hoạt động dựa trên trải nghiệm và tương tác, không cần hiểu cơ chế kỹ thuật bên trong. Người dùng vẫn có thể sử dụng hiệu quả mà không biết chi tiết công nghệ nền tảng."
+      },
+      {
+        "question_id": 9,
+        "question_title": "Affordances of user interface don't have much influence on how easily users learn to use the system.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Affordance là đặc tính của giao diện cho biết một đối tượng có thể được sử dụng như thế nào (ví dụ nút bấm trông giống có thể nhấn được). Đây là yếu tố then chốt giúp người dùng nhận biết cách tương tác mà không cần hướng dẫn, do đó affordance có ảnh hưởng rất lớn đến khả năng học sử dụng hệ thống, không phải là ít ảnh hưởng."
       },
       {
         "question_id": 413,
@@ -2853,20 +2731,28 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Giai đoạn Tạo ý tưởng (Ideation) chủ yếu diễn ra ở đầu quy trình thiết kế, ngay sau khi vấn đề đã được định hình rõ ràng, nhằm tìm kiếm càng nhiều phương án và giải pháp khả thi càng tốt."
       },
       {
-        "question_id": 418,
-        "question_title": "It is important not to criticize ideas during brainstorming.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Đây là một trong những nguyên tắc cơ bản của brainstorming: không chỉ trích ý tưởng ngay khi chúng được đưa ra, vì điều này sẽ kìm hãm sự sáng tạo và khiến người tham gia ngại chia sẻ ý tưởng táo bạo. Việc đánh giá, chọn lọc ý tưởng nên diễn ra ở giai đoạn sau."
-      },
-      {
-        "question_id": 419,
-        "question_title": "Designers should aim to generate about half a dozen solutions when they ideate.",
+        "question_id": 7,
+        "question_title": "It is important to be good at drawing to use sketching in UX Design",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "B",
-        "explain": "Trong giai đoạn ideate (lên ý tưởng), các nhà thiết kế nên cố gắng tạo ra CÀNG NHIỀU ý tưởng càng tốt (thường là hàng chục ý tưởng), không nên giới hạn ở khoảng nửa tá (6 ý tưởng), vì mục tiêu của ideation là khám phá không gian giải pháp rộng nhất có thể trước khi thu hẹp lại."
+        "explain": "Vẽ phác thảo (sketching) trong UX Design không yêu cầu kỹ năng vẽ đẹp hay chuyên nghiệp; mục đích chính là để nhanh chóng thể hiện và truyền đạt ý tưởng, nên không cần phải giỏi vẽ, đáp án B (False) đúng."
+      },
+      {
+        "question_id": 23,
+        "question_title": "Designers conduct formative research using a single, unified set of methods.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Nghiên cứu hình thành (formative research) sử dụng nhiều phương pháp khác nhau (đa dạng) tùy vào câu hỏi nghiên cứu và ngữ cảnh, chứ không phải chỉ dùng một bộ phương pháp thống nhất duy nhất."
+      },
+      {
+        "question_id": 1,
+        "question_title": "Technical determinists believe that sometimes the properties of technologies almost necessitate certain kinds of consequences.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Đây chính là định nghĩa cốt lõi của thuyết quyết định luận công nghệ (technical determinism) — cho rằng bản thân đặc tính của công nghệ gần như tất yếu dẫn đến những hệ quả xã hội nhất định, nên đáp án A (True) đúng."
       },
       {
         "question_id": 422,
@@ -2877,12 +2763,116 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Prototype độ trung thực thấp (low-fidelity) thường dùng để thu thập phản hồi về ý tưởng, luồng chức năng tổng thể, trong khi prototype độ trung thực cao (high-fidelity) cho phản hồi chi tiết hơn về giao diện, thẩm mỹ và tương tác cụ thể. Vì vậy loại phản hồi thu được là khác nhau."
       },
       {
+        "question_id": 14,
+        "question_title": "When sketching to come up with different design solutions, you should stop the first time you run out of ideas.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trong quá trình phác thảo ý tưởng thiết kế, việc dừng lại ngay khi 'hết ý tưởng' thường bỏ lỡ các giải pháp sáng tạo hơn. Nên tiếp tục cố gắng vượt qua điểm bí ý tưởng ban đầu để khám phá thêm nhiều phương án khác nhau."
+      },
+      {
+        "question_id": 19,
+        "question_title": "Although there are different types of input, UX designers only need to focus on designing the information that users will explicitly enter into the system.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Nhận định này sai vì ngoài input chủ động (explicit) do người dùng nhập, còn có input thụ động (passive input) như vị trí, dữ liệu cảm biến... mà nhà thiết kế UX cũng cần quan tâm khi thiết kế hệ thống."
+      },
+      {
+        "question_id": 3,
+        "question_title": "It's possible to create a useful, functional interactive prototype with very simple tools, such as paper, post-it notes, and scotch tape.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Prototype giấy (paper prototyping) sử dụng các công cụ đơn giản như giấy, post-it, băng keo vẫn có thể tạo ra một prototype tương tác hữu ích để thử nghiệm ý tưởng thiết kế, nên đáp án A (True) đúng."
+      },
+      {
+        "question_id": 419,
+        "question_title": "Designers should aim to generate about half a dozen solutions when they ideate.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trong giai đoạn ideate (lên ý tưởng), các nhà thiết kế nên cố gắng tạo ra CÀNG NHIỀU ý tưởng càng tốt (thường là hàng chục ý tưởng), không nên giới hạn ở khoảng nửa tá (6 ý tưởng), vì mục tiêu của ideation là khám phá không gian giải pháp rộng nhất có thể trước khi thu hẹp lại."
+      },
+      {
+        "question_id": 390,
+        "question_title": "Wizard of Oz prototypes are most useful for prototyping screen-based applications",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Wizard of Oz prototype là kỹ thuật trong đó một người vận hành ẩn danh mô phỏng hành vi của hệ thống (thường là các hệ thống thông minh, tương tác thoại, hoặc chưa có công nghệ hoàn chỉnh) để tạo cảm giác hệ thống đang hoạt động tự động. Kỹ thuật này hữu ích hơn cho các trải nghiệm phức tạp, không chỉ giới hạn ở ứng dụng dựa trên màn hình, nên phát biểu này là sai."
+      },
+      {
+        "question_id": 22,
+        "question_title": "Bill Buxton states that all design is \"compromise.\" By this he means that fundamentally no design is particularly good.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Ý của Bill Buxton là mọi thiết kế đều phải cân bằng, đánh đổi giữa nhiều yếu tố và ràng buộc khác nhau (compromise), chứ không có nghĩa là thiết kế không thể tốt. Một thiết kế tốt vẫn có thể đạt được dù phải thỏa hiệp giữa các yếu tố."
+      },
+      {
+        "question_id": 4,
+        "question_title": "Creation of many alternative solutions increases the quality of the final design.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Việc tạo ra nhiều giải pháp thay thế (parallel prototyping) giúp nhà thiết kế khám phá nhiều hướng đi khác nhau, so sánh và chọn lọc ý tưởng tốt nhất, từ đó nâng cao chất lượng thiết kế cuối cùng, nên đáp án A (True) đúng."
+      },
+      {
+        "question_id": 24,
+        "question_title": "\"Pull\" output gives user high level of control of information access.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Đầu ra dạng 'pull' (người dùng chủ động yêu cầu/lấy thông tin) cho phép người dùng kiểm soát cao khi nào và thông tin gì họ muốn truy cập, khác với 'push' (hệ thống tự động đẩy thông tin đến người dùng)."
+      },
+      {
+        "question_id": 5,
+        "question_title": "Sketching is used both for generating and for communicating ideas.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Vẽ phác thảo (sketching) vừa giúp nhà thiết kế tự khám phá và phát triển ý tưởng (generating), vừa là công cụ để truyền đạt ý tưởng đó cho người khác (communicating), nên đáp án A (True) đúng."
+      },
+      {
+        "question_id": 418,
+        "question_title": "It is important not to criticize ideas during brainstorming.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Đây là một trong những nguyên tắc cơ bản của brainstorming: không chỉ trích ý tưởng ngay khi chúng được đưa ra, vì điều này sẽ kìm hãm sự sáng tạo và khiến người tham gia ngại chia sẻ ý tưởng táo bạo. Việc đánh giá, chọn lọc ý tưởng nên diễn ra ở giai đoạn sau."
+      },
+      {
         "question_id": 431,
         "question_title": "Is the following statement true or false?\nYou should always include a pre-test questionnaire in any user test you conduct.",
         "option_A": "True",
         "option_B": "False",
         "correct_anwser": "B",
         "explain": "Bảng hỏi trước kiểm thử (pre-test questionnaire) không bắt buộc trong mọi buổi user test. Tùy thuộc vào mục tiêu nghiên cứu và thông tin đã thu thập trước đó (ví dụ từ bước tuyển mộ), nhà nghiên cứu có thể bỏ qua bước này để tiết kiệm thời gian."
+      },
+      {
+        "question_id": 18,
+        "question_title": "Formal research methods are always preferable to informal methods for doing formative research.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Phương pháp nghiên cứu chính thức không phải lúc nào cũng tốt hơn phương pháp phi chính thức; việc lựa chọn phương pháp phù hợp phụ thuộc vào mục tiêu, nguồn lực và ngữ cảnh cụ thể của dự án nghiên cứu hình thành (formative research)."
+      },
+      {
+        "question_id": 2,
+        "question_title": "Granularity of the needed information is an important consideration when designing system inputs.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Mức độ chi tiết (granularity) của thông tin cần thu thập là yếu tố quan trọng khi thiết kế input hệ thống, vì thu thập quá thô hoặc quá chi tiết đều ảnh hưởng đến trải nghiệm và hiệu quả sử dụng, nên đáp án A (True) đúng."
+      },
+      {
+        "question_id": 8,
+        "question_title": "True or False: It is not the role of the UX researcher to assign severity to problems found in user testing--this should be left up to the product owner.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Nhận định này sai vì việc đánh giá mức độ nghiêm trọng của các vấn đề usability được phát hiện chính là một phần công việc của nhà nghiên cứu UX, dựa trên chuyên môn và dữ liệu thu thập được, nên đáp án B đúng."
       }
     ]
   }

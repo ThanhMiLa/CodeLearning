@@ -14,7 +14,8 @@ import {
   Sparkles, 
   BookOpen,
   Check,
-  X
+  X,
+  Shuffle
 } from 'lucide-react';
 
 
@@ -42,8 +43,16 @@ const QuizWorkspaceContent: React.FC = () => {
   const isSubjectMode = quizId ? quizId.toLowerCase() in SUBJECT_CODES : false;
   const isExamMode = quizId === 'swr302-random-exam' || quizId === 'hsf302-random-exam' || quizId === 'wdu203c-random-exam';
 
+  // State for in-memory shuffled questions order
+  const [shuffledQuestionsState, setShuffledQuestionsState] = useState<QuizQuestion[] | null>(null);
+
+  // Reset shuffled state when quizId changes
+  useEffect(() => {
+    setShuffledQuestionsState(null);
+  }, [quizId]);
+
   // Build the merged & shuffled question list (or single quiz set / random exam)
-  const { questions: activeQuestions, title: activeTitle } = useMemo(() => {
+  const { questions: baseQuestions, title: activeTitle } = useMemo(() => {
     if (!quizId) return { questions: [] as QuizQuestion[], title: '' };
 
     if (quizId === 'wdu203c-random-exam') {
@@ -192,6 +201,14 @@ const QuizWorkspaceContent: React.FC = () => {
       };
     }
   }, [quizId, isSubjectMode]);
+
+  // Combine base questions with in-memory shuffled state
+  const activeQuestions = useMemo(() => {
+    if (shuffledQuestionsState && shuffledQuestionsState.length > 0) {
+      return shuffledQuestionsState;
+    }
+    return baseQuestions;
+  }, [shuffledQuestionsState, baseQuestions]);
 
   if (activeQuestions.length === 0) {
     return (
@@ -429,6 +446,21 @@ const QuizWorkspaceContent: React.FC = () => {
     setQuestionResults(newResults);
   };
 
+  const handleShuffleQuestions = () => {
+    if (window.confirm(t('quiz.shuffle_confirm_message', 'Bạn có chắc chắn muốn xáo trộn ngẫu nhiên thứ tự các câu hỏi và làm lại từ đầu không? Toàn bộ câu trả lời hiện tại sẽ được làm mới.'))) {
+      const listToShuffle = baseQuestions.length > 0 ? baseQuestions : activeQuestions;
+      const shuffled = [...listToShuffle].sort(() => Math.random() - 0.5);
+
+      setShuffledQuestionsState(shuffled);
+      setSelectedOptions({});
+      setSubmittedQuestions({});
+      setQuestionResults({});
+      setIsExamSubmitted(false);
+      setCurrentQuestionIdx(0);
+      localStorage.removeItem(localStorageKey);
+    }
+  };
+
   const handleResetQuiz = () => {
     if (window.confirm(t('quiz.reset_confirm_message', 'Are you sure you want to reset this quiz? All your answers will be cleared.'))) {
       setSelectedOptions({});
@@ -522,7 +554,16 @@ const QuizWorkspaceContent: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 self-end md:self-auto">
+          <div className="flex items-center space-x-2.5 self-end md:self-auto">
+            <button
+              onClick={handleShuffleQuestions}
+              className="inline-flex items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-500/10 dark:bg-indigo-500/15 px-3.5 py-2 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 shadow-sm transition-all active:scale-95"
+              title="Xáo trộn ngẫu nhiên thứ tự các câu hỏi và làm lại từ đầu"
+            >
+              <Shuffle className="h-3.5 w-3.5 mr-1.5 text-indigo-500" />
+              <span>{t('quiz.shuffle_questions', 'Xáo Trộn Câu Hỏi')}</span>
+            </button>
+
             <button
               onClick={handleResetQuiz}
               className="inline-flex items-center justify-center rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 hover:border-rose-500/20 shadow-sm transition-all active:scale-98"
