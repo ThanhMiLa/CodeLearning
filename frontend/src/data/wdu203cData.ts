@@ -11,8 +11,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
   {
     "id": "wdu203c-module-1-single-choice",
     "title": "Module 1 - Single Choice",
-    "description": "Tập hợp 254 câu hỏi trắc nghiệm chọn 1 đáp án đúng duy nhất (đã loại bỏ trùng lặp).",
-    "questionsCount": 254,
+    "description": "Tập hợp 247 câu hỏi trắc nghiệm chọn 1 đáp án đúng duy nhất (đã loại bỏ trùng lặp).",
+    "questionsCount": 247,
     "questions": [
       {
         "question_id": 1,
@@ -2221,6 +2221,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "I, II",
         "option_C": "II, IV",
         "option_D": "I, III, IV",
+        "option_E": "V",
         "correct_anwser": "E",
         "explain": "Tất cả các yếu tố được liệt kê (chỉ số thu thập được, khả năng tiếp cận panel, yêu cầu tốc độ mạng, khả năng thu thập màn hình/âm thanh/dữ liệu khác) đều là những cân nhắc quan trọng khi lựa chọn nền tảng/công nghệ kiểm thử. Do đó đáp án đúng là 'None of the above' (V), tức không có yếu tố nào trong số này là không quan trọng."
       },
@@ -2231,6 +2232,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "I, II, and V",
         "option_C": "IV and V",
         "option_D": "II, IV, and V",
+        "option_E": "I, III, IV, and V",
         "correct_anwser": "E",
         "explain": "Đáp án E (I, III, IV, và V) gồm: Rõ ràng (Clarity), Có thể trả lời được (Ability to be answered), Đạo đức tốt (Ethical excellence), và Có ý nghĩa (Significance) - đây là các đặc điểm chuẩn của một câu hỏi nghiên cứu tốt. 'Consistency' (tính nhất quán) không phải là tiêu chí điển hình để đánh giá chất lượng câu hỏi nghiên cứu."
       },
@@ -2241,6 +2243,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "Instrumented environments",
         "option_C": "Artificial Intelligence-based systems",
         "option_D": "Virtual and augmented reality",
+        "option_E": "None of the others",
         "correct_anwser": "E",
         "explain": "Tất cả các xu hướng công nghệ được liệt kê (màn hình đa dạng, môi trường được trang bị cảm biến, hệ thống AI, thực tế ảo/tăng cường) đều đòi hỏi nhà thiết kế phải thay đổi cách họ tạo mẫu và kiểm thử. Do đó đáp án đúng là 'None of the others' (E) - không có xu hướng nào trong số này KHÔNG yêu cầu thay đổi."
       },
@@ -2253,16 +2256,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "Help should be written from the system developers' point of view",
         "correct_anwser": "D",
         "explain": "Nielsen khuyến nghị tài liệu trợ giúp nên tập trung vào tác vụ của người dùng (A), dễ tìm kiếm/nhỏ gọn (B), có hướng dẫn từng bước cụ thể (C). Ông không khuyến nghị viết tài liệu trợ giúp theo góc nhìn của nhà phát triển hệ thống (D) - trái lại, nó nên được viết từ góc nhìn và ngôn ngữ của người dùng."
-      },
-      {
-        "question_id": 392,
-        "question_title": "__________ means \"to make an idea real or concrete.\"",
-        "option_A": "Assessment",
-        "option_B": "Communication",
-        "option_C": "Reification",
-        "option_D": "Reflection",
-        "correct_anwser": "C",
-        "explain": "'Reification' (cụ thể hóa/hiện thực hóa) có nghĩa là biến một ý tưởng trừu tượng thành thứ gì đó thực tế, cụ thể hơn - chẳng hạn như việc chuyển ý tưởng thiết kế thành bản phác thảo hoặc nguyên mẫu."
       },
       {
         "question_id": 393,
@@ -2375,16 +2368,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Nếu người điều phối (moderator) tự tuyên bố nhiệm vụ đã 'hoàn thành', họ có thể vô tình tiết lộ cho người dùng biết họ đã làm đúng/sai - điều không xảy ra trong môi trường thực tế. Việc để người tham gia tự xác nhận giúp đánh giá chính xác nhận thức của họ về kết quả công việc."
       },
       {
-        "question_id": 404,
-        "question_title": "Which of the following is the most accurate statement?",
-        "option_A": "Error can be reduced by designing surveys as well as well as possible within resource constraints.",
-        "option_B": "Error should be reduced to zero before launching a survey.",
-        "option_C": "It's impossible to affect error one way or another.",
-        "option_D": "Surveys should never be trusted because of how much error they involve.",
-        "correct_anwser": "A",
-        "explain": "Trong nghiên cứu khảo sát, sai số (error) không thể triệt tiêu hoàn toàn về 0, nhưng có thể giảm thiểu tối đa bằng cách thiết kế bảng hỏi chỉn chu nhất trong phạm vi nguồn lực cho phép."
-      },
-      {
         "question_id": 406,
         "question_title": "This is the error that is introduced because some portion of the population is refusing to answer your questions.",
         "option_A": "Coverage error",
@@ -2479,27 +2462,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Kỹ thuật yêu cầu người tham gia nói to suy nghĩ khi thực hiện nhiệm vụ được gọi là 'The Think-Aloud Protocol' (giao thức nói to suy nghĩ). 'What You See Is What You Get' (WYSIWYG) là một khái niệm hoàn toàn khác, liên quan đến giao diện hiển thị đúng như những gì sẽ được xuất ra, không liên quan gì đến kỹ thuật kiểm thử người dùng này."
       },
       {
-        "question_id": 417,
-        "question_title": "Which of the following can prototypes help designers test?",
-        "option_A": "The overall design concept",
-        "option_B": "Functionality of different components of the system",
-        "option_C": "Screen layouts",
-        "option_D": "User interactions",
-        "correct_anwser": "E",
-        "explain": "Nguyên mẫu (prototypes) có thể được sử dụng để kiểm thử nhiều khía cạnh khác nhau của thiết kế, bao gồm: khái niệm thiết kế tổng thể, chức năng của các thành phần hệ thống, bố cục màn hình, và các tương tác của người dùng. Vì vậy đáp án đúng là 'All of the others' (E) - tất cả các lựa chọn trên đều đúng."
-      },
-      {
-        "question_id": 420,
-        "question_title": "Which new technological trend is not requiring designers to change how they prototype and test their systems?",
-        "option_A": "Proliferation of screens (smart watches, embedded displays, etc.) for which designers need to design user experiences",
-        "option_B": "Instrumented environments",
-        "option_C": "Artificial Intelligence-based systems",
-        "option_D": "Virtual and augmented reality",
-        "option_E": "None of the others",
-        "correct_anwser": "E",
-        "explain": "Tất cả các xu hướng công nghệ được liệt kê (màn hình đa dạng, môi trường được trang bị cảm biến, hệ thống AI, thực tế ảo/tăng cường) đều đòi hỏi nhà thiết kế phải thay đổi cách họ tạo mẫu và kiểm thử. Do đó đáp án đúng là 'None of the others' (E) - không có xu hướng nào trong số này KHÔNG yêu cầu thay đổi."
-      },
-      {
         "question_id": 421,
         "question_title": "Is this a good scope for a user test? Scope of the evaluation includes: Report an event when someone else is being a victim of robbery; Check the map to see if a place is dangerous; Protect themselves in case they are the victim of smartphone robbery.",
         "option_A": "No, a user test needs to include testing every single task in the application to deliver valuable data",
@@ -2532,26 +2494,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Số lượng persona nên tương ứng với số nhóm (classes) người dùng mục tiêu khác nhau mà nhóm thiết kế đã xác định được qua nghiên cứu nền tảng (formative research), chứ không phải một con số cố định nào đó."
       },
       {
-        "question_id": 425,
-        "question_title": "If a user of a system is unable to determine whether an action they took helped move them closer to achieving their goal, we would say that the system fails to bridge:",
-        "option_A": "The Gulf of Inspection",
-        "option_B": "The Gulf of Expectation",
-        "option_C": "The Gulf of Execution",
-        "option_D": "The Gulf of Evaluation",
-        "correct_anwser": "D",
-        "explain": "Theo lý thuyết của Donald Norman, Gulf of Evaluation (khoảng cách đánh giá) là khoảng cách giữa việc người dùng nhận biết và diễn giải trạng thái hệ thống để xác định xem hành động của họ có giúp đạt được mục tiêu hay không. Khi người dùng không biết hành động có hiệu quả hay không, hệ thống đã thất bại trong việc thu hẹp khoảng cách này."
-      },
-      {
-        "question_id": 426,
-        "question_title": "By helping users form effective _____, we can help users to predict the results of actions they haven't yet performed using a system.",
-        "option_A": "System images",
-        "option_B": "Assumptions",
-        "option_C": "Feedback",
-        "option_D": "Conceptual models",
-        "correct_anwser": "D",
-        "explain": "Conceptual model (mô hình khái niệm) là sự hiểu biết của người dùng về cách hệ thống hoạt động. Khi mô hình này chính xác, người dùng có thể dự đoán kết quả của các hành động mà họ chưa từng thực hiện trước đó."
-      },
-      {
         "question_id": 427,
         "question_title": "What should you do during the think-aloud protocol?",
         "option_A": "Let the participant hear what you're thinking while you observe them.",
@@ -2560,16 +2502,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "Sit quietly and observe, even if the participant says nothing.",
         "correct_anwser": "B",
         "explain": "Trong think-aloud protocol, nhà nghiên cứu nên nhắc nhở người tham gia tiếp tục nói ra suy nghĩ của họ bằng những câu hỏi ngắn (như 'Bạn đang nghĩ gì?') khi họ im lặng, để duy trì dòng chảy thông tin về suy nghĩ của người dùng."
-      },
-      {
-        "question_id": 428,
-        "question_title": "Which of the following steps will you be learning about in this user needs assessment course? I. Preparing for and conducting interviews. II. Observing users using a product or service. III. Analyzing qualitative data to arrive at insights.",
-        "option_A": "I and II",
-        "option_B": "I and III",
-        "option_C": "II and III",
-        "option_D": "I, II, and III",
-        "correct_anwser": "D",
-        "explain": "Khóa học về đánh giá nhu cầu người dùng (user needs assessment) thường bao gồm đầy đủ các bước: chuẩn bị và tiến hành phỏng vấn, quan sát người dùng sử dụng sản phẩm/dịch vụ, và phân tích dữ liệu định tính để rút ra insight, nên đáp án đúng là cả ba (I, II, và III)."
       },
       {
         "question_id": 429,
@@ -2677,8 +2609,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
   {
     "id": "wdu203c-module-3-true-false",
     "title": "Module 3 - True / False",
-    "description": "Tập hợp 35 câu hỏi Đúng / Sai (True / False).",
-    "questionsCount": 35,
+    "description": "Tập hợp 34 câu hỏi Đúng / Sai (True / False).",
+    "questionsCount": 34,
     "questions": [
       {
         "question_id": 1,
@@ -2951,14 +2883,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "False",
         "correct_anwser": "B",
         "explain": "Bảng hỏi trước kiểm thử (pre-test questionnaire) không bắt buộc trong mọi buổi user test. Tùy thuộc vào mục tiêu nghiên cứu và thông tin đã thu thập trước đó (ví dụ từ bước tuyển mộ), nhà nghiên cứu có thể bỏ qua bước này để tiết kiệm thời gian."
-      },
-      {
-        "question_id": 432,
-        "question_title": "“Push” output can be time information delivery for maximum effectiveness.",
-        "option_A": "True",
-        "option_B": "False",
-        "correct_anwser": "A",
-        "explain": "Mô hình \"Push\" (đẩy thông tin chủ động từ hệ thống) cho phép căn chỉnh thời điểm gửi thông tin (ví dụ: thông báo đúng thời điểm người dùng cần) để đạt được hiệu quả trải nghiệm cao nhất."
       }
     ]
   }
