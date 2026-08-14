@@ -31,7 +31,7 @@ const SUBJECT_TITLES: Record<string, string> = {
   'hsf302': 'HSF302 - All Questions (Shuffled)',
   'swr302': 'SWR302 - All Questions (Shuffled)',
   'swt301': 'SWT301 - All Questions (Shuffled)',
-  'wdu203c': 'WDU203c - All 289 Unique Questions (Shuffled)',
+  'wdu203c': 'WDU203c - All 291 Unique Questions (Shuffled)',
 };
 
 const QuizWorkspaceContent: React.FC = () => {

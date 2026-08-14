@@ -964,17 +964,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "It's a series of questions that are used together to form a scale."
       },
       {
-        "question_id": 116,
-        "question_title": "Under what circumstances is remote testing appropriate?\nI. It is difficult to access the product/experience.\nII. Participants from a variety of geographic locations are needed.\nIII. Time is limited.\nIV. There is a lot of Personally Identifiable Information required.",
-        "option_A": "I, II, III",
-        "option_B": "I, IV",
-        "correct_anwser": "A",
-        "explain": "Kiểm thử từ xa (remote testing) phù hợp khi: khó tiếp cận sản phẩm/trải nghiệm trực tiếp, cần người tham gia ở nhiều vị trí địa lý khác nhau, thời gian hạn chế, hoặc có nhiều thông tin cá nhân nhạy cảm cần bảo mật. Tất cả các trường hợp trên đều là lý do hợp lý, nên đáp án là tất cả các đáp án trên.",
-        "option_C": "I, III, IV",
-        "option_D": "II, III",
-        "option_E": "V. All of the above"
-      },
-      {
         "question_id": 119,
         "question_title": "Which of the following is not one of the qualities of well-design tasks for use in a user test?",
         "option_A": "Realistic",
@@ -1471,7 +1460,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_A": "Leave it as is",
         "option_B": "Add more technical jargon",
         "correct_anwser": "C",
-        "explain": "Khi viết kịch bản tác vụ kiểm thử, cần tránh dùng đúng các thuật ngữ hiển thị trên UI (như ",
+        "explain": "Khi viết kịch bản tác vụ kiểm thử, cần tránh dùngWhat You See Is What You Get đúng các thuật ngữ hiển thị trên UI (như ",
         "option_C": "Reword it to avoid interface-specific terms",
         "option_D": "Ask users to guess the meaning"
       },
@@ -1876,17 +1865,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "To impress clients"
       },
       {
-        "question_id": 259,
-        "question_title": "Under what circumstances is remote testing appropriate?",
-        "option_A": "I, II, III",
-        "option_B": "I, IV",
-        "correct_anwser": "A",
-        "explain": "Kiểm thử từ xa (remote testing) phù hợp khi: khó tiếp cận sản phẩm/trải nghiệm trực tiếp, cần người tham gia ở nhiều vị trí địa lý khác nhau, thời gian hạn chế, hoặc có nhiều thông tin cá nhân nhạy cảm (PII) cần bảo mật. Tất cả các trường hợp trên đều là lý do hợp lý để chọn remote testing, nên đáp án là 'Tất cả các đáp án trên'.",
-        "option_C": "I, III, IV",
-        "option_D": "II, III",
-        "option_E": "V. All of the above"
-      },
-      {
         "question_id": 264,
         "question_title": "Which of the following questions is best answered by a qualitative research methodology?",
         "option_A": "What proportion of Gadget X users love Feature Y?",
@@ -2121,26 +2099,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "Participatory design groups",
         "option_E": "All of the others",
         "option_F": "None of the others"
-      },
-      {
-        "question_id": 368,
-        "question_title": "Which of the following is NOT a method one would use to understand why people are using a product at certain times?",
-        "option_A": "Surveys",
-        "option_B": "Clickstream analytics",
-        "correct_anwser": "C",
-        "explain": "Concept Testing là phương pháp kiểm tra phản ứng của người dùng với một ý tưởng hoặc khái niệm sản phẩm mới, không liên quan đến việc tìm hiểu lý do tại sao người dùng sử dụng sản phẩm vào những thời điểm cụ thể. Surveys, clickstream analytics, interviews và remote testing đều có thể giúp trả lời câu hỏi 'tại sao' liên quan đến thời điểm sử dụng.",
-        "option_C": "Concept Testing",
-        "option_D": "Interviews"
-      },
-      {
-        "question_id": 372,
-        "question_title": "Under what circumstances is remote testing appropriate?\nI. It is difficult to access the product/experience.\nII. Participants from a variety of geographic locations are needed.\nIII. Time is limited.\nIV. There is a lot of Personally Identifiable Information required.\nV. All of the above",
-        "option_A": "I, II, III",
-        "option_B": "I, IV",
-        "correct_anwser": "A",
-        "explain": "Remote testing (kiểm thử từ xa) phù hợp khi khó tiếp cận trực tiếp sản phẩm/trải nghiệm (I), cần người tham gia từ nhiều vùng địa lý khác nhau (II), và khi thời gian hạn chế (III). Yêu cầu nhiều thông tin cá nhân nhạy cảm (IV) lại là yếu tố khiến remote testing kém phù hợp hơn do vấn đề bảo mật, nên đáp án đúng là I, II, III.",
-        "option_C": "I, III, IV",
-        "option_D": "II, III"
       },
       {
         "question_id": 374,
@@ -2410,17 +2368,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Bản mẫu (Prototype) hỗ trợ nhà thiết kế kiểm thử toàn bộ các yếu tố từ ý tưởng tổng thể (concept), chức năng của các thành phần, bố cục màn hình (layout) cho tới các tương tác người dùng (user interactions)."
       },
       {
-        "question_id": 411,
-        "question_title": "What types of research activities are typically engaged in by 2-3 people design teams?",
-        "option_A": "I",
-        "option_B": "II",
-        "option_C": "III",
-        "option_D": "IV",
-        "option_E": "II and IV",
-        "correct_anwser": "B",
-        "explain": "Với nhóm thiết kế nhỏ (2-3 người), nguồn lực hạn chế nên hoạt động nghiên cứu phổ biến và phù hợp nhất là Feature-driven usability testing (kiểm thử khả năng sử dụng dựa trên tính năng). Các phương pháp như A/B testing hay phân tích quy mô lớn thường đòi hỏi hạ tầng và đội ngũ nhân sự chuyên biệt hơn."
-      },
-      {
         "question_id": 412,
         "question_title": "What preparations should you make ahead of both remote moderated as well as unmoderated testing?",
         "option_A": "I, II, III",
@@ -2430,16 +2377,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_E": "VI",
         "correct_anwser": "B",
         "explain": "Trước khi tiến hành kiểm thử từ xa (cho cả có và không có người điều phối), các bước chuẩn bị cần thiết bao gồm: Xem xét các đường đi/luồng thay thế (I), Xác định chỉ số cần thu thập (III), Lấy sự chấp thuận Informed Consent (IV), và Tuyển dư người tham gia/Overrecruit để phòng rủi ro hủy lịch (V). Việc 'online trước 10-15 phút' (II) không áp dụng cho unmoderated testing."
-      },
-      {
-        "question_id": 414,
-        "question_title": "What types of research activities are typically engaged in by 2-3 people design teams?\nI. A/B Testing\nII. Feature driven usability testing\nIII. Competitive testing\nIV. Attitudinal analytics (surveys)",
-        "option_A": "I",
-        "option_B": "II",
-        "option_C": "III",
-        "option_D": "IV",
-        "correct_anwser": "B",
-        "explain": "Các nhóm thiết kế nhỏ (2-3 người) thường tập trung vào các hoạt động nghiên cứu nhanh, gắn liền trực tiếp với tính năng đang phát triển như kiểm thử khả dụng theo tính năng (feature driven usability testing), vì họ có nguồn lực hạn chế và cần phản hồi nhanh cho từng tính năng cụ thể, khác với các hoạt động cần quy mô lớn hơn như A/B testing hay khảo sát thái độ."
       },
       {
         "question_id": 415,
@@ -2512,14 +2449,74 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "The range of alternative ways that a design solution can work",
         "correct_anwser": "D",
         "explain": "Trong thiết kế, \"Design space\" (không gian thiết kế) là thuật ngữ chỉ toàn bộ tập hợp các phương án, ý tưởng và giải pháp thiết kế khả thi mà nhà thiết kế có thể khám phá."
+      },
+      {
+        "question_title": "In user testing, we generally ask test participants to verbalize what they are thinking as they [work]. This approach is called:",
+        "option_A": "Debriefing",
+        "option_B": "The Think-Aloud Protocol",
+        "option_C": "What You See Is What You Get",
+        "option_D": "Screening",
+        "correct_anwser": "B",
+        "explain": "Nghị thức vừa làm vừa nói (Think-Aloud Protocol) là phương pháp yêu cầu người tham gia kiểm thử liên tục diễn đạt bằng lời những suy nghĩ, cảm xúc và thao tác của họ trong suốt quá trình thực hiện nhiệm vụ.",
+        "question_id": 432
+      },
+      {
+        "question_title": "The pattern of eye fixations that people perform when processing a web page has been shown to be what shape?",
+        "option_A": "A circle",
+        "option_B": "A spiral",
+        "option_C": "The letter 'F'",
+        "option_D": "The letter 'Z'",
+        "correct_anwser": "C",
+        "explain": "Theo nghiên cứu eye-tracking nổi tiếng của Nielsen Norman Group, mô hình điểm nhìn (eye fixation pattern) phổ biến nhất của người dùng khi đọc và xử lý thông tin trên trang web có dạng hình chữ 'F' (F-shaped pattern).",
+        "question_id": 433
+      },
+      {
+        "question_title": "According to Bill Moggridge, \"A representation of a design, made before the final solution exists\" is the definition of a:",
+        "option_A": "Time capsule",
+        "option_B": "Prototype",
+        "option_C": "Brainstorm",
+        "option_D": "Design representation",
+        "correct_anwser": "B",
+        "explain": "Bill Moggridge (nhà đồng sáng lập IDEO) đã định nghĩa Prototype (nguyên mẫu) chính là một bản đại diện của thiết kế được tạo ra trước khi giải pháp cuối cùng thực sự tồn tại.",
+        "question_id": 434
+      },
+      {
+        "question_title": "Which of the following is the best-scoped question for a small user needs assessment project?",
+        "option_A": "What kinds of problems do users face when using Microsoft products?",
+        "option_B": "What kinds of problems do users face when using Microsoft Word's spell-checking?",
+        "option_C": "What kinds of problems do users face when using Microsoft Word?",
+        "option_D": "What kinds of problems do users face when fixing a spelling error identified by Microsoft Word's spell-checking feature?",
+        "correct_anwser": "B",
+        "explain": "Trong một dự án đánh giá nhu cầu người dùng quy mô nhỏ, câu hỏi tập trung vào một phân hệ tính năng cụ thể (tính năng kiểm tra chính tả của Word) là có phạm vi vừa phải và phù hợp nhất.",
+        "question_id": 435
+      },
+      {
+        "question_title": "Why does ideation emphasize the speed of idea generation?",
+        "option_A": "Because the ideas that first come to mind are usually the best ones",
+        "option_B": "Because the quality of the initial ideas doesn't matter since a design solution gets iteratively refined many times anyway",
+        "option_C": "Because designers often work on tight schedules",
+        "option_D": "Because quick idea generation helps designers generate a lot of ideas",
+        "correct_anwser": "D",
+        "explain": "Trong giai đoạn Ideation (hình thành ý tưởng), việc nhấn mạnh vào tốc độ giúp loại bỏ rào cản tự phê phán (self-censorship), từ đó tạo ra số lượng lớn ý tưởng đa dạng (quantity over quality) trước khi chọn lọc.",
+        "question_id": 436
+      },
+      {
+        "question_title": "Which component of the QOC framework articulates conditions or constraints that the design needs to meet?",
+        "option_A": "Questions",
+        "option_B": "Options",
+        "option_C": "Criteria",
+        "option_D": "None of the others",
+        "correct_anwser": "C",
+        "explain": "Trong mô hình QOC (Questions - Options - Criteria): Questions là các vấn đề/câu hỏi thiết kế, Options là các giải pháp thay thế, và Criteria (tiêu chí) chính là các điều kiện, ràng buộc và mục tiêu mà thiết kế phải đáp ứng để đánh giá các Options.",
+        "question_id": 437
       }
     ]
   },
   {
     "id": "wdu203c-module-2-multi-choice",
     "title": "Module 2 - Multiple Choice",
-    "description": "Tập hợp 8 câu hỏi trắc nghiệm chọn nhiều đáp án đúng (Multiple Choice).",
-    "questionsCount": 8,
+    "description": "Tập hợp 7 câu hỏi trắc nghiệm chọn nhiều đáp án đúng (Multiple Choice).",
+    "questionsCount": 7,
     "questions": [
       {
         "question_id": 1,
@@ -2599,8 +2596,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
   {
     "id": "wdu203c-module-3-true-false",
     "title": "Module 3 - True / False",
-    "description": "Tập hợp 34 câu hỏi Đúng / Sai (True / False).",
-    "questionsCount": 34,
+    "description": "Tập hợp 37 câu hỏi Đúng / Sai (True / False).",
+    "questionsCount": 37,
     "questions": [
       {
         "question_id": 6,
@@ -2873,6 +2870,30 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "False",
         "correct_anwser": "B",
         "explain": "Nhận định này sai vì việc đánh giá mức độ nghiêm trọng của các vấn đề usability được phát hiện chính là một phần công việc của nhà nghiên cứu UX, dựa trên chuyên môn và dữ liệu thu thập được, nên đáp án B đúng."
+      },
+      {
+        "question_title": "Designers usually solve the exact design problem they are initially presented with.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trong quy trình UX/Design Thinking, vấn đề ban đầu được trình bày thường chỉ là triệu chứng bề nổi. Nhà thiết kế thường phải đào sâu nghiên cứu để tái định nghĩa (reframing) lại vấn đề cốt lõi thực sự cần giải quyết.",
+        "question_id": 438
+      },
+      {
+        "question_title": "Ideation mostly happens at the start of the design process when the designer is first coming solutions to the design problem.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Quá trình hình thành ý tưởng (Ideation) diễn ra chủ yếu ở phần đầu của quy trình thiết kế, ngay sau khi hiểu nhu cầu người dùng và bắt đầu tìm kiếm các giải pháp thiết kế đầu tiên.",
+        "question_id": 439
+      },
+      {
+        "question_title": "Wireframes can test design concepts, as well as help designers decide among multiple ways of designing a piece of functionality.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Wireframe cho phép nhà thiết kế nhanh chóng thử nghiệm các khái niệm thiết kế và đánh giá, so sánh nhiều phương án bố cục/chức năng khác nhau trước khi chuyển sang giai đoạn thiết kế chi tiết.",
+        "question_id": 440
       }
     ]
   }

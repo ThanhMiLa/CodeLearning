@@ -1,0 +1,520 @@
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following best describes the question stem?",
+    "option_A": "It's the set of responses that a respondent can give.",
+    "option_B": "It's a series of questions that are used together to form a scale.",
+    "option_C": "It's the query that operationalizes the concept of interest and prompts a response.",
+    "option_D": "It's the optional instructions for how to answer a question.",
+    "correct_anwser": "C",
+    "explain": "Trong cấu trúc câu hỏi khảo sát, 'question stem' (thân câu hỏi) là phần câu hỏi/truy vấn chính dùng để cụ thể hóa khái niệm cần đo lường và gợi mở câu trả lời từ người tham gia."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is not an example of a subjective measure that might be collected during a user test?",
+    "option_A": "Perceived usability",
+    "option_B": "Desirability",
+    "option_C": "Perceived usefulness",
+    "option_D": "Task completion speed",
+    "correct_anwser": "D",
+    "explain": "Tốc độ hoàn thành nhiệm vụ (Task completion speed / Time on task) là một thước đo khách quan, định lượng (objective measure) được đo lường bằng đồng hồ/hệ thống, không phải là thước đo chủ quan (subjective measure) dựa trên cảm nhận của người dùng."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which of the following tasks is most representative of the kind of work involved in qualitative research?",
+    "option_A": "Running an experimental trial to see if users like Google with banner ads",
+    "option_B": "Writing software to classify user posts on Facebook",
+    "option_C": "Analyzing statistical data about visits to Amazon",
+    "option_D": "Conducting interviews about how people use Excel spreadsheets",
+    "correct_anwser": "D",
+    "explain": "Tiến hành phỏng vấn trực tiếp người dùng (Conducting interviews) để tìm hiểu sâu về hành vi và thói quen sử dụng là công việc mang tính đại diện điển hình nhất của nghiên cứu định tính (Qualitative research)."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Using obscure system codes or non-intuitive imagery to represent system features and/or feedback violates which heuristic?",
+    "option_A": "Aesthetic and minimalist design",
+    "option_B": "Flexibility and efficiency of use",
+    "option_C": "Match between system and the real world",
+    "option_D": "User control and freedom",
+    "correct_anwser": "C",
+    "explain": "Sử dụng các mã hệ thống khó hiểu hoặc hình ảnh không trực quan vi phạm nguyên tắc Heuristic số 2 của Nielsen: 'Match between system and the real world' (Sự tương đồng giữa hệ thống và thế giới thực - hệ thống phải dùng ngôn ngữ, từ ngữ và khái niệm quen thuộc với người dùng thay vì thuật ngữ kỹ thuật)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What deliverables are typically used to tell user stories? (pick all that apply)",
+    "option_A": "Personas",
+    "option_B": "Scenarios",
+    "option_C": "Customer Journey Maps",
+    "option_D": "Diary Study",
+    "correct_anwser": "A",
+    "explain": "Các sản phẩm bàn giao trực quan dùng để truyền tải câu chuyện người dùng (user stories) gồm có Personas, Scenarios và Customer Journey Maps. Diary study là một phương pháp nghiên cứu, không phải deliverable kể chuyện."
+  },
+  {
+    "question_id": 6,
+    "question_title": "About how many \"key findings\" should be included in a typical user test report?",
+    "option_A": "2-3",
+    "option_B": "20-50",
+    "option_C": "1",
+    "option_D": "5-10",
+    "correct_anwser": "D",
+    "explain": "Trong một báo cáo kiểm thử người dùng (user test report) tiêu chuẩn, số lượng phát hiện chính (key findings/critical issues) nên được chắt lọc và giới hạn trong khoảng 5-10 mục để đảm bảo tính tập trung và khả thi cho đội ngũ phát triển khắc phục."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Factors that capture the ways in which you expect your users to differ can be expressed as:",
+    "option_A": "Diversity criteria",
+    "option_B": "Success criteria",
+    "option_C": "Recruiting criteria",
+    "option_D": "Tasks",
+    "correct_anwser": "A",
+    "explain": "Tiêu chí đa dạng (Diversity criteria) phản ánh những khía cạnh, đặc điểm hoặc yếu tố mà nhà nghiên cứu dự đoán sẽ có sự khác biệt giữa các nhóm người dùng (ví dụ: độ tuổi, trình độ công nghệ, thói quen sử dụng)."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Brainstorming, morphological analysis, and \"the worst idea\" are examples of what kind of technique?",
+    "option_A": "Poor",
+    "option_B": "Convergence",
+    "option_C": "Lo-fi prototyping",
+    "option_D": "Ideation",
+    "correct_anwser": "D",
+    "explain": "Động não (Brainstorming), phân tích hình thái (Morphological analysis), và phương pháp ý tưởng tồi nhất ('The worst idea') đều là các kỹ thuật sáng tạo dùng trong giai đoạn Phát triển ý tưởng (Ideation phase)."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which of the following is NOT another name for the kind of qualitative research methodology you learned in this specialization?",
+    "option_A": "Contextual inquiry.",
+    "option_B": "User needs assessment.",
+    "option_C": "Socio-technical extraction.",
+    "option_D": "Ethnographic research.",
+    "correct_anwser": "C",
+    "explain": "'Socio-technical extraction' là một thuật ngữ không tồn tại và không phải là tên gọi của phương pháp nghiên cứu định tính nào trong chuyên ngành UX. Các phương pháp còn lại (Contextual inquiry, User needs assessment, Ethnographic research) đều là các phương pháp chuẩn mực."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What does the System Usability Scale measure?",
+    "option_A": "Perceived usability",
+    "option_B": "Frequency of errors",
+    "option_C": "Number of usability principles violated",
+    "option_D": "Number of tasks successfully completed",
+    "correct_anwser": "A",
+    "explain": "Thang đo SUS (System Usability Scale) là một công cụ khảo sát nhanh gồm 10 câu hỏi chuẩn hóa dùng để đo lường tính khả dụng nhận thức (Perceived usability) theo đánh giá chủ quan của người dùng về hệ thống."
+  }
+]
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is the best-scoped question for a small user needs assessment project?",
+    "option_A": "What kinds of problems do users face when using Microsoft products?",
+    "option_B": "What kinds of problems do users face when using Microsoft Word's spell-checking?",
+    "option_C": "What kinds of problems do users face when using Microsoft Word?",
+    "option_D": "What kinds of problems do users face when fixing a spelling error identified by Microsoft Word's spell-checking feature?",
+    "correct_anwser": "C",
+    "explain": "Câu C có phạm vi vừa vặn (best-scoped) cho một dự án đánh giá nhu cầu người dùng quy mô nhỏ: không quá rộng như toàn bộ sản phẩm Microsoft (A) và cũng không bị bó hẹp quá mức vào một vi thao tác đơn lẻ như B hay D."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is the best-scoped question for a small user needs assessment project?",
+    "option_A": "What kinds of problems do users face when using Microsoft products?",
+    "option_B": "What kinds of problems do users face when using Microsoft Word's spell-checking?",
+    "option_C": "What kinds of problems do users face when using Microsoft Word?",
+    "option_D": "What kinds of problems do users face when fixing a spelling error identified by Microsoft Word's spell-checking feature?",
+    "correct_anwser": "C",
+    "explain": "Phạm vi nghiên cứu câu hỏi ở mức độ ứng dụng Microsoft Word (C) là phù hợp và cân bằng nhất cho một dự án đánh giá nhu cầu nhỏ, đảm bảo đủ không gian khám phá hành vi người dùng mà không bị quá tải."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Designers usually solve the exact design problem they are initially presented with.",
+    "option_A": "False",
+    "option_B": "True",
+    "correct_anwser": "A",
+    "explain": "Trong UX và Design Thinking, các nhà thiết kế hầu như không giải quyết y nguyên bài toán ban đầu được giao mà phải qua bước nghiên cứu, định nghĩa lại để tìm ra vấn đề cốt lõi thực sự của người dùng."
+  },
+  {
+    "question_id": 4,
+    "question_title": "According to Wikipedia, a \"direct manipulation interface\" is one that features \"continuous representation of objects of interest and rapid, reversible, and incremental actions and feedback.\" The \"continuous representation of objects of interest\" is best aligned with which principle of good UI design?",
+    "option_A": "Employ aesthetic and minimalist design",
+    "option_B": "Prevent errors before they happen",
+    "option_C": "Support recognition over recall",
+    "option_D": "Support user control and freedom",
+    "correct_anwser": "C",
+    "explain": "Việc liên tục biểu diễn trực quan các đối tượng quan tâm (continuous representation) giúp người dùng dễ dàng nhận biết các thành phần ngay trên màn hình thay vì phải tự ghi nhớ (Support recognition over recall)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What preparations should you make ahead of both remote moderated as well as unmoderated testing?\n\nI. Review alternate paths\nII. Be online 10-15 minutes early\nIII. Determine what metrics to collect and how\nIV. Obtain informed consent\nV. Overrecruit\nVI. All of the above",
+    "option_A": "I, II, III",
+    "option_B": "II, IV, V",
+    "option_C": "VI",
+    "option_D": "I, III, IV, V",
+    "option_E": "I, IV",
+    "correct_anwser": "D",
+    "explain": "Đối với cả hai hình thức moderated và unmoderated remote testing, các bước chuẩn bị chung bao gồm: xem xét các luồng thao tác thay thế (I), xác định chỉ số cần đo (III), lấy sự đồng thuận tham gia (IV) và tuyển dư người tham gia phòng trường hợp vắng mặt (V). Riêng mục II (online sớm 10-15 phút) chỉ áp dụng cho moderated testing."
+  },
+  {
+    "question_id": 6,
+    "question_title": "What is one quality that distinguishes a semi-structured interview from other kinds of interviews?",
+    "option_A": "The interviewer and the interview participant should each expect to speak about half of the time.",
+    "option_B": "Half of the interview will be a questionnaire, the other half will be based on an interview protocol.",
+    "option_C": "While the interviewer uses an interview protocol as a guideline, the interview itself will often go off-script.",
+    "option_D": "Half of the interview will be a questionnaire, the other half will be open-ended.",
+    "correct_anwser": "C",
+    "explain": "Đặc trưng nổi bật của phỏng vấn bán cấu trúc (semi-structured interview) là người phỏng vấn dùng kịch bản (protocol) làm kim chỉ nam nhưng sẵn sàng đi chệch khỏi kịch bản (go off-script) để đào sâu thêm thông tin phát sinh từ câu trả lời của người tham gia."
+  },
+  {
+    "question_id": 7,
+    "question_title": "How many personas should designers create for a design project?",
+    "option_A": "As many personas as it takes to represent everything designers have learned in the formative work",
+    "option_B": "The number of personas should match the number of classes of target users that the designers have identified in the formative work",
+    "option_C": "Three to four personas are usually a sweet spot",
+    "option_D": "The more personas, the better",
+    "option_E": "Often one or two personas are all that's needed",
+    "correct_anwser": "B",
+    "explain": "Số lượng Persona cần tạo nên tương ứng chính xác với các phân khúc/nhóm người dùng mục tiêu chính đã được xác định thông qua nghiên cứu định hình ban đầu (formative research) để đảm bảo đại diện đầy đủ các tập hành vi."
+  },
+  {
+    "question_id": 8,
+    "question_title": "The design process is highly iterative. Which of the following are iterative loops that a designer might do in the course of a project?",
+    "option_A": "From ideation to problem framing",
+    "option_B": "From creation of scenarios and storyboards to ideation",
+    "option_C": "From creation of scenarios and storyboards to problem framing",
+    "option_D": "From prototyping to ideation",
+    "option_E": "All of the others",
+    "option_F": "None of the others",
+    "correct_anwser": "E",
+    "explain": "Quy trình thiết kế lặp (iterative process) cho phép người thiết kế quay lại bất kỳ giai đoạn trước nào (từ prototype về ideation, từ scenarios về ideation/problem framing, hay từ ideation về định nghĩa lại vấn đề) khi có hiểu biết sâu hơn."
+  },
+  {
+    "question_id": 9,
+    "question_title": "This term describes the total set of people you want to be able to represent with your survey.",
+    "option_A": "Sample",
+    "option_B": "Respondents",
+    "option_C": "Response Rate",
+    "option_D": "Population",
+    "correct_anwser": "D",
+    "explain": "Population (Tổng thể/Quần thể nghiên cứu) là thuật ngữ dùng để chỉ toàn bộ tập hợp các cá nhân mà bài khảo sát hướng tới và muốn rút ra kết luận mang tính đại diện."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What is the value of having an overarching question in an interview protocol?",
+    "option_A": "It serves as a catch-all question to ask at the end of an interview.",
+    "option_B": "It is a good opening question to ask during the interview.",
+    "option_C": "It is a good way to elicit a summary of the interview participant's thoughts.",
+    "option_D": "It provides a focus for the interview that the interviewer keeps in mind throughout the interview.",
+    "correct_anwser": "D",
+    "explain": "Câu hỏi bao trùm (Overarching question) đóng vai trò là mục tiêu nghiên cứu cốt lõi mà người phỏng vấn luôn ghi nhớ trong đầu xuyên suốt buổi phỏng vấn để đảm bảo không bị lạc đề khỏi mục đích chính."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following best describes the question stem?",
+    "option_A": "It's the set of responses that a respondent can give.",
+    "option_B": "It's a series of questions that are used together to form a scale.",
+    "option_C": "It's the query that operationalizes the concept of interest and prompts a response.",
+    "option_D": "It's the optional instructions for how to answer a question.",
+    "correct_anwser": "C",
+    "explain": "Trong thiết kế câu hỏi khảo sát, 'question stem' (phần dẫn/thân câu hỏi) chính là câu hỏi hoặc lời gợi ý trực tiếp nhằm cụ thể hóa khái niệm cần đo lường và khơi gợi câu trả lời từ người tham gia."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is not an example of a subjective measure that might be collected during a user test?",
+    "option_A": "Perceived usability",
+    "option_B": "Desirability",
+    "option_C": "Perceived usefulness",
+    "option_D": "Task completion speed",
+    "correct_anwser": "D",
+    "explain": "'Task completion speed' (tốc độ/thời gian hoàn thành nhiệm vụ) là một chỉ số định lượng khách quan (objective measure), trong khi cảm nhận về tính khả dụng, độ hữu ích hay sự mong muốn là các thước đo chủ quan (subjective measures)."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Which of the following tasks is most representative of the kind of work involved in qualitative research?",
+    "option_A": "Running an experimental trial to see if users like Google with banner ads",
+    "option_B": "Writing software to classify user posts on Facebook",
+    "option_C": "Analyzing statistical data about visits to Amazon",
+    "option_D": "Conducting interviews about how people use Excel spreadsheets",
+    "correct_anwser": "D",
+    "explain": "Nghiên cứu định tính (qualitative research) tập trung vào việc hiểu sâu về hành vi, động lực và suy nghĩ của con người thông qua các phương pháp như phỏng vấn (interviews) hoặc quan sát."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Using obscure system codes or non-intuitive imagery to represent system features and/or feedback violates which heuristic?",
+    "option_A": "Aesthetic and minimalist design",
+    "option_B": "Flexibility and efficiency of use",
+    "option_C": "Match between system and the real world",
+    "option_D": "User control and freedom",
+    "correct_anwser": "C",
+    "explain": "Nguyên tắc 'Match between system and the real world' yêu cầu hệ thống phải sử dụng ngôn ngữ, từ ngữ, cụm từ và hình ảnh quen thuộc, trực quan với người dùng thay vì dùng các thuật ngữ/mã hệ thống khó hiểu."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What deliverables are typically used to tell user stories? (pick all that apply)",
+    "option_A": "Personas",
+    "option_B": "Scenarios",
+    "option_C": "Customer Journey Maps",
+    "option_D": "Diary Study",
+    "correct_anwser": "A",
+    "explain": "Personas, Scenarios (Kịch bản) và Customer Journey Maps (Bản đồ hành trình) đều là các sản phẩm đầu ra (deliverables) chính để kể câu chuyện về người dùng. Trong khi đó, Diary Study là một phương pháp nghiên cứu (research method) chứ không phải sản phẩm bàn giao để kể chuyện người dùng."
+  },
+  {
+    "question_id": 6,
+    "question_title": "About how many \"key findings\" should be included in a typical user test report?",
+    "option_A": "2-3",
+    "option_B": "20-50",
+    "option_C": "1",
+    "option_D": "5-10",
+    "correct_anwser": "D",
+    "explain": "Một báo cáo kiểm thử người dùng tiêu chuẩn thường tổng hợp khoảng 5-10 phát hiện quan trọng nhất (key findings) để các bên liên quan có thể dễ dàng nắm bắt và ưu tiên xử lý mà không bị quá tải thông tin."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Factors that capture the ways in which you expect your users to differ can be expressed as:",
+    "option_A": "Diversity criteria",
+    "option_B": "Success criteria",
+    "option_C": "Recruiting criteria",
+    "option_D": "Tasks",
+    "correct_anwser": "A",
+    "explain": "Trong việc xác định và phân nhóm người dùng, 'Diversity criteria' (tiêu chí đa dạng) là các yếu tố thể hiện sự khác biệt dự kiến giữa các nhóm người dùng để đảm bảo nghiên cứu bao quát được đối tượng đại diện."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Brainstorming, morphological analysis, and \"the worst idea\" are examples of what kind of technique?",
+    "option_A": "Poor",
+    "option_B": "Convergence",
+    "option_C": "Lo-fi prototyping",
+    "option_D": "Ideation",
+    "correct_anwser": "D",
+    "explain": "Brainstorming, phân tích hình thái học (morphological analysis) và kỹ thuật 'ý tưởng tồi tệ nhất' (the worst idea) đều là các kỹ thuật phát triển ý tưởng (Ideation techniques) nhằm tạo ra nhiều giải pháp thiết kế mới."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which of the following is NOT another name for the kind of qualitative research methodology you learned in this specialization?",
+    "option_A": "Contextual inquiry.",
+    "option_B": "User needs assessment.",
+    "option_C": "Socio-technical extraction.",
+    "option_D": "Ethnographic research.",
+    "correct_anwser": "C",
+    "explain": "'Socio-technical extraction' không phải là một thuật ngữ hay phương pháp nghiên cứu định tính được sử dụng trong UX. Các thuật ngữ còn lại (Contextual inquiry, User needs assessment, Ethnographic research) đều là các phương pháp nghiên cứu định tính phổ biến."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What does the System Usability Scale measure?",
+    "option_A": "Perceived usability",
+    "option_B": "Frequency of errors",
+    "option_C": "Number of usability principles violated",
+    "option_D": "Number of tasks successfully completed",
+    "correct_anwser": "A",
+    "explain": "Thang đo SUS (System Usability Scale) là một công cụ khảo sát nhanh gồm 10 câu hỏi để đo lường mức độ khả dụng theo cảm nhận của người dùng (Perceived usability)."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following is the best-scoped question for a small user needs assessment project?",
+    "option_A": "What kinds of problems do users face when using Microsoft products?",
+    "option_B": "What kinds of problems do users face when using Microsoft Word's spell-checking feature?",
+    "option_C": "What kinds of problems do users face when using Microsoft Word?",
+    "option_D": "What kinds of problems do users face when fixing a spelling error identified by Microsoft Word's spell-checking feature?",
+    "correct_anwser": "B",
+    "explain": "Trong một dự án đánh giá nhu cầu người dùng quy mô nhỏ (small user needs assessment), phạm vi câu hỏi cần vừa phải: không quá rộng (như toàn bộ sản phẩm Microsoft hay toàn bộ MS Word) và cũng không quá hẹp/vi mô (như chỉ thao tác sửa một lỗi chính tả). Câu B tập trung vào một tính năng cụ thể (tính năng kiểm tra chính tả) nên có phạm vi phù hợp nhất."
+  },
+  {
+    "question_id": 2,
+    "question_title": "Which of the following is the best-scoped question for a small user needs assessment project?",
+    "option_A": "What kinds of problems do users face when using Microsoft products?",
+    "option_B": "What kinds of problems do users face when using Microsoft Word's spell-checking feature?",
+    "option_C": "What kinds of problems do users face when using Microsoft Word?",
+    "option_D": "What kinds of problems do users face when fixing a spelling error identified by Microsoft Word's spell-checking feature?",
+    "correct_anwser": "B",
+    "explain": "Tương tự câu hỏi trước, lựa chọn B có độ rộng phạm vi (scope) lý tưởng nhất cho một dự án nghiên cứu nhu cầu người dùng quy mô nhỏ khi tập trung vào một phân hệ tính năng cụ thể."
+  },
+  {
+    "question_id": 3,
+    "question_title": "Designers usually solve the exact design problem they are initially presented with.",
+    "option_A": "False",
+    "option_B": "True",
+    "option_C": null,
+    "option_D": null,
+    "correct_anwser": "A",
+    "explain": "Trong quy trình UX/Design Thinking, vấn đề ban đầu được trình bày thường chỉ là triệu chứng bề nổi. Nhà thiết kế thường phải đào sâu nghiên cứu để tái định nghĩa (reframing) lại vấn đề cốt lõi thực sự cần giải quyết."
+  },
+  {
+    "question_id": 4,
+    "question_title": "According to Wikipedia, a \"direct manipulation interface\" is one that features \"continuous representation of objects of interest and rapid, reversible, and incremental actions and feedback.\" The \"continuous representation of objects of interest\" is best aligned with which principle of good UI design?",
+    "option_A": "Employ aesthetic and minimalist design",
+    "option_B": "Prevent errors before they happen",
+    "option_C": "Support recognition over recall",
+    "option_D": "Support user control and freedom",
+    "correct_anwser": "C",
+    "explain": "Việc liên tục hiển thị trực quan các đối tượng người dùng quan tâm ('continuous representation of objects of interest') giúp người dùng dễ dàng nhận biết và tương tác ngay thay vì phải ghi nhớ (Support recognition rather than recall)."
+  },
+  {
+    "question_id": 5,
+    "question_title": "What preparations should you make ahead of both remote moderated as well as unmoderated testing?\nI. Review alternate paths\nII. Be online 10-15 minutes early\nIII. Determine what metrics to collect and how\nIV. Obtain informed consent\nV. Overrecruit\nVI. All of the above",
+    "option_A": "I, II, III",
+    "option_B": "II, IV, V",
+    "option_C": "VI",
+    "option_D": "I, III, IV, V",
+    "option_E": "I, IV",
+    "correct_anwser": "D",
+    "explain": "Mục II ('Be online 10-15 minutes early') chỉ áp dụng cho kiểm thử có điều phối trực tiếp (moderated testing). Các công việc cần chuẩn bị cho CẢ 2 hình thức (remote moderated và unmoderated) bao gồm: xem xét các luồng đi thay thế (I), xác định chỉ số đo lường (III), lấy sự đồng thuận của người dùng (IV) và tuyển dư số lượng ứng viên đề phòng vắng mặt (V)."
+  },
+  {
+    "question_id": 6,
+    "question_title": "What is one quality that distinguishes a semi-structured interview from other kinds of interviews?",
+    "option_A": "The interviewer and the interview participant should each expect to speak about half of the time.",
+    "option_B": "Half of the interview will be a questionnaire, the other half will be based on an interview protocol.",
+    "option_C": "While the interviewer uses an interview protocol as a guideline, the interview itself will often go off-script.",
+    "option_D": "Half of the interview will be a questionnaire, the other half will be open-ended.",
+    "correct_anwser": "C",
+    "explain": "Phỏng vấn bán cấu trúc (semi-structured interview) có đặc điểm cốt lõi là người phỏng vấn sử dụng một bộ câu hỏi khung/hướng dẫn (protocol), nhưng có sự linh hoạt để đào sâu, mở rộng và đi chệch kịch bản tùy theo phản hồi của người tham gia."
+  },
+  {
+    "question_id": 7,
+    "question_title": "How many personas should designers create for a design project?",
+    "option_A": "As many personas as it takes to represent everything designers have learned in the formative work",
+    "option_B": "The number of personas should match the number of classes of target users that the designers have identified in the formative work",
+    "option_C": "Three to four personas are usually a sweet spot",
+    "option_D": "The more personas, the better",
+    "option_E": "Often one or two personas are all that's needed",
+    "correct_anwser": "C",
+    "explain": "Trong thực hành UX tiêu chuẩn, việc tạo khoảng 3 đến 4 personas là số lượng lý tưởng nhất ('sweet spot') để vừa bao quát được các nhóm người dùng chính vừa không làm phân tán sự tập trung của đội ngũ thiết kế."
+  },
+  {
+    "question_id": 8,
+    "question_title": "The design process is highly iterative. Which of the following are iterative loops that a designer might do in the course of a project?",
+    "option_A": "From ideation to problem framing",
+    "option_B": "From creation of scenarios and storyboards to ideation",
+    "option_C": "From creation of scenarios and storyboards to problem framing",
+    "option_D": "From prototyping to ideation",
+    "option_E": "All of the others",
+    "option_F": "None of the others",
+    "correct_anwser": "E",
+    "explain": "Quy trình thiết kế lặp (iterative process) cho phép quay trở lại bất kỳ giai đoạn nào trước đó (từ tạo kịch bản quay lại định hình vấn đề/ý tưởng, hoặc từ làm mẫu thử quay lại phát triển ý tưởng) khi phát hiện các thông tin hoặc vấn đề mới."
+  },
+  {
+    "question_id": 9,
+    "question_title": "This term describes the total set of people you want to be able to represent with your survey.",
+    "option_A": "Sample",
+    "option_B": "Respondents",
+    "option_C": "Response Rate",
+    "option_D": "Population",
+    "correct_anwser": "D",
+    "explain": "Trong phương pháp nghiên cứu khảo sát, 'Population' (tổng thể/quần thể) là toàn bộ tập hợp nhóm người mục tiêu mà bạn muốn khảo sát và rút ra kết luận đại diện."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What is the value of having an overarching question in an interview protocol?",
+    "option_A": "It serves as a catch-all question to ask at the end of an interview.",
+    "option_B": "It is a good opening question to ask during the interview.",
+    "option_C": "It is a good way to elicit a summary of the interview participant's thoughts.",
+    "option_D": "It provides a focus for the interview that the interviewer keeps in mind throughout the interview.",
+    "correct_anwser": "D",
+    "explain": "Câu hỏi bao trùm (overarching question) trong đề cương phỏng vấn đóng vai trò là mục tiêu nghiên cứu cốt lõi giúp người phỏng vấn luôn giữ đúng định hướng và trọng tâm xuyên suốt toàn bộ buổi phỏng vấn."
+  }
+]
+
+[
+  {
+    "question_id": 1,
+    "question_title": "Which of the following are research methods that can be applied in formative research?",
+    "option_A": "Interviews",
+    "option_B": "Observations",
+    "option_C": "Asking friends and family members about their experiences",
+    "option_D": "Participatory design groups",
+    "option_E": "All of the others",
+    "option_F": "None of the others",
+    "correct_anwser": "E",
+    "explain": "Nghiên cứu định hình (formative research) được thực hiện ở giai đoạn đầu nhằm khám phá nhu cầu và bối cảnh người dùng, do đó có thể áp dụng tất cả các phương pháp trên bao gồm phỏng vấn, quan sát, hỏi người quen/bạn bè về trải nghiệm cũng như các nhóm thiết kế có sự tham gia (participatory design groups)."
+  },
+  {
+    "question_id": 2,
+    "question_title": "According to the original research on short-term memory, how many \"items\" can a person retain in short-term memory at one time?",
+    "option_A": "There is no measurable limit",
+    "option_B": "One or two",
+    "option_C": "About 10",
+    "option_D": "About 7",
+    "correct_anwser": "D",
+    "explain": "Theo nghiên cứu kinh điển nổi tiếng của George Miller (1956), dung lượng trí nhớ ngắn hạn của con người trung bình có thể lưu giữ được khoảng 7 ± 2 mục thông tin (The Magical Number Seven, Plus or Minus Two)."
+  },
+  {
+    "question_id": 3,
+    "question_title": "UX research at scale can be conducted by teams at these levels of maturity:\nI. UX team of one (Awareness)\nII. Mobilization\nIII. Collaboration\nIV. Executive Buy-In\nV. UX Obsessed",
+    "option_A": "All",
+    "option_B": "I, II, III",
+    "option_C": "IV, V",
+    "option_D": "III, IV, V",
+    "correct_anwser": "A",
+    "explain": "Nghiên cứu UX trên quy mô lớn (UX research at scale) có thể được triển khai ở tất cả các cấp độ trưởng thành về UX trong tổ chức, từ mức chỉ có 1 người phụ trách (Awareness) cho đến mức toàn bộ tổ chức tập trung cao độ vào UX (UX Obsessed)."
+  },
+  {
+    "question_id": 4,
+    "question_title": "Why does ideation emphasize the speed of idea generation?",
+    "option_A": "Because the ideas that first come to mind are usually the best ones",
+    "option_B": "Because the quality of the initial ideas doesn't matter since a design solution gets iteratively refined many times anyway",
+    "option_C": "Because designers often work on tight schedules",
+    "option_D": "Because quick idea generation helps designers generate a lot of ideas",
+    "correct_anwser": "D",
+    "explain": "Trong giai đoạn Ideation (hình thành ý tưởng), việc nhấn mạnh vào tốc độ giúp loại bỏ rào cản tự phê phán (self-censorship), từ đó tạo ra số lượng lớn ý tưởng đa dạng (quantity over quality) trước khi chọn lọc."
+  },
+  {
+    "question_id": 5,
+    "question_title": "Which of the following are among key tasks that were identified?",
+    "option_A": "Customize automatic functions, Help, Log Out",
+    "option_B": "Check map, Create a post, Log Out",
+    "option_C": "Check map, Help, Activate function \"Robbery\"",
+    "option_D": "Change security code, Create a post, Check recent events",
+    "correct_anwser": "C",
+    "explain": "Đối chiếu với bảng danh sách các nhiệm vụ chính (Key tasks) được cung cấp trong hình: mục số 4 là 'Check map', mục số 8 là 'Help', và chức năng hủy/kích hoạt liên quan đến 'Robbery' (mục 2, 5, 9). Các phương án khác đều chứa tính năng không có trong bảng (như 'Log Out' hay 'Create a post')."
+  },
+  {
+    "question_id": 6,
+    "question_title": "Although there are different types of input, UX designers only need to focus on designing the information that users will explicitly enter into the system.",
+    "option_A": "True",
+    "option_B": "False",
+    "correct_anwser": "B",
+    "explain": "Đây là khẳng định sai (False). Các nhà thiết kế UX còn cần quan tâm đến cả đầu vào ngầm định (implicit inputs) như vị trí GPS, cảm biến thiết bị, hành vi lịch sử duyệt web, bối cảnh môi trường sử dụng chứ không chỉ thông tin người dùng chủ động nhập vào."
+  },
+  {
+    "question_id": 7,
+    "question_title": "Which component of the QOC framework articulates conditions or constraints that the design needs to meet?",
+    "option_A": "Questions",
+    "option_B": "Options",
+    "option_C": "Criteria",
+    "option_D": "None of the others",
+    "correct_anwser": "C",
+    "explain": "Trong mô hình QOC (Questions - Options - Criteria): Questions là các vấn đề/câu hỏi thiết kế, Options là các giải pháp thay thế, và Criteria (tiêu chí) chính là các điều kiện, ràng buộc và mục tiêu mà thiết kế phải đáp ứng để đánh giá các Options."
+  },
+  {
+    "question_id": 8,
+    "question_title": "Which of the following is NOT important to consider when defining your population?",
+    "option_A": "Number of questions you want to ask",
+    "option_B": "Characteristics of the people you're interested in",
+    "option_C": "Relationship to the product",
+    "option_D": "Survey mode",
+    "correct_anwser": "A",
+    "explain": "Khi xác định tổng thể nghiên cứu (population), ta cần quan tâm đến đặc điểm đối tượng, mối quan hệ của họ với sản phẩm và phương thức tiếp cận (mode). Số lượng câu hỏi muốn hỏi (Number of questions) thuộc về khâu thiết kế bảng hỏi (survey questionnaire design), không liên quan đến việc xác định đối tượng tổng thể."
+  },
+  {
+    "question_id": 9,
+    "question_title": "Which of the following should you NOT do when trying to establish rapport with an interview participant?",
+    "option_A": "Listen and observe how they respond.",
+    "option_B": "Make small talk at first.",
+    "option_C": "Talk about what other participants have been saying.",
+    "option_D": "Adopt a learning mindset.",
+    "correct_anwser": "C",
+    "explain": "Khi tạo mối quan hệ tin cậy và cởi mở (rapport) với người tham gia phỏng vấn, KHÔNG NÊN tiết lộ những gì người khác đã nói vì điều này có thể tạo ra định kiến (bias), gây áp lực tuân thủ theo số đông (social desirability bias) hoặc làm lộ tính bảo mật của nghiên cứu."
+  },
+  {
+    "question_id": 10,
+    "question_title": "What consideration is not important when deciding what platform or technology solution you will use for testing?\nI. Metrics that may be collected\nII. Panel access\nIII. Network speed requirements\nIV. Screen, Audio, or other data collection, as appropriate for test\nV. None of the above",
+    "option_A": "V",
+    "option_B": "I, II",
+    "option_C": "II, IV",
+    "option_D": "I, II, III",
+    "option_E": "I, III, IV",
+    "correct_anwser": "A",
+    "explain": "Tất cả các yếu tố I (chỉ số đo lường), II (khả năng tiếp cận nhóm đối tượng khảo sát), III (yêu cầu băng thông mạng), IV (khả năng thu thập âm thanh, hình ảnh màn hình) ĐỀU là những cân nhắc quan trọng khi lựa chọn nền tảng kiểm thử. Vì vậy đáp án chính xác là 'None of the above' (V)."
+  }
+]
