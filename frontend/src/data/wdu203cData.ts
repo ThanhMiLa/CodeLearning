@@ -2896,5 +2896,818 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_id": 440
       }
     ]
+  },
+  {
+    "id": "wdu203c-module-4-coursera",
+    "title": "Module 4 - Coursera Specialization",
+    "description": "Tập hợp 82 câu hỏi trắc nghiệm & Đúng/Sai từ chuyên ngành Coursera UX Research and Design.",
+    "questionsCount": 82,
+    "questions": [
+      {
+        "question_id": 1,
+        "question_title": "1. Designers prototype to test their design ideas before resources are invested in expensive and time-consuming software development.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Tạo mẫu (prototyping) là một bước cốt lõi trong quy trình UX nhằm thử nghiệm các ý tưởng thiết kế với người dùng sớm, giúp phát hiện và sửa sai trước khi đầu tư nhiều nguồn lực, thời gian và chi phí vào việc lập trình phần mềm thực tế."
+      },
+      {
+        "question_id": 2,
+        "question_title": "10. Mode can change how multiple aspects of the system behave.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Trong thiết kế tương tác, một 'mode' (chế độ) của hệ thống là trạng thái mà ở đó các hành động giống nhau của người dùng có thể dẫn đến các phản hồi/hành vi hoàn toàn khác nhau của hệ thống trên nhiều khía cạnh."
+      },
+      {
+        "question_id": 3,
+        "question_title": "Question 4\\nTrue or false: One of your goals in designing products with a good user experience should be to fail as early and often as possible.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Nguyên lý 'Fail early, fail often' (Thất bại sớm và thường xuyên) là triết lý quan trọng trong UX design. Việc phát hiện sai sót càng sớm qua các bản mẫu thử nghiệm sẽ giúp tiết kiệm chi phí sửa chữa và tối ưu hóa trải nghiệm người dùng nhanh hơn."
+      },
+      {
+        "question_id": 4,
+        "question_title": "True or false: In this course, you will \"get your hands dirty\" and gain hands-on experience with UX Research and Design methods.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "A",
+        "explain": "Khóa học thuộc chuyên ngành UX Research and Design trên Coursera được thiết kế theo định hướng thực hành (hands-on), yêu cầu học viên trực tiếp áp dụng các phương pháp nghiên cứu và thiết kế vào bài tập thực tế."
+      },
+      {
+        "question_id": 5,
+        "question_title": "10. The many new technological trends we discussed means that UX design as a process is fundamentally changing and that what we discussed in this course is not going to be useful a year or two from now.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Mặc dù công nghệ liên tục thay đổi, các nguyên tắc cốt lõi, tâm lý học hành vi người dùng và quy trình nghiên cứu/thiết kế lấy người dùng làm trung tâm (User-Centered Design) vẫn giữ nguyên giá trị nền tảng và luôn hữu ích lâu dài."
+      },
+      {
+        "question_id": 6,
+        "question_title": "True or false: \"User Experience\" only describes the experience that people have while actually using a product, and not other related experiences like acquiring the product or fixing it when it breaks.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Trải nghiệm người dùng (UX) bao gồm toàn bộ hành trình trải nghiệm của khách hàng đối với sản phẩm/dịch vụ từ trước khi sử dụng (tìm hiểu, mua/nhận), trong khi sử dụng, cho đến sau khi sử dụng (hỗ trợ, bảo hành, sửa chữa)."
+      },
+      {
+        "question_id": 7,
+        "question_title": "True or false: You need to have a degree in psychology in order to understand the principles behind good UX.",
+        "option_A": "True",
+        "option_B": "False",
+        "correct_anwser": "B",
+        "explain": "Dù UX áp dụng nhiều kiến thức về tâm lý học hành vi và nhận thức, bạn không nhất thiết phải có bằng cấp chuyên ngành tâm lý học để hiểu và áp dụng hiệu quả các nguyên tắc thiết kế UX."
+      },
+      {
+        "question_id": 8,
+        "question_title": "Question 1\\nWhich of the following is NOT a reason why building products with great UX is hard?",
+        "option_A": "You are not the user",
+        "option_B": "Computers are weird",
+        "option_C": "Software is (usually) complex",
+        "option_D": "There is no known process that we can follow to create good UX",
+        "correct_anwser": "D",
+        "explain": "Chúng ta đã có các quy trình chuẩn, rõ ràng và đã được kiểm chứng để tạo ra UX tốt (như quy trình User-Centered Design, Design Thinking). Do đó, việc nói 'không có quy trình nào' là sai."
+      },
+      {
+        "question_id": 9,
+        "question_title": "Which of the following is NOT a best practice in writing nominal closed-ended questions?",
+        "option_A": "Avoid unequal response options",
+        "option_B": "Use \"select all that apply\" responses rather than forced choices.",
+        "option_C": "Constrain the number of response options that you provide",
+        "option_D": "Randomize response options when necessary",
+        "correct_anwser": "B",
+        "explain": "Trong nghiên cứu khảo sát, câu hỏi dạng bắt buộc lựa chọn (forced-choice questions, ví dụ Yes/No cho từng mục) thường được khuyến khích hơn dạng 'select all that apply' vì người tham gia có xu hướng chỉ lướt nhanh và bỏ sót lựa chọn khi dùng 'select all that apply'."
+      },
+      {
+        "question_id": 10,
+        "question_title": "Which of the following is NOT an example of convenience sampling?",
+        "option_A": "Asking people on a street corner to answer some questions.",
+        "option_B": "Posting flyers in a doctor's office asking for participants who have had a cold recently.",
+        "option_C": "Asking your friends on Facebook or Twitter to answer questions for you.",
+        "option_D": "Emailing all students at a university based on a random sample of email addresses provided by the administration.",
+        "correct_anwser": "D",
+        "explain": "Lấy mẫu ngẫu nhiên từ danh sách email do nhà trường cung cấp là phương pháp lấy mẫu xác suất ngẫu nhiên (Random Sampling/Probability Sampling), không phải lấy mẫu thuận tiện (Convenience Sampling)."
+      },
+      {
+        "question_id": 11,
+        "question_title": "Question 4\\nWhich of the following is not considered a primitive visual feature that is processed in the first, and fastest, stage of visual processing?",
+        "option_A": "angle of intersection",
+        "option_B": "proximity",
+        "option_C": "shade/contrast",
+        "option_D": "motion",
+        "correct_anwser": "B",
+        "explain": "Proximity (khoảng cách/sự gần nhau) là một nguyên lý nhóm thị giác của Gestalt (thuộc giai đoạn xử lý thứ 2), không phải là đặc tính thị giác nguyên thủy cấp thấp (primitive visual feature) được xử lý tiền chú ý ở giai đoạn đầu tiên như màu sắc/độ tương phản, chuyển động hay góc cắt."
+      },
+      {
+        "question_id": 12,
+        "question_title": "Question 5\\nWhich of the following is not another name for the kind of qualitative research methodology you learned in this course?",
+        "option_A": "Ethnographic research.",
+        "option_B": "Contextual inquiry.",
+        "option_C": "User needs assessment.",
+        "option_D": "Socio-technical extraction.",
+        "correct_anwser": "D",
+        "explain": "Nghiên cứu định tính về nhu cầu người dùng thường được gọi là Nghiên cứu dân tộc học (Ethnographic research), Truy vấn ngữ cảnh (Contextual inquiry) hoặc Đánh giá nhu cầu người dùng (User needs assessment). 'Socio-technical extraction' là một thuật ngữ không tồn tại trong ngữ cảnh này."
+      },
+      {
+        "question_id": 13,
+        "question_title": "Question 6\\nWhich of the following is not one of the three things you learned in this course?",
+        "option_A": "Conducting semi-structured interviews",
+        "option_B": "Observing users",
+        "option_C": "Coding of qualitative texts",
+        "option_D": "Analyzing data with affinity walls",
+        "correct_anwser": "C",
+        "explain": "Khóa học 'Understanding User Needs' tập trung vào 3 kỹ năng thực hành cốt lõi: phỏng vấn bán cấu trúc (interviews), quan sát người dùng (observing users) và phân tích dữ liệu bằng sơ đồ đồng điệu (affinity walls). Mã hóa văn bản định tính chuyên sâu (coding qualitative texts) không nằm trong 3 kỹ năng chính này."
+      },
+      {
+        "question_id": 14,
+        "question_title": "Question 5\\nWhich of the following is not an advantage of lo-fi prototyping?",
+        "option_A": "You can identify problems before investing significant resources into a design direction.",
+        "option_B": "You can work out aspects of graphic design such as fonts and color schemes, which have the largest impact on user experience.",
+        "option_C": "Stakeholders are more likely to give honest feedback if they perceive that design ideas are \"sketchy\" rather than highly polished.",
+        "option_D": "Lo-fi prototypes are easy to change, allowing you to iterate more rapidly than you could if you were creating more complex prototypes.",
+        "correct_anwser": "B",
+        "explain": "Nguyên mẫu độ trung thực thấp (Lo-fi prototype) tập trung vào cấu trúc, luồng điều hướng và chức năng chứ không dùng để tinh chỉnh các yếu tố đồ họa chi tiết như phông chữ hay bảng màu (những yếu tố này thuộc về Hi-fi prototype)."
+      },
+      {
+        "question_id": 15,
+        "question_title": "Question 9\\nWhich new technological trend is not requiring designers to change how they prototype and test their systems?",
+        "option_A": "Proliferation of screens (smart watches, embedded displays, etc.) for which designers need to design user experiences",
+        "option_B": "Instrumented environments",
+        "option_C": "Artificial Intelligence-based systems",
+        "option_D": "Virtual and augmented reality",
+        "option_E": "None of the above",
+        "correct_anwser": "E",
+        "explain": "Tất cả các xu hướng công nghệ mới được nêu (đa màn hình/thiết bị đeo, môi trường thông minh, AI, AR/VR) đều đòi hỏi các nhà thiết kế UX phải thay đổi và thích ứng phương pháp tạo mẫu cũng như thử nghiệm hệ thống. Do đó chọn 'None of the above'."
+      },
+      {
+        "question_id": 16,
+        "question_title": "Question 2\\nWhen choosing an environment to conduct a user test session, which of the following is not an important characteristic of your chosen site?",
+        "option_A": "Distraction-free",
+        "option_B": "Private",
+        "option_C": "Dedicated only for conducting user tests",
+        "option_D": "Quiet",
+        "correct_anwser": "C",
+        "explain": "Không gian kiểm thử người dùng cần yên tĩnh, riêng tư và không bị phân tâm, nhưng không bắt buộc phải là một phòng chuyên dụng chỉ dùng riêng cho kiểm thử (bạn hoàn toàn có thể tận dụng phòng họp hoặc không gian làm việc phù hợp)."
+      },
+      {
+        "question_id": 17,
+        "question_title": "Question 8\\nAbout how long does an item remain in short-term memory if it is not actively maintained through rehearsal?",
+        "option_A": "Less than one second",
+        "option_B": "A few seconds",
+        "option_C": "A few minutes",
+        "option_D": "Up to an hour",
+        "correct_anwser": "B",
+        "explain": "Trong tâm lý học nhận thức, thông tin trong bộ nhớ ngắn hạn (short-term memory) nếu không được chủ động lặp lại/ghi nhớ sẽ biến mất rất nhanh chỉ sau vài giây (khoảng 15 đến 30 giây)."
+      },
+      {
+        "question_id": 18,
+        "question_title": "Which of the following is MOST true about offering a \"Don't Know\" option in your response categories?",
+        "option_A": "Research shows people don't choose the \"Don't Know\" option when it's offered.",
+        "option_B": "You should always include a \"Don't Know\" option in your written surveys.",
+        "option_C": "It's best to do when the question asks for recall, not when asking for opinions.",
+        "option_D": "The \"Don't Know\" option should only be used for opinion questions.",
+        "correct_anwser": "C",
+        "explain": "Lựa chọn 'Don't Know' nên được đưa vào đối với các câu hỏi kiểm tra trí nhớ/sự kiện thực tế (recall) khi người dùng có thể thực sự không nhớ. Đối với câu hỏi về quan điểm, việc đưa tùy chọn này dễ khiến người trả lời lười suy nghĩ và né tránh bày tỏ ý kiến."
+      },
+      {
+        "question_id": 19,
+        "question_title": "Which of the following is a STRENGTH of surveys as a UX method?",
+        "option_A": "Measuring Behaviors",
+        "option_B": "Understanding why people do things",
+        "option_C": "Describing Opinions of a Group of People",
+        "option_D": "Conducting Exploratory Work",
+        "correct_anwser": "C",
+        "explain": "Điểm mạnh lớn nhất của khảo sát (surveys) trong nghiên cứu UX là khả năng thu thập và mô tả quan điểm, thái độ và ý kiến của một tập hợp lớn người dùng trên quy mô rộng."
+      },
+      {
+        "question_id": 20,
+        "question_title": "Download Attachment #2 as .pdf and read in full to answer questions 3 and 4.\\nWhich of these aspects make the key findings section particularly good?",
+        "option_A": "It lists UX issues ranked by priority based on evidence of actual user testing feedback",
+        "option_B": "It includes actionable recommendations of how to fix the UX issues",
+        "option_C": "It includes visuals of possible designs that would fix the UX issues",
+        "option_D": "It only focuses on two main UX issues",
+        "correct_anwser": "A",
+        "explain": "Một phần 'Key Findings' (phát hiện chính) xuất sắc trong báo cáo đánh giá UX là phần liệt kê các vấn đề trải nghiệm người dùng được xếp hạng theo mức độ ưu tiên/nghiêm trọng dựa trên bằng chứng và phản hồi thực tế từ phiên kiểm thử."
+      },
+      {
+        "question_id": 21,
+        "question_title": "Download Attachment #2 as .pdf and read in full to answer questions 3 and 4. Which of these aspects make the key findings section particularly good?",
+        "option_A": "It lists UX issues ranked by priority based on evidence of actual user testing feedback",
+        "option_B": "It includes actionable recommendations of how to fix the UX issues",
+        "option_C": "It includes visuals of possible designs that would fix the UX issues",
+        "option_D": "It only focuses on two main UX issues",
+        "correct_anwser": "A",
+        "explain": "Key findings tốt vì liệt kê các vấn đề UX được xếp hạng theo mức độ ưu tiên dựa trên bằng chứng từ phản hồi của người dùng thực tế trong quá trình kiểm thử. Đáp án AB được đánh dấu trong ảnh, nhưng theo yêu cầu correct_anwser chỉ chứa 1 chữ cái nên chọn A là khía cạnh quan trọng nhất."
+      },
+      {
+        "question_id": 22,
+        "question_title": "Read the project brief, then the scenario. What conclusions might you draw from the scenario that would inform the design? (Select all that apply)",
+        "option_A": "George needs the app to work efficiently, since he will likely be using it at the end of the day and will only have a short period to sell the leftover food",
+        "option_B": "Consumers need to find out about the food availability right when it is posted, since it will likely be at the end of the day. Pushing notifications to consumers when food is posted would be useful in the app",
+        "option_C": "The app's success will rely on users following through on picking up their purchases; making users pay in-app rather than in the store will increase the likelihood that all the food is picked up",
+        "option_D": "George does not care about making money since he is throwing the food away anyways, so all the leftover food should be posted on the app for free",
+        "correct_anwser": "A",
+        "explain": "Từ kịch bản, George cần app hoạt động hiệu quả vì thời gian bán đồ ăn thừa cuối ngày rất ngắn; người dùng cần thông báo đẩy khi đồ ăn được đăng; thanh toán trong app giúp tăng khả năng nhận đồ. Đáp án ABC được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+      },
+      {
+        "question_id": 23,
+        "question_title": "If this was the full test plan, which of the following suggestions might help clarify the plan?",
+        "option_A": "Specify Recruiting Criteria",
+        "option_B": "Complete the Test Script",
+        "option_C": "Add task instructions for users to replicate",
+        "option_D": "Include Follow-Up Questions",
+        "correct_anwser": "B",
+        "explain": "Kế hoạch kiểm thử đầy đủ cần hoàn thiện kịch bản kiểm thử và thêm hướng dẫn nhiệm vụ rõ ràng để người dùng có thể thực hiện. Đáp án BC được đánh dấu trong ảnh, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn B."
+      },
+      {
+        "question_id": 24,
+        "question_title": "For each UX issue, the report includes the:",
+        "option_A": "Severity",
+        "option_B": "Evidence",
+        "option_C": "Clear description of the problem",
+        "option_D": "Name of the participant who encountered the issue",
+        "correct_anwser": "A",
+        "explain": "Báo cáo UX tốt phải bao gồm mức độ nghiêm trọng, bằng chứng và mô tả rõ ràng vấn đề cho từng issue. Tên người tham gia không cần thiết vì có thể vi phạm quyền riêng tư. Đáp án ABC được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+      },
+      {
+        "question_id": 25,
+        "question_title": "Question 8 Which of the following components of UX were discussed in this week's lectures? Check all that apply.",
+        "option_A": "Value",
+        "option_B": "Usability",
+        "option_C": "Desirability",
+        "option_D": "Adoptability",
+        "option_E": "Scrollability",
+        "option_F": "Monetizability",
+        "correct_anwser": "A",
+        "explain": "Các thành phần UX được thảo luận bao gồm Value, Usability, Desirability và Adoptability. Scrollability và Monetizability không phải là thành phần chính. Đáp án ABCD được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+      },
+      {
+        "question_id": 26,
+        "question_title": "What makes these good research questions for a needs-finding study? (Select All that apply)",
+        "option_A": "They're open ended, not leading",
+        "option_B": "They seek to learn about what problems there are with existing solutions",
+        "option_C": "They are questions that can be answered by interviewing the target user population",
+        "option_D": "They will help the researcher learn how users currently complete the activity that their design will try to improve",
+        "correct_anwser": "A",
+        "explain": "Câu hỏi nghiên cứu tốt cho needs-finding phải mở, không dẫn dắt, tìm hiểu vấn đề của giải pháp hiện tại, có thể trả lời bằng phỏng vấn người dùng mục tiêu và giúp hiểu cách người dùng hoàn thành hoạt động hiện tại. Đáp án ABCD được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+      },
+      {
+        "question_id": 27,
+        "question_title": "Question 1 Write the stages of action in the correct order in the text box below. There is no need to number them, and feel free to separate each stage with a comma: I. Interpreting the State of the World II. Selecting the Action III. Evaluating the Outcome IV. Executing the Action V. Forming the Intention VI. Perceiving the State of the World",
+        "option_A": "V, II, IV, VI, I, III",
+        "option_B": "I, II, III, IV, V, VI",
+        "correct_anwser": "A",
+        "explain": "Thứ tự đúng của stages of action theo Norman là: Forming the Intention → Selecting the Action → Executing the Action → Perceiving the State of the World → Interpreting the State of the World → Evaluating the Outcome (V, II, IV, VI, I, III)."
+      },
+      {
+        "question_id": 28,
+        "question_title": "Question 4 What is another name for the affinity wall technique?",
+        "option_A": "The KJ Method",
+        "option_B": "Relatedness clustering",
+        "option_C": "Holmes deduction",
+        "option_D": "Jiro Dreams of Sushi",
+        "correct_anwser": "A",
+        "explain": "Kỹ thuật affinity wall còn được gọi là The KJ Method, đặt theo tên của Jiro Kawakita, người phát triển phương pháp này để nhóm các ý tưởng liên quan."
+      },
+      {
+        "question_id": 29,
+        "question_title": "Question 1 What kind of interviews are you learning about in this course?",
+        "option_A": "Group, remote, semi-structured.",
+        "option_B": "Individual, remote, structured.",
+        "option_C": "Individual, in-person, semi-structured.",
+        "option_D": "Group, in-person, unstructured.",
+        "correct_anwser": "C",
+        "explain": "Khóa học tập trung vào phỏng vấn cá nhân, trực tiếp (in-person) và bán cấu trúc (semi-structured) để tìm hiểu nhu cầu người dùng sâu hơn."
+      },
+      {
+        "question_id": 30,
+        "question_title": "Question 1 What was the title of this course?",
+        "option_A": "Understanding User Needs",
+        "option_B": "Designing User Experience",
+        "option_C": "Surveying Users at Scale",
+        "option_D": "Analyzing User Data",
+        "correct_anwser": "A",
+        "explain": "Tiêu đề khóa học là Understanding User Needs, đúng với một trong các course thuộc User Experience Research and Design Specialization trên Coursera."
+      },
+      {
+        "question_id": 31,
+        "question_title": "Question 2 Which of the following research techniques were taught in this specific course?",
+        "option_A": "Experience sampling",
+        "option_B": "A/B testing",
+        "option_C": "Semi-structured interviews",
+        "option_D": "Surveys and questionnaires",
+        "correct_anwser": "C",
+        "explain": "Khóa học này tập trung vào semi-structured interviews (phỏng vấn bán cấu trúc) để tìm hiểu nhu cầu người dùng, đây là kỹ thuật nghiên cứu chính được dạy."
+      },
+      {
+        "question_id": 32,
+        "question_title": "Question 5 Which of the following is not a phase in the iterative design process?",
+        "option_A": "Build",
+        "option_B": "Design",
+        "option_C": "Stylize",
+        "option_D": "Assess",
+        "correct_anwser": "C",
+        "explain": "Quy trình thiết kế lặp (iterative design) bao gồm các giai đoạn như Design, Build, Assess. 'Stylize' không phải là một giai đoạn trong quy trình này."
+      },
+      {
+        "question_id": 33,
+        "question_title": "Question 4 Which of the following is not a method for doing ideation?",
+        "option_A": "Brainstorming",
+        "option_B": "Mind-mapping",
+        "option_C": "Timed idea generation",
+        "option_D": "Tradeoff analysis",
+        "option_E": "Sketching",
+        "correct_anwser": "D",
+        "explain": "Ideation là giai đoạn tạo ý tưởng với các phương pháp như Brainstorming, Mind-mapping, Timed idea generation, Sketching. Tradeoff analysis là phương pháp đánh giá và so sánh các phương án sau khi đã có ý tưởng, không phải phương pháp ideation."
+      },
+      {
+        "question_id": 34,
+        "question_title": "Question 9 Which of the following observation methodologies did you learn in this course?",
+        "option_A": "Sit-and-stare methodology",
+        "option_B": "Shock-and-awe technique",
+        "option_C": "Think-aloud protocol",
+        "option_D": "Poke-or-nudge routine",
+        "correct_anwser": "C",
+        "explain": "Think-aloud protocol là phương pháp quan sát phổ biến được dạy trong khóa học, yêu cầu người dùng nói to suy nghĩ khi thực hiện nhiệm vụ."
+      },
+      {
+        "question_id": 35,
+        "question_title": "Which type of question asks the respondent to compare categories where there is no inherent order between the choices?",
+        "option_A": "Ordinal closed-ended",
+        "option_B": "Descriptive open-ended",
+        "option_C": "Nominal closed-ended",
+        "option_D": "List-of-items open-ended",
+        "correct_anwser": "C",
+        "explain": "Nominal closed-ended là loại câu hỏi yêu cầu so sánh các danh mục không có thứ tự sẵn có (ví dụ: màu sắc, thương hiệu), khác với ordinal có thứ bậc."
+      },
+      {
+        "question_id": 36,
+        "question_title": "Question 7 Reducing the set of available actions to only those that are possible given a particular state of the system would be an example of applying:",
+        "option_A": "Feedback",
+        "option_B": "Constraints",
+        "option_C": "Conceptual Models",
+        "option_D": "Mapping",
+        "correct_anwser": "B",
+        "explain": "Constraints (ràng buộc) là nguyên tắc thiết kế hạn chế các hành động có thể thực hiện dựa trên trạng thái hiện tại của hệ thống, giúp người dùng tránh lỗi."
+      },
+      {
+        "question_id": 37,
+        "question_title": "Question 6 A model of the design process that shows both the iterative nature and also how it progresses towards an end goal is:",
+        "option_A": "The spiral model",
+        "option_B": "The waterfall model",
+        "option_C": "The hub-and-spoke model",
+        "option_D": "The wave model",
+        "correct_anwser": "A",
+        "explain": "Spiral model thể hiện cả tính chất lặp lại (iterative) và sự tiến triển hướng tới mục tiêu cuối cùng, phù hợp với quy trình thiết kế UX."
+      },
+      {
+        "question_id": 38,
+        "question_title": "Question 5 According to the instructor, _____ information is understanding, and understanding is intelligence. Fill in the blank.",
+        "option_A": "Rearranging",
+        "option_B": "Condensing",
+        "option_C": "Creating",
+        "option_D": "Eliminating",
+        "correct_anwser": "B",
+        "explain": "Theo giảng viên, việc cô đọng (condensing) thông tin chính là sự hiểu biết, và sự hiểu biết chính là trí tuệ."
+      },
+      {
+        "question_id": 39,
+        "question_title": "Multiple choice questions like this are really just survey questions! What type of survey question is this?",
+        "option_A": "Nominal closed-ended, choice unforced",
+        "option_B": "Nominal closed-ended, choice forced",
+        "option_C": "Ordinal closed-ended, choice unforced",
+        "option_D": "Ordinal closed-ended, choice forced",
+        "correct_anwser": "B",
+        "explain": "Đây là câu hỏi nominal closed-ended với choice forced vì các lựa chọn không có thứ tự và người trả lời bắt buộc phải chọn một đáp án."
+      },
+      {
+        "question_id": 40,
+        "question_title": "Question 7 Interviews, Observations, Surveys, User Testing, and Inspection Methods are all examples of:",
+        "option_A": "Common UX mistakes",
+        "option_B": "UX Design methods",
+        "option_C": "UX Research methods",
+        "option_D": "UX Marketing methods",
+        "correct_anwser": "C",
+        "explain": "Interviews, Observations, Surveys, User Testing và Inspection Methods đều là các phương pháp nghiên cứu UX (UX Research methods) để thu thập dữ liệu về người dùng."
+      },
+      {
+        "question_id": 41,
+        "question_title": "Question 4 Rank these prototypes in order of fidelity, from low to high.",
+        "option_A": "1, 2, 3",
+        "option_B": "3, 2, 1",
+        "option_C": "1, 3, 2",
+        "option_D": "2, 1, 3",
+        "correct_anwser": "A",
+        "explain": "Thứ tự fidelity từ thấp đến cao là 1, 2, 3 (thường là sketch/paper → wireframe → high-fidelity digital prototype)."
+      },
+      {
+        "question_id": 42,
+        "question_title": "Research at scale can be carried out during the following product development lifecycles:",
+        "option_A": "Discovery",
+        "option_B": "Design/Development",
+        "option_C": "Optimization",
+        "option_D": "All",
+        "correct_anwser": "D",
+        "explain": "Nghiên cứu quy mô lớn (research at scale) có thể được thực hiện ở mọi giai đoạn của vòng đời phát triển sản phẩm: Discovery, Design/Development và Optimization."
+      },
+      {
+        "question_id": 43,
+        "question_title": "Question 1 The \\\"central vision\\\" portion of the human field of view, in which people can read text and recognize details in images, is approximately how wide?",
+        "option_A": "5°",
+        "option_B": "18°",
+        "option_C": "30°",
+        "option_D": "180°",
+        "correct_anwser": "A",
+        "explain": "Central vision (foveal vision) chỉ rộng khoảng 5 độ, đây là vùng mắt có thể đọc chữ và nhận diện chi tiết rõ nét."
+      },
+      {
+        "question_id": 44,
+        "question_title": "Question 3 The effect that makes it easy to recognize objects in a visual field that differ from their background and all other objects in simple visual features like color and texture is called:",
+        "option_A": "saccade",
+        "option_B": "gestalt",
+        "option_C": "brightness",
+        "option_D": "Pop-out",
+        "correct_anwser": "D",
+        "explain": "Hiệu ứng Pop-out giúp nhận diện nhanh các đối tượng khác biệt về màu sắc, kết cấu so với nền và các đối tượng xung quanh."
+      },
+      {
+        "question_id": 45,
+        "question_title": "Question 1 Your client wants you to conduct a user test of their pre-release prototype to find the most important user interface problems to be fixed before the product is released. What kind of user test is your client asking you to perform?",
+        "option_A": "Summative",
+        "option_B": "Formative",
+        "option_C": "Competitive",
+        "option_D": "A/B",
+        "correct_anwser": "B",
+        "explain": "Formative testing được dùng trong giai đoạn phát triển để tìm và sửa các vấn đề giao diện trước khi phát hành sản phẩm."
+      },
+      {
+        "question_id": 46,
+        "question_title": "Question 2 You are working on assessing the usability of a medical device. For regulatory reasons, you need to demonstrate that 99% of medical professionals can perform a certain task in under one minute. What kind of user test should you perform?",
+        "option_A": "Comparative",
+        "option_B": "Formative",
+        "option_C": "Benchmark",
+        "option_D": "Microusability",
+        "correct_anwser": "C",
+        "explain": "Benchmark testing được dùng để đo lường và chứng minh hiệu suất đạt tiêu chuẩn cụ thể (ví dụ 99% người dùng hoàn thành trong thời gian quy định)."
+      },
+      {
+        "question_id": 47,
+        "question_title": "Question 5 What makes the example shown effective at conveying the navigation flow? (Select all that apply)",
+        "option_A": "It specifies where the user should click to progress to the next screen.",
+        "option_B": "It is a digital prototype",
+        "option_C": "It contains placeholder text",
+        "correct_anwser": "A",
+        "explain": "Ví dụ hiệu quả vì chỉ rõ vị trí người dùng cần click để chuyển sang màn hình tiếp theo, giúp thể hiện rõ luồng điều hướng."
+      },
+      {
+        "question_id": 48,
+        "question_title": "Question 2 Could you run user tests with this prototype and receive useful data to inform your designs?",
+        "option_A": "Yes, any type of prototype can be used for user testing",
+        "option_B": "No, only fully interactive digital prototypes will give you useful data",
+        "option_C": "No, user testing is most effective when you use hand-drawn prototypes rather than ones created with graphic design software",
+        "option_D": "No, you shouldn't use a prototype to conduct user testing",
+        "correct_anwser": "A",
+        "explain": "Bất kỳ loại prototype nào (kể cả low-fidelity) đều có thể dùng để kiểm thử người dùng và thu thập dữ liệu hữu ích."
+      },
+      {
+        "question_id": 49,
+        "question_title": "What is the main problem with the \\\"Agree/Disagree\\\" response scale?",
+        "option_A": "Overly familiar to respondents, leading to satisficing",
+        "option_B": "Leads to acquiescence bias",
+        "option_C": "Cognitively burdensome",
+        "option_D": "Not understood by most respondents",
+        "correct_anwser": "B",
+        "explain": "Thang đo Agree/Disagree dễ dẫn đến acquiescence bias – xu hướng người trả lời đồng ý với câu hỏi bất kể nội dung thực tế."
+      },
+      {
+        "question_id": 50,
+        "question_title": "Question 10 What is user testing particularly well suited to tell you?",
+        "option_A": "How many people will buy your product.",
+        "option_B": "Users' most critical unmet needs.",
+        "option_C": "Whether users can successfully perform the tasks that you designed the system to support.",
+        "option_D": "What users will do with the system once they have it in their own hands.",
+        "correct_anwser": "C",
+        "explain": "User testing đặc biệt phù hợp để kiểm tra xem người dùng có thể thực hiện thành công các nhiệm vụ mà hệ thống được thiết kế để hỗ trợ hay không."
+      },
+      {
+        "question_id": 51,
+        "question_title": "Question 6 What is a key benefit of collecting qualitative data during user testing?",
+        "option_A": "It helps you \\\"prove\\\" statistically that the system being studied is better than competitors'",
+        "option_B": "It doesn't require any analysis, so it saves time compared to other types of data",
+        "option_C": "It helps you understand why test participants had difficulties when using the system",
+        "option_D": "It allows you to assess the overall quality of the system being tested",
+        "correct_anwser": "C",
+        "explain": "Dữ liệu định tính giúp hiểu rõ lý do tại sao người tham gia gặp khó khăn khi sử dụng hệ thống, chứ không chỉ biết họ gặp vấn đề."
+      },
+      {
+        "question_id": 52,
+        "question_title": "Question 4 What should you keep in mind throughout the interview?",
+        "option_A": "Your overarching question(s).",
+        "option_B": "\\\"The Force\\\" from Star Wars.",
+        "option_C": "The name of the interview participant.",
+        "option_D": "The next question in your interview protocol.",
+        "correct_anwser": "A",
+        "explain": "Trong suốt buổi phỏng vấn cần luôn nhớ câu hỏi nghiên cứu tổng thể (overarching question) để đảm bảo cuộc trò chuyện đi đúng hướng."
+      },
+      {
+        "question_id": 53,
+        "question_title": "Question 4 What should you do when clustering data for qualitative data analysis?",
+        "option_A": "Ensure each cluster is the same size.",
+        "option_B": "Make clusters out of related information.",
+        "option_C": "Throw out data that doesn't fit in any cluster.",
+        "option_D": "Focus on the arrangement of items in each cluster.",
+        "correct_anwser": "B",
+        "explain": "Khi clustering dữ liệu định tính, cần nhóm các thông tin liên quan lại với nhau để tạo thành các cụm có ý nghĩa."
+      },
+      {
+        "question_id": 54,
+        "question_title": "Question 7 What should be your approach in conducting a semi-structured interview?",
+        "option_A": "Maintain a conversational tone and use the interview protocol as a loose guideline.",
+        "option_B": "Maintain a formal tone and read the interview protocol questions exactly in the listed order.",
+        "option_C": "Maintain a relaxed tone and discuss whatever the interview participant feels is relevant.",
+        "option_D": "Maintain a professional tone and never refer to the interview protocol.",
+        "correct_anwser": "A",
+        "explain": "Phỏng vấn bán cấu trúc nên giữ giọng điệu trò chuyện tự nhiên và dùng protocol như hướng dẫn linh hoạt, không cứng nhắc."
+      },
+      {
+        "question_id": 55,
+        "question_title": "Question 8 What should a new note you write (after data extraction is completed) during construction of an affinity wall contain?",
+        "option_A": "A self-contained summary of the knowledge in the associated cluster.",
+        "option_B": "Spelling or grammar corrections for affinity notes.",
+        "option_C": "A new question to ask in a future user needs assessment.",
+        "option_D": "A salience ranking of the affinity notes in the associated cluster.",
+        "correct_anwser": "A",
+        "explain": "Ghi chú mới trên affinity wall phải là tóm tắt tự chứa (self-contained) về kiến thức của cụm dữ liệu tương ứng."
+      },
+      {
+        "question_id": 56,
+        "question_title": "Which of the following is a reason why you might use non-probability samples rather than probability samples?",
+        "option_A": "Ability to represent the population better",
+        "option_B": "Quality of data",
+        "option_C": "Cost",
+        "option_D": "Ability to get more responses",
+        "correct_anwser": "C",
+        "explain": "Non-probability samples thường được dùng vì chi phí thấp hơn so với probability samples, dù tính đại diện kém hơn."
+      },
+      {
+        "question_id": 57,
+        "question_title": "Question 9 Which of the following should you avoid when writing affinity notes?",
+        "option_A": "Make each note understandable on its own.",
+        "option_B": "Be concrete.",
+        "option_C": "Aim for about one affinity note per minute of interview.",
+        "option_D": "Provide thorough, detailed explanations.",
+        "correct_anwser": "D",
+        "explain": "Khi viết affinity notes cần tránh viết giải thích quá dài dòng, chi tiết; notes nên ngắn gọn, cụ thể và tự hiểu được."
+      },
+      {
+        "question_id": 58,
+        "question_title": "Which of the following methods would be the best approach for answering the stated questions?",
+        "option_A": "Qualitative research such as user interviews or focus groups",
+        "option_B": "Quantitative research such as surveys",
+        "option_C": "Quantitative research such as A/B testing",
+        "option_D": "Qualitative research such as user testing a prototype",
+        "correct_anwser": "A",
+        "explain": "Câu hỏi nghiên cứu mang tính khám phá nhu cầu thường phù hợp nhất với phương pháp định tính như phỏng vấn người dùng hoặc focus group."
+      },
+      {
+        "question_id": 59,
+        "question_title": "Which of the following is the most important consideration in picking what type of question type to use?",
+        "option_A": "The demographic makeup of your population",
+        "option_B": "The type of analysis you plan on doing",
+        "option_C": "The type of sampling you're using",
+        "option_D": "The mode your survey will be delivered in",
+        "correct_anwser": "B",
+        "explain": "Yếu tố quan trọng nhất khi chọn loại câu hỏi là loại phân tích bạn dự định thực hiện sau này."
+      },
+      {
+        "question_id": 60,
+        "question_title": "Question 5 Which of the following is the right way to take notes?",
+        "option_A": "To write only the key points in short phrases.",
+        "option_B": "To capture only what audio recording definitely will not.",
+        "option_C": "There is no one right way to take notes.",
+        "option_D": "To jot down only follow-up questions you want to ask later.",
+        "correct_anwser": "C",
+        "explain": "Không có một cách ghi chú đúng duy nhất; tùy vào mục đích và hoàn cảnh mà chọn cách ghi chú phù hợp."
+      },
+      {
+        "question_id": 61,
+        "question_title": "Question 9 Which of the following questions would be most relevant to the UX criterion of \\\"Adoptability\\\"?",
+        "option_A": "Where do users currently look for products or services like the one we will offer?",
+        "option_B": "Do users prefer bright or muted colors for graphics in this product category?",
+        "option_C": "How much would people be willing to pay for the product or service we plan to offer?",
+        "option_D": "What percentage of people succeed in completing key tasks using the product?",
+        "correct_anwser": "A",
+        "explain": "Adoptability liên quan đến khả năng người dùng chấp nhận và bắt đầu sử dụng sản phẩm, nên câu hỏi về nơi họ tìm kiếm sản phẩm/dịch vụ tương tự là phù hợp nhất."
+      },
+      {
+        "question_id": 62,
+        "question_title": "Question 2 Which of the following is not true about standardized usability questionnaires like QUIS and PSSUQ?",
+        "option_A": "The level of reliability is known, allowing you to assess how consistent they are across systems and study participants",
+        "option_B": "Most of them have been used in many studies, allowing comparisons across systems",
+        "option_C": "Some of them allow you to \\\"plug in\\\" different questionnaire sections to ask about specific usability issues",
+        "option_D": "They are so expensive that they are only used in the biggest, most well-funded projects",
+        "correct_anwser": "D",
+        "explain": "Các bảng hỏi chuẩn hóa như QUIS, PSSUQ không đắt đỏ đến mức chỉ dùng cho dự án lớn; chúng khá phổ biến và dễ tiếp cận."
+      },
+      {
+        "question_id": 63,
+        "question_title": "Question 3 Which of the following would be a good reason for using a high-end usability testing lab with separate control and observation room?",
+        "option_A": "You will be providing a computer for participants to use during the test",
+        "option_B": "You will be using the think-aloud protocol",
+        "option_C": "You plan to administer a post-test questionnaire",
+        "option_D": "You plan to invite multiple stakeholders to observe the test sessions",
+        "correct_anwser": "D",
+        "explain": "Phòng lab cao cấp với phòng quan sát riêng rất hữu ích khi cần mời nhiều stakeholder theo dõi buổi test mà không làm phiền người tham gia."
+      },
+      {
+        "question_id": 64,
+        "question_title": "Question 7 Which of the following is not a characteristic of low-fidelity prototypes?",
+        "option_A": "They should be quick to create",
+        "option_B": "They should support the full sequence of actions needed to complete a task",
+        "option_C": "They should be realistic",
+        "option_D": "They should cover the functionality of the whole system.",
+        "correct_anwser": "C",
+        "explain": "Low-fidelity prototypes không cần phải realistic (trông thật); chúng thường đơn giản, nhanh tạo và tập trung vào chức năng chính."
+      },
+      {
+        "question_id": 65,
+        "question_title": "Which of the following is most accurate?",
+        "option_A": "Surveys are good at broad descriptions of groups, but not at precise measurements.",
+        "option_B": "Surveys have largely been abandoned in modern research because they are so inaccurate.",
+        "option_C": "Surveys should never be combined with other types of methods.",
+        "option_D": "Surveys are good at measuring behavioral outcomes.",
+        "correct_anwser": "A",
+        "explain": "Surveys tốt cho việc mô tả rộng về nhóm người dùng nhưng không phải là công cụ đo lường chính xác cao."
+      },
+      {
+        "question_id": 66,
+        "question_title": "Which of the following best describes the social desirability outcomes in interview-led survey modes?",
+        "option_A": "Results can be biased because people want to be agreeable with an interviewer.",
+        "option_B": "Results can be biased because interviewers will avoid questions that could be embarrassing.",
+        "option_C": "Results can be biased because people semi-consciously will try to look acceptable to the interviewer.",
+        "option_D": "Results can be biased because some interviewers are more able to get people to do surveys.",
+        "correct_anwser": "C",
+        "explain": "Social desirability bias xảy ra khi người trả lời bán ý thức cố gắng thể hiện bản thân theo hướng được chấp nhận bởi người phỏng vấn."
+      },
+      {
+        "question_id": 67,
+        "question_title": "Which of the following is the most true statement about how people remember things?",
+        "option_A": "People remember their past behavior well enough to give accurate survey responses.",
+        "option_B": "Memory can be guided back to accuracy through careful prompts.",
+        "option_C": "Memory fades over time, but people are good at remembering routine actions.",
+        "option_D": "Memory fades over time, and often doesn't capture routine actions.",
+        "correct_anwser": "D",
+        "explain": "Trí nhớ phai mờ theo thời gian và thường không ghi nhận tốt các hành động thường ngày (routine actions)."
+      },
+      {
+        "question_id": 68,
+        "question_title": "Which of the following best describes the question stem?",
+        "option_A": "It's the optional instructions for how to answer a question.",
+        "option_B": "It's the set of responses that a respondent can give.",
+        "option_C": "It's the query that operationalizes the concept of interest and prompts a response.",
+        "option_D": "It's a series of questions that are used together to form a scale.",
+        "correct_anwser": "C",
+        "explain": "Question stem là phần câu hỏi chính operationalize khái niệm cần đo và kích thích người trả lời đưa ra phản hồi."
+      },
+      {
+        "question_id": 69,
+        "question_title": "Which of these examples of personas could be more effective for guiding a design solution?",
+        "option_A": "#2 because it includes relevant demographic information, motivations and needs related to the design problem, and characteristics could constrain the persona's ability to use a system.",
+        "option_B": "#1 because there are more personas and they're in paragraph form",
+        "option_C": "#1 because the picture in #2 is distracting",
+        "correct_anwser": "A",
+        "explain": "Persona #2 hiệu quả hơn vì chứa thông tin nhân khẩu học, động lực, nhu cầu liên quan đến vấn đề thiết kế và các đặc điểm có thể hạn chế khả năng sử dụng hệ thống."
+      },
+      {
+        "question_id": 70,
+        "question_title": "Question 10 How do you get to Carnegie Hall?",
+        "option_A": "Practice, practice, practice!",
+        "option_B": "Go down three blocks and take a right.",
+        "option_C": "Buy a ticket online.",
+        "option_D": "Use a GPS device.",
+        "correct_anwser": "A",
+        "explain": "Đây là câu hỏi hài hước nổi tiếng, đáp án đúng là \\\"Practice, practice, practice!\\\" để nhấn mạnh tầm quan trọng của việc luyện tập."
+      },
+      {
+        "question_id": 71,
+        "question_title": "Question 9 When using questionnaires to collect characteristic, behavioral, and attitudinal data about your test participants, it is best to:",
+        "option_A": "Ask all the questions you can think of, because you never know what will be useful.",
+        "option_B": "Ask no questions, because it will distract from the test and annoy your participants.",
+        "option_C": "Focus on collecting data that could help explain differences in task outcomes.",
+        "option_D": "Focus on getting users to rate the quality of your system on a five-point scale.",
+        "correct_anwser": "C",
+        "explain": "Nên tập trung thu thập dữ liệu có thể giải thích sự khác biệt trong kết quả nhiệm vụ của người tham gia."
+      },
+      {
+        "question_id": 72,
+        "question_title": "Question 5 According to Nielsen's heuristics, \\\"platform standards\\\" are important to support in user interface design because:",
+        "option_A": "Platform standards are always better than anything you could come up with on your own",
+        "option_B": "Supporting standards allows users to leverage \\\"schemas\\\" they have developed through prior experiences with similar systems",
+        "option_C": "Platform owners may refuse to allow your system to run on their platform if you do not conform",
+        "option_D": "You can use pre-existing code libraries, which saves development time",
+        "correct_anwser": "B",
+        "explain": "Hỗ trợ platform standards giúp người dùng tận dụng các schema đã có từ trải nghiệm trước với hệ thống tương tự."
+      },
+      {
+        "question_id": 73,
+        "question_title": "Download Attachment #1 as .pdf and read in full to answer questions 1 and 2. The stated purpose of this user test is: The test is designed to validate the main purpose of the project which is: \\\"Designing an affordable and easy to use method to archive insurance related files electronically while keeping in mind that the environment has an unstable internet connection and customers can't wait until all documents are uploaded\\\". While this is a good start, after reading through the user test plan and scenarios, which of these options provides a more specific goal?",
+        "option_A": "The goal is to get users to explain what exactly their ideal system would be so that the researcher can design that for them",
+        "option_B": "The goal is to understand the users' current way of doing things",
+        "option_C": "The goal is to discover whether users like the way that",
+        "correct_anwser": "A",
+        "explain": "Mục tiêu cụ thể hơn là để người dùng giải thích hệ thống lý tưởng của họ để nhà nghiên cứu có thể thiết kế dựa trên đó."
+      },
+      {
+        "question_id": 74,
+        "question_title": "Question 9 From a usability point of view, it's important to use an \\\"aesthetic and minimalist design\\\" because:",
+        "option_A": "a pleasing design can increase brand awareness, which can increase sales",
+        "option_B": "reducing clutter and organizing information makes it easier for people to find what they are looking for",
+        "option_C": "a simpler design is more cost-effective to develop and maintain",
+        "option_D": "an ugly design will provoke users to make errors on purpose, as a form of protest",
+        "correct_anwser": "B",
+        "explain": "Thiết kế thẩm mỹ và tối giản giúp giảm sự lộn xộn, tổ chức thông tin tốt hơn nên người dùng dễ tìm thấy những gì họ cần."
+      },
+      {
+        "question_id": 75,
+        "question_title": "Question 8 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
+        "option_A": "How could the \\\"on/off\\\" switch of the device you are using be better designed to accommodate users?",
+        "option_B": "How could the local grocery store be designed better to accommodate customers?",
+        "option_C": "How could the city/town/village you live in be designed better to accommodate residents?",
+        "option_D": "How could the customer queue at the local post office be designed better to accommodate customers?",
+        "correct_anwser": "D",
+        "explain": "Câu hỏi về hàng đợi khách hàng tại bưu điện địa phương có phạm vi phù hợp nhất cho dự án đánh giá nhu cầu người dùng nhỏ."
+      },
+      {
+        "question_id": 76,
+        "question_title": "Question 9 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
+        "option_A": "How do users feel about MOOCs (massive open online courses)?",
+        "option_B": "How do users feel about the interface for this particular question in this quiz?",
+        "option_C": "How do users feel about websites in general?",
+        "option_D": "How do users feel about Coursera's interface for quizzes?",
+        "correct_anwser": "D",
+        "explain": "Câu hỏi về giao diện quiz của Coursera có phạm vi cụ thể và phù hợp nhất cho dự án nhỏ."
+      },
+      {
+        "question_id": 77,
+        "question_title": "Question 10 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
+        "option_A": "How can the world economy be improved for human beings?",
+        "option_B": "What do people who take this course want out of it?",
+        "option_C": "How could the solar system be better designed for alien visitors?",
+        "option_D": "What do sentient beings expect from the universe?",
+        "correct_anwser": "B",
+        "explain": "Câu hỏi về mong muốn của người học khóa này có phạm vi phù hợp và thực tế nhất cho dự án nhỏ."
+      },
+      {
+        "question_id": 78,
+        "question_title": "Question 10 In the context of this lesson, the use of consistency, standards, and metaphor is recommended because:",
+        "option_A": "people are afraid of things that are new and different.",
+        "option_B": "they allow a design to take advantage of users' existing schema.",
+        "option_C": "they are typically required by platform guideline documents.",
+        "option_D": "borrowing ideas from others is easier than coming up with your own.",
+        "correct_anwser": "B",
+        "explain": "Sử dụng tính nhất quán, tiêu chuẩn và metaphor giúp thiết kế tận dụng schema sẵn có của người dùng."
+      },
+      {
+        "question_id": 79,
+        "question_title": "Question 10 In the affinity wall demo video about toaster ovens, why were the two affinity notes related to \\\"burning\\\" eventually separated?",
+        "option_A": "Because \\\"burning toast\\\" and \\\"burning fingers\\\" were associated with two different concepts that went better with other affinity notes.",
+        "option_B": "Because that cluster grew to exceed seven affinity notes.",
+        "option_C": "Because they were about two different interview participants.",
+        "option_D": "Because \\\"burning toast\\\" tends to happen before \\\"burning fingers.\\\"",
+        "correct_anwser": "A",
+        "explain": "Hai ghi chú về \\\"burning\\\" được tách vì chúng thuộc hai khái niệm khác nhau và phù hợp hơn với các nhóm affinity notes khác."
+      },
+      {
+        "question_id": 80,
+        "question_title": "Question 9 The recommendation \\\"keep lists of options short\\\" is given because:",
+        "option_A": "short lists load faster on a web page.",
+        "option_B": "designing long lists of options is a waste of time because most users will only ever choose one or two of them.",
+        "option_C": "due to the limits of short-term memory, users will have forgotten the first items by the time they've gotten to the end of a long list.",
+        "option_D": "long lists exceed users' useful field of view, and they aren't able to scan them effectively using",
+        "correct_anwser": "C",
+        "explain": "Giới hạn bộ nhớ ngắn hạn khiến người dùng quên các mục đầu khi danh sách quá dài, vì vậy cần giữ danh sách tùy chọn ngắn."
+      },
+      {
+        "question_id": 81,
+        "question_title": "Question 3 The methodology you learned in this course is often labeled \\\"human-centered.\\\" Why?",
+        "option_A": "Because it cannot be applied to animals.",
+        "option_B": "Because it requires mindfulness training and centeredness to execute well.",
+        "option_C": "Because it focuses on the needs, preferences, and perspectives of a human user (or potential user).",
+        "option_D": "Because it focuses only on the human user and ignores the user's environment.",
+        "correct_anwser": "C",
+        "explain": "Phương pháp được gọi là human-centered vì tập trung vào nhu cầu, sở thích và góc nhìn của người dùng (hoặc người dùng tiềm năng)."
+      },
+      {
+        "question_id": 82,
+        "question_title": "Question 10 With respect to semi-structured interviews, what is the point of the Carnegie Hall joke about practice?",
+        "option_A": "Interviewing is a state of mind.",
+        "option_B": "The location where you conduct an interview is as important as the interview itself.",
+        "option_C": "Like any skill, practice is essential.",
+        "option_D": "Musicians make good interviewers.",
+        "correct_anwser": "C",
+        "explain": "Điểm chính của câu chuyện cười Carnegie Hall là nhấn mạnh rằng giống như mọi kỹ năng khác, luyện tập là điều cần thiết để thành thạo phỏng vấn bán cấu trúc."
+      }
+    ]
   }
 ];

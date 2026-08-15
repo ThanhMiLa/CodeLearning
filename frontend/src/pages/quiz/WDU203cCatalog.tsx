@@ -10,7 +10,8 @@ import {
   CheckCircle2,
   CheckSquare,
   ToggleLeft,
-  Flame
+  Flame,
+  GraduationCap
 } from 'lucide-react';
 
 interface ModuleInfo {
@@ -57,6 +58,14 @@ const MODULE_METADATA: Record<string, Partial<ModuleInfo>> = {
     iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
     icon: <ToggleLeft className="h-5 w-5" />,
   },
+  'wdu203c-module-4-coursera': {
+    moduleNum: 4,
+    badgeLabel: 'MODULE 4',
+    title: 'Module 4 - Coursera Specialization',
+    gradient: 'from-violet-500 to-purple-600',
+    iconBg: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+    icon: <GraduationCap className="h-5 w-5" />,
+  },
 };
 
 const getModuleMeta = (id: string, fallbackTitle: string): Partial<ModuleInfo> => {
@@ -84,6 +93,9 @@ const WDU203cCatalog: React.FC = () => {
 
     const m3 = QUIZZES.find(q => q.id === 'wdu203c-module-3-true-false');
     if (m3) list.push(m3);
+
+    const m4 = QUIZZES.find(q => q.id === 'wdu203c-module-4-coursera');
+    if (m4) list.push(m4);
 
     return list;
   }, []);
