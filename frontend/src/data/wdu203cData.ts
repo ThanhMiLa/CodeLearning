@@ -3097,8 +3097,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "It includes actionable recommendations of how to fix the UX issues",
         "option_C": "It includes visuals of possible designs that would fix the UX issues",
         "option_D": "It only focuses on two main UX issues",
-        "correct_anwser": "A",
-        "explain": "Key findings tốt vì liệt kê các vấn đề UX được xếp hạng theo mức độ ưu tiên dựa trên bằng chứng từ phản hồi của người dùng thực tế trong quá trình kiểm thử. Đáp án AB được đánh dấu trong ảnh, nhưng theo yêu cầu correct_anwser chỉ chứa 1 chữ cái nên chọn A là khía cạnh quan trọng nhất."
+        "correct_anwser": "A, B",
+        "explain": "Phần Key Findings xuất sắc vì vừa liệt kê các vấn đề UX được xếp hạng theo mức độ ưu tiên dựa trên bằng chứng thực tế từ người dùng (A), vừa đưa ra các khuyến nghị hành động cụ thể để khắc phục những vấn đề đó (B)."
       },
       {
         "question_id": 22,
@@ -3107,8 +3107,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "Consumers need to find out about the food availability right when it is posted, since it will likely be at the end of the day. Pushing notifications to consumers when food is posted would be useful in the app",
         "option_C": "The app's success will rely on users following through on picking up their purchases; making users pay in-app rather than in the store will increase the likelihood that all the food is picked up",
         "option_D": "George does not care about making money since he is throwing the food away anyways, so all the leftover food should be posted on the app for free",
-        "correct_anwser": "A",
-        "explain": "Từ kịch bản, George cần app hoạt động hiệu quả vì thời gian bán đồ ăn thừa cuối ngày rất ngắn; người dùng cần thông báo đẩy khi đồ ăn được đăng; thanh toán trong app giúp tăng khả năng nhận đồ. Đáp án ABC được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+        "correct_anwser": "A, B, C",
+        "explain": "Từ kịch bản: George cần ứng dụng hoạt động hiệu quả vì thời gian bán đồ ăn thừa cuối ngày rất ngắn (A); người tiêu dùng cần nhận thông báo đẩy ngay khi có đồ ăn đăng bán (B); và thanh toán trực tiếp trong app sẽ thúc đẩy người dùng đến lấy hàng thay vì bỏ đơn (C)."
       },
       {
         "question_id": 23,
@@ -3117,8 +3117,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "Complete the Test Script",
         "option_C": "Add task instructions for users to replicate",
         "option_D": "Include Follow-Up Questions",
-        "correct_anwser": "B",
-        "explain": "Kế hoạch kiểm thử đầy đủ cần hoàn thiện kịch bản kiểm thử và thêm hướng dẫn nhiệm vụ rõ ràng để người dùng có thể thực hiện. Đáp án BC được đánh dấu trong ảnh, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn B."
+        "correct_anwser": "B, C",
+        "explain": "Để làm rõ kế hoạch kiểm thử, cần hoàn thiện kịch bản kiểm thử (Complete the Test Script - B) và bổ sung các hướng dẫn tác vụ cụ thể để người dùng có thể thực hiện theo (C)."
       },
       {
         "question_id": 24,
@@ -3127,8 +3127,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "Evidence",
         "option_C": "Clear description of the problem",
         "option_D": "Name of the participant who encountered the issue",
-        "correct_anwser": "A",
-        "explain": "Báo cáo UX tốt phải bao gồm mức độ nghiêm trọng, bằng chứng và mô tả rõ ràng vấn đề cho từng issue. Tên người tham gia không cần thiết vì có thể vi phạm quyền riêng tư. Đáp án ABC được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+        "correct_anwser": "A, B, C",
+        "explain": "Một báo cáo UX chuẩn mực cho từng vấn đề phát hiện được phải bao gồm: Mức độ nghiêm trọng (Severity - A), Bằng chứng thực nghiệm (Evidence - B), và Mô tả rõ ràng về vấn đề (Clear description - C). Tên cụ thể của người tham gia không nên đưa vào để đảm bảo quyền riêng tư."
       },
       {
         "question_id": 25,
@@ -3139,8 +3139,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_D": "Adoptability",
         "option_E": "Scrollability",
         "option_F": "Monetizability",
-        "correct_anwser": "A",
-        "explain": "Các thành phần UX được thảo luận bao gồm Value, Usability, Desirability và Adoptability. Scrollability và Monetizability không phải là thành phần chính. Đáp án ABCD được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+        "correct_anwser": "A, B, C, D",
+        "explain": "Các thành phần cốt lõi của UX được giảng dạy trong khóa học gồm: Giá trị (Value - A), Tính khả dụng (Usability - B), Độ hấp dẫn/mong muốn (Desirability - C), và Khả năng đón nhận/thích ứng (Adoptability - D)."
       },
       {
         "question_id": 26,
@@ -3149,8 +3149,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "option_B": "They seek to learn about what problems there are with existing solutions",
         "option_C": "They are questions that can be answered by interviewing the target user population",
         "option_D": "They will help the researcher learn how users currently complete the activity that their design will try to improve",
-        "correct_anwser": "A",
-        "explain": "Câu hỏi nghiên cứu tốt cho needs-finding phải mở, không dẫn dắt, tìm hiểu vấn đề của giải pháp hiện tại, có thể trả lời bằng phỏng vấn người dùng mục tiêu và giúp hiểu cách người dùng hoàn thành hoạt động hiện tại. Đáp án ABCD được đánh dấu, nhưng theo yêu cầu chỉ lấy 1 chữ cái nên chọn A."
+        "correct_anwser": "A, B, C, D",
+        "explain": "Các câu hỏi nghiên cứu tìm hiểu nhu cầu (needs-finding) tốt vì: mang tính mở và không dẫn dắt (A), tìm hiểu vấn đề của các giải pháp hiện có (B), có thể giải đáp qua phỏng vấn đối tượng người dùng mục tiêu (C), và giúp nhà nghiên cứu hiểu cách người dùng hiện tại đang thực hiện hoạt động đó (D)."
       },
       {
         "question_id": 27,
