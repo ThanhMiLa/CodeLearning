@@ -320,8 +320,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following is NOT a best practice for writing open-ended questions?",
         "option_A": "Use an open-ended question after every closed-ended question.",
         "option_B": "Use neutral probes when possible.",
-        "correct_anwser": "D",
-        "explain": "Một thực hành tốt của câu hỏi mở là để người trả lời tự do diễn đạt mà không bị gợi ý trước; việc chỉ định sẵn loại câu trả lời mong muốn ngay trong câu hỏi (question stem) sẽ làm mất đi tính mở và có thể dẫn dắt câu trả lời, nên đây KHÔNG phải là thực hành tốt, đáp án D đúng.",
+        "correct_anwser": "A",
+        "explain": "Đặt câu hỏi mở sau mỗi câu hỏi đóng làm tốn thời gian cho người tham gia, làm giảm hứng thú và chất lượng phản hồi. Các thực hành tốt hơn bao gồm sử dụng câu hỏi mở khi thực sự cần thông tin chi tiết, giữ câu hỏi ngắn gọn, rõ ràng và không dẫn dắt.",
         "option_C": "Provide extra motivation to respond.",
         "option_D": "Specify the response wanted in the question stem."
       },
@@ -1139,10 +1139,10 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "Which of the following is not a question that can be answered by getting feedback on wireframes?",
         "option_A": "Do screens contain the right functional components?",
         "option_B": "Does the screen layout make sense?",
-        "correct_anwser": "D",
-        "explain": "Wireframe chủ yếu tập trung vào bố cục (layout), thành phần chức năng và thứ tự nội dung trên từng màn hình đơn lẻ. Việc đánh giá khả năng điều hướng đầy đủ giữa các màn hình (navigation) thường yêu cầu các bản prototype có tính tương tác.",
         "option_C": "Is the displayed content ordered correctly?",
-        "option_D": "Do the screens provide adequate navigation?"
+        "option_D": "Do the screens provide adequate navigation?",
+        "correct_anwser": "C",
+        "explain": "Wireframe là các bản phác thảo cấu trúc, thường sử dụng văn bản giả định (placeholder / Lorem Ipsum) thay vì nội dung thực tế. Do đó, bạn có thể đánh giá bố cục (layout), thành phần chức năng (components) và hệ thống điểm neo điều hướng (navigation), nhưng KHÔNG THỂ đánh giá chính xác thứ tự hay tính hợp lý của nội dung văn bản hiển thị (displayed content) ở giai đoạn này."
       },
       {
         "question_id": 172,
@@ -2073,10 +2073,10 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "question_title": "What does the concept of \"demand characteristics\" warn us about when applied to user testing?",
         "option_A": "Participants will perform differently when observed than they would if they were on their own",
         "option_B": "Participants are likely to tell us what they think we want to hear",
-        "correct_anwser": "A",
-        "explain": "Demand characteristics (đặc điểm nhu cầu) cảnh báo rằng khi bị quan sát trong bối cảnh nghiên cứu, người tham gia có xu hướng thay đổi hành vi so với khi họ tự nhiên một mình - họ có thể vô thức điều chỉnh cách hành động vì biết mình đang được quan sát, làm ảnh hưởng đến tính chân thực của dữ liệu thu thập được.",
         "option_C": "Participants who receive monetary compensation will typically perform better on tasks than those who don't",
-        "option_D": "Researchers shouldn't ask participants to do anything in particular, rather they should let participants decide what to do"
+        "option_D": "Researchers shouldn't ask participants to do anything in particular, rather they should let participants decide what to do",
+        "correct_anwser": "B",
+        "explain": "Demand characteristics (hiệu ứng gợi ý ngầm / đặc tính nhu cầu) là hiện tượng người tham gia đoán được mục đích hoặc kỳ vọng của nhà nghiên cứu, từ đó thay đổi câu trả lời hoặc hành vi để làm hài lòng nhà nghiên cứu (nói những gì họ nghĩ là bạn muốn nghe). Trong khi đó, việc người tham gia thay đổi hành vi chỉ vì biết mình đang bị quan sát (Option A) là định nghĩa của Hawthorne effect (Hiệu ứng Hawthorne)."
       },
       {
         "question_id": 337,
