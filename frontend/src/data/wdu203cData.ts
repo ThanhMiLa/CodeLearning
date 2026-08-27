@@ -2900,8 +2900,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
   {
     "id": "wdu203c-module-4-coursera",
     "title": "Module 4 - Coursera Specialization",
-    "description": "Tập hợp 82 câu hỏi trắc nghiệm & Đúng/Sai từ chuyên ngành Coursera UX Research and Design.",
-    "questionsCount": 82,
+    "description": "Tập hợp 81 câu hỏi trắc nghiệm & Đúng/Sai từ chuyên ngành Coursera UX Research and Design.",
+    "questionsCount": 81,
     "questions": [
       {
         "question_id": 1,
@@ -3082,16 +3082,6 @@ export const WDU203C_QUIZZES: QuizSet[] = [
       },
       {
         "question_id": 20,
-        "question_title": "Download Attachment #2 as .pdf and read in full to answer questions 3 and 4.\\nWhich of these aspects make the key findings section particularly good?",
-        "option_A": "It lists UX issues ranked by priority based on evidence of actual user testing feedback",
-        "option_B": "It includes actionable recommendations of how to fix the UX issues",
-        "option_C": "It includes visuals of possible designs that would fix the UX issues",
-        "option_D": "It only focuses on two main UX issues",
-        "correct_anwser": "A",
-        "explain": "Một phần 'Key Findings' (phát hiện chính) xuất sắc trong báo cáo đánh giá UX là phần liệt kê các vấn đề trải nghiệm người dùng được xếp hạng theo mức độ ưu tiên/nghiêm trọng dựa trên bằng chứng và phản hồi thực tế từ phiên kiểm thử."
-      },
-      {
-        "question_id": 21,
         "question_title": "Download Attachment #2 as .pdf and read in full to answer questions 3 and 4. Which of these aspects make the key findings section particularly good?",
         "option_A": "It lists UX issues ranked by priority based on evidence of actual user testing feedback",
         "option_B": "It includes actionable recommendations of how to fix the UX issues",
@@ -3101,7 +3091,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Phần Key Findings xuất sắc vì vừa liệt kê các vấn đề UX được xếp hạng theo mức độ ưu tiên dựa trên bằng chứng thực tế từ người dùng (A), vừa đưa ra các khuyến nghị hành động cụ thể để khắc phục những vấn đề đó (B)."
       },
       {
-        "question_id": 22,
+        "question_id": 21,
         "question_title": "Read the project brief, then the scenario. What conclusions might you draw from the scenario that would inform the design? (Select all that apply)",
         "option_A": "George needs the app to work efficiently, since he will likely be using it at the end of the day and will only have a short period to sell the leftover food",
         "option_B": "Consumers need to find out about the food availability right when it is posted, since it will likely be at the end of the day. Pushing notifications to consumers when food is posted would be useful in the app",
@@ -3111,7 +3101,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Từ kịch bản: George cần ứng dụng hoạt động hiệu quả vì thời gian bán đồ ăn thừa cuối ngày rất ngắn (A); người tiêu dùng cần nhận thông báo đẩy ngay khi có đồ ăn đăng bán (B); và thanh toán trực tiếp trong app sẽ thúc đẩy người dùng đến lấy hàng thay vì bỏ đơn (C)."
       },
       {
-        "question_id": 23,
+        "question_id": 22,
         "question_title": "If this was the full test plan, which of the following suggestions might help clarify the plan?",
         "option_A": "Specify Recruiting Criteria",
         "option_B": "Complete the Test Script",
@@ -3121,7 +3111,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Để làm rõ kế hoạch kiểm thử, cần hoàn thiện kịch bản kiểm thử (Complete the Test Script - B) và bổ sung các hướng dẫn tác vụ cụ thể để người dùng có thể thực hiện theo (C)."
       },
       {
-        "question_id": 24,
+        "question_id": 23,
         "question_title": "For each UX issue, the report includes the:",
         "option_A": "Severity",
         "option_B": "Evidence",
@@ -3131,7 +3121,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Một báo cáo UX chuẩn mực cho từng vấn đề phát hiện được phải bao gồm: Mức độ nghiêm trọng (Severity - A), Bằng chứng thực nghiệm (Evidence - B), và Mô tả rõ ràng về vấn đề (Clear description - C). Tên cụ thể của người tham gia không nên đưa vào để đảm bảo quyền riêng tư."
       },
       {
-        "question_id": 25,
+        "question_id": 24,
         "question_title": "Question 8 Which of the following components of UX were discussed in this week's lectures? Check all that apply.",
         "option_A": "Value",
         "option_B": "Usability",
@@ -3143,7 +3133,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Các thành phần cốt lõi của UX được giảng dạy trong khóa học gồm: Giá trị (Value - A), Tính khả dụng (Usability - B), Độ hấp dẫn/mong muốn (Desirability - C), và Khả năng đón nhận/thích ứng (Adoptability - D)."
       },
       {
-        "question_id": 26,
+        "question_id": 25,
         "question_title": "What makes these good research questions for a needs-finding study? (Select All that apply)",
         "option_A": "They're open ended, not leading",
         "option_B": "They seek to learn about what problems there are with existing solutions",
@@ -3153,7 +3143,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Các câu hỏi nghiên cứu tìm hiểu nhu cầu (needs-finding) tốt vì: mang tính mở và không dẫn dắt (A), tìm hiểu vấn đề của các giải pháp hiện có (B), có thể giải đáp qua phỏng vấn đối tượng người dùng mục tiêu (C), và giúp nhà nghiên cứu hiểu cách người dùng hiện tại đang thực hiện hoạt động đó (D)."
       },
       {
-        "question_id": 27,
+        "question_id": 26,
         "question_title": "Question 1 Write the stages of action in the correct order in the text box below. There is no need to number them, and feel free to separate each stage with a comma: I. Interpreting the State of the World II. Selecting the Action III. Evaluating the Outcome IV. Executing the Action V. Forming the Intention VI. Perceiving the State of the World",
         "option_A": "V, II, IV, VI, I, III",
         "option_B": "I, II, III, IV, V, VI",
@@ -3161,7 +3151,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Thứ tự đúng của stages of action theo Norman là: Forming the Intention → Selecting the Action → Executing the Action → Perceiving the State of the World → Interpreting the State of the World → Evaluating the Outcome (V, II, IV, VI, I, III)."
       },
       {
-        "question_id": 28,
+        "question_id": 27,
         "question_title": "Question 4 What is another name for the affinity wall technique?",
         "option_A": "The KJ Method",
         "option_B": "Relatedness clustering",
@@ -3171,7 +3161,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Kỹ thuật affinity wall còn được gọi là The KJ Method, đặt theo tên của Jiro Kawakita, người phát triển phương pháp này để nhóm các ý tưởng liên quan."
       },
       {
-        "question_id": 29,
+        "question_id": 28,
         "question_title": "Question 1 What kind of interviews are you learning about in this course?",
         "option_A": "Group, remote, semi-structured.",
         "option_B": "Individual, remote, structured.",
@@ -3181,7 +3171,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Khóa học tập trung vào phỏng vấn cá nhân, trực tiếp (in-person) và bán cấu trúc (semi-structured) để tìm hiểu nhu cầu người dùng sâu hơn."
       },
       {
-        "question_id": 30,
+        "question_id": 29,
         "question_title": "Question 1 What was the title of this course?",
         "option_A": "Understanding User Needs",
         "option_B": "Designing User Experience",
@@ -3191,7 +3181,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Tiêu đề khóa học là Understanding User Needs, đúng với một trong các course thuộc User Experience Research and Design Specialization trên Coursera."
       },
       {
-        "question_id": 31,
+        "question_id": 30,
         "question_title": "Question 2 Which of the following research techniques were taught in this specific course?",
         "option_A": "Experience sampling",
         "option_B": "A/B testing",
@@ -3201,7 +3191,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Khóa học này tập trung vào semi-structured interviews (phỏng vấn bán cấu trúc) để tìm hiểu nhu cầu người dùng, đây là kỹ thuật nghiên cứu chính được dạy."
       },
       {
-        "question_id": 32,
+        "question_id": 31,
         "question_title": "Question 5 Which of the following is not a phase in the iterative design process?",
         "option_A": "Build",
         "option_B": "Design",
@@ -3211,7 +3201,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Quy trình thiết kế lặp (iterative design) bao gồm các giai đoạn như Design, Build, Assess. 'Stylize' không phải là một giai đoạn trong quy trình này."
       },
       {
-        "question_id": 33,
+        "question_id": 32,
         "question_title": "Question 4 Which of the following is not a method for doing ideation?",
         "option_A": "Brainstorming",
         "option_B": "Mind-mapping",
@@ -3222,7 +3212,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Ideation là giai đoạn tạo ý tưởng với các phương pháp như Brainstorming, Mind-mapping, Timed idea generation, Sketching. Tradeoff analysis là phương pháp đánh giá và so sánh các phương án sau khi đã có ý tưởng, không phải phương pháp ideation."
       },
       {
-        "question_id": 34,
+        "question_id": 33,
         "question_title": "Question 9 Which of the following observation methodologies did you learn in this course?",
         "option_A": "Sit-and-stare methodology",
         "option_B": "Shock-and-awe technique",
@@ -3232,7 +3222,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Think-aloud protocol là phương pháp quan sát phổ biến được dạy trong khóa học, yêu cầu người dùng nói to suy nghĩ khi thực hiện nhiệm vụ."
       },
       {
-        "question_id": 35,
+        "question_id": 34,
         "question_title": "Which type of question asks the respondent to compare categories where there is no inherent order between the choices?",
         "option_A": "Ordinal closed-ended",
         "option_B": "Descriptive open-ended",
@@ -3242,7 +3232,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Nominal closed-ended là loại câu hỏi yêu cầu so sánh các danh mục không có thứ tự sẵn có (ví dụ: màu sắc, thương hiệu), khác với ordinal có thứ bậc."
       },
       {
-        "question_id": 36,
+        "question_id": 35,
         "question_title": "Question 7 Reducing the set of available actions to only those that are possible given a particular state of the system would be an example of applying:",
         "option_A": "Feedback",
         "option_B": "Constraints",
@@ -3252,7 +3242,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Constraints (ràng buộc) là nguyên tắc thiết kế hạn chế các hành động có thể thực hiện dựa trên trạng thái hiện tại của hệ thống, giúp người dùng tránh lỗi."
       },
       {
-        "question_id": 37,
+        "question_id": 36,
         "question_title": "Question 6 A model of the design process that shows both the iterative nature and also how it progresses towards an end goal is:",
         "option_A": "The spiral model",
         "option_B": "The waterfall model",
@@ -3262,7 +3252,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Spiral model thể hiện cả tính chất lặp lại (iterative) và sự tiến triển hướng tới mục tiêu cuối cùng, phù hợp với quy trình thiết kế UX."
       },
       {
-        "question_id": 38,
+        "question_id": 37,
         "question_title": "Question 5 According to the instructor, _____ information is understanding, and understanding is intelligence. Fill in the blank.",
         "option_A": "Rearranging",
         "option_B": "Condensing",
@@ -3272,7 +3262,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Theo giảng viên, việc cô đọng (condensing) thông tin chính là sự hiểu biết, và sự hiểu biết chính là trí tuệ."
       },
       {
-        "question_id": 39,
+        "question_id": 38,
         "question_title": "Multiple choice questions like this are really just survey questions! What type of survey question is this?",
         "option_A": "Nominal closed-ended, choice unforced",
         "option_B": "Nominal closed-ended, choice forced",
@@ -3282,7 +3272,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Đây là câu hỏi nominal closed-ended với choice forced vì các lựa chọn không có thứ tự và người trả lời bắt buộc phải chọn một đáp án."
       },
       {
-        "question_id": 40,
+        "question_id": 39,
         "question_title": "Question 7 Interviews, Observations, Surveys, User Testing, and Inspection Methods are all examples of:",
         "option_A": "Common UX mistakes",
         "option_B": "UX Design methods",
@@ -3292,7 +3282,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Interviews, Observations, Surveys, User Testing và Inspection Methods đều là các phương pháp nghiên cứu UX (UX Research methods) để thu thập dữ liệu về người dùng."
       },
       {
-        "question_id": 41,
+        "question_id": 40,
         "question_title": "Question 4 Rank these prototypes in order of fidelity, from low to high.",
         "option_A": "1, 2, 3",
         "option_B": "3, 2, 1",
@@ -3302,7 +3292,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Thứ tự fidelity từ thấp đến cao là 1, 2, 3 (thường là sketch/paper → wireframe → high-fidelity digital prototype)."
       },
       {
-        "question_id": 42,
+        "question_id": 41,
         "question_title": "Research at scale can be carried out during the following product development lifecycles:",
         "option_A": "Discovery",
         "option_B": "Design/Development",
@@ -3312,7 +3302,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Nghiên cứu quy mô lớn (research at scale) có thể được thực hiện ở mọi giai đoạn của vòng đời phát triển sản phẩm: Discovery, Design/Development và Optimization."
       },
       {
-        "question_id": 43,
+        "question_id": 42,
         "question_title": "Question 1 The \\\"central vision\\\" portion of the human field of view, in which people can read text and recognize details in images, is approximately how wide?",
         "option_A": "5°",
         "option_B": "18°",
@@ -3322,7 +3312,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Central vision (foveal vision) chỉ rộng khoảng 5 độ, đây là vùng mắt có thể đọc chữ và nhận diện chi tiết rõ nét."
       },
       {
-        "question_id": 44,
+        "question_id": 43,
         "question_title": "Question 3 The effect that makes it easy to recognize objects in a visual field that differ from their background and all other objects in simple visual features like color and texture is called:",
         "option_A": "saccade",
         "option_B": "gestalt",
@@ -3332,7 +3322,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Hiệu ứng Pop-out giúp nhận diện nhanh các đối tượng khác biệt về màu sắc, kết cấu so với nền và các đối tượng xung quanh."
       },
       {
-        "question_id": 45,
+        "question_id": 44,
         "question_title": "Question 1 Your client wants you to conduct a user test of their pre-release prototype to find the most important user interface problems to be fixed before the product is released. What kind of user test is your client asking you to perform?",
         "option_A": "Summative",
         "option_B": "Formative",
@@ -3342,7 +3332,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Formative testing được dùng trong giai đoạn phát triển để tìm và sửa các vấn đề giao diện trước khi phát hành sản phẩm."
       },
       {
-        "question_id": 46,
+        "question_id": 45,
         "question_title": "Question 2 You are working on assessing the usability of a medical device. For regulatory reasons, you need to demonstrate that 99% of medical professionals can perform a certain task in under one minute. What kind of user test should you perform?",
         "option_A": "Comparative",
         "option_B": "Formative",
@@ -3352,7 +3342,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Benchmark testing được dùng để đo lường và chứng minh hiệu suất đạt tiêu chuẩn cụ thể (ví dụ 99% người dùng hoàn thành trong thời gian quy định)."
       },
       {
-        "question_id": 47,
+        "question_id": 46,
         "question_title": "Question 5 What makes the example shown effective at conveying the navigation flow? (Select all that apply)",
         "option_A": "It specifies where the user should click to progress to the next screen.",
         "option_B": "It is a digital prototype",
@@ -3361,7 +3351,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Ví dụ hiệu quả vì chỉ rõ vị trí người dùng cần click để chuyển sang màn hình tiếp theo, giúp thể hiện rõ luồng điều hướng."
       },
       {
-        "question_id": 48,
+        "question_id": 47,
         "question_title": "Question 2 Could you run user tests with this prototype and receive useful data to inform your designs?",
         "option_A": "Yes, any type of prototype can be used for user testing",
         "option_B": "No, only fully interactive digital prototypes will give you useful data",
@@ -3371,7 +3361,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Bất kỳ loại prototype nào (kể cả low-fidelity) đều có thể dùng để kiểm thử người dùng và thu thập dữ liệu hữu ích."
       },
       {
-        "question_id": 49,
+        "question_id": 48,
         "question_title": "What is the main problem with the \\\"Agree/Disagree\\\" response scale?",
         "option_A": "Overly familiar to respondents, leading to satisficing",
         "option_B": "Leads to acquiescence bias",
@@ -3381,7 +3371,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Thang đo Agree/Disagree dễ dẫn đến acquiescence bias – xu hướng người trả lời đồng ý với câu hỏi bất kể nội dung thực tế."
       },
       {
-        "question_id": 50,
+        "question_id": 49,
         "question_title": "Question 10 What is user testing particularly well suited to tell you?",
         "option_A": "How many people will buy your product.",
         "option_B": "Users' most critical unmet needs.",
@@ -3391,7 +3381,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "User testing đặc biệt phù hợp để kiểm tra xem người dùng có thể thực hiện thành công các nhiệm vụ mà hệ thống được thiết kế để hỗ trợ hay không."
       },
       {
-        "question_id": 51,
+        "question_id": 50,
         "question_title": "Question 6 What is a key benefit of collecting qualitative data during user testing?",
         "option_A": "It helps you \\\"prove\\\" statistically that the system being studied is better than competitors'",
         "option_B": "It doesn't require any analysis, so it saves time compared to other types of data",
@@ -3401,7 +3391,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Dữ liệu định tính giúp hiểu rõ lý do tại sao người tham gia gặp khó khăn khi sử dụng hệ thống, chứ không chỉ biết họ gặp vấn đề."
       },
       {
-        "question_id": 52,
+        "question_id": 51,
         "question_title": "Question 4 What should you keep in mind throughout the interview?",
         "option_A": "Your overarching question(s).",
         "option_B": "\\\"The Force\\\" from Star Wars.",
@@ -3411,7 +3401,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Trong suốt buổi phỏng vấn cần luôn nhớ câu hỏi nghiên cứu tổng thể (overarching question) để đảm bảo cuộc trò chuyện đi đúng hướng."
       },
       {
-        "question_id": 53,
+        "question_id": 52,
         "question_title": "Question 4 What should you do when clustering data for qualitative data analysis?",
         "option_A": "Ensure each cluster is the same size.",
         "option_B": "Make clusters out of related information.",
@@ -3421,7 +3411,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Khi clustering dữ liệu định tính, cần nhóm các thông tin liên quan lại với nhau để tạo thành các cụm có ý nghĩa."
       },
       {
-        "question_id": 54,
+        "question_id": 53,
         "question_title": "Question 7 What should be your approach in conducting a semi-structured interview?",
         "option_A": "Maintain a conversational tone and use the interview protocol as a loose guideline.",
         "option_B": "Maintain a formal tone and read the interview protocol questions exactly in the listed order.",
@@ -3431,7 +3421,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Phỏng vấn bán cấu trúc nên giữ giọng điệu trò chuyện tự nhiên và dùng protocol như hướng dẫn linh hoạt, không cứng nhắc."
       },
       {
-        "question_id": 55,
+        "question_id": 54,
         "question_title": "Question 8 What should a new note you write (after data extraction is completed) during construction of an affinity wall contain?",
         "option_A": "A self-contained summary of the knowledge in the associated cluster.",
         "option_B": "Spelling or grammar corrections for affinity notes.",
@@ -3441,7 +3431,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Ghi chú mới trên affinity wall phải là tóm tắt tự chứa (self-contained) về kiến thức của cụm dữ liệu tương ứng."
       },
       {
-        "question_id": 56,
+        "question_id": 55,
         "question_title": "Which of the following is a reason why you might use non-probability samples rather than probability samples?",
         "option_A": "Ability to represent the population better",
         "option_B": "Quality of data",
@@ -3451,7 +3441,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Non-probability samples thường được dùng vì chi phí thấp hơn so với probability samples, dù tính đại diện kém hơn."
       },
       {
-        "question_id": 57,
+        "question_id": 56,
         "question_title": "Question 9 Which of the following should you avoid when writing affinity notes?",
         "option_A": "Make each note understandable on its own.",
         "option_B": "Be concrete.",
@@ -3461,7 +3451,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Khi viết affinity notes cần tránh viết giải thích quá dài dòng, chi tiết; notes nên ngắn gọn, cụ thể và tự hiểu được."
       },
       {
-        "question_id": 58,
+        "question_id": 57,
         "question_title": "Which of the following methods would be the best approach for answering the stated questions?",
         "option_A": "Qualitative research such as user interviews or focus groups",
         "option_B": "Quantitative research such as surveys",
@@ -3471,7 +3461,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Câu hỏi nghiên cứu mang tính khám phá nhu cầu thường phù hợp nhất với phương pháp định tính như phỏng vấn người dùng hoặc focus group."
       },
       {
-        "question_id": 59,
+        "question_id": 58,
         "question_title": "Which of the following is the most important consideration in picking what type of question type to use?",
         "option_A": "The demographic makeup of your population",
         "option_B": "The type of analysis you plan on doing",
@@ -3481,7 +3471,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Yếu tố quan trọng nhất khi chọn loại câu hỏi là loại phân tích bạn dự định thực hiện sau này."
       },
       {
-        "question_id": 60,
+        "question_id": 59,
         "question_title": "Question 5 Which of the following is the right way to take notes?",
         "option_A": "To write only the key points in short phrases.",
         "option_B": "To capture only what audio recording definitely will not.",
@@ -3491,7 +3481,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Không có một cách ghi chú đúng duy nhất; tùy vào mục đích và hoàn cảnh mà chọn cách ghi chú phù hợp."
       },
       {
-        "question_id": 61,
+        "question_id": 60,
         "question_title": "Question 9 Which of the following questions would be most relevant to the UX criterion of \\\"Adoptability\\\"?",
         "option_A": "Where do users currently look for products or services like the one we will offer?",
         "option_B": "Do users prefer bright or muted colors for graphics in this product category?",
@@ -3501,7 +3491,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Adoptability liên quan đến khả năng người dùng chấp nhận và bắt đầu sử dụng sản phẩm, nên câu hỏi về nơi họ tìm kiếm sản phẩm/dịch vụ tương tự là phù hợp nhất."
       },
       {
-        "question_id": 62,
+        "question_id": 61,
         "question_title": "Question 2 Which of the following is not true about standardized usability questionnaires like QUIS and PSSUQ?",
         "option_A": "The level of reliability is known, allowing you to assess how consistent they are across systems and study participants",
         "option_B": "Most of them have been used in many studies, allowing comparisons across systems",
@@ -3511,7 +3501,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Các bảng hỏi chuẩn hóa như QUIS, PSSUQ không đắt đỏ đến mức chỉ dùng cho dự án lớn; chúng khá phổ biến và dễ tiếp cận."
       },
       {
-        "question_id": 63,
+        "question_id": 62,
         "question_title": "Question 3 Which of the following would be a good reason for using a high-end usability testing lab with separate control and observation room?",
         "option_A": "You will be providing a computer for participants to use during the test",
         "option_B": "You will be using the think-aloud protocol",
@@ -3521,7 +3511,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Phòng lab cao cấp với phòng quan sát riêng rất hữu ích khi cần mời nhiều stakeholder theo dõi buổi test mà không làm phiền người tham gia."
       },
       {
-        "question_id": 64,
+        "question_id": 63,
         "question_title": "Question 7 Which of the following is not a characteristic of low-fidelity prototypes?",
         "option_A": "They should be quick to create",
         "option_B": "They should support the full sequence of actions needed to complete a task",
@@ -3531,7 +3521,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Low-fidelity prototypes không cần phải realistic (trông thật); chúng thường đơn giản, nhanh tạo và tập trung vào chức năng chính."
       },
       {
-        "question_id": 65,
+        "question_id": 64,
         "question_title": "Which of the following is most accurate?",
         "option_A": "Surveys are good at broad descriptions of groups, but not at precise measurements.",
         "option_B": "Surveys have largely been abandoned in modern research because they are so inaccurate.",
@@ -3541,7 +3531,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Surveys tốt cho việc mô tả rộng về nhóm người dùng nhưng không phải là công cụ đo lường chính xác cao."
       },
       {
-        "question_id": 66,
+        "question_id": 65,
         "question_title": "Which of the following best describes the social desirability outcomes in interview-led survey modes?",
         "option_A": "Results can be biased because people want to be agreeable with an interviewer.",
         "option_B": "Results can be biased because interviewers will avoid questions that could be embarrassing.",
@@ -3551,7 +3541,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Social desirability bias xảy ra khi người trả lời bán ý thức cố gắng thể hiện bản thân theo hướng được chấp nhận bởi người phỏng vấn."
       },
       {
-        "question_id": 67,
+        "question_id": 66,
         "question_title": "Which of the following is the most true statement about how people remember things?",
         "option_A": "People remember their past behavior well enough to give accurate survey responses.",
         "option_B": "Memory can be guided back to accuracy through careful prompts.",
@@ -3561,7 +3551,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Trí nhớ phai mờ theo thời gian và thường không ghi nhận tốt các hành động thường ngày (routine actions)."
       },
       {
-        "question_id": 68,
+        "question_id": 67,
         "question_title": "Which of the following best describes the question stem?",
         "option_A": "It's the optional instructions for how to answer a question.",
         "option_B": "It's the set of responses that a respondent can give.",
@@ -3571,7 +3561,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Question stem là phần câu hỏi chính operationalize khái niệm cần đo và kích thích người trả lời đưa ra phản hồi."
       },
       {
-        "question_id": 69,
+        "question_id": 68,
         "question_title": "Which of these examples of personas could be more effective for guiding a design solution?",
         "option_A": "#2 because it includes relevant demographic information, motivations and needs related to the design problem, and characteristics could constrain the persona's ability to use a system.",
         "option_B": "#1 because there are more personas and they're in paragraph form",
@@ -3580,7 +3570,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Persona #2 hiệu quả hơn vì chứa thông tin nhân khẩu học, động lực, nhu cầu liên quan đến vấn đề thiết kế và các đặc điểm có thể hạn chế khả năng sử dụng hệ thống."
       },
       {
-        "question_id": 70,
+        "question_id": 69,
         "question_title": "Question 10 How do you get to Carnegie Hall?",
         "option_A": "Practice, practice, practice!",
         "option_B": "Go down three blocks and take a right.",
@@ -3590,7 +3580,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Đây là câu hỏi hài hước nổi tiếng, đáp án đúng là \\\"Practice, practice, practice!\\\" để nhấn mạnh tầm quan trọng của việc luyện tập."
       },
       {
-        "question_id": 71,
+        "question_id": 70,
         "question_title": "Question 9 When using questionnaires to collect characteristic, behavioral, and attitudinal data about your test participants, it is best to:",
         "option_A": "Ask all the questions you can think of, because you never know what will be useful.",
         "option_B": "Ask no questions, because it will distract from the test and annoy your participants.",
@@ -3600,7 +3590,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Nên tập trung thu thập dữ liệu có thể giải thích sự khác biệt trong kết quả nhiệm vụ của người tham gia."
       },
       {
-        "question_id": 72,
+        "question_id": 71,
         "question_title": "Question 5 According to Nielsen's heuristics, \\\"platform standards\\\" are important to support in user interface design because:",
         "option_A": "Platform standards are always better than anything you could come up with on your own",
         "option_B": "Supporting standards allows users to leverage \\\"schemas\\\" they have developed through prior experiences with similar systems",
@@ -3610,7 +3600,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Hỗ trợ platform standards giúp người dùng tận dụng các schema đã có từ trải nghiệm trước với hệ thống tương tự."
       },
       {
-        "question_id": 73,
+        "question_id": 72,
         "question_title": "Download Attachment #1 as .pdf and read in full to answer questions 1 and 2. The stated purpose of this user test is: The test is designed to validate the main purpose of the project which is: \\\"Designing an affordable and easy to use method to archive insurance related files electronically while keeping in mind that the environment has an unstable internet connection and customers can't wait until all documents are uploaded\\\". While this is a good start, after reading through the user test plan and scenarios, which of these options provides a more specific goal?",
         "option_A": "The goal is to get users to explain what exactly their ideal system would be so that the researcher can design that for them",
         "option_B": "The goal is to understand the users' current way of doing things",
@@ -3619,7 +3609,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Mục tiêu cụ thể hơn là để người dùng giải thích hệ thống lý tưởng của họ để nhà nghiên cứu có thể thiết kế dựa trên đó."
       },
       {
-        "question_id": 74,
+        "question_id": 73,
         "question_title": "Question 9 From a usability point of view, it's important to use an \\\"aesthetic and minimalist design\\\" because:",
         "option_A": "a pleasing design can increase brand awareness, which can increase sales",
         "option_B": "reducing clutter and organizing information makes it easier for people to find what they are looking for",
@@ -3629,7 +3619,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Thiết kế thẩm mỹ và tối giản giúp giảm sự lộn xộn, tổ chức thông tin tốt hơn nên người dùng dễ tìm thấy những gì họ cần."
       },
       {
-        "question_id": 75,
+        "question_id": 74,
         "question_title": "Question 8 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
         "option_A": "How could the \\\"on/off\\\" switch of the device you are using be better designed to accommodate users?",
         "option_B": "How could the local grocery store be designed better to accommodate customers?",
@@ -3639,7 +3629,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Câu hỏi về hàng đợi khách hàng tại bưu điện địa phương có phạm vi phù hợp nhất cho dự án đánh giá nhu cầu người dùng nhỏ."
       },
       {
-        "question_id": 76,
+        "question_id": 75,
         "question_title": "Question 9 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
         "option_A": "How do users feel about MOOCs (massive open online courses)?",
         "option_B": "How do users feel about the interface for this particular question in this quiz?",
@@ -3649,7 +3639,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Câu hỏi về giao diện quiz của Coursera có phạm vi cụ thể và phù hợp nhất cho dự án nhỏ."
       },
       {
-        "question_id": 77,
+        "question_id": 76,
         "question_title": "Question 10 For the purposes of this course, which of the following is the best-scoped question for a small user needs assessment project?",
         "option_A": "How can the world economy be improved for human beings?",
         "option_B": "What do people who take this course want out of it?",
@@ -3659,7 +3649,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Câu hỏi về mong muốn của người học khóa này có phạm vi phù hợp và thực tế nhất cho dự án nhỏ."
       },
       {
-        "question_id": 78,
+        "question_id": 77,
         "question_title": "Question 10 In the context of this lesson, the use of consistency, standards, and metaphor is recommended because:",
         "option_A": "people are afraid of things that are new and different.",
         "option_B": "they allow a design to take advantage of users' existing schema.",
@@ -3669,7 +3659,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Sử dụng tính nhất quán, tiêu chuẩn và metaphor giúp thiết kế tận dụng schema sẵn có của người dùng."
       },
       {
-        "question_id": 79,
+        "question_id": 78,
         "question_title": "Question 10 In the affinity wall demo video about toaster ovens, why were the two affinity notes related to \\\"burning\\\" eventually separated?",
         "option_A": "Because \\\"burning toast\\\" and \\\"burning fingers\\\" were associated with two different concepts that went better with other affinity notes.",
         "option_B": "Because that cluster grew to exceed seven affinity notes.",
@@ -3679,7 +3669,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Hai ghi chú về \\\"burning\\\" được tách vì chúng thuộc hai khái niệm khác nhau và phù hợp hơn với các nhóm affinity notes khác."
       },
       {
-        "question_id": 80,
+        "question_id": 79,
         "question_title": "Question 9 The recommendation \\\"keep lists of options short\\\" is given because:",
         "option_A": "short lists load faster on a web page.",
         "option_B": "designing long lists of options is a waste of time because most users will only ever choose one or two of them.",
@@ -3689,7 +3679,7 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Giới hạn bộ nhớ ngắn hạn khiến người dùng quên các mục đầu khi danh sách quá dài, vì vậy cần giữ danh sách tùy chọn ngắn."
       },
       {
-        "question_id": 81,
+        "question_id": 80,
         "question_title": "Question 3 The methodology you learned in this course is often labeled \\\"human-centered.\\\" Why?",
         "option_A": "Because it cannot be applied to animals.",
         "option_B": "Because it requires mindfulness training and centeredness to execute well.",
@@ -3699,8 +3689,8 @@ export const WDU203C_QUIZZES: QuizSet[] = [
         "explain": "Phương pháp được gọi là human-centered vì tập trung vào nhu cầu, sở thích và góc nhìn của người dùng (hoặc người dùng tiềm năng)."
       },
       {
-        "question_id": 82,
-        "question_title": "Question 10 With respect to semi-structured interviews, what is the point of the Carnegie Hall joke about practice?",
+        "question_id": 81,
+         "question_title": "Question 10 With respect to semi-structured interviews, what is the point of the Carnegie Hall joke about practice?",
         "option_A": "Interviewing is a state of mind.",
         "option_B": "The location where you conduct an interview is as important as the interview itself.",
         "option_C": "Like any skill, practice is essential.",

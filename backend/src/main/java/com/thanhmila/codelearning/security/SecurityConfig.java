@@ -91,7 +91,7 @@ public class SecurityConfig {
         return request -> {
             String token = defaultResolver.resolve(request);
 
-            if (token != null) {
+            if (token != null && !token.isBlank()) {
                 return token;
             }
 
@@ -103,7 +103,9 @@ public class SecurityConfig {
 
             for (Cookie cookie : cookies){
                 if("access_token".equals(cookie.getName())){
-                    return cookie.getValue();
+                    String cookieToken = cookie.getValue();
+                    if(cookieToken != null && !cookieToken.isBlank())
+                        return cookieToken;
                 }
             }
             return null;

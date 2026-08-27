@@ -45,3 +45,7 @@ frontend/yarn-error.log*
 frontend/pnpm-debug.log*
 frontend/.eslintcache
 frontend/scratch/
+
+
+#Database
+database/init.sql
