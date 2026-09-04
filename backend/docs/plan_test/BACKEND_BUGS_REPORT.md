@@ -7,7 +7,7 @@ Mục đích: Ghi nhận các hàm backend bị lỗi logic, sai cú pháp, ho�
 
 | STT | Class / File | Hàm / Phương thức | Mô tả lỗi phát hiện | Lý do bỏ qua / Ghi chú |
 | :---: | :--- | :--- | :--- | :--- |
-| - | *(Không phát hiện lỗi blocking)* | - | Tất cả 195 unit test cases đều pass 100% | Logic nghiệp vụ của backend hoạt động ổn định đúng theo thiết kế |
+| 1 | `PaymentCronJob.java` | `scanPendingTransactions` | `WebClient.builder()` khởi tạo trực tiếp trong phương thức thay vì inject `WebClient` Bean | Không thể mock trực tiếp phản hồi HTTP từ PayOS trong unit test (khác với `Judge0ClientService`). Đã test thành công các nhánh: danh sách rỗng, catch exception timeout hủy đơn > 30 phút, và giữ nguyên đơn < 30 phút. Đề xuất refactor sang inject Bean `WebClient` hoặc `PayOsClientService`. |
 
 ---
 ## Tóm tắt kết quả kiểm thử Backend:
