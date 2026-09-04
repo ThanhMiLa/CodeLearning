@@ -1,4 +1,4 @@
-# CodeLearning Platform 🚀
+# CodeLearning Platform
 
 <div align="center">
   <a href="https://www.codelearning.io.vn/" target="_blank">
@@ -6,336 +6,229 @@
   </a>
 
   <p align="center">
-    <b>An enterprise-grade Full-Stack E-learning & Online Judge platform featuring automated multi-language code evaluation, real-time contest execution, and integrated financial transactions.</b>
+    An enterprise-grade Full-Stack E-learning and Online Judge platform featuring automated multi-language code evaluation, real-time contest execution, and integrated financial transactions.
   </p>
 
-  <h3>🌐 Visit the Live Demo Website at: <a href="https://www.codelearning.io.vn/">www.codelearning.io.vn</a></h3>
+  <p align="center">
+    Live Demo: <a href="https://www.codelearning.io.vn/">https://www.codelearning.io.vn/</a>
+  </p>
 
   <br/>
 
-  <!-- Frontend Badges -->
   [![React](https://img.shields.io/badge/React-19-blue.svg?logo=react)](https://react.dev/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
   [![Vite](https://img.shields.io/badge/Vite-6.0-purple.svg?logo=vite)](https://vitejs.dev/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC.svg?logo=tailwind-css)](https://tailwindcss.com/)
-
-  <!-- Backend & Infra Badges -->
   [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen.svg?logo=springboot)](https://spring.io/projects/spring-boot)
   [![Java 21](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)](https://www.oracle.com/java/technologies/downloads/)
   [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg?logo=postgresql)](https://www.postgresql.org/)
   [![Redis](https://img.shields.io/badge/Redis-7-red.svg?logo=redis)](https://redis.io/)
   [![RabbitMQ](https://img.shields.io/badge/RabbitMQ-3-orange.svg?logo=rabbitmq)](https://www.rabbitmq.com/)
-  [![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg?logo=docker)](https://www.docker.com/)
+  [![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
   [![PayOS](https://img.shields.io/badge/Payment-PayOS-green.svg)](https://payos.vn/)
 </div>
 
-An advanced **Full-Stack E-learning & Online Judge (OJ) platform** engineered with **Spring Boot 3.5.7**, **Java 21**, and **React 19**. It integrates automated code execution sandboxes, real-time status updates via WebSockets, event-driven contest scheduling, and secure payment processing.
+---
 
-Designed with enterprise-grade architectures (Layered Monolith, Monorepo, Event-Driven, Asynchronous execution), this project demonstrates practical solutions to high concurrency, resource management, performance optimization, and web application security.
+## Overview
+
+CodeLearning Platform is a full-stack educational and competitive programming system designed with a modern monorepo architecture. The backend is engineered with Java 21 and Spring Boot 3.5.7, and the frontend is powered by React 19, TypeScript, and Vite.
+
+The platform integrates interactive curriculum delivery (video lectures, modular chapters, and quizzes) with in-browser algorithm execution, automated sandbox evaluation, real-time ICPC-style programming contests, and an internal virtual wallet backed by VietQR automated banking integration.
+
+The architecture emphasizes enterprise design patterns—Layered Monolith, Event-Driven Messaging, and Asynchronous Non-blocking I/O—to address high concurrency, financial data integrity, and low-latency communication:
+
+* **High Concurrency Code Evaluation**: Offloads execution workloads to isolated Judge0 sandbox containers via Spring WebFlux non-blocking clients and asynchronous webhooks, coordinated with atomic Redis counters.
+* **Financial Transaction Integrity**: Uses PostgreSQL pessimistic locking (`SELECT FOR UPDATE`), idempotent webhook consumers, and an immutable double-entry ledger to guarantee balance consistency.
+* **Real-time Event Streaming**: Pushes execution progress, contest status transitions, and leaderboard updates to connected clients using WebSocket STOMP.
+* **Defense-in-Depth Security**: Implements dual-source JWT token resolution (Authorization headers and HttpOnly SameSite cookies), Refresh Token Rotation (RTR), token blacklisting, and contextual Spring Expression Language (SpEL) access control.
 
 ---
 
-## 🌟 Key Features
+## Tech Stack
 
-### ⚡ 1. Online Judge (Automated Code Evaluation System)
-* **Monaco Code Editor**: Integrated feature-rich code editor (VS Code-like interface) supporting code completion, syntax highlighting, and custom themes across multiple programming languages (C++, Java, Python, JavaScript, etc.).
-* **Asynchronous Sandbox Evaluation (Judge0)**: Submits source code to the evaluation sandbox asynchronously via **Spring WebFlux** & Webhooks, providing exact testcase verdicts (`Accepted`, `Wrong Answer`, `TLE`, `MLE`, `Compile Error`).
-* **Real-time Status Updates (WebSocket STOMP)**: Pushes real-time evaluation progress and final submission results directly from backend to frontend clients via WebSockets without requiring page refreshes.
-* **Short-Circuit Evaluation Logic**: Automatically halts judgment and returns immediate failure upon encountering the first failed testcase, conserving sandbox computing resources during live contests.
-
-### 💳 2. Cart & Payment Gateway (Cart & PayOS Integration)
-* **Cart & Order Management**: Allows users to add multiple courses to cart, apply promotional vouchers/discount codes, and create seamless checkout orders.
-* **PayOS Payment Gateway Integration**: Automatically generates dynamic banking QR codes for instant, hassle-free bank transfers.
-* **Transaction Safety (Idempotency & Pessimistic Locking)**: Processes PayOS webhook callbacks reliably using Postgres pessimistic locking (`SELECT FOR UPDATE` via `findByUserIdWithLock`) to credit wallets and activate courses securely, preventing race conditions.
-
-### 🛡️ 3. Authentication & Security (Authentication & Authorization)
-* **Multi-Factor / Multi-Provider Auth**: Supports standard Email/Password authentication as well as **Google OAuth2 Single Sign-On (SSO)**.
-* **Secure Token Management (JWT + RTR)**: Resolves JWT tokens dynamically from either standard `Authorization` headers or secure `HttpOnly`, `SameSite` cookies (mitigating XSS/CSRF attacks). Enforces **Refresh Token Rotation (RTR)** to issue fresh token pairs while blacklisting revoked tokens (`invalidated_tokens`).
-* **Dynamic Authorization (Dynamic RBAC & Contextual SpEL)**: Role-based access control (`STUDENT`, `INSTRUCTOR`, `ADMIN`) with fine-grained method-level security (`@PreAuthorize`) evaluating SpEL expressions to verify resource ownership and course enrollment before granting access.
-
-### ✉️ 4. Enterprise Async Email Pipeline (RabbitMQ & SendGrid Integration)
-* **Batch Processing & Message Queue**: Chunks recipient lists into batches (500 users/batch) and dispatches them asynchronously through **RabbitMQ** (`email.exchange` & `bulk.email.queue`).
-* **SendGrid Dynamic Templates**: Integrates SendGrid API v3 with dynamic template data binding for personalized bulk email delivery.
-* **DLQ Recovery & Webhook Telemetry**: Stores failed delivery attempts in a DLQ database table (`FailedEmailQueueEntity`) for retries, and verifies SendGrid Webhook signatures (`X-Twilio-Email-Event-Webhook-Signature`) to record real-time delivery telemetry (`delivered`, `open`, `click`, `bounce`).
-
+| Layer | Technologies and Libraries | Description |
+| :--- | :--- | :--- |
+| **Frontend Core** | React 19, TypeScript 5, Vite 6 | Single Page Application with optimized bundle splitting and fast HMR |
+| **UI and Styling** | Tailwind CSS v4, Framer Motion, Lucide Icons | Responsive user interface with smooth layout animations |
+| **Code Editor** | `@monaco-editor/react` | Monaco Editor integration supporting multiple languages, syntax highlighting, and themes |
+| **Real-time Communication** | SockJS-client, STOMPjs | Bi-directional WebSocket channels for live progress bars and contest synchronization |
+| **Networking & Localization** | Axios, i18next | Centralized API client with interceptors and English/Vietnamese localization |
+| **Backend Core** | Java 21, Spring Boot 3.5.7 | Layered architecture with Spring Data JPA, Spring WebFlux, and Spring Security |
+| **Primary Database** | PostgreSQL 15 | Relational persistence with row-level locking for transactions and balances |
+| **Cache & Concurrency** | Redis 7 (`StringRedisTemplate`) | Atomic counters (`INCR`), short-circuit locking keys, and cache management |
+| **Message Broker** | RabbitMQ 3 (`rabbitmq_delayed_message_exchange`) | Asynchronous email queues and delay-based contest lifecycle scheduling |
+| **Execution Sandbox** | Judge0 API v1.13.1 Sandbox | Multi-language compilation and sandboxed execution inside isolated Docker containers |
+| **Payment Gateway** | PayOS SDK (VietQR NAPAS247) | Dynamic bank transfer QR code generation, HMAC-SHA256 signature verification |
+| **Email Delivery** | SendGrid v3 Dynamic Templates | Batch email delivery, retry queues, and webhook delivery telemetry |
+| **Media Storage** | Cloudinary API | Cloud storage and CDN delivery for course media, attachments, and profile images |
+| **Infrastructure & DevOps** | Docker, Docker Compose, NGINX | Multi-stage builds and container orchestration across development and production profiles |
 
 ---
 
-## 🗺️ System Architecture
+## Key Features
 
-### 1. Asynchronous Webhook-Driven Online Judge (OJ) Flow
-To prevent blocking main application threads during long-running code evaluation in the sandbox, the evaluation process is decoupled into a non-blocking asynchronous flow using **Spring WebFlux (WebClient)**, **Redis Atomic Counter**, and **WebSocket (STOMP)**.
+### 1. Online Judge and Automated Code Evaluation
+* **Monaco Code Editor**: Professional development environment in the browser with auto-completion, bracket matching, indentation guides, and multi-language support (C++, Java, Python, JavaScript).
+* **Asynchronous Sandbox Evaluation**: Submissions are queued and evaluated without blocking backend request threads. The system reports accurate verdicts: `Accepted`, `Wrong Answer`, `Time Limit Exceeded`, `Memory Limit Exceeded`, and `Compilation Error`.
+* **Real-time Progress Streaming**: WebSocket STOMP pushes individual testcase execution results to the client as they finish, driving a dynamic progress indicator.
+* **Short-Circuit Evaluation for Contests**: Halts judgment immediately on the first failed testcase during live contests, conserving sandbox compute resources.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Student as Student (Web Client)
-    participant API as Spring Boot Backend
-    participant Redis as Redis Cache
-    participant Sandbox as Judge0 Sandbox
-    participant DB as PostgreSQL DB
+### 2. Contests and Competitive Programming
+* **ICPC Contest Format**: Standard competitive scoring based on solve counts, elapsed time, and submission penalties.
+* **Event-Driven Lifecycle Scheduling**: Transitions contests across `UPCOMING`, `RUNNING`, and `ENDED` states using RabbitMQ Delayed Exchange without recurring database polling.
+* **Live Scoreboards and Freeze Mechanism**: Real-time rank calculations with support for freezing public leaderboards during the final stages of a competition.
 
-    Student->>API: Submit Code (Problem ID, Language, Source Code)
-    activate API
-    API->>DB: Save Submission & Details (Status: PENDING)
-    API->>Sandbox: Batch Submission Request (Async WebClient)
-    activate Sandbox
-    Sandbox-->>API: Return Batch Tokens (UUIDs)
-    deactivate Sandbox
-    API->>Student: Return Submission ID (Immediate HTTP 200)
-    deactivate API
-    
-    Note over Student: Shows Progress Bar (WebSocket listener active)
+### 3. Course Management and E-learning
+* **Hierarchical Structure**: Organizes learning content by Course, Chapter, Lesson, Video, and Quiz components.
+* **Integrated Practice**: Embeds coding exercises directly alongside lecture materials, allowing students to test solutions against sample inputs instantly.
+* **Progress Tracking**: Records student completion state across lessons and computes aggregate course progress.
 
-    loop Webhook Callbacks per Testcase
-        Sandbox->>API: PUT /online-judge/webhooks (Token, Verdict, CPU/Memory)
-        activate API
-        API->>DB: Update Testcase Status (AC, WA, TLE, etc.)
-        API->>Redis: Increment Atomic Progress Counter (opsForValue().increment)
-        
-        alt Contest Mode: Short-Circuit Logic (First Failure)
-            API->>Redis: Lock result using setIfAbsent("oj_failed:submissionId")
-            Note over API, Redis: If locking succeeds, mark final verdict (e.g. WA) & skip waiting for remaining testcases
-            API->>DB: Mark Submission as COMPLETED (Verdict: WA)
-            API->>Student: Push Final Result via WebSocket STOMP
-        else Normal Mode: All Testcases Completed
-            Redis-->>API: Counter reaches N (Total Testcases)
-            API->>DB: Calculate Final Verdict & Save
-            API->>Student: Push Final Result via WebSocket STOMP
-            API->>Redis: Clear Redis keys (Deregister counter & lock)
-        end
-        deactivate API
-    end
+### 4. Cart, Virtual Wallet, and Payment Integration
+* **Shopping Cart & Promotions**: Multi-item cart management with voucher application and discount calculation.
+* **Dynamic VietQR Integration**: Generates PayOS dynamic QR codes encoding exact order codes and amounts for direct mobile banking transfers.
+* **Internal Virtual Wallet**: Manages internal credits using a double-entry ledger that records balances before and after every transaction.
+* **Transaction Safety**: Protects checkout and deposit operations using PostgreSQL pessimistic locking (`SELECT FOR UPDATE`), late payment recovery (`LATE_SUCCESS`), and scheduled reconciliation jobs.
+
+### 5. Authentication and Access Control
+* **Multiple Auth Providers**: Standard email/password authentication alongside Google OAuth2 Single Sign-On (SSO).
+* **Dual Bearer Token Resolver**: Reads JWT tokens from standard `Authorization: Bearer <token>` headers or secure `HttpOnly`, `SameSite` cookies to mitigate XSS risks.
+* **Refresh Token Rotation (RTR)**: Invalidates spent refresh tokens in PostgreSQL (`invalidated_tokens`), preventing token replay and session hijacking.
+* **Contextual Authorization**: Role-based access control (`STUDENT`, `INSTRUCTOR`, `ADMIN`) supplemented by method-level `@PreAuthorize` SpEL checks for resource ownership.
+
+### 6. Asynchronous Bulk Email Pipeline
+* **Batch Chunking**: Splits large recipient lists into batches of 500 recipients and routes them through RabbitMQ exchanges.
+* **SendGrid Integration**: Injects personalized payload attributes into SendGrid Dynamic Templates.
+* **Dead Letter Queue (DLQ)**: Stores failed deliveries in PostgreSQL for automated retries and logs delivery telemetry via signed SendGrid webhooks.
+
+### 7. Automated Testcase Generation
+* **Scripted Inputs and Expected Outputs**: Instructors provide an input generator script and a reference solution code.
+* **Sandbox Execution**: The system executes both scripts in Judge0 to generate $N$ valid testcases and persists them directly to the database.
+
+---
+
+## System Architecture
+
+### High-Level Architecture
+
+```
++--------------------------------------------------------------------------------------------------+
+|                                       CLIENT LAYER (React 19)                                    |
+|   Vite SPA  |  Tailwind CSS v4  |  Monaco Editor  |  Axios HTTP Client  |  WebSocket STOMPjs     |
++-----------------------------------------------+--------------------------------------------------+
+                                                | REST APIs & WebSockets
+                                                v
++--------------------------------------------------------------------------------------------------+
+|                                 APPLICATION BACKEND (Spring Boot 3.5.7)                          |
+|   Controller Layer   -->  Service Layer (Business Logic)   -->  Data Access Layer (JPA Repos)    |
+|   Security / Filter  -->  Custom JWT Decoder / SpEL Eval   -->  WebClient Non-blocking Calls     |
++---------------+-------------------------------+-----------------------------------+--------------+
+                | JDBC / HikariCP               | Lettuce Redis Driver              | AMQP Protocol
+                v                               v                                   v
++-----------------------------+ +-----------------------------+ +----------------------------------+
+|   PostgreSQL 15 Database    | |       Redis 7 Cache         | |         RabbitMQ 3 Broker        |
+|  - Relational Data Schemas  | |  - OJ Progress Counter      | |  - Delayed Contest Exchange      |
+|  - Wallets (Row-level Lock) | |  - Short-Circuit Locks      | |  - Asynchronous Bulk Email Queue |
+|  - Token Blacklist Store    | |  - Application Cache        | |  - Dead Letter Exchange (DLX)    |
++-----------------------------+ +-----------------------------+ +----------------------------------+
+                ^                                                                   ^
+                | Direct API / Webhooks                                             | Webhooks
+                v                                                                   v
++-----------------------------+                                 +----------------------------------+
+|   Judge0 v1.13.1 Sandbox    |                                 |     External Integrations        |
+|  - Isolated Docker Sandbox  |                                 |  - PayOS Payment Gateway (VietQR)|
+|  - Multi-language Execution |                                 |  - SendGrid Email API v3         |
+|  - Async Webhook Dispatcher |                                 |  - Cloudinary Media Storage      |
++-----------------------------+                                 +----------------------------------+
 ```
 
 ---
 
-### 2. PayOS Payment & Checkout Flow (Idempotent Webhook, Late Payment & Cron Reconciliation)
-To process financial transactions reliably without money loss, race conditions, or duplicate payments, the checkout workflow combines **PayOS Dynamic Banking QR Codes**, **HMAC-SHA256 Signature Verification**, **PostgreSQL Pessimistic Locking (`SELECT FOR UPDATE`)**, **Late Payment Handling (`LATE_SUCCESS`)**, and **Active CronJob Reconciliation**.
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Customer as User / Student
-    participant API as Spring Boot Backend
-    participant Cron as Payment CronJob (Every 5 mins)
-    participant PayOS as PayOS Gateway API
-    participant DB as PostgreSQL DB (Pessimistic Lock)
-
-    Customer->>API: POST /payments/deposit (Create Deposit Request)
-    activate API
-    API->>DB: Save PaymentTransaction (Status: PENDING)
-    API->>PayOS: Request Payment Link (v2/payment-requests)
-    activate PayOS
-    PayOS-->>API: Return Checkout Payload (Payment Link, Dynamic QR Code)
-    deactivate PayOS
-    API-->>Customer: Return Checkout QR Code & Redirect URL
-    deactivate API
-
-    alt Path A: Standard Asynchronous Webhook Delivery
-        PayOS->>API: POST /payment/payos-webhook (Webhook Payload & Signature Header)
-        activate API
-        API->>API: Verify Webhook Signature (HMAC-SHA256 Checksum)
-        
-        alt Idempotency Guard: Already SUCCESS or LATE_SUCCESS
-            API-->>PayOS: Return HTTP 200 OK (Ignore duplicate webhook)
-        else Transaction PENDING or CANCELLED
-            API->>DB: Acquire Lock via findByUserIdWithLock (SELECT FOR UPDATE)
-            activate DB
-            alt Transaction Status was CANCELLED or EXPIRED (Late Payment)
-                API->>DB: Mark Status -> LATE_SUCCESS (Prevent Customer Money Loss)
-            else Transaction Status was PENDING
-                API->>DB: Mark Status -> SUCCESS
-            end
-            API->>DB: Credit Wallet Balance & Write Wallet Transaction Ledger
-            DB-->>API: Commit Transaction & Release Lock
-            deactivate DB
-            API-->>PayOS: Return HTTP 200 OK (Webhook Processed)
-        end
-        deactivate API
-
-    else Path B: Active CronJob Reconciliation (Missed Webhooks & Auto Expiry)
-        Cron->>DB: Scan Pending Transactions (Status == PENDING)
-        activate Cron
-        loop For each Pending Transaction (> 5 mins)
-            Cron->>PayOS: GET /v2/payment-requests/{orderCode}
-            activate PayOS
-            PayOS-->>Cron: Return Transaction Status (PAID / CANCELLED / PENDING)
-            deactivate PayOS
-            
-            alt PayOS Status == PAID (Missed Webhook Recovery)
-                Cron->>API: Trigger Fallback Processing (Lock Wallet & Credit Balance)
-                API->>DB: Mark Status -> SUCCESS / LATE_SUCCESS & Update Wallet
-            else PayOS Status == CANCELLED / EXPIRED or PENDING > 30 mins
-                Cron->>DB: Force Update Status -> CANCELLED (Release Stale Tx)
-            end
-        end
-        deactivate Cron
-    end
-```
-
----
-
-### 3. Security Architecture & Dynamic Authorization
-The security subsystem is built around **Spring Security** configured as an **OAuth2 Resource Server** with token verification against a token blacklist.
-
-```mermaid
-graph TD
-    A[Client Request] --> B[SecurityFilterChain]
-    B --> C[CorsFilter / CsrfFilter]
-    C --> D[BearerTokenResolver]
-    D -->|Extract JWT from Authorization Header OR HttpOnly Cookie| E[BearerTokenAuthenticationFilter]
-    E --> F[OAuth2AuthenticationProvider]
-    F --> G[CustomJwtDecoder]
-    G -->|Introspect: Check JTI Blacklist| H(AuthenticationService)
-    H -->|Query DB invalidated_tokens| I[(PostgreSQL)]
-    I -->|Return validity status| G
-    G -->|Decode & Verify Signature| J[NimbusJwtDecoder]
-    J --> K[JwtAuthenticationConverter]
-    K -->|Map scopes to GrantedAuthorities| L[SecurityContextHolder]
-    L --> M[Method Security Filter: @PreAuthorize]
-    M -->|Evaluate SpEL invoking @courseSecurity| N[CourseSecurity Bean]
-    N -->|Perform Contextual DB Checks| I
-    N -->|Allow Access| O[Controller Endpoint]
-```
-
----
-
-### 4. Asynchronous Bulk Email Pipeline (RabbitMQ & SendGrid Integration)
-To handle mass email distribution efficiently without HTTP request timeouts or API rate-limit violations, the system utilizes **RabbitMQ Message Queues**, **SendGrid Dynamic Templates**, **Database DLQ**, and **Webhook Signature Telemetry**.
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Admin as Admin / System Event
-    participant Producer as EmailProducerService
-    participant Rabbit as RabbitMQ (email.exchange)
-    participant Consumer as EmailConsumerService (@RabbitListener)
-    participant SendGrid as SendGrid API v3
-    participant DB as PostgreSQL DB
-    participant Webhook as SendGrid Webhook Controller
-
-    Admin->>Producer: POST /api/admin/email/send-campaign (Target & Template ID)
-    activate Producer
-    Producer->>DB: Fetch Valid Target Users (isEmailValid == true)
-    Producer->>Producer: Chunk Recipients into Batches (500 users/batch with Batch ID)
-    Producer->>Rabbit: Publish BulkEmailMessage to email.exchange (Routing: email.bulk)
-    Producer-->>Admin: Return HTTP 200 OK (Batch Dispatched Asynchronously)
-    deactivate Producer
-
-    activate Consumer
-    Rabbit->>Consumer: Consume BulkEmailMessage from bulk.email.queue
-    Consumer->>Consumer: Map Batch Data into SendGrid Personalizations
-    
-    alt Successful SendGrid API Call
-        Consumer->>SendGrid: POST /v3/mail/send (Template ID & Personalizations)
-        activate SendGrid
-        SendGrid-->>Consumer: Return HTTP 202 Accepted
-        deactivate SendGrid
-    else API Error / Delivery Failure
-        Consumer->>DB: Save Payload to FailedEmailQueueEntity (Status: PENDING_RETRY)
-    end
-    deactivate Consumer
-
-    note over SendGrid, Webhook: Asynchronous Delivery Tracking via SendGrid Webhook Callback
-    SendGrid->>Webhook: POST /api/webhooks/sendgrid (Events & Signature Header)
-    activate Webhook
-    Webhook->>Webhook: Verify Signature (X-Twilio-Email-Event-Webhook-Signature)
-    Webhook->>DB: Save Telemetry Log to EmailDeliveryLogEntity (Delivered / Open / Bounce)
-    Webhook-->>SendGrid: Return HTTP 200 OK
-    deactivate Webhook
-```
-
----
-
-
-## 🛠️ Tech Stack & Dependencies
-
-| Layer | Technology / Library |
-| :--- | :--- |
-| **Frontend Framework** | React 19, TypeScript 5, Vite 6 |
-| **UI & Styling** | Tailwind CSS v4, Framer Motion, Lucide Icons |
-| **Code Editor & Tools** | `@monaco-editor/react`, Axios, i18next |
-| **Realtime Communication** | SockJS-client, STOMPjs (WebSockets) |
-| **Backend Framework** | Java 21, Spring Boot 3.5.7 (WebFlux, OAuth2 Resource Server, Data JPA) |
-| **Database & Caching** | PostgreSQL 15, Redis 7 |
-| **Message Broker** | RabbitMQ 3 (with `rabbitmq_delayed_message_exchange` plugin) |
-| **Sandbox Engine** | Judge0 API v1.13.1 Sandbox |
-| **Integrations** | PayOS SDK (Payment Gateway), Cloudinary (Media Hosting) |
-| **DevOps & Containers** | Docker, Docker Compose (Dev/Prod Profiles), NGINX |
-
----
-
-## 📂 Monorepo Project Structure
+### Monorepo Directory Structure
 
 ```text
 codelearning-platform/
-├── backend/                      # Spring Boot 3.5.7 Backend Application
+├── backend/                      # Spring Boot 3.5.7 Backend Application (Java 21)
 │   ├── src/main/java/com/thanhmila/codelearning/
-│   │   ├── configuration/        # Bean configs (Redis, RabbitMQ, WebClient, PayOS, etc.)
-│   │   ├── controller/           # REST Controllers (Auth, Course, Contest, OJ, Payment, User)
-│   │   ├── dto/                  # Data Transfer Objects
+│   │   ├── configuration/        # Bean definitions (Redis, RabbitMQ, WebClient, PayOS, WebSocket)
+│   │   ├── controller/           # REST Controllers grouped by domain
+│   │   │   ├── auth/             # Authentication, token rotation, SSO endpoints
+│   │   │   ├── contest/          # Contest lifecycle, problem sets, submissions, leaderboard
+│   │   │   ├── course/           # Courses, chapters, lessons, video, quizzes
+│   │   │   ├── oj/               # Online Judge problems, submissions, testcases
+│   │   │   └── payment/          # Cart, orders, wallet, PayOS callbacks
+│   │   ├── dto/                  # Data Transfer Objects (Request / Response payloads)
 │   │   ├── entity/               # JPA Entities mapped to PostgreSQL
-│   │   ├── exception/            # Global Exception Handlers
-│   │   ├── listener/             # RabbitMQ Queue Consumers
-│   │   ├── repository/           # Spring Data JPA Repositories (Projections, Specifications)
-│   │   ├── security/             # Security configs, Custom JWT Decoder & SpEL Evaluators
-│   │   └── service/              # Core Business Logic Services
-│   ├── Dockerfile                # Multi-stage Dockerfile for Backend
-│   ├── Dockerfile.rabbitmq       # RabbitMQ Dockerfile with Delayed Exchange plugin
-│   └── pom.xml                   # Maven dependencies
+│   │   ├── exception/            # Centralized exception handlers (GlobalExceptionHandler)
+│   │   ├── listener/             # RabbitMQ message consumers
+│   │   ├── mapper/               # MapStruct mappers (Entity <-> DTO)
+│   │   ├── repository/           # Spring Data JPA repositories (Projections, Specifications)
+│   │   ├── scheduler/            # Scheduled tasks (reconciliation, token cleanup)
+│   │   ├── security/             # Spring Security, custom JWT decoder, SpEL evaluators
+│   │   └── service/              # Core business logic services
+│   ├── Dockerfile                # Multi-stage Docker build for backend
+│   ├── Dockerfile.rabbitmq       # RabbitMQ image with delayed exchange plugin
+│   └── pom.xml                   # Maven dependencies and plugins
 ├── frontend/                     # React 19 + TypeScript + Vite Frontend Application
 │   ├── src/
-│   │   ├── api/                  # Axios API Clients & Endpoints
-│   │   ├── components/           # Reusable UI Components (Monaco Editor, Modals, Navbar)
-│   │   ├── pages/                # Page Components (Home, OJ, Courses, Contest, Cart, Admin)
-│   │   ├── context/              # React Context (Auth, Theme, Cart)
-│   │   └── layouts/              # Main App & Dashboard Layouts
-│   ├── Dockerfile                # NGINX Container Dockerfile
-│   └── package.json              # Node.js dependencies
-├── database/                     # Database Initialization Scripts
-│   └── init.sql                  # PostgreSQL Schema & Seed Data
-├── docs/                         # Detailed System Architecture & Workflow Specs
-│   ├── project_analysis_report.md
-│   ├── workflow_judge0.md
-│   ├── generation_testcase_automation.md
-│   ├── rabbitmq_contest_status_workflow.md
-│   └── workflow_cart_payment.md
-├── docker-compose.dev.yml        # Orchestration for Development Environment
-├── docker-compose.prod.yml       # Orchestration for Production Environment
-├── judge0.conf                   # Judge0 Sandbox Configuration
-└── README.md                     # Monorepo Documentation
+│   │   ├── api/                  # Axios HTTP client instances and endpoints
+│   │   ├── assets/               # Static media, icons, and illustrations
+│   │   ├── components/           # Shared UI components (Monaco Editor, Modals, Navbar)
+│   │   ├── context/              # React Context (AuthContext, ThemeContext, CartContext)
+│   │   ├── hooks/                # Custom React hooks
+│   │   ├── layouts/              # Main application and administration layouts
+│   │   ├── locales/              # i18n localization resources (en.json, vi.json)
+│   │   ├── pages/                # Route views (Home, OJ, Courses, Contest, Cart, Admin)
+│   │   ├── types/                # TypeScript interfaces and type definitions
+│   │   └── utils/                # Shared helper functions
+│   ├── Dockerfile                # Production NGINX container build
+│   └── package.json              # Node.js dependencies and scripts
+├── database/                     # Database initialization scripts
+│   └── schema-only.sql           # Canonical PostgreSQL schema
+├── docs/                         # Technical documentation center
+│   └── architecture/             # System architecture and workflow specifications
+│       ├── online_judge_workflow.md
+│       ├── payment_checkout_workflow.md
+│       ├── security_authorization_workflow.md
+│       ├── email_pipeline_workflow.md
+│       ├── contest_scheduling_workflow.md
+│       └── testcase_generation_workflow.md
+├── docker-compose.dev.yml        # Orchestration for development environment
+├── docker-compose.prod.yml       # Orchestration for production deployment
+├── judge0.conf                   # Judge0 sandbox configuration
+└── README.md                     # Main repository documentation
 ```
 
 ---
 
-## 🚀 Getting Started & Local Setup
+## Getting Started
 
-### 📋 Prerequisites
-Ensure you have the following installed on your machine:
-* [Docker & Docker Compose](https://www.docker.com/)
-* [JDK 21](https://www.oracle.com/java/technologies/downloads/) (Optional for manual backend run)
-* [Node.js 20+](https://nodejs.org/) & `npm` (Optional for manual frontend run)
+### Prerequisites
+
+Ensure the following tools are installed on your environment:
+* [Docker and Docker Compose](https://www.docker.com/) (Required for containerized runtime)
+* [JDK 21](https://www.oracle.com/java/technologies/downloads/) (Required for local backend development)
+* [Node.js 20+](https://nodejs.org/) and `npm` (Required for local frontend development)
 
 ---
 
-### 1. Environment Variables Setup
+### 1. Environment Configuration
 
-#### Backend Environment (`backend/.env`):
+#### Backend Configuration (`backend/.env`):
 Create a `.env` file in the `backend/` directory:
 ```env
 # SERVER CONFIG
 PORT=8080
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
 
-# POSTGRES DB
+# POSTGRES DATABASE
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=codelearning
 DB_USERNAME=postgres
 DB_PASSWORD=your_secure_password
 
-# REDIS
+# REDIS CACHE
 REDIS_HOST=localhost
 REDIS_PORT=6379
 
@@ -345,7 +238,7 @@ RABBITMQ_PORT=5672
 RABBITMQ_USERNAME=guest
 RABBITMQ_PASSWORD=guest
 
-# SECURITY (JWT)
+# SECURITY & JWT
 JWT_SIGNER_KEY=your_super_secret_32_characters_key_here
 JWT_ACCESS_COOKIE_NAME=access_token
 JWT_REFRESH_COOKIE_NAME=refresh_token
@@ -359,23 +252,23 @@ PAYOS_CLIENT_ID=your_payos_client_id
 PAYOS_API_KEY=your_payos_api_key
 PAYOS_CHECKSUM_KEY=your_payos_checksum_key
 
-# JUDGE0 (OJ SANDBOX)
+# JUDGE0 SANDBOX (OJ)
 JUDGE0_API_URL=http://localhost:2358
-JUDGE0_WEBHOOK_URL=http://your-public-ip-or-ngrok/online-judge/webhooks/submissions
+JUDGE0_WEBHOOK_URL=http://your-ip-or-domain:8080/codelearning/api/v1/online-judge/webhooks/submissions
 ```
 
-#### Frontend Environment (`frontend/.env`):
+#### Frontend Configuration (`frontend/.env`):
 Create a `.env` file in the `frontend/` directory:
 ```env
-VITE_API_BASE_URL=http://localhost:8080
+VITE_API_BASE_URL=http://localhost:8080/codelearning
 VITE_GOOGLE_CLIENT_ID=your_google_oauth_client_id
 ```
 
 ---
 
-### 2. Run via Docker Compose (Recommended)
+### 2. Running with Docker Compose (Recommended)
 
-Run all services (Database, Redis, RabbitMQ, Judge0 Sandbox, Backend, and Frontend) using Docker Compose profiles:
+Docker Compose is configured with service healthchecks. Infrastructure components (PostgreSQL, Redis, RabbitMQ, and Judge0) start and verify health before launching the Spring Boot backend and React frontend.
 
 #### Development Environment:
 ```bash
@@ -387,48 +280,38 @@ docker compose -f docker-compose.dev.yml --profile backend --profile frontend --
 docker compose -f docker-compose.prod.yml --profile backend --profile frontend --profile judge0 up -d
 ```
 
-> [!NOTE]
-> Docker Compose is configured with `healthchecks`. Services will start in order, waiting for PostgreSQL, Redis, and RabbitMQ to become healthy before launching the Spring Boot Backend and React Frontend.
-
 ---
 
-### 3. Manual Local Execution (Alternative)
+### 3. Running Locally
 
-#### A. Run Infrastructure Dependencies Only:
+To run the application manually for development or debugging:
+
+#### Step 1: Start Supporting Infrastructure
 ```bash
 docker compose -f docker-compose.dev.yml up -d db redis rabbitmq judge0-server judge0-workers judge0-db judge0-redis
 ```
 
-#### B. Start Backend (Spring Boot):
+#### Step 2: Start the Backend
 ```bash
 cd backend
-mvn clean package -DskipTests
-mvn spring-boot:run
+./mvnw clean package -DskipTests
+./mvnw spring-boot:run
 ```
-Backend will start at `http://localhost:8080`.
+The API will be available at `http://localhost:8080/codelearning`.
 
-#### C. Start Frontend (Vite + React):
+#### Step 3: Start the Frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Frontend will be available at `http://localhost:5173`.
+The frontend application will be available at `http://localhost:5173`.
 
 ---
 
-## 📚 Detailed System Documentation & Design Specs
+## Author
 
-For in-depth analysis and workflow specifications of individual subsystems, refer to the documents in the [/docs](docs) directory:
-* [📄 Architectural Review & Security Audit](docs/project_analysis_report.md) - System architecture design decisions, bottlenecks & solutions.
-* [🔌 Online Judge (OJ) Integration Specification](docs/workflow_judge0.md) - Deep dive into Judge0 sandbox communication & Webhook handling.
-* [⚙️ Testcase Automation Engine Workflow](docs/generation_testcase_automation.md) - Auto-generation of test inputs & expected outputs via sandbox.
-* [⏱️ RabbitMQ Delayed Contest Scheduling](docs/rabbitmq_contest_status_workflow.md) - Reliable scheduled updates using RabbitMQ delayed exchanges.
-* [💳 Cart, Orders & PayOS Wallet Ledger](docs/workflow_cart_payment.md) - Financial transaction ledger, cart processing, and PayOS integration.
-
----
-
-## 👩‍💻 Author
-
-* **Võ Ngọc Thanh (Thanh_MiLa)** - [GitHub Profile](https://github.com/ThanhMiLa)
-* **Role:** Full-Stack & System Engineer
+* **Vo Ngoc Thanh (Thanh_MiLa)**
+* **GitHub**: [@ThanhMiLa](https://github.com/ThanhMiLa)
+* **Live Demo**: [https://www.codelearning.io.vn/](https://www.codelearning.io.vn/)
+* **Role**: Full-Stack & System Architect Engineer
