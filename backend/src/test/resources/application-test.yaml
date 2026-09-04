@@ -1,0 +1,15 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+jwt:
+  signer-key: "12345678901234567890123456789012"
+  valid-duration: 3600
+  refreshable-duration: 86400
+
+app:
+  webhook-base-url: "http://localhost:8080/codelearning"
+  webhook-secret: "test_secret_12345"
+
+google:
+  client-id: "test-google-client-id"
