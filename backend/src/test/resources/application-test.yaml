@@ -31,3 +31,9 @@ auth:
       same-site: Lax
       path: /
 
+sendgrid:
+  api-key: "SG.test-api-key"
+  from-email: "noreply@codelearning.com"
+  from-name: "CodeLearning"
+  webhook-public-key: "test-public-key"
+
