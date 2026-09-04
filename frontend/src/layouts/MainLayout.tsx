@@ -141,15 +141,6 @@ const MainLayout: React.FC = () => {
                   <span>{t('navbar.myLearning')}</span>
                 </Link>
               )}
-              <Link 
-                to="/quiz" 
-                className={`flex items-center space-x-1 text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors ${
-                  location.pathname.startsWith('/quiz') ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-600 dark:text-slate-300'
-                }`}
-              >
-                <BookOpen className="h-4 w-4" />
-                <span>{t('navbar.quiz')}</span>
-              </Link>
             </nav>
 
             {/* Actions */}
@@ -350,14 +341,6 @@ const MainLayout: React.FC = () => {
                 <span className="text-sm font-medium">{t('navbar.myLearning')}</span>
               </Link>
             )}
-            <Link 
-              to="/quiz" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center space-x-2 py-2 px-3 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
-            >
-              <BookOpen className="h-5 w-5 text-indigo-500" />
-              <span className="text-sm font-medium">{t('navbar.quiz')}</span>
-            </Link>
 
             {isAuthenticated && user ? (
               <>

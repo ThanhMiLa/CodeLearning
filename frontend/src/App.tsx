@@ -32,11 +32,6 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import CourseCreator from './pages/admin/CourseCreator';
 import QuizManager from './pages/admin/QuizManager';
 import TestcaseGenerator from './pages/admin/TestcaseGenerator';
-import QuizCatalog from './pages/quiz/QuizCatalog';
-import SWR302Catalog from './pages/quiz/SWR302Catalog';
-import HSF302Catalog from './pages/quiz/HSF302Catalog';
-import WDU203cCatalog from './pages/quiz/WDU203cCatalog';
-import QuizWorkspace from './pages/quiz/QuizWorkspace';
 import CourseCatalog from './pages/courses/CourseCatalog';
 import CourseDetail from './pages/courses/CourseDetail';
 import MyLearning from './pages/courses/MyLearning';
@@ -59,46 +54,6 @@ const App: React.FC = () => {
                 <Route path="courses/:courseId" element={<CourseDetail />} />
                 <Route path="oj/practice" element={<PracticeCatalog />} />
                 <Route path="contests" element={<ContestList />} />
-                <Route 
-                  path="quiz" 
-                  element={
-                    <ProtectedRoute>
-                      <QuizCatalog />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="quiz/swr302" 
-                  element={
-                    <ProtectedRoute>
-                      <SWR302Catalog />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="quiz/hsf302" 
-                  element={
-                    <ProtectedRoute>
-                      <HSF302Catalog />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="quiz/wdu203c" 
-                  element={
-                    <ProtectedRoute>
-                      <WDU203cCatalog />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="quiz/:quizId" 
-                  element={
-                    <ProtectedRoute>
-                      <QuizWorkspace />
-                    </ProtectedRoute>
-                  } 
-                />
 
                 {/* Guest-only Routes */}
                 <Route 
