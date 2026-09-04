@@ -44,5 +44,7 @@ public class ProjectProperties {
         private String checksumKey;
         private String returnUrl;
         private String cancelUrl;
+        private String baseUrl = "https://api-merchant.payos.vn";
+        private Duration timeout = Duration.ofSeconds(10);
     }
 }

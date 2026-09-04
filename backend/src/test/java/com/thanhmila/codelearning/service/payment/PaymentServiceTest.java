@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thanhmila.codelearning.configuration.ProjectProperties;
 import com.thanhmila.codelearning.dto.request.PaymentDepositRequest;
+import com.thanhmila.codelearning.service.payment.client.PayOsClient;
+import com.thanhmila.codelearning.service.payment.client.PayOsCreatePaymentRequest;
+import com.thanhmila.codelearning.service.payment.client.PayOsCreatePaymentResponse;
 import com.thanhmila.codelearning.entity.enums.PaymentTransactionType;
 import com.thanhmila.codelearning.entity.enums.TransactionStatus;
 import com.thanhmila.codelearning.entity.enums.UserStatus;
@@ -45,7 +48,7 @@ import static org.mockito.Mockito.*;
 class PaymentServiceTest {
 
     @Mock PayOS payOS;
-    @Mock ProjectProperties.Payos payosProps;
+    @Mock PayOsClient payOsClient;
     @Mock WalletRepository walletRepository;
     @Mock PaymentTransactionRepository paymentTransactionRepository;
     @Mock WalletTransactionRepository walletTransactionRepository;
@@ -117,6 +120,66 @@ class PaymentServiceTest {
             assertThatThrownBy(() -> paymentService.createDepositPayment(1L, new PaymentDepositRequest(BigDecimal.valueOf(50000))))
                     .isInstanceOf(AppException.class)
                     .hasFieldOrPropertyWithValue("errorCode", ErrorCode.RESOURCE_NOT_FOUND);
+        }
+
+        @Test
+        @DisplayName("createDepositPayment: Thành công trả về checkoutUrl và transactionCode")
+        void shouldCreateDepositPayment_Success() {
+            UserEntity user = UserEntity.builder().id(1L).status(UserStatus.ACTIVE).build();
+            WalletEntity wallet = WalletEntity.builder().id(10L).user(user).balance(BigDecimal.ZERO).build();
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+            when(walletRepository.findByUserId(1L)).thenReturn(Optional.of(wallet));
+
+            PayOsCreatePaymentResponse payOsResponse = PayOsCreatePaymentResponse.builder()
+                    .checkoutUrl("https://pay.payos.vn/web/test-checkout")
+                    .paymentLinkId("link-123")
+                    .build();
+            when(payOsClient.createPaymentLink(any())).thenReturn(payOsResponse);
+
+            var response = paymentService.createDepositPayment(1L, new PaymentDepositRequest(BigDecimal.valueOf(50000)));
+
+            assertThat(response).isNotNull();
+            assertThat(response.getCheckoutUrl()).isEqualTo("https://pay.payos.vn/web/test-checkout");
+            assertThat(response.getTransactionCode()).isNotBlank();
+            verify(paymentTransactionRepository).save(any(PaymentTransactionEntity.class));
+            verify(payOsClient).createPaymentLink(any(PayOsCreatePaymentRequest.class));
+        }
+
+        @Test
+        @DisplayName("createDepositPayment: PayOsClient lỗi ném AppException")
+        void shouldThrowAppException_WhenPayOsClientFails() {
+            UserEntity user = UserEntity.builder().id(1L).status(UserStatus.ACTIVE).build();
+            WalletEntity wallet = WalletEntity.builder().id(10L).user(user).balance(BigDecimal.ZERO).build();
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+            when(walletRepository.findByUserId(1L)).thenReturn(Optional.of(wallet));
+            when(payOsClient.createPaymentLink(any())).thenThrow(new RuntimeException("Network Error"));
+
+            assertThatThrownBy(() -> paymentService.createDepositPayment(1L, new PaymentDepositRequest(BigDecimal.valueOf(50000))))
+                    .isInstanceOf(AppException.class)
+                    .hasFieldOrPropertyWithValue("errorCode", ErrorCode.UNCATEGORIZED_EXCEPTION);
+
+            verify(paymentTransactionRepository).save(any(PaymentTransactionEntity.class));
+        }
+
+        @Test
+        @DisplayName("createDepositPayment: PayOs trả về null checkoutUrl ném AppException")
+        void shouldThrowAppException_WhenPayOsReturnsNullCheckoutUrl() {
+            UserEntity user = UserEntity.builder().id(1L).status(UserStatus.ACTIVE).build();
+            WalletEntity wallet = WalletEntity.builder().id(10L).user(user).balance(BigDecimal.ZERO).build();
+
+            when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+            when(walletRepository.findByUserId(1L)).thenReturn(Optional.of(wallet));
+
+            PayOsCreatePaymentResponse payOsResponse = PayOsCreatePaymentResponse.builder()
+                    .checkoutUrl(null)
+                    .build();
+            when(payOsClient.createPaymentLink(any())).thenReturn(payOsResponse);
+
+            assertThatThrownBy(() -> paymentService.createDepositPayment(1L, new PaymentDepositRequest(BigDecimal.valueOf(50000))))
+                    .isInstanceOf(AppException.class)
+                    .hasFieldOrPropertyWithValue("errorCode", ErrorCode.UNCATEGORIZED_EXCEPTION);
         }
     }
 

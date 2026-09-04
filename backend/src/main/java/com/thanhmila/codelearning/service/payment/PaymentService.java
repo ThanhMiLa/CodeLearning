@@ -29,11 +29,12 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import com.thanhmila.codelearning.service.payment.client.PayOsClient;
+import com.thanhmila.codelearning.service.payment.client.PayOsCreatePaymentRequest;
+import com.thanhmila.codelearning.service.payment.client.PayOsCreatePaymentResponse;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import vn.payos.PayOS;
 import vn.payos.type.Webhook;
@@ -46,7 +47,7 @@ import vn.payos.type.WebhookData;
 public class PaymentService {
 
     PayOS payOS;
-    ProjectProperties.Payos payosProps;
+    PayOsClient payOsClient;
     WalletRepository walletRepository;
     PaymentTransactionRepository paymentTransactionRepository;
     WalletTransactionRepository walletTransactionRepository;
@@ -79,65 +80,27 @@ public class PaymentService {
                 .build();
         paymentTransactionRepository.save(transaction);
 
-        // 4. Create link with PayOS SDK
+        // 4. Create link with PayOS Client
+        // Technical Debt Note: External network call is executed within @Transactional boundary
         try {
             long expiredAt = (System.currentTimeMillis() / 1000) + (15 * 60); // 15 phút từ bây giờ
 
-            // Manual call to bypass SDK ObjectMapper bug with new fields (expiredAt)
-            Map<String, Object> body = new HashMap<>();
-            body.put("orderCode", orderCode);
-            body.put("amount", request.getAmount().intValue());
-            body.put("description", "Thanh toan nap Xu");
-            body.put("returnUrl", payosProps.getReturnUrl());
-            body.put("cancelUrl", payosProps.getCancelUrl());
-            body.put("expiredAt", expiredAt);
-            
-            // Create signature (PayOS v2 có thể KHÔNG nhận expiredAt vào signature đối với SDK version cũ)
-            String signData = "amount=" + body.get("amount") +
-                              "&cancelUrl=" + body.get("cancelUrl") +
-                              "&description=" + body.get("description") +
-                              "&orderCode=" + body.get("orderCode") +
-                              "&returnUrl=" + body.get("returnUrl");
-            String signature = generateHmacSHA256(signData, payosProps.getChecksumKey());
-            body.put("signature", signature);
-
-            // Create WebClient
-            WebClient webClient = WebClient.builder()
-                    .baseUrl("https://api-merchant.payos.vn/v2/payment-requests")
-                    .defaultHeader("x-client-id", payosProps.getClientId())
-                    .defaultHeader("x-api-key", payosProps.getApiKey())
-                    .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            PayOsCreatePaymentRequest payOsRequest = PayOsCreatePaymentRequest.builder()
+                    .orderCode(orderCode)
+                    .amount(request.getAmount().intValue())
+                    .description("Thanh toan nap Xu")
+                    .expiredAt(expiredAt)
                     .build();
 
-            // Execute POST request synchronously
-            JsonNode responseNode = webClient.post()
-                    .bodyValue(body)
-                    .retrieve()
-                    .bodyToMono(JsonNode.class)
-                    .block(); // Block since the outer method is synchronous
+            PayOsCreatePaymentResponse payOsResponse = payOsClient.createPaymentLink(payOsRequest);
 
-            if (responseNode == null) {
-                log.error("PayOS response is null");
+            if (payOsResponse == null || payOsResponse.getCheckoutUrl() == null) {
+                log.error("PayOS response or checkoutUrl is missing");
                 throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
             }
-
-            String code = responseNode.has("code") ? responseNode.get("code").asText() : "";
-            if (!"00".equals(code)) {
-                String desc = responseNode.has("desc") ? responseNode.get("desc").asText() : "Unknown error";
-                log.error("PayOS API error: code={}, description={}", code, desc);
-                throw new RuntimeException("PayOS error " + code + ": " + desc);
-            }
-
-            JsonNode dataNode = responseNode.get("data");
-            if (dataNode == null || dataNode.isNull() || !dataNode.has("checkoutUrl")) {
-                log.error("PayOS response data or checkoutUrl is missing. Response: {}", responseNode);
-                throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
-            }
-            
-            String checkoutUrl = dataNode.get("checkoutUrl").asText();
 
             return PaymentDepositResponse.builder()
-                    .checkoutUrl(checkoutUrl)
+                    .checkoutUrl(payOsResponse.getCheckoutUrl())
                     .transactionCode(transactionCode)
                     .build();
 
@@ -252,23 +215,5 @@ public class PaymentService {
         walletRepository.save(wallet);
 
         log.info("Successfully processed deposit from CronJob Fallback for transaction: {}", transactionCode);
-    }
-
-    private String generateHmacSHA256(String data, String key) {
-        try {
-            javax.crypto.Mac sha256_HMAC = javax.crypto.Mac.getInstance("HmacSHA256");
-            javax.crypto.spec.SecretKeySpec secret_key = new javax.crypto.spec.SecretKeySpec(key.getBytes(java.nio.charset.StandardCharsets.UTF_8), "HmacSHA256");
-            sha256_HMAC.init(secret_key);
-            byte[] hash = sha256_HMAC.doFinal(data.getBytes(java.nio.charset.StandardCharsets.UTF_8));
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to calculate hmac-sha256", e);
-        }
     }
 }

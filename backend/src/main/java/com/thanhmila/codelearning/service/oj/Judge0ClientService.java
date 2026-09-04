@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,14 @@ import java.util.List;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class Judge0ClientService {
 
-    // Nhúng Bean WebClient 3-lớp khiên mà bạn đã config
     WebClient judge0WebClient;
+
+    public Judge0ClientService(@Qualifier("judge0WebClient") WebClient judge0WebClient) {
+        this.judge0WebClient = judge0WebClient;
+    }
 
     public List<Judge0TokenResponse> sendBatchSubmission(Judge0BatchRequest request) {
         log.info("Sending {} testcases to Judge0...", request.getSubmissions().size());

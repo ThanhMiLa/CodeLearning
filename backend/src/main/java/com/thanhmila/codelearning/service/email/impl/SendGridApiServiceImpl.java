@@ -3,15 +3,15 @@ package com.thanhmila.codelearning.service.email.impl;
 import com.thanhmila.codelearning.dto.email.SendGridEmailRequest;
 import com.thanhmila.codelearning.service.email.SendGridApiService;
 import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SendGridApiServiceImpl implements SendGridApiService {
     
@@ -19,6 +19,10 @@ public class SendGridApiServiceImpl implements SendGridApiService {
     
     @Value("${sendgrid.api-key}") 
     String apiKey;
+
+    public SendGridApiServiceImpl(@Qualifier("sendGridWebClient") WebClient webClient) {
+        this.webClient = webClient;
+    }
     
     @Override
     public void sendEmailBulk(SendGridEmailRequest request) {

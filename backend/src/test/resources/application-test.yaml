@@ -37,3 +37,16 @@ sendgrid:
   from-name: "CodeLearning"
   webhook-public-key: "test-public-key"
 
+judge0:
+  base-url: "http://localhost:2358"
+  timeout: 5s
+
+payos:
+  client-id: "test-client-id"
+  api-key: "test-api-key"
+  checksum-key: "test-checksum-key"
+  return-url: "http://localhost:5173/payment/success"
+  cancel-url: "http://localhost:5173/payment/cancel"
+  base-url: "https://api-merchant.payos.vn"
+  timeout: 5s
+
